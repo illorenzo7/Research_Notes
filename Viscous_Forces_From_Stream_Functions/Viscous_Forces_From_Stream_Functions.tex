@@ -1,0 +1,323 @@
+\documentclass[12pt]{article} % document type and language
+
+\usepackage{amsmath, amssymb, bm, mathtools, cancel, empheq, ulem, mathrsfs, natbib}
+\setcitestyle{aysep={}} 
+%\usepackage{newtxmath} 
+\usepackage[margin=1in]{geometry}
+\usepackage{ulem}
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor=blue,
+	citecolor=blue
+}
+
+% Allow option to set color when hyperlinking
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}
+
+\date{\today}
+\author{Loren Matilsky}
+\title{Viscous Force in Terms of Poloidal and Toroidal Stream Functions}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\ppderiv}[2]{\frac{\partial^2#1}{\partial#2^2}}
+\newcommand{\pppderiv}[2]{\frac{\partial^3#1}{\partial#2^3}}
+\newcommand{\av}[1]{\langle#1\rangle}
+\newcommand{\bigav}[1]{\bigg{\langle}#1\bigg{\rangle}}
+\newcommand{\bigfrac}[2]{\bigg{(}\frac{#1}{#2}\bigg{)}}
+\newcommand{\mbigfrac}[2]{\bigg{(}{-\frac{#1}{#2}}\bigg{)}}
+\newcommand\numberone{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\pomega}{\varpi}
+\newcommand{\ugrad}{\bm{u}\cdot\nabla}
+\newcommand{\cv}{c_{\rm{v}}}
+\newcommand{\cp}{c_{\rm{p}}}
+\newcommand{\orr}{\text{or}\ \ \ \ \ }
+\newcommand{\andd}{\text{and}\ \ \ \ \ }
+\newcommand{\tz}{\tilde{Z}}
+\newcommand{\tw}{\tilde{W}}
+\newcommand{\five}{\ \ \ \ \ }
+\newcommand{\e}{\hat{\bm{e}}}
+\newcommand{\tr}{\tilde{r}}
+\newcommand{\rhobar}{\overline{\rho}}
+\newcommand{\curl}{\nabla\times}
+\newcommand{\er}{\hat{\bm{e}}_r}
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\divh}{\nabla_h\cdot}
+\newcommand{\divr}{\nabla_r\cdot}
+\newcommand{\ri}{r_{\rm{i}}}
+\newcommand{\ro}{r_{\rm{o}}}
+\newcommand{\db}{\beta^\prime}
+\newcommand{\ddb}{\beta^{\prime\prime}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+\allowdisplaybreaks
+\begin{document}
+	\maketitle
+	Under the anelastic approximation, 
+	\begin{align}
+	\Div(\rhobar\bm{v})\equiv 0,
+	\label{eq:anelastic}
+	\end{align}
+	so we expand the mass flux in terms of stream functions:
+	\begin{align}
+	\rhobar\bm{v} = \curl[\curl(W\e_r)] + \curl(Z\e_r). 
+	\label{eq:rhov_from_WZ}
+	\end{align}
+	Here $W$ and $Z$ are the poloidal and toroidal stream functions, respectively. Note that the velocity field from the toroidal stream function, $Z$ is purely horizontal; $v_r$ is thus purely determined by the poloidal stream function, $W$. In fact, we can show from the radial component of \eqref{eq:rhov_from_WZ} that
+	\begin{align}
+	\rhobar v_r = -\frac{1}{r^2}(\bm{r}\times\nabla)^2W.
+	\end{align}
+	The operator $\mathscr{L}^2 = -(\bm{r}\times\nabla)^2$ is just the total angular momentum operator, with the eigenvalues $L\coloneqq l(l+1)$ ($l$ being an integer) and the eigenfunctions the spherical harmonics $Y_{lm}$. Thus, if we consider only one spherical harmonic component of $\rhobar v_r$ at a time (or else all the spherical harmonics with a fixed $l$), we can write
+	\begin{align}
+	\rhobar v_r = \frac{L}{r^2}W.
+	\label{eq:rhovr_from_W}
+	\end{align}
+	
+	We are interested in the Newtonian viscous forcing term:
+	\begin{align}
+	\bm{f} \coloneqq -\nabla\cdot\bm{D} = \nabla \cdot\bigg{\{}2\rhobar\nu\bigg{[}\bm{S}-\frac{1}{3}(\nabla\cdot\bm{v})\bm{I}\bigg{]}\bigg{\}},
+	\end{align}
+	where 
+	\begin{align}
+	S_{ij} = \frac{1}{2}\bigg{(}\pderiv{u_j}{x_i}+\pderiv{u_i}{x_j}\bigg{)}
+	\end{align}
+	and $\bm{I}$ is the identity tensor, or Kronecker delta. 
+	
+	We define
+	\begin{align}
+	\alpha(r) &\coloneqq \frac{d\ln\nu}{dr},\\
+	\beta(r) &\coloneqq \frac{d\ln\rhobar}{dr},
+	\end{align}
+	and compute
+	
+	\begin{align*}
+	\bm{f} = 2[\nabla(\rhobar\nu)]\cdot\bigg{[}\bm{S}-\frac{1}{3}(\Div\bm{v})\bm{I}\bigg{]} + 2\rhobar\nu\Div\bigg{[}\bm{S}-\frac{1}{3}(\Div\bm{v})\bm{I}\bigg{]}
+	\end{align*}
+	Now,
+	\begin{align*}
+	\nabla(\rhobar\nu) = \frac{d(\rhobar\nu)}{dr}\e_r = [(\rhobar\beta)\nu + \rhobar(\nu\alpha)]\e_r = \rhobar\nu(\alpha+\beta)\e_r
+	\end{align*}
+	and
+	\begin{align*}
+	\Div\bigg{[}\bm{S}-\frac{1}{3}(\Div\bm{v})\bm{I}\bigg{]} &= \e_i\pderiv{}{x_j}\bigg{[}\frac{1}{2}\bigg{(}\pderiv{u_j}{x_i}+\pderiv{u_i}{x_j}\bigg{)} - \frac{1}{3}(\Div\bm{v})\delta_{ij}\bigg{]}\\
+	&= \frac{1}{2}\e_i\bigg{(}\frac{\partial^2u_j}{\partial x_i\partial x_j} + \frac{\partial^2u_i}{\partial x_j^2}\bigg{)}-\frac{1}{3}\e_i\pderiv{}{x_i}(\Div\bm{v})\\
+	&= \frac{1}{2}\nabla^2\bm{v} + \frac{1}{2} \nabla(\Div\bm{v}) - \frac{1}{3}\nabla(\Div\bm{v})\\
+	&= \frac{1}{2}\nabla^2\bm{v} + \frac{1}{6} \nabla(\Div\bm{v}).
+	\end{align*}
+	Thus,
+	\begin{align}
+	\bm{f} = 2\rhobar\nu(\alpha+\beta)\bigg{[}S_{r\gamma}\e_\gamma - \frac{1}{3}(\Div\bm{v})\e_r\bigg{]} + \rhobar\nu\bigg{[}\nabla^2\bm{v}+\frac{1}{3}\nabla(\Div\bm{v})\bigg{]},
+	\label{eq:f_vectorform}
+	\end{align}
+	where $\gamma$ runs over the spherical coordinates $r,\theta,\phi$. 
+	
+	\section{Radial component of viscous force}
+	We compute 
+	\begin{align}
+	f_r = \underbrace{2\rhobar\nu(\alpha+\beta)\bigg{(}S_{rr} - \frac{1}{3}\Div\bm{v}\bigg{)}}_{\coloneqq T_1} + \underbrace{\rhobar\nu\bigg{[}(\nabla^2\bm{v})_r + \frac{1}{3}\pderiv{}{r}(\nabla\cdot\bm{v})\bigg{]}}_{\coloneqq T_2}
+	\label{eq:fr_twoterms}
+	\end{align}
+	Now, $S_{rr}=\partial v_r/\partial r$, and from the anelastic assumption \eqref{eq:anelastic},
+	 \begin{align}
+	 \Div\bm{v}=-\beta v_r.
+	 \label{eq:divv_from_vr}
+	 \end{align}
+	 Thus, we compute
+	\begin{align}
+	T_1 = 2\rhobar\nu(\alpha+\beta)\bigg{(}\pderiv{v_r}{r}+\frac{1}{3}\beta v_r\bigg{)}.
+	\label{eq:T1}
+	\end{align}
+	We also have 
+	\begin{align}
+	\rhobar\pderiv{v_r}{r} &= \pderiv{}{r}(\rhobar v_r) - v_r\frac{d\rhobar}{dr}\nonumber\\
+	&= \pderiv{}{r}\bigg{(}\frac{LW}{r^2}\bigg{)} - (\beta\rhobar)v_r\nonumber\\
+	&= \frac{L}{r^2}\pderiv{W}{r} - \frac{2L}{r^3}W - \beta\frac{LW}{r^2}\nonumber\\
+	&= \frac{L}{r^2}\bigg{[}\pderiv{W}{r}-\bigg{(}\frac{2}{r}+\beta\bigg{)}W\bigg{]}.
+	\label{eq:rhodvr_from_W}
+	\end{align}
+	Plugging \eqref{eq:rhovr_from_W} and \eqref{eq:rhodvr_from_W} into \eqref{eq:T1}, we find
+	\begin{align}
+	T_1 &= \nu\bigg{\{}2(\alpha+\beta)\bigg{[}\frac{L}{r^2}\bigg{(}\pderiv{W}{r} - \bigg{(}\frac{2}{r}+\beta\bigg{)}W\bigg{)}+\frac{\beta}{3}\frac{LW}{r^2}\bigg{]}\bigg{\}}\nonumber\\
+	&= \nu\frac{L}{r^2}\bigg{[}(2\alpha+2\beta)\pderiv{W}{r} + (2\alpha+2\beta)\bigg{(}-\frac{2}{r}-\frac{2}{3}\beta\bigg{)}W\bigg{]}\nonumber\\
+	&= \nu\frac{L}{r^2}\bigg{[}(2\alpha+2\beta)\pderiv{W}{r} - \bigg{(}\frac{4\alpha}{r}+\frac{4\beta}{r} + \frac{4}{3}\alpha\beta + \frac{4}{3}\beta^2\bigg{)}W\bigg{]}.
+	\label{eq:t1_resolved}
+	\end{align}
+	To calculate $T_2$, we note that
+	\begin{align}
+	(\nabla^2\bm{v})_r &= \nabla^2v_r - \frac{2v_r}{r^2}-\frac{2}{r}\underbrace{\bigg{(}\frac{1}{r}\pderiv{v_\theta}{\theta} + \frac{\cot\theta v_\theta}{r} + \frac{1}{r\sin\theta}\pderiv{v_\phi}{\phi}\bigg{)}}_{\nabla\cdot\bm{v} -\ \pderiv{v_r}{r} -\ \frac{2}{r}\frac{v_r}{r}}\nonumber\\
+	&= \nabla^2v_r - \frac{2}{r}\Div\bm{v}+\frac{2v_r}{r^2} + \frac{2}{r}\pderiv{v_r}{r}\nonumber\\
+	&= \frac{\partial^2v_r}{\partial r^2}+\frac{2}{r}\pderiv{v_r}{r} - \frac{L}{r^2}v_r + \frac{2}{r}\beta v_r + \frac{2v_r}{r^2} + \frac{2}{r}\pderiv{v_r}{r}\nonumber\\
+	&= \frac{\partial^2v_r}{\partial r^2} + \frac{4}{r}\pderiv{v_r}{r} + \bigg{(}\frac{2}{r^2}+\frac{2\beta}{r}-\frac{L}{r^2}\bigg{)}v_r.
+	\label{eq:del2v_r}
+	\end{align}
+	Plugging \eqref{eq:divv_from_vr} and \eqref{eq:del2v_r} into the definition of $T_2$ in \eqref{eq:fr_twoterms} yields
+	\begin{align}
+	T_2 &= \rhobar\nu\bigg{[}\frac{\partial^2v_r}{\partial r^2} + \frac{4}{r}\pderiv{v_r}{r} + \bigg{(}\frac{2}{r^2}+\frac{2\beta}{r}-\frac{L}{r^2}\bigg{)}v_r - \frac{1}{3}\pderiv{}{r}(\beta v_r)\nonumber\\
+	&= \nu\bigg{[}\rhobar\ppderiv{v_r}{r} + \bigg{(}\frac{4}{r}-\frac{1}{3}\beta\bigg{)}\rhobar\pderiv{v_r}{r} + \bigg{(}\frac{2}{r^2}+\frac{2\beta}{r}-\frac{L}{r^2}-\frac{1}{3}\frac{d\beta}{dr}\bigg{)}\rhobar v_r\bigg{]}. 
+	\label{eq:t2_from_rhodvr}
+	\end{align}
+	We also need
+	\begin{align}
+	\rhobar\ppderiv{v_r}{r} &= \pderiv{}{r}\bigg{(}\rhobar\pderiv{v_r}{r}\bigg{)}-\beta\rhobar\pderiv{v_r}{r}\nonumber\\
+	&= \pderiv{}{r}\bigg{\{}\frac{L}{r^2}\bigg{[}\pderiv{W}{r}-\bigg{(}\frac{2}{r}+\beta\bigg{)}W\bigg{]}\bigg{\}} - \beta\frac{L}{r^2}\bigg{[}\pderiv{W}{r}-\bigg{(}\frac{2}{r}+\beta\bigg{)}W\bigg{]}\nonumber\\
+	&= \frac{L}{r^2}\bigg{[}\ppderiv{W}{r}+\bigg{(}\frac{2}{r^2}-\frac{d\beta}{dr}\bigg{)}W-\bigg{(}\frac{2}{r}+\beta\bigg{)}\pderiv{W}{r}\bigg{]} + \bigg{(}-\frac{2L}{r^3}-\beta\frac{L}{r^2}\bigg{)}\bigg{[}\pderiv{W}{r}-\bigg{(}\frac{2}{r}+\beta\bigg{)}W\bigg{]}\nonumber\\
+	&= \frac{L}{r^2}\bigg{\{}\ppderiv{W}{r}-\bigg{(}\frac{4}{r}+2\beta\bigg{)}\pderiv{W}{r}+\bigg{[}\frac{2}{r^2}-\frac{d\beta}{dr}+\bigg{(}\frac{2}{r}+\beta\bigg{)}^2\bigg{]}W\bigg{\}}\nonumber\\
+	&= \frac{L}{r^2}\bigg{[}\ppderiv{W}{r}-\bigg{(}\frac{4}{r}+2\beta\bigg{)}\pderiv{W}{r}+\bigg{(}\frac{6}{r^2}+\frac{4\beta}{r}+\beta^2-\frac{d\beta}{dr}\bigg{)}W\bigg{]}.
+	\label{eq:rhod2vr_from_W}
+	\end{align}
+	Plugging \eqref{eq:rhovr_from_W}, \eqref{eq:rhodvr_from_W}, and \eqref{eq:rhod2vr_from_W} into \eqref{eq:t2_from_rhodvr} finally yields $T_2$ in terms of the poloidal stream function $W$:
+	\begin{align}
+	T_2 &=\frac{L}{r^2}\nu\bigg{\{}\ppderiv{W}{r} - \bigg{(}\frac{4}{r}+2\beta\bigg{)}\pderiv{W}{r}+\bigg{(}\frac{6}{r^2}+\frac{4\beta}{r}+\beta^2-\underline{\frac{d\beta}{dr}}\bigg{)}W +\nonumber\\ &\bigg{(}\frac{4}{r}-\frac{1}{3}\beta\bigg{)}\bigg{[}\pderiv{W}{r}-\bigg{(}\frac{2}{r}+\beta\bigg{)}W\bigg{]} + \bigg{(}\frac{2}{r^2}+\frac{2\beta}{r}-\frac{L}{r^2}-\underline{\frac{1}{3}\frac{d\beta}{dr}}\bigg{)}W\bigg{\}}\nonumber \\
+	&= \frac{L}{r^2}\nu\bigg{\{}\ppderiv{W}{r}+\bigg{[}-\cancel{\frac{4}{r}}-2\beta+\cancel{\frac{4}{r}}-\frac{1}{3}\beta\bigg{]}\pderiv{W}{r}\nonumber \\
+	&+ \bigg{[}\bcancel{\frac{6}{r^2}}+\xcancel{\frac{4\beta}{r}}+\underline{\beta^2}-\bcancel{\frac{8}{r^2}}-\xcancel{\frac{4\beta}{r}}+\dotuline{\frac{2}{3}\frac{\beta}{r}} + \underline{\frac{1}{3}\beta^2}+\bcancel{\frac{2}{r^2}} + \dotuline{\frac{2\beta}{r}} - \frac{L}{r^2}-\frac{4}{3}\frac{d\beta}{dr}\bigg{]}W\bigg{\}}\nonumber\\
+	&=\frac{L}{r^2}\nu\bigg{[}\ppderiv{W}{r}-\frac{7}{3}\beta\pderiv{W}{r}+\bigg{(}\frac{4}{3}\beta^2+\frac{8}{3}\frac{\beta}{r}-\frac{L}{r^2}-\frac{4}{3}\frac{d\beta}{dr}\bigg{)}W\bigg{]}.
+	\label{eq:t2_resolved} 
+	\end{align}
+	At last, we use the expressions for $T_1$ and $T_2$ in terms of $W$ (equations \eqref{eq:t1_resolved} and \eqref{eq:t2_resolved}, respectively) in \eqref{eq:fr_twoterms} to find $f_r$:
+	\begin{align}
+	f_r = T_1 + T_2 &= \frac{L}{r^2}\nu\bigg{[}\ppderiv{W}{r} + \bigg{(}2\alpha + 2\beta - \frac{7}{3}\beta\bigg{)}\pderiv{W}{r}\nonumber\\
+	&+\bigg{[}-\frac{4\alpha}{r}-\underline{\frac{4\beta}{r}}- \frac{4}{3}\alpha\beta - \cancel{\frac{4}{3}\beta^2} + \cancel{\frac{4}{3}\beta^2}+\underline{\frac{8}{3}\frac{\beta}{r}} - \frac{L}{r^2}-\frac{4}{3}\frac{d\beta}{dr}\bigg{]}W\bigg{\}}\nonumber\\
+	&= \frac{L}{r^2}\nu\bigg{[}\ppderiv{W}{r}+\bigg{(}2\alpha-\frac{1}{3}\beta\bigg{)}\pderiv{W}{r}+\bigg{(}-\frac{4\alpha}{r}-\frac{4}{3}\frac{\beta}{r}-\frac{4}{3}\alpha\beta - \frac{L}{r^2}- \frac{4}{3}\frac{d\beta}{dr}\bigg{)}W\bigg{]}\nonumber\\
+	&= \frac{L}{r^2}\nu\bigg{\{}\ppderiv{W}{r}+\bigg{(}\frac{6\alpha-\beta}{3}\bigg{)}\pderiv{W}{r}-\bigg{[}\frac{4}{3}\bigg{(}\alpha\beta +\frac{d\beta}{dr}+\frac{3\alpha + \beta}{r}\bigg{)}+\frac{L}{r^2}\bigg{]}W\bigg{\}}.
+	\end{align}
+	
+	\section{Radial component of curl of viscous force}
+	ASH and Rayleigh don't solve the momentum equation directly, but rather the radial component of the momentum equation and radial component of the curl of the momentum equation, to get things in terms of the stream function W and Z. Thus, we wish to write
+	\begin{align}
+	h_r \coloneqq (\nabla\times\bm{f})_r = [\nabla\times(-\Div\bm{D})]_r
+	\end{align}
+	in terms of the stream functions (in the end it will only be in terms of the toroidal stream function, $Z$). We have here defined $\bm{h}\coloneqq \nabla\times(-\Div\bm{D})$ to be the ``curl-of-force" field from the viscosity (kind of like a torque--or, more appropriately, a vorticity driving field).
+	
+	From \eqref{eq:f_vectorform}, we have 
+	\begin{align*}
+	h_r = \{2\rhobar\nu(\alpha+\beta)[\curl(S_{r\gamma}\e_\gamma)] + \rhobar\nu\nabla^2\bm{\omega}\}_r,
+	\label{eq:hr_from_s_and_vort}
+	\end{align*}
+	where $\bm{\omega}\coloneqq\curl\bm{v}$ is the vorticity field. In the preceding equation, we have noted several times that $\nabla\times\e_r\equiv 0$, $[\nabla (\text{function of radius})]\times\e_r \equiv 0$, and $\nabla\times(\nabla \psi) \equiv 0$ for any scalar $\psi$. We have also noted that on vectors, the operators $\curl$ and $\nabla^2$ commute.
+	
+	To go further, we compute
+	\begin{align}
+	[\curl(S_{r\gamma}\e_\gamma)]_r &= \frac{1}{r\sin\theta}\pderiv{}{\theta}(\sin\theta S_{r\phi}) - \frac{1}{r\sin\theta}\pderiv{S_{r\theta}}{\phi}\nonumber\\
+	&= \frac{1}{r\sin\theta}\pderiv{}{\theta}\bigg{\{}\frac{\sin\theta}{2}\bigg{[}\frac{1}{r\sin\theta}\pderiv{v_r}{\phi} + r\pderiv{}{r}\bigg{(}\frac{v_\phi}{r}\bigg{)}\bigg{]}\bigg{\}}\nonumber\\
+	&- \frac{1}{r\sin\theta}\pderiv{}{\phi}\bigg{\{}\frac{1}{2}\bigg{[}r\pderiv{}{r}\bigg{(}\frac{v_\theta}{r}\bigg{)}+\frac{1}{r}\pderiv{v_r}{\theta}\bigg{]}\bigg{\}}\nonumber\\
+	&= \frac{1}{2}\bigg{\{}\cancel{\frac{1}{r^2\sin\theta}\pderiv{}{\theta}\bigg{(}\pderiv{v_r}{\phi}\bigg{)}} + \frac{1}{\sin\theta}\pderiv{}{\theta}\bigg{[}\sin\theta\pderiv{}{r}\bigg{(}\frac{v_\phi}{r}\bigg{)}\bigg{]} \nonumber\\ &-\frac{1}{\sin\theta}\pderiv{}{\phi}\bigg{[}\pderiv{}{r}\bigg{(}\frac{v_\theta}{r}\bigg{)}\bigg{]} - \cancel{\frac{1}{r^2\sin\theta}\pderiv{}{\phi}\bigg{(}\pderiv{v_r}{\theta}\bigg{)}}\bigg{\}}\nonumber\\
+	&= \frac{1}{2}\pderiv{}{r}\bigg{[}\frac{1}{r\sin\theta}\pderiv{}{\theta}(\sin\theta v_\phi) - \frac{1}{r\sin\theta}\pderiv{v_\theta}{\phi}\bigg{]}\\
+	&= \frac{1}{2}\pderiv{\omega_r}{r}.
+	\label{eq:curls_from_omr}
+	\end{align}
+	The identity \eqref{eq:del2v_r} holds for $(\nabla^2\bm{\omega})_r$, but with no term $2\beta\omega_r/r$ since $\nabla\cdot\bm{\omega}\equiv 0$. Plugging \eqref{eq:curls_from_omr} and (a modified) \eqref{eq:del2v_r} into \eqref{eq:hr_from_s_and_vort} yields
+	\begin{align}
+	h_r &= 2\rhobar\nu(\alpha+\beta)\bigg{(}\frac{1}{2}\pderiv{\omega_r}{r}\bigg{)} + \rhobar\nu(\nabla^2\bm{\omega})_r\\
+	&= \nu\bigg{\{}(\alpha+\beta)\rhobar\pderiv{\omega_r}{r} + \rhobar\bigg{[}\ppderiv{\omega_r}{r} + \frac{4}{r}\pderiv{\omega_r}{r} + \bigg{(}\frac{2}{r^2} - \frac{L}{r^2}\bigg{)}\omega_r\bigg{]}\bigg{\}}\nonumber\\
+	&= \nu\bigg{[}\rhobar\ppderiv{\omega_r}{r} +\bigg{(}\alpha+\beta+\frac{4}{r}\bigg{)}\rhobar\pderiv{\omega_r}{r} + \bigg{(}\frac{2}{r^2}-\frac{L}{r^2}\bigg{)}\rhobar\omega_r\bigg{]}.
+	\label{eq:hr_from_vort}
+	\end{align}
+	
+	Now, $\omega_r$ is related (purely) to the toroidal stream function $Z$. One can show, taking the radial component of the curl of \eqref{eq:rhov_from_WZ}, that (assuming the various spherical harmonic components are considered separately)
+	\begin{align}
+	\rhobar \omega_r = \frac{L}{r^2}Z.
+	\label{eq:rhoomr_from_Z}
+	\end{align}
+	Furthermore, the analogs of both \eqref{eq:rhodvr_from_W} and \eqref{eq:rhod2vr_from_W} both hold exactly with the substitutions $v_r\rightarrow\omega_r$ and $W\rightarrow Z$. Plugging all this into \eqref{eq:hr_from_vort} thus yields
+	\begin{align}
+	h_r &= \frac{L\nu}{r^2}\bigg{\{}\ppderiv{Z}{r}-\bigg{(}\frac{4}{r}+2\beta\bigg{)}\pderiv{Z}{r} + \bigg{(}\frac{6}{r^2} + \frac{4\beta}{r} + \beta^2 - \frac{d\beta}{dr}\bigg{)}Z \nonumber\\
+	&+ \bigg{(}\alpha+\beta+\frac{4}{r}\bigg{)}\bigg{[}\pderiv{Z}{r} -\bigg{(}\frac{2}{r}+\beta\bigg{)}Z\bigg{]} + \bigg{(}\frac{2}{r^2}-\frac{L}{r^2}\bigg{)}Z\bigg{\}}\nonumber\\
+	&= \frac{L\nu}{r^2}\bigg{[}\ppderiv{Z}{r}+\bigg{(}-\cancel{\frac{4}{r}} -2\beta + \alpha + \beta + \cancel{\frac{4}{r}}\bigg{)}\pderiv{Z}{r}\nonumber\\
+	&+\bigg{(}\cancel{\frac{6}{r^2}}+\bcancel{\frac{4\beta}{r}} + \xcancel{\beta^2}-\frac{d\beta}{dr} - \frac{2\alpha}{r} - \frac{2\beta}{r} - \cancel{\frac{8}{r^2}} - \alpha\beta - \xcancel{\beta^2} - \bcancel{\frac{4\beta}{r}} + \cancel{\frac{2}{r}} - \frac{L}{r^2}\bigg{)}Z\bigg{]}\nonumber\\
+	&= \frac{L\nu}{r^2}\bigg{[}\ppderiv{Z}{r} + (\alpha-\beta)\pderiv{Z}{r} - \bigg{(}\frac{2\alpha+2\beta}{r} + \alpha\beta + \frac{d\beta}{dr} + \frac{L}{r^2}\bigg{)}Z\bigg{]}.
+	\end{align}
+	
+	\section{Horizontal divergence of viscous force}
+	For a vector field $\bm{A}$, we define the \textit{radial} and \textit{horizontal} divergences through
+	\begin{align}
+	\Div\bm{A} \coloneqq \divr\bm{A}+\divh\bm{A} = \bigg{[}\pderiv{A_r}{r} + \frac{2A_r}{r}\bigg{]} + \bigg{[}\frac{1}{r\sin\theta}\pderiv{}{\theta}(\sin\theta A_\theta)
+	+ \frac{1}{r\sin\theta}\pderiv{A_\phi}{\phi}\bigg{]}.
+	\label{def:divr_and_divh}
+	\end{align}
+	Clearly the operator $\nabla_h = \e_\theta(1/r\sin\theta)(\partial/\partial\theta)\sin\theta + \e_\phi(1/r\sin\theta)\partial/\partial\phi$ is insensitive to functions of radius. Furthermore, for a scalar $\psi$, it is easy to see that 
+	\begin{align}
+	\divh\nabla\psi = -\frac{\mathscr{L}^2\psi}{r^2}= -\frac{L\psi}{r^2},
+	\label{eq:hlaplacian}
+	\end{align}
+	making it appropriate to call the total angular momentum operator the ``horizontal Laplacian."
+	
+	From \eqref{eq:f_vectorform}, we calculate
+	\begin{align}
+	\divh\bm{f} = 2\rhobar\nu(\alpha+\beta)[\divh(S_{r\gamma}\e_\gamma)] + \rhobar\nu\bigg{[}\divh(\nabla^2\bm{v})+\frac{1}{3}\mathscr{L}^2(\Div\bm{v})\bigg{]}.
+	\label{eq:divf_vectorform}
+	\end{align}
+	
+	We compute
+	\begin{align}
+	\divh(S_{r\gamma}\e_\gamma) &= \frac{1}{r\sin\theta}\pderiv{}{\theta}(\sin\theta S_{r\theta}) + \frac{1}{r\sin\theta}\pderiv{S_{r\phi}}{\phi}\nonumber\\
+	&=\frac{1}{r\sin\theta}\pderiv{}{\theta}\sin\theta\frac{1}{2}\bigg{[}r\pderiv{}{r}\bigg{(}\frac{v_\theta}{r}\bigg{)}+\frac{1}{r}\pderiv{v_r}{\theta}\bigg{]} + \frac{1}{r\sin\theta}\pderiv{}{\phi}\frac{1}{2}\bigg{[}\frac{1}{r\sin\theta}\pderiv{v_r}{\phi}+r\pderiv{}{r}\bigg{(}\frac{v_\phi}{r}\bigg{)}\bigg{]}\nonumber\\
+	&= \frac{1}{2}\bigg{\{}\frac{1}{r^2\sin\theta}\pderiv{}{\theta}\sin\theta\pderiv{v_r}{\theta} + \frac{1}{r^2\sin^2\theta}\ppderiv{v_r}{\phi} +\frac{1}{\sin\theta}\pderiv{}{\theta}\sin\theta\pderiv{}{r}\bigg{(}\frac{v_\theta}{r}\bigg{)} + \frac{1}{\sin\theta}\pderiv{}{\phi}\pderiv{}{r}\bigg{(}\frac{v_\phi}{r}\bigg{)}\bigg{\}}\nonumber\\
+	&= \frac{1}{2}\bigg{\{}-\frac{\mathscr{L}^2v_r}{r^2} + \pderiv{}{r}\underbrace{\frac{1}{r}\bigg{[}\frac{1}{\sin\theta}\pderiv{}{\theta}\sin\theta v_\theta + \frac{1}{\sin\theta}\pderiv{v_\phi}{\phi}\bigg{]}}_{\substack{\divh\bm{v}\ =\ \Div\bm{v}\ -\ \partial v_r/\partial r\ -\ 2v_r/r\ =\\ -\beta v_r\ -\ \partial v_r/\partial r\ -\ 2v_r/r}}\bigg{\}}\nonumber\\
+	&= \frac{1}{2}\bigg{[}-\frac{Lv_r}{r^2} - \beta\pderiv{v_r}{r}-\beta^\prime v_r - \ppderiv{v_r}{r} - \frac{2}{r}\pderiv{v_r}{r}+\frac{2v_r}{r^2}\bigg{]}\nonumber\\
+	&= -\frac{1}{2}\ppderiv{v_r}{r}-\bigg{(}\frac{\beta}{2}+\frac{1}{r}\bigg{)}\pderiv{v_r}{r} +\bigg{(}-\frac{L}{2r^2}-\beta^\prime+\frac{1}{r^2}\bigg{)}v_r,
+	\label{eq:divhs_from_vr}
+	\end{align}
+	where $\beta^\prime\coloneqq d\beta/dr$.
+	
+	Next, we compute
+	\begin{align}
+	\label{eq:divhdel2v_decomposition}	\divh\nabla^2\bm{v}&=\Div(\nabla^2\bm{v}) - \divr(\nabla^2\bm{v}) = \nabla^2(\Div\bm{v}) -\divr(\nabla^2\bm{v}),\\
+	\nabla^2(\Div\bm{v}) &= \bigg{(}\frac{1}{r^2}\pderiv{}{r}r^2\pderiv{}{r}-\frac{\mathscr{L}^2}{r^2}\bigg{)}(-\beta v_r)\five \text{using \eqref{eq:divv_from_vr}}\nonumber\\
+	&= -\frac{1}{r^2}\pderiv{}{r}r^2\bigg{(}\beta\pderiv{v_r}{r}+\beta^\prime v_r\bigg{)}+\beta\frac{\mathscr{L}^2}{r^2}v_r\nonumber\\
+	&= - \bigg{(}\beta\ppderiv{v_r}{r}+ \db\pderiv{v_r}{r}+\db \pderiv{v_r}{r} +\ddb v_r\bigg{)}\nonumber - \frac{2}{r}\bigg{(}\beta\pderiv{v_r}{r}+\db v_r\bigg{)} + \beta\frac{L}{r^2}v_r\nonumber\\
+		\label{eq:del2divv}&= -\beta\ppderiv{v_r}{r} -\bigg{(}2\db + \frac{2\beta}{r}\bigg{)}\pderiv{v_r}{r} + \bigg{(}-\ddb-\frac{2\db}{r} + \frac{\beta L}{r^2}\bigg{)}v_r,\\
+	\andd \divr(\nabla^2\bm{v}) &= \frac{1}{r^2}\pderiv{}{r}r^2[(\nabla^2\bm{v})_r]\nonumber\\
+	&= \frac{1}{r^2}\pderiv{}{r}r^2\bigg{[}\ppderiv{v_r}{r}+\frac{4}{r}\pderiv{v_r}{r} +\bigg{(}\frac{2}{r^2}+\frac{2\beta}{r}-\frac{L}{r^2}\bigg{)}v_r\bigg{]}\five\text{using \eqref{eq:del2v_r}}\nonumber\\
+	&= \frac{1}{r^2}\pderiv{}{r}\bigg{[}r^2\ppderiv{v_r}{r}+4r\pderiv{v_r}{r}+(2+2\beta r-L)v_r\bigg{]}\nonumber\\
+	&= \pppderiv{v_r}{r} + \frac{2}{r}\ppderiv{v_r}{r}+ \frac{4}{r}\ppderiv{v_r}{r} + \frac{4}{r^2}\pderiv{v_r}{r} +\frac{2+2\beta r -L}{r^2}\pderiv{v_r}{r} + \frac{2(\beta + \db r) v_r}{r^2}\nonumber\\
+	\label{eq:divrdel2v}	&= \pppderiv{v_r}{r} + \frac{6}{r^2}\ppderiv{v_r}{r} + \bigg{(}\frac{6}{r^2}+\frac{2\beta}{r}-\frac{L}{r^2}\bigg{)}\pderiv{v_r}{r} + \bigg{(}\frac{2\beta}{r^2} + \frac{2\db}{r}\bigg{)}v_r.
+	\end{align}
+	Combining \eqref{eq:del2divv} and \eqref{eq:divrdel2v} into \eqref{eq:divhdel2v_decomposition} then yields
+	\begin{align}
+	\divh(\nabla^2\bm{v}) &=  -\beta\ppderiv{v_r}{r} -\bigg{(}2\db + \frac{2\beta}{r}\bigg{)}\pderiv{v_r}{r} + \bigg{(}-\ddb-\frac{2\db}{r} + \frac{\beta L}{r^2}\bigg{)}v_r\nonumber\\	
+	 &-\pppderiv{v_r}{r} - \frac{6}{r^2}\ppderiv{v_r}{r} + \bigg{(}-\frac{6}{r^2}-\frac{2\beta}{r}+\frac{L}{r^2}\bigg{)}\pderiv{v_r}{r} - \bigg{(}\frac{2\beta}{r^2} + \frac{2\db}{r}\bigg{)}v_r\nonumber\\
+	 &= -\pppderiv{v_r}{r} - \bigg{(}\frac{6}{r}+\beta\bigg{)}\ppderiv{v_r}{r}+\bigg{(}-2\db -\frac{4\beta}{r} -\frac{6}{r^2} + \frac{L}{r^2}\bigg{)}\pderiv{v_r}{r}\nonumber\\
+	 &+\bigg{(}-\ddb - \frac{4\db}{r} + \frac{\beta L}{r^2} -\frac{2\beta}{r^2} \bigg{)}v_r
+	 \label{eq:divhdel2v_resolved}
+	\end{align}
+	Also,
+	\begin{align}
+	-\frac{\mathscr{L}^2}{r^2}(\Div\bm{v}) = -\frac{\mathscr{L}^2}{r^2}(-\beta v_r) = \frac{\beta L}{r^2}v_r.
+	\label{eq:l2divv}
+	\end{align}
+	Combining \eqref{eq:divhs_from_vr}, \eqref{eq:divhdel2v_resolved}, and \eqref{eq:l2divv} into \eqref{eq:divf_vectorform} then gives
+	\begin{align}
+	\divh\bm{f} &= 2\rhobar\nu(\alpha+\beta)\bigg{[}-\frac{1}{2}\ppderiv{v_r}{r}-\bigg{(}\frac{\beta}{2}+\frac{1}{r}\bigg{)}\pderiv{v_r}{r} +\bigg{(}-\frac{L}{2r^2}-\beta^\prime+\frac{1}{r^2}\bigg{)}v_r\bigg{]}\nonumber\\
+	&+\rhobar\nu\bigg{[} -\pppderiv{v_r}{r} - \bigg{(}\frac{6}{r}+\beta\bigg{)}\ppderiv{v_r}{r}+\bigg{(}-2\db -\frac{4\beta}{r} -\frac{6}{r^2} + \frac{L}{r^2}\bigg{)}\pderiv{v_r}{r}\nonumber\\
+	&+\bigg{(}-\ddb - \frac{4\db}{r} + \frac{\beta L}{r^2} -\frac{2\beta}{r^2} \bigg{)}v_r + \frac{1}{3}\frac{\beta L}{r^2}v_r\bigg{]}\nonumber\\
+	&=\nu\bigg{[}-\rhobar\pppderiv{v_r}{r} - \bigg{(}\alpha + 2\beta + \frac{6}{r}\bigg{)}\rhobar\ppderiv{v_r}{r} \nonumber\\
+	&+ \bigg{(}-\alpha\beta-\beta^2-\frac{2\alpha}{r}-\frac{2\beta}{r}-2\db - \frac{4\beta}{r} - \frac{6}{r^2}+\frac{L}{r^2}\bigg{)}\rhobar\pderiv{v_r}{r}\nonumber\\
+	&+ \bigg{(}-\frac{\alpha L}{r^2} - \cancel{\frac{\beta L}{r^2}}- 2\alpha\db - 2\beta\db + \frac{2\alpha}{r^2}+\bcancel{\frac{2\beta}{r^2}} - \ddb - \frac{4\db}{r} + \cancel{\frac{\beta L}{r^2}} - \bcancel{\frac{2\beta}{r^2}} + \frac{1}{3}\frac{\beta L}{r^2}\bigg{)}v_r\bigg{]}\nonumber\\
+	&=\nu\bigg{[}-\rhobar\pppderiv{v_r}{r} - \bigg{(}\alpha + 2\beta + \frac{6}{r}\bigg{)}\rhobar\ppderiv{v_r}{r} + \bigg{(}-\alpha\beta-\beta^2-\frac{2\alpha}{r}-\frac{6\beta}{r}-2\db - \frac{6}{r^2}+\frac{L}{r^2}\bigg{)}\rhobar\pderiv{v_r}{r}\nonumber\\
+&+ \bigg{(}-\frac{\alpha L}{r^2} +\frac{1}{3}\frac{\beta L}{r^2}- 2\alpha\db - 2\beta\db + \frac{2\alpha}{r^2} - \ddb - \frac{4\db}{r}\bigg{)}v_r\bigg{]}.
+\label{eq:divf_fromvr}
+	\end{align}	
+	Unhappily, we must derive (using \eqref{eq:rhod2vr_from_W})
+	\begin{align}
+	\rhobar\pppderiv{v_r}{r} =\ &\pderiv{}{r}\bigg{(}\rhobar\ppderiv{v_r}{r}\bigg{)}-\beta\rhobar\ppderiv{v_r}{r}\nonumber\\
+	=\ &\pderiv{}{r}\bigg{\{}\frac{L}{r^2}\bigg{[}\ppderiv{W}{r} - \bigg{(}\frac{4}{r}+2\beta\bigg{)}\pderiv{W}{r} + \bigg{(}\frac{6}{r^2}+\frac{4\beta}{r}+\beta^2-\db\bigg{)}W\bigg{\}}\nonumber\\
+	&- \beta \frac{L}{r^2}\bigg{[}\ppderiv{W}{r}-\bigg{(}\frac{4}{r}+2\beta\bigg{)}\pderiv{W}{r} +\bigg{(}\frac{6}{r^2}+\frac{4\beta}{r}+\beta^2-\db\bigg{)}W\bigg{]}\nonumber\\
+	=\ &\frac{L}{r^2}\bigg{[}\pppderiv{W}{r} - \bigg{(}\frac{4}{r}+2\beta\bigg{)}\ppderiv{W}{r}  +\bigg{(}\frac{4}{r^2} -2\db\bigg{)}\pderiv{W}{r} + \bigg{(}\frac{6}{r^2}+\frac{4\beta}{r}+\beta^2-\db\bigg{)}\pderiv{W}{r}\nonumber\\
+	&+ \bigg{(}-\frac{12}{r^3}-\frac{4\beta}{r^2}+\frac{4\db}{r} + 2\beta\db - \ddb\bigg{)}W\bigg{]}\nonumber\\
+	 &-\frac{2L}{r^3}\ppderiv{W}{r} + \frac{2L}{r^3}\bigg{(}\frac{4}{r}+2\beta\bigg{)}\pderiv{W}{r} + \frac{2L}{r^3}\bigg{(}-\frac{6}{r^2}-\frac{4\beta}{r}-\beta^2+\db\bigg{)}W\nonumber\\
+	 &+ \beta\frac{L}{r^2}\bigg{[}-\ppderiv{W}{r}+\bigg{(}\frac{4}{r}+2\beta\bigg{)}\pderiv{W}{r} +
+			\bigg{(}-\frac{6}{r^2} - \frac{4\beta}{r} - \beta^2 + \db\bigg{)}W\bigg{]}\nonumber\\
+			=\ &\frac{L}{r^2}\bigg{[}\pppderiv{W}{r} + \bigg{(}-\frac{4}{r}-2\beta - \frac{2}{r}-\beta\bigg{)}\ppderiv{W}{r}\nonumber\\
+			&+\bigg{(}\frac{4}{r^2}-2\db + \frac{6}{r^2}+\frac{4\beta}{r}+\beta^2-\db + \frac{8}{r^2}+\frac{4\beta}{r}+\frac{4\beta}{r}+2\beta^2\bigg{)}\pderiv{W}{r}\nonumber\\
+			&+\bigg{(}-\frac{12}{r^3}-\frac{4\beta}{r^2} +\frac{4\db}{r} + 2\beta\db - \ddb - \frac{12}{r^3} - \frac{8\beta}{r^2} - \frac{2\beta^2}{r} + \frac{2\db}{r}-\frac{6\beta}{r^2} - \frac{4\beta^2}{r} - \beta^3 + \beta\db\bigg{)}W\bigg{]}\nonumber\\
+	=\ &\frac{L}{r^2}\bigg{[}\pppderiv{W}{r} -\bigg{(}\frac{6}{r}+3\beta \bigg{)}\ppderiv{W}{r} + \bigg{(}\frac{18}{r^2}-3\db + \frac{12\beta}{r} + 3\beta^2\bigg{)}\pderiv{W}{r}\nonumber\\
+     \label{eq:rhod3vr_from_W}     &+\bigg{(}-\frac{24}{r^3} - \frac{18\beta}{r^2} + \frac{6\db}{r}+3\beta\db-\ddb - \frac{6\beta^2}{r} - \beta^3\bigg{)}W\bigg{]}
+	\end{align}
+	Finally, we plug \eqref{eq:rhovr_from_W}, \eqref{eq:rhodvr_from_W},  \eqref{eq:rhod2vr_from_W}, and  \eqref{eq:rhod3vr_from_W} into \eqref{eq:divf_fromvr} and compute
+	\begin{align}
+	\divh\bm{f} =\ &\frac{L\nu}{r^2}\bigg{\{}-\bigg{[}\pppderiv{W}{r} -\bigg{(}\frac{6}{r}+3\beta \bigg{)}\ppderiv{W}{r} + \bigg{(}\frac{18}{r^2}-3\db + \frac{12\beta}{r} + 3\beta^2\bigg{)}\pderiv{W}{r}\nonumber\\
+   &+\bigg{(}-\frac{24}{r^3} - \frac{18\beta}{r^2} + \frac{6\db}{r}+3\beta\db-\ddb - \frac{6\beta^2}{r} - \beta^3\bigg{)}W\bigg{]}\nonumber\\
+   &- \bigg{(}\alpha + 2\beta + \frac{6}{r}\bigg{)}\bigg{[}\ppderiv{W}{r}-\bigg{(}\frac{4}{r}+2\beta\bigg{)}\pderiv{W}{r}+\bigg{(}\frac{6}{r^2}+\frac{4\beta}{r}+\beta^2-\db\bigg{)}W\bigg{]} \nonumber\\
+   &+ \bigg{(}-\alpha\beta-\beta^2-\frac{2\alpha}{r}-\frac{6\beta}{r}-2\db - \frac{6}{r^2}+\frac{L}{r^2}\bigg{)}\bigg{[}\pderiv{W}{r}-\bigg{(}\frac{2}{r}+\beta\bigg{)}W\bigg{]} \nonumber\\
+	&+ \bigg{(}-\frac{\alpha L}{r^2} +\frac{1}{3}\frac{\beta L}{r^2}- 2\alpha\db - 2\beta\db + \frac{2\alpha}{r^2} - \ddb - \frac{4\db}{r}\bigg{)}W\bigg{]}\bigg{\}}.
+	\end      {align}
+\end{document}

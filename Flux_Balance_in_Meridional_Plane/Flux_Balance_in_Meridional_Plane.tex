@@ -1,0 +1,86 @@
+\documentclass[12pt]{article} % document type and language
+
+\usepackage{amsmath, amssymb, bm, mathtools, cancel, empheq, ulem, mathrsfs, natbib}
+\setcitestyle{aysep={}} 
+%\usepackage{newtxmath} 
+\usepackage[margin=1in]{geometry}
+
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor=blue,
+	citecolor=blue
+}
+
+% Allow option to set color when hyperlinking
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}
+
+\date{\today}
+\author{Loren Matilsky}
+\title{Hydrostatic, Geostrophic Balance in the Meridional Plane}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\av}[1]{\langle#1\rangle}
+\newcommand{\bigav}[1]{\bigg{\langle}#1\bigg{\rangle}}
+\newcommand{\bigfrac}[2]{\bigg{(}\frac{#1}{#2}\bigg{)}}
+\newcommand{\mbigfrac}[2]{\bigg{(}{-\frac{#1}{#2}}\bigg{)}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\pomega}{\varpi}
+\newcommand{\ugrad}{\bm{u}\cdot\nabla}
+\newcommand{\cv}{c_{\rm{v}}}
+\newcommand{\cp}{c_{\rm{p}}}
+\newcommand{\orr}{\text{or}\ \ \ \ \ }
+\newcommand{\andd}{\text{and}\ \ \ \ \ }
+\newcommand{\tz}{\tilde{Z}}
+\newcommand{\tw}{\tilde{W}}
+\newcommand{\five}{\ \ \ \ \ }
+\newcommand{\e}{\hat{\bm{e}}}
+\newcommand{\f}{\mathcal{F}}
+\newcommand{\tr}{\tilde{r}}
+\newcommand{\rhobar}{\overline{\rho}}
+\newcommand{\curl}{\nabla\times}
+\newcommand{\er}{\hat{\bm{e}}_r}
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\ri}{r_{\rm{i}}}
+\newcommand{\ro}{r_{\rm{o}}}
+\allowdisplaybreaks
+\begin{document}
+	\maketitle
+Once a fluid dynamical system has reached a steady state, the Navier-Stokes equations often lead to a balance of fluxes for a given quantity, in which the sum of the fluxes has zero divergence. In spherical shells (inner radius $\ri$ and outer radius $\ro$), we usually consider the zonally and temporally averaged fluxes $\f_r(r,\theta)$ and $\f_\theta(r,\theta)$ in the meridional plane:
+\begin{align}
+\frac{1}{r^2}\pderiv{}{r}(r^2\f_r) + \frac{1}{r\sin\theta}\pderiv{}{\theta}(\sin\theta\f_\theta) = 0. 
+\label{eq:divfzero}
+\end{align}
+If we apply $2\pi r^2\int_0^\pi d\theta \sin\theta$ to \eqref{eq:divfzero}, we find
+\begin{align*}
+2\pi\int_0^\pi d\theta \sin\theta\pderiv{}{r}(r^2\f_r) + 2\pi r\int_0^\pi d\theta\pderiv{}{\theta}(\sin\theta\f_\theta) = 0,
+\end{align*}
+or 
+\begin{align*}
+\pderiv{}{r}\bigg{[}2\pi r^2\int_0^\pi\f_r(r,\theta)\sin\theta d \theta\bigg{]} = -2\pi r\sin\theta\f_\theta(r,\theta)\big{|}_{\theta=0}^{\theta=\pi} = 0.
+\end{align*}
+Thus, the spherically integrated radial flux is a constant in a steady state:
+\begin{align}
+\mathscr{I}_r(r) \coloneqq 2\pi r^2\int_0^\pi\f_r(r,\theta)\sin\theta d \theta = \text{constant}.
+\label{eq:ir}
+\end{align}
+
+Similarly, we can apply $2\pi \sin\theta \int_{\ri}^{\ro} dr r^2$ to \eqref{eq:divfzero}, to find
+\begin{align*}
+2\pi\sin\theta\int_{\ri}^{\ro}dr\pderiv{}{r}(r^2\f_r) + 2\pi \int_{\ri}^{\ro}r\sin\theta\pderiv{}{\theta}(\sin\theta\f_\theta) = 0,
+\end{align*}
+or
+\begin{align}
+\pderiv{}{\theta}\underbrace{\bigg{[}2\pi\int_{\ri}^{\ro}dr  r\sin\theta\f_\theta(r,\theta)\bigg{]}}_{\coloneqq\mathscr{I}_\theta(\theta)} &= -2\pi\sin\theta [r^2\f_r(r,\theta)]\big{|}_{r=\ri}^{r=\ro}\nonumber\\
+&= -2\pi\sin\theta(\ro^2\f_{\rm{o}}(\theta) - \ri^2\f_{\rm{i}}(\theta)),
+\label{eq:dithdth}
+\end{align}
+where $\f_{\{\rm{i},\ \rm{o}\}}(\theta) \coloneqq \f_r(\{\ri,\ \ro\},\theta)$ are the radial fluxes in through the inner boundary and out through the outer boundary. 
+
+For any vector field $\bm{A}$ that is continuous across the poles, the $\theta$- and $\phi$-components must vanish at the poles under a zonal average: $\av{A_\theta}=\av{A_\phi}=0\ \text{at}\ \theta=0,\pi$. Thus, we can integrate \eqref{eq:dithdth} to find
+\begin{align}
+\mathscr{I}_\theta(\theta) &= -2\pi\int_0^\theta\sin\theta^\prime[\ro^2\f_{\rm{o}}(\theta^\prime) - \ri^2\f_{\rm{i}}(\theta^\prime)]d\theta^\prime\nonumber\\
+&= 2\pi\int_\theta^\pi\sin\theta^\prime[\ro^2\f_{\rm{o}}(\theta^\prime) - \ri^2\f_{\rm{i}}(\theta^\prime)]d\theta^\prime,
+\label{eq:ith}
+\end{align}
+the analogue of Equation \eqref{eq:ir}, but for the conically integrated latitudinal flux. 
+\end{document}

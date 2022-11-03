@@ -1,0 +1,127 @@
+\documentclass[12pt]{article} % document type and language
+
+\usepackage{amsmath, bm, mathtools, cancel, empheq, ulem}
+%\usepackage{newtxmath} 
+\usepackage[margin=1in]{geometry}
+
+\date{April 03, 2019}
+\author{Loren Matilsky}
+\title{Perturbed Mass Flux and Timescales for Breakdown of Anelastic Equations}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+\begin{document}
+	\maketitle
+	In these notes we start using the notation ($\rho_0$, $\rho_1$) to refer to the background reference and perturbations about the reference, respectively. We also use $\bm{u}$ to refer to the velocity since ApJ makes $v$'s look like $\nu$'s. This notation is in line with Brown, Vasil, Zweibel (2010) and avoids confusion with using overbars to represent zonal averages. The linearized equation of state assumed by Rayleigh is
+	\begin{align}
+	\frac{\rho_1}{\rho_0} = \frac{P_1}{P_0} - \frac{T_1}{T_0} = \frac{P_1}{\gamma P_0}
+	- \frac{S_1}{c_p}.
+	\label{eq:eos}
+	\end{align}
+	We also have the anelastic continuity equation,
+	\begin{align}
+	\nabla\cdot(\rho_0\bm{u})=0 &\Longrightarrow 
+	\rho_0\nabla\cdot\bm{u} + u_r\frac{d\rho_0}{dr} = 0\label{eq:cont}\\
+	&\Longrightarrow \nabla\cdot\bm{u} = -\frac{u_r}{\rho_0}\frac{d\rho_0}{dr} = 
+	-u_r\frac{d\ln{\rho_0}}{dr}.
+	\label{eq:divu}
+	\end{align}
+	We want to compute the counterpart to \eqref{eq:cont} for the \textit{perturbed} mass flux $\rho_1$, so we compute
+	\begin{align}
+	\nabla\cdot(\rho_1\bm{u}) &= \rho_1\nabla\cdot\bm{u}+\bm{u}\cdot\nabla\rho_1\nonumber\\
+	&=-\rho_1u_r\frac{d\ln{\rho_1}}{dr} + u_r\pderiv{\rho_1}{r} + \frac{u_\theta}{r}
+	\pderiv{\rho_1}{\theta} + \frac{u_\phi}{r\sin\theta}\pderiv{\rho_1}{\phi}.
+	\label{eq:dummy1}
+	\end{align}
+	Now, 
+	\begin{align}
+	\pderiv{\rho_1}{r}&=\pderiv{}{r}\bigg{[}\frac{\rho_0P_1}{\gamma P_0} - 
+	\frac{\rho_0S_1}{c_p}\bigg{]}\nonumber\\
+	&=\frac{d\rho_0}{dr}\bigg{[}\underbrace{\frac{P_1}{\gamma P_0} - \frac{S}{c_p}\bigg{]}}_{\rho_1/\rho_0\ \text{by}\ \eqref{eq:eos}} -
+	\frac{\rho_0P_1}{\gamma P_0^2}\frac{dP_0}{dr} + \frac{\rho_0}{\gamma P_0}
+	\pderiv{P}{r} - \frac{\rho_0}{c_p}\pderiv{S}{r}.
+	\label{eq:dummy2}
+	\end{align}
+	If the reference state is in hydrostatic equilibrium, 
+	\begin{align}
+	-\frac{dP_0}{dr}=\rho_0g,
+	\end{align}
+	Then \eqref{eq:dummy2} $\Longrightarrow$
+	\begin{align}
+	\pderiv{\rho_1}{r} = \frac{d\ln{\rho_0}}{dr}\rho_1 + \frac{\rho_0^2g}
+	{\gamma P_0^2}P_1 + \frac{\rho_0}{\gamma P_0}
+	\pderiv{P}{r} - \frac{\rho_0}{c_p}\pderiv{S}{r}
+	\end{align}
+	Thus,
+	\begin{align}
+	-\rho_1u_r\frac{d\ln{\rho_1}}{dr} + u_r\pderiv{\rho_1}{r} &= -\cancel{\rho_1u_r\frac{d\ln{\rho_1}}{dr}} +\cancel{u_r\frac{d\ln{\rho_0}}{dr}\rho_1} + u_r\bigg{[}\frac{\rho_0^2g}
+	{\gamma P_0^2}P_1 + \frac{\rho_0}{\gamma P_0}
+	\pderiv{P}{r} - \frac{\rho_0}{c_p}\pderiv{S}{r}\bigg{]}
+	\end{align}
+	Finally, since the reference state is independent of $\theta$ and $\phi$, 
+	\begin{align}
+	\pderiv{\rho_1}{\{\theta,\phi\}} = \frac{\rho_0}{\gamma P_0}\pderiv{P}{\{\theta,\phi\}} - \frac{\rho_0}{c_p}\pderiv{S}{\{\theta,\phi\}},
+	\end{align}
+	and
+	\begin{empheq}[box=\fbox]{align}	
+	\nabla\cdot(\rho_1\bm{u}) &= u_r\bigg{[}\frac{\rho_0^2g}
+		{\gamma P_0^2}P_1 + \frac{\rho_0}{\gamma P_0}
+		\pderiv{P_1}{r} - \frac{\rho_0}{c_p}\pderiv{S_1}{r}\bigg{]} \nonumber\\
+		&+ \frac{u_\theta}{r}
+	\bigg{[}\frac{\rho_0}{\gamma P_0}\pderiv{P_1}{\theta} - \frac{\rho_0}{c_p}\pderiv{S_1}{\theta}\bigg{]} + \frac{u_\phi}{r\sin\theta}
+\bigg{[}\frac{\rho_0}{\gamma P_0}\pderiv{P_1}{\phi} - \frac{\rho_0}{c_p}\pderiv{S_1}{\phi}\bigg{]}
+\label{eq:divu_pert}
+	\end{empheq}
+	Physically, the fully compressible continuity equation,
+	\begin{align}
+	\pderiv{(\rho_0+\rho_1)}{t} = -\nabla\cdot\big{[}(\rho_0+\rho_1)\bm{u})\big{]},
+	\end{align}
+	implies that under the anelastic approximation with time-independent reference state (i.e., $\nabla\cdot{(\rho_0\bm{u})}=0$, $\partial\rho_0/\partial t=0$), 
+	\begin{align}
+	\pderiv{\rho_1}{t} = -\nabla\cdot(\rho_1\bm{u}).
+	\label{eq:cont_pert}
+	\end{align}
+	Thus, there can be a ``mass leak" under the anelastic equations; if we define
+	\begin{align}
+	M_1(t)\coloneqq \int_\mathcal{V}\rho_1(\bm{x},t)d^3x
+	\end{align}
+	as the ``perturbed mass" at time $t$ (where the volume $\mathcal{V}$ is taken to be the entire spherical shell), then
+	\begin{align}
+	\frac{dM_1}{dt} &= \frac{d}{dt} \int_\mathcal{V}\rho_1(\bm{x},t)d^3x
+	= \int_\mathcal{V}\bigg{(}\pderiv{\rho_1}{t}\bigg{)}d^3x\nonumber\\
+	&= -\int_\mathcal{V} \big{[}\nabla\cdot(\rho_1\bm{u})\big{]}d^3x
+	\end{align}
+	by \eqref{eq:cont_pert}. From \eqref{eq:divu_pert}, clearly this time derivative can be non-zero. However, \textit{to the extent that the divergence theorem is satisfied by Rayleigh's discretization scheme} the time derivative \textit{is} zero, since
+	\begin{align}
+	\int_\mathcal{V} \big{[}\nabla\cdot(\rho_1\bm{u})\big{]}d^3x&\stackrel{?}{=}
+	\oint_\mathcal{\partial\mathcal{V}}(\rho_1\bm{u})\cdot\hat{\bm{n}}dS\nonumber\\
+	&=\oint_\mathcal{\partial\mathcal{V}}\rho_1u_rdS\equiv 0
+	\end{align}
+	(where we have used the fact that $\hat{\bm{n}}=\pm\hat{\bm{e}}_r$ on spherical shell boundary $\partial\mathcal{V}$ and $u_r|_{\partial\mathcal{V}}\equiv0$ for impenetrable boundary conditions). 
+	
+	We can thus compute a timescale after which the anelastic approximation becomes poor (since physically it would imply the leakage of an appreciable amount of mass):
+	\begin{align}
+	T_M \sim M_0 \bigg{|}\frac{dM_1}{dt}\bigg{|}^{-1} = 
+	M_0 \bigg{|}\int_\mathcal{V}\bigg{[}\nabla\cdot(\rho_1\bm{u})\bigg{]}d^3x\bigg{|}^{-1},
+	\end{align}
+	where we have defined the total mass of the shell,
+	\begin{align}
+	M_0\coloneqq \int_{\mathcal{V}}\rho_0(\bm{x})d^3x = 4\pi\int_{r_i}^{r_o}\rho_0(r)r^2dr,
+	\end{align}
+	with $r_i$ and $r_o$ referring to the inner and outer radii of the shell. 
+	
+	We note that if the mass leakage is random, ebbing and flowing with the convective overturning time $\tau_c$, then the time $T_M^\prime$ for appreciable mass loss will be less, since $|dM_1/dt|\rightarrow |dM_1/dt|/(T_M^\prime/\tau_c)^{1/2}$, leading to 
+	\begin{align}
+	T_M^\prime &\sim M_0 \bigg{|}\frac{dM_1}{dt}\bigg{|}^{-1}\bigg{(}\frac{T_M^\prime}{\tau_c}\bigg{)}^{1/2}\Longrightarrow\nonumber\\
+	(T^\prime_M)^{1/2}&\sim \frac{T_M}{\tau_c^{1/2}}
+	\end{align}
+	or
+	\begin{align}
+	T^\prime_M\sim\frac{T_M^2}{\tau_c}.
+	\end{align}
+	In any case, Rayleigh does \textit{not} solve the perturbed continuity equation \eqref{eq:cont_pert} in any sense, and the timescales $T_M$ (or $T^\prime_M$) may be quite long with impenetrable boundaries depending on how well the computational grid of Rayleigh satisfies the divergence theorem. However, these timescales should be considered when determining how long to run simulations before the anelastic approximation becomes unphysical. 
+	
+	We note that the anelastic equations will not be \textit{self-consistent} after the timescale for significant entropy leak,
+	\begin{align}
+	T_S \sim c_p\bigg{|}\pderiv{S_1}{t}\bigg{|}^{-1},
+	\end{align}
+	(or else $T_S^\prime\coloneqq T_S^2/\tau_c$), although it may be that the system reaches a statistically steady state in which $|S_1|\ll c_p$ well before the timescales $T_S$ or $T_S^\prime$ are ever reached. 
+\end{document}
