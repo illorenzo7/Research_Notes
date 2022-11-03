@@ -1,0 +1,299 @@
+\documentclass[12pt]{article} % document type and language
+
+\usepackage{amsmath, amssymb, bm, mathtools, cancel, empheq, ulem, mathrsfs, natbib}
+\setcitestyle{aysep={}} 
+%\usepackage{newtxmath} 
+\usepackage[margin=1in]{geometry}
+
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor=blue,
+	citecolor=blue
+}
+
+% Allow option to set color when hyperlinking
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}
+
+\date{\today}
+\author{Loren Matilsky}
+\title{Moffatt's Magnetic Field Generation in Electrically Conducting Fluids, Notes}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\ppderiv}[2]{\frac{\partial^2#1}{\partial#2^2}}
+\newcommand{\av}[1]{\langle#1\rangle}
+\newcommand{\bigav}[1]{\bigg{\langle}#1\bigg{\rangle}}
+\newcommand{\bigfrac}[2]{\bigg{(}\frac{#1}{#2}\bigg{)}}
+\newcommand{\mbigfrac}[2]{\bigg{(}{-\frac{#1}{#2}}\bigg{)}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\pomega}{\varpi}
+\newcommand{\ugrad}{\bm{u}\cdot\nabla}
+\newcommand{\cv}{c_{\rm{v}}}
+\newcommand{\cp}{c_{\rm{p}}}
+\newcommand{\orr}{\text{or}\ \ \ \ \ }
+\newcommand{\andd}{\text{and}\ \ \ \ \ }
+\newcommand{\tz}{\tilde{Z}}
+\newcommand{\tw}{\tilde{W}}
+\newcommand{\five}{\ \ \ \ \ }
+\newcommand{\e}{\hat{\bm{e}}}
+\newcommand{\tr}{\tilde{r}}
+\newcommand{\rhobar}{\overline{\rho}}
+\newcommand{\curl}{\nabla\times}
+\newcommand{\er}{\hat{\bm{e}}_r}
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\ri}{r_{\rm{i}}}
+\newcommand{\ro}{r_{\rm{o}}}
+\allowdisplaybreaks
+\begin{document}
+\maketitle
+\section*{Ch 2: Magnetokinematic Preliminaries}
+\subsection*{1. Identity relating angular momentum operator $L^2$ and Laplacian operator $\nabla^2$}
+We compute
+\begin{align*}
+(\bm{x}\wedge\nabla)^2\psi &= (\epsilon_{ijk}r_j\partial_k)(\epsilon_{ilm}r_l\partial_m)\psi\\
+&= (\delta_{jl}\delta_{km} - \delta_{jm}\delta_{kl})r_j(\delta_{lk}\partial_m\psi + r_l\partial_k\partial_m\psi)\\
+&= r_k\partial_k\psi + r_jr_j\partial_m\partial_m\psi - 3r_m\partial_m\psi - r_jr_k\partial_k\partial_j\psi\\
+&= r^2\nabla^2\psi - 2\bm{x}\cdot\nabla\psi - \bm{x}\cdot(\bm{x}\cdot\nabla)\nabla\psi,\\
+\end{align*}
+which verifies (2.23). Noting that $\bm{x}\cdot\nabla = r(\partial/\partial r)$, and (since all unit vectors are independent of $r$) that
+\begin{align*}
+\bm{x}\cdot(\bm{x}\cdot\nabla)\nabla\psi &= (r\e_r)\cdot r\pderiv{}{r}\bigg{(}\pderiv{\psi}{r}\e_r + \dots\bigg{)}\\
+&= r^2\e_r\cdot\bigg{(}\frac{\partial^2\psi}{\partial r^2}\e_r + \dots\bigg{)} = r^2\frac{\partial^2\psi}{\partial r^2},
+\end{align*}
+we then compute
+\begin{align*}
+r^2\nabla^2\psi - 2\bm{x}\cdot\nabla\psi - \bm{x}\cdot(\bm{x}\cdot\nabla)\nabla\psi &=\\
+ r^2\bigg{(}\frac{1}{r^2}\pderiv{}{r}r^2\pderiv{\psi}{r} + \frac{1}{r^2\sin\theta}\pderiv{}{\theta}\sin\theta\pderiv{\psi}{\theta} &+ \frac{1}{r^2\sin^2\theta}\frac{\partial^2\psi}{\partial\phi^2}\bigg{)} - 2r\pderiv{\psi}{r} - r^2\frac{\partial^2\psi}{\partial r^2}\\
+ \cancel{2r\pderiv{\psi}{r} + r^2\frac{\partial^2\psi}{\partial r^2}} + \frac{1}{\sin\theta}\pderiv{}{\theta}\sin\theta\pderiv{\psi}{\theta} &+
+  \frac{1}{\sin^2\theta}\frac{\partial^2\psi}{\partial\phi^2} - \cancel{2r\pderiv{\psi}{r} - r^2\frac{\partial^2\psi}{\partial r^2}}\\
+  &= \frac{1}{\sin\theta}\pderiv{}{\theta}\sin\theta\pderiv{\psi}{\theta} + \frac{1}{\sin^2\theta}\frac{\partial^2\psi}{\partial\phi^2} = L^2\psi.
+\end{align*}
+
+\subsection*{2. How to invert $L^2$}
+We now derive (2.32), which seems trivial, but really should require a bit of thought. From (2.25), we have
+\begin{align*}
+f(r,\theta,\phi) &= \sum_n f_n(r)S_n(\theta,\phi),\\
+\text{where}\five S_n(\theta,\phi) &= \sum_m A_n^m Y_n^m(\theta,\phi)\\
+\andd Y_n^m(\theta,\phi) &\coloneqq P_n^m(\cos\theta)e^{im\phi}.
+\end{align*}
+
+Now suppose
+\begin{align*}
+L^2\psi = f(r,\theta,\phi)
+\end{align*}
+We can similarly expand $\psi$ in spherical harmonics:
+\begin{align*}
+\psi(r,\theta,\phi) &= \sum_n \psi_n(r)\tilde{S}_n(\theta,\phi),\\
+\text{where}\five \tilde{S}_n(\theta,\phi) &= \sum_m \tilde{A}_n^m Y_n^m(\theta,\phi).\\
+\end{align*}
+and write
+\begin{align*}
+L^2\psi &= L^2\sum_n \psi_n(r)\tilde{S}_n(\theta,\phi)\\
+			&= \sum_n \psi_n(r)L^2\tilde{S}_n(\theta,\phi)\\
+			&= \sum_n \psi_n(r)n(n+1)\tilde{S}_n(\theta,\phi)\\
+			&= \sum_n n(n+1)\psi_n(r)\tilde{S}_n(\theta,\phi) = f(r,\theta,\phi) = \sum_n f_n(r)S_n(\theta,\phi).
+\end{align*}
+From this last equality, it is tempting to identify $f_n = n(n+1)\psi_n$, and be done with it, thereby arriving at (2.32). But this is not really allowed, since we have not shown yet that the $\tilde{S}_n$ are the same as the $S_n$. So we really need to decompose further with respect to $m$ and derive the relationship between the $A$-coefficients:
+\begin{align*}
+\sum_n n(n+1)\psi_n(r)\sum_m \tilde{A}_n^mY_n^m(\theta,\phi)  = \sum_n f_n(r)\sum_mA_n^mY_n^m(\theta,\phi)\Longrightarrow\\
+\sum_{n,m} n(n+1)\psi_n(r) \tilde{A}_n^mY_n^m(\theta,\phi)  = \sum_{n,m} f_n(r)A_n^mY_n^m(\theta,\phi)
+\end{align*}
+We know that the $Y_n^m$ are all orthogonal, and so we identify
+\begin{align*}
+n(n+1)\psi_n(r) \tilde{A}_n^m = f_n(r)A_n^m.
+\end{align*}
+Thus,
+\begin{align*}
+\psi(r,\theta,\phi) &= \sum_n\psi_n(r)\sum_m\tilde{A}_n^m Y_n^m(\theta,\phi)\\
+&= \sum_{n,m}(\psi_n(r)\tilde{A}_n^m)Y_n^m(\theta,\phi)\\
+&= \sum_{n,m}\bigg{(}\frac{1}{n(n+1)}f_n(r)A_n^m\bigg{)}Y_n^m(\theta,\phi)\\
+&= \sum_n \frac{1}{n(n+1)}f_n(r)\sum_m A_n^mY_n^m(\theta,\phi)\\
+&= \sum_n\frac{1}{n(n+1)}f_n(r)S_n(\theta,\phi).
+\end{align*}
+
+\subsection*{3. Curl of a Poloidal Field is a Toroidal Field}
+A ``poloidal" field is written
+\begin{align*}
+\bm{B}_P = \nabla\wedge[\nabla\wedge(P\bm{x})] = -\nabla \wedge(\bm{x}\wedge\nabla P) = -\nabla^2(P\bm{x}) + \nabla[\nabla\cdot(P\bm{x})].
+\end{align*}
+We compute
+\begin{align*}
+\nabla\wedge \bm{B}_P &= \nabla\wedge\{ -\nabla^2(P\bm{x}) + \cancel{\nabla[\nabla\cdot(P\bm{x})]}\}\\
+&= - \nabla\wedge[\nabla^2(P\bm{x})]
+\end{align*}
+Now, 
+\begin{align*}
+\nabla^2(P\bm{x})_i &= \partial_j\partial_j(Pr_i)\\
+&= \partial_j[(\partial_jP)r_i + P\delta_{ij}]\\
+&= (\partial_j^2P)r_i + (\partial_jP)\delta_{ij} + (\partial_jP)\delta_{ij} + 0\\
+&= r_i\partial_j^2P + 2\partial_iP\Longrightarrow\\
+\nabla^2(P\bm{x}) &= (\nabla^2P)\bm{x} + 2\nabla P.
+\end{align*}
+Thus,
+\begin{align*}
+\nabla\wedge \bm{B}_P &= - \nabla\wedge[(\nabla^2P)\bm{x} + 2\cancel{\nabla P}]\\
+&= \nabla\wedge[(-\nabla^2P)\bm{x}],
+\end{align*}
+and so is a toroidal field with toroidal streamfunction $-\nabla^2P$. 
+
+Note that the same holds true even if we define the streamfunctions in the alternate way
+\begin{align*}
+\bm{B} = \bm{B}_P + \bm{B}_T = \nabla\wedge[\nabla\wedge(P\e_r)] + \nabla\wedge(T\e_r),
+\end{align*}
+where $\e_r = \bm{x}/r$. That the curl of the toroidal field is a poloidal field is trivial, and the curl of the poloidal field is
+\begin{align*}
+\nabla\wedge\bm{B}_P &= -\nabla\wedge[\nabla^2(P\e_r)].
+\end{align*}
+Now, following the calculations from before,
+\begin{align*}
+\nabla^2(P\e_r) = \nabla^2\bigg{(}\frac{P}{r}\bm{x}\bigg{)} = \nabla^2\bigg{(}\frac{P}{r}\bigg{)}\bm{x} + 2\nabla\bigg{(}\frac{P}{r}\bigg{)},
+\end{align*}
+so
+\begin{align*}
+\nabla\wedge\bm{B}_P &= -\nabla\wedge\bigg{[}\nabla^2\bigg{(}\frac{P}{r}\bigg{)}\bm{x}\bigg{]}\\
+&= \nabla\wedge\bigg{\{}\bigg{[}-r\nabla^2\bigg{(}\frac{P}{r}\bigg{)}\bigg{]}\e_r\bigg{\}},
+\end{align*}
+which is by (the new) definition, a toroidal field. 
+
+\subsection*{4. $\bm{x}\cdot \bm{B}$ and $\bm{x}\cdot\nabla\wedge\bm{B}$ in Terms of Angular Momentum Operator}
+We write
+\begin{align*}
+\bm{B} = \bm{B}_P + \bm{B}_T = \nabla\wedge[\nabla\wedge(P\bm{x})] + \nabla\wedge(T\bm{x})
+\end{align*}
+Since the Toroidal fields are orthogonal to $\bm{x}$, we compute
+\begin{align*}
+\bm{x}\cdot\bm{B} = \bm{x}\cdot \bm{B}_P &= \bm{x}\cdot\{\nabla\wedge[\nabla\wedge(P\bm{x})]\} \\
+&= x_i\{\epsilon_{ijk}\partial_j[\epsilon_{klm}\partial_l(Pr_m)]\}\\
+&= (\epsilon_{ijk}x_i\partial_j)\{\epsilon_{klm}[(\partial_lP)r_m + P\cancel{\delta_{lm}}]\}\\
+&= -\underbrace{(\epsilon_{ijk} x_i\partial_j)}_{(\bm{x}\wedge\nabla)_k} \underbrace{(\epsilon_{kml}r_m\partial_l)}_{(\bm{x}\wedge\nabla)_k}P\\
+&= -(\bm{x}\wedge\nabla)^2P
+\end{align*}
+Since we have already shown that $\nabla\wedge \bm{B}_P$ is a toroidal field (and thus orthogonal to $\bm{x}$), we have
+\begin{align*}
+\bm{x}\cdot(\nabla\wedge\bm{B}) = \bm{x}\cdot(\nabla\wedge \bm{B}_T) &= \bm{x}\cdot\{\nabla\wedge[\nabla\wedge(T\bm{x})]\}\\
+&=  -(\bm{x}\wedge\nabla)^2T, 
+\end{align*}
+by an identical calculation to the one manipulating $\bm{x}\cdot\bm{B}$. 
+
+\subsection*{5. Purely poloidal form for the term $T\bm{x} + \nabla U$ in vector potential}
+We identify the vector potential $\bm{A}$ in terms of the streamfunctions in (2.37):
+\begin{align*}
+\bm{A} = \nabla\wedge(P\bm{x}) + T\bm{x} + \nabla U,
+\end{align*}
+which is (2.40). If we pick the Coulomb gauge, then 
+\begin{align*}
+0 = \nabla\cdot\bm{A} &= \nabla\cdot[\cancel{\nabla\wedge(P\bm{x})} + T\bm{x} + \nabla U]\\
+&= \nabla\cdot(T\bm{x} + \nabla U). 
+\end{align*}
+Thus, using the formalism just laid out, we can write $T\bm{x} + \nabla U$ as the sum of a yet another set of toroidal and poloidal fields. But note that 
+\begin{align*}
+\bm{x}\cdot[\nabla\wedge(T\bm{x} + \cancel{\nabla U})] = \bm{x}\cdot[-\bm{x}\wedge\nabla T] = 0,
+\end{align*} 
+and so the toroidal part of $T\bm{x} + \nabla U$ is zero by virtue of 2.39(b). 
+
+We thus have (for the Coulomb gauge)
+\begin{align*}
+\bm{A} &= \bm{A}_P + \bm{A}_T\\
+\text{where}\five \bm{A}_P &= T\bm{x} + \nabla U = \nabla\wedge[\nabla\wedge(S\bm{x})]\\
+\andd \bm{A}_T &= \nabla\wedge(P\bm{x})
+\end{align*}. 
+
+Finally, since the curl of a poloidal field is a toroidal field, the curl of a toroidal field is a poloidal field, and $\bm{B} = \nabla\wedge \bm{A}$, we have
+\begin{align*}
+\bm{B}_P &= \nabla\wedge\bm{A}_T,\\
+\bm{B}_T &= \nabla\wedge\bm{A}_P.
+\end{align*}
+
+\subsection*{6. Axisymmetric Fields}
+For axisymmetric fields, $\partial_\phi\equiv0$, so
+\begin{align*}
+\bm{B}_T &= \frac{1}{r^2\sin\theta}
+ \begin{vmatrix} \e_r & r\e_\theta & r\sin\theta\e_\phi\\
+\partial_r & \partial_\theta & 0\\
+Tr & 0 & 0
+\end{vmatrix}\\
+&=  \frac{1}{r^2\sin\theta}\bigg{[}-\pderiv{}{\theta}(Tr)\bigg{]}(r\sin\theta\e_\phi)\\
+&= -\pderiv{T}{\theta}\e_\phi.
+\end{align*}
+
+Similarly, $$\bm{A}_T = -\pderiv{P}{\theta}\e_\phi,$$ and thus
+\begin{align*}
+\bm{B}_P = \nabla\wedge\bm{A}_T &= \frac{1}{r^2\sin\theta}\begin{vmatrix} \e_r & r\e_\theta & r\sin\theta\e_\phi\\
+\partial_r & \partial_\theta & 0\\
+0 & 0 & -r\sin\theta\pderiv{P}{\theta}
+\end{vmatrix}\\
+&= \frac{1}{r^2\sin\theta}\bigg{[}-r\pderiv{}{\theta}\bigg{(}\sin\theta\pderiv{P}{\theta}\bigg{)}\e_\theta + \bigg{(}\pderiv{}{r}r\sin\theta\pderiv{P}{\theta}\bigg{)}(r\e_\theta) + 0\bigg{]}\\
+&= -\frac{1}{r^2\sin\theta}\pderiv{}{\theta}\bigg{(}\underbrace{r\sin\theta\pderiv{P}{\theta}}_{\coloneqq\chi}\bigg{)}\e_r +
+ \frac{1}{r\sin\theta}\pderiv{}{r}\bigg{(}\underbrace{r\sin\theta\pderiv{P}{\theta}}_{\coloneqq\chi}\bigg{)}\e_\theta,
+\end{align*}
+from whence we recover what Moffatt meant by (2.47). Note however, that Moffatt's (2.47) is completely wrong. It should read
+\begin{align*}
+\chi = -r\sin\theta A_\phi, \five A_\phi = -\pderiv{P}{\theta},
+\end{align*}
+so that
+\begin{align*}
+\chi = r\sin\theta\pderiv{P}{\theta}.
+\end{align*}
+
+Now, the $\bm{B}_P$-lines satisfy 
+\begin{align*}
+dr &= C (B_P)_r\\
+r d\theta &= C (B_P)_\theta,
+\end{align*}
+where $C$ is some constant of proportionality, possibly a function of position along the streamline, but the same between both the above equations. Dividing the two equations above thus yields
+\begin{align*}
+\frac{dr}{rd\theta} &= \frac{(B_P)_r}{(B_P)_\theta}\Longrightarrow
+0 = (B_P)_\theta dr - (B_P)_r rd\theta &= \frac{1}{r\sin\theta}\pderiv{\chi}{r}dr - \bigg{(}-\frac{1}{r^2\sin\theta}\pderiv{\chi}{\theta}\bigg{)}(rd\theta)\\
+&= \frac{1}{r\sin\theta}\bigg{(}\pderiv{\chi}{r}dr + \pderiv{\chi}{\theta}d\theta\bigg{)} = \frac{1}{r\sin\theta}d\chi.
+\end{align*}
+The defining condition for $\bm{B}_P$-lines is thus
+\begin{align*}
+d\chi = 0\five \orr \chi(r,\theta) = \text{constant}.
+\end{align*}
+
+Consider the flux through a ring made by rotating the infinitesimal line element between $(r,\theta)$ and $(r+dr,\theta + d\theta)$. This line element as length $dl=\sqrt{dr^2+(rd\theta)^2}$, and the ring has area $a = 2\pi r\sin\theta dl$. The normal to this area has associated unit vector $\e_n = (-rd\theta, dr, 0)/dl$. Thus, the flux of $\bm{B}_P$ across the ring is
+\begin{align*}
+\bm{B}_P\cdot(a \e_n) &= \frac{-(B_P)_rrd\theta+ (B_P)_\theta dr}{dl}(2\pi r\sin\theta dl)\\
+&= 2\pi r\sin\theta\bigg{[}\frac{1}{r^2\sin\theta}\pderiv{\chi}{\theta} r d\theta + \frac{1}{r\sin\theta}\pderiv{\chi}{r}dr\bigg{]}\\
+&= 2\pi\bigg{[}\pderiv{\chi}{\theta} d\theta + \pderiv{\chi}{r}dr\bigg{]} = 2\pi d\chi.
+\end{align*}
+
+\subsection*{7. Two-dimensional analogues}
+Moffatt seems to switch here to the second convection for streamfunctions (e.g., $P\bm{x}\rightarrow P\e_r$, etc.) He then zooms in so that the ``sphere is flat" and takes $(r,\theta,\phi)\rightarrow(z,x,y)$, leaving
+\begin{align*}
+\bm{B} = \bm{B}_P + \bm{B}_T = \nabla\wedge[\nabla\wedge(P\e_z)] + \nabla\wedge(T\e_z).
+\end{align*}
+The vector (field?) $\e_z$ is just a constant, which makes things easier, e.g., proving that the curl of the poloidal field is a toroidal field, so no need to do it again!
+
+Now, clearly $\bm{B}_T$ is orthogonal to $\e_z$, and so
+\begin{align*}
+\e_z\cdot\bm{B} = \e_z\cdot\bm{B}_P &= \e_z\cdot\{-\nabla^2(P\e_z) + \nabla[\underbrace{\nabla\cdot(P\e_z)}_{\nabla P\cdot\e_z = \pderiv{P}{z}}]\}\\
+&= \e_z\cdot\bigg{[} -(\nabla^2P)\e_z + \nabla\bigg{(}\pderiv{P}{z}\bigg{)}\bigg{]}\\
+&=  -\bigg{(}\ppderiv{P}{x} + \ppderiv{P}{y} + \cancel{ \ppderiv{P}{z}\bigg{)}}+ \cancel{\ppderiv{P}{z}}\\
+&= -\nabla_2^2P.
+\end{align*}
+Thus, the two-dimensional Laplacian operator $$\nabla_2^2\coloneqq \ppderiv{}{x} + \ppderiv{}{y}$$ is the analogue of the angular momentum operator. 
+
+The fact that the curl of $\bm{B}_P$ is toroidal (and thus $\perp\e_z$) and an identical calculation to the preceding one immediately yields
+\begin{align*}
+\e_z\cdot \nabla\wedge\bm{B} = \e_z\cdot\nabla\wedge\bm{B}_T = -\nabla_2^2T.
+\end{align*}
+
+For ``axisymmetric fields" $P=P(x,z)$, $T=T(x,z)$, $\bm{B}_T = \nabla T\wedge \e_z = (\partial_xT\e_x + \partial_z\cancel{\e_z})\wedge\e_z = -\partial_xT\e_y$ (eq. (2.53)). Similar arguments to the ones before show that $\bm{A}$ has a toroidal part given purely by $\nabla\wedge(P\e_z)$, so that $\bm{A}_T = -\partial_xP\e_y$ and $\bm{B}_P = \nabla \wedge\bm{A}_T=\nabla\wedge(A\e_y)$, where $A=-\partial_xP$.
+
+Thus, 
+\begin{align*}
+\bm{B}_P = \begin{vmatrix}\e_x & \e_y & \e_z\\
+\partial_x & 0 & \partial_z\\
+0 & A & 0\end{vmatrix}
+= -(\partial_zA)\e_x + (\partial_xA)\e_z. 
+\end{align*}
+The $\bm{B}_P$-lines thus satisfy 
+\begin{align*}
+\frac{dx}{dy} = \frac{-\partial_zA}{\partial_xA}\Longrightarrow \partial_xAdx + \partial_zAdz = dA = 0.
+\end{align*}
+Finally, the flux per unit length through a strip parallel to $y$, i.e., one obtained by sliding the line segment joining $(x,z)$ and $(x+dx,z+dz)$ along $y$, is
+\begin{align*}
+\bm{B}_P\cdot(dz\e_x - dx\e_z) = (B_P)_xdz - (B_P)_zdx = \pderiv{A}{z}dz - \pderiv{A}{x}dx = -dA,
+\end{align*}
+making $A$ ($-A$?) the flux-function for $\bm{B}_P$. 
+\end{document}

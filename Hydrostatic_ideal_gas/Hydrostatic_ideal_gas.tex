@@ -1,0 +1,400 @@
+\documentclass[12pt]{article} % document type and language
+
+\usepackage{amsmath, bm, mathtools, cancel, empheq, ulem, mathrsfs, natbib}
+\setcitestyle{aysep={}} 
+%\usepackage{newtxmath} 
+\usepackage[margin=1in]{geometry}
+
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor=blue,
+	citecolor=blue
+}
+
+% Allow option to set color when hyperlinking
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}
+
+\date{\today}
+\author{Loren Matilsky}
+\title{Hydrostatic, ideal-gas reference states in spherical coordinates}
+\newcommand{\rrm}{r_{\rm{m}}}
+\newcommand{\ri}{r_{\rm{i}}}
+\newcommand{\ro}{r_{\rm{o}}}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\bigfrac}[2]{\bigg{(}\frac{#1}{#2}\bigg{)}}
+\newcommand{\mbigfrac}[2]{\bigg{(}{-\frac{#1}{#2}}\bigg{)}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\pomega}{\varpi}
+\newcommand{\ugrad}{\bm{u}\cdot\nabla}
+\newcommand{\cv}{c_{\rm{v}}}
+\newcommand{\cp}{c_{\rm{p}}}
+\newcommand{\orr}{\text{or}\ \ \ \ \ }
+\newcommand{\andd}{\text{and}\ \ \ \ \ }
+\newcommand{\tz}{\tilde{\zeta}}
+\newcommand{\five}{\ \ \ \ \ }
+\newcommand{\ei}{{\rm{Ei}}}
+\newcommand{\tr}{\tilde{r}}
+\newcommand{\ek}{e^{-k[(r/\rrm)-1]}}
+\newcommand{\ekt}{e^{-k[(\tr/\rrm)-1]}}
+\newcommand{\ekp}{e^{k[(r/\rrm)-1]}}
+\allowdisplaybreaks
+\begin{document}
+	\maketitle
+	\section{Basic assumptions}
+	We wish to derive the thermodynamic state for an ideal, hydrostatic gas in spherical coordinates, assuming a known specific entropy stratification $s(r)$. In mathematical terms, this means that
+	\begin{align}
+	\frac{dp}{dr} &= -\rho g(r)\label{eq:hydr},\\
+	p(r) &= \rho(r)\mathcal{R} T(r),\label{eq:idgas}
+	\end{align}
+	and 
+	\begin{align}
+	s^\prime(r) \coloneqq \frac{ds}{dr}
+	\label{def:sgrad}
+	\end{align}
+	is a known function of radius. Here $p(r)$ is the pressure, $\rho(r)$ the density, $T(r)$ the temperature, $g(r)$ the gravitational acceleration (unspecified for now except that it is spherically symmetric), and $\mathcal{R}$ the gas constant. We further assume that the number of degrees of freedom (d.o.f.) is constant throughout, so that $\mathcal{R}$ is independent of radius. We then note the familiar relations
+	\begin{align}
+	\cp = \gamma\cv = \frac{\gamma\mathcal{R}}{\gamma - 1}\label{eq:cp_from_gamma}.
+	\end{align}
+	We also note the First Law of Thermodynamics applied across the spherical shell, which takes the form
+	\begin{align}
+	\frac{d\ln{T}}{dr} - (\gamma - 1)\frac{d\ln{\rho}}{dr} = \frac{s^\prime}{\cv}.
+	\label{eq:firstlaw}
+	\end{align}
+	Further, differentiating the ideal gas law \eqref{eq:idgas} gives
+	\begin{align}
+	\frac{d\ln{p}}{dr} = \frac{d\ln{\rho}}{dr} + \frac{d\ln{T}}{dr}. 
+	\label{eq:idgasdr}
+	\end{align}
+	Using \eqref{eq:cp_from_gamma}--\eqref{eq:idgasdr}, we can derive an ordinary differential equation for the temperature:
+	\begin{align}
+	\boxed{
+	\frac{dT}{dr} - \bigg{[}\frac{s^\prime(r)}{\cp}\bigg{]}T(r) = -\frac{g(r)}{\cp}.
+}
+\label{eq:tdiffeq}
+	\end{align}
+	We solve \eqref{eq:tdiffeq} via integrating factors, yielding 
+	\begin{align}
+	\boxed{
+	T(r) = -\frac{e^{s(r)/\cp}}{\cp}\int_{r_0}^r g(\tilde{r})e^{-s(\tilde{r})/\cp}d\tilde{r} + T_0e^{[s(\tilde{r})-s_0]/\cp}.
+	\label{eq:tgeneral}}
+	\end{align}
+	Here we have defined $r_0$ as an arbitrary radius from which to start the integration. Accordingly, we define the temperature, pressure, density, and entropy at $r_0$ as $T_0$, $p_0$, $\rho_0$, and $s_0$, respectively.
+	
+	Note that in equation \eqref{eq:tgeneral}, adding a constant $\sigma$ to the entropy ($s\longrightarrow s+\sigma$) has no effect on the profile $T(r)$. \textit{The absolute value of the entropy nowhere appears in the final state; only the relative stratification of entropy is important}. 
+	
+	Once $T(r)$ is obtained, we can obtain $p(r)$ through integrating \eqref{eq:firstlaw}, using \eqref{eq:idgasdr} to replace the $\rho$-derivative with $p$- and $T$-derivatives:
+	\begin{align}
+	\boxed{
+	p(r)=p_0\exp\bigg{[}-\frac{s(r) - s_0}{\mathcal{R}}\bigg{]}\bigg{[}\frac{T(r)}{T_0}\bigg{]}^{\gamma/(\gamma - 1)}.
+}
+\label{eq:pgeneral}
+	\end{align}
+	Finally, $\rho(r)$ is determined from the ideal gas law \eqref{eq:idgas}:
+	\begin{align}
+	\boxed{
+	\rho(r) =\rho_0\exp\bigg{[}-\frac{s(r) - s_0}{\mathcal{R}}\bigg{]}\bigg{[}\frac{T(r)}{T_0}\bigg{]}^{1/(\gamma - 1)}.
+}
+\label{eq:rhogeneral}
+	\end{align}
+	\textit{The full state of the atmosphere is purely determined by the entropy stratification $s^\prime(r)$, the gravitational acceleration $g(r)$, and the two constants $T_0$ and $p_0$.}
+	
+	The state specified in equations \eqref{eq:tgeneral}--\eqref{eq:rhogeneral} is completely general, relying only on the assumptions of a hydrostatic, ideal gas with position-independent specific heats. To move forward, we must specify $s^\prime(r)$ and $g(r)$. For the convection zone of a star (and much of the radiative zone below), it is safe to assume that the gravitational acceleration comes purely from a central spherically distributed mass, i.e., 
+	\begin{align}
+	g(r)=\frac{GM}{r^2},
+	\label{eq:gpointmass}
+	\end{align}
+	where $G$ is the Universal Gravitational Constant and $M$ is the stellar mass. 
+	\section{Adiabatic atmosphere}
+	Considering the mathematical form of \eqref{eq:tgeneral}, the simplest atmosphere to derive is one that is adiabatic (constant-entropy):
+	\begin{align}
+	s(r)=s_0\equiv\rm{const.} \ \ \ \ \ \andd s^\prime \equiv 0.
+	\label{eq:sconst}
+	\end{align}
+	In this case all the exponentials in \eqref{eq:tgeneral} cancel to 1 and  we find 
+	\begin{align*}
+	T(r) = -\frac{GM}{\cp}\int_{r_0}^r\frac{d\tilde{r}}{\tilde{r}^2} + T_0
+	\end{align*}
+	or
+	\begin{empheq}[box=\fbox]{align}
+	T(r) &= T_0\bigg{[}\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\bigg{]}  \ \ \ \ \ \text{(adiabatic atmosphere)},\label{eq:tad}\\
+	\text{where} \ \ \ \ \ \tilde{a}&\coloneqq \frac{GM}{\cp T_0 r_0}.\label{def:atilde}
+	\end{empheq}
+	Then \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} $\Longrightarrow$
+	\begin{empheq}[box=\fbox]{align}
+	p(r) &= p_0 \bigg{[}\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\bigg{]}^{\gamma/(\gamma-1)} \ \ \ \ \ \text{(adiabatic atmosphere)}
+\label{eq:pad}\\
+\andd	\rho(r) &= \rho_0 \bigg{[}\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\bigg{]}^{1/(\gamma-1)} \ \ \ \ \ \text{(adiabatic atmosphere).}
+\label{eq:rhoad}
+\end{empheq}
+
+\section{Polytropes}
+The starting assumption for a ``polytrope" is that the temperature gradient is divergenceless---i.e., there is a constant flux due to radiative diffusion throughout the fluid layer. In 
+spherical coordinates this condition becomes
+\begin{align}
+T(r) = \frac{A}{r} + B.
+\label{eq:tconstflux1}
+\end{align}
+The integration constants $A$ and $B$ in \eqref{eq:tconstflux1} are arbitrary, but one is eliminated from the condition $T(r_0) = T_0$, leaving
+\begin{align}
+\boxed{
+T(r) = T_0 \bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]} \ \ \ \ \ \text{(polytropic atmosphere)},
+}
+\label{eq:tpolytrope1}
+\end{align}
+where the new constant $a\coloneqq A/T_0r_0$ is dimensionless. Note the similarity of the argument $[a(r_0/r) + (1-a)]$ in \eqref{eq:tpolytrope1} (which was derived by assuming a divergenceless temperature gradient) to the argument in \eqref{eq:tad} (which was derived by assuming the gas was adiabatic). 
+
+Using the ideal gas law \eqref{eq:idgas} to eliminate $\rho(r)$ from the hydrostatic equation \eqref{eq:hydr} gives
+\begin{align*}
+p(r) = p_0\exp{\bigg{[}-\frac{1}{\mathcal{R}}\int_{r_0}^r\frac{g(\tilde{r})}{T(\tilde{r})}d\tilde{r}\bigg{]}},
+\end{align*}
+from which
+\begin{align}
+\boxed{
+p(r) = p_0\bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]}^{n+1}\ \ \ \ \ \text{(polytropic atmosphere)},
+}
+\label{eq:ppolytrope1}
+\end{align}
+where we have defined the \textit{polytropic index} $n$ to be
+\begin{align}
+n\coloneqq \frac{1}{a}\frac{GM}{\mathcal{R}T_0 r_0} - 1 \Longleftrightarrow a = \frac{GM}{(n+1)\mathcal{R}T_0 r_0}.
+\label{def:polytropicindex}
+\end{align}
+From the ideal gas law, the density is then
+\begin{align}
+\boxed{
+\rho(r) = \rho_0\bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]}^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
+}
+\label{eq:rhopolytrope1}
+\end{align}
+
+Note that for the polytrope, in addition to the two constants $p_0$ and $T_0$, there is another constant $n$ (or equivalently $a$). Specifying $n$ is the same as specifying the entropy gradient $s^\prime(r)$; plugging equations \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} into the First Law of Thermodynamics \eqref{eq:firstlaw} yields
+\begin{subequations}\label{eq:spolytrope}
+\begin{empheq}[box=\fbox]{align}
+s^\prime(r) &= \bigg{(}\frac{n}{\tilde{n}} - 1\bigg{)}\bigg{[}\frac{\cv}{r+(1-a)r^2/(ar_0)}\bigg{]}\\
+\andd s(r) &= \cv\bigg{(}\frac{n}{\tilde{n}} - 1\bigg{)}\bigg{\{}\ln{\bigg{(}\frac{r}{r_0}\bigg{)}} - \ln{\bigg{[}a+(1-a)\bigg{(}\frac{r}{r_0}\bigg{)}\bigg{]}}\bigg{\}}\\
+&\ \ \ \ \ \text{(polytropic atmosphere)}\nonumber,
+\end{empheq}
+\end{subequations}
+where
+\begin{align}
+\tilde{n}\coloneqq  \frac{1}{\tilde{a}}\frac{GM}{\mathcal{R}T_0 r_0} - 1 = \frac{1}{\gamma - 1}.
+\label{def:n0}
+\end{align}
+From \eqref{eq:spolytrope}, it is obvious that $n=\tilde{n}$ corresponds to an adiabatic atmosphere (as we have already shown in \eqref{eq:tad}--\eqref{eq:rhoad}), while
+\begin{align}
+&n > \tilde{n} \Longleftrightarrow s^\prime > 0 \text{ (atmosphere is stable to convection)}\\
+\andd &n < \tilde{n} \Longleftrightarrow s^\prime < 0 \text{ (atmosphere is unstable to convection).}
+\end{align}
+
+Note from \eqref{eq:tpolytrope1}--\eqref{eq:spolytrope} that the limit $n\rightarrow\infty$ simply corresponds to an isothermal atmosphere:
+	\begin{empheq}[box=\fbox]{align}\label{eq:limitninfty}
+T(r)&\rightarrow T_0, \\
+p(r)&\rightarrow p_0\exp{\bigg{[}\frac{GM}{\mathcal{R}T_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\bigg{]}},\\
+\rho(r)&\rightarrow \rho_0\exp{\bigg{[}\frac{GM}{\mathcal{R}T_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\bigg{]}},\\
+s^\prime(r) &\rightarrow \frac{GM}{T_0r^2},\\
+ \andd s(r) &\rightarrow \frac{GM}{T_0r_0}\bigg{(}1-\frac{r_0}{r}\bigg{)}\\ 
+ &\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow\infty). \nonumber
+\end{empheq}
+\textit{If one tries to increase the ``stiffness" (entropy gradient) of the system by increasing $n$, there is therefore a fundamental limit imposed by the polytropic formulation.}
+Similarly, the total entropy contrast from top to bottom and all logarithmic derivatives of the thermodynamic variables have an upper bound, meaning that all scale heights (which typically set the size of fluid motions) have a lower bound. \textit{These bounds are reached for an isothermal atmosphere.}
+
+\subsection{Polytrope in terms of overall density stratification}
+For an adiabatic, polytropic convection zone (CZ) sitting atop a stably stratified radiative zone (RZ), it is often convenient to choose the reference radius to be boundary between RZ and CZ, i.e., $r_0=\rrm$ (subscript $m$ for ``middle radius"). In the work of \citet{Jones11} and in the Rayleigh code \citep{Featherstone18}, the polytrope is initiated using the middle density $\rho_{\rm{m}}$ and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two middle-boundary values $p_{\rm{m}}$ and $T_{\rm{m}}$. Here $N_\rho\coloneqq\ln{(\rho_{\rm{m}}/\rho_{\rm{o}})}$, where $\rho_{\rm{m}}$ and $\rho_{\rm{o}}$ are the density values at the middle and outer boundaries of the shell, respectively. We can recast \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} in terms of $\rho_{\rm{m}}$ and $N_\rho$ by using \eqref{def:polytropicindex} and \eqref{eq:rhopolytrope1} to yield
+\begin{align}
+a = \frac{e^{N_\rho/n} - 1 }{(1 - \beta)e^{N_\rho/n}} \five \andd T_{\rm{m}} = \frac{(1 - \beta)e^{N_\rho/n}} {e^{N_\rho/n} - 1 }\frac{GM}{(n+1)\mathcal{R} \rrm},
+\label{eq:ti_from_nrho}
+\end{align}
+where we have defined the aspect ratio of the CZ,
+\begin{align}
+\beta\coloneqq \frac{\rrm}{r_{\rm{o}}} < 1.
+\label{def:beta}
+\end{align}
+Thus, instead of specifying $T_{\rm{m}}$ and $p_{\rm{m}}$, we can specify $\rho_{\rm{m}}$ and $N_\rho$; $T_{\rm{m}}$ is then determined through \eqref{eq:ti_from_nrho} and $p_{\rm{m}}$ through the ideal gas law. 
+
+\subsection{Polytrope with respect to the center of the CZ}
+\citet{Jones11} define the polytrope using the variables at the center of the CZ (i.e., in our notation $r_0=r_c\coloneqq(\rrm+r_{\rm{o}})/2$). In that case, \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} become
+\begin{align}
+	T(r) &= T_c\bigg{[}a_c\bigg{(}\frac{r_c}{r}\bigg{)} + (1 - a_c)\bigg{]},\label{eq:tpolytrope2}\\
+	p(r) &= p_c\bigg{[}a_c\bigg{(}\frac{r_c}{r}\bigg{)} + (1 - a_c)\bigg{]}^{n+1},\label{eq:ppolytrope2}\\
+	\rho(r) &= \rho_c\bigg{[}a_c\bigg{(}\frac{r_c}{r}\bigg{)} + (1 - a_c)\bigg{]}^n,\label{eq:rhopolytrope2}
+\end{align} 
+where 
+\begin{align}
+a_c \coloneqq \frac{GM}{(n+1)\mathcal{R}T_c r_c}.
+\label{def:ac}
+\end{align}
+Using a similar computation as the one leading to \eqref{eq:ti_from_nrho}, one can show that 
+\begin{align}
+a_c = \frac{2\beta(e^{N_\rho/n}-1)}{(1-\beta)(\beta e^{N_\rho/n} + 1)}.
+\label{eq:ac_fromn}
+\end{align}
+Defining 
+\begin{align}
+d&\coloneqq r_{\rm{o}}-\rrm,\label{def:d}\\
+c_0&\coloneqq 1-a_c = \frac{(1+\beta)(1-\beta e^{N_\rho/n})}{(1-\beta)(\beta e^{N_\rho/n} + 1)}, \label{def:c0}\\
+c_1&\coloneqq \bigg{(}\frac{r_c}{d}\bigg{)}a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)}{(1-\beta)^2(\beta e^{N_\rho/n} + 1)},\label{def:c1}\\
+\andd \tz(r) &\coloneqq a_c\bigg{(}\frac{r_c}{r}\bigg{)} + (1-a_c) = c_0 + c_1\bigg{(}\frac{d}{r}\bigg{)},\label{def:tildezeta}
+\end{align}
+\eqref{eq:tpolytrope2}--\eqref{eq:rhopolytrope2} become
+\begin{align}
+T(r)=T_c\tz(r),\ \ \ \ \ p(r)=p_c[\tz(r)]^{n+1},\ \ \ \ \ \rho(r)=\rho_c[\tz(r)]^n. 
+\label{eq:polytrope3}
+\end{align}
+With significantly more algebra, we can also see that if we define
+\begin{align}
+\tz_o \coloneqq \tz(r_{\rm{o}}) = \frac{1+\beta}{\beta e^{N_\rho/n} + 1}, 
+\end{align}
+then 
+\begin{align}
+c_0 = \frac{2\tz_o - \beta - 1}{1-\beta} \ \ \ \ \ \andd c_1 = \frac{(1+\beta)(1-\tz_o)}{(1-\beta)^2},
+\label{eq:c01_from_zeta0}
+\end{align}
+yielding exactly the formulation for the polytrope in Jones et al. (2011). 
+
+Both the formulation with respect to the center of the shell \eqref{def:tildezeta}--\eqref{eq:c01_from_zeta0} and the formulation with respect to the middle boundary using \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} (also \eqref{eq:ti_from_nrho} if specifying $\rho_{\rm{m}}$ and $N_\rho$ instead of $p_{\rm{m}}$ and $T_{\rm{m}}$) are mathematically equivalent. However, given the substantial extra notation involved in defining the constants $c_0$ and $c_1$, it seems preferable to use the latter formulation. 
+
+\subsection{Stable vs. unstable polytropes}
+Figure \ref{fig:CZ_polytrope_stable} (Figure \ref{fig:CZ_polytrope_unstable}) shows a sample of convectively stable (unstable) polytropes for various values of the polytropic index $n$ in a solar-like convection zone. For very high values of $n$ (Figure \ref{fig:CZ_polytrope_stable}), the entropy gradient profile asymptotes to its maximum value and the temperature profile becomes flat---in agreement with the discussion surrounding Equation \eqref{eq:limitninfty}. For very low values of $n$ (highly unstable polytropes; Figure \ref{fig:CZ_polytrope_unstable}), the constant $a$ becomes significantly greater than 1, and the argument $\zeta(r)$ becomes negative within the convection zone, giving complex values for $p(r)$ and $\rho(r)$ for $r$ greater than the radius at which $\zeta=0$ (the exception to this rule is the special case $n=1$). Thus, the polytropic formulation is unphysical for domains with large enough extent; the same is true for the stable polytropes, but the radius at which $\zeta=0$ is quite far outside the convection zone.
+
+\subsection{Atmosphere with constant entropy gradient}
+A simple example of a fluid layer that is stable to convection is one with a constant ``stiffness," or entropy gradient. If we consider an RZ extending from the inner radius $r_{\rm{i}}$ of the shell to the middle of the shell $\rrm$, we can write
+\begin{align}
+\boxed{
+s(r) = k\cp\bigg{(}\frac{r}{\rrm} - 1\bigg{)}\five \andd s^\prime(r) = \frac{k\cp}{\rrm}\five \text{(constant entropy gradient)},
+}
+\end{align}
+where $k$ is a dimensionless constant ($>0$) representing the stiffness of the stable region. We can then use \eqref{eq:tgeneral} to find $T(r)$:
+\begin{align}
+T(r) = -\frac{GM}{\cp}\big{\{}e^{k[(r/\rrm) - 1]}\big{\}}\underbrace{\int_{\rrm}^r \frac{e^{-k[(r/\rrm) - 1]}d\tilde{r} }{\tilde{r}^2}}_{\coloneqq \mathscr{I}(r)}\ +\ T_{\rm{m}}e^{k[(r/\rrm)-1]}.
+\end{align}
+The integral $\mathscr{I}(r)$ can be recast in terms of the exponential integral function 
+\begin{align}
+E_n(x) \coloneqq \int_1^\infty\frac{e^{-xt}}{t^n}dt = x^{n-1}\int_x^\infty \frac{e^{-t}}{t^n}dt,
+\label{def:en}
+\end{align}
+yielding
+\begin{subequations}\label{eq:tconstsgrad}
+\begin{empheq}[box=\fbox]{align}
+T(r) &= T_{\rm{m}}\bigg{\{}\bigg{[}e^k\tilde{a}\bigg{(}\frac{\rrm}{r}\bigg{)} E_2\bigg{(}\frac{kr}{\rrm}\bigg{)} + (1-e^kE_2(k)\tilde{a})\bigg{]}\ekp\bigg{\}},\\
+\five \text{with}\five \tilde{a} &\coloneqq \frac{GM}{\cp T_{\rm{m}} \rrm} \ \text{(again)}.\\
+\five &\text{(constant entropy gradient).}\nonumber
+\end{empheq}
+\end{subequations}
+Using \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} then yields
+	\begin{empheq}[box=\fbox]{align}
+p(r) =\ &p_{\rm{m}}\exp{\bigg{[}-\frac{\gamma}{\gamma-1}k\bigg{(}\frac{r}{\rrm} - 1\bigg{)}\bigg{]}}\nonumber\\
+	&\times\bigg{\{}\bigg{[}e^k\tilde{a}\bigg{(}\frac{\rrm}{r}\bigg{)} E_2\bigg{(}\frac{kr}{\rm}\bigg{)} + (1-e^kE_2(k)\tilde{a})\bigg{]}\ekp\bigg{\}}^{\gamma/(\gamma-1)}\\
+\andd \rho(r) =\ &\rho_{\rm{m}}\exp{\bigg{[}-\frac{\gamma}{\gamma-1}k\bigg{(}\frac{r}{\rm}\bigg{)}\bigg{]}}\nonumber\\
+&\times
+\bigg{\{}\bigg{[}e^k\tilde{a}\bigg{(}\frac{\rrm}{r}\bigg{)} E_2\bigg{(}\frac{kr}{\rrm}\bigg{)} + (1-e^kE_2(k)\tilde{a})\bigg{]}\ekp\bigg{\}}^{1/(\gamma-1)}\\
+\five &\text{(constant entropy gradient).}\nonumber
+\end{empheq}
+Clearly if $k=0$, we recover \eqref{eq:tad}--\eqref{eq:rhoad} for an adiabatic atmosphere (note that $E_n(0)\equiv 1$ for all $n$).
+
+Using \eqref{eq:tdiffeq}, one can show that for small stiffnesses ($k$ close to $0$), $dT/dr < 0$ throughout the entire RZ, implying a monotonically decreasing temperature profile. However, for $k>k_c$, where
+\begin{align}
+k_c\coloneqq \frac{GM}{\cp T_{\rm{m}}\rrm},
+\end{align}
+the temperature gradient at $r=\rrm$ becomes positive, and there is a temperature inversion somewhere for $r<\rrm$. Interestingly, the entropy gradient associated with this transition, $s^\prime_c=k_c\cp/\rrm=GM/T_{\rm{m}}\rrm^2$ is exactly the same as the entropy gradient at $r=\rrm$ for an isothermal atmosphere (or the upper limit on the entropy gradient for a polytropic atmosphere as $n\rightarrow\infty$). For solar values (namely $M=M_\odot$, $\rrm = 5.0\times10^{10}\ \rm{cm}$, $T_{\rm{m}} = 2.1\times10^6\ \rm{K}$, and $\cp=3.5\times10^8\ \rm{erg\ g^{-1}\ K^{-1}}$),
+\begin{align}
+k_c = 3.59.
+\label{eq:kc_solar}
+\end{align}
+Figures \ref{fig:RZ_polytrope_stable} and \ref{fig:RZ_const_sgrad} show stable fluid layers in a solar-like radiative zone for stable polytropes and constant-entropy fluid layers, respectively. In Figure \ref{fig:RZ_polytrope_stable}, a range of polytropic indices $n$ are used to more or less give entropy-gradient magnitudes matching those set by the $k$-values of Figure \ref{fig:RZ_const_sgrad}. For $k>3.59$ (the black and chartreuse curves in Figure \ref{fig:RZ_const_sgrad}), the entropy gradients for the constant-gradient layer begin to exceed those of the polytrope, and there is furthermore a noticeable temperature inversion within the radiative zone.
+
+\section{Hyperbolic (exponential)  matching of entropy gradient between CZ and RZ}
+We consider a domain in radius of $(\ri,\ro)$ with the middle radius $\rrm$ lying in this interval. We simulate a convection zone (CZ) in the region $(\rrm, \ro)$ overlying a radiative zone (stable region; RZ) in the region $(\ri,\rrm)$. In order to smoothly match a constant-entropy-gradient RZ ($s^\prime(r)=\ \rm{constant}\ > 0$) to a marginally stable CZ ($s^\prime(r)\equiv 0$), we can use hyperbolic trigonometric functions:
+
+\begin{align}
+s(r) &= \frac{k\cp}{\rrm}\bigg{\{}\frac{1}{2}{\bigg{[}(r-\rrm) -\delta\ln\cosh{\bigg{(}\frac{r-\rrm}{\delta}\bigg{)}\bigg{]}}\bigg{\}}}\label{eq:s_tanh_transition}\\
+\frac{ds}{dr} &= \frac{k\cp}{\rrm}\bigg{\{}\frac{1}{2}\bigg{[}1 - \tanh{\bigg{(}\frac{r-\rrm}{\delta}\bigg{)}}\bigg{]}\bigg{\}}.\label{eq:dsdr_tanh_transition}\\
+\frac{d^2s}{dr^2} &= -\frac{k\cp}{\rrm}\bigg{(}\frac{1}{2\delta}\bigg{)}{\rm{sech}}^2\bigg{(}\frac{r-\rrm}{\delta}\bigg{)}
+\end{align}
+We then find the full thermodynamic profiles using the integral relations in \eqref{eq:tgeneral}---\eqref{eq:rhogeneral}.
+
+Figures \ref{fig:CZ_RZ_tanhmatch_vs_delta} and \ref{fig:CZ_RZ_tanhmatch_vs_k} show the thermodynamic states defined by the entropy profile \eqref{eq:s_tanh_transition} for a range of $\delta$-values and $k$-values. The hyperbolic matching condition has the disadvantage that the layer is slightly non-adiabatic even in the CZ---i.e., the tanh function does not decay quickly enough; indeed, the profile $(1/2)(1-\tanh(x))$ is still $0.0025$ for $x=3$. From Figure \ref{fig:CZ_RZ_tanhmatch_vs_delta}, the problem is diminished for very rapid transitions (small $\delta$) but this is also seen to create large spikes in the logarithmic derivatives. 
+
+\section{Quartic matching of entropy gradient between CZ and RZ}
+ In order to better control precisely where the descending downflow plumes begin to overshoot, we can demand that entropy gradient is \textit{exactly} zero in the CZ, transitioning to a nonzero value (over a width $\delta$) by means of a twice-differentiable piece-wise function for the entropy profile (the entropy gradient $s^\prime(r)$ is once-differentiable and has a quartic form):
+\begin{equation}\label{eq:s_quart_transition}
+s(r) = \begin{cases}
+\frac{8}{15}k\cp\Big{(}\frac{\delta}{\rrm}\Big{)} + k\cp\Big{(}\frac{r}{\rrm} - 1\Big{)} &r\leq \rrm - \delta\\
+k\cp\Big{(}\frac{\delta}{\rrm}\Big{)}\bigg{[}\frac{2}{3}\Big{(}\frac{r-\rrm}{\delta}\Big{)}^3 - \frac{1}{5} \Big{(}\frac{r-\rrm}{\delta}\Big{)}^5\bigg{]} & \rrm - \delta < r < \rrm\\
+0 & r\geq \rrm
+\end{cases}
+\end{equation}
+
+\begin{equation}\label{eq:dsdr_quart_transition}
+\frac{ds}{dr} = \begin{cases}
+\frac{k\cp}{\rrm} & r\leq \rrm - \delta\\
+\frac{k\cp}{\rrm}\bigg{\{}1 - \Big{[}1 - \Big{(}\frac{r-\rrm}{\delta}\Big{)}^2\Big{]}^2\bigg{\}} & \rrm - \delta < r < \rrm\\
+0 & r\geq \rrm
+\end{cases}
+\end{equation}
+
+\begin{equation}\label{eq:d2sdr2_quart_transition}
+\frac{d^2s}{dr^2} = \begin{cases}
+0 & r\leq \rrm - \delta\\
+\frac{4}{\delta}\frac{k\cp}{\rrm}\bigg{[}1 - \Big{(}\frac{r-\rrm}{\delta}\Big{)}^2\bigg{]}\Big{(}\frac{r-\rrm}{\delta}\Big{)} & \rrm - \delta < r < \rrm\\
+0 & r\geq \rrm
+\end{cases}
+\end{equation}
+
+Figures \ref{fig:CZ_RZ_quartmatch_vs_delta} and \ref{fig:CZ_RZ_quartmatch_vs_k} show the thermodynamic states defined by the entropy profile \eqref{eq:s_quart_transition} for a range of $\delta$-values and $k$-values. We can see that the transition width $\delta$ is ``strict" in the sense that the entropy gradient is \textit{exactly} equal to its asymptotic values outside the transition region. Thus, the thermodynamic profiles in the CZ are exactly that of an adiabatic polytrope. However, this sharper transition is also seen to create sharper spikes in the logarithmic derivatives. 
+
+\begin{thebibliography}{}
+\bibitem[Featherstone(2018)]{Featherstone18} Featherstone, N., 2018, Rayleigh 0.9.1, doi: \href{http://doi.org/10.5281/zenodo.1236565}{http://doi.org/10.5281/zenodo.1236565}
+
+\bibitem[Jones et al. (2011)]{Jones11} Jones, C.A., Boronski, P., Brun, A.S., et al., 2011, 
+\href{https://doi.org/10.1016/j.icarus.2011.08.014}{Icarus},
+\MYhref{https://ui.adsabs.harvard.edu/abs/2011Icar..216..120J/abstract}{216, 120}
+\end{thebibliography}
+
+  \begin{figure}
+	\includegraphics[scale=0.6]{figures/CZ_polytrope_stable.pdf}
+	\caption{Sample of convectively stable polytropes for a solar-like CZ ($n\geq1.5$). The dimensional/geometric values for the polytrope (i.e., $\rm$, $\ro$, $\rho_i$, $M$, $\cp$) are the solar values preceding \eqref{eq:kc_solar}, and $N_\rho=3$.}
+	\label{fig:CZ_polytrope_stable}
+\end{figure}
+
+  \begin{figure}
+	\includegraphics[scale=0.6]{figures/CZ_polytrope_unstable.pdf}
+	\caption{Sample of convectively unstable polytropes for a solar-like CZ ($n\leq1.5$), with the same dimensional parameters as Figure \ref{fig:CZ_polytrope_stable}.}
+	\label{fig:CZ_polytrope_unstable}
+\end{figure}
+
+  \begin{figure}
+	\includegraphics[scale=0.6]{figures/RZ_polytrope_stable.pdf}
+	\caption{Sample of convectively stable polytropes for a solar-like RZ ($n\geq1.5$). Similar to Figure \ref{fig:CZ_polytrope_stable}, except the radius range is $(\ri=4.176\times10^{10}\ {\rm{cm}},\ \rrm=5.00\times10^{10}\ \rm{cm})$ instead of $(\rrm,\ro)$.}
+	\label{fig:RZ_polytrope_stable}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[scale=0.6]{figures/RZ_const_sgrad.pdf}
+	\caption{Sample of constant-entropy-gradient gas layers for a solar-like RZ, with values of $k$ chosen to give entropy gradients more or less matching those of Figure \ref{fig:RZ_polytrope_stable}.}
+	\label{fig:RZ_const_sgrad}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[scale=0.6]{figures/CZ_RZ_tanhmatch_vs_delta.pdf}
+	\caption{Combined CZ and RZ fluid layer with entropy gradient profiles matched via hyperbolic tangents---different transition thicknesses $\delta$, with $k=1$ in all cases.}
+	\label{fig:CZ_RZ_tanhmatch_vs_delta}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[scale=0.6]{figures/CZ_RZ_tanhmatch_vs_k.pdf}
+	\caption{Combined CZ and RZ fluid layer with entropy gradient profiles matched via hyperbolic tangents---different levels of stiffness $k$, with $\delta/\rrm=0.01$ in all cases.}
+	\label{fig:CZ_RZ_tanhmatch_vs_k}
+\end{figure}
+\begin{figure}
+	\includegraphics[scale=0.6]{figures/CZ_RZ_quartmatch_vs_delta.pdf}
+	\caption{Combined CZ and RZ fluid layer with entropy gradient profiles matched via quartic functions---different transition thicknesses $\delta$, with $k=1$ in all cases.}
+	\label{fig:CZ_RZ_quartmatch_vs_delta}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[scale=0.6]{figures/CZ_RZ_quartmatch_vs_k.pdf}
+	\caption{Combined CZ and RZ fluid layer with entropy gradient profiles matched via quartic functions---different levels of stiffness $k$, with $\delta/\rrm=0.01$ in all cases.}
+	\label{fig:CZ_RZ_quartmatch_vs_k}	
+\end{figure}
+\end{document}

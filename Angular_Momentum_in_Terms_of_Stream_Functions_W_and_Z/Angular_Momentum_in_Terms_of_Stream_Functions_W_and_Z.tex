@@ -1,0 +1,262 @@
+\documentclass[12pt]{article} % document type and language
+
+\usepackage{amsmath, amssymb, bm, mathtools, cancel, empheq, ulem, mathrsfs, natbib}
+\setcitestyle{aysep={}} 
+%\usepackage{newtxmath} 
+\usepackage[margin=1in]{geometry}
+
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor=blue,
+	citecolor=blue
+}
+
+% Allow option to set color when hyperlinking
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}
+
+\date{\today}
+\author{Loren Matilsky}
+\title{Angular Momentum in Terms of Toroidal and Poloidal Stream Functions}
+\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\bigfrac}[2]{\bigg{(}\frac{#1}{#2}\bigg{)}}
+\newcommand{\mbigfrac}[2]{\bigg{(}{-\frac{#1}{#2}}\bigg{)}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\newcommand{\pomega}{\varpi}
+\newcommand{\ugrad}{\bm{u}\cdot\nabla}
+\newcommand{\cv}{c_{\rm{v}}}
+\newcommand{\cp}{c_{\rm{p}}}
+\newcommand{\orr}{\text{or}\ \ \ \ \ }
+\newcommand{\andd}{\text{and}\ \ \ \ \ }
+\newcommand{\tz}{\tilde{Z}}
+\newcommand{\tw}{\tilde{W}}
+\newcommand{\five}{\ \ \ \ \ }
+\newcommand{\e}{\hat{\bm{e}}}
+\newcommand{\tr}{\tilde{r}}
+\newcommand{\rhobar}{\overline{\rho}}
+\newcommand{\curl}{\nabla\times}
+\newcommand{\er}{\hat{\bm{e}}_r}
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\ri}{r_{\rm{i}}}
+\newcommand{\ro}{r_{\rm{o}}}
+\allowdisplaybreaks
+\begin{document}
+	\maketitle
+	\section{Stream Function Formalism}
+In anelastic approximations, we always have the condition of divergenceless mass flux,
+\begin{align}
+\nabla\cdot(\rhobar\bm{v})\equiv 0,
+\label{eq:div0}
+\end{align}
+where $\rhobar$ is the reference state density (we assume $\rhobar=\rhobar(r)$ is spherically symmetric and time-independent) and $\bm{v}$ is the fluid velocity. Condition \eqref{eq:div0} admits a stream function representation for the mass flux, 
+\begin{align}
+\rhobar\bm{v} = \curl [\curl (W\er)] + \curl(Z\er),
+\label{eq:wandz1}
+\end{align}
+where $W$ and $Z$ are the poloidal and toroidal stream functions, respectively. In the derivations that follow it will also be helpful to define the alternate stream functions $\tw$ and $\tz$ through
+\begin{align}
+\rhobar\bm{v} = \curl [\curl (\tw\bm{r})] + \curl(\tz\bm{r}),
+\label{eq:wandz2}
+\end{align}
+where $\bm{r}=r\er$ is the position vector. Clearly $W=r\tw$ and $Z=r\tz$. 
+
+We note that 
+\begin{align}
+\curl(\tz\bm{r}) =\nabla \tz \times \bm{r}
+\label{eq:vtor}
+\end{align}
+and
+\begin{align}
+\curl[\curl({\tw\bm{r}})] &= \curl[\nabla \tw \times \bm{r}]\nonumber\\
+&=\nabla\tw(\underbrace{\Div\bm{r}}_{3}) - \bm{r}\Div(\nabla\tw) - \underbrace{(\nabla\tw)\cdot\nabla\bm{r}}_{\nabla\tw}\
++\ (\bm{r}\cdot\nabla)(\nabla\tw)\nonumber\\
+&=2\nabla\tw - \bm{r}\nabla^2\tw + (\bm{r}\cdot\nabla)(\nabla\tw)
+\label{eq:vpol}
+\end{align}
+Equations \eqref{eq:vtor} and \eqref{eq:vpol} show that the radial velocity satisfies 
+\begin{align}
+\rhobar v_r &= 2\pderiv{\tw}{r} - r\nabla^2\tw + r\pderiv{}{r}\bigg{(}\pderiv{\tw}{r}\bigg{)}\nonumber\\
+&= r\bigg{[}\frac{1}{r^2}\pderiv{}{r}\bigg{(}r^2\pderiv{\tw}{r}\bigg{)} - \nabla^2\tw\bigg{]}\nonumber\\
+&= -\frac{1}{r}(\bm{r}\times\nabla)^2\tw, 
+\end{align}
+where we have made use of the familiar identity involving the Laplacian in spherical coordinates and the quantum-mechanical total angular momentum operator (up to a constant coefficient) $\mathscr{L}^2 \coloneqq (\bm{r}\times\nabla)^2$. Since $\mathscr{L}^2$ is a purely ``horizontal" operator, involving only derivatives with respect to $\theta$ and $\phi$ and not $r$, and since the eigenvalues of $\mathscr{L}^2$ are $l(l+1), l\in\mathbb{J}$ (all nonzero), the vanishing of $v_r$ forces the vanishing of $\tw$ and $W$:
+\begin{align}
+v_r = 0 \Longleftrightarrow \tw = W = 0. 
+\label{eq:vr0w0}
+\end{align}
+We shall assume here that we work in a spherical shell of inner radius $\ri$ and outer radius $\ro$ that has impenetrable boundaries, i.e.,
+\begin{align}
+v_r = \tw = W \equiv 0\five\text{at}\five r=\ri\five\andd r=\ro.
+\label{eq:w0}
+\end{align}
+We define the total angular momentum of the shell through
+\begin{align}
+\bm{L} = \int_V \bm{r}\times(\rhobar\bm{v})dV,
+\end{align}
+where $V$ is the region occupied by the shell. For convenience, we define the poloidal and toroidal angular momentum densities
+\begin{align}
+\bm{\mathcal{L}}_W \coloneqq \bm{r}\times\{\curl[\curl(W\er)]\}\five\andd \bm{\mathcal{L}}_Z \coloneqq \bm{r}\times[\curl(Z\er)],
+\end{align}
+so that 
+\begin{align}
+\bm{L} = \int_V \bm{\mathcal{L}}dV,
+\end{align}
+where $\bm{\mathcal{L}} \coloneqq \bm{\mathcal{L}}_W + \bm{\mathcal{L}}_Z$ is the total angular momentum density. 
+
+\section{Contribution to the Angular Momentum from the Rotation of the Shell}
+Physically, angular momentum is only conserved in the non-rotating (lab) frame, in which the velocity is
+\begin{align}
+\bm{v}_{\rm{lab}} = \bm{v} + \Omega_0r\sin\theta\e_\phi
+\end{align}
+and the total angular momentum is
+\begin{align}
+\bm{L}_{\rm{lab}} = \int_V \bm{r}\times(\rhobar\bm{v}_{\rm{lab}})dV = \bm{L}_0 + \bm{L}, 
+\end{align}
+where
+\begin{align}
+\bm{L}_0 \coloneqq \int_V \bm{r}\times(\rhobar\Omega_0r\sin\theta\e_\phi)dV = \Omega_0\bigg{(}\int_V\rhobar r^2\sin^2\theta dV\bigg{)}\e_z
+\label{def:l0}
+\end{align}
+is the angular momentum due to the rotation of the shell. The angular integral in \eqref{def:l0} is
+\begin{align*}
+2\pi\int_0^\pi\sin^3\theta d\theta &= -2\pi \int_{\cos\theta=1}^{\cos\theta=-1}(1-\cos^2\theta)d\cos\theta\\
+&= 2\pi\bigg{[}\cos\theta - \bigg{(}\frac{1}{3}\bigg{)}\cos^3\theta\bigg{]}_{-1}^1 = \frac{8\pi}{3},
+\end{align*}
+and so 
+\begin{align}
+\bm{L}_0 = \bigg{[}\frac{8\pi\Omega_0}{3}\int_{\ri}^{\ro}\rhobar(r)r^4dr\bigg{]}\e_z. 
+\end{align}
+For an adiabatically stratified solar-like convection zone, in which
+\begin{align*}
+\ri  &= 5.0000000\times 10^{10}\ \rm{cm}\\
+\ro &= 6.5860209\times 10^{10}\ \rm{cm}\\
+\rho_{\rm{i}} &= 0.18053428\ \rm{g}\ \rm{cm}^{-3}\\
+\rho_{\rm{o}} &= 0.0089882725\ \rm{g}\ \rm{cm}^{-3}\\
+\Omega_0  &= 8.61\times 10^{-6}\ \rm{rad}\ \rm{s}^{-1}\five \text{(3 times solar Carrington)}, 
+\end{align*}
+we compute
+\begin{align}
+L_0 = 8.0719\times 10^{47}\ \rm{g}\ \rm{cm}^2\ \rm{s}^{-1}\five \andd \mathcal{L}_0 = 1.1993\times 10^{15}\ \rm{g}\ \rm{cm}^{-1}\ \rm{s}^{-1}, 
+\end{align}
+where $\mathcal{L}_0 \coloneqq L_0/|V|$ and $|V| = 6.7302581\times10^{32}\ \rm{cm}^3$ is the volume of the shell. 
+\section{Contribution to the Angular Momentum from the Toroidal Stream Function $Z$}
+As the name might suggest, the \textit{toroidal} stream function $Z$ gives the only non-vanishing contribution to the total angular momentum $\bm{L}$. We compute 
+\begin{align*}
+\bm{\mathcal{L}}_Z &= \bm{r}\times[\nabla\tz\times\bm{r}]\\
+&= \nabla\tz(\bm{r}\cdot\bm{r}) - \bm{r}(\bm{r}\cdot\nabla\tz)\\
+&= r^2\bigg{[}\cancel{\bigg{(}\pderiv{\tz}{r}\bigg{)}\e_r}+\bigg{(}\frac{1}{r}\pderiv{\tz}{\theta}\bigg{)}\e_\theta + \bigg{(}\frac{1}{r\sin\theta}\pderiv{\tz}{\phi}\bigg{)}\e_\phi\bigg{]} - \cancel{r^2\bigg{(}\pderiv{\tz}{r}\bigg{)}\e_r}\\
+&= \bigg{(}r\pderiv{\tz}{\theta}\bigg{)}\e_\theta + \bigg{(}\frac{r}{\sin\theta}\pderiv{\tz}{\phi}\bigg{)}\e_\phi.
+\end{align*}
+The spherical unit vectors can be translated into Cartesian unit vectors via
+\begin{align*}
+\e_\theta &= \cos\theta\cos\phi\e_x + \cos\theta\sin{\phi}\e_y - \sin\theta\e_z\\
+\andd \e_\phi &= -\sin\phi\e_x + \cos\phi\e_y.
+\end{align*}
+Thus, 
+\begin{subequations}\label{eq:lxyz}
+	\begin{align}
+(\bm{\mathcal{L}}_Z)_x &= r\cos\phi\cos\theta \bigg{(}\pderiv{\tz}{\theta}\bigg{)} - \bigg{(}\frac{r}{\sin\theta}\bigg{)}\sin\phi\bigg{(} \pderiv{\tz}{\phi}\bigg{)},\\
+(\bm{\mathcal{L}}_Z)_y &= r\sin\phi\cos\theta \bigg{(}\pderiv{\tz}{\theta}\bigg{)} + \bigg{(}\frac{r}{\sin\theta}\bigg{)}\cos\phi\bigg{(} \pderiv{\tz}{\phi}\bigg{)},\\
+\andd(\bm{\mathcal{L}}_Z)_z &= -r\sin\theta\bigg{(}\pderiv{\tz}{\theta}\bigg{)}.
+\end{align}
+\end{subequations}
+In anelastic spherical harmonic codes, we expand the stream functions in terms of the spherical harmonics $Y_{lm}(\theta,\phi)\sim P_{lm}(\cos\theta)e^{im\phi}$, where the $P_{lm}$ are the associated Legendre functions. We thus write
+\begin{align}
+\tz(r,\theta,\phi) = \sum_{l,m}\tz_{lm}(r)Y_{lm}(\theta,\phi). 
+\end{align}
+We consider the contributions to the total angular momentum of each $\tz_{lm}(r)$ separately, integrating the densities in \eqref{eq:lxyz} over the spherical shell and using orthogonality relations. We first note that the $\phi$-dependence of each spherical harmonic component of $\tz$ (and also $\partial\tz/\partial\phi$) is $e^{im\phi}$. The $e^{im\phi}$ are orthogonal over the interval $(0,2\pi)$, and since $\cos\phi$ and $\sin\phi$ can be written as linear combinations of $e^{\pm i\phi}$, we see that the only nonzero spherical harmonics contributing to the total angular momentum have 
+\begin{align}
+m&=\pm 1 \five\text{for}\five L_x\five\andd L_y\\
+\andd m&=0 \five\text{for}\five L_z. 
+\end{align}
+It will be helpful to also define $x=\cos\theta$, so that $\partial/\partial\theta = -\sin\theta\partial/\partial x = -\sqrt{1-x^2}\partial/\partial x$. The latitudinal integral is then over $\int_{-1}^1 dx$.
+\subsection{Equatorial Angular Momentum}
+For convenience we define 
+\begin{align}
+(\bm{\mathcal{L}}_Z)_{\rm{eq}} \coloneqq &= (\bm{\mathcal{L}}_Z)_x + i(\bm{\mathcal{L}}_Z)_x\nonumber\\
+	&= re^{i\phi}\bigg{(}\cos\theta\pderiv{\tz}{\theta} - \frac{1}{\sin\theta}\tz\bigg{)}
+\end{align}
+The latitudinal integral for each spherical harmonic will then be
+\begin{align*}
+\int_0^\pi \bigg{[} \cos\theta\pderiv{P_{l1}(\cos\theta)}{\theta} - \frac{1}{\sin\theta}P_{l1}\bigg{]}\sin\theta d\theta&= \int_{-1}^1 \bigg{[}x (-\sin\theta)\frac{dP_{l1}}{dx} - \frac{1}{\sin\theta}P_{l1}\bigg{]}dx\\
+&= -\int_{-1}^1\bigg{[}(x\sqrt{1-x^2})\frac{dP_{l1}}{dx}  +  \frac{1}{\sin\theta}P_{l1}\bigg{]}dx
+\end{align*}
+This integral does not appear to vanish for any value of $l$, let alone all $l\neq 1$. Thus, it seems that the conclusion drawn in \citet{Jones11}, namely that only the $l=1, m=1$ components contribute to the equatorial angular momentum (their Equations A12 and A13), is incorrect.
+
+\subsection{Axial Angular Momentum}
+Since only the $m=0$ harmonics contribute to $(\bm{\mathcal{L}}_Z)_z$, only the functions $P_{l0}(\cos\theta) = P_l(x)$ (the non-associated Legendre polynomials) appear in the $\theta$-integral. The $\theta$-integral (excluding constant factors) can be transformed as
+\begin{align*}
+\int_0^\pi \sin^2\theta \bigg{(}\pderiv{P_l}{\theta}\bigg{)}d\theta &\sim \int_{-1}^1\sin\theta\bigg{(}\sin\theta\pderiv{P_l}{x}\bigg{)}dx\\
+	&= \int_{-1}^1(1-x^2)\bigg{(}\frac{dP_l}{dx}\bigg{)}dx\\
+	&\sim\int_{-1}^1xP_l(x)dx.
+\end{align*}
+In the final manipulation we have used integration by parts and thrown away the boundary term due to the vanishing of $1-x^2$ at $x=\pm1$. We recall that $x=P_1(x)$, and since the Legendre polynomials are orthogonal over the interval $(-1,1)$, only the $l=1$ (and $m=0$) spherical harmonic contributes to  $(\bm{\mathcal{L}}_Z)_z$. Under unit normalization, we have $Y_{10} = (1/2)\sqrt{3/\pi}\cos\theta$, from which 
+\begin{align*}
+(\bm{\mathcal{L}}_Z)_z = -r\sin\theta\bigg{(}-\frac{1}{2}\sqrt{\frac{3}{\pi}}\sin\theta\bigg{)}\tz_{10}(r) = \frac{1}{2}\sqrt{\frac{3}{\pi}}\sin^2\theta r \tz_{10}(r)
+\end{align*}
+and
+\begin{align}
+(L_Z)_z = \frac{4}{3}\sqrt{3\pi}\int_{\ri}^{\ro}r^3\tz_{10}(r)dr =  \frac{4}{3}\sqrt{3\pi}\int_{\ri}^{\ro}r^2Z_{10}(r)dr
+\label{eq:lz}
+\end{align}
+The constant on the RHS of \eqref{eq:lz} will depend on the convention for the normalization of the spherical harmonics. For example, compare to \citet{Jones11}, Equations A11--A14. 
+
+\section{Contribution to the Angular Momentum from the Poloidal Stream Function $W$}
+We shall now show that the contribution to the total angular momentum from $\bm{\mathcal{L}}_W$ mathematically vanishes for a spherical shell. We use \eqref{eq:vpol} to compute
+\begin{align*}
+\bm{\mathcal{L}}_W &= \bm{r}\times[2\nabla\tw + (\bm{r}\cdot\nabla)(\nabla\tw)]\Longrightarrow\\
+(\bm{\mathcal{L}}_W)_i &= \epsilon_{ijk}r_j[2\partial_k\tw + (\bm{r}\cdot\nabla)(\partial_k\tw)]. 
+\end{align*}
+We note that 
+\begin{align*}
+\epsilon_{ijk}r_j\partial_k\tw = \epsilon_{ijk}[\partial_k(r_j\tw) - \tw\underbrace{\partial_kr_j}_{\delta_{kj}}] = \partial_k(\epsilon_{ijk}r_j\tw), 
+\end{align*}
+\begin{align*}
+\partial_k\bm{r} = \partial_k(r_i\hat{\bm{e}}_i) = \delta_{ik}\hat{\bm{e}}_i = \hat{\bm{e}}_k,
+\end{align*}
+and
+\begin{align*}
+\epsilon_{ijk}r_j(\bm{r}\cdot\nabla)(\partial_k\tw) &= \epsilon_{ijk}\{\partial_k[r_j(\bm{r}\cdot\nabla\tw)] - (\underbrace{\partial_kr_j}_{\delta_{kj}})(\bm{r}\cdot\nabla\tw)
+- r_j\underbrace{(\partial_k\bm{r})\cdot\nabla\tw\}}_{\hat{\bm{e}}_k\cdot\nabla\tw\ =\ \partial_k\tw}\\
+&= \partial_k[\epsilon_{ijk}r_j(\bm{r}\cdot\nabla\tw)] - \underbrace{\epsilon_{ijk}r_j\partial_k\tw}_{\partial_k(\epsilon_{ijk}r_j\tw)}\\
+&=\ \partial_k[\epsilon_{ijk}r_j(\bm{r}\cdot\nabla\tw -\tw)]
+\end{align*}
+Thus, 
+\begin{align*}
+(\bm{\mathcal{L}}_W)_i = \partial_k[\epsilon_{ijk}r_j(\tw + \bm{r}\cdot\nabla\tw)]
+\end{align*}
+and (using the divergence theorem)
+\begin{align*}
+(\bm{L}_W)_i \coloneqq \int_V (\bm{\mathcal{L}}_W)_i dV = \oint_{\partial V}[\epsilon_{ijk}r_j(\tw + \bm{r}\cdot\nabla\tw)]n_k dS,
+\end{align*}
+where $\bm{n}$ is the unit normal to $\partial V$ and $dS$ is an area element on $\partial V$. The boundary $\partial V$ consists of the two spheres $r=\ri$ and $r=\ro$, so $n_k = \pm r_k/r$, and the identity $\epsilon_{ijk}r_jr_k\equiv 0$ immediately yields
+\begin{align}
+(\bm{L}_W)_i = 0.
+\label{eq:lw0}
+\end{align}
+So actually the impenetrability condition has nothing to do with the vanishing of the angular momentum from the poloidal stream function! We only require that the integration region is a spherical shell. Note that \citet{Jones11} derive (in their Equation A10)
+\begin{align}
+(\bm{L}_W)_i = \oint_{\partial V}\epsilon_{ijk}r_j\Bigg{[}\pderiv{(r_m\tw)}{x_k}-\pderiv{(r_k\tw)}{x_m}\bigg{]}n_mdS
+\label{eq:jonesa10}
+\end{align}
+(note that they define different stream functions $P=\tw/\rhobar$ and $T=\tz/\rhobar$). They attribute the vanishing of the integral due to the fact that $\tw$ (and by extension, $\bm{r}\times\nabla\tw$) vanishes on $\partial V$ due to the impenetrability condition \eqref{eq:w0}. This is unnecessary, however. One can immediately see that the second term in the integrand is zero:
+\begin{align*}
+\epsilon_{ijk}r_j\pderiv{(r_k\tw)}{x_m}n_m = \epsilon_{ijk}\bigg{[}\delta_{km}\tw+r_k\pderiv{\tw}{x_m}\bigg{]}\frac{r_j(\pm r_m)}{r}\equiv 0,
+\end{align*}
+where we have used the asymmetry of $\epsilon_{ijk}$ in $j$ and $k$ and the identity $\delta_{km}r_m = r_k$.
+
+The remaining part of the integral may be written
+\begin{align*}
+\oint\epsilon_{ijk}r_j\Bigg{[}\pderiv{(r_m\tw)}{x_k}\Bigg{]}n_mdS &= \oint\bigg{[}\pderiv{}{x_k}(\epsilon_{ijk}r_jr_m\tw)\bigg{]}n_mdS\\
+&=\int_V\pderiv{}{x_m}\bigg{[}\pderiv{}{x_k}(\epsilon_{ijk}r_jr_m\tw)\bigg{]}dV\\
+&= \int_V\pderiv{}{x_k}\bigg{[}\pderiv{}{x_m}(\epsilon_{ijk}r_jr_m\tw)\bigg{]}dV\\
+&= \oint\epsilon_{ijk}\bigg{[}\pderiv{}{x_m}(\epsilon_{ijk}r_jr_m\tw)\bigg{]}n_kdS\\
+&= \oint\epsilon_{ijk}[\delta_{jm}r_m\tw + r_j\partial_m(r_m\tw)]\bigg{(}\frac{\pm r_k}{r}\bigg{)}dS,
+\end{align*} 
+whose integrand can be shown to vanish using previous arguments on the asymmetry of $\epsilon_{ijk}$. 
+\begin{thebibliography}{}
+	\bibitem[Jones et al. (2011)]{Jones11} Jones, C.A., Boronski, P., Brun, A.S., et al., 2011, 
+	\href{https://doi.org/10.1016/j.icarus.2011.08.014}{Icarus},
+	\MYhref{https://ui.adsabs.harvard.edu/abs/2011Icar..216..120J/abstract}{216, 120}
+\end{thebibliography}
+\end{document}
