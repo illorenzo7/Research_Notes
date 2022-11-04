@@ -181,7 +181,7 @@ The latitudinal integral for each spherical harmonic will then be
 \int_0^\pi \bigg{[} \cos\theta\pderiv{P_{l1}(\cos\theta)}{\theta} - \frac{1}{\sin\theta}P_{l1}\bigg{]}\sin\theta d\theta&= \int_{-1}^1 \bigg{[}x (-\sin\theta)\frac{dP_{l1}}{dx} - \frac{1}{\sin\theta}P_{l1}\bigg{]}dx\\
 &= -\int_{-1}^1\bigg{[}(x\sqrt{1-x^2})\frac{dP_{l1}}{dx}  +  \frac{1}{\sin\theta}P_{l1}\bigg{]}dx
 \end{align*}
-This integral does not appear to vanish for any value of $l$, let alone all $l\neq 1$. Thus, it seems that the conclusion drawn in \citet{Jones11}, namely that only the $l=1, m=1$ components contribute to the equatorial angular momentum (their Equations A12 and A13), is incorrect.
+This integral does not appear to vanish for any value of $l$, let alone all $l\neq 1$. Thus, it seems that the conclusion drawn in \citet{Jones2011}, namely that only the $l=1, m=1$ components contribute to the equatorial angular momentum (their Equations A12 and A13), is incorrect.
 
 \subsection{Axial Angular Momentum}
 Since only the $m=0$ harmonics contribute to $(\bm{\mathcal{L}}_Z)_z$, only the functions $P_{l0}(\cos\theta) = P_l(x)$ (the non-associated Legendre polynomials) appear in the $\theta$-integral. The $\theta$-integral (excluding constant factors) can be transformed as
@@ -199,7 +199,7 @@ and
 (L_Z)_z = \frac{4}{3}\sqrt{3\pi}\int_{\ri}^{\ro}r^3\tz_{10}(r)dr =  \frac{4}{3}\sqrt{3\pi}\int_{\ri}^{\ro}r^2Z_{10}(r)dr
 \label{eq:lz}
 \end{align}
-The constant on the RHS of \eqref{eq:lz} will depend on the convention for the normalization of the spherical harmonics. For example, compare to \citet{Jones11}, Equations A11--A14. 
+The constant on the RHS of \eqref{eq:lz} will depend on the convention for the normalization of the spherical harmonics. For example, compare to \citet{Jones2011}, Equations A11--A14. 
 
 \section{Contribution to the Angular Momentum from the Poloidal Stream Function $W$}
 We shall now show that the contribution to the total angular momentum from $\bm{\mathcal{L}}_W$ mathematically vanishes for a spherical shell. We use \eqref{eq:vpol} to compute
@@ -234,7 +234,7 @@ where $\bm{n}$ is the unit normal to $\partial V$ and $dS$ is an area element on
 (\bm{L}_W)_i = 0.
 \label{eq:lw0}
 \end{align}
-So actually the impenetrability condition has nothing to do with the vanishing of the angular momentum from the poloidal stream function! We only require that the integration region is a spherical shell. Note that \citet{Jones11} derive (in their Equation A10)
+So actually the impenetrability condition has nothing to do with the vanishing of the angular momentum from the poloidal stream function! We only require that the integration region is a spherical shell. Note that \citet{jones2011} derive (in their Equation A10)
 \begin{align}
 (\bm{L}_W)_i = \oint_{\partial V}\epsilon_{ijk}r_j\Bigg{[}\pderiv{(r_m\tw)}{x_k}-\pderiv{(r_k\tw)}{x_m}\bigg{]}n_mdS
 \label{eq:jonesa10}
@@ -254,9 +254,10 @@ The remaining part of the integral may be written
 &= \oint\epsilon_{ijk}[\delta_{jm}r_m\tw + r_j\partial_m(r_m\tw)]\bigg{(}\frac{\pm r_k}{r}\bigg{)}dS,
 \end{align*} 
 whose integrand can be shown to vanish using previous arguments on the asymmetry of $\epsilon_{ijk}$. 
-\begin{thebibliography}{}
-	\bibitem[Jones et al. (2011)]{Jones11} Jones, C.A., Boronski, P., Brun, A.S., et al., 2011, 
-	\href{https://doi.org/10.1016/j.icarus.2011.08.014}{Icarus},
-	\MYhref{https://ui.adsabs.harvard.edu/abs/2011Icar..216..120J/abstract}{216, 120}
-\end{thebibliography}
+
+	\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle,
+	/Users/loren/Desktop/Paper_Library/000_bibtex/proceedings,
+	/Users/loren/Desktop/Paper_Library/000_bibtex/books}
+\bibliographystyle{../aasjournal2}
+
 \end{document}
