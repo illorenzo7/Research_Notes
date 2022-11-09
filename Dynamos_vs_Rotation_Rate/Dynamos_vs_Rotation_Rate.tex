@@ -39,11 +39,11 @@ In this set of notes, we consider 3D nonlinear dynamo simulations that explored 
 \citet{Brun2022},\\
 
 \section{Observations of the Stellar Activity-Rotation Relation (ARR)}
-The stellar activity-rotation relation (hereafter ARR) has a long history of observation and informs astronomers' generally accepted picture of stellar spin-down. The positive correlation between rotational velocity ($v\sin i$) and chromospheric $\text{Ca}^+$ emission (believed to be linearly proportional to the surface magnetic field) was first noted by \citet{Kraft1967}. This correlation was made famous in the context of spin-down by the ``Skumanich $t^{1/2}$" law. This law states that as a star ages (call its age $t$), its surface magnetic-field strength and rotation rate both decrease like $t^{-1/2}$ \citep{Skumanich1972}. Since spin-down is believed to be caused by angular-momentum loss from a stellar wind, there thus appears to be a negative feedback loop between rotation (which produces magnetic field by a convective dynamo) and magnetic field (which drives the stellar wind and slows the rotation). 
+The stellar activity-rotation relation (hereafter ARR) has a long history of observation and informs astronomers' generally accepted picture of stellar spin-down. The positive correlation between rotational velocity ($v\sin i$) and chromospheric $\text{Ca}^+$ emission (more or less considered to be linearly proportional to strength of the surface magnetic field) was first noted by \citet{Kraft1967}. This correlation was made famous in the context of spin-down by the ``Skumanich $t^{1/2}$" law. This law states that as a star ages (call its age $t$), its surface magnetic-field strength and rotation rate both decrease like $t^{-1/2}$ \citep{Skumanich1972}. Since spin-down is believed to be caused by angular-momentum loss from a stellar wind, there thus appears to be a negative feedback loop between rotation (which produces magnetic field by a convective dynamo) and magnetic field (which drives the stellar wind and slows the rotation). 
 
-In addition to chromospheric emission, coronal emission (X-ray luminosity) is also found to be proportional to rotation rate (e.g., \citealt{Walter1982}). Furthermore, the X-ray data showed that for a critical rotation rate (corresponding to a critical mixing-length Rossby number of $Ro\sim0.1$), the ratio of X-ray luminosity to total luminosity saturated to a value of $\sim0.001$. It is still unclear whether this saturation regime corresponds a fundamental dynamo process (for example, the inability of the dynamo to convert additional rotational energy to magnetic field) or simply geometric effects (for example, the stellar surface becoming so peppered with active regions that it cannot accommodate any more dynamo-produced flux) \citep{Jardine1999}. More recent work \citep{Reiners2022} favors the saturation regime indicating a fundamental saturation in the response of the dynamo to increased rotation rate. 
+In addition to chromospheric emission, coronal emission (X-ray luminosity) is also found to be proportional to the rotation rate (e.g., \citealt{Walter1982}). Furthermore, the X-ray data show that for a critical rotation rate (corresponding to a critical mixing-length Rossby number of $Ro\sim0.1$), the ratio of X-ray luminosity to total luminosity saturated to a value of $L_X/L_*\sim0.001$. It is still unclear whether this saturation regime corresponds a fundamental dynamo process (for example, the inability of the dynamo to convert additional kinetic energy to magnetic field) or simply geometric effects (for example, the stellar surface becoming so peppered with active regions that it cannot accommodate any more dynamo-produced flux) \citep{Jardine1999}. More recent work \citep{Reiners2022} claims that the saturation regime indicates a fundamental dynamo process.
 
-Since the detailed properties of the magnetic fields in stellar interiors are almost completely unconstrained (including for the Sun), it is reasonable to assume that the overall dynamo strength (defined here to be the rms magnetic-field strength, with the mean taken over the full volume of the star) is proportional to the surface magnetic-field strength, and thus to the proxies of $\text{Ca}^+$ emission and X-ray luminosity. With these assumptions, the ARR tells us about two stellar dynamo regimes: slow rotation (where the Sun lies), in which dynamo strength increases with more rapid rotation, and fast rotation, in which the dynamo strength is insensitive to rotation (a saturation regime). Figure \ref{fig:arr} shows the ARR as reported by \citet{Reiners2022}. As the Rossby number $Ro$ (ratio of rotation period to mixing-length convective turnover time) decreases right to left (i.e., the rotation rate increases), the surface magnetic field strength increases up to a critical Rossby number $Ro=0.13$. After that, faster rotation only leads to marginally increased field strength.
+Since the detailed properties of the magnetic fields in stellar interiors are almost completely unconstrained (including for the Sun), it is reasonable to assume that the overall dynamo strength (defined here to be the rms magnetic-field strength, with the mean taken over the full volume of the star) is proportional to the surface magnetic-field strength, and thus to the proxies of $\text{Ca}^+$ and X-ray flux. With these assumptions, the ARR tells us about two stellar dynamo regimes: slow rotation (where the Sun lies), in which dynamo strength increases with more rapid rotation, and fast rotation, in which the dynamo strength is insensitive to the rotation rate (a saturation regime). Figure \ref{fig:arr} shows the ARR as reported by \citet{Reiners2022}. As the Rossby number $Ro$ (ratio of well-measured rotation period $\prot$ to an ad hoc convective turnover time $\tau$) decreases right to left (i.e., the rotation rate increases), the surface magnetic field strength increases up to a critical Rossby number $Ro=0.13$. After that, faster rotation only leads to marginally increased field strength.
 
 \begin{figure*}\label{fig:arr}
 	\centering
@@ -51,28 +51,40 @@ Since the detailed properties of the magnetic fields in stellar interiors are al
 	\caption{Copied from \citet{Reiners2022}, Figure 5: Magnetic field–rotation relation for solar-like and low-mass stars. Symbols for stars rotating slower than $Ro=0.13$ are colored red, while those of faster rotators are colored blue. Larger and darker symbols indicate higher stellar mass than smaller and lighter symbols.  The gray dashed lines show linear fits separately for the slowly rotating stars ($Ro>0.13$;  $\av{B}=200G\times Ro^{-1.25}$) and the fast rotators ($Ro<0.13$; $\av{B}=2050 G \times Ro^{-0.11}$). Downward open triangles show upper limits for $\av{B}$.}
 \end{figure*}
 
+It should be noted that the ``Rossby number" used in plots like Figure \ref{fig:arr} is really an empirical parameter chosen to make the ARR collapse onto a single curve for all different stellar masses (e.g., \citealt{Noyes1984,Pizzolato2003,Wright2011}). In general, the empirical convective turnover time scales like $\tau\sim L_*^{1/2}$, which has some basis in mixing-length theory, but the true dependence of $\tau$ on stellar parameters could be far more complicated. In any case, simply plotting the normalized activity emission (e.g., $L_X/L_*$) with respect to rotation period yields an essentially similar ARR, possibly with different saturation breaks (all in the range of $\prot\sim1$--$3$ days) for different stellar masses (e.g., \citealt{Pizzolato2003}).
+
 \section{Parameters  Spaces Explored}
-Global, rotating, magnetized spherical shells are characterized by several non-dimensional parameters. For a Boussinesq shell, these parameters are often defined as follows: 
+Global, rotating, magnetized spherical shells are characterized by several non-dimensional parameters. These parameters (which completely characterize the Boussinesq system) are:
 \begin{align}
-	\text{shell aspect ratio}\quad & \equiv\quad \beta \quad  \equiv\quad  \frac{\rmin}{\rmax}\\
-	\text{Rayleigh number} \quad & \equiv \quad {\rm{Ra_B}} \quad \equiv \frac{g\out\alpha\Delta\tref}{\nu\out\kappa\out H^5}\\
-	\text{thermal Prandtl number} \quad & \equiv \quad {\rm{Pr}} \quad = \quad \frac{\nu\out}{\kappa\out}\\
-	\text{Ekman number}\quad & \equiv \quad {\rm{Ek}} \quad = \frac{\nu\out}{\Omega_0H^2}\\
-	\text{magnetic Prandtl number} \quad & \equiv \quad {\rm{Pr_m}} \quad = \quad \frac{\nu\out}{\eta\out}
+	\text{shell aspect ratio}\quad & \equiv\quad \beta \quad  \equiv\quad  \frac{\rmin}{\rmax},\\
+	\text{Rayleigh number} \quad & \equiv \quad {\rm{Ra_B}} \quad \equiv \frac{g\out\alpha\Delta\tref}{\nu\out\kappa\out H^5},\\
+	\text{thermal Prandtl number} \quad & \equiv \quad {\rm{Pr}} \quad = \quad \frac{\nu\out}{\kappa\out},\\
+	\text{Ekman number}\quad & \equiv \quad {\rm{Ek}} \quad = \frac{\nu\out}{\Omega_0H^2},\\
+	\andd\text{magnetic Prandtl number} \quad & \equiv \quad {\rm{Pr_m}} \quad = \quad \frac{\nu\out}{\eta\out}.
 \end{align}
-fdf
+Here, $r$ is the radius, the subscripts ``o" and ``i" refer to the outer and inner radii of the shell (respectively), $H=\rmax-\rmin$ is the shell depth, $g$ is the gravitational acceleration, $\alpha$ is the coefficient of thermal expansion, $\Delta\tref$ is the background (superadiabatic, or adverse) temperature difference between the bottom and top of the shell, $\nu$ is the kinematic viscosity, $\kappa$ the thermal diffusivity, $\Omega_0$ the rotation rate, and $\eta$ the magnetic diffusivity. The ``o" subscripts on the diffusivities and $g$ indicate they are in general functions of $r$. Technically, this radial dependence makes the parameter space accessed by dynamo simulations infinite-dimensional, so hopefully it's not too important! Just kidding.
+
+If the system is anelastic, there are additional parameters because of the stratification. For a polytrope describing a convection zone, these are:
 \begin{align}
-	\text{shell aspect ratio}\quad & \equiv\quad \beta \quad  \equiv\quad  \rmin/\rmax\\
-	\text{shell density contrast}\quad & \equiv \quad \rm{DC} \quad \equiv \rhoref(\rmin)/\rhoref(\rmax)\five \text{(for anelastic models)}\\ 
-	\text{thermal Prandtl number} \quad & \equiv \quad \rm{Pr} \quad = \quad \nu/\kappa\\
-	\text{magnetic Prandtl number} \quad & \equiv \quad \rm{Pr_m} \quad = \quad \nu/\eta \\
-	\text{dissipation number} \quad & \equiv\quad \rm{Di}\quad = \quad gH/\cp T
-	2=2
+	\text{shell density contrast}\quad & \equiv \quad {\rm{DC}} \quad \equiv \frac{\rhoref(\rmin)}{\rhoref(\rmax)}\\
+	\orr \text{number of density scale heights}\quad &  \equiv \quad N_\rho \quad \equiv \ln{(\rm{DC})}, \\ 
+	\text{polytropic index} \quad & \equiv \quad n \quad \equiv \text{something near}\  \frac{5}{3},\\
+	\andd \text{dissipation number} \quad & \equiv\quad {\rm{Di}}\quad = \quad \frac{g\out H}{\cp \tref\out}.
 \end{align}
+Here, $\rhoref(r)$ is the background density and $\cp$ is the constant-pressure specific heat. 
+
+If there is also a stable layer in the system (say, below the convection zone), some other parameters are needed: the transition location and width, along with the polytropic index of the stable layer or (if the stable layer isn't polytropic) the full entropy gradient $d\sref/dr$ in the stable layer. For polytrope, $n$ determines $d\sref/dr$, with an order of magnitude of $[n/(5/3)-1]\cp/\rmin$. Regardless, the stable layer introduces an important, final dimensionless number:
+\begin{align}
+	\text{buoyancy parameter}\quad & \equiv \quad {\rm{B}} \quad \equiv \frac{\widetilde{N^2}}{\Omega_0^2},\\
+	\where N^2 &\equiv \frac{g}{\cp}\frac{d\sref}{dr}
+\end{align}
+and the tilde indicates a volume average over the stable layer. 
+
 \section{Christensen \& Aubert (2006)}
 \citet{Christensen2006} explored saturated Boussinesq dynamos in the context of planetary magnetic fields 
 
-	\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle,
+	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle,
+\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library,
 	/Users/loren/Desktop/Paper_Library/000_bibtex/proceedings,
 	/Users/loren/Desktop/Paper_Library/000_bibtex/books}
 \bibliographystyle{../aasjournal2}
