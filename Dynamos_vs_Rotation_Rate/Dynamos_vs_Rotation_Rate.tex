@@ -83,7 +83,7 @@ is the squared buoyancy frequency and the tilde indicates a volume average over 
 
 We note also that some authors use a reduced Rayleigh number that is independent of any diffusion coefficient, replacing the diffusion time combination $(H^2/\nu\out)(H^2/\kappa\out)$ with $1/\Omega_0^2$:
 \begin{align}
-		\text{reduced Rayleigh number} \quad & \equiv \quad {\rm{Ra^*}} \quad \equiv \frac{g\out\alpha\Delta\tref }{\Omega_0^2H}
+		\text{reduced Rayleigh number} \quad & \equiv \quad {\rm{Ra^*}} \quad \equiv \frac{g\out\alpha\Delta\tref }{\Omega_0^2H}=\rm{Ra Pr^{-1} Ek^2}.
 \end{align}
 
 Finally, in an astrophysical convective system (like a star or the Earth), the adiabatic temperature difference across the convection zone ($\Delta\tref$) is typically unknown. Instead, we can measure the flux driven through the system, and need to define a ``flux-based Rayleigh number" with respect to this flux. For example, we usually know the stellar luminosity $L_*$ and radius $r$. Throughout the star, the different energy fluxes must add up to $\fluxscalar(r)=L_*/4\pi r^2$. If the convection is vigorous, the convective heat transport, or enthalpy flux, should dominate the other fluxes, i.e., $\fluxscalar\sim\rhoref\cp u_rT$, where $u_r$ and $T$ are typical radial velocity and temperature perturbations, respectively. If cold plumes dissipate their energy thermally, we might expect $u_r\sim\kappa\out/H$, or 
@@ -103,6 +103,30 @@ There is also a reduced flux-based Rayleigh number, used, for example, in \citet
 \end{align}
 where $Q_{\rm{adv}}$ is the ``total" (presumably the volume-averaged) integrated convective heat flux. Physically, such a Rayleigh number would be appropriate if the rotation set the typical radial velocity: $u_r\sim H\Omega_0$. 
 
+ \begin{table*}
+	\centering
+	\caption{Parameter space explored by prior global dynamo simulations. In \citet{Christensen2006}, the system is Boussinesq with a fixed temperature difference. Only cases with dipolar dynamos ($f_{\rm{dip}}>0.35$) and sufficiently vigorous convection (${\rm{Nu}}>2$, where $\rm{Nu}$ is the Nusselt number) are considered. The min/max supercriticality was estimated from their Figure 4(a)'s $x$-axis.  }\label{tab:params}
+	%\begin{tabular}{l  l  l l  l  l l l l}
+	\begin{tabular}{l | l | l }
+		\hline\hline
+		Paper & \citet{Christensen2006} & \citet{Brun2022} \\
+		\hline
+		Ek min & $10^{-6}$ & $\sn{4}{-5}$\\
+		Ek max & $\sn{3}{-4}$ & $\sn{9.0}{-3}$ \\
+		\hline
+		Ra/$\rm{Ra_{crit}}$ min & $\approx$5 & 5.7 \\
+		Ra/$\rm{Ra_{crit}}$ max & $\approx$50 & 73\\
+		\hline
+		$\prt$ min & $0.1$ & $0.25$ \\
+		$\prt$ max & $10$ & $0.25$ \\
+		\hline
+		$\prm$ min & $0.06$ & 1 \\
+		$\prm$ max & $10$ & 2 \\
+		\hline
+	\end{tabular}
+\end{table*}
+		
+		
 \section{Christensen \& Aubert (2006)}
 \citet{Christensen2006} explored saturated Boussinesq dynamos in the context of planetary magnetic fields 
 
