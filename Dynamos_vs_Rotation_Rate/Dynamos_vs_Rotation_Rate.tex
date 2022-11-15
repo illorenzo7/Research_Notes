@@ -81,9 +81,9 @@ If there is also a stable layer in the system (say, below the convection zone), 
 \end{align}
 is the squared buoyancy frequency and the tilde indicates a volume average over the stable layer. 
 
-We note also that some authors use a reduced Rayleigh number that is independent of any diffusion coefficient, replacing the diffusion time combination $(H^2/\nu\out)(H^2/\kappa\out)$ with $1/\Omega_0^2$:
+We note also that some authors use a modified Rayleigh number that is independent of any diffusion coefficient, replacing the diffusion time combination $(H^2/\nu\out)(H^2/\kappa\out)$ with $1/\Omega_0^2$:
 \begin{align}
-		\text{reduced Rayleigh number} \quad & \equiv \quad {\rm{Ra^*}} \quad \equiv \frac{g\out\alpha\Delta\tref }{\Omega_0^2H}=\rm{Ra Pr^{-1} Ek^2}.
+		\text{modified Rayleigh number} \quad & \equiv \quad {\rm{Ra^*}} \quad \equiv \frac{g\out\alpha\Delta\tref }{\Omega_0^2H}=\rm{Ra Pr^{-1} Ek^2}.
 \end{align}
 
 Finally, in an astrophysical convective system (like a star or the Earth), the adiabatic temperature difference across the convection zone ($\Delta\tref$) is typically unknown. Instead, we can measure the flux driven through the system, and need to define a ``flux-based Rayleigh number" with respect to this flux. For example, we usually know the stellar luminosity $L_*$ and radius $r$. Throughout the star, the different energy fluxes must add up to $\fluxscalar(r)=L_*/4\pi r^2$. If the convection is vigorous, the convective heat transport, or enthalpy flux, should dominate the other fluxes, i.e., $\fluxscalar\sim\rhoref\cp u_rT$, where $u_r$ and $T$ are typical radial velocity and temperature perturbations, respectively. If cold plumes dissipate their energy thermally, we might expect $u_r\sim\kappa\out/H$, or 
@@ -97,15 +97,15 @@ Note that the Boulder crew  \citep{Featherstone2016a, Featherstone2016b, Hindman
 \end{align}
 where the tildes refer to volume averages over the convection zone only and $F(r)\equiv\fluxscalar(r)-\fluxscalar_{\rm{rad}}(r)$ is the flux convection and conduction must carry in equilibrium. In the Rayleigh models, $F$ is determined by the volumetric heating $Q(r)$, i.e., $F(r)=(1/r^2)\int_{\rmin}^rQ(x)x^2dx$. 
 
-There is also a reduced flux-based Rayleigh number, used, for example, in \citet{Christensen2006}:
+There is also a modified flux-based Rayleigh number, used, for example, in \citet{Christensen2006}:
 \begin{align}
-	\text{reduced flux-based Rayleigh number} \quad & \equiv \quad {\rm{Ra^*_F}} \quad \equiv \frac{1}{4\pi\rmin\rmax} \frac{g\out\alpha Q_{\rm{adv}} }{\rho\out\Omega_0^3H^2}
+	\text{modified flux-based Rayleigh number} \quad & \equiv \quad {\rm{Ra^*_F}} \quad \equiv \frac{1}{4\pi\rmin\rmax} \frac{g\out\alpha Q_{\rm{adv}} }{\rho\out\Omega_0^3H^2}
 \end{align}
 where $Q_{\rm{adv}}$ is the ``total" (presumably the volume-averaged) integrated convective heat flux. Physically, such a Rayleigh number would be appropriate if the rotation set the typical radial velocity: $u_r\sim H\Omega_0$. 
 
  \begin{table*}
 	\centering
-	\caption{Parameter space explored by prior global dynamo simulations. In \citet{Christensen2006}, the system is Boussinesq with a fixed temperature difference. Only cases with dipolar dynamos ($f_{\rm{dip}}>0.35$) and sufficiently vigorous convection (${\rm{Nu}}>2$, where $\rm{Nu}$ is the Nusselt number) are considered. The min/max supercriticality was estimated from their Figure 4(a)'s $x$-axis.  }\label{tab:params}
+	\caption{Parameter space explored by prior global dynamo simulations. In \citet{Christensen2006}, the system is Boussinesq with a fixed temperature difference. Only cases with dipolar dynamos ($f_{\rm{dip}}>0.35$) and sufficiently vigorous convection (${\rm{Nu}}>2$, where $\rm{Nu}$ is the Nusselt number) are considered. The min/max supercriticality was estimated from their Figure 4(a)'s $x$-axis. In \citet{Brun2022}, the numbers are reported local to the middle of the convection zone.}\label{tab:params}
 	%\begin{tabular}{l  l  l l  l  l l l l}
 	\begin{tabular}{l | l | l }
 		\hline\hline
@@ -126,10 +126,13 @@ where $Q_{\rm{adv}}$ is the ``total" (presumably the volume-averaged) integrated
 	\end{tabular}
 \end{table*}
 		
-		
 \section{Christensen \& Aubert (2006)}
-\citet{Christensen2006} explored saturated Boussinesq dynamos in the context of planetary magnetic fields 
+\citet{Christensen2006} explore Boussinesq dynamos driven by a fixed temperature difference $\Delta\overline{T}$ in the context of planetary magnetic fields. They cover at least two decades in the relevant input parameters (Rayleigh, Ekman, and two Prandtl numbers) and characterize scaling relationships between diffusion-independent output numbers. They find that all these output numbers, to first approximation, have simple power-law dependencies on the modified Rayleigh number, with only weak dependencies on the diffusion-controlled parameters (Ekman and two Prandtl numbers). From these dependencies, they conclude (among other things) that magnetic-field strengths in dipole-dominated dynamos are independent of the rotation rate. For the most part, their scaling laws seem robust (the plots speak for themselves). 
 
+However, their main conclusion that field strength is independent of rotation rate I don't follow. They define several output numbers:
+\begin{align}
+	\text{Lorentz number} \quad & \equiv \quad {\rm{Lo}} \quad \equiv \frac{B_{\rm{rms}}}{(\rhoref\mu)^{1/2}\Omega_0H}\\
+\end{align}
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle,
 \bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library,
 	/Users/loren/Desktop/Paper_Library/000_bibtex/proceedings,
