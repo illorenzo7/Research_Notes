@@ -91,17 +91,17 @@ Finally, in an astrophysical convective system (like a star or the Earth), the a
 	\text{first flux-based Rayleigh number} \quad & \equiv \quad {\rm{Ra_{F1}}} \quad \equiv \frac{g\out\fluxscalar\out H^4}{\cp\rhoref\out\tref\out\nu\out\kappa\out^2}
 \end{align}
 
-Note that the Boulder crew  \citep{Featherstone2016a, Featherstone2016b, Hindman2020, Matilsky2020a, Matilsky2020b, Korre2021, Camisassa2022} use a different "volume-averaged" flux-based Rayleigh number: 
+Note that the Boulder crew  \citep{Featherstone2016a, Featherstone2016b, Hindman2020, Matilsky2020a, Matilsky2020b, Korre2021, Camisassa2022} use a different ``volume-averaged" flux-based Rayleigh number: 
 \begin{align}
 	\text{second flux-based Rayleigh number} \quad & \equiv \quad {\rm{Ra_{F2}}} \quad \equiv \frac{\tilde{g}\tilde{F}H^4}{\cp\tilde{\rhoref}\tilde{\tref}\tilde{\nu}\tilde{\kappa}^2},
 \end{align}
-where the tildes refer to volume averages over the convection zone only and $F(r)\equiv\fluxscalar(r)-\fluxscalar_{\rm{rad}}(r)$ is the flux convection and conduction must carry in equilibrium. In the Rayleigh models, $F$ is determined by the volumetric heating $Q(r)$, i.e., $F(r)=(1/r^2)\int_{\rmin}^rQ(x)x^2dx$. 
+where the tildes refer to volume averages over the convection zone only and $F(r)\equiv\fluxscalar(r)-\fluxscalar_{\rm{rad}}(r)$ is the flux convection and conduction must carry in equilibrium. In the Rayleigh models, $F$ is determined by the volumetric heating $Q(r)$ (which is a stand-in for the radiation flux $\frad$), i.e., $F(r)=(1/r^2)\int_{\rmin}^rQ(x)x^2dx$. 
 
 There is also a modified flux-based Rayleigh number, used, for example, in \citet{Christensen2006}:
-\begin{align}
+\begin{align}\label{def:raq}
 	\text{modified flux-based Rayleigh number} \quad & \equiv \quad {\rm{Ra^*_F}} \quad \equiv \frac{1}{4\pi\rmin\rmax} \frac{g\out\alpha Q_{\rm{adv}} }{\rho\out\Omega_0^3H^2}
 \end{align}
-where $Q_{\rm{adv}}$ is the ``total" (presumably the volume-averaged) integrated convective heat flux. Physically, such a Rayleigh number would be appropriate if the rotation set the typical radial velocity: $u_r\sim H\Omega_0$. 
+where $Q_{\rm{adv}}$ is the ``total" (presumably the volume-averaged) spherical-surface-integrated convective heat flux (enthalpy flux). Physically, such a Rayleigh number would be appropriate if the rotation set the typical radial velocity: $u_r\sim H\Omega_0$. Note that this Rayleigh number is not an input parameter, but more related to the vigor of established convection (like a Nusselt number). 
 
  \begin{table*}
 	\centering
@@ -129,10 +129,33 @@ where $Q_{\rm{adv}}$ is the ``total" (presumably the volume-averaged) integrated
 \section{Christensen \& Aubert (2006)}
 \citet{Christensen2006} explore Boussinesq dynamos driven by a fixed temperature difference $\Delta\overline{T}$ in the context of planetary magnetic fields. They cover at least two decades in the relevant input parameters (Rayleigh, Ekman, and two Prandtl numbers) and characterize scaling relationships between diffusion-independent output numbers. They find that all these output numbers, to first approximation, have simple power-law dependencies on the modified Rayleigh number, with only weak dependencies on the diffusion-controlled parameters (Ekman and two Prandtl numbers). From these dependencies, they conclude (among other things) that magnetic-field strengths in dipole-dominated dynamos are independent of the rotation rate. For the most part, their scaling laws seem robust (the plots speak for themselves). 
 
-However, their main conclusion that field strength is independent of rotation rate I don't follow. They define several output numbers:
+However, their main conclusion that field strength is independent of rotation rate (which would be particularly relevant to the saturation regime of the ARR) I don't follow. They define several output numbers:
 \begin{align}
-	\text{Lorentz number} \quad & \equiv \quad {\rm{Lo}} \quad \equiv \frac{B_{\rm{rms}}}{(\rhoref\mu)^{1/2}\Omega_0H}\\
+	\text{Lorentz number} \quad & \equiv \quad {\rm{Lo}} \quad \equiv \frac{B_{\rm{rms}}}{(\rhoref\mu)^{1/2}\Omega_0H},\\
+		\text{fractional Ohmic dissipation} \quad & \equiv f_{\rm{ohm}} = \frac{D_\lambda}{P_{\rm{buoy}}},\\
+		\where \text{total Ohmic dissipation} \quad & \equiv D_\eta  \equiv \eta\int|\curl\vecb|^2dV\\
+		\andd  \text{total buoyant work rate} \quad & \equiv P_{\rm{buoy}}  \equiv \alpha \rhoref \int g(r)u_rTdV.
 \end{align}
+Here, $B_{\rm{rms}}$ refers to the rms magnetic-field strength (mean taken over time and the full shell volume), $\vecb$ is the vector magnetic field, the integrals are taken over the full shell volume, and I've changed some of the notation from \citet{Christensen2006} to be more consistent with what we do for Rayleigh (e.g., $\lambda\rightarrow\eta$ and the total powers (last two equations) are defined dimensionally). The main relevant scaling the authors find is
+\begin{align}
+	\frac{\rm{Lo}}{f_{\rm{ohm}}^{1/2}}\sim ({\rm{Ra^*_F}})^{1/3},
+\end{align}
+which yields
+\begin{align}\label{eq:fieldstrength}
+	B_{\rm{rms}}\sim f_{\rm{ohm}}^{1/2}\rhoref^{1/6}\mu^{1/2}\left[\frac{(\alpha Q_{\rm{adv}}/\cp)Hg\out}{4\pi\rmin\rmax}\right]^{1/3}
+\end{align}
+The quantity
+\begin{align}
+	 \text{buoyancy flux} \quad & \equiv Q_B = \frac{\alpha Q_{\rm{adv}}}{\cp}.
+\end{align}
+(also apparently called the ``mass anomaly flux") evidently represents the flux of fractional density perturbations (integrated over spherical surfaces and volumetrically averaged). I'm not sure about why $Q_B$ is the more relevant parameter...is it more easily measurable for the Earth? Or do they use it because there is compositional buoyancy (in addition to thermal buoyancy) in the Earth's core that wouldn't be properly accounted for in $Q_{\rm{adv}}$? I'm missing some relevant background here.
+
+Anyway, the authors then state: ``The fraction of Ohmic dissipationin most of our models is in the range of 0.3–0.8. For the Earth's core $f_{\rm{ohm}}\approx1$ is usually assumed, based on a ratio of magnetic energy to kinetic energy much larger than one and the high magnetic diffusivity. However, if the kinetic energy is allowed to cascade to much smaller length scales than the magnetic energy, viscous dissipation may still be significant. From our model results we did not find a simple rule of how $f_{\rm{ohm}}$ varies with the control parameters, but for simplicity we will make the usual assumption that viscous dissipation becomes negligible under core conditions." 
+
+In other words, the authors ignore the factor of $f_{\rm{ohm}}^{1/2}$ in Equation \eqref{eq:fieldstrength} (see their Equation (48)) and from there conclude the ``remarkable result" that the magnetic-field strength is independent of rotation rate. But that only happens if $f_{\rm{ohm}}$ is independent of rotation rate! And they state themselves that they do not see any obvious way $f_{\rm{ohm}}$ scales with their parameters. They also more or less state that there doesn't seem to be any good theoretical reason $f_{\rm{ohm}}$ should be unity, either. As they note, the KE cascade could be to a much smaller scale than the ME cascade, and both viscous and ohmic dissipation might be important. 
+
+So in my view, the scaling of $f_{\rm{ohm}}$ with rotation rate seems unclear, and no inference regarding the scaling of $B_{\rm{rms}}$ with $\Omega_0$  can be made. To be fair to the authors, they offer the independence of $B_{\rm{rms}}$ from $\Omega_0$ as a surprising ``prediction" or a ``suggestion," which is perfectly valid. However, it seems their own models do not support such an independence (their $f_{\rm{ohm}}$ are not unity and vary un-systematically with their input parameters) and theoretically, the idea that $f_{\rm{ohm}}\approx1$ is not supported either. So...am I missing something critical? 
+
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle,
 \bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library,
 	/Users/loren/Desktop/Paper_Library/000_bibtex/proceedings,
