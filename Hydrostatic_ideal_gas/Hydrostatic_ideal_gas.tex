@@ -46,93 +46,107 @@
 	\frac{d\prsref}{dr} &= -\rhoref\ofr \grav\ofr\five\text{(hydrostatic balance)}\label{eq:hydr},\\
 	\andd p(r) &= \rho(r)\gasconst T(r)\five\text{(ideal gas law)}.\label{eq:idgas}
 	\end{align}
-	Here, $\prsref\ofr$ is the pressure, $\rhoref\ofr$ the density, $\tmpref\ofr$ the temperature, and $\gasconst$ the gas constant. We further assume that the number of degrees of freedom (d.o.f.) is constant throughout, so that $\mathcal{R}$ is independent of radius. We then note the familiar relations
+	Here, $\prsref\ofr$ is the pressure, $\rhoref\ofr$ the density, $\tmpref\ofr$ the temperature, and $\gasconst$ the gas constant. We further assume that the number of degrees of freedom (d.o.f.) is constant throughout, so that $\mathcal{R}$ is independent of radius. We note the relationship between the specific heats for an ideal gas:
 	\begin{align}
-	\cp = \gamma\cv = \frac{\gamma\mathcal{R}}{\gamma - 1}\label{eq:cp_from_gamma}.
+	\cp = \gammaone\cv = \frac{\gammaone\gasconst}{\gammaone- 1}\label{eq:cp_from_gamma},
 	\end{align}
-	We also note the First Law of Thermodynamics applied across the spherical shell, which takes the form
+	where $\gammaone\define\cp/\cv$. 
+	
+	We note the First Law of Thermodynamics for the radial thermodynamic gradients (easiest starting point is $\tmpref d\sref=\cv d\tmpref-(\prsref/\rhoref^2)d\rhoref$):
 	\begin{align}
-	\frac{d\ln{T}}{dr} - (\gamma - 1)\frac{d\ln{\rho}}{dr} = \frac{s^\prime}{\cv}.
+	\frac{1}{\cv}\dsdr =\dlntmp - (\gammaone - 1)\dlnrho.
 	\label{eq:firstlaw}
 	\end{align}
-	Further, differentiating the ideal gas law \eqref{eq:idgas} gives
+	Differentiating the ideal gas law \eqref{eq:idgas} gives
 	\begin{align}
-	\frac{d\ln{p}}{dr} = \frac{d\ln{\rho}}{dr} + \frac{d\ln{T}}{dr}. 
+	\dlntmp = \frac{d\ln{\rho}}{dr} + \frac{d\ln{T}}{dr}. 
 	\label{eq:idgasdr}
 	\end{align}
-	Using \eqref{eq:cp_from_gamma}--\eqref{eq:idgasdr}, we can derive an ordinary differential equation for the temperature:
+	Combining Equations \eqref{eq:firstlaw} and \eqref{eq:idgasdr} yields the following useful forms of the First Law:
+	\begin{subequations}
+		\begin{align}
+		\frac{1}{\cp}\dsdr &=\frac{1}{\gammaone}\dlntmp - \frac{\gammaone - 1}{\gammaone}\dlnrho\label{eq:firstlawtmprho}\\
+		&=\frac{1}{\gammaone}\dlnprs - \dlnrho\label{eq:firstlawprsrho}\\
+		&= \dlntmp - \frac{\gammaone - 1}{\gammaone}\dlnprs\label{eq:firstlawtmpprs}
+		\end{align}
+		\label{eq:firstlaw3}
+	\end{subequations}
+	Using Equations \eqref{eq:cp_from_gamma} and \eqref{eq:firstlaw3}, we can derive an ordinary differential equation for the temperature:
 	\begin{align}
 	\boxed{
-	\frac{dT}{dr} - \bigg{[}\frac{s^\prime(r)}{\cp}\bigg{]}T(r) = -\frac{g(r)}{\cp}.
+	\frac{d\tmpref}{dr} - \bigg{[}\frac{1}{\cp}\dsdr\bigg{]}\tmpref\ofr = -\frac{\grav\ofr}{\cp}.
 }
 \label{eq:tdiffeq}
 	\end{align}
-	We solve \eqref{eq:tdiffeq} via integrating factors, yielding 
+	We can solve Equation \eqref{eq:tdiffeq} via integrating factors, yielding 
 	\begin{align}
-	\boxed{
-	T(r) = -\frac{e^{s(r)/\cp}}{\cp}\int_{r_0}^r g(\tilde{r})e^{-s(\tilde{r})/\cp}d\tilde{r} + T_0e^{[s(\tilde{r})-s_0]/\cp}.
-	\label{eq:tgeneral}}
+	\tmpref(r) = -\frac{e^{\sref(r)/\cp}}{\cp}\int_{r_0}^r \grav(\tilde{r})e^{-\sref(\tilde{r})/\cp}d\tilde{r} + \tmpref_0e^{[\sref(\tilde{r})-\sref_0]/\cp}
+	\label{eq:tgeneral1}
 	\end{align}
-	Here we have defined $r_0$ as an arbitrary radius from which to start the integration. Accordingly, we define the temperature, pressure, density, and entropy at $r_0$ as $T_0$, $p_0$, $\rho_0$, and $s_0$, respectively.
+	Here, we have defined $r_0$ as an arbitrary radius from which to start the integration. Accordingly, we define the temperature, pressure, density, and entropy at $r_0$ as $\tmpref_0$, $\prsref_0$, $\rhoref_0$, and $\sref_0$, respectively.
 	
-	Note that in equation \eqref{eq:tgeneral}, adding a constant $\sigma$ to the entropy ($s\longrightarrow s+\sigma$) has no effect on the profile $T(r)$. \textit{The absolute value of the entropy nowhere appears in the final state; only the relative stratification of entropy is important}. 
-	
-	Once $T(r)$ is obtained, we can obtain $p(r)$ through integrating \eqref{eq:firstlaw}, using \eqref{eq:idgasdr} to replace the $\rho$-derivative with $p$- and $T$-derivatives:
+	Note that in equation \eqref{eq:tgeneral1}, adding a constant $\sigma$ to the entropy ($\sref\longrightarrow \sref+\sigma$) has no effect on the profile $\tmpref(r)$. Only the relative stratification of entropy is important. We therefore set $\sref_0\define0$ in what follows. Equation \eqref{eq:tgeneral1} thus becomes
+		\begin{align}
+		\boxed{
+			\tmpref(r) = e^{\sref(r)/\cp}\bigg{[}\tmpref_0-\int_{r_0}^r \frac{\grav(\tilde{r})}{\cp}e^{-\sref(\tilde{r})/\cp}d\tilde{r} \bigg{]}.
+			\label{eq:tgeneral}}
+	\end{align}
+	With $\tmpref\ofr$ now obtained, we can obtain $\prsref\ofr$ through integrating the First Law in its form \eqref{eq:firstlawtmpprs}:
 	\begin{align}
 	\boxed{
-	p(r)=p_0\exp\bigg{[}-\frac{s(r) - s_0}{\mathcal{R}}\bigg{]}\bigg{[}\frac{T(r)}{T_0}\bigg{]}^{\gamma/(\gamma - 1)}.
+	\prsref\ofr=\prsref_0e^{-\sref\ofr/\gasconst} \bigg{[}\frac{\tmpref\ofr}{\tmpref_0}\bigg{]}^{\gammaone/(\gammaone - 1)}.
 }
 \label{eq:pgeneral}
 	\end{align}
-	Finally, $\rho(r)$ is determined from the ideal gas law \eqref{eq:idgas}:
+	Finally, $\rhoref\ofr$ is determined from Equation \eqref{eq:idgas}:
 	\begin{align}
 	\boxed{
-	\rho(r) =\rho_0\exp\bigg{[}-\frac{s(r) - s_0}{\mathcal{R}}\bigg{]}\bigg{[}\frac{T(r)}{T_0}\bigg{]}^{1/(\gamma - 1)}.
+	\rhoref\ofr=\rhoref_0e^{-\sref\ofr/\gasconst} \bigg{[}\frac{\tmpref\ofr}{\tmpref_0}\bigg{]}^{1/(\gammaone - 1)}.
 }
 \label{eq:rhogeneral}
 	\end{align}
-	\textit{The full state of the atmosphere is purely determined by the entropy stratification $s^\prime(r)$, the gravitational acceleration $g(r)$, and the two constants $T_0$ and $p_0$.}
+	Thus, the full state of the atmosphere is purely determined by the entropy stratification $\dsdrline$, the gravitational acceleration $\grav\ofr$, and the two constants $\tmpref_0$ and $\prsref_0$ (or $\tmpref_0$ and $\rhoref_0$, etc.) It is well-known that with an equation of state, all the thermodynamic variables can be written as functions of the other two. Effectively, we have chosen our two ``fundamental variables" to be the entropy and pressure (because of the hydrostatic assumption, we can replace pressure by gravity). 
 	
-	The state specified in equations \eqref{eq:tgeneral}--\eqref{eq:rhogeneral} is completely general, relying only on the assumptions of a hydrostatic, ideal gas with position-independent specific heats. To move forward, we must specify $s^\prime(r)$ and $g(r)$. For the convection zone of a star (and much of the radiative zone below), it is safe to assume that the gravitational acceleration comes purely from a central spherically distributed mass, i.e., 
+	The state specified in equations \eqref{eq:tgeneral}--\eqref{eq:rhogeneral} is completely general, relying only on the assumptions of a hydrostatic, ideal gas with position-independent specific heats. To move forward, we must specify $\dsdrline$ and $\grav\ofr$. For relatively thin convection zones (e.g., the Sun), it is safe to assume that the gravitational acceleration comes purely from a central spherically distributed mass, i.e., 
 	\begin{align}
-	g(r)=\frac{GM}{r^2},
+	g(r)=\frac{G\mstar}{r^2},
 	\label{eq:gpointmass}
 	\end{align}
-	where $G$ is the Universal Gravitational Constant and $M$ is the stellar mass. 
+	where $G$ is the Universal Gravitational Constant and $\mstar$ the stellar mass. 
 	\section{Adiabatic atmosphere}
 	Considering the mathematical form of \eqref{eq:tgeneral}, the simplest atmosphere to derive is one that is adiabatic (constant-entropy):
 	\begin{align}
-	s(r)=s_0\equiv\rm{const.} \ \ \ \ \ \andd s^\prime \equiv 0.
+	\sref\ofr\equiv0\five\andd \dsdr \equiv 0.
 	\label{eq:sconst}
 	\end{align}
-	In this case all the exponentials in \eqref{eq:tgeneral} cancel to 1 and  we find 
+	In this case, all the exponentials in \eqref{eq:tgeneral} cancel to 1 and  we find 
 	\begin{align*}
-	T(r) = -\frac{GM}{\cp}\int_{r_0}^r\frac{d\tilde{r}}{\tilde{r}^2} + T_0
+	\tmpref(r) = -\frac{G\mstar}{\cp}\int_{r_0}^r\frac{d\tilde{r}}{\tilde{r}^2} + \tmpref_0
 	\end{align*}
 	or
 	\begin{empheq}[box=\fbox]{align}
-	T(r) &= T_0\bigg{[}\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\bigg{]}  \ \ \ \ \ \text{(adiabatic atmosphere)},\label{eq:tad}\\
-	\text{where} \ \ \ \ \ \tilde{a}&\coloneqq \frac{GM}{\cp T_0 r_0}.\label{def:atilde}
+	\tmpref(r) &= \tmpref_0\bigg{[}\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\bigg{]}  \ \ \ \ \ \text{(adiabatic atmosphere)},\label{eq:tad}\\
+	\text{where} \ \ \ \ \ \tilde{a}&\coloneqq \frac{G\mstar}{\cp \tmpref_0 r_0}.\label{def:atilde}
 	\end{empheq}
-	Then \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} $\Longrightarrow$
+	Then, Equations  \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} yield
 	\begin{empheq}[box=\fbox]{align}
-	p(r) &= p_0 \bigg{[}\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\bigg{]}^{\gamma/(\gamma-1)} \ \ \ \ \ \text{(adiabatic atmosphere)}
+	\prsref\ofr &= \prsref_0 \bigg{[}\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\bigg{]}^{\gammaone/(\gammaone-1)} \ \ \ \ \ \text{(adiabatic atmosphere)}
 \label{eq:pad}\\
-\andd	\rho(r) &= \rho_0 \bigg{[}\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\bigg{]}^{1/(\gamma-1)} \ \ \ \ \ \text{(adiabatic atmosphere).}
+\andd	\rhoref\ofr &= \rhoref_0 \bigg{[}\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\bigg{]}^{1/(\gammaone-1)} \ \ \ \ \ \text{(adiabatic atmosphere).}
 \label{eq:rhoad}
 \end{empheq}
 
 \section{Polytropes}
-The starting assumption for a ``polytrope" is that the temperature gradient is divergenceless---i.e., there is a constant flux due to radiative diffusion throughout the fluid layer. In 
+The starting assumption for a ``polytrope" is that the temperature gradient is divergenceless---i.e., there is a constant flux due to radiative diffusion throughout the fluid layer. If we assume, for simplicity, a constant radiative diffusion coefficient, then $\lap\tmpref=0$, which, in spherical coordinates, is: 
 spherical coordinates this condition becomes
 \begin{align}
-T(r) = \frac{A}{r} + B.
+\tmpref\ofr = \frac{A}{r} + B.
 \label{eq:tconstflux1}
 \end{align}
 The integration constants $A$ and $B$ in \eqref{eq:tconstflux1} are arbitrary, but one is eliminated from the condition $T(r_0) = T_0$, leaving
 \begin{align}
 \boxed{
-T(r) = T_0 \bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]} \ \ \ \ \ \text{(polytropic atmosphere)},
+\tmpref\ofr = \tmpref_0 \bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]} \ \ \ \ \ \text{(polytropic atmosphere)},
 }
 \label{eq:tpolytrope1}
 \end{align}
