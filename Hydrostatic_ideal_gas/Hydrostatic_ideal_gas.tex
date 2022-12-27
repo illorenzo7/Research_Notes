@@ -46,7 +46,7 @@
 	\frac{d\prsref}{dr} &= -\rhoref\ofr \grav\ofr\five\text{(hydrostatic balance)}\label{eq:hydr},\\
 	\andd p(r) &= \rho(r)\gasconst T(r)\five\text{(ideal gas law)}.\label{eq:idgas}
 	\end{align}
-	Here, $\prsref\ofr$ is the pressure, $\rhoref\ofr$ the density, $\tmpref\ofr$ the temperature, and $\gasconst$ the gas constant. We further assume that the number of degrees of freedom (d.o.f.) is constant throughout, so that $\mathcal{R}$ is independent of radius. We note the relationship between the specific heats for an ideal gas:
+	Here, $\prsref\ofr$ is the pressure, $\rhoref\ofr$ the density, $\tmpref\ofr$ the temperature, and $\gasconst$ the gas constant. We further assume that the number of degrees of freedom (d.o.f.) is constant throughout, so that $\gasconst$ is independent of radius. We note the relationship between the specific heats for an ideal gas:
 	\begin{align}
 	\cp = \gammaone\cv = \frac{\gammaone\gasconst}{\gammaone- 1}\label{eq:cp_from_gamma},
 	\end{align}
@@ -138,70 +138,69 @@
 
 \section{Polytropes}
 The starting assumption for a ``polytrope" is that the temperature gradient is divergenceless---i.e., there is a constant flux due to radiative diffusion throughout the fluid layer. If we assume, for simplicity, a constant radiative diffusion coefficient, then $\lap\tmpref=0$, which, in spherical coordinates, is: 
-spherical coordinates this condition becomes
 \begin{align}
 \tmpref\ofr = \frac{A}{r} + B.
 \label{eq:tconstflux1}
 \end{align}
-The integration constants $A$ and $B$ in \eqref{eq:tconstflux1} are arbitrary, but one is eliminated from the condition $T(r_0) = T_0$, leaving
+The integration constants $A$ and $B$ in Equation \eqref{eq:tconstflux1} are arbitrary, but one is eliminated from the condition $T(r_0) = \tmpref_0$, leaving
 \begin{align}
 \boxed{
 \tmpref\ofr = \tmpref_0 \bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]} \ \ \ \ \ \text{(polytropic atmosphere)},
 }
 \label{eq:tpolytrope1}
 \end{align}
-where the new constant $a\coloneqq A/T_0r_0$ is dimensionless. Note the similarity of the argument $[a(r_0/r) + (1-a)]$ in \eqref{eq:tpolytrope1} (which was derived by assuming a divergenceless temperature gradient) to the argument in \eqref{eq:tad} (which was derived by assuming the gas was adiabatic). 
+where the new constant $a\coloneqq A/\tmpref_0r_0$ is dimensionless. Note the similarity of the argument $[a(r_0/r) + (1-a)]$ in Equation \eqref{eq:tpolytrope1} (which was derived by assuming a divergenceless temperature gradient) to the argument in Equation \eqref{eq:tad} (which was derived by assuming the gas was adiabatic). 
 
-Using the ideal gas law \eqref{eq:idgas} to eliminate $\rho(r)$ from the hydrostatic equation \eqref{eq:hydr} gives
+Using Equation \eqref{eq:idgas} to eliminate $\rhoref\ofr$ from Equation \eqref{eq:hydr} gives
 \begin{align*}
-p(r) = p_0\exp{\bigg{[}-\frac{1}{\mathcal{R}}\int_{r_0}^r\frac{g(\tilde{r})}{T(\tilde{r})}d\tilde{r}\bigg{]}},
+\prsref\ofr = \prsref_0\exp{\bigg{[}-\frac{1}{\gasconst}\int_{r_0}^r\frac{g(\tilde{r})}{\tmpref(\tilde{r})}d\tilde{r}\bigg{]}},
 \end{align*}
 from which
 \begin{align}
 \boxed{
-p(r) = p_0\bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]}^{n+1}\ \ \ \ \ \text{(polytropic atmosphere)},
+\prsref(r) = \prsref_0\bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]}^{n+1}\ \ \ \ \ \text{(polytropic atmosphere)},
 }
 \label{eq:ppolytrope1}
 \end{align}
 where we have defined the \textit{polytropic index} $n$ to be
 \begin{align}
-n\coloneqq \frac{1}{a}\frac{GM}{\mathcal{R}T_0 r_0} - 1 \Longleftrightarrow a = \frac{GM}{(n+1)\mathcal{R}T_0 r_0}.
+n\coloneqq \frac{1}{a}\frac{G\mstar}{\gasconst \tmpref_0 r_0} - 1 \Longleftrightarrow a = \frac{G\mstar}{(n+1)\gasconst \tmpref_0 r_0}.
 \label{def:polytropicindex}
 \end{align}
 From the ideal gas law, the density is then
 \begin{align}
 \boxed{
-\rho(r) = \rho_0\bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]}^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
+\rhoref\ofr = \rhoref_0\bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]}^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
 }
 \label{eq:rhopolytrope1}
 \end{align}
 
-Note that for the polytrope, in addition to the two constants $p_0$ and $T_0$, there is another constant $n$ (or equivalently $a$). Specifying $n$ is the same as specifying the entropy gradient $s^\prime(r)$; plugging equations \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} into the First Law of Thermodynamics \eqref{eq:firstlaw} yields
+Note that for the polytrope, in addition to the two constants $p_0$ and $\tmpref_0$, there is another constant $n$ (or equivalently, $a$). Specifying $n$ is the same as specifying $\dsdrline$. For, plugging Equations \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} (we only need two of them) into any form of \eqref{eq:firstlaw3} yields
 \begin{subequations}\label{eq:spolytrope}
 \begin{empheq}[box=\fbox]{align}
-s^\prime(r) &= \bigg{(}\frac{n}{\tilde{n}} - 1\bigg{)}\bigg{[}\frac{\cv}{r+(1-a)r^2/(ar_0)}\bigg{]}\\
-\andd s(r) &= \cv\bigg{(}\frac{n}{\tilde{n}} - 1\bigg{)}\bigg{\{}\ln{\bigg{(}\frac{r}{r_0}\bigg{)}} - \ln{\bigg{[}a+(1-a)\bigg{(}\frac{r}{r_0}\bigg{)}\bigg{]}}\bigg{\}}\\
+\dsdr &= \bigg{(}\frac{n}{\tilde{n}} - 1\bigg{)}\bigg{[}\frac{\cv}{r+(1-a)r^2/(ar_0)}\bigg{]}\\
+\andd \sref\ofr &= \cv\bigg{(}\frac{n}{\tilde{n}} - 1\bigg{)}\bigg{\{}\ln{\bigg{(}\frac{r}{r_0}\bigg{)}} - \ln{\bigg{[}a+(1-a)\bigg{(}\frac{r}{r_0}\bigg{)}\bigg{]}}\bigg{\}}\\
 &\ \ \ \ \ \text{(polytropic atmosphere)}\nonumber,
 \end{empheq}
 \end{subequations}
 where
 \begin{align}
-\tilde{n}\coloneqq  \frac{1}{\tilde{a}}\frac{GM}{\mathcal{R}T_0 r_0} - 1 = \frac{1}{\gamma - 1}.
+\tilde{n}\coloneqq  \frac{1}{\tilde{a}}\frac{GM}{\gasconst \tmpref_0 r_0} - 1 = \frac{1}{\gammaone - 1}.
 \label{def:n0}
 \end{align}
-From \eqref{eq:spolytrope}, it is obvious that $n=\tilde{n}$ corresponds to an adiabatic atmosphere (as we have already shown in \eqref{eq:tad}--\eqref{eq:rhoad}), while
+From \eqref{eq:spolytrope}, it is obvious that $n=\tilde{n}$ (or $a=\tilde{a}$) corresponds to an adiabatic atmosphere (as we have already shown in \eqref{eq:tad}--\eqref{eq:rhoad}), while
 \begin{align}
-&n > \tilde{n} \Longleftrightarrow s^\prime > 0 \text{ (atmosphere is stable to convection)}\\
-\andd &n < \tilde{n} \Longleftrightarrow s^\prime < 0 \text{ (atmosphere is unstable to convection).}
+&n > \tilde{n} \Longleftrightarrow \dsdr > 0 \text{ (atmosphere is stable to convection)}\\
+\andd &n < \tilde{n} \Longleftrightarrow \dsdr < 0 \text{ (atmosphere is unstable to convection).}
 \end{align}
 
 Note from \eqref{eq:tpolytrope1}--\eqref{eq:spolytrope} that the limit $n\rightarrow\infty$ simply corresponds to an isothermal atmosphere:
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitninfty}
-T(r)&\rightarrow T_0, \\
-p(r)&\rightarrow p_0\exp{\bigg{[}\frac{GM}{\mathcal{R}T_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\bigg{]}},\\
-\rho(r)&\rightarrow \rho_0\exp{\bigg{[}\frac{GM}{\mathcal{R}T_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\bigg{]}},\\
-s^\prime(r) &\rightarrow \frac{GM}{T_0r^2},\\
- \andd s(r) &\rightarrow \frac{GM}{T_0r_0}\bigg{(}1-\frac{r_0}{r}\bigg{)}\\ 
+T(r)&\rightarrow \tmpref_0, \\
+p(r)&\rightarrow p_0\exp{\bigg{[}\frac{GM}{\gasconst \tmpref_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\bigg{]}},\\
+\rho(r)&\rightarrow \rho_0\exp{\bigg{[}\frac{GM}{\gasconst \tmpref_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\bigg{]}},\\
+s^\prime(r) &\rightarrow \frac{GM}{\tmpref_0r^2},\\
+ \andd s(r) &\rightarrow \frac{GM}{\tmpref_0r_0}\bigg{(}1-\frac{r_0}{r}\bigg{)}\\ 
  &\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow\infty). \nonumber
 \end{empheq}
 \textit{If one tries to increase the ``stiffness" (entropy gradient) of the system by increasing $n$, there is therefore a fundamental limit imposed by the polytropic formulation.}
@@ -210,7 +209,7 @@ Similarly, the total entropy contrast from top to bottom and all logarithmic der
 \subsection{Polytrope in terms of overall density stratification}
 For an adiabatic, polytropic convection zone (CZ) sitting atop a stably stratified radiative zone (RZ), it is often convenient to choose the reference radius to be boundary between RZ and CZ, i.e., $r_0=\rrm$ (subscript $m$ for ``middle radius"). In the work of \citet{Jones11} and in the Rayleigh code \citep{Featherstone18}, the polytrope is initiated using the middle density $\rho_{\rm{m}}$ and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two middle-boundary values $p_{\rm{m}}$ and $T_{\rm{m}}$. Here $N_\rho\coloneqq\ln{(\rho_{\rm{m}}/\rho_{\rm{o}})}$, where $\rho_{\rm{m}}$ and $\rho_{\rm{o}}$ are the density values at the middle and outer boundaries of the shell, respectively. We can recast \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} in terms of $\rho_{\rm{m}}$ and $N_\rho$ by using \eqref{def:polytropicindex} and \eqref{eq:rhopolytrope1} to yield
 \begin{align}
-a = \frac{e^{N_\rho/n} - 1 }{(1 - \beta)e^{N_\rho/n}} \five \andd T_{\rm{m}} = \frac{(1 - \beta)e^{N_\rho/n}} {e^{N_\rho/n} - 1 }\frac{GM}{(n+1)\mathcal{R} \rrm},
+a = \frac{e^{N_\rho/n} - 1 }{(1 - \beta)e^{N_\rho/n}} \five \andd T_{\rm{m}} = \frac{(1 - \beta)e^{N_\rho/n}} {e^{N_\rho/n} - 1 }\frac{GM}{(n+1)\gasconst \rrm},
 \label{eq:ti_from_nrho}
 \end{align}
 where we have defined the aspect ratio of the CZ,
@@ -229,7 +228,7 @@ Thus, instead of specifying $T_{\rm{m}}$ and $p_{\rm{m}}$, we can specify $\rho_
 \end{align} 
 where 
 \begin{align}
-a_c \coloneqq \frac{GM}{(n+1)\mathcal{R}T_c r_c}.
+a_c \coloneqq \frac{GM}{(n+1)\gasconst T_c r_c}.
 \label{def:ac}
 \end{align}
 Using a similar computation as the one leading to \eqref{eq:ti_from_nrho}, one can show that 
