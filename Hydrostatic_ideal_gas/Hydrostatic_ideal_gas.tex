@@ -12,6 +12,10 @@
 	citecolor=blue
 }
 
+% common macros
+\input{../macros.tex}
+
+% Other macros
 % Allow option to set color when hyperlinking
 \newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}
 
@@ -20,22 +24,17 @@
 \title{Hydrostatic, ideal-gas reference states in spherical coordinates}
 \newcommand{\rrm}{r_{\rm{m}}}
 \newcommand{\ri}{r_{\rm{i}}}
-\newcommand{\ro}{r_{\rm{o}}}
-\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
 \newcommand{\bigfrac}[2]{\bigg{(}\frac{#1}{#2}\bigg{)}}
 \newcommand{\mbigfrac}[2]{\bigg{(}{-\frac{#1}{#2}}\bigg{)}}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \newcommand{\pomega}{\varpi}
 \newcommand{\ugrad}{\bm{u}\cdot\nabla}
-\newcommand{\cv}{c_{\rm{v}}}
-\newcommand{\cp}{c_{\rm{p}}}
-\newcommand{\orr}{\text{or}\ \ \ \ \ }
-\newcommand{\andd}{\text{and}\ \ \ \ \ }
+
 \newcommand{\tz}{\tilde{\zeta}}
-\newcommand{\five}{\ \ \ \ \ }
+
 \newcommand{\ei}{{\rm{Ei}}}
 \newcommand{\tr}{\tilde{r}}
-\newcommand{\ek}{e^{-k[(r/\rrm)-1]}}
+
 \newcommand{\ekt}{e^{-k[(\tr/\rrm)-1]}}
 \newcommand{\ekp}{e^{k[(r/\rrm)-1]}}
 \allowdisplaybreaks
