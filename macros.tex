@@ -1,12 +1,4 @@
-
-\newtheorem{theorem}{Theorem}
-
-
-\newcommand{\diff}[2]{\frac{\partial #1}{\partial #2}}
-\newcommand{\diffr}[1]{\diff{#1}{r}}
-\newcommand{\diffth}[1]{\diff{#1}{\theta}}
-\newcommand{\diffz}[1]{\diff{#1}{z}}
-
+% Not sure where the following came from...maybe remove
 \newcommand{\twochoices}[2]{\left\{ \begin{array}{lcc}
         \displaystyle #1 \\ \vspace{-10pt} \\
         \displaystyle #2 \end{array} \right. } %}
@@ -21,133 +13,37 @@
 \newcommand{\threevec}[3]{\left(\begin{array}{c} #1 \\ #2 \\ #3 \end{array}\right)}
 \newcommand{\twomatrix}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 \end{array}\right)}
 
-%% My cool macros
-\newcommand{\vdag}{(v)^\dagger}
-\newcommand\aastex{AAS\TeX}
-\newcommand\latex{La\TeX}
-\newcommand{\rsun}{R_\odot}
-\newcommand{\rtach}{r_{\rm{0}}}
-\newcommand{\htach}{h_0}
-\newcommand{\lsun}{L_\odot}
-\newcommand{\omsun}{\Omega_\odot}
-\newcommand{\msun}{M_\odot}
-\newcommand{\taurs}{\tau_{\rm{rs}}}
-\newcommand{\taums}{\tau_{\rm{ms}}}
-\newcommand{\taumc}{\tau_{\rm{mc}}}
-\newcommand{\tauv}{\tau_{\rm{v}}}
-\newcommand{\taumag}{\tau_{\rm{mag}}}
-\newcommand{\newtext}{}
+% MY MACROS
 
-\newcommand{\tes}{t_{\rm{ES}}}
-\newcommand{\tvisc}{t_{\rm{visc}}}
-\newcommand{\tmag}{t_{\rm{mag}}}
+% MY EMAIL
+\newcommand{\myemail}{loren.matilsky@gmail.com}
 
-\newcommand{\rmin}{r_{\rm{i}}}
-\newcommand{\rmax}{r_{\rm{o}}}
-\newcommand{\rhoi}{\rhoref_{\rm{i}}}
-\newcommand{\rhoo}{\rhoref_{\rm{o}}}
-\newcommand{\out}{_{\rm{o}}}
-\newcommand{\rbcz}{r_{\rm{bcz}}}
-\newcommand{\rov}{r_{\rm{ov}}}
-\newcommand{\rshear}{r_{\rm{tach}}}
-
-\newcommand{\rmid}{r_{\rm{m}}}
-\newcommand{\cp}{c_{\rm{p}}}
+% MATH OPERATORS
 \newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
 \newcommand{\pderivline}[2]{\partial#1/\partial#2}
+\newcommand{\av}[1]{\left\langle#1\right\rangle}
+\newcommand{\avsph}[1]{\left\langle#1\right\rangle_{\rm{sph}}}
+\newcommand{\avt}[1]{\left\langle#1\right\rangle_{\rm{t}}}
 \newcommand{\sn}[2]{#1\times10^{#2}}
-\newcommand{\myemail}{loren.matilsky@colorado.edu}
+\newcommand{\define}{\coloneqq}
+%\newcommand{\define}{\equiv}
+
+% TEXT OPERATORS
 \newcommand{\five}{\ \ \ \ \ }
 \newcommand{\orr}{\text{or}\five }
 \newcommand{\andd}{\text{and}\five }
 \newcommand{\where}{\text{where}\five }
 \newcommand{\with}{\text{with}\five }
 
-\newcommand{\lmax}{\ell_{\rm{max}}}
+% VECTOR SHORCUTS
 
-\newcommand{\hp}{H_p}
-\newcommand{\hrho}{H_\rho}
-
-% vector fields
-\newcommand{\vecv}{\bm{v}}
-\newcommand{\vecb}{\bm{B}}
-\newcommand{\vecg}{\bm{g}}
-\newcommand{\vpol}{\vecv_{\rm{pol}}}
-\newcommand{\bpol}{\vecb_{\rm{pol}}}
-\newcommand{\bpolscalar}{B_{\rm{pol}}}
-
-\newcommand{\vecvpert}{\vecv^\prime}
-\newcommand{\vecbpert}{\vecb^\prime}
-
-\newcommand{\geff}{\bm{g}_{\rm{eff}}}
-\newcommand{\geffscalar}{g_{\rm{eff}}}
-
-\newcommand{\vr}{v_r}
-\newcommand{\vt}{v_\theta}
-\newcommand{\vp}{v_\phi}
-
-\newcommand{\omr}{\omega_r}
-\newcommand{\omt}{\omega_\theta}
-\newcommand{\omp}{\omega_\phi}
-
-\newcommand{\vl}{v_\lambda}
-\newcommand{\vz}{v_z}
-
-\newcommand{\br}{B_r}
-\newcommand{\bt}{B_\theta}
-\newcommand{\bp}{B_\phi}
-
-\newcommand{\vpert}{{v^\prime}}
-\newcommand{\vrpert}{{\vr^\prime}}
-\newcommand{\vtpert}{{\vt^\prime}}
-\newcommand{\vppert}{{\vp^\prime}}
-
-\newcommand{\bpert}{{B^\prime}}
-\newcommand{\brpert}{{\br^\prime}}
-\newcommand{\btpert}{{\bt^\prime}}
-\newcommand{\bppert}{{\bp^\prime}}
-
-\newcommand{\omrpert}{{\omr^\prime}}
-\newcommand{\omtpert}{{\omt^\prime}}
-\newcommand{\omppert}{{\omp^\prime}}
-
-\newcommand{\rhoref}{\overline{\rho}}
-\newcommand{\tref}{\overline{T}}
-\newcommand{\pref}{\overline{P}}
-\newcommand{\sref}{\overline{S}}
-
-\newcommand{\rhopert}{\hat{\rho}}
-\newcommand{\tpert}{\hat{T}}
-\newcommand{\ppert}{\hat{P}}
-\newcommand{\spert}{\hat{S}}
-
-\newcommand{\dsdrsuperline}{\left(dS/dr\right)_{\rm{superad}}}
-\newcommand{\dsdrsuper}{\left(\frac{dS}{dr}\right)_{\rm{superad}}}
-
-\newcommand{\dsdrtwline}{\left(dS/dr\right)_{\rm{TW}}}
-\newcommand{\dsdrtw}{\left(\frac{dS}{dr}\right)_{\rm{TW}}}
-
-\newcommand{\av}[1]{\left\langle#1\right\rangle}
-\newcommand{\I}{\mathscr{I}}
-\newcommand{\raf}{{\rm{Ra}}_{\rm{F}}}
-\newcommand{\e}{\hat{\bm{e}}}
-\newcommand{\prm}{\rm{Pr_m}}
-\newcommand{\prt}{\rm{Pr}}
-\newcommand{\dom}{\Delta\Omega}
-\newcommand{\domcz}{\Delta\Omega_{\rm{CZ}}}
-\newcommand{\domri}{\Delta\Omega_{\rm{RI}}}
-\newcommand{\omri}{\Omega_{\rm{RI}}}
-\newcommand{\ompert}{\Omega^\prime}
-
-\newcommand{\rocz}{{\rm{Ro_{CZ}}}}
-\newcommand{\rori}{{\rm{Ro_{RI}}}}
-\newcommand{\recz}{{\rm{Re_{CZ}}}}
-\newcommand{\reri}{{\rm{Re_{RI}}}}
-\newcommand{\rmcz}{{\rm{Rm_{CZ}}}}
-\newcommand{\rmri}{{\rm{Rm_{RI}}}}
-\newcommand{\prot}{P_{\rm{rot}}}
-
+% operators
 \newcommand{\curl}{\nabla\times}
+\newcommand{\Div}{\nabla\cdot}
+\newcommand{\lap}{\nabla^2}
+
+% unit vectors
+\newcommand{\e}{\hat{\bm{e}}}
 \newcommand{\er}{\e_r}
 \newcommand{\et}{\e_\theta}
 \newcommand{\ep}{\e_\phi}
@@ -157,33 +53,163 @@
 \newcommand{\eeta}{\e_\eta}
 \newcommand{\epol}{\e_{\rm{pol}}}
 
-\newcommand{\Div}{\nabla\cdot}
-\newcommand{\phig}{\Phi_{\rm{g}}}
-\newcommand{\cv}{c_{\rm{v}}}
+% REFERENCE STATE AND THERMO. VARIABLES
+% may want to append this
+\newcommand{\ofr}{(r)}
 
-% flux aliases
+% total thermal variables (may wish to switch this stuff around later--I've always hated this notation of "no subscripts" = perturbation
+\newcommand{\tot}{_{\rm{tot}}}
+\newcommand{\rhotot}{\rho\tot}
+\newcommand{\tmptot}{T\tot}
+\newcommand{\prstot}{P\tot}
+\newcommand{\stot}{S\tot}
+\newcommand{\dsdrtot}{\frac{dS\tot}{dr}}
+\newcommand{\dsdrtotline}{dS\tot/dr}
+
+% reference state
+\newcommand{\rhoref}{\overline{\rho}}
+\newcommand{\tmpref}{\overline{T}}
+\newcommand{\prsref}{\overline{P}}
+\newcommand{\sref}{\overline{S}}
+
+\newcommand{\grav}{g}
+\newcommand{\vecg}{\bm{g}}
+\newcommand{\geff}{g_{\rm{eff}}}
+\newcommand{\geffvec}{\bm{g}_{\rm{eff}}}
+
+\newcommand{\heat}{Q}
+\newcommand{\buoyfreq}{N}
+\newcommand{\nsq}{N^2}
+
+% reference-state derivatives
+\newcommand{\dlnrho}{\frac{d\ln\rhoref}{dr}}
+\newcommand{\dlntmp}{\frac{d\ln\tmpref}{dr}}
+\newcommand{\dlnprs}{\frac{d\ln\prsref}{dr}}
+\newcommand{\dsdr}{\frac{d\overline{S}}{dr}}
+
+\newcommand{\dlnrholine}{d\ln\rhoref/dr}
+\newcommand{\dlntmpline}{d\ln\tmpref/dr}
+\newcommand{\dlnprsline}{d\ln\prsref/dr}
+\newcommand{\dsdrline}{d\overline{S}/dr}
+
+\newcommand{\hp}{H_p}
+\newcommand{\hrho}{H_\rho}
+
+% reference-state constants
+\newcommand{\cv}{c_{\rm{v}}}
+\newcommand{\cp}{c_{\rm{p}}}
+\newcommand{\gasconst}{\mathcal{R}}
+\newcommand{\gammaone}{\Gamma_1}
+\newcommand{\omref}{\Omega_0}
+\newcommand{\omrefvec}{\bm{\Omega}_0}
+
+% perturbations from reference state
+\newcommand{\rhopert}{\rho}
+\newcommand{\tmppert}{T}
+\newcommand{\prspert}{P}
+\newcommand{\spert}{S}
+
+% FLUID VARIABLES
+
+% vector fields
+\newcommand{\vecv}{\bm{v}}
+\newcommand{\vecb}{\bm{B}}
+\newcommand{\vecom}{\bm{\omega}}
+\newcommand{\vecj}{\bm{\mathcal{J}}}
+
+\newcommand{\vpol}{\vecv_{\rm{pol}}}
+\newcommand{\bpol}{\vecb_{\rm{pol}}}
+
+\newcommand{\vr}{v_r}
+\newcommand{\vt}{v_\theta}
+\newcommand{\vp}{v_\phi}
+\newcommand{\vl}{v_\lambda}
+\newcommand{\vz}{v_z}
+
+\newcommand{\omr}{\omega_r}
+\newcommand{\omt}{\omega_\theta}
+\newcommand{\omp}{\omega_\phi}
+\newcommand{\oml}{\omega_\lambda}
+\newcommand{\omz}{\omega_z}
+
+\newcommand{\br}{B_r}
+\newcommand{\bt}{B_\theta}
+\newcommand{\bp}{B_\phi}
+\newcommand{\bl}{B_\lambda}
+\newcommand{\bz}{B_z}
+
+\newcommand{\jr}{\mathcal{J}_r}
+\newcommand{\jt}{\mathcal{J}_\theta}
+\newcommand{\jp}{\mathcal{J}_\phi}
+\newcommand{\jl}{\mathcal{J}_\lambda}
+\newcommand{\jz}{\mathcal{J}_z}
+
+% SIMULATION GEOMETRY
+\newcommand{\rmin}{r_{\rm{i}}}
+\newcommand{\rmax}{r_{\rm{o}}}
+\newcommand{\rhoi}{\rhoref_{\rm{i}}}
+\newcommand{\rhoo}{\rhoref_{\rm{o}}}
+\newcommand{\out}{_{\rm{o}}}
+\newcommand{\rbcz}{r_{\rm{bcz}}}
+\newcommand{\rov}{r_{\rm{ov}}}
+\newcommand{\rmid}{r_{\rm{m}}}
+\newcommand{\lmax}{\ell_{\rm{max}}}
+
+% SOLAR VARIABLES
+\newcommand{\rsun}{R_\odot}
+\newcommand{\rtach}{r_{\rm{0}}}
+\newcommand{\lsun}{L_\odot}
+\newcommand{\omsun}{\Omega_\odot}
+\newcommand{\msun}{M_\odot}
+
+% TORQUE DEFINITIONS
+\newcommand{\taurs}{\tau_{\rm{rs}}}
+\newcommand{\taums}{\tau_{\rm{ms}}}
+\newcommand{\taumc}{\tau_{\rm{mc}}}
+\newcommand{\tauv}{\tau_{\rm{v}}}
+\newcommand{\taumag}{\tau_{\rm{mag}}}
+
+% stellar time scales
+\newcommand{\tes}{t_{\rm{ES}}}
+\newcommand{\tvisc}{t_{\rm{visc}}}
+\newcommand{\tmag}{t_{\rm{mag}}}
+
+% NON-DIMENSIONAL NUMBERS
+
+% input non-d
+\newcommand{\ra}{{\rm{Ra}}}
+\newcommand{\ramod}{\ra^*}
+\newcommand{\raf}{\ra_{\rm{F}}}
+\newcommand{\rafmod}{\raf^*}
+
+\newcommand{\pr}{{\rm{Pr}}}
+\newcommand{\prm}{{\rm{Pr_m}}}
+
+\newcommand{\ek}{{\rm{Ek}}}
+
+\newcommand{\bvisc}{{\rm{B_{visc}}}}
+\newcommand{\brot}{{\rm{B_{rot}}}}
+
+% output non-d
+\newcommand{\ro}{{\rm{Ro}}}
+\newcommand{\roc}{{\rm{Ro_c}}}
+
+\newcommand{\re}{{\rm{Re}}}
+\newcommand{\rem}{{\rm{Re_m}}}
+
+% FLUX ALIASES
 \newcommand{\flux}{{\bm{\mathcal{F}}}}
 \newcommand{\fcond}{\flux_{\rm{cond}}}
 \newcommand{\frad}{\flux_{\rm{rad}}}
-\newcommand{\krad}{\kappa_{\rm{rad}}}
-\newcommand{\ksun}{\kappa_{\odot}}
-\newcommand{\nusun}{\nu_{\odot}}
-\newcommand{\etasun}{\eta_{\odot}}
-
-% units
-\newcommand{\unitent}{{\rm{erg\ g^{-1}\ K^{-1}}}}
-\newcommand{\stoke}{\rm{cm^2\ s^{-1}}}
-
 \newcommand{\fluxscalar}{{\mathcal{F}}}
 \newcommand{\fcondscalar}{\fluxscalar_{\rm{cond}}}
 \newcommand{\fenthscalar}{\fluxscalar_{\rm{enth}}}
 
-% angular momentum stuff
-\newcommand{\amom}{{\mathcal{L}}}
-\newcommand{\amomflux}{{\mathcal{F}}}
-\newcommand{\enflux}{{F}}
+% UNITS
+\newcommand{\unitent}{{\rm{erg\ g^{-1}\ K^{-1}}}}
+\newcommand{\stoke}{\rm{cm^2\ s^{-1}}}
 
-% mean field theory
+% MEAN FIELD THEORY
 \newcommand{\meanb}{\overline{\bm{B}}}
 \newcommand{\flucb}{\bm{B}^\prime}
 \newcommand{\totb}{\bm{B}}
@@ -196,8 +222,7 @@
 \newcommand{\meanemf}{\overline{\bm{\mathcal{E}}}}
 \newcommand{\meanbpol}{\overline{\bm{B}_{\rm{pol}}}}
 
-\newcommand{\vrms}{v_{\rm{rms}}}
-
+% SIMULATION CODES
 \newcommand{\rayleigh}{\texttt{Rayleigh}}
 \newcommand{\rayleigha}{\texttt{Rayleigh 0.9.1}}
 \newcommand{\rayleighb}{\texttt{Rayleigh 1.0.1}}
@@ -207,15 +232,3 @@
 \newcommand{\rsst}{\texttt{RSST}}
 \newcommand{\rtdt}{\texttt{R2D2}}
 \newcommand{\pencil}{\texttt{Pencil}}
-
-\newcommand{\rem}{{\rm{Re_m}}}
-%\newcommand{\define}{\coloneqq}
-\newcommand{\define}{\equiv}
-
-% figure width macros
-\newcommand{\widthsmall}{4.5in}
-\newcommand{\widthbig}{6.5in}
-\newcommand{\widthbigg}{9in}
-
-\newcommand{\bufftheline}[2]{\hline &&\\[#2] #1 \\ &&\\[#2] \hline}
-\newcommand{\subbuff}{-8pt}
