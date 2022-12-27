@@ -41,17 +41,12 @@
 \begin{document}
 	\maketitle
 	\section{Basic assumptions}
-	We wish to derive the thermodynamic state for an ideal, hydrostatic gas in spherical coordinates, assuming a known specific entropy stratification $s(r)$. In mathematical terms, this means that
+	We wish to derive the thermodynamic state for an ideal, hydrostatic gas in spherical coordinates, assuming a known specific entropy stratification $\sref\ofr$ and gravitational acceleration $\grav\ofr$. In keeping with the convention used in, e.g., $\rayleigh$ and $\ash$, we will denote the thermal profiles of this reference state using overbars. In mathematical terms, we have:
 	\begin{align}
-	\frac{dp}{dr} &= -\rho g(r)\label{eq:hydr},\\
-	p(r) &= \rho(r)\mathcal{R} T(r),\label{eq:idgas}
+	\frac{d\prsref}{dr} &= -\rhoref\ofr \grav\ofr\five\text{(hydrostatic balance)}\label{eq:hydr},\\
+	\andd p(r) &= \rho(r)\gasconst T(r)\five\text{(ideal gas law)}.\label{eq:idgas}
 	\end{align}
-	and 
-	\begin{align}
-	s^\prime(r) \coloneqq \frac{ds}{dr}
-	\label{def:sgrad}
-	\end{align}
-	is a known function of radius. Here $p(r)$ is the pressure, $\rho(r)$ the density, $T(r)$ the temperature, $g(r)$ the gravitational acceleration (unspecified for now except that it is spherically symmetric), and $\mathcal{R}$ the gas constant. We further assume that the number of degrees of freedom (d.o.f.) is constant throughout, so that $\mathcal{R}$ is independent of radius. We then note the familiar relations
+	Here, $\prsref\ofr$ is the pressure, $\rhoref\ofr$ the density, $\tmpref\ofr$ the temperature, and $\gasconst$ the gas constant. We further assume that the number of degrees of freedom (d.o.f.) is constant throughout, so that $\mathcal{R}$ is independent of radius. We then note the familiar relations
 	\begin{align}
 	\cp = \gamma\cv = \frac{\gamma\mathcal{R}}{\gamma - 1}\label{eq:cp_from_gamma}.
 	\end{align}
