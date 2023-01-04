@@ -155,9 +155,7 @@ The starting assumption for a ``polytrope" is that the temperature gradient is d
 \end{align}
 The integration constants $A$ and $B$ in Equation \eqref{eq:tconstflux1} are arbitrary, but one is eliminated from the condition $T(r_0) = \tmpref_0$, leaving
 \begin{align}
-\boxed{
-\tmpref\ofr = \tmpref_0 \bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]} \ \ \ \ \ \text{(polytropic atmosphere)},
-}
+\tmpref\ofr = \tmpref_0 \bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]}
 \label{eq:tpolytrope1}
 \end{align}
 where the new constant $a\coloneqq A/\tmpref_0r_0$ is dimensionless. Note the similarity of the argument $[a(r_0/r) + (1-a)]$ in Equation \eqref{eq:tpolytrope1} (which was derived by assuming a divergenceless temperature gradient) to the argument in Equation \eqref{eq:tad} (which was derived by assuming the gas was adiabatic). 
@@ -168,23 +166,23 @@ Using Equation \eqref{eq:idgas} to eliminate $\rhoref\ofr$ from Equation \eqref{
 \end{align*}
 from which
 \begin{align}
-\boxed{
-\prsref(r) = \prsref_0\bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]}^{n+1}\ \ \ \ \ \text{(polytropic atmosphere)},
-}
+\prsref(r) = \prsref_0\bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]}^{n+1},
 \label{eq:ppolytrope1}
 \end{align}
 where we have defined the \textit{polytropic index} $n$ to be
 \begin{align}
-n\coloneqq \frac{1}{a}\frac{G\mstar}{\gasconst \tmpref_0 r_0} - 1 \Longleftrightarrow a = \frac{G\mstar}{(n+1)\gasconst \tmpref_0 r_0}.
+n&\define \frac{b}{a} - 1 \Longleftrightarrow a = \frac{b}{n+1},\\
+\where b&\define \frac{G\mstar}{\gasconst \tmpref_0 r_0}.
 \label{def:polytropicindex}
 \end{align}
-From the ideal gas law, the density is then
-\begin{align}
-\boxed{
-\rhoref\ofr = \rhoref_0\bigg{[}a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\bigg{]}^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
-}
+Putting it all together (and using the ideal gas law to derive the density), we have
+	\begin{empheq}[box=\fbox]{align}
+\tmpref\ofr = \tmpref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]} \ \ \ \ \ \text{(polytropic atmosphere)}. \\
+\rhoref\ofr = \rhoref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]}^n \ \ \ \ \ \text{(polytropic atmosphere)}. \\
+\rhoref\ofr = \rhoref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]}^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
 \label{eq:rhopolytrope1}
-\end{align}
+\end{empheq}
+
 As for the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the choices for $a$ (i.e., $\mstar$, $\gasconst$, $\tmpref_0$, and $n$) and $r_0$ determine the range of radii for which the polytrope is valid:
 \begin{subequations}
 	\begin{alignat}{2}
