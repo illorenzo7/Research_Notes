@@ -177,26 +177,26 @@ n&\define \frac{b}{a} - 1 \Longleftrightarrow a = \frac{b}{n+1},\\
 \end{align}
 Putting it all together (and using the ideal gas law to derive the density), we have
 	\begin{empheq}[box=\fbox]{align}
-\tmpref\ofr = \tmpref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]} \ \ \ \ \ \text{(polytropic atmosphere)}. \\
-\rhoref\ofr = \rhoref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]}^n \ \ \ \ \ \text{(polytropic atmosphere)}. \\
-\rhoref\ofr = \rhoref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]}^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
+\tmpref\ofr &= \tmpref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]} \ \ \ \ \ \text{(polytropic atmosphere)}. \\
+\prsref\ofr &= \prsref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]}^{n+1} \ \ \ \ \ \text{(polytropic atmosphere)}. \\
+\rhoref\ofr &= \rhoref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]}^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
 \label{eq:rhopolytrope1}
 \end{empheq}
 
-As for the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the choices for $a$ (i.e., $\mstar$, $\gasconst$, $\tmpref_0$, and $n$) and $r_0$ determine the range of radii for which the polytrope is valid:
+As for the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the choices for $a$ (i.e., $b$---via $\mstar$, $\gasconst$, and $\tmpref_0$---and $n$) and $r_0$ determine the range of radii for which the polytrope is valid:
 \begin{subequations}
 	\begin{alignat}{2}
-		0<\ &r<\left(\frac{a}{a-1}\right)r_0\five && a>1\\
-		&r > 0 \five && a\leq1. 
+		0<\ &r<\left[\frac{b}{b-(n+1)}\right]r_0\five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0} >n+1\\
+		&r > 0 \five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0}\leq n+1. 
 	\end{alignat}
 	\label{eq:rvalidpoly}
 \end{subequations}
-
+ 
 Note that for the polytrope, in addition to the two constants $\prsref_0$ and $\tmpref_0$, there is another constant $n$ (or equivalently, $a$). Specifying $n$ is the same as specifying $\dsdrline$. For, plugging Equations \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} (we only need two of them) into any form of \eqref{eq:firstlaw3} yields
 \begin{subequations}
 \begin{empheq}[box=\fbox]{align}
-\frac{1}{\cp}\dsdr &= \frac{r_0}{r^2}\bigg{(}\frac{n-\tilde{n}}{\tilde{n}+1}\bigg{)}\bigg{[}\frac{a}{a(r_0/r)+(1-a)}\bigg{]}\label{eq:dsdrpolytrope}\\
-\andd \sref\ofr &= \cp\bigg{(}\frac{n-\tilde{n}}{\tilde{n}+1}\bigg{)}\bigg{\{}\ln{\bigg{(}\frac{r}{r_0}\bigg{)}} - \ln{\bigg{[}a+(1-a)\bigg{(}\frac{r}{r_0}\bigg{)}\bigg{]}}\bigg{\}}\label{eq:spolytrope}\\
+\frac{1}{\cp}\dsdr &= \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)\left[\frac{n-\tilde{n}}{n+1-b+b(r_0/r)}\right]\label{eq:dsdrpolytrope}\\
+\andd \frac{\sref\ofr}{\cp} &= \bigg{(}\frac{n-\tilde{n}}{\tilde{n}+1}\bigg{)}\bigg{\{}\ln{\bigg{(}\frac{r}{r_0}\bigg{)}} - \ln{\bigg{[}\frac{b}{n+1}+\frac{n+1-b}{n+1}\bigg{(}\frac{r}{r_0}\bigg{)}\bigg{]}}\bigg{\}}\label{eq:spolytrope}\\
 &\ \ \ \ \ \text{(polytropic atmosphere)}\nonumber,
 \end{empheq}
 \end{subequations}
@@ -210,7 +210,10 @@ From \eqref{eq:dsdrpolytrope}, it is obvious that $n=\tilde{n}$ (or $a=\tilde{a}
 &n > \tilde{n} \Longleftrightarrow \dsdr > 0 \text{ (atmosphere is stable to convection)}\\
 \andd &n < \tilde{n} \Longleftrightarrow \dsdr < 0 \text{ (atmosphere is unstable to convection).}
 \end{align}
-(Because of the condition on the radii, Equation \eqref{eq:rvalidpoly}---the quantity in square brackets in Equation \eqref{eq:dsdrpolytrope} is always positive). 
+Furthermore, we can compute, at any particular radius $r$:
+\begin{align*}
+	\pderiv{}{n}\left(\dsdr\right)=  \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)  \left\{\frac{\tilde{n}+1-b+b(r_0/r)}{\left[n+1-b+b(r_0/r)\right]^2}\right\}
+\end{align*}
 
 From Equations \eqref{eq:tpolytrope1}--\eqref{eq:dsdrpolytrope} that the limit $n\rightarrow\infty$ simply corresponds to an isothermal atmosphere:
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitninfty}
