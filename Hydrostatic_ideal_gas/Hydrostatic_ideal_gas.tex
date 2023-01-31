@@ -175,24 +175,38 @@ n&\define \frac{b}{a} - 1 \Longleftrightarrow a = \frac{b}{n+1},\\
 \where b&\define \frac{G\mstar}{\gasconst \tmpref_0 r_0}.
 \label{def:polytropicindex}
 \end{align}
+Note that $b$ is closely related to the dissipation number ($\di\define \tilde{g}H/(\cp\tilde{T})$, where $H$ is a typical length-scale and the tildes denote typical background-state values). 
+
+We can rewrite the argument in square brackets as:
+\begin{align}\label{eq:arg2forms}
+	a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)&=\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}.
+\end{align}
 Putting it all together (and using the ideal gas law to derive the density), we have
 	\begin{empheq}[box=\fbox]{align}
-\tmpref\ofr &= \tmpref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]} \ \ \ \ \ \text{(polytropic atmosphere)}. \\
-\prsref\ofr &= \prsref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]}^{n+1} \ \ \ \ \ \text{(polytropic atmosphere)}. \\
+\tmpref\ofr &= \tmpref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]} \ \ \ \ \ \text{(polytropic atmosphere)}.\label{eq:tmppolytrope1} \\
+\prsref\ofr &= \prsref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]}^{n+1} \ \ \ \ \ \text{(polytropic atmosphere)}. \label{eq:prspolytrope1}\\
 \rhoref\ofr &= \rhoref_0\bigg{[}\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\bigg{]}^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
 \label{eq:rhopolytrope1}
 \end{empheq}
 
-As for the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the choices for $a$ (i.e., $b$---via $\mstar$, $\gasconst$, and $\tmpref_0$---and $n$) and $r_0$ determine the range of radii for which the polytrope is valid:
+Similarly to the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the choices for $a$ (i.e., $b$---via $\mstar$, $\gasconst$, and $\tmpref_0$---and $n$) and $r_0$ determine the range of radii for which the polytrope is valid (i.e., the range for which the thermodynamic quantities are positive):
 \begin{subequations}
 	\begin{alignat}{2}
-		0<\ &r<\left[\frac{b}{b-(n+1)}\right]r_0\five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0} >n+1\\
+		0<\ &r<\rmax(n)\define \left[\frac{b}{b-(n+1)}\right]r_0\five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0} >n+1\\
 		&r > 0 \five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0}\leq n+1. 
 	\end{alignat}
 	\label{eq:rvalidpoly}
 \end{subequations}
- 
-Note that for the polytrope, in addition to the two constants $\prsref_0$ and $\tmpref_0$, there is another constant $n$ (or equivalently, $a$). Specifying $n$ is the same as specifying $\dsdrline$. For, plugging Equations \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} (we only need two of them) into any form of \eqref{eq:firstlaw3} yields
+
+For a particular polytrope (fixed $n$), the choice of integration origin ($r_0$, $\tmpref_0$, and $\prsref_0$) has no effect on the upper bound $\rmax$. However, if $n<b-1$ (a range on $n$ which \textit{is} affected by the choice of integration origin), the polytropic index $n$ affects the upper bound. Higher $n$ yields a wider range of validity, and lower $n$ a narrower one. 
+
+To make things applicable to a real star, we work out where an adiabatic polytrope is valid for the Sun. Recall $G=\sn{6.67}{-8}\ \cm^3\ \gram^{-1}\ \second^{-2}$. For the Sun ($\mstar=\msun=\sn{1.99}{33}\ {\rm{g}}$), we can integrate from the base of the convection zone ($r_0=\rbcz=\sn{5.00}{10}\ \cm$; $\tmpref_0=\tmpbcz=\sn{2.11}{6}\ \kelv$; $\cp=\sn{3.50}{8}\ \unitent$ or $\gasconst=\sn{1.40}{8}\ \unitent$) and assume near-adiabatic stratification ($n=1.50$). Then $b=8.99 > 2.5$ and condition \eqref{eq:rvalidpoly} becomes
+\begin{align*}
+	0<r<(\rmax)_\odot\define\sn{6.93}{10}\ \cm. 
+\end{align*}
+The upper bound is only a little less than the solar radius, $\rsun=\sn{6.96}{10}\ \cm$. This makes sense of course, since the solar convection zone \textit{is} (mostly) a polytrope with $n=1.5$, and the photosphere corresponds to (relatively) very low temperature, density, and pressure. 
+
+Note that for the polytrope, in addition to the two integration constants $\prsref_0$ and $\tmpref_0$, there is another constant $n$ (or equivalently, $a$). Specifying $n$ is the same as specifying $\dsdrline$. For, plugging Equations \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} (we only need two of them) into any form of \eqref{eq:firstlaw3} yields
 \begin{subequations}
 \begin{empheq}[box=\fbox]{align}
 \frac{1}{\cp}\dsdr &= \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)\left[\frac{n-\tilde{n}}{n+1-b+b(r_0/r)}\right]\label{eq:dsdrpolytrope}\\
@@ -210,12 +224,14 @@ From \eqref{eq:dsdrpolytrope}, it is obvious that $n=\tilde{n}$ (or $a=\tilde{a}
 &n > \tilde{n} \Longleftrightarrow \dsdr > 0 \text{ (atmosphere is stable to convection)}\\
 \andd &n < \tilde{n} \Longleftrightarrow \dsdr < 0 \text{ (atmosphere is unstable to convection).}
 \end{align}
-Furthermore, we can compute, at any particular radius $r$:
-\begin{align*}
-	\pderiv{}{n}\left(\dsdr\right)=  \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)  \left\{\frac{\tilde{n}+1-b+b(r_0/r)}{\left[n+1-b+b(r_0/r)\right]^2}\right\}
-\end{align*}
 
-From Equations \eqref{eq:tpolytrope1}--\eqref{eq:dsdrpolytrope} that the limit $n\rightarrow\infty$ simply corresponds to an isothermal atmosphere:
+Say we want to increase the stability of a solar-like atmosphere by increasing $n$. What happens? We compute, for a particular radius $r$:
+\begin{align}\label{eq:dsdr_vs_n}
+	\pderiv{}{n}\left(\frac{1}{\cp}\dsdr\right)=  \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)  \left\{\frac{\tilde{n}+1-b+b(r_0/r)}{\left[n+1-b+b(r_0/r)\right]^2}\right\}. 
+\end{align}
+The sign of this partial derivative is independent of $n$. Therefore, at any given radius $r$, the magnitude of the entropy gradient monotonically increases or decreases with $n$. Let's assume we confine ourselves to $r<(\rmax)_\odot$, even though for high $n$, there will technically be a wider range of validity for the polytrope. Then $\tilde{n}+1-b+b(r_0/r)\rightarrow0$ (from above) as $r\rightarrow(\rmax)_\odot$ (from below). Thus (for sufficiently high $n$ and $r<(\rmax)_\odot$), the partial derivative in Equation \eqref{eq:dsdr_vs_n} is positive, and maximum stability is achieved for $n\rightarrow\infty$. 
+
+Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=\exp(n)$, Equations \eqref{eq:tpolytrope1}--\eqref{eq:dsdrpolytrope} show that the limit $n\rightarrow\infty$ simply corresponds to an isothermal atmosphere:
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitninfty}
 \tmpref\ofr&\rightarrow \tmpref_0, \\
 \prsref\ofr&\rightarrow \prsref_0\exp{\bigg{[}\frac{G\mstar}{\gasconst \tmpref_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\bigg{]}},\\
@@ -224,8 +240,10 @@ From Equations \eqref{eq:tpolytrope1}--\eqref{eq:dsdrpolytrope} that the limit $
  \andd \sref\ofr &\rightarrow \frac{G\mstar}{\tmpref_0r_0}\bigg{(}1-\frac{r_0}{r}\bigg{)}\\ 
  &\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow\infty). \nonumber
 \end{empheq}
-\textit{If one tries to increase the ``stiffness" (entropy gradient) of the system by increasing $n$, there is therefore a fundamental limit imposed by the polytropic formulation.}
-Similarly, the total entropy contrast from top to bottom and all logarithmic derivatives of the thermodynamic variables have an upper bound, meaning that all scale heights (which typically set the size of fluid motions) have a lower bound. \textit{These bounds are reached for an isothermal atmosphere.}
+\textit{If one tries to increase the stability a solar-like polytrope by increasing $n$, there is therefore a fundamental upper bound imposed by the polytropic formulation itself.}
+Similarly, as $n\rightarrow\infty$, the total entropy contrast from top to bottom and all logarithmic derivatives of the thermodynamic variables have upper bounds, meaning that all scale heights (which typically set the size of fluid motions) have lower bounds. These bounds are reached for an isothermal atmosphere.
+
+Finally, suppose we want to increase the \textit{instability} of the system by \textit{lowering} $n$. Note that mathematically, as formulated in Equations \eqref{eq:tmppolytrope1}--\eqref{eq:rhopolytrope1}, the only value for $n$ \textit{not} allowed is $-1$. Physically, $n=-1$ can't be allowed since it would correspond to an isobaric (constant-pressure) atmosphere incapable of hydrostatic support. However, unless we have a star that is denser in the outer layers (is that ever possible? Honest question!), \eqref{eq:rhopolytrope1} shows we should further restrict ourselves to $n\geq0$. 
 
 \subsection{Polytrope in terms of overall density stratification}
 For an adiabatic, polytropic convection zone (CZ) sitting atop a stably stratified radiative zone (RZ), it is often convenient to choose the reference radius to be boundary between RZ and CZ, i.e., $r_0=\rrm$ (subscript $m$ for ``middle radius"). In the work of \citet{Jones11} and in the Rayleigh code \citep{Featherstone18}, the polytrope is initiated using the middle density $\rho_{\rm{m}}$ and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two middle-boundary values $p_{\rm{m}}$ and $T_{\rm{m}}$. Here $N_\rho\coloneqq\ln{(\rho_{\rm{m}}/\rho_{\rm{o}})}$, where $\rho_{\rm{m}}$ and $\rho_{\rm{o}}$ are the density values at the middle and outer boundaries of the shell, respectively. We can recast \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} in terms of $\rho_{\rm{m}}$ and $N_\rho$ by using \eqref{def:polytropicindex} and \eqref{eq:rhopolytrope1} to yield
