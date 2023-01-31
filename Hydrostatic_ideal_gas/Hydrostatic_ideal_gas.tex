@@ -179,13 +179,13 @@ Note that $b$ is closely related to the dissipation number ($\di\define \tilde{g
 
 We can rewrite the argument in square brackets as:
 \begin{align}\label{eq:arg2forms}
-	a\left(\frac{r_0}{r}\right) + (1 - a)&=\frac{b}{n+1}\left(\frac{r_0}{r}\right) + \frac{n+1-b}{n+1}.
+	a\left(\frac{r_0}{r}\right) + (1 - a)&=\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}.
 \end{align}
 Putting it all together (and using the ideal gas law to derive the density), we have
 	\begin{empheq}[box=\fbox]{align}
-\tmpref\ofr &= \tmpref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) + \frac{n+1-b}{n+1}\right] \ \ \ \ \ \text{(polytropic atmosphere)}.\label{eq:tmppolytrope1} \\
-\prsref\ofr &= \prsref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) + \frac{n+1-b}{n+1}\right]^{n+1} \ \ \ \ \ \text{(polytropic atmosphere)}. \label{eq:prspolytrope1}\\
-\rhoref\ofr &= \rhoref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) + \frac{n+1-b}{n+1}\right]^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
+\tmpref\ofr &= \tmpref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}\right] \ \ \ \ \ \text{(polytropic atmosphere)}.\label{eq:tmppolytrope1} \\
+\prsref\ofr &= \prsref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}\right]^{n+1} \ \ \ \ \ \text{(polytropic atmosphere)}. \label{eq:prspolytrope1}\\
+\rhoref\ofr &= \rhoref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}\right]^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
 \label{eq:rhopolytrope1}
 \end{empheq}
 
@@ -209,8 +209,8 @@ The upper bound is only a little less than the solar radius, $\rsun=\sn{6.96}{10
 Note that for the polytrope, in addition to the two integration constants $\prsref_0$ and $\tmpref_0$, there is another constant $n$ (or equivalently, $a$). Specifying $n$ is the same as specifying $\dsdrline$. For, plugging Equations \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} (we only need two of them) into any form of \eqref{eq:firstlaw3} yields
 \begin{subequations}
 \begin{empheq}[box=\fbox]{align}
-\frac{1}{\cp}\dsdr &= \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)\left[\frac{n-\tilde{n}}{n+1-b+b(r_0/r)}\right]\label{eq:dsdrpolytrope}\\
-\andd \frac{\sref\ofr}{\cp} &= \left(\frac{n-\tilde{n}}{\tilde{n}+1}\right)\left\{\ln{\left(\frac{r}{r_0}\right)} - \ln{\left[\frac{b}{n+1}+\frac{n+1-b}{n+1}\left(\frac{r}{r_0}\right)\right]}\right\}\label{eq:spolytrope}\\
+\frac{1}{\cp}\dsdr &= \frac{b}{\tilde{n}+1}\left(\frac{1}{r}\right)\left[\frac{n-\tilde{n}}{(n+1-b)(r/r_0)+b}\right]\label{eq:dsdrpolytrope}\\
+\andd \frac{\sref\ofr}{\cp} &= \left(\frac{n-\tilde{n}}{\tilde{n}+1}\right)\left\{\ln{\left(\frac{r}{r_0}\right)} - \ln{\left[\frac{n+1-b}{n+1}\left(\frac{r}{r_0}\right) + \frac{b}{n+1}\right]}\right\}\label{eq:spolytrope}\\
 &\ \ \ \ \ \text{(polytropic atmosphere)}\nonumber,
 \end{empheq}
 \end{subequations}
@@ -234,10 +234,10 @@ The sign of this partial derivative is independent of $n$. Therefore, at any giv
 Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=\exp(n)$, Equations \eqref{eq:tpolytrope1}--\eqref{eq:dsdrpolytrope} show that the limit $n\rightarrow\infty$ simply corresponds to an isothermal atmosphere:
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitninfty}
 \tmpref\ofr&\rightarrow \tmpref_0, \\
-\prsref\ofr&\rightarrow \prsref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\left(\frac{r_0}{r}-1\right)\right]},\\
-\rhoref\ofr&\rightarrow \rhoref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\left(\frac{r_0}{r}-1\right)\right]},\\
-\frac{1}{\cp}\dsdr &\rightarrow \frac{G\mstar}{\cp\tmpref_0r^2},\\
- \andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{G\mstar}{\cp\tmpref_0r_0}\left(1-\frac{r_0}{r}\right)\\ 
+\prsref\ofr&\rightarrow \prsref_0\exp{\left[b\left(\frac{r_0}{r}-1\right)\right]},\\
+\rhoref\ofr&\rightarrow \rhoref_0\exp{\left[b\left(\frac{r_0}{r}-1\right)\right]},\\
+\frac{1}{\cp}\dsdr &\rightarrow \frac{b}{\tilde{n}+1}\left(\frac{1}{r^2}\right),\\
+ \andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{b}{\tilde{n}+1}\left(1-\frac{r_0}{r}\right)\\ 
  &\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow\infty). \nonumber
 \end{empheq}
 \textit{If one tries to increase the stability a solar-like polytrope by increasing $n$, there is therefore a fundamental upper bound imposed by the polytropic formulation itself.}
@@ -249,9 +249,9 @@ As $n\rightarrow0$, we find the most unstable (isopycnic, or constant-density) a
 
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitn0}
 	\tmpref\ofr&\rightarrow \tmpref_0\left[b\left(\frac{r_0}{r}\right)+(1-b)\right], \\
-	\prsref\ofr&\rightarrow \prsref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\left(\frac{r_0}{r}-1\right)\right]},\\
-	\rhoref\ofr&\rightarrow \rhoref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\left(\frac{r_0}{r}-1\right)\right]},\\
-	\frac{1}{\cp}\dsdr &\rightarrow \frac{G\mstar}{\cp\tmpref_0r^2},\\
+	\prsref\ofr&\rightarrow \prsref_0\left[b\left(\frac{r_0}{r}\right)+(1-b)\right],\\
+	\rhoref\ofr&\rightarrow \rhoref_0,\\
+	\frac{1}{\cp}\dsdr &\rightarrow -\frac{\tilde{n}b}{\tilde{n}+1}\left(\frac{1}{r}\right)\left[\frac{1}{(1-b)(r/r_0)+b}\right],\\
 	\andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{G\mstar}{\cp\tmpref_0r_0}\left(1-\frac{r_0}{r}\right)\\ 
 	&\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow0). \nonumber
 \end{empheq}
