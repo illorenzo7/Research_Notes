@@ -236,14 +236,25 @@ Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=\exp(n)$, Equations \eqref{eq
 \tmpref\ofr&\rightarrow \tmpref_0, \\
 \prsref\ofr&\rightarrow \prsref_0\exp{\bigg{[}\frac{G\mstar}{\gasconst \tmpref_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\bigg{]}},\\
 \rhoref\ofr&\rightarrow \rhoref_0\exp{\bigg{[}\frac{G\mstar}{\gasconst \tmpref_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\bigg{]}},\\
-\dsdr &\rightarrow \frac{G\mstar}{\tmpref_0r^2},\\
- \andd \sref\ofr &\rightarrow \frac{G\mstar}{\tmpref_0r_0}\bigg{(}1-\frac{r_0}{r}\bigg{)}\\ 
+\frac{1}{\cp}\dsdr &\rightarrow \frac{G\mstar}{\cp\tmpref_0r^2},\\
+ \andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{G\mstar}{\cp\tmpref_0r_0}\bigg{(}1-\frac{r_0}{r}\bigg{)}\\ 
  &\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow\infty). \nonumber
 \end{empheq}
 \textit{If one tries to increase the stability a solar-like polytrope by increasing $n$, there is therefore a fundamental upper bound imposed by the polytropic formulation itself.}
 Similarly, as $n\rightarrow\infty$, the total entropy contrast from top to bottom and all logarithmic derivatives of the thermodynamic variables have upper bounds, meaning that all scale heights (which typically set the size of fluid motions) have lower bounds. These bounds are reached for an isothermal atmosphere.
 
 Finally, suppose we want to increase the \textit{instability} of the system by \textit{lowering} $n$. Note that mathematically, as formulated in Equations \eqref{eq:tmppolytrope1}--\eqref{eq:rhopolytrope1}, the only value for $n$ \textit{not} allowed is $-1$. Physically, $n=-1$ can't be allowed since it would correspond to an isobaric (constant-pressure) atmosphere incapable of hydrostatic support. However, unless we have a star that is denser in the outer layers (is that ever possible? Honest question!), \eqref{eq:rhopolytrope1} shows we should further restrict ourselves to $n\geq0$. 
+
+As $n\rightarrow0$, we find the most unstable (isopycnic, or constant-density) atmosphere: 
+
+	\begin{empheq}[box=\fbox]{align}\label{eq:limitn0}
+	\tmpref\ofr&\rightarrow \tmpref_0\left[b\left(\frac{r_0}{r}\right)+(1-b)\right], \\
+	\prsref\ofr&\rightarrow \prsref_0\exp{\bigg{[}\frac{G\mstar}{\gasconst \tmpref_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\bigg{]}},\\
+	\rhoref\ofr&\rightarrow \rhoref_0\exp{\bigg{[}\frac{G\mstar}{\gasconst \tmpref_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\bigg{]}},\\
+	\frac{1}{\cp}\dsdr &\rightarrow \frac{G\mstar}{\cp\tmpref_0r^2},\\
+	\andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{G\mstar}{\cp\tmpref_0r_0}\bigg{(}1-\frac{r_0}{r}\bigg{)}\\ 
+	&\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow0). \nonumber
+\end{empheq}
 
 \subsection{Polytrope in terms of overall density stratification}
 For an adiabatic, polytropic convection zone (CZ) sitting atop a stably stratified radiative zone (RZ), it is often convenient to choose the reference radius to be boundary between RZ and CZ, i.e., $r_0=\rrm$ (subscript $m$ for ``middle radius"). In the work of \citet{Jones11} and in the Rayleigh code \citep{Featherstone18}, the polytrope is initiated using the middle density $\rho_{\rm{m}}$ and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two middle-boundary values $p_{\rm{m}}$ and $T_{\rm{m}}$. Here $N_\rho\coloneqq\ln{(\rho_{\rm{m}}/\rho_{\rm{o}})}$, where $\rho_{\rm{m}}$ and $\rho_{\rm{o}}$ are the density values at the middle and outer boundaries of the shell, respectively. We can recast \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} in terms of $\rho_{\rm{m}}$ and $N_\rho$ by using \eqref{def:polytropicindex} and \eqref{eq:rhopolytrope1} to yield
