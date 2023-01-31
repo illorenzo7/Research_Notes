@@ -200,7 +200,7 @@ Similarly to the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the ch
 
 For a particular polytrope (fixed $n$), the choice of integration origin ($r_0$, $\tmpref_0$, and $\prsref_0$) has no effect on the upper bound $\rmax$. However, if $n<b-1$ (a range on $n$ which \textit{is} affected by the choice of integration origin), the polytropic index $n$ affects the upper bound. Higher $n$ yields a wider range of validity, and lower $n$ a narrower one. 
 
-To make things applicable to a real star, we work out where an adiabatic polytrope is valid for the Sun. Recall $G=\sn{6.67}{-8}\ \cm^3\ \gram^{-1}\ \second^{-2}$. For the Sun ($\mstar=\msun=\sn{1.99}{33}\ {\rm{g}}$), we can integrate from the base of the convection zone ($r_0=\rbcz=\sn{5.00}{10}\ \cm$; $\tmpref_0=\tmpbcz=\sn{2.11}{6}\ \kelv$; $\cp=\sn{3.50}{8}\ \unitent$ or $\gasconst=\sn{1.40}{8}\ \unitent$) and assume near-adiabatic stratification ($n=1.50$). Then $b=8.99 > 2.5$ and condition \eqref{eq:rvalidpoly} becomes
+To make things applicable to a real star, we work out where an adiabatic polytrope is valid for the Sun. Recall $G=\sn{6.67}{-8}\ \cm^3\ \gram^{-1}\ \second^{-2}$. For the Sun ($\mstar=\msun=\sn{1.99}{33}\ {\rm{g}}$), we integrate from the base of the convection zone ($r_0=\rbcz=\sn{5.00}{10}\ \cm$; $\tmpref_0=\tmpbcz=\sn{2.11}{6}\ \kelv$; $\cp=\sn{3.50}{8}\ \unitent$ or $\gasconst=\sn{1.40}{8}\ \unitent$) and assume near-adiabatic stratification ($n=1.50$). Then $b=8.99 > 2.5$ and condition \eqref{eq:rvalidpoly} becomes
 \begin{align*}
 	0<r<(\rmax)_\odot\define\sn{6.93}{10}\ \cm. 
 \end{align*}
@@ -225,7 +225,7 @@ From \eqref{eq:dsdrpolytrope}, it is obvious that $n=\tilde{n}$ (or $a=\tilde{a}
 \andd &n < \tilde{n} \Longleftrightarrow \dsdr < 0 \text{ (atmosphere is unstable to convection).}
 \end{align}
 
-Say we want to increase the stability of a solar-like atmosphere by increasing $n$. What happens? We compute, for a particular radius $r$:
+Say we want to increase the stability of a solar-like atmosphere by increasing $n$ (keeping $r_0$, $\tmpref_0$, and $\prsref_0$ fixed). What happens? We compute, for a particular radius $r$:
 \begin{align}\label{eq:dsdr_vs_n}
 	\pderiv{}{n}\left(\frac{1}{\cp}\dsdr\right)=  \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)  \left\{\frac{\tilde{n}+1-b+b(r_0/r)}{\left[n+1-b+b(r_0/r)\right]^2}\right\}. 
 \end{align}
@@ -243,18 +243,19 @@ Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=\exp(n)$, Equations \eqref{eq
 \textit{If one tries to increase the stability a solar-like polytrope by increasing $n$, there is therefore a fundamental upper bound imposed by the polytropic formulation itself.}
 Similarly, as $n\rightarrow\infty$, the total entropy contrast from top to bottom and all logarithmic derivatives of the thermodynamic variables have upper bounds, meaning that all scale heights (which typically set the size of fluid motions) have lower bounds. These bounds are reached for an isothermal atmosphere.
 
-Finally, suppose we want to increase the \textit{instability} of the system by \textit{lowering} $n$. Note that mathematically, as formulated in Equations \eqref{eq:tmppolytrope1}--\eqref{eq:rhopolytrope1}, the only value for $n$ \textit{not} allowed is $-1$. Physically, $n=-1$ can't be allowed since it would correspond to an isobaric (constant-pressure) atmosphere incapable of hydrostatic support. However, unless we have a star that is denser in the outer layers (is that ever possible? Honest question!), \eqref{eq:rhopolytrope1} shows we should further restrict ourselves to $n\geq0$. 
+Finally, suppose we want to increase the \textit{instability} of the system by \textit{lowering} $n$. Note that mathematically, as formulated in Equations \eqref{eq:tmppolytrope1}--\eqref{eq:rhopolytrope1}, the only value for $n$ \textit{not} allowed is $-1$. Physically, we cannot have $n=-1$ since it would correspond to an isobaric (constant-pressure) atmosphere incapable of hydrostatic support. However, unless we have a star that is denser in the outer layers (is that ever possible? Honest question!), \eqref{eq:rhopolytrope1} shows we should further restrict ourselves to $n\geq0$. 
 
-As $n\rightarrow0$, we find the most unstable (isopycnic, or constant-density) atmosphere: 
+As $n\rightarrow0$, we thus find the most unstable (isopycnic, or constant-density) atmosphere: 
 
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitn0}
 	\tmpref\ofr&\rightarrow \tmpref_0\left[b\left(\frac{r_0}{r}\right)+(1-b)\right], \\
 	\prsref\ofr&\rightarrow \prsref_0\left[b\left(\frac{r_0}{r}\right)+(1-b)\right],\\
 	\rhoref\ofr&\rightarrow \rhoref_0,\\
 	\frac{1}{\cp}\dsdr &\rightarrow -\frac{\tilde{n}b}{\tilde{n}+1}\left(\frac{1}{r}\right)\left[\frac{1}{(1-b)(r/r_0)+b}\right],\\
-	\andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{G\mstar}{\cp\tmpref_0r_0}\left(1-\frac{r_0}{r}\right)\\ 
+	\andd \frac{\sref\ofr}{\cp} &\rightarrow -\frac{\tilde{n}}{\tilde{n}+1}\left\{\ln{\left(\frac{r}{r_0}\right)} - \ln{\left[(1-b)\left(\frac{r}{r_0}\right)+b\right]} \right\}\\ 
 	&\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow0). \nonumber
 \end{empheq}
+Note that the $n=0$ polytrope for the Sun (if we integrate from the base of the convection zone and assume $b=8.99$) is only valid for $r<(\rmax)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
 
 \subsection{Polytrope in terms of overall density stratification}
 For an adiabatic, polytropic convection zone (CZ) sitting atop a stably stratified radiative zone (RZ), it is often convenient to choose the reference radius to be boundary between RZ and CZ, i.e., $r_0=\rrm$ (subscript $m$ for ``middle radius"). In the work of \citet{Jones11} and in the Rayleigh code \citep{Featherstone18}, the polytrope is initiated using the middle density $\rho_{\rm{m}}$ and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two middle-boundary values $p_{\rm{m}}$ and $T_{\rm{m}}$. Here $N_\rho\coloneqq\ln{(\rho_{\rm{m}}/\rho_{\rm{o}})}$, where $\rho_{\rm{m}}$ and $\rho_{\rm{o}}$ are the density values at the middle and outer boundaries of the shell, respectively. We can recast \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} in terms of $\rho_{\rm{m}}$ and $N_\rho$ by using \eqref{def:polytropicindex} and \eqref{eq:rhopolytrope1} to yield
