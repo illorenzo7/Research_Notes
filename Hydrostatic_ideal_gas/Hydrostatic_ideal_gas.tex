@@ -24,8 +24,8 @@
 \title{Hydrostatic, ideal-gas reference states in spherical coordinates}
 \newcommand{\rrm}{r_{\rm{m}}}
 \newcommand{\ri}{r_{\rm{i}}}
-\newcommand{\bigfrac}[2]{\bigg{(}\frac{#1}{#2}\bigg{)}}
-\newcommand{\mbigfrac}[2]{\bigg{(}{-\frac{#1}{#2}}\bigg{)}}
+\newcommand{\bigfrac}[2]{\left(\frac{#1}{#2}\right)}
+\newcommand{\mbigfrac}[2]{\left({-\frac{#1}{#2}}\right)}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 \newcommand{\pomega}{\varpi}
 \newcommand{\ugrad}{\bm{u}\cdot\nabla}
@@ -155,7 +155,7 @@ The starting assumption for a ``polytrope" is that the temperature gradient is d
 \end{align}
 The integration constants $A$ and $B$ in Equation \eqref{eq:tconstflux1} are arbitrary, but one is eliminated from the condition $T(r_0) = \tmpref_0$, leaving
 \begin{align}
-\tmpref\ofr = \tmpref_0 \left[a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\right]
+\tmpref\ofr = \tmpref_0 \left[a\left(\frac{r_0}{r}\right) + (1 - a)\right]
 \label{eq:tpolytrope1}
 \end{align}
 where the new constant $a\coloneqq A/\tmpref_0r_0$ is dimensionless. Note the similarity of the argument $[a(r_0/r) + (1-a)]$ in Equation \eqref{eq:tpolytrope1} (which was derived by assuming a divergenceless temperature gradient) to the argument in Equation \eqref{eq:tad} (which was derived by assuming the gas was adiabatic). 
@@ -166,7 +166,7 @@ Using Equation \eqref{eq:idgas} to eliminate $\rhoref\ofr$ from Equation \eqref{
 \end{align*}
 from which
 \begin{align}
-\prsref(r) = \prsref_0\left[a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)\right]^{n+1},
+\prsref(r) = \prsref_0\left[a\left(\frac{r_0}{r}\right) + (1 - a)\right]^{n+1},
 \label{eq:ppolytrope1}
 \end{align}
 where we have defined the \textit{polytropic index} $n$ to be
@@ -179,13 +179,13 @@ Note that $b$ is closely related to the dissipation number ($\di\define \tilde{g
 
 We can rewrite the argument in square brackets as:
 \begin{align}\label{eq:arg2forms}
-	a\bigg{(}\frac{r_0}{r}\bigg{)} + (1 - a)&=\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}.
+	a\left(\frac{r_0}{r}\right) + (1 - a)&=\frac{b}{n+1}\left(\frac{r_0}{r}\right) + \frac{n+1-b}{n+1}.
 \end{align}
 Putting it all together (and using the ideal gas law to derive the density), we have
 	\begin{empheq}[box=\fbox]{align}
-\tmpref\ofr &= \tmpref_0\left[\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\right] \ \ \ \ \ \text{(polytropic atmosphere)}.\label{eq:tmppolytrope1} \\
-\prsref\ofr &= \prsref_0\left[\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\right]^{n+1} \ \ \ \ \ \text{(polytropic atmosphere)}. \label{eq:prspolytrope1}\\
-\rhoref\ofr &= \rhoref_0\left[\frac{b}{n+1}\bigg{(}\frac{r_0}{r}\bigg{)} + \frac{n+1-b}{n+1}\right]^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
+\tmpref\ofr &= \tmpref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) + \frac{n+1-b}{n+1}\right] \ \ \ \ \ \text{(polytropic atmosphere)}.\label{eq:tmppolytrope1} \\
+\prsref\ofr &= \prsref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) + \frac{n+1-b}{n+1}\right]^{n+1} \ \ \ \ \ \text{(polytropic atmosphere)}. \label{eq:prspolytrope1}\\
+\rhoref\ofr &= \rhoref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) + \frac{n+1-b}{n+1}\right]^n \ \ \ \ \ \text{(polytropic atmosphere)}. 
 \label{eq:rhopolytrope1}
 \end{empheq}
 
@@ -210,7 +210,7 @@ Note that for the polytrope, in addition to the two integration constants $\prsr
 \begin{subequations}
 \begin{empheq}[box=\fbox]{align}
 \frac{1}{\cp}\dsdr &= \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)\left[\frac{n-\tilde{n}}{n+1-b+b(r_0/r)}\right]\label{eq:dsdrpolytrope}\\
-\andd \frac{\sref\ofr}{\cp} &= \bigg{(}\frac{n-\tilde{n}}{\tilde{n}+1}\bigg{)}\bigg{\{}\ln{\bigg{(}\frac{r}{r_0}\bigg{)}} - \ln{\left[\frac{b}{n+1}+\frac{n+1-b}{n+1}\bigg{(}\frac{r}{r_0}\bigg{)}\right]}\bigg{\}}\label{eq:spolytrope}\\
+\andd \frac{\sref\ofr}{\cp} &= \left(\frac{n-\tilde{n}}{\tilde{n}+1}\right)\bigg{\{}\ln{\left(\frac{r}{r_0}\right)} - \ln{\left[\frac{b}{n+1}+\frac{n+1-b}{n+1}\left(\frac{r}{r_0}\right)\right]}\bigg{\}}\label{eq:spolytrope}\\
 &\ \ \ \ \ \text{(polytropic atmosphere)}\nonumber,
 \end{empheq}
 \end{subequations}
@@ -234,10 +234,10 @@ The sign of this partial derivative is independent of $n$. Therefore, at any giv
 Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=\exp(n)$, Equations \eqref{eq:tpolytrope1}--\eqref{eq:dsdrpolytrope} show that the limit $n\rightarrow\infty$ simply corresponds to an isothermal atmosphere:
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitninfty}
 \tmpref\ofr&\rightarrow \tmpref_0, \\
-\prsref\ofr&\rightarrow \prsref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\right]},\\
-\rhoref\ofr&\rightarrow \rhoref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\right]},\\
+\prsref\ofr&\rightarrow \prsref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\left(\frac{r_0}{r}-1\right)\right]},\\
+\rhoref\ofr&\rightarrow \rhoref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\left(\frac{r_0}{r}-1\right)\right]},\\
 \frac{1}{\cp}\dsdr &\rightarrow \frac{G\mstar}{\cp\tmpref_0r^2},\\
- \andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{G\mstar}{\cp\tmpref_0r_0}\bigg{(}1-\frac{r_0}{r}\bigg{)}\\ 
+ \andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{G\mstar}{\cp\tmpref_0r_0}\left(1-\frac{r_0}{r}\right)\\ 
  &\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow\infty). \nonumber
 \end{empheq}
 \textit{If one tries to increase the stability a solar-like polytrope by increasing $n$, there is therefore a fundamental upper bound imposed by the polytropic formulation itself.}
@@ -249,10 +249,10 @@ As $n\rightarrow0$, we find the most unstable (isopycnic, or constant-density) a
 
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitn0}
 	\tmpref\ofr&\rightarrow \tmpref_0\left[b\left(\frac{r_0}{r}\right)+(1-b)\right], \\
-	\prsref\ofr&\rightarrow \prsref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\right]},\\
-	\rhoref\ofr&\rightarrow \rhoref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\bigg{(}\frac{r_0}{r}-1\bigg{)}\right]},\\
+	\prsref\ofr&\rightarrow \prsref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\left(\frac{r_0}{r}-1\right)\right]},\\
+	\rhoref\ofr&\rightarrow \rhoref_0\exp{\left[\frac{G\mstar}{\gasconst \tmpref_0r_0}\left(\frac{r_0}{r}-1\right)\right]},\\
 	\frac{1}{\cp}\dsdr &\rightarrow \frac{G\mstar}{\cp\tmpref_0r^2},\\
-	\andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{G\mstar}{\cp\tmpref_0r_0}\bigg{(}1-\frac{r_0}{r}\bigg{)}\\ 
+	\andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{G\mstar}{\cp\tmpref_0r_0}\left(1-\frac{r_0}{r}\right)\\ 
 	&\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow0). \nonumber
 \end{empheq}
 
@@ -272,9 +272,9 @@ Thus, instead of specifying $T_{\rm{m}}$ and $p_{\rm{m}}$, we can specify $\rho_
 \subsection{Polytrope with respect to the center of the CZ}
 \citet{Jones11} define the polytrope using the variables at the center of the CZ (i.e., in our notation $r_0=r_c\coloneqq(\rrm+r_{\rm{o}})/2$). In that case, \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} become
 \begin{align}
-	\tmpref\ofr &= T_c\left[a_c\bigg{(}\frac{r_c}{r}\bigg{)} + (1 - a_c)\right],\label{eq:tpolytrope2}\\
-	\prsref\ofr &= p_c\left[a_c\bigg{(}\frac{r_c}{r}\bigg{)} + (1 - a_c)\right]^{n+1},\label{eq:ppolytrope2}\\
-	\rhoref\ofr &= \rho_c\left[a_c\bigg{(}\frac{r_c}{r}\bigg{)} + (1 - a_c)\right]^n,\label{eq:rhopolytrope2}
+	\tmpref\ofr &= T_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right],\label{eq:tpolytrope2}\\
+	\prsref\ofr &= p_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right]^{n+1},\label{eq:ppolytrope2}\\
+	\rhoref\ofr &= \rho_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right]^n,\label{eq:rhopolytrope2}
 \end{align} 
 where 
 \begin{align}
@@ -290,8 +290,8 @@ Defining
 \begin{align}
 d&\coloneqq r_{\rm{o}}-\rrm,\label{def:d}\\
 c_0&\coloneqq 1-a_c = \frac{(1+\beta)(1-\beta e^{N_\rho/n})}{(1-\beta)(\beta e^{N_\rho/n} + 1)}, \label{def:c0}\\
-c_1&\coloneqq \bigg{(}\frac{r_c}{d}\bigg{)}a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)}{(1-\beta)^2(\beta e^{N_\rho/n} + 1)},\label{def:c1}\\
-\andd \tz(r) &\coloneqq a_c\bigg{(}\frac{r_c}{r}\bigg{)} + (1-a_c) = c_0 + c_1\bigg{(}\frac{d}{r}\bigg{)},\label{def:tildezeta}
+c_1&\coloneqq \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)}{(1-\beta)^2(\beta e^{N_\rho/n} + 1)},\label{def:c1}\\
+\andd \tz(r) &\coloneqq a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{d}{r}\right),\label{def:tildezeta}
 \end{align}
 \eqref{eq:tpolytrope2}--\eqref{eq:rhopolytrope2} become
 \begin{align}
@@ -318,7 +318,7 @@ Figure \ref{fig:CZ_polytrope_stable} (Figure \ref{fig:CZ_polytrope_unstable}) sh
 A simple example of a fluid layer that is stable to convection is one with a constant ``stiffness," or entropy gradient. If we consider an RZ extending from the inner radius $r_{\rm{i}}$ of the shell to the middle of the shell $\rrm$, we can write
 \begin{align}
 \boxed{
-\sref\ofr = k\cp\bigg{(}\frac{r}{\rrm} - 1\bigg{)}\five \andd \dsdr = \frac{k\cp}{\rrm}\five \text{(constant entropy gradient)},
+\sref\ofr = k\cp\left(\frac{r}{\rrm} - 1\right)\five \andd \dsdr = \frac{k\cp}{\rrm}\five \text{(constant entropy gradient)},
 }
 \end{align}
 where $k$ is a dimensionless constant ($>0$) representing the stiffness of the stable region. We can then use \eqref{eq:tgeneral} to find $\tmpref\ofr$:
@@ -333,18 +333,18 @@ E_n(x) \coloneqq \int_1^\infty\frac{e^{-xt}}{t^n}dt = x^{n-1}\int_x^\infty \frac
 yielding
 \begin{subequations}\label{eq:tconstsgrad}
 \begin{empheq}[box=\fbox]{align}
-\tmpref\ofr &= T_{\rm{m}}\bigg{\{}\left[e^k\tilde{a}\bigg{(}\frac{\rrm}{r}\bigg{)} E_2\bigg{(}\frac{kr}{\rrm}\bigg{)} + (1-e^kE_2(k)\tilde{a})\right]\ekp\bigg{\}},\\
+\tmpref\ofr &= T_{\rm{m}}\bigg{\{}\left[e^k\tilde{a}\left(\frac{\rrm}{r}\right) E_2\left(\frac{kr}{\rrm}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\bigg{\}},\\
 \five \text{with}\five \tilde{a} &\coloneqq \frac{G\mstar}{\cp T_{\rm{m}} \rrm} \ \text{(again)}.\\
 \five &\text{(constant entropy gradient).}\nonumber
 \end{empheq}
 \end{subequations}
 Using \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} then yields
 	\begin{empheq}[box=\fbox]{align}
-\prsref\ofr =\ &p_{\rm{m}}\exp{\left[-\frac{\gamma}{\gamma-1}k\bigg{(}\frac{r}{\rrm} - 1\bigg{)}\right]}\nonumber\\
-	&\times\bigg{\{}\left[e^k\tilde{a}\bigg{(}\frac{\rrm}{r}\bigg{)} E_2\bigg{(}\frac{kr}{\rm}\bigg{)} + (1-e^kE_2(k)\tilde{a})\right]\ekp\bigg{\}}^{\gamma/(\gamma-1)}\\
-\andd \rhoref\ofr =\ &\rho_{\rm{m}}\exp{\left[-\frac{\gamma}{\gamma-1}k\bigg{(}\frac{r}{\rm}\bigg{)}\right]}\nonumber\\
+\prsref\ofr =\ &p_{\rm{m}}\exp{\left[-\frac{\gamma}{\gamma-1}k\left(\frac{r}{\rrm} - 1\right)\right]}\nonumber\\
+	&\times\bigg{\{}\left[e^k\tilde{a}\left(\frac{\rrm}{r}\right) E_2\left(\frac{kr}{\rm}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\bigg{\}}^{\gamma/(\gamma-1)}\\
+\andd \rhoref\ofr =\ &\rho_{\rm{m}}\exp{\left[-\frac{\gamma}{\gamma-1}k\left(\frac{r}{\rm}\right)\right]}\nonumber\\
 &\times
-\bigg{\{}\left[e^k\tilde{a}\bigg{(}\frac{\rrm}{r}\bigg{)} E_2\bigg{(}\frac{kr}{\rrm}\bigg{)} + (1-e^kE_2(k)\tilde{a})\right]\ekp\bigg{\}}^{1/(\gamma-1)}\\
+\bigg{\{}\left[e^k\tilde{a}\left(\frac{\rrm}{r}\right) E_2\left(\frac{kr}{\rrm}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\bigg{\}}^{1/(\gamma-1)}\\
 \five &\text{(constant entropy gradient).}\nonumber
 \end{empheq}
 Clearly if $k=0$, we recover \eqref{eq:tad}--\eqref{eq:rhoad} for an adiabatic atmosphere (note that $E_n(0)\equiv 1$ for all $n$).
@@ -364,9 +364,9 @@ Figures \ref{fig:RZ_polytrope_stable} and \ref{fig:RZ_const_sgrad} show stable f
 We consider a domain in radius of $(\ri,\ro)$ with the middle radius $\rrm$ lying in this interval. We simulate a convection zone (CZ) in the region $(\rrm, \ro)$ overlying a radiative zone (stable region; RZ) in the region $(\ri,\rrm)$. In order to smoothly match a constant-entropy-gradient RZ ($\dsdr=\ \rm{constant}\ > 0$) to a marginally stable CZ ($\dsdr\equiv 0$), we can use hyperbolic trigonometric functions:
 
 \begin{align}
-\sref\ofr &= \frac{k\cp}{\rrm}\bigg{\{}\frac{1}{2}{\left[(r-\rrm) -\delta\ln\cosh{\bigg{(}\frac{r-\rrm}{\delta}\bigg{)}}\right]\bigg{\}}}\label{eq:s_tanh_transition}\\
-\frac{ds}{dr} &= \frac{k\cp}{\rrm}\bigg{\{}\frac{1}{2}\left[1 - \tanh{\bigg{(}\frac{r-\rrm}{\delta}\bigg{)}}\right]\bigg{\}}.\label{eq:dsdr_tanh_transition}\\
-\frac{d^2s}{dr^2} &= -\frac{k\cp}{\rrm}\bigg{(}\frac{1}{2\delta}\bigg{)}{\rm{sech}}^2\bigg{(}\frac{r-\rrm}{\delta}\bigg{)}
+\sref\ofr &= \frac{k\cp}{\rrm}\bigg{\{}\frac{1}{2}{\left[(r-\rrm) -\delta\ln\cosh{\left(\frac{r-\rrm}{\delta}\right)}\right]\bigg{\}}}\label{eq:s_tanh_transition}\\
+\frac{ds}{dr} &= \frac{k\cp}{\rrm}\bigg{\{}\frac{1}{2}\left[1 - \tanh{\left(\frac{r-\rrm}{\delta}\right)}\right]\bigg{\}}.\label{eq:dsdr_tanh_transition}\\
+\frac{d^2s}{dr^2} &= -\frac{k\cp}{\rrm}\left(\frac{1}{2\delta}\right){\rm{sech}}^2\left(\frac{r-\rrm}{\delta}\right)
 \end{align}
 We then find the full thermodynamic profiles using the integral relations in \eqref{eq:tgeneral}---\eqref{eq:rhogeneral}.
 
