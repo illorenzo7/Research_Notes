@@ -210,7 +210,7 @@ Note that for the polytrope, in addition to the two integration constants $\prsr
 \begin{subequations}
 \begin{empheq}[box=\fbox]{align}
 \frac{1}{\cp}\dsdr &= \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)\left[\frac{n-\tilde{n}}{n+1-b+b(r_0/r)}\right]\label{eq:dsdrpolytrope}\\
-\andd \frac{\sref\ofr}{\cp} &= \left(\frac{n-\tilde{n}}{\tilde{n}+1}\right)\bigg{\{}\ln{\left(\frac{r}{r_0}\right)} - \ln{\left[\frac{b}{n+1}+\frac{n+1-b}{n+1}\left(\frac{r}{r_0}\right)\right]}\bigg{\}}\label{eq:spolytrope}\\
+\andd \frac{\sref\ofr}{\cp} &= \left(\frac{n-\tilde{n}}{\tilde{n}+1}\right)\left\{\ln{\left(\frac{r}{r_0}\right)} - \ln{\left[\frac{b}{n+1}+\frac{n+1-b}{n+1}\left(\frac{r}{r_0}\right)\right]}\right\}\label{eq:spolytrope}\\
 &\ \ \ \ \ \text{(polytropic atmosphere)}\nonumber,
 \end{empheq}
 \end{subequations}
@@ -333,7 +333,7 @@ E_n(x) \coloneqq \int_1^\infty\frac{e^{-xt}}{t^n}dt = x^{n-1}\int_x^\infty \frac
 yielding
 \begin{subequations}\label{eq:tconstsgrad}
 \begin{empheq}[box=\fbox]{align}
-\tmpref\ofr &= T_{\rm{m}}\bigg{\{}\left[e^k\tilde{a}\left(\frac{\rrm}{r}\right) E_2\left(\frac{kr}{\rrm}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\bigg{\}},\\
+\tmpref\ofr &= T_{\rm{m}}\left\{\left[e^k\tilde{a}\left(\frac{\rrm}{r}\right) E_2\left(\frac{kr}{\rrm}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\right\},\\
 \five \text{with}\five \tilde{a} &\coloneqq \frac{G\mstar}{\cp T_{\rm{m}} \rrm} \ \text{(again)}.\\
 \five &\text{(constant entropy gradient).}\nonumber
 \end{empheq}
@@ -341,10 +341,10 @@ yielding
 Using \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} then yields
 	\begin{empheq}[box=\fbox]{align}
 \prsref\ofr =\ &p_{\rm{m}}\exp{\left[-\frac{\gamma}{\gamma-1}k\left(\frac{r}{\rrm} - 1\right)\right]}\nonumber\\
-	&\times\bigg{\{}\left[e^k\tilde{a}\left(\frac{\rrm}{r}\right) E_2\left(\frac{kr}{\rm}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\bigg{\}}^{\gamma/(\gamma-1)}\\
+	&\times\left\{\left[e^k\tilde{a}\left(\frac{\rrm}{r}\right) E_2\left(\frac{kr}{\rm}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\right\}^{\gamma/(\gamma-1)}\\
 \andd \rhoref\ofr =\ &\rho_{\rm{m}}\exp{\left[-\frac{\gamma}{\gamma-1}k\left(\frac{r}{\rm}\right)\right]}\nonumber\\
 &\times
-\bigg{\{}\left[e^k\tilde{a}\left(\frac{\rrm}{r}\right) E_2\left(\frac{kr}{\rrm}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\bigg{\}}^{1/(\gamma-1)}\\
+\left\{\left[e^k\tilde{a}\left(\frac{\rrm}{r}\right) E_2\left(\frac{kr}{\rrm}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\right\}^{1/(\gamma-1)}\\
 \five &\text{(constant entropy gradient).}\nonumber
 \end{empheq}
 Clearly if $k=0$, we recover \eqref{eq:tad}--\eqref{eq:rhoad} for an adiabatic atmosphere (note that $E_n(0)\equiv 1$ for all $n$).
@@ -364,8 +364,8 @@ Figures \ref{fig:RZ_polytrope_stable} and \ref{fig:RZ_const_sgrad} show stable f
 We consider a domain in radius of $(\ri,\ro)$ with the middle radius $\rrm$ lying in this interval. We simulate a convection zone (CZ) in the region $(\rrm, \ro)$ overlying a radiative zone (stable region; RZ) in the region $(\ri,\rrm)$. In order to smoothly match a constant-entropy-gradient RZ ($\dsdr=\ \rm{constant}\ > 0$) to a marginally stable CZ ($\dsdr\equiv 0$), we can use hyperbolic trigonometric functions:
 
 \begin{align}
-\sref\ofr &= \frac{k\cp}{\rrm}\bigg{\{}\frac{1}{2}{\left[(r-\rrm) -\delta\ln\cosh{\left(\frac{r-\rrm}{\delta}\right)}\right]\bigg{\}}}\label{eq:s_tanh_transition}\\
-\frac{ds}{dr} &= \frac{k\cp}{\rrm}\bigg{\{}\frac{1}{2}\left[1 - \tanh{\left(\frac{r-\rrm}{\delta}\right)}\right]\bigg{\}}.\label{eq:dsdr_tanh_transition}\\
+\sref\ofr &= \frac{k\cp}{\rrm}\left\{\frac{1}{2}\left[(r-\rrm) -\delta\ln\cosh{\left(\frac{r-\rrm}{\delta}\right)}\right]\right\}\label{eq:s_tanh_transition}\\
+\frac{ds}{dr} &= \frac{k\cp}{\rrm}\left\{\frac{1}{2}\left[1 - \tanh{\left(\frac{r-\rrm}{\delta}\right)}\right]\right\}.\label{eq:dsdr_tanh_transition}\\
 \frac{d^2s}{dr^2} &= -\frac{k\cp}{\rrm}\left(\frac{1}{2\delta}\right){\rm{sech}}^2\left(\frac{r-\rrm}{\delta}\right)
 \end{align}
 We then find the full thermodynamic profiles using the integral relations in \eqref{eq:tgeneral}---\eqref{eq:rhogeneral}.
@@ -385,7 +385,7 @@ k\cp\Big{(}\frac{\delta}{\rrm}\Big{)}\left[\frac{2}{3}\Big{(}\frac{r-\rrm}{\delt
 \begin{equation}\label{eq:dsdr_quart_transition}
 \frac{ds}{dr} = \begin{cases}
 \frac{k\cp}{\rrm} & r\leq \rrm - \delta\\
-\frac{k\cp}{\rrm}\bigg{\{}1 - \Big{[}1 - \Big{(}\frac{r-\rrm}{\delta}\Big{)}^2\Big{]}^2\bigg{\}} & \rrm - \delta < r < \rrm\\
+\frac{k\cp}{\rrm}\left\{1 - \Big{[}1 - \Big{(}\frac{r-\rrm}{\delta}\Big{)}^2\Big{]}^2\right\} & \rrm - \delta < r < \rrm\\
 0 & r\geq \rrm
 \end{cases}
 \end{equation}
