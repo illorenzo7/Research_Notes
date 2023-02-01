@@ -114,7 +114,7 @@
 	or
 	\begin{empheq}[box=\fbox]{align}
 	\tmpref(r) &= \tmpref_0\left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]  \ \ \ \ \ \text{(adiabatic atmosphere)},\label{eq:tmpad}\\
-	\text{where} \ \ \ \ \ \tilde{a}&\coloneqq \frac{G\mstar}{\cp \tmpref_0 r_0}.\label{eq:atilde}
+	\text{where} \ \ \ \ \ \tilde{a}&\define \frac{G\mstar}{\cp \tmpref_0 r_0}.\label{eq:atilde}
 	\end{empheq}
 	Then, Equations  \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} yield
 	\begin{empheq}[box=\fbox]{align}
@@ -260,20 +260,20 @@ Finally, suppose we want to increase the \textit{instability} of the system by \
 Note that the $n=0$ polytrope for the Sun (if we integrate from the base of the convection zone and assume $b=8.99$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
 
 \subsection{Polytrope in terms of $\rhoref\bcz$ and $N_\rho$}
-Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones11} and in the Rayleigh code \citep{Featherstone18}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $N_\rho\coloneqq\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $N_\rho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
+Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones11} and in the Rayleigh code \citep{Featherstone18}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $N_\rho\define\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $N_\rho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
 \begin{align}
 a = \frac{e^{N_\rho/n} - 1 }{(1 - \beta)e^{N_\rho/n}} \five \andd \tmpref\bcz = \frac{(1 - \beta)e^{N_\rho/n}} {e^{N_\rho/n} - 1 }\frac{G\mstar}{(n+1)\gasconst r\bcz},
 \label{eq:ti_from_nrho}
 \end{align}
 where we have defined the aspect ratio of the CZ,
 \begin{align}
-\beta\coloneqq \frac{r\bcz}{r\topp} < 1.
+\beta\define \frac{r\bcz}{r\topp} < 1.
 \label{def:beta}
 \end{align}
 Thus, instead of specifying $\tmpref\bcz$ and $\prsref\bcz$, we can specify $\rhoref\bcz$ and $N_\rho$; $\tmpref\bcz$ is then determined through \eqref{eq:ti_from_nrho} and $\prsref\bcz$ through the ideal gas law. 
 
 \subsection{Polytrope with respect to the center of the CZ}
-\citet{Jones11} define the polytrope using the variables at the center of the CZ (i.e., in our notation $r_0=r_c\coloneqq(r\bcz+r\topp)/2$). In that case, \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} become
+\citet{Jones11} define the polytrope using the variables at the center of the CZ (i.e., in our notation $r_0=r_c\define(r\bcz+r\topp)/2$). In that case, \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} become
 \begin{align}
 	\tmpref\ofr &= T_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right],\label{eq:tmppoly2}\\
 	\prsref\ofr &= p_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right]^{n+1},\label{eq:ppoly2}\\
@@ -281,7 +281,7 @@ Thus, instead of specifying $\tmpref\bcz$ and $\prsref\bcz$, we can specify $\rh
 \end{align} 
 where 
 \begin{align}
-a_c \coloneqq \frac{G\mstar}{(n+1)\gasconst T_c r_c}.
+a_c \define \frac{G\mstar}{(n+1)\gasconst T_c r_c}.
 \label{def:ac}
 \end{align}
 Using a similar computation as the one leading to \eqref{eq:ti_from_nrho}, one can show that 
@@ -291,10 +291,10 @@ a_c = \frac{2\beta(e^{N_\rho/n}-1)}{(1-\beta)(\beta e^{N_\rho/n} + 1)}.
 \end{align}
 Defining 
 \begin{align}
-d&\coloneqq r\topp-r\bcz,\label{def:d}\\
-c_0&\coloneqq 1-a_c = \frac{(1+\beta)(1-\beta e^{N_\rho/n})}{(1-\beta)(\beta e^{N_\rho/n} + 1)}, \label{def:c0}\\
-c_1&\coloneqq \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)}{(1-\beta)^2(\beta e^{N_\rho/n} + 1)},\label{def:c1}\\
-\andd \tilde{\zeta}(r) &\coloneqq a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{d}{r}\right),\label{def:tildezeta}
+d&\define r\topp-r\bcz,\label{def:d}\\
+c_0&\define 1-a_c = \frac{(1+\beta)(1-\beta e^{N_\rho/n})}{(1-\beta)(\beta e^{N_\rho/n} + 1)}, \label{def:c0}\\
+c_1&\define \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)}{(1-\beta)^2(\beta e^{N_\rho/n} + 1)},\label{def:c1}\\
+\andd \tilde{\zeta}(r) &\define a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{d}{r}\right),\label{def:tildezeta}
 \end{align}
 \eqref{eq:tmppoly2}--\eqref{eq:rhopoly2} become
 \begin{align}
@@ -303,7 +303,7 @@ c_1&\coloneqq \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-
 \end{align}
 With significantly more algebra, we can also see that if we define
 \begin{align}
-\tilde{\zeta}\topp \coloneqq \tilde{\zeta}(r\topp) = \frac{1+\beta}{\beta e^{N_\rho/n} + 1}, 
+\tilde{\zeta}\topp \define \tilde{\zeta}(r\topp) = \frac{1+\beta}{\beta e^{N_\rho/n} + 1}, 
 \end{align}
 then 
 \begin{align}
@@ -326,18 +326,18 @@ A simple example of a fluid layer that is stable to convection is one with a con
 \end{align}
 where $k$ is a dimensionless constant ($>0$) representing the stiffness of the stable region. We can then use \eqref{eq:tgeneral} to find $\tmpref\ofr$:
 \begin{align}
-\tmpref\ofr = -\frac{G\mstar}{\cp}\big{\{}e^{k[(r/r\bcz) - 1]}\big{\}}\underbrace{\int_{r\bcz}^r \frac{e^{-k[(r/r\bcz) - 1]}dx }{x^2}}_{\coloneqq \mathscr{I}(r)}\ +\ \tmpref\bcz e^{k[(r/r\bcz)-1]}.
+\tmpref\ofr = -\frac{G\mstar}{\cp}\big{\{}e^{k[(r/r\bcz) - 1]}\big{\}}\underbrace{\int_{r\bcz}^r \frac{e^{-k[(r/r\bcz) - 1]}dx }{x^2}}_{\define \mathscr{I}(r)}\ +\ \tmpref\bcz e^{k[(r/r\bcz)-1]}.
 \end{align}
 The integral $\mathscr{I}(r)$ can be recast in terms of the exponential integral function 
 \begin{align}
-E_n(x) \coloneqq \int_1^\infty\frac{e^{-xt}}{t^n}dt = x^{n-1}\int_x^\infty \frac{e^{-t}}{t^n}dt,
+E_n(x) \define \int_1^\infty\frac{e^{-xt}}{t^n}dt = x^{n-1}\int_x^\infty \frac{e^{-t}}{t^n}dt,
 \label{def:en}
 \end{align}
 yielding
 \begin{subequations}\label{eq:tconstsgrad}
 \begin{empheq}[box=\fbox]{align}
 \tmpref\ofr &= \tmpref\bcz\left\{\left[e^k\tilde{a}\left(\frac{r\bcz}{r}\right) E_2\left(\frac{kr}{r\bcz}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\right\},\\
-\five \text{with}\five \tilde{a} &\coloneqq \frac{G\mstar}{\cp \tmpref\bcz r\bcz} \ \text{(again)}.\\
+\five \text{with}\five \tilde{a} &\define \frac{G\mstar}{\cp \tmpref\bcz r\bcz} \ \text{(again)}.\\
 \five &\text{(constant entropy gradient).}\nonumber
 \end{empheq}
 \end{subequations}
@@ -354,7 +354,7 @@ Clearly if $k=0$, we recover \eqref{eq:tmpad}--\eqref{eq:rhoad} for an adiabatic
 
 Using \eqref{eq:tdiff}, one can show that for small stiffnesses ($k$ close to $0$), $dT/dr < 0$ throughout the entire RZ, implying a monotonically decreasing temperature profile. However, for $k>k_c$, where
 \begin{align}
-k_c\coloneqq \frac{G\mstar}{\cp \tmpref\bcz r\bcz},
+k_c\define \frac{G\mstar}{\cp \tmpref\bcz r\bcz},
 \end{align}
 the temperature gradient at $r=r\bcz$ becomes positive, and there is a temperature inversion somewhere for $r<r\bcz$. Interestingly, the entropy gradient associated with this transition, $\dsdr_c=k_c\cp/r\bcz=G\mstar/\tmpref\bcz r\bcz^2$ is exactly the same as the entropy gradient at $r=r\bcz$ for an isothermal atmosphere (or the upper limit on the entropy gradient for a polytropic atmosphere as $n\rightarrow\infty$). For solar values (namely $M=M_\odot$, $r\bcz = 5.0\times10^{10}\ \rm{cm}$, $\tmpref\bcz = 2.1\times10^6\ \rm{K}$, and $\cp=3.5\times10^8\ \rm{erg\ g^{-1}\ K^{-1}}$),
 \begin{align}
