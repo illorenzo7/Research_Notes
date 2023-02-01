@@ -18,24 +18,13 @@
 % Other macros
 % Allow option to set color when hyperlinking
 \newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}
+\newcommand{\rbound}{r_{\rm{bound}}}
+\newcommand{\ekp}{e^{k[(r/r\bcz)-1]}}
 
 \date{\today}
 \author{Loren Matilsky}
 \title{Hydrostatic, ideal-gas reference states in spherical coordinates}
-\newcommand{\rbound}{r_{\rm{bound}}}
-\newcommand{\bigfrac}[2]{\left(\frac{#1}{#2}\right)}
-\newcommand{\mbigfrac}[2]{\left({-\frac{#1}{#2}}\right)}
-\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
-\newcommand{\pomega}{\varpi}
-\newcommand{\ugrad}{\bm{u}\cdot\nabla}
 
-\newcommand{\tz}{\tilde{\zeta}}
-
-\newcommand{\ei}{{\rm{Ei}}}
-\newcommand{\tr}{x}
-
-\newcommand{\ekt}{e^{-k[(\tr/r\bcz)-1]}}
-\newcommand{\ekp}{e^{k[(r/r\bcz)-1]}}
 \allowdisplaybreaks
 \begin{document}
 	\maketitle
@@ -124,19 +113,19 @@
 	\end{align*}
 	or
 	\begin{empheq}[box=\fbox]{align}
-	\tmpref(r) &= \tmpref_0\left[\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\right]  \ \ \ \ \ \text{(adiabatic atmosphere)},\label{eq:tad}\\
+	\tmpref(r) &= \tmpref_0\left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]  \ \ \ \ \ \text{(adiabatic atmosphere)},\label{eq:tad}\\
 	\text{where} \ \ \ \ \ \tilde{a}&\coloneqq \frac{G\mstar}{\cp \tmpref_0 r_0}.\label{def:atilde}
 	\end{empheq}
 	Then, Equations  \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} yield
 	\begin{empheq}[box=\fbox]{align}
-	\prsref\ofr &= \prsref_0 \left[\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\right]^{\gammaone/(\gammaone-1)} \ \ \ \ \ \text{(adiabatic atmosphere)}
+	\prsref\ofr &= \prsref_0 \left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]^{\gammaone/(\gammaone-1)} \ \ \ \ \ \text{(adiabatic atmosphere)}
 \label{eq:pad}\\
-\andd	\rhoref\ofr &= \rhoref_0 \left[\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})\right]^{1/(\gammaone-1)} \ \ \ \ \ \text{(adiabatic atmosphere).}
+\andd	\rhoref\ofr &= \rhoref_0 \left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]^{1/(\gammaone-1)} \ \ \ \ \ \text{(adiabatic atmosphere).}
 \label{eq:rhoad}
 \end{empheq}
 Note: to keep thermodynamic quantities positive, we must ensure that the argument
 \begin{align}
-	\tilde{a}\bigfrac{r_0}{r} + (1-\tilde{a})>0.
+	\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})>0.
 \end{align}
 This leads to the conditions on available radii $r$ (for our particular choices of $\tilde{a}$---i.e., $\mstar$,  $\gasconst$, and $\tmpref_0$---and $r_0$) for which the derived atmosphere is valid:
 \begin{subequations}
@@ -291,20 +280,20 @@ Defining
 d&\coloneqq r_{\rm{o}}-r\bcz,\label{def:d}\\
 c_0&\coloneqq 1-a_c = \frac{(1+\beta)(1-\beta e^{N_\rho/n})}{(1-\beta)(\beta e^{N_\rho/n} + 1)}, \label{def:c0}\\
 c_1&\coloneqq \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)}{(1-\beta)^2(\beta e^{N_\rho/n} + 1)},\label{def:c1}\\
-\andd \tz(r) &\coloneqq a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{d}{r}\right),\label{def:tildezeta}
+\andd \tilde{\zeta}(r) &\coloneqq a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{d}{r}\right),\label{def:tildezeta}
 \end{align}
 \eqref{eq:tpolytrope2}--\eqref{eq:rhopolytrope2} become
 \begin{align}
-\tmpref\ofr=T_c\tz(r),\ \ \ \ \ \prsref\ofr=p_c[\tz(r)]^{n+1},\ \ \ \ \ \rhoref\ofr=\rho_c[\tz(r)]^n. 
+\tmpref\ofr=T_c\tilde{\zeta}(r),\ \ \ \ \ \prsref\ofr=p_c[\tilde{\zeta}(r)]^{n+1},\ \ \ \ \ \rhoref\ofr=\rho_c[\tilde{\zeta}(r)]^n. 
 \label{eq:polytrope3}
 \end{align}
 With significantly more algebra, we can also see that if we define
 \begin{align}
-\tz_o \coloneqq \tz(r_{\rm{o}}) = \frac{1+\beta}{\beta e^{N_\rho/n} + 1}, 
+\tilde{\zeta}_o \coloneqq \tilde{\zeta}(r_{\rm{o}}) = \frac{1+\beta}{\beta e^{N_\rho/n} + 1}, 
 \end{align}
 then 
 \begin{align}
-c_0 = \frac{2\tz_o - \beta - 1}{1-\beta} \ \ \ \ \ \andd c_1 = \frac{(1+\beta)(1-\tz_o)}{(1-\beta)^2},
+c_0 = \frac{2\tilde{\zeta}_o - \beta - 1}{1-\beta} \ \ \ \ \ \andd c_1 = \frac{(1+\beta)(1-\tilde{\zeta}_o)}{(1-\beta)^2},
 \label{eq:c01_from_zeta0}
 \end{align}
 yielding exactly the formulation for the polytrope in Jones et al. (2011). 
