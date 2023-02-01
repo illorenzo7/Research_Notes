@@ -259,21 +259,21 @@ Finally, suppose we want to increase the \textit{instability} of the system by \
 \end{empheq}
 Note that the $n=0$ polytrope for the Sun (if we integrate from the base of the convection zone and assume $b=8.99$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
 
-\subsection{Polytrope in terms of overall density stratification}
-For an adiabatic, polytropic convection zone (CZ) sitting atop a stably stratified radiative zone (RZ), it make sense to choose the reference radius to be the boundary between the RZ and CZ, i.e., $r_0=r\bcz$. In the work of \citet{Jones11} and in the Rayleigh code \citep{Featherstone18}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $N_\rho\coloneqq\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the shell (outer boundary). We can recast Equations \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} in terms of $\rhoref\bcz$ and $N_\rho$ by using \eqref{eq:npoly} and \eqref{eq:rhopoly1} to yield
+\subsection{Polytrope in terms of $\rhoref\bcz$ and $N_\rho$}
+Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones11} and in the Rayleigh code \citep{Featherstone18}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $N_\rho\coloneqq\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $N_\rho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
 \begin{align}
 a = \frac{e^{N_\rho/n} - 1 }{(1 - \beta)e^{N_\rho/n}} \five \andd \tmpref\bcz = \frac{(1 - \beta)e^{N_\rho/n}} {e^{N_\rho/n} - 1 }\frac{G\mstar}{(n+1)\gasconst r\bcz},
 \label{eq:ti_from_nrho}
 \end{align}
 where we have defined the aspect ratio of the CZ,
 \begin{align}
-\beta\coloneqq \frac{r\bcz}{r_{\rm{o}}} < 1.
+\beta\coloneqq \frac{r\bcz}{r\topp} < 1.
 \label{def:beta}
 \end{align}
-Thus, instead of specifying $\tmpref\bcz$ and $p_{\rm{m}}$, we can specify $\rhoref\bcz$ and $N_\rho$; $\tmpref\bcz$ is then determined through \eqref{eq:ti_from_nrho} and $p_{\rm{m}}$ through the ideal gas law. 
+Thus, instead of specifying $\tmpref\bcz$ and $\prsref\bcz$, we can specify $\rhoref\bcz$ and $N_\rho$; $\tmpref\bcz$ is then determined through \eqref{eq:ti_from_nrho} and $\prsref\bcz$ through the ideal gas law. 
 
 \subsection{Polytrope with respect to the center of the CZ}
-\citet{Jones11} define the polytrope using the variables at the center of the CZ (i.e., in our notation $r_0=r_c\coloneqq(r\bcz+r_{\rm{o}})/2$). In that case, \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} become
+\citet{Jones11} define the polytrope using the variables at the center of the CZ (i.e., in our notation $r_0=r_c\coloneqq(r\bcz+r\topp)/2$). In that case, \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} become
 \begin{align}
 	\tmpref\ofr &= T_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right],\label{eq:tmppoly2}\\
 	\prsref\ofr &= p_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right]^{n+1},\label{eq:ppoly2}\\
@@ -291,7 +291,7 @@ a_c = \frac{2\beta(e^{N_\rho/n}-1)}{(1-\beta)(\beta e^{N_\rho/n} + 1)}.
 \end{align}
 Defining 
 \begin{align}
-d&\coloneqq r_{\rm{o}}-r\bcz,\label{def:d}\\
+d&\coloneqq r\topp-r\bcz,\label{def:d}\\
 c_0&\coloneqq 1-a_c = \frac{(1+\beta)(1-\beta e^{N_\rho/n})}{(1-\beta)(\beta e^{N_\rho/n} + 1)}, \label{def:c0}\\
 c_1&\coloneqq \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)}{(1-\beta)^2(\beta e^{N_\rho/n} + 1)},\label{def:c1}\\
 \andd \tilde{\zeta}(r) &\coloneqq a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{d}{r}\right),\label{def:tildezeta}
@@ -303,7 +303,7 @@ c_1&\coloneqq \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-
 \end{align}
 With significantly more algebra, we can also see that if we define
 \begin{align}
-\tilde{\zeta}_o \coloneqq \tilde{\zeta}(r_{\rm{o}}) = \frac{1+\beta}{\beta e^{N_\rho/n} + 1}, 
+\tilde{\zeta}_o \coloneqq \tilde{\zeta}(r\topp) = \frac{1+\beta}{\beta e^{N_\rho/n} + 1}, 
 \end{align}
 then 
 \begin{align}
@@ -312,13 +312,13 @@ c_0 = \frac{2\tilde{\zeta}_o - \beta - 1}{1-\beta} \ \ \ \ \ \andd c_1 = \frac{(
 \end{align}
 yielding exactly the formulation for the polytrope in Jones et al. (2011). 
 
-Both the formulation with respect to the center of the shell \eqref{def:tildezeta}--\eqref{eq:c01_from_zeta0} and the formulation with respect to the middle boundary using \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} (also \eqref{eq:ti_from_nrho} if specifying $\rhoref\bcz$ and $N_\rho$ instead of $p_{\rm{m}}$ and $\tmpref\bcz$) are mathematically equivalent. However, given the substantial extra notation involved in defining the constants $c_0$ and $c_1$, it seems preferable to use the latter formulation. 
+Both the formulation with respect to the center of the shell \eqref{def:tildezeta}--\eqref{eq:c01_from_zeta0} and the formulation with respect to the middle boundary using \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} (also \eqref{eq:ti_from_nrho} if specifying $\rhoref\bcz$ and $N_\rho$ instead of $\prsref\bcz$ and $\tmpref\bcz$) are mathematically equivalent. However, given the substantial extra notation involved in defining the constants $c_0$ and $c_1$, it seems preferable to use the latter formulation. 
 
 \subsection{Stable vs. unstable polytropes}
 Figure \ref{fig:CZ_polytrope_stable} (Figure \ref{fig:CZ_polytrope_unstable}) shows a sample of convectively stable (unstable) polytropes for various values of the polytropic index $n$ in a solar-like convection zone. For very high values of $n$ (Figure \ref{fig:CZ_polytrope_stable}), the entropy gradient profile asymptotes to its maximum value and the temperature profile becomes flat---in agreement with the discussion surrounding Equation \eqref{eq:limitninfty}. For very low values of $n$ (highly unstable polytropes; Figure \ref{fig:CZ_polytrope_unstable}), the constant $a$ becomes significantly greater than 1, and the argument $\zeta(r)$ becomes negative within the convection zone, giving complex values for $\prsref\ofr$ and $\rhoref\ofr$ for $r$ greater than the radius at which $\zeta=0$ (the exception to this rule is the special case $n=1$). Thus, the polytropic formulation is unphysical for domains with large enough extent; the same is true for the stable polytropes, but the radius at which $\zeta=0$ is quite far outside the convection zone.
 
 \subsection{Atmosphere with constant entropy gradient}
-A simple example of a fluid layer that is stable to convection is one with a constant ``stiffness," or entropy gradient. If we consider an RZ extending from the inner radius $r_{\rm{i}}$ of the shell to the middle of the shell $r\bcz$, we can write
+A simple example of a fluid layer that is stable to convection is one with a constant ``stiffness," or entropy gradient. If we consider an RZ extending from the inner radius $r\bcz$ of the shell to the middle of the shell $r\bcz$, we can write
 \begin{align}
 \boxed{
 \sref\ofr = k\cp\left(\frac{r}{r\bcz} - 1\right)\five \andd \dsdr = \frac{k\cp}{r\bcz}\five \text{(constant entropy gradient)},
@@ -343,7 +343,7 @@ yielding
 \end{subequations}
 Using \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} then yields
 	\begin{empheq}[box=\fbox]{align}
-\prsref\ofr =\ &p_{\rm{m}}\exp{\left[-\frac{\gamma}{\gamma-1}k\left(\frac{r}{r\bcz} - 1\right)\right]}\nonumber\\
+\prsref\ofr =\ &\prsref\bcz\exp{\left[-\frac{\gamma}{\gamma-1}k\left(\frac{r}{r\bcz} - 1\right)\right]}\nonumber\\
 	&\times\left\{\left[e^k\tilde{a}\left(\frac{r\bcz}{r}\right) E_2\left(\frac{kr}{\rm}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\right\}^{\gamma/(\gamma-1)}\\
 \andd \rhoref\ofr =\ &\rhoref\bcz\exp{\left[-\frac{\gamma}{\gamma-1}k\left(\frac{r}{\rm}\right)\right]}\nonumber\\
 &\times
