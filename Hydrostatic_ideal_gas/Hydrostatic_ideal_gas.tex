@@ -143,14 +143,14 @@ The starting assumption for a ``polytrope" is that the temperature gradient is d
 The integration constants $A$ and $B$ are arbitrary, but one is eliminated from the condition $T(r_0) = \tmpref_0$, leaving
 \begin{align}
 \tmpref\ofr = \tmpref_0 \left[a\left(\frac{r_0}{r}\right) + (1 - a)\right]
-\label{eq:tmppoly0}
+\label{eq:tmppoly00}
 \end{align}
 where the new constant $a$ is dimensionless. Mathematically, $a$ can be any number, with $a=0$ corresponding to an isothermal atmosphere. Physically, if we want the temperature (and as we will see shortly, the pressure and density) to decrease with radius, we restrict ourselves to 
 \begin{align}\label{eq:avalid}
 	a&\geq0. 
 \end{align}
 
-Note the similarity of the argument $[a(r_0/r) + (1-a)]$ in Equation \eqref{eq:tmppoly0} (which was derived by assuming a divergenceless temperature gradient) to the argument in Equation \eqref{eq:tmpad} (which was derived by assuming the gas was adiabatic). 
+Note the similarity of the argument $[a(r_0/r) + (1-a)]$ in Equation \eqref{eq:tmppoly00} (which was derived by assuming a divergenceless temperature gradient) to the argument in Equation \eqref{eq:tmpad} (which was derived by assuming the gas was adiabatic). 
 
 Using Equation \eqref{eq:idgas} to eliminate $\rhoref\ofr$ from Equation \eqref{eq:hydr} gives
 \begin{align*}
@@ -165,20 +165,33 @@ where we have defined the polytropic index $n$ to be
 n&\define \frac{b}{a} - 1 \Longleftrightarrow a = \frac{b}{n+1},\label{eq:npoly}\\
 \where b&\define \frac{G\mstar}{\gasconst \tmpref_0 r_0}.\label{eq:bpoly}
 \end{align}
+From Equation \eqref{eq:avalid}, $n$ is restricted to the range:
+\begin{align}\label{eq:nvalid}
+	0\leq n&\leq\infty. 
+\end{align}
+($n\rightarrow\infty$ corresponds to $a=0$, the isothermal atmosphere). 
+
 Note that $b$ is closely related to the dissipation number ($\di\define \tilde{g}H/(\cp\tilde{T})$, where $H$ is a typical length-scale and the tildes denote typical background-state values). 
 
-We can rewrite the argument in square brackets as:
+Putting it all together (and using the ideal gas law to derive the density), we have
+	\begin{empheq}[box=\fbox]{align}
+	\tmpref\ofr &= \tmpref_0\left[a\left(\frac{r_0}{r}\right) + (1 - a) \right] \ \ \ \ \ \text{(polytropic atmosphere)}.\label{eq:tmppoly0} \\
+	\prsref\ofr &= \prsref_0\left[a\left(\frac{r_0}{r}\right) + (1 - a) \right]^{n+1} \ \ \ \ \ \text{(polytropic atmosphere)}. \label{eq:prspoly0}\\
+	\rhoref\ofr &= \rhoref_0\left[a\left(\frac{r_0}{r}\right) + (1 - a) \right]^n \ \ \ \ \ \text{(polytropic atmosphere)} \label{eq:rhopoly0}
+\end{empheq}
+
+We can also rewrite the argument in square brackets as:
 \begin{align*}%\label{eq:arg2forms}
 	a\left(\frac{r_0}{r}\right) + (1 - a)&=\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}.
 \end{align*}
-Putting it all together (and using the ideal gas law to derive the density), we have
+to yield
 	\begin{empheq}[box=\fbox]{align}
 \tmpref\ofr &= \tmpref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}\right] \ \ \ \ \ \text{(polytropic atmosphere)}.\label{eq:tmppoly1} \\
 \prsref\ofr &= \prsref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}\right]^{n+1} \ \ \ \ \ \text{(polytropic atmosphere)}. \label{eq:prspoly1}\\
 \rhoref\ofr &= \rhoref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}\right]^n \ \ \ \ \ \text{(polytropic atmosphere)}. \label{eq:rhopoly1}
 \end{empheq}
 
-Similarly to the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the choices for $a$ (i.e., $b$---via $\mstar$, $\gasconst$, and $\tmpref_0$---and $n$) and $r_0$ determine the range of radii for which the polytrope is valid (i.e., the range for which the thermodynamic quantities are positive):
+Similarly to the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the choices for $a$ (or equivalently, $b$ and $n$) and $r_0$ determine the range of radii for which the polytrope is valid (i.e., the range for which the thermodynamic quantities are positive):
 \begin{subequations}
 	\begin{alignat}{2}
 		0<\ &r<\rbound(n)\define \left[\frac{b}{b-(n+1)}\right]r_0\five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0} >n+1\\
@@ -189,13 +202,13 @@ Similarly to the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the ch
 
 For a particular polytrope (fixed $n$), the choice of integration origin ($r_0$, $\tmpref_0$, and $\prsref_0$) has no effect on the upper bound $\rbound$. However, if $n<b-1$ (a range on $n$ which \textit{is} affected by the choice of integration origin), the polytropic index $n$ affects the upper bound. Higher $n$ yields a wider range of validity, and lower $n$ a narrower one. 
 
-To make things applicable to a real star, we work out where an adiabatic polytrope is valid for the Sun. Recall $G=\sn{6.67}{-8}\ \cm^3\ \gram^{-1}\ \second^{-2}$. For the Sun ($\mstar=\msun=\sn{1.99}{33}\ {\rm{g}}$), we integrate from the base of the convection zone ($r_0=r\bcz=\sn{5.00}{10}\ \cm$; $\tmpref_0=\tmpref\bcz=\sn{2.11}{6}\ \kelv$; $\cp=\sn{3.50}{8}\ \unitent$ or $\gasconst=\sn{1.40}{8}\ \unitent$) and assume near-adiabatic stratification ($n=1.50$). Then $b=8.99 > 2.5$ and condition \eqref{eq:rvalidpoly} becomes
+To make things concrete, we work out where an adiabatic polytrope is valid for the Sun. Recall $G=\sn{6.67}{-8}\ \cm^3\ \gram^{-1}\ \second^{-2}$. For the Sun ($\mstar=\msun=\sn{1.99}{33}\ {\rm{g}}$), we integrate from the base of the convection zone ($r_0=r\bcz=\sn{5.00}{10}\ \cm$; $\tmpref_0=\tmpref\bcz=\sn{2.11}{6}\ \kelv$; $\cp=\sn{3.50}{8}\ \unitent$ or $\gasconst=\sn{1.40}{8}\ \unitent$) and assume adiabatic stratification ($n=1.50$). Then $b=8.99 > 2.5$ and condition \eqref{eq:rvalidpoly} becomes
 \begin{align*}
 	0<r<(\rbound)_\odot\define\sn{6.93}{10}\ \cm. 
 \end{align*}
-The upper bound is only a little less than the solar radius, $\rsun=\sn{6.96}{10}\ \cm$. This makes sense of course, since the solar convection zone \textit{is} (mostly) a polytrope with $n=1.5$, and the photosphere corresponds to (relatively) very low temperature, density, and pressure. 
+The upper bound is only a little less than the solar radius, $\rsun=\sn{6.96}{10}\ \cm$. This makes sense of course, since the solar convection zone \textit{is} (mostly) an adiabatic polytrope, and the photosphere corresponds to (relatively) very low temperature, density, and pressure. 
 
-Note that for the polytrope, in addition to the two integration constants $\prsref_0$ and $\tmpref_0$, there is another constant $n$ (or equivalently, $a$). Specifying $n$ is the same as specifying $\dsdrline$. For, plugging Equations \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} (we only need two of them) into any form of \eqref{eq:firstlaw3} yields
+Note that for the polytrope, in addition to the two integration constants $\prsref_0$ and $\tmpref_0$, there is another constant $n$ (or equivalently, $a$). Specifying $n$ (or $a$) is the same as specifying $\dsdrline$. For, plugging Equations \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} (we only need two of them) into any form of \eqref{eq:firstlaw3} yields
 \begin{subequations}
 \begin{empheq}[box=\fbox]{align}
 \frac{1}{\cp}\dsdr &= \frac{b}{\tilde{n}+1}\left(\frac{1}{r}\right)\left[\frac{n-\tilde{n}}{(n+1-b)(r/r_0)+b}\right]\label{eq:dsdrpoly1}\\
@@ -222,7 +235,7 @@ Say we want to increase the stability of a solar-like atmosphere by increasing $
 \end{align}
 The sign of this partial derivative is independent of $n$. Therefore, at any given radius $r$, the magnitude of the entropy gradient monotonically increases or decreases with $n$. Let's assume we confine ourselves to $r<(\rbound)_\odot$, even though for high $n$, there will technically be a wider range of validity for the polytrope. Then $\tilde{n}+1-b+b(r_0/r)\rightarrow0$ (from above) as $r\rightarrow(\rbound)_\odot$ (from below). Thus (for sufficiently high $n$ and $r<(\rbound)_\odot$), the partial derivative in Equation \eqref{eq:dsdr_vs_n} is positive, and maximum stability is achieved for $n\rightarrow\infty$. 
 
-Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=\exp(n)$, Equations \eqref{eq:tmppoly1}--\eqref{eq:dsdrpoly1} show that the limit $n\rightarrow\infty$ simply corresponds to an isothermal atmosphere:
+Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=\exp(x)$, Equations \eqref{eq:tmppoly1}--\eqref{eq:dsdrpoly1} show that the limit $n\rightarrow\infty$ simply corresponds to an isothermal atmosphere:
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitninfty}
 \tmpref\ofr&\rightarrow \tmpref_0, \\
 \prsref\ofr&\rightarrow \prsref_0\exp{\left[b\left(\frac{r_0}{r}-1\right)\right]},\\
@@ -234,9 +247,7 @@ Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=\exp(n)$, Equations \eqref{eq
 \textit{If one tries to increase the stability a solar-like polytrope by increasing $n$, there is therefore a fundamental upper bound imposed by the polytropic formulation itself.}
 Similarly, as $n\rightarrow\infty$, the total entropy contrast from top to bottom and all logarithmic derivatives of the thermodynamic variables have upper bounds, meaning that all scale heights (which typically set the size of fluid motions) have lower bounds. These bounds are reached for an isothermal atmosphere.
 
-Finally, suppose we want to increase the \textit{instability} of the system by \textit{lowering} $n$. Note that mathematically, as formulated in Equations \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1}, the only value for $n$ \textit{not} allowed is $-1$. Physically, we cannot have $n=-1$ since it would correspond to an isobaric (constant-pressure) atmosphere incapable of hydrostatic support. However, unless we have a star that is denser in the outer layers (is that ever possible? Honest question!), \eqref{eq:rhopoly1} shows we should further restrict ourselves to $n\geq0$. 
-
-As $n\rightarrow0$, we thus find the most unstable (isopycnic, or constant-density) atmosphere: 
+Finally, suppose we want to increase the \textit{instability} of the system by \textit{lowering} $n$ to $0$ (for $b=8.99$ and $r<(\rbound)_\odot$, the partial derivative in Equation \eqref{eq:dsdr_vs_n} is positive for all values of $n$). As $n\rightarrow0$, we find the unstable (isopycnic, or constant-density) atmosphere: 
 
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitn0}
 	\tmpref\ofr&\rightarrow \tmpref_0\left[b\left(\frac{r_0}{r}\right)+(1-b)\right], \\
