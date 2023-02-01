@@ -22,6 +22,7 @@
 \date{\today}
 \author{Loren Matilsky}
 \title{Hydrostatic, ideal-gas reference states in spherical coordinates}
+\newcommand{\rbound}{r_{\rm{bound}}}
 \newcommand{\bigfrac}[2]{\left(\frac{#1}{#2}\right)}
 \newcommand{\mbigfrac}[2]{\left({-\frac{#1}{#2}}\right)}
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
@@ -140,7 +141,7 @@ Note: to keep thermodynamic quantities positive, we must ensure that the argumen
 This leads to the conditions on available radii $r$ (for our particular choices of $\tilde{a}$---i.e., $\mstar$,  $\gasconst$, and $\tmpref_0$---and $r_0$) for which the derived atmosphere is valid:
 \begin{subequations}
 \begin{alignat}{2}
-		0<\  &r<\left(\frac{\tilde{a}}{\tilde{a}-1}\right)r_0\five  &&\tilde{a}>1\\
+		0<\  &r<\rbound\define\left(\frac{\tilde{a}}{\tilde{a}-1}\right)r_0\five  &&\tilde{a}>1\\
 &r>0                       && \tilde{a}\leq1. 
 \end{alignat}
 \label{eq:rvalidad}
@@ -190,17 +191,17 @@ Putting it all together (and using the ideal gas law to derive the density), we 
 Similarly to the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the choices for $a$ (i.e., $b$---via $\mstar$, $\gasconst$, and $\tmpref_0$---and $n$) and $r_0$ determine the range of radii for which the polytrope is valid (i.e., the range for which the thermodynamic quantities are positive):
 \begin{subequations}
 	\begin{alignat}{2}
-		0<\ &r<\rmax(n)\define \left[\frac{b}{b-(n+1)}\right]r_0\five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0} >n+1\\
+		0<\ &r<\rbound(n)\define \left[\frac{b}{b-(n+1)}\right]r_0\five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0} >n+1\\
 		&r > 0 \five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0}\leq n+1. 
 	\end{alignat}
 	\label{eq:rvalidpoly}
 \end{subequations}
 
-For a particular polytrope (fixed $n$), the choice of integration origin ($r_0$, $\tmpref_0$, and $\prsref_0$) has no effect on the upper bound $\rmax$. However, if $n<b-1$ (a range on $n$ which \textit{is} affected by the choice of integration origin), the polytropic index $n$ affects the upper bound. Higher $n$ yields a wider range of validity, and lower $n$ a narrower one. 
+For a particular polytrope (fixed $n$), the choice of integration origin ($r_0$, $\tmpref_0$, and $\prsref_0$) has no effect on the upper bound $\rbound$. However, if $n<b-1$ (a range on $n$ which \textit{is} affected by the choice of integration origin), the polytropic index $n$ affects the upper bound. Higher $n$ yields a wider range of validity, and lower $n$ a narrower one. 
 
 To make things applicable to a real star, we work out where an adiabatic polytrope is valid for the Sun. Recall $G=\sn{6.67}{-8}\ \cm^3\ \gram^{-1}\ \second^{-2}$. For the Sun ($\mstar=\msun=\sn{1.99}{33}\ {\rm{g}}$), we integrate from the base of the convection zone ($r_0=\rbcz=\sn{5.00}{10}\ \cm$; $\tmpref_0=\tmpbcz=\sn{2.11}{6}\ \kelv$; $\cp=\sn{3.50}{8}\ \unitent$ or $\gasconst=\sn{1.40}{8}\ \unitent$) and assume near-adiabatic stratification ($n=1.50$). Then $b=8.99 > 2.5$ and condition \eqref{eq:rvalidpoly} becomes
 \begin{align*}
-	0<r<(\rmax)_\odot\define\sn{6.93}{10}\ \cm. 
+	0<r<(\rbound)_\odot\define\sn{6.93}{10}\ \cm. 
 \end{align*}
 The upper bound is only a little less than the solar radius, $\rsun=\sn{6.96}{10}\ \cm$. This makes sense of course, since the solar convection zone \textit{is} (mostly) a polytrope with $n=1.5$, and the photosphere corresponds to (relatively) very low temperature, density, and pressure. 
 
@@ -227,7 +228,7 @@ Say we want to increase the stability of a solar-like atmosphere by increasing $
 \begin{align}\label{eq:dsdr_vs_n}
 	\pderiv{}{n}\left(\frac{1}{\cp}\dsdr\right)=  \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)  \left\{\frac{\tilde{n}+1-b+b(r_0/r)}{\left[n+1-b+b(r_0/r)\right]^2}\right\}. 
 \end{align}
-The sign of this partial derivative is independent of $n$. Therefore, at any given radius $r$, the magnitude of the entropy gradient monotonically increases or decreases with $n$. Let's assume we confine ourselves to $r<(\rmax)_\odot$, even though for high $n$, there will technically be a wider range of validity for the polytrope. Then $\tilde{n}+1-b+b(r_0/r)\rightarrow0$ (from above) as $r\rightarrow(\rmax)_\odot$ (from below). Thus (for sufficiently high $n$ and $r<(\rmax)_\odot$), the partial derivative in Equation \eqref{eq:dsdr_vs_n} is positive, and maximum stability is achieved for $n\rightarrow\infty$. 
+The sign of this partial derivative is independent of $n$. Therefore, at any given radius $r$, the magnitude of the entropy gradient monotonically increases or decreases with $n$. Let's assume we confine ourselves to $r<(\rbound)_\odot$, even though for high $n$, there will technically be a wider range of validity for the polytrope. Then $\tilde{n}+1-b+b(r_0/r)\rightarrow0$ (from above) as $r\rightarrow(\rbound)_\odot$ (from below). Thus (for sufficiently high $n$ and $r<(\rbound)_\odot$), the partial derivative in Equation \eqref{eq:dsdr_vs_n} is positive, and maximum stability is achieved for $n\rightarrow\infty$. 
 
 Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=\exp(n)$, Equations \eqref{eq:tpolytrope1}--\eqref{eq:dsdrpolytrope} show that the limit $n\rightarrow\infty$ simply corresponds to an isothermal atmosphere:
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitninfty}
@@ -253,7 +254,7 @@ As $n\rightarrow0$, we thus find the most unstable (isopycnic, or constant-densi
 	\andd \frac{\sref\ofr}{\cp} &\rightarrow -\frac{\tilde{n}}{\tilde{n}+1}\left\{\ln{\left(\frac{r}{r_0}\right)} - \ln{\left[(1-b)\left(\frac{r}{r_0}\right)+b\right]} \right\}\\ 
 	&\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow0). \nonumber
 \end{empheq}
-Note that the $n=0$ polytrope for the Sun (if we integrate from the base of the convection zone and assume $b=8.99$) is only valid for $r<(\rmax)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
+Note that the $n=0$ polytrope for the Sun (if we integrate from the base of the convection zone and assume $b=8.99$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
 
 \subsection{Polytrope in terms of overall density stratification}
 For an adiabatic, polytropic convection zone (CZ) sitting atop a stably stratified radiative zone (RZ), it make sense to choose the reference radius to be the boundary between the RZ and CZ, i.e., $r_0=\rbcz$. In the work of \citet{Jones11} and in the Rayleigh code \citep{Featherstone18}, the polytrope is initiated using the density at the base of the CZ ($\rhobcz$ and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two base-of-CZ values $\prsbcz$ and $\tmpbcz$. Here $N_\rho\coloneqq\ln{(\rhobcz/\rho_{\rm{o}})}$, where $\rhobcz$ and $\rho_{\rm{o}}$ are the density values at the middle and outer boundaries of the shell, respectively. We can recast \eqref{eq:tpolytrope1}--\eqref{eq:rhopolytrope1} in terms of $\rhobcz$ and $N_\rho$ by using \eqref{def:polytropicindex} and \eqref{eq:rhopolytrope1} to yield
