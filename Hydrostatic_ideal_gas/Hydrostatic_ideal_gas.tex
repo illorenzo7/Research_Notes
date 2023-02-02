@@ -1,4 +1,5 @@
-\documentclass[12pt]{article} % document type and language
+% document type and language
+\documentclass[12pt]{article}
 
 % standard packages
 \usepackage{amsmath, bm, empheq, mathrsfs, natbib}
@@ -21,11 +22,12 @@
 \newcommand{\rbound}{r_{\rm{bound}}}
 \newcommand{\ekp}{e^{k[(r/r\bcz)-1]}}
 
+% date, author, title
 \date{\today}
 \author{Loren Matilsky}
 \title{Hydrostatic, ideal-gas reference states in spherical coordinates}
 
-\allowdisplaybreaks
+%\allowdisplaybreaks
 \begin{document}
 	\maketitle
 	\section{Basic assumptions}
@@ -403,17 +405,10 @@ k\cp\Big{(}\frac{\delta}{r\bcz}\Big{)}\left[\frac{2}{3}\Big{(}\frac{r-r\bcz}{\de
 
 Figures \ref{fig:CZ_RZ_quartmatch_vs_delta} and \ref{fig:CZ_RZ_quartmatch_vs_k} show the thermodynamic states defined by the entropy profile \eqref{eq:s_quart_transition} for a range of $\delta$-values and $k$-values. We can see that the transition width $\delta$ is ``strict" in the sense that the entropy gradient is \textit{exactly} equal to its asymptotic values outside the transition region. Thus, the thermodynamic profiles in the CZ are exactly that of an adiabatic polytrope. However, this sharper transition is also seen to create sharper spikes in the logarithmic derivatives. 
 
-	\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_jstyle, 
+\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_jstyle, 
 	/Users/loren/Desktop/Paper_Library/000_bibtex/proceedings,
 	/Users/loren/Desktop/Paper_Library/000_bibtex/books}
 \bibliographystyle{aasjournal}
-
-%\begin{thebibliography}{}
-%\bibitem[Featherstone(2018)]{Featherstone2021} Featherstone, N., 2018, Rayleigh 0.9.1, doi: \href{http://doi.org/10.5281/zenodo.1236565}{http://doi.org/10.5281/zenodo.1236565}
-
-%\bibitem[Jones et al. (2011)]{Jones2011} Jones, C.A., Boronski, P., Brun, A.S., et al., 2011, 
-%\href{https://doi.org/10.1016/j.icarus.2011.08.014}{Icarus}
-%\end{thebibliography}
 
   \begin{figure}
 	\includegraphics[scale=0.6]{figures/CZ_polytrope_stable.pdf}
