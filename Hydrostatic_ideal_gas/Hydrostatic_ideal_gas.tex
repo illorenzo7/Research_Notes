@@ -260,7 +260,7 @@ Finally, suppose we want to increase the \textit{instability} of the system by \
 Note that the $n=0$ polytrope for the Sun (if we integrate from the base of the convection zone and assume $b=8.99$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
 
 \subsection{Polytrope in terms of $\rhoref\bcz$ and $N_\rho$}
-Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones2011} and in the Rayleigh code \citep{Featherstone2018}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $N_\rho\define\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $N_\rho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
+Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones2011} and in the Rayleigh code \citep{Featherstone2021}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $N_\rho\define\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $N_\rho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
 \begin{align}
 a = \frac{e^{N_\rho/n} - 1 }{(1 - \beta)e^{N_\rho/n}} \five \andd \tmpref\bcz = \frac{(1 - \beta)e^{N_\rho/n}} {e^{N_\rho/n} - 1 }\frac{G\mstar}{(n+1)\gasconst r\bcz},
 \label{eq:ti_from_nrho}
@@ -403,12 +403,17 @@ k\cp\Big{(}\frac{\delta}{r\bcz}\Big{)}\left[\frac{2}{3}\Big{(}\frac{r-r\bcz}{\de
 
 Figures \ref{fig:CZ_RZ_quartmatch_vs_delta} and \ref{fig:CZ_RZ_quartmatch_vs_k} show the thermodynamic states defined by the entropy profile \eqref{eq:s_quart_transition} for a range of $\delta$-values and $k$-values. We can see that the transition width $\delta$ is ``strict" in the sense that the entropy gradient is \textit{exactly} equal to its asymptotic values outside the transition region. Thus, the thermodynamic profiles in the CZ are exactly that of an adiabatic polytrope. However, this sharper transition is also seen to create sharper spikes in the logarithmic derivatives. 
 
-\begin{thebibliography}{}
-\bibitem[Featherstone(2018)]{Featherstone2018} Featherstone, N., 2018, Rayleigh 0.9.1, doi: \href{http://doi.org/10.5281/zenodo.1236565}{http://doi.org/10.5281/zenodo.1236565}
+	\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_jstyle, 
+	/Users/loren/Desktop/Paper_Library/000_bibtex/proceedings,
+	/Users/loren/Desktop/Paper_Library/000_bibtex/books}
+\bibliographystyle{aasjournal}
 
-\bibitem[Jones et al. (2011)]{Jones2011} Jones, C.A., Boronski, P., Brun, A.S., et al., 2011, 
-\href{https://doi.org/10.1016/j.icarus.2011.08.014}{Icarus}
-\end{thebibliography}
+%\begin{thebibliography}{}
+%\bibitem[Featherstone(2018)]{Featherstone2021} Featherstone, N., 2018, Rayleigh 0.9.1, doi: \href{http://doi.org/10.5281/zenodo.1236565}{http://doi.org/10.5281/zenodo.1236565}
+
+%\bibitem[Jones et al. (2011)]{Jones2011} Jones, C.A., Boronski, P., Brun, A.S., et al., 2011, 
+%\href{https://doi.org/10.1016/j.icarus.2011.08.014}{Icarus}
+%\end{thebibliography}
 
   \begin{figure}
 	\includegraphics[scale=0.6]{figures/CZ_polytrope_stable.pdf}
