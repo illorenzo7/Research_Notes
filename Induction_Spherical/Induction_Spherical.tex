@@ -2,7 +2,7 @@
 \documentclass[12pt]{article}
 
 % standard packages
-\usepackage{amsmath, bm, empheq, mathrsfs, natbib}
+\usepackage{amsmath, bm, empheq, mathrsfs, natbib, cancel}
 
 % normal margins
 \usepackage[margin=1in]{geometry}
@@ -19,21 +19,59 @@
 \input{../macros.tex}
 
 % other macros
+\newcommand{\vecrot}{\bm{\Omega}}
+\newcommand{\xpar}{x_\parallel}
+\newcommand{\epar}{\e_\parallel}
+\newcommand{\upar}{u_\parallel}
+\newcommand{\uperp}{\vecu_\perp}
 
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
-\title{Hydrostatic, ideal-gas reference states in spherical coordinates}
+\title{Induction term in spherical coordinates}
 
 \begin{document}
 \maketitle
 
-\section{The Induction Term}
+\section{The problem}
 We consider the ideal (resistance-free) magnetohydrodynamic (MHD) induction equation:
 \begin{align}
 	\five\pderiv{\vecb}{t} &= \curl(\vecu\times\vecb) \label{eq:ind1},\\
-	&= \vecb\dotgrad\vecu - \vecu\dotgrad\vecb -(\Div\vecu)\vecb. \label{eq:ind2}
+	&= \vecb\dotgrad\vecu - \vecu\dotgrad\vecb -(\Div\vecu)\vecb, \label{eq:ind2}
 \end{align}
+where $\vecb$ and $\vecu$ are the vector magnetic and velocity fields, respectively. The three terms on the right-hand-side of Equation \eqref{eq:ind2} are often interpreted as ``shear," ``advection," and ``compression," respectively. However, this interpretation is problematic in general for two reasons:
 
+\begin{enumerate}
+	\item The so-called shear and compression terms contain sub-terms that cancel; in particular, only velocity motions \textit{perpendicular} to magnetic-field lines can shear or compress. \label{enum:problem1}
+	\item Solid-body rotation (which is a rigid, non-shearing motion) shows up in the so-called shear term. \label{enum:problem2}
+\end{enumerate}
+When resolving the induction equation into a particular curvilinear system (e.g., spherical coordinates), another problem arises:
+\begin{enumerate}
+	\setcounter{enumi}{2}
+	\item Large curvature terms appear, which are difficult to interpret and occasionally cancel. \label{enum:problem3}
+\end{enumerate}
+To see how problem \ref{enum:problem1} arises, we decompose the velocity field into components parallel and perpendicular to the local direction of $\vecb$:
+\begin{align}
+	\vecu &\define \upar\epar + \uperp
+\end{align} 
+Obviously $\vecb=B\xpar$, where $B=|\vecb|$. We denote the Cartesian distance along $\vecb$ by $\xpar$. We also decompose $\vecu$ into its parallel and perpendicular components:
+\begin{align}
+	\Div\vecu=\pderiv{\upar}{\xpar}+\nabla_\perp\cdot\uperp
+\end{align}
+We then calculate
+\begin{align}
+	\vecb\dotgrad\vecu - (\Div\vecu)\vecb&=B\pderiv{}{\xpar}(\upar\epar + \uperp) -\left(\pderiv{\upar}{\xpar}+\nabla_\perp\cdot\uperp\right)B\epar\nonumber\\
+	&= \cancel{B\pderiv{\upar}{\xpar}\epar} + B\pderiv{\uperp}{\xpar} -\cancel{\pderiv{\upar}{\xpar} B\epar} - (\nabla_\perp\cdot\uperp)B\epar\nonumber\\
+	&= \vecb\dotgrad\uperp - (\nabla_\perp\cdot\uperp)\vecb.
+\end{align}
+Thus, only motions perpendicular to the local field line (i.e., $\uperp$) can shear or compress $\vecb$.  
 
+To see how Problem \ref{enum:problem2} arises, we consider a velocity field due to rigid rotation at constant angular velocity $\Omega$ about the $z$-axis in spherical coordinate system:
+\begin{subequations}
+	\begin{align}
+		\vecrot &= \Omega\ez=\text{constant}\\
+		\vecu&=\vecrot\times\bm{r} = r\sin\theta\ep
+	\end{align}
+\end{subequations}
+	
 \end{document}
