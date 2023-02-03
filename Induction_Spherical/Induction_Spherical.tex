@@ -46,12 +46,9 @@ where $\vecb$ and $\vecu$ are the vector magnetic and velocity fields, respectiv
 	\item The so-called shear and compression terms contain sub-terms that cancel; in particular, only velocity motions \textit{perpendicular} to magnetic-field lines can shear or compress. \label{enum:problem1}
 	\item Solid-body rotation (which is a non-shearing motion that simply rotates the whole field configuration) shows up in the so-called shear and advection terms in a strange way. \label{enum:problem2}
 \end{enumerate}
-When resolving the induction equation into a particular curvilinear system (e.g., spherical coordinates), another problem arises:
-\begin{enumerate}
-	\setcounter{enumi}{2}
-	\item Large curvature terms appear, which are difficult to interpret and occasionally cancel. \label{enum:problem3}
-\end{enumerate}
-Our goal here is to explain fully how these problems emerge and propose a solution for the case of spherical coordinates. 
+
+Finally, even after these issues have been addressed, resolving the final terms into a particular curvilinear system (e.g., spherical coordinates) seems to present a major headache. Our goal here is to explain fully how these problems emerge and propose a tentative solution for the case of spherical coordinates. 
+
 \section{Perpendicular shear and compression}
 To see how Problem \ref{enum:problem1} arises, we decompose the velocity field into components parallel and perpendicular to the local direction of $\vecb$:
 \begin{align}
@@ -105,20 +102,24 @@ and so
 \begin{align}
 	-\vecu\dotgrad\vecb &= -\Omega\sum_\alpha\left(\pderiv{B_\alpha}{\phi}\right)\e_\alpha-\vecrot\times\vecb \five \text{``advection" for rigid rotation}.
 \end{align}
-Mathematically, in any coordinate system with an axis of rotational symmetry about $z$, the action of rigid rotation is as follows:
+Mathematically, in any coordinate system with a $z$-axis of rotational symmetry, the action of rigid rotation is as follows:
+\begin{subequations}
 \begin{align}
 	\pderiv{\vecb}{t}&=\curl[(\vecrot\times\vecr)\times\vecb]\nonumber\\
-	&= \sum_\alpha\left(-\Omega\pderiv{B_\alpha}{\phi}\right)\e_\alpha\nonumber\\
-	\orr \left(\pderiv{}{t}+\Omega\pderiv{}{\phi}\right)B_\alpha&=0\five\text{for each $\alpha$}.
+	&= \sum_\alpha\left(-\Omega\pderiv{B_\alpha}{\phi}\right)\e_\alpha \label{eq:rottransport1}\\
+	\orr \left(\pderiv{}{t}+\Omega\pderiv{}{\phi}\right)B_\alpha&=0\five\text{for each $\alpha$}.\label{eq:rottransport2}
 \end{align}
-If you think about it, this makes sense: All the rigid rotation does is rotate the whole field configuration around the $z$-axis at the rate $\Omega$. If you decide to also rotate at $\Omega$ (so your personal Eulerian time derivative is $\pderivline{}{t}+\Omega\pderivline{}{\phi}$), then each component if the magnetic-field configuration should remain the same in your frame. 
+\end{subequations}
+If you think about it, this makes sense: All the rigid rotation does is rotate the whole field configuration around the $z$-axis at the rate $\Omega$. If you decide to also rotate at $\Omega$ (so your personal Eulerian time derivative is $\pderivline{}{t}+\Omega\pderivline{}{\phi}$), then each component of the magnetic-field configuration should remain the same in your frame. Note that rotation does \textit{not} advect the vector magnetic field (like the term $-\vecu\dotgrad\vecb$ viewed on its own would suggest), but rather advects the field \textit{components} (as if they were scalars) in any coordinate system with an axis of rotational symmetry. 
 
 \section{Solution for spherical coordinates}
 Resolving these issues fully for the spherical coordinate system seems complicated and I am not fully sure how to do it! In particular (for ``full" resolution) we should, separately at each point ($r$,$\theta$,$\phi$):
 \begin{enumerate}
-	\item Form a local Cartesian coordinate system, say ($x_1$, $x_2$, $x_3$). At the origin of this system (which lies at the point $(r,\theta,\phi)$), ($\e_1$, $\e_2$, $\e_3$) will coincide with ($\er$, $\et$, $\ep$). But slightly away from the origin, the Cartesian coordinates will remain the same while ($\er$, $\et$, $\ep$) curve away. 
-	\item Calculate the velocity-gradient tensor (being careful to differentiate along the Cartesian coordinates, \textit{not} the curvilinear ones or along the actual $\vecb$-line): $\pderivline{u_1}{x_1},\pderivline{u_2}{x_1}$, etc. in spherical coordinates.
-	\item Rotate this velocity-gradient tensor ``into $\vecb$" to form $\pderivline{\upar}{\xpar}$, $\pderivline{\uperp}{\xpar}$, and $\nabla_\perp\cdot\uperp$
+	\item Form a local Cartesian coordinate system, say ($x_1$, $x_2$, $x_3$), whose origin lies at the point $(r,\theta,\phi)$. At the origin, ($\e_1$, $\e_2$, $\e_3$) will coincide with ($\er$, $\et$, $\ep$). But slightly away from the origin, ($\e_1$, $\e_2$, $\e_3$) will stay fixed while ($\er$, $\et$, $\ep$) curve away. 
+	\item Calculate the velocity-gradient tensor: $\pderivline{u_1}{x_1},\pderivline{u_2}{x_1}, \pderivline{u_3}{x_1}$, etc. While calculating derivatives, be careful to differentiate along the Cartesian coordinates, \textit{not} the curvilinear ones or along the actual $\vecb$-line). Express the final tensor components in spherical coordinates.
+	\item Rotate ``into $\vecb$" to form a new primed coordinate system (such that $\e_1^\prime$ points along $\vecb$), calculate the $\pderivline{u_j^\prime}{x_i^\prime}$, and thus form $\pderivline{\upar}{\xpar}$ and $\pderivline{\uperp}{\xpar}$ (note that $\nabla_\perp\cdot\uperp=\Div\vecu- \pderivline{\upar}{\xpar}$). Note that the direction cosines $\e_1^\prime$ makes with ($\e_1$, $\e_2$, $\e_3$) are simply $\br/|\vecb|, \bt/|\vecb|, \bp/|\vecb|$, respectively. Note that both unit vectors and vector components transform like $x_1^\prime=\sum_{j=1}^3R_{1j}x_j$, where $R_{1j}$ is the $j^{th}$ direction cosine.  
+	\item Subtract the part of $\uperp$ corresponding to solid-body rotation and put it in the form of Equation \eqref{eq:rottransport1}. 
+	\item Exult, because I haven't been able to do this!
 \end{enumerate}
 
 \end{document}
