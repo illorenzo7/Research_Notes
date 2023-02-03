@@ -130,24 +130,17 @@ Resolving these issues fully for the spherical coordinate system seems complicat
 \end{enumerate}
 Instead of addressing the full problem as just described, I have brute-forced my way into a quasi-solution, canceling obvious terms and expressing what seem to be ``perpendicular shear with no solid-body rotation," ``perpendicular compression," and advection. 
 
-As a shorthand, we write the following for the part of each vector perpendicular to the local coordinate lines:
-\begin{subequations}
-\begin{align}
-	\uhor &\define  \ut\et + \up\ep\five\text{horizontal part ($\perp\ \er$)},\\
-	\utor &\define  \ur\er + \up\ep\five\text{toroidal part ($\perp\ \et$)},\\
-	\andd \upol &\define  \ur\er + \ut\et   \five\text{poloidal part ($\perp\ \ep$)}
-\end{align}
-\end{subequations}
-...and similarly for $\vecb$. 
-
-We now write:
+We write:
 \begin{align*}
-	I_r =\ &\cancel{\br\pderiv{\ur}{r}}   +   \frac{\bt}{r}\pderiv{\ur}{\theta}   +   \frac{\bp}{\rsint}\pderiv{\ur}{\phi}   -   \bcancel{    \frac{\bt\ut+\bp\up}{r}   }\\
-	&-\left[   \ur\pderiv{\br}{r}   +   \frac{\ut}{r}\pderiv{\br}{\theta}   +   \frac{\up}{\rsint}\pderiv{\br}{\phi}   -   \bcancel{    \frac{\ut\bt+\up\bp}{r}   }   \right]\\
-	&- B_r\left[   \cancel{\pderiv{\ur}{r}}   +    \pderiv{2\ur}{r}   +   \frac{1}{r}\left(  \pderiv{\ut}{\theta}  + \cot\theta\ut  \right)   +   \orsint\pderiv{\up}{\phi}   \right]\\
-	=\  &  \underbrace{  \left(   \frac{\bt}{r}\pderiv{}{\theta}  +  \frac{\bp}{\rsint}\pderiv{}{\phi}   \right) }_{\bhor\dotgrad} \ur   - 
-	  \br \bigg{[}  \underbrace{  \frac{1}{r} \left(  \pderiv{\ut}{\theta} + \cot\theta\ut  \right) + \orsint \pderiv{\up}{\phi} }_{\Div\uhor}  \bigg{]}\\
-	  &-\ \ugrad\br - \frac{2\br\ur}{r}
+	I_r =\ &\cancel{  \br\pderiv{\ur}{r}  }    +    \frac{\bt}{r}\pderiv{\ur}{\theta}    +    \frac{\bp}{\rsint}\pderiv{\ur}{\phi}    -    \bcancel{   \frac{\bt\ut+\bp\up}{r}  }\\
+	&-\left[   \ugrad\br    -    \bcancel{   \frac{\ut\bt+\up\bp}{r}  }   \right]\\
+	&- \left[   \cancel{\pderiv{\ur}{r}}    +     \frac{2\ur}{r}    +    \frac{1}{r}\left(  \pderiv{\ut}{\theta}    +   \cot\theta\ut  \right)    +    \orsint\pderiv{\up}{\phi}   \right]\br
+	\\
+	=\  &  \left(   \frac{\bt}{r}\pderiv{}{\theta}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right) \ur
+	\\
+	&-\ \ugrad\br
+	\\
+	  &-\bigg{[} \frac{1}{r} \left(  \pderiv{\ut}{\theta} + \cot\theta\ut  \right) + \orsint \pderiv{\up}{\phi}  \bigg{]} \br - \frac{2\br\ur}{r}
 \end{align*}
 or
 \begin{align}
