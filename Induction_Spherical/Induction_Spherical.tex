@@ -25,6 +25,7 @@
 \newcommand{\epar}{\e_\parallel}
 \newcommand{\upar}{u_\parallel}
 \newcommand{\uperp}{\vecu_\perp}
+\newcommand{\veci}{\bm{I}}
 
 % date, author, title
 \date{\today}
@@ -37,10 +38,10 @@
 \section{The problem with the traditional induction terms}
 We consider the ideal (resistance-free) magnetohydrodynamic (MHD) induction equation:
 \begin{align}
-	\five\pderiv{\vecb}{t} &= \curl(\vecu\times\vecb) \label{eq:ind1},\\
+	\five\pderiv{\vecb}{t} &= \curl(\vecu\times\vecb) \label{eq:ind1}\define\veci,\\
 	&= \vecb\dotgrad\vecu - \vecu\dotgrad\vecb -(\Div\vecu)\vecb, \label{eq:ind2}
 \end{align}
-where $\vecb$ and $\vecu$ are the vector magnetic and velocity fields, respectively. The three terms on the right-hand-side of Equation \eqref{eq:ind2} are often interpreted as ``shear," ``advection," and ``compression," respectively. However, this interpretation is problematic in general for two reasons:
+where $\vecb$ and $\vecu$ are the vector magnetic and velocity fields (respectively) and $\veci$ is the vector induction. The three terms on the right-hand-side of Equation \eqref{eq:ind2} are often interpreted as ``shear," ``advection," and ``compression," respectively. However, this interpretation is problematic in general for two reasons:
 
 \begin{enumerate}
 	\item The so-called shear and compression terms contain sub-terms that cancel; in particular, only velocity motions \textit{perpendicular} to magnetic-field lines can shear or compress. \label{enum:problem1}
@@ -121,5 +122,12 @@ Resolving these issues fully for the spherical coordinate system seems complicat
 	\item Subtract the part of $\uperp$ corresponding to solid-body rotation and put it in the form of Equation \eqref{eq:rottransport1}. 
 	\item Exult, because I haven't been able to do this!
 \end{enumerate}
+Instead of addressing the full problem as just described, I have brute-forced my way into a quasi-solution, canceling obvious terms and expressing what seem to be ``perpendicular shear with no solid-body rotation," ``perpendicular compression," and advection. 
 
+We write:
+\begin{align*}
+	I_r =\ &\cancel{\br\pderiv{\ur}{r}}   +   \frac{\bt}{r}\pderiv{\ur}{\theta}   +   \frac{\bp}{\rsint}\pderiv{\ur}{\phi}   -   \bcancel{    \frac{\bt\ut+\bp\up}{r}   }\\
+	&-\left[   \ur\pderiv{\br}{r}   +   \frac{\ut}{r}\pderiv{\br}{\theta}   +   \frac{\up}{\rsint}\pderiv{\br}{\phi}   -   \bcancel{    \frac{\ut\bt+\up\bp}{r}   }   \right]\\
+	&- B_r\left[   \cancel{\pderiv{\ur}{r}}   +    \pderiv{2\ur}{r}   +   \frac{1}{r}\left(  \pderiv{\ut}{\theta}  + \cot\theta\ut  \right)   +   \orsint\pderiv{\up}{\phi}   \right]
+\end{align*}
 \end{document}
