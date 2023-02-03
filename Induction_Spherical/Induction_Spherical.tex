@@ -69,6 +69,7 @@ We then calculate
 \end{align}
 Thus, only motions perpendicular to the local field line (i.e., $\uperp$) can shear or compress $\vecb$.  
 
+\section{Rigid rotation}
 To see how Problem \ref{enum:problem2} arises, we consider a velocity field due to rigid rotation at constant angular velocity $\Omega$ about the $z$-axis in a cylindrical coordinate system:
 \begin{subequations}
 	\begin{align}
@@ -111,4 +112,13 @@ Mathematically, in any coordinate system with an axis of rotational symmetry abo
 	\orr \left(\pderiv{}{t}+\Omega\pderiv{}{\phi}\right)B_\alpha&=0\five\text{for each $\alpha$}.
 \end{align}
 If you think about it, this makes sense: All the rigid rotation does is rotate the whole field configuration around the $z$-axis at the rate $\Omega$. If you decide to also rotate at $\Omega$ (so your personal Eulerian time derivative is $\pderivline{}{t}+\Omega\pderivline{}{\phi}$), then each component if the magnetic-field configuration should remain the same in your frame. 
+
+\section{Solution for spherical coordinates}
+Resolving these issues fully for the spherical coordinate system seems complicated and I am not fully sure how to do it! In particular (for ``full" resolution) we should, separately at each point ($r$,$\theta$,$\phi$):
+\begin{enumerate}
+	\item Form a local Cartesian coordinate system, say ($x_1$, $x_2$, $x_3$). At the origin of this system (which lies at the point $(r,\theta,\phi)$), ($\e_1$, $\e_2$, $\e_3$) will coincide with ($\er$, $\et$, $\ep$). But slightly away from the origin, the Cartesian coordinates will remain the same while ($\er$, $\et$, $\ep$) curve away. 
+	\item Calculate the velocity-gradient tensor (being careful to differentiate along the Cartesian coordinates, \textit{not} the curvilinear ones or along the actual $\vecb$-line): $\pderivline{u_1}{x_1},\pderivline{u_2}{x_1}$, etc. in spherical coordinates.
+	\item Rotate this velocity-gradient tensor ``into $\vecb$" to form $\pderivline{\upar}{\xpar}$, $\pderivline{\uperp}{\xpar}$, and $\nabla_\perp\cdot\uperp$
+\end{enumerate}
+
 \end{document}
