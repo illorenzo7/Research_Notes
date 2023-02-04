@@ -135,11 +135,11 @@ We write:
 or
 \begin{subequations}
 \begin{alignat}{2}
-	I_r = \  &  \left(   \frac{\bt}{r}\pderiv{}{\theta}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right) \ur &&  \five \text{transverse shear}
+	I_r = \  &  \left(   \frac{\bt}{r}\pderiv{}{\theta}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right) \ur &&  \five \text{$r$: transverse shear}
 	\\
-	&-\ \ugrad\br && \five\text{advection}
+	&-\ \ugrad\br && \five\text{$r$: advection}
 	\\
-	  &-\bigg{[}  \frac{1}{r} \left(  \pderiv{\ut}{\theta} + \cott\ut  \right)    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}  \bigg{]} \br   && \five \text{transverse compression}
+	  &-\left[ \frac{1}{r} \left(  \pderiv{\ut}{\theta} + \cott\ut  \right)    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}  \right] \br   && \five \text{$r$: transverse compression}
 \end{alignat}
 \end{subequations}
 
@@ -151,5 +151,14 @@ Then, for $I_\theta$:
 	&- \left[   \pderiv{\ur}{r}    +     \frac{2\ur}{r}    +    \frac{1}{r}\left(  \cancel{ \pderiv{\ut}{\theta} }    +   \cott\ut  \right)    +    \orsint\pderiv{\up}{\phi}   \right] \bt
 \end{align*}
 or
+\begin{subequations}
+	\begin{alignat}{2}
+		I_r = \  &  r \left(   \br\pderiv{}{r}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right)  \left(  \frac{\ut}{r}  \right) &&  \five \text{transverse shear}
+		\\
+		&-\ \ugrad\bt && \five\text{advection}
+		\\
+		&-\bigg{[}  \frac{1}{r} \left(  \pderiv{\ut}{\theta} + \cott\ut  \right)    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}  \bigg{]} \br   && \five \text{transverse compression}
+	\end{alignat}
+\end{subequations}
 
 \end{document}
