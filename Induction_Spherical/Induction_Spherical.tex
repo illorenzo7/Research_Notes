@@ -44,13 +44,13 @@ We consider the ideal (resistance-free) magnetohydrodynamic (MHD) induction equa
 where $\vecb$ and $\vecu$ are the vector magnetic and velocity fields (respectively) and $\veci$ is the vector induction. The three terms on the right-hand-side of Equation \eqref{eq:ind2} are often interpreted as ``shear," ``advection," and ``compression," respectively. However, this interpretation is problematic in general for two reasons:
 
 \begin{enumerate}
-	\item The so-called shear and compression terms contain sub-terms that cancel; in particular, only velocity motions \textit{perpendicular} to magnetic-field lines can shear or compress. \label{enum:problem1}
+	\item The so-called shear and compression terms contain sub-terms that cancel; in particular, only velocity motions \textit{transverse} to magnetic-field lines can shear or compress. \label{enum:problem1}
 	\item Solid-body rotation (which is a non-shearing motion that simply rotates the whole field configuration) shows up in the so-called shear and advection terms in a strange way. \label{enum:problem2}
 \end{enumerate}
 
 Finally, even after these issues have been addressed, resolving the final terms into a particular curvilinear system (e.g., spherical coordinates) seems to present a major headache. Our goal here is to explain fully how these problems emerge and propose a tentative solution for the case of spherical coordinates. 
 
-\section{Perpendicular shear and compression}
+\section{Transverse shear and compression}
 To see how Problem \ref{enum:problem1} arises, we decompose the velocity field into components parallel and perpendicular to the local direction of $\vecb$:
 \begin{align}
 	\vecu &\define \upar\epar + \uperp
@@ -65,7 +65,7 @@ We then calculate
 	&= \cancel{B\pderiv{\upar}{\xpar}\epar} + B\pderiv{\uperp}{\xpar} -\cancel{\pderiv{\upar}{\xpar} B\epar} - (\nabla_\perp\cdot\uperp)B\epar\nonumber\\
 	&= \vecb\dotgrad\uperp - (\nabla_\perp\cdot\uperp)\vecb.
 \end{align}
-Thus, only motions perpendicular to the local field line (i.e., $\uperp$) can shear or compress $\vecb$.  
+Thus, only motions transverse to the local field line (i.e., $\uperp$) can shear or compress $\vecb$.  
 
 \section{Rigid rotation}
 To see how Problem \ref{enum:problem2} arises, we consider a velocity field due to rigid rotation at constant angular velocity $\Omega$ about the $z$-axis in a cylindrical coordinate system:
@@ -122,7 +122,7 @@ Resolving these issues fully for the spherical coordinate system seems complicat
 	\item Subtract the part of $\uperp$ corresponding to solid-body rotation and put it in the form of Equation \eqref{eq:rottransport1}. 
 	\item Exult, because I haven't been able to do this!
 \end{enumerate}
-Instead of addressing the full problem as just described, I have brute-forced my way into a quasi-solution, canceling obvious terms and expressing what seem to be ``perpendicular shear with no solid-body rotation," ``perpendicular compression," and advection. 
+Instead of addressing the full problem as just described, I have brute-forced my way into a quasi-solution, canceling obvious terms and expressing what seem to be ``transverse shear with no solid-body rotation," ``transverse compression," and advection. 
 
 We write:
 \begin{align*}
