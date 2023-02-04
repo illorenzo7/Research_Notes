@@ -27,12 +27,6 @@
 \newcommand{\uperp}{\vecu_\perp}
 \newcommand{\veci}{\bm{I}}
 
-\newcommand{\uhor}{\vecu_{\rm{hor}}}
-\newcommand{\utor}{\vecu_{\rm{tor}}}
-
-\newcommand{\bhor}{\vecb_{\rm{hor}}}
-\newcommand{\btor}{\vecb_{\rm{tor}}}
-
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
@@ -132,35 +126,30 @@ Instead of addressing the full problem as just described, I have brute-forced my
 
 We write:
 \begin{align*}
-	I_r =\ &\cancel{  \br\pderiv{\ur}{r}  }    +    \frac{\bt}{r}\pderiv{\ur}{\theta}    +    \frac{\bp}{\rsint}\pderiv{\ur}{\phi}    -    \bcancel{   \frac{\bt\ut+\bp\up}{r}  }\\
-	&-\left[   \ugrad\br    -    \bcancel{   \frac{\ut\bt+\up\bp}{r}  }   \right]\\
-	&- \left[   \cancel{\pderiv{\ur}{r}}    +     \frac{2\ur}{r}    +    \frac{1}{r}\left(  \pderiv{\ut}{\theta}    +   \cot\theta\ut  \right)    +    \orsint\pderiv{\up}{\phi}   \right]\br
+	I_r =\ &\cancel{  \br\pderiv{\ur}{r}  }    +    \frac{\bt}{r}\pderiv{\ur}{\theta}    +    \frac{\bp}{\rsint}\pderiv{\ur}{\phi}    -    \bcancel{   \frac{\bt\ut+\bp\up}{r}  }
 	\\
-	=\  &  \left(   \frac{\bt}{r}\pderiv{}{\theta}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right) \ur
+	&-\ugrad\br    +    \bcancel{   \frac{\ut\bt+\up\bp}{r}  }
 	\\
-	&-\ \ugrad\br
-	\\
-	  &-\bigg{[} \frac{1}{r} \left(  \pderiv{\ut}{\theta} + \cot\theta\ut  \right) + \orsint \pderiv{\up}{\phi}  \bigg{]} \br - \frac{2\br\ur}{r}
+	&- \left[   \cancel{\pderiv{\ur}{r}}    +     \frac{2\ur}{r}    +    \frac{1}{r}\left(  \pderiv{\ut}{\theta}    +   \cott\ut  \right)    +    \orsint\pderiv{\up}{\phi}   \right] \br
 \end{align*}
 or
-\begin{align}
-	I_r = \underbrace{\bhor\dotgrad\ur}_{\text{perpendicular shear}}\ \ 
-	\underbrace{-\ \left(  \Div\uhor + \frac{2\ur}{r}  \right) \br}_{\text{perpendicular compression}} \ 
-	\underbrace{-\ \ugrad\br}_{\text{advection}}
-\end{align}
-Our justification for including the term $-2\br\ur/r$ in the compression will be given in the next section. 
+\begin{subequations}
+\begin{alignat}{2}
+	I_r = \  &  \left(   \frac{\bt}{r}\pderiv{}{\theta}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right) \ur &&  \five \text{transverse shear}
+	\\
+	&-\ \ugrad\br && \five\text{advection}
+	\\
+	  &-\bigg{[}  \frac{1}{r} \left(  \pderiv{\ut}{\theta} + \cott\ut  \right)    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}  \bigg{]} \br   && \five \text{transverse compression}
+\end{alignat}
+\end{subequations}
 
-Now that we know a bit more how things fall into place, we calculate
+Then, for $I_\theta$:
 \begin{align*}
-	I_\theta =\ &\cancel{  \frac{\bt}{r}\pderiv{\ut}{\theta}  } + \btor\dotgrad\ut + \frac{\bt\ur}{r} - \bcancel{\frac{\cot\theta \bp\up}{r}}\\
-	&-\ugrad\bt -  \frac{\ut\br}{r} + \bcancel{\frac{\cot\theta\up\bp}{r} }\\
-	& - \bt\left(   \cancel{\frac{1}{r}\pderiv{\ut}{\theta}} + \frac{\cot\theta\ut}{r} + \Div\utor   \right)
+	I_\theta = & \br\pderiv{\ut}{r}      +  \cancel{  \frac{\bt}{r}\pderiv{\ut}{\theta}  }    +    \frac{\bp}{\rsint}\pderiv{\ut}{\phi}    +     \frac{\bt\ur}{r}    -    \bcancel{  \frac{\cott\bp\up}{r}  }
+	\\
+	&-\ugrad\bt    -    \frac{\ut\br}{r}    +    \bcancel{  \frac{\cott\up\bp}{r}  }\\
+	&- \left[   \pderiv{\ur}{r}    +     \frac{2\ur}{r}    +    \frac{1}{r}\left(  \cancel{ \pderiv{\ut}{\theta} }    +   \cott\ut  \right)    +    \orsint\pderiv{\up}{\phi}   \right] \bt
 \end{align*}
 or
-\begin{align}
-	I_\theta = \underbrace{r\btor\dotgrad \left(\frac{\ut}{r}\right) }_{\text{perpendicular shear}} 
-	\underbrace{-\ \left(  \Div\utor +\frac{\cot\theta\ut}{r} - \frac{\ur}{r}  \right) \bt}_{\text{perpendicular compression}} \ 
-	\underbrace{-\ \ugrad\br}_{\text{advection}}
-\end{align}
 
 \end{document}
