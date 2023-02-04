@@ -53,11 +53,11 @@ Finally, even after these issues have been addressed, resolving the final terms 
 \section{Transverse shear and compression}
 To see how Problem \ref{enum:problem1} arises, we decompose the velocity field into components parallel and perpendicular to the local direction of $\vecb$:
 \begin{align}
-	\vecu &\define \upar\epar + \uperp
+	\vecu &\define \upar\epar + \uperp.
 \end{align} 
 Obviously $\vecb=B\xpar$, where $B=|\vecb|$. We denote the Cartesian distance along $\vecb$ by $\xpar$. We also decompose $\vecu$ into its parallel and perpendicular components:
 \begin{align}
-	\Div\vecu=\pderiv{\upar}{\xpar}+\nabla_\perp\cdot\uperp
+	\Div\vecu=\pderiv{\upar}{\xpar}+\nabla_\perp\cdot\uperp.
 \end{align}
 We then calculate
 \begin{align}
@@ -72,10 +72,10 @@ To see how Problem \ref{enum:problem2} arises, we consider a velocity field due 
 \begin{subequations}
 	\begin{align}
 		\vecrot &= \Omega\ez=\text{constant}\\
-		\vecu&=\vecrot\times\bm{r} = \Omega\lambda\ep
+		\andd \vecu&=\vecrot\times\bm{r} = \Omega\lambda\ep.
 	\end{align}
 \end{subequations}
-Here, $\lambda$ is the cylindrical radius, $\phi$ the longitude, and $z$ the axial coordinate. In general,  $\e_{(\cdots)}$ denotes a unit vector in the direction of its subscript. We calculate:
+Here, $\lambda$ is the cylindrical radius, $\phi$ the longitude, and $z$ the axial coordinate (also see Figure \ref{fig:coords}). In general,  $\e_\alpha$ denotes a unit vector in the direction of the coordinate $\alpha$. We calculate:
 \begin{align}
 	\Div\vecu&=\Div(\vecrot\times\bm{r})\nonumber\\
 	&= \vecrot\dotgrad\times\vecr-\vecr\dotgrad\times\vecrot\nonumber\\
@@ -182,7 +182,7 @@ or
 \end{subequations}
 
 \section{Transverse compression}
-Here we show that the ``transverse compression" terms defined in Equations \eqref{eq:indr}--\eqref{eq:indp} make sense. The key point is that we must be careful (in calculating $\nabla_\perp\cdot\uperp$) when differentiating along $\theta$ or $\phi$, because the local spherical unit vectors will all be changing. For example the divergence ``transverse to $\er$" is not simply $\Div(\ut\et + \up\ep)$; there are also curvature terms. 
+Here we show that the ``transverse compression" terms defined in Equations \eqref{eq:indr}--\eqref{eq:indp} make sense. The key point is that we must be careful when calculating the ``transverse divergence." When we differentiate along $\theta$ or $\phi$, the local spherical unit vectors will all change. For example, the divergence ``transverse to $\er$" is not simply $\Div(\ut\et + \up\ep)$; there are also curvature terms. 
 
   \begin{figure}
 	\includegraphics[scale=0.4]{Fig1_coordinate_systems.png}\hfill 	\includegraphics[scale=0.35]{Fig2_Pertx2.png}
@@ -203,35 +203,38 @@ And trivially:
 	\begin{align}
 		\delta x_1 &= \delta r \\ 
 		\delta x_2 &= r\delta\theta\\
-		\delta x_3 &= \rsint\delta\phi
+		\delta x_3 &= \rsint\delta\phi.
 	\end{align}
 \end{subequations}
 We thus compute:
 \begin{align}
 	\pderiv{u_1}{x_1} &= \lim_{\delta x_1\rightarrow0}\frac{u_1(\delta x_1, 0, 0) - u_1(0,0,0)}{\delta x_1}\nonumber\\
 	&=  \lim_{\delta r\rightarrow0}\frac{\ur(r+\delta r, \theta, \phi) - \ur(r,\theta,\phi)}{\delta r}\nonumber\\
-	&= \pderiv{\ur}{r}
+	&= \pderiv{\ur}{r}.
 \end{align}
 That was the easy one! Now for the curvy ones:
 \begin{align}
 	\pderiv{u_2}{x_2} &= \lim_{\delta x_2\rightarrow0}\frac{u_2(0, \delta x_2, 0) - u_2(0,0,0)}{\delta x_2}\nonumber\\
 	&=  \lim_{\delta \theta\rightarrow0}\frac{\ut(r, \theta+\delta\theta, \phi) + \ur(r,\theta+\delta\theta,\phi)\delta\theta - \ut(r,\theta,\phi)}{r\delta\theta}\nonumber\\
 	&= \lim_{\delta \theta\rightarrow0}\frac{\ut(r, \theta+\delta\theta, \phi) - \ut(r,\theta,\phi)}{r\delta\theta} + \lim_{\delta \theta\rightarrow0} \frac{\ur(r,\theta+\delta\theta,\phi)}{r} \nonumber\\
-	&= \frac{1}{r}\pderiv{\ut}{\theta} + \frac{\ur}{r}
+	&= \frac{1}{r}\pderiv{\ut}{\theta} + \frac{\ur}{r}.
 \end{align}
 And finally:
 \begin{align}
 	\pderiv{u_3}{x_3} &= \lim_{\delta x_3\rightarrow0}\frac{u_3(0,0,  \delta x_3) - u_3(0,0,0)}{\delta x_3}\nonumber\\
 	&=  \lim_{\delta \phi\rightarrow0}  \frac{\up(r, \theta, \phi+\delta\phi) + (\sint\ur + \cost\ut)\delta\phi - \up(r,\theta,\phi) } {\rsint\delta\phi}\nonumber\\
-	&= \orsint\pderiv{\up}{\phi} + \frac{\ur}{r} + \frac{\cott\ut}{r}
+	&= \orsint\pderiv{\up}{\phi} + \frac{\ur}{r} + \frac{\cott\ut}{r}.
 \end{align}
 We thus find the various components of transverse divergence: 
 \begin{align}
 	(\Div\vecu)_{\perp\ \text{to}\ r} &= \pderiv{u_2}{x_2} + \pderiv{u_3}{x_3} \nonumber\\
-	&= \frac{1}{r} \pderiv{\ut}{\theta}    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}    +     \frac{\cott\ut}{r},\\
+	&= \frac{1}{r} \pderiv{\ut}{\theta}    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}    +     \frac{\cott\ut}{r},
+	\\
 	(\Div\vecu)_{\perp\ \text{to}\ \theta} &= \pderiv{u_1}{x_1} + \pderiv{u_3}{x_3} \nonumber\\
-	&=  \pderiv{\ur}{r}    +     \orsint \pderiv{\up}{\phi}    +    \frac{\ur}{r}    +    \frac{\cott\ut}{r} 
+	&=  \pderiv{\ur}{r}    +     \orsint \pderiv{\up}{\phi}    +    \frac{\ur}{r}    +    \frac{\cott\ut}{r},
+	 \\
 	\andd 	(\Div\vecu)_{\perp\ \text{to}\ \phi} &= \pderiv{u_1}{x_1} + \pderiv{u_2}{x_2} \nonumber\\	
-	 &= \pderiv{\ur}{r}    +     \frac{1}{r} \pderiv{\ut}{\theta}    +    \frac{\ur}{r} 
+	 &= \pderiv{\ur}{r}    +     \frac{1}{r} \pderiv{\ut}{\theta}    +    \frac{\ur}{r}.
 \end{align}
+Comparing with Equations \eqref{eq:indr}--\eqref{eq:indp}, we see that these are the exact same divergence terms showing up in the ``transverse compression." 
 \end{document}
