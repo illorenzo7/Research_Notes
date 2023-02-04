@@ -133,7 +133,7 @@ We write:
 	&- \left[   \cancel{\pderiv{\ur}{r}}    +     \frac{2\ur}{r}    +    \frac{1}{r}\left(  \pderiv{\ut}{\theta}    +   \cott\ut  \right)    +    \orsint\pderiv{\up}{\phi}   \right] \br
 \end{align*}
 or
-\begin{subequations}
+\begin{subequations}\label{eq:indr}
 \begin{alignat}{2}
 	I_r = \  &  \left(   \frac{\bt}{r}\pderiv{}{\theta}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right) \ur &&  \five \text{$r$: transverse shear}
 	\\
@@ -152,7 +152,7 @@ Then, for $I_\theta$:
 	&- \left[   \pderiv{\ur}{r}    +     \frac{2\ur}{r}    +    \frac{1}{r}\left(  \cancel{ \pderiv{\ut}{\theta} }    +   \cott\ut  \right)    +    \orsint\pderiv{\up}{\phi}   \right] \bt
 \end{align*}
 or
-\begin{subequations}
+\begin{subequations}\label{eq:indt}
 	\begin{alignat}{2}
 		I_\theta = \  &  r \left(   \br\pderiv{}{r}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right)  \left(  \frac{\ut}{r}  \right) &&  \five \text{$\theta$: transverse shear}
 		\\
@@ -171,7 +171,7 @@ Finally, for $I_\phi$:
 	&- \left[   \pderiv{\ur}{r}    +     \frac{2\ur}{r}    +    \frac{1}{r}\left(  \pderiv{\ut}{\theta}     +   \bcancel{  \cott\ut  }  \right)    +    \cancel{  \orsint\pderiv{\up}{\phi}  }   \right] \bp
 \end{align*}
 or
-\begin{subequations}
+\begin{subequations}\label{eq:indp}
 	\begin{alignat}{2}
 		I_\phi = \  &  \rsint \left(   \br\pderiv{}{r}    +    \frac{\bt}{r}\pderiv{}{\theta}   \right)  \left(  \frac{\up}{\rsint}  \right) &&  \five \text{$\phi$: transverse shear}
 		\\
@@ -182,9 +182,12 @@ or
 \end{subequations}
 
 \section{Transverse compression}
+Here we show that the ``transverse compression" terms defined in Equations \eqref{eq:indr}--\eqref{eq:indp} make sense. The key point is that we must be careful (in calculating $\nabla_\perp\cdot\uperp$) when differentiating along $\theta$ or $\phi$, because the local spherical unit vectors will all be changing. For example the divergence ``transverse to $\er$" is not simply $\Div(\ut\et + \up\ep)$; there are also curvature terms. 
+
+Figure \ref{fig:coords} shows schematically how this works. We set up a local Cartesian coordinate system (with origin at the point $(r,\theta,\phi)$) denoted by $(x_1,x_2,x_3)$. As we differentiate $\vecu$, the spherical-coordinate unit vectors change, while the Cartesian ones stay fixed. In particular, if we move from $(r,\theta,\phi)\rightarrow (r+\delta r, \theta + \delta\theta, \phi + \delta\phi)$ (or in the Cartesian system, $(0, 0, 0)\rightarrow (\delta x_1, \delta x_2, \delta x_3)$)  
   \begin{figure}
-	\includegraphics[scale=0.6]{Fig1_coordinate_systems.png}
-	\caption{Schematic of coordinate systems used here, their relation to one another, and each coordinate's meaning. Note that $(x,y,z) = (\lambda\cos\phi, \lambda\sin\phi, z) = (\rsint\cos\phi, \rsint\sin\phi, r\cost)$. The local Cartesian system $(x_1,x_2,x_3)$ has its origin at the point $(r,\theta,\phi)$, where $(\e_1,\e_2,\e_3) = (\er, \et, \ep)$. }
+	\includegraphics[scale=0.4]{Fig1_coordinate_systems.png}\hfill 	\includegraphics[scale=0.35]{Fig2_Pertx2.png}
+	\caption{\textit{Left}: Schematic of coordinate systems used here, their relation to one another, and each coordinate's meaning. Note that $(x,y,z) = (\lambda\cos\phi, \lambda\sin\phi, z) = (\rsint\cos\phi, \rsint\sin\phi, r\cost)$. The local Cartesian system $(x_1,x_2,x_3)$ has its origin at the point $(r,\theta,\phi)$, where $(\e_1,\e_2,\e_3) = (\er, \et, \ep)$. \textit{Right}: Away from the origin, the unit vectors no longer coincide. We show the relationship between the spherical-coordinate unit vectors and the Cartesian unit vectors when $\theta\rightarrow\theta+\delta\theta$ (or equivalently, $x_2=0\rightarrow  \delta x_2$). }
 	\label{fig:coords}
 \end{figure}
 
