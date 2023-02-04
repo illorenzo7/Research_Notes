@@ -139,7 +139,7 @@ or
 	\\
 	&-\ \ugrad\br && \five\text{$r$: advection}
 	\\
-	  &-\left[ \frac{1}{r} \left(  \pderiv{\ut}{\theta} + \cott\ut  \right)    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}  \right] \br   && \five \text{$r$: transverse compression}
+	  &-\left( \frac{1}{r} \pderiv{\ut}{\theta}    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}    +     \frac{\cott\ut}{r}  \right)  \br   && \five \text{$r$: transverse compression}
 \end{alignat}
 \end{subequations}
 
@@ -153,11 +153,11 @@ Then, for $I_\theta$:
 or
 \begin{subequations}
 	\begin{alignat}{2}
-		I_r = \  &  r \left(   \br\pderiv{}{r}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right)  \left(  \frac{\ut}{r}  \right) &&  \five \text{transverse shear}
+		I_r = \  &  r \left(   \br\pderiv{}{r}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right)  \left(  \frac{\ut}{r}  \right) &&  \five \text{$\theta$: transverse shear}
 		\\
-		&-\ \ugrad\bt && \five\text{advection}
+		&-\ \ugrad\bt && \five\text{$\theta$: advection}
 		\\
-		&-\bigg{[}  \frac{1}{r} \left(  \pderiv{\ut}{\theta} + \cott\ut  \right)    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}  \bigg{]} \br   && \five \text{transverse compression}
+		&-\left(  \pderiv{\ur}{r}    +     \orsint \pderiv{\up}{\phi}    +    \frac{\ur}{r}    +    \frac{\cott\ut}{r}  \right) \br   && \five \text{$\theta$: transverse compression}
 	\end{alignat}
 \end{subequations}
 
