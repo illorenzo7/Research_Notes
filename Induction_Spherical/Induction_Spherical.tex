@@ -212,4 +212,26 @@ We thus compute:
 	&=  \lim_{\delta r\rightarrow0}\frac{\ur(r+\delta r, \theta, \phi) - \ur(r,\theta,\phi)}{\delta r}\nonumber\\
 	&= \pderiv{\ur}{r}
 \end{align}
+That was the easy one! Now for the curvy ones:
+\begin{align}
+	\pderiv{u_2}{x_2} &= \lim_{\delta x_2\rightarrow0}\frac{u_2(0, \delta x_2, 0) - u_2(0,0,0)}{\delta x_2}\nonumber\\
+	&=  \lim_{\delta \theta\rightarrow0}\frac{\ut(r, \theta+\delta\theta, \phi) + \ur(r,\theta+\delta\theta,\phi)\delta\theta - \ut(r,\theta,\phi)}{r\delta\theta}\nonumber\\
+	&= \lim_{\delta \theta\rightarrow0}\frac{\ut(r, \theta+\delta\theta, \phi) - \ut(r,\theta,\phi)}{r\delta\theta} + \lim_{\delta \theta\rightarrow0} \frac{\ur(r,\theta+\delta\theta,\phi)}{r} \nonumber\\
+	&= \frac{1}{r}\pderiv{\ut}{\theta} + \frac{\ur}{r}
+\end{align}
+And finally:
+\begin{align}
+	\pderiv{u_3}{x_3} &= \lim_{\delta x_3\rightarrow0}\frac{u_3(0,0,  \delta x_3) - u_3(0,0,0)}{\delta x_3}\nonumber\\
+	&=  \lim_{\delta \phi\rightarrow0}  \frac{\up(r, \theta, \phi+\delta\phi) + (\sint\ur + \cost\ut)\delta\phi - \up(r,\theta,\phi) } {\rsint\delta\phi}\nonumber\\
+	&= \orsint\pderiv{\up}{\phi} + \frac{\ur}{r} + \frac{\cott\ut}{r}
+\end{align}
+We thus find the various components of transverse divergence: 
+\begin{align}
+	(\Div\vecu)_{\perp\ \text{to}\ r} &= \pderiv{u_2}{x_2} + \pderiv{u_3}{x_3} \nonumber\\
+	&= \frac{1}{r} \pderiv{\ut}{\theta}    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}    +     \frac{\cott\ut}{r},\\
+	(\Div\vecu)_{\perp\ \text{to}\ \theta} &= \pderiv{u_1}{x_1} + \pderiv{u_3}{x_3} \nonumber\\
+	&=  \pderiv{\ur}{r}    +     \orsint \pderiv{\up}{\phi}    +    \frac{\ur}{r}    +    \frac{\cott\ut}{r} 
+	\andd 	(\Div\vecu)_{\perp\ \text{to}\ \phi} &= \pderiv{u_1}{x_1} + \pderiv{u_2}{x_2} \nonumber\\	
+	 &= \pderiv{\ur}{r}    +     \frac{1}{r} \pderiv{\ut}{\theta}    +    \frac{\ur}{r} 
+\end{align}
 \end{document}
