@@ -75,7 +75,7 @@ To see how Problem \ref{enum:problem2} arises, we consider a velocity field due 
 		\andd \vecu&=\vecrot\times\bm{r} = \Omega\lambda\ep.
 	\end{align}
 \end{subequations}
-Here, $\lambda$ is the cylindrical radius, $\phi$ the longitude, and $z$ the axial coordinate (also see Figure \ref{fig:coords}). In general,  $\e_\alpha$ denotes a unit vector in the direction of the coordinate $\alpha$. We calculate:
+Here, $\lambda$ is the cylindrical radius, $\phi$ the longitude, $z$ the axial coordinate, and $\vecr\define r\er$ the position vector (also see Figure \ref{fig:coords}). In general,  $\e_\alpha$ denotes a unit vector in the direction of the coordinate $\alpha$. We calculate:
 \begin{align}
 	\Div\vecu&=\Div(\vecrot\times\bm{r})\nonumber\\
 	&= \vecrot\dotgrad\times\vecr-\vecr\dotgrad\times\vecrot\nonumber\\
@@ -84,7 +84,7 @@ Here, $\lambda$ is the cylindrical radius, $\phi$ the longitude, and $z$ the axi
 Then:
 \begin{align}
 	\vecb\dotgrad\vecu&=(\vecb\dotgrad)(\vecrot\times\vecr)\nonumber\nonumber\\
-	&= \vecrot\times[(\vecb\dotgrad)(\vecr)]\\
+	&= \vecrot\times[(\vecb\dotgrad)\vecr]\nonumber\\
 	&= \vecrot\times\vecb\five\text{``shear" for rigid rotation}.
 \end{align}
 Finally:
@@ -93,11 +93,15 @@ Finally:
 	&=-\Omega\pderiv{}{\phi}(B_\lambda\el+B_\phi\ep+B_z\ez)\\
 	&=-\Omega\sum_\alpha\left(\pderiv{B_\alpha}{\phi}\right)\e_\alpha-\Omega\sum_\alpha B_\alpha\pderiv{\e_\alpha}{\phi},
 \end{align*}
-where the index $\alpha$ runs over the three cylindrical coordinates. Note that in the cylindrical coordinate system (or indeed any coordinate system with an axis of rotational symmetry), $\pderivline{\e_\alpha}{\phi}=\e_z\times\e_\alpha$ for each $\alpha$. Thus,
+where the index $\alpha$ runs over the three cylindrical coordinates. Note that in the cylindrical coordinate system (or indeed any coordinate system with an axis of rotational symmetry), 
+\begin{align}
+	\pderiv{\e_\alpha}{\phi}=\e_z\times\e_\alpha \five\text{for each $\alpha$}.
+\end{align}
+Thus,
 \begin{align*}
 	-\Omega\sum_\alpha B_\alpha\pderiv{\e_\alpha}{\phi} &= -\Omega\sum_\alpha B_\alpha\ez\times\e_\alpha\\
 	&=-\Omega\ez\times\sum_\alpha B_\alpha\e_\alpha\\
-	&=-\vecrot\times\vecb
+	&=-\vecrot\times\vecb,
 \end{align*}
 and so
 \begin{align}
@@ -111,18 +115,18 @@ Mathematically, in any coordinate system with a $z$-axis of rotational symmetry,
 	\orr \left(\pderiv{}{t}+\Omega\pderiv{}{\phi}\right)B_\alpha&=0\five\text{for each $\alpha$}.\label{eq:rottransport2}
 \end{align}
 \end{subequations}
-If you think about it, this makes sense: All the rigid rotation does is rotate the whole field configuration around the $z$-axis at the rate $\Omega$. If you decide to also rotate at $\Omega$ (so your personal Eulerian time derivative is $\pderivline{}{t}+\Omega\pderivline{}{\phi}$), then each component of the magnetic-field configuration should remain the same in your frame. Note that rotation does \textit{not} advect the vector magnetic field (like the term $-\vecu\dotgrad\vecb$ viewed on its own would suggest), but rather advects the field \textit{components} (as if they were scalars) in any coordinate system with an axis of rotational symmetry. 
+If you think about it, this makes sense: All the rigid rotation does is rotate the whole field configuration around the $z$-axis at the rate $\Omega$. If you decide to also rotate at $\Omega$ (so your personal Eulerian time derivative is $\pderivline{}{t}+\Omega\pderivline{}{\phi}$), then each component of the magnetic-field configuration should remain the same in your frame. Note that the rotation does \textit{not} advect the vector magnetic field (like the term $-\vecu\dotgrad\vecb$ viewed on its own would suggest), but rather it advects the field \textit{components} (as if they were scalars) in any coordinate system with an axis of rotational symmetry. 
 
 \section{Solution for spherical coordinates}
 Resolving these issues fully for the spherical coordinate system seems complicated and I am not fully sure how to do it! In particular (for ``full" resolution) we should, separately at each point ($r$,$\theta$,$\phi$):
 \begin{enumerate}
 	\item Form a local Cartesian coordinate system, say ($x_1$, $x_2$, $x_3$), whose origin lies at the point $(r,\theta,\phi)$. At the origin, ($\e_1$, $\e_2$, $\e_3$) will coincide with ($\er$, $\et$, $\ep$). But slightly away from the origin, ($\e_1$, $\e_2$, $\e_3$) will stay fixed while ($\er$, $\et$, $\ep$) curve away. 
-	\item Calculate the velocity-gradient tensor: $\pderivline{u_1}{x_1},\pderivline{u_2}{x_1}, \pderivline{u_3}{x_1}$, etc. While calculating derivatives, be careful to differentiate along the Cartesian coordinates, \textit{not} the curvilinear ones or along the actual $\vecb$-line). Express the final tensor components in spherical coordinates.
-	\item Rotate ``into $\vecb$" to form a new primed coordinate system (such that $\e_1^\prime$ points along $\vecb$), calculate the $\pderivline{u_j^\prime}{x_i^\prime}$, and thus form $\pderivline{\upar}{\xpar}$ and $\pderivline{\uperp}{\xpar}$ (note that $\nabla_\perp\cdot\uperp=\Div\vecu- \pderivline{\upar}{\xpar}$). Note that the direction cosines $\e_1^\prime$ makes with ($\e_1$, $\e_2$, $\e_3$) are simply $\br/|\vecb|, \bt/|\vecb|, \bp/|\vecb|$, respectively. Note that both unit vectors and vector components transform like $x_1^\prime=\sum_{j=1}^3R_{1j}x_j$, where $R_{1j}$ is the $j^{th}$ direction cosine.  
-	\item Subtract the part of $\uperp$ corresponding to solid-body rotation and put it in the form of Equation \eqref{eq:rottransport1}. 
-	\item Exult, because I haven't been able to do this!
+	\item Calculate the velocity-gradient tensor: $\pderivline{u_1}{x_1},\pderivline{u_2}{x_1}$, and $\pderivline{u_3}{x_1}$, etc. While calculating derivatives, be careful to differentiate along the Cartesian coordinates, \textit{not} the curvilinear ones or along curving $\vecb$-lines. Express the final tensor components in spherical coordinates. (I have begun this process in Section \ref{sec:compression}). 
+	\item Rotate ``into $\vecb$" to form a new primed coordinate system (such that $\e_1^\prime$ points along $\vecb$), calculate the $\pderivline{u_j^\prime}{x_i^\prime}$, and thus form $\pderivline{\upar}{\xpar}$ and $\pderivline{\uperp}{\xpar}$ (note that $\nabla_\perp\cdot\uperp=\Div\vecu- \pderivline{\upar}{\xpar}$). Note that the direction cosines $\e_1^\prime$ makes with ($\e_1$, $\e_2$, $\e_3$) are simply $\br/|\vecb|,\bt/|\vecb|$, and $\bp/|\vecb|$, respectively. Note that both unit vectors and vector components transform like $x_1^\prime=\sum_{j=1}^3R_{1j}x_j$, where $R_{1j}$ is the $j^{th}$ direction cosine.  
+	\item Subtract the part of $\uperp$ corresponding to solid-body rotation from the new shear and advection terms, and put it in a term like the one in Equation \eqref{eq:rottransport1}. 
+	\item Exult!
 \end{enumerate}
-Instead of addressing the full problem as just described, I have brute-forced my way into a quasi-solution, canceling obvious terms and expressing what seem to be ``transverse shear with no solid-body rotation," ``transverse compression," and advection. 
+Instead of addressing the full problem as just described, I have brute-forced my way into a quasi-solution, canceling obvious terms and expressing what seem to be ``transverse shear with no solid-body rotation," ``transverse compression," and ``advection of $\vecb$-components as though they were scalars."  
 
 We write:
 \begin{align*}
@@ -139,7 +143,7 @@ or
 	\\
 	&-\ \ugrad\br && \five\text{$r$: advection}
 	\\
-	  &-\left( \frac{1}{r} \pderiv{\ut}{\theta}    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}    +     \frac{\cott\ut}{r}  \right)  \br   && \five \text{$r$: transverse compression}
+	  &-\left( \frac{1}{r} \pderiv{\ut}{\theta}    +    \orsint \pderiv{\up}{\phi}    +    \frac{2\ur}{r}    +     \frac{\cott\ut}{r}  \right)  \br.  && \five \text{$r$: transverse compression}
 \end{alignat}
 \end{subequations}
 
@@ -158,7 +162,7 @@ or
 		\\
 		&-\ \ugrad\bt && \five\text{$\theta$: advection}
 		\\
-		&-\left(  \pderiv{\ur}{r}    +     \orsint \pderiv{\up}{\phi}    +    \frac{\ur}{r}    +    \frac{\cott\ut}{r}  \right) \bt   && \five \text{$\theta$: transverse compression}
+		&-\left(  \pderiv{\ur}{r}    +     \orsint \pderiv{\up}{\phi}    +    \frac{\ur}{r}    +    \frac{\cott\ut}{r}  \right) \bt.  && \five \text{$\theta$: transverse compression}
 	\end{alignat}
 \end{subequations}
 
@@ -177,16 +181,25 @@ or
 		\\
 		&-\ \ugrad\bp && \five\text{$\phi$: advection}
 		\\
-		&-\left(  \pderiv{\ur}{r}    +     \frac{1}{r} \pderiv{\ut}{\theta}    +    \frac{\ur}{r}     \right) \bp   && \five \text{$\phi$: transverse compression}
+		&-\left(  \pderiv{\ur}{r}    +     \frac{1}{r} \pderiv{\ut}{\theta}    +    \frac{\ur}{r}     \right) \bp.   && \five \text{$\phi$: transverse compression}
 	\end{alignat}
 \end{subequations}
+These equations have the following positive attributes: 
+\begin{enumerate}
+	\item The obvious ``non-transverse" components of the shear and compression have canceled. 
+	\item Solid-body rotation is eliminated from the $\phi$ shear term, since $\up/\rsint$ is differentiated instead of $\up$. I am less happy with the $\theta$ shear term, although $\ut=r\Omega$ does imply rigid rotation of a particular plane, so differentiating $\ut/r$ instead of $\ut$ seems to get rid of \textit{some} of the solid-body rotation.
+	\item The new ``advection" advects the vector components of $\vecb$ instead of $\vecb$ itself, something that was seen to be important to express the action of solid-body rotation. 
+	\item The ``transverse compression" terms have a satisfying interpretation, as shown in the following section. 
+	\item The terms were found simply by rearranging to full induction equation expressed in spherical coordinates. 
+\end{enumerate}
+I am not sure how close these equations are to what we actually want (namely, shear and compression transverse to a field line), but hopefully they are a step in the right direction. If anyone can see a better way forward, please tell me!
 
-\section{Transverse compression}
+\section{Transverse compression}\label{sec:compression}
 Here we show that the ``transverse compression" terms defined in Equations \eqref{eq:indr}--\eqref{eq:indp} make sense. The key point is that we must be careful when calculating the ``transverse divergence." When we differentiate along $\theta$ or $\phi$, the local spherical unit vectors will all change. For example, the divergence ``transverse to $\er$" is not simply $\Div(\ut\et + \up\ep)$; there are also curvature terms. 
 
   \begin{figure}
 	\includegraphics[scale=0.4]{Fig1_coordinate_systems.png}\hfill 	\includegraphics[scale=0.35]{Fig2_Pertx2.png}
-	\caption{\textit{Left}: Schematic of coordinate systems used here, their relation to one another, and each coordinate's meaning. Note that $(x,y,z) = (\lambda\cos\phi, \lambda\sin\phi, z) = (\rsint\cos\phi, \rsint\sin\phi, r\cost)$. The local Cartesian system $(x_1,x_2,x_3)$ has its origin at the point $(r,\theta,\phi)$, where $(\e_1,\e_2,\e_3) = (\er, \et, \ep)$. \textit{Right}: Away from the origin, the unit vectors no longer coincide. We show the relationship between the spherical-coordinate unit vectors and the Cartesian unit vectors when $\theta\rightarrow\theta+\delta\theta$ (or equivalently, $x_2=0\rightarrow  \delta x_2$). }
+	\caption{\textit{Left}: Schematic of coordinate systems used here, their relation to one another, and each coordinate's meaning. Note that $(x,y,z) = (\lambda\cos\phi, \lambda\sin\phi, z) = (\rsint\cos\phi, \rsint\sin\phi, r\cost)$. The local Cartesian system $(x_1,x_2,x_3)$ has its origin at the point $(r,\theta,\phi)$, where $(\e_1,\e_2,\e_3) = (\er, \et, \ep)$. \textit{Right}: Away from the origin, the unit vectors no longer coincide. We show the relationship between the spherical-coordinate unit vectors and the Cartesian unit vectors when $\theta\rightarrow\theta+\delta\theta$ (or equivalently, $x_2=0\rightarrow  \delta x_2$). By viewing the system from above, a similar diagram can be made for what happens when $\phi\rightarrow\phi+\delta\phi$. }
 	\label{fig:coords}
 \end{figure}
 
