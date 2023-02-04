@@ -147,17 +147,37 @@ Then, for $I_\theta$:
 \begin{align*}
 	I_\theta = & \br\pderiv{\ut}{r}      +  \cancel{  \frac{\bt}{r}\pderiv{\ut}{\theta}  }    +    \frac{\bp}{\rsint}\pderiv{\ut}{\phi}    +     \frac{\bt\ur}{r}    -    \bcancel{  \frac{\cott\bp\up}{r}  }
 	\\
-	&-\ugrad\bt    -    \frac{\ut\br}{r}    +    \bcancel{  \frac{\cott\up\bp}{r}  }\\
+	&-\ugrad\bt    -    \frac{\ut\br}{r}    +    \bcancel{  \frac{\cott\up\bp}{r}  }
+	\\
 	&- \left[   \pderiv{\ur}{r}    +     \frac{2\ur}{r}    +    \frac{1}{r}\left(  \cancel{ \pderiv{\ut}{\theta} }    +   \cott\ut  \right)    +    \orsint\pderiv{\up}{\phi}   \right] \bt
 \end{align*}
 or
 \begin{subequations}
 	\begin{alignat}{2}
-		I_r = \  &  r \left(   \br\pderiv{}{r}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right)  \left(  \frac{\ut}{r}  \right) &&  \five \text{$\theta$: transverse shear}
+		I_\theta = \  &  r \left(   \br\pderiv{}{r}    +    \frac{\bp}{\rsint}\pderiv{}{\phi}   \right)  \left(  \frac{\ut}{r}  \right) &&  \five \text{$\theta$: transverse shear}
 		\\
 		&-\ \ugrad\bt && \five\text{$\theta$: advection}
 		\\
-		&-\left(  \pderiv{\ur}{r}    +     \orsint \pderiv{\up}{\phi}    +    \frac{\ur}{r}    +    \frac{\cott\ut}{r}  \right) \br   && \five \text{$\theta$: transverse compression}
+		&-\left(  \pderiv{\ur}{r}    +     \orsint \pderiv{\up}{\phi}    +    \frac{\ur}{r}    +    \frac{\cott\ut}{r}  \right) \bt   && \five \text{$\theta$: transverse compression}
+	\end{alignat}
+\end{subequations}
+
+Finally, for $I_\phi$:
+\begin{align*}
+	I_\phi = & \br\pderiv{\up}{r}      +   \frac{\bt}{r}\pderiv{\up}{\theta}    +    \cancel{  \frac{\bp}{\rsint}\pderiv{\up}{\phi}  }    +     \frac{\bp\ur}{r}    +    \bcancel{  \frac{\cott\bp\ut}{r}   }
+	\\
+	&-\ugrad\bp    -       \frac{\up\br}{r}    -    \frac{\cott\up\bt}{r} 
+	\\
+	&- \left[   \pderiv{\ur}{r}    +     \frac{2\ur}{r}    +    \frac{1}{r}\left(  \pderiv{\ut}{\theta}     +   \bcancel{  \cott\ut  }  \right)    +    \cancel{  \orsint\pderiv{\up}{\phi}  }   \right] \bp
+\end{align*}
+or
+\begin{subequations}
+	\begin{alignat}{2}
+		I_\phi = \  &  \rsint \left(   \br\pderiv{}{r}    +    \frac{\bt}{r}\pderiv{}{\theta}   \right)  \left(  \frac{\up}{\rsint}  \right) &&  \five \text{$\phi$: transverse shear}
+		\\
+		&-\ \ugrad\bp && \five\text{$\phi$: advection}
+		\\
+		&-\left(  \pderiv{\ur}{r}    +     \frac{1}{r} \pderiv{\ut}{\theta}    +    \frac{\ur}{r}     \right) \bp   && \five \text{$\phi$: transverse compression}
 	\end{alignat}
 \end{subequations}
 
