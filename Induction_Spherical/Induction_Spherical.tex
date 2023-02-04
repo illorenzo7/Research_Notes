@@ -184,12 +184,32 @@ or
 \section{Transverse compression}
 Here we show that the ``transverse compression" terms defined in Equations \eqref{eq:indr}--\eqref{eq:indp} make sense. The key point is that we must be careful (in calculating $\nabla_\perp\cdot\uperp$) when differentiating along $\theta$ or $\phi$, because the local spherical unit vectors will all be changing. For example the divergence ``transverse to $\er$" is not simply $\Div(\ut\et + \up\ep)$; there are also curvature terms. 
 
-Figure \ref{fig:coords} shows schematically how this works. We set up a local Cartesian coordinate system (with origin at the point $(r,\theta,\phi)$) denoted by $(x_1,x_2,x_3)$. As we differentiate $\vecu$, the spherical-coordinate unit vectors change, while the Cartesian ones stay fixed. In particular, if we move from $(r,\theta,\phi)\rightarrow (r+\delta r, \theta + \delta\theta, \phi + \delta\phi)$ (or in the Cartesian system, $(0, 0, 0)\rightarrow (\delta x_1, \delta x_2, \delta x_3)$)  
   \begin{figure}
 	\includegraphics[scale=0.4]{Fig1_coordinate_systems.png}\hfill 	\includegraphics[scale=0.35]{Fig2_Pertx2.png}
 	\caption{\textit{Left}: Schematic of coordinate systems used here, their relation to one another, and each coordinate's meaning. Note that $(x,y,z) = (\lambda\cos\phi, \lambda\sin\phi, z) = (\rsint\cos\phi, \rsint\sin\phi, r\cost)$. The local Cartesian system $(x_1,x_2,x_3)$ has its origin at the point $(r,\theta,\phi)$, where $(\e_1,\e_2,\e_3) = (\er, \et, \ep)$. \textit{Right}: Away from the origin, the unit vectors no longer coincide. We show the relationship between the spherical-coordinate unit vectors and the Cartesian unit vectors when $\theta\rightarrow\theta+\delta\theta$ (or equivalently, $x_2=0\rightarrow  \delta x_2$). }
 	\label{fig:coords}
 \end{figure}
 
-
+Figure \ref{fig:coords} shows schematically how this works. We set up a local Cartesian coordinate system (with origin at the point $(r,\theta,\phi)$) denoted by $(x_1,x_2,x_3)$. As we differentiate $\vecu$, the spherical-coordinate unit vectors change, while the Cartesian ones stay fixed. In particular, if we move from $(r,\theta,\phi)\rightarrow (r+\delta r, \theta + \delta\theta, \phi + \delta\phi)$ (or equivalently in the Cartesian system, $(0, 0, 0)\rightarrow (\delta x_1, \delta x_2, \delta x_3)$), we find the following (to first order in the $\delta$'s):
+\begin{subequations}
+\begin{align}
+	u_1 &= \ur - (\delta\theta)\ut - (\sint\delta\phi)\up,\\ 
+	u_2 &= \ut + (\delta\theta)\ur - (\cost\delta\phi)\up, \\ 
+	\andd u_3 &= \up + (\sint\delta\phi)\ur + (\cost\delta\phi)\ut.
+\end{align}
+\end{subequations}
+And trivially:
+\begin{subequations}
+	\begin{align}
+		\delta x_1 &= \delta r \\ 
+		\delta x_2 &= r\delta\theta\\
+		\delta x_3 &= \rsint\delta\phi
+	\end{align}
+\end{subequations}
+We thus compute:
+\begin{align}
+	\pderiv{u_1}{x_1} &= \lim_{\delta x_1\rightarrow0}\frac{u_1(\delta x_1, 0, 0) - u_1(0,0,0)}{\delta x_1}\nonumber\\
+	&=  \lim_{\delta r\rightarrow0}\frac{\ur(r+\delta r, \theta, \phi) - \ur(r,\theta,\phi)}{\delta r}\nonumber\\
+	&= \pderiv{\ur}{r}
+\end{align}
 \end{document}
