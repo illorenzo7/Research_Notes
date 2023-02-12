@@ -262,7 +262,7 @@ Finally, suppose we want to increase the \textit{instability} of the system by \
 Note that the $n=0$ polytrope for the Sun (if we integrate from the base of the convection zone and assume $b=8.99$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
 
 \subsection{Polytrope in terms of $\rhoref\bcz$ and $N_\rho$}
-Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones2011} and in the Rayleigh code \citep{Featherstone2021}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $N_\rho$ across the CZ , as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $N_\rho\define\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $N_\rho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
+Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones2011} and in the Rayleigh code \citep{Featherstone2021}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $N_\rho$ across the CZ, as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $N_\rho\define\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $N_\rho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
 \begin{align}
 a = \frac{e^{N_\rho/n} - 1 }{(1 - \beta)e^{N_\rho/n}} \five \andd \tmpref\bcz = \frac{(1 - \beta)e^{N_\rho/n}} {e^{N_\rho/n} - 1 }\frac{G\mstar}{(n+1)\gasconst r\bcz},
 \label{eq:ti_from_nrho}
@@ -277,13 +277,13 @@ Thus, instead of specifying $\tmpref\bcz$ and $\prsref\bcz$, we can specify $\rh
 \subsection{Polytrope with respect to the center of the CZ}
 \citet{Jones2011} define the polytrope using the variables at the center of the CZ (i.e., in our notation $r_0=r_c\define(r\bcz+r\topp)/2$). In that case, \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} become
 \begin{align}
-	\tmpref\ofr &= T_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right],\label{eq:tmppoly2}\\
-	\prsref\ofr &= p_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right]^{n+1},\label{eq:ppoly2}\\
-	\rhoref\ofr &= \rho_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right]^n,\label{eq:rhopoly2}
+	\tmpref\ofr &= \tmpref_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right],\label{eq:tmppoly2}\\
+	\prsref\ofr &= \prsref_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right]^{n+1},\label{eq:ppoly2}\\
+	\rhoref\ofr &= \rhoref_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right]^n,\label{eq:rhopoly2}
 \end{align} 
 where 
 \begin{align}
-a_c \define \frac{G\mstar}{(n+1)\gasconst T_c r_c}.
+a_c \define \frac{G\mstar}{(n+1)\gasconst \tmpref_c r_c}.
 \label{def:ac}
 \end{align}
 Using a similar computation as the one leading to \eqref{eq:ti_from_nrho}, one can show that 
@@ -300,7 +300,7 @@ c_1&\define \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)
 \end{align}
 \eqref{eq:tmppoly2}--\eqref{eq:rhopoly2} become
 \begin{align}
-\tmpref\ofr=T_c\tilde{\zeta}(r),\ \ \ \ \ \prsref\ofr=p_c[\tilde{\zeta}(r)]^{n+1},\ \ \ \ \ \rhoref\ofr=\rho_c[\tilde{\zeta}(r)]^n. 
+\tmpref\ofr=\tmpref_c\tilde{\zeta}(r),\ \ \ \ \ \prsref\ofr=\prsref_c[\tilde{\zeta}(r)]^{n+1},\ \ \ \ \ \rhoref\ofr=\rhoref_c[\tilde{\zeta}(r)]^n. 
 \label{eq:polytrope3}
 \end{align}
 With significantly more algebra, we can also see that if we define
