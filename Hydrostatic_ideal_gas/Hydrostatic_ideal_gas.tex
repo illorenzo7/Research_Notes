@@ -21,6 +21,7 @@
 % other macros
 \newcommand{\rbound}{r_{\rm{bound}}}
 \newcommand{\ekp}{e^{k[(r/r\bcz)-1]}}
+\newcommand{\dialt}{\di_{\rm{alt}}}
 
 % date, author, title
 \date{\today}
@@ -333,39 +334,53 @@ In $\rayleigh$ (following \citealt{Heimpel2022}), we non-dimensionalize the leng
 \begin{subequations}
 \begin{align}
 	\frac{\cancel{\rhoref}\topp\gasconst\tmpref\topp}{H}\frac{d\hat{P}}{d\hat{r}} &= -\cancel{\rhoref\topp}g\topp\hat{\rho}(\hat{r})\hat{g}(\hat{r}),\\
-	\orr \frac{d\hat{T}}{d\hat{r}} &= \di\hat{g}(\hat{r})\label{eq:dtdr_polytropend},\\
-	\where \di &\define \frac{g\topp H}{(n+1)\gasconst \tmpref\topp}\\
+	\orr \frac{d\hat{T}}{d\hat{r}} &= \dialt\hat{g}(\hat{r})\label{eq:dtdr_polytropend},\\
+	\where \di &\define \frac{g\topp H}{\cp\tmpref\topp},\\
+	\dialt &\define \frac{g\topp H}{(n+1)\gasconst \tmpref\topp} = \frac{\gammaone}{(\gammaone-1)(n+1)}\di,\\
 	\andd \hat{g}(\hat{r}) &= \frac{r\topp^2}{r^2} = \frac{1}{(1-\beta)^2}\frac{1}{\hat{r}^2},
 \end{align}
 \end{subequations}
 and we have used the polytropic relations $\hat{\rho}(\hat{r})=[\hat{T}(\hat{r})]^n$ and $\hat{P}(\hat{r})=[\hat{T}(\hat{r})]^{n+1}$. This is easily integrated to yield
 \begin{align}
-	\hat{T}(\hat{r}) &= \frac{\di}{(1-\beta)^2}\frac{1}{\hat{r}} + 1 - \frac{\di}{1-\beta}.
+	\hat{T}(\hat{r}) &= \frac{\dialt}{(1-\beta)^2}\frac{1}{\hat{r}} + 1 - \frac{\dialt}{1-\beta}.
 \end{align}
 And since $\hat{\rho}(\hat{r}\bcz) = e^{N_\rho}$, we also have 
 \begin{align}
-	\di &= \beta (e^{N_\rho/n} + 1). 
+	\dialt &= \beta (e^{N_\rho/n} + 1). 
 \end{align}
 For the derivatives, note that Equation \eqref{eq:dtdr_polytropend} yields
 \begin{align}
-	\frac{d\ln\hat{T}}{d\hat{r}} &= -\di \frac{\hat{g}(\hat{r})}{\hat{T}(\hat{r})}\\
-	\andd \frac{d^2\ln\hat{T}}{d\hat{r}^2} &= -\left(\frac{d\ln\hat{T}}{d\hat{r}}\right)^2 + \left[\frac{\di}{\hat{T}(\hat{r})}\right] \left[\frac{2\hat{g}(\hat{r})}{\hat{r}} \right],
+	\frac{d\ln\hat{T}}{d\hat{r}} &= -\dialt \frac{\hat{g}(\hat{r})}{\hat{T}(\hat{r})}\\
+	\andd \frac{d^2\ln\hat{T}}{d\hat{r}^2} &= -\left(\frac{d\ln\hat{T}}{d\hat{r}}\right)^2 + \left[\frac{\dialt}{\hat{T}(\hat{r})}\right] \left[\frac{2\hat{g}(\hat{r})}{\hat{r}} \right],
 \end{align}
 where we have noted that $d\hat{g}/d\hat{r}=-2\hat{g}(\hat{r})/\hat{r}$. The derivatives of density follow easily from $\hat{\rho}(\hat{r})=[\hat{T}(\hat{r})]^n$.
+
+Important: In the current formulation of $\texttt{referece\_type = 2}$ (and in \citealt{Heimpel2022}), $\dialt$ is incorrectly conflated with with $\di$. The reference state is thus physically invalid for all polytropic indices except the adiabatic one, $\tilde{n}=1/(\gammaone - 1)$. 
 
 Note that the entropy gradient appears in the dimensional heat equation as 
 \begin{align}
 	\pderiv{S}{t} = -\frac{d\sref}{dr}u_r + ...
 \end{align}
-and the $\Delta S$ (which appears in the Rayleigh number) is the already-chosen entropy scale (see \citealt{Heimpel2022}). To specify the non-dimensional entropy gradient properly, we must choose a new non-dimensional parameter,
+and the $\Delta S$ (which appears in the Rayleigh number) is the already-chosen entropy scale (see \citealt{Heimpel2022}). For consistency, we should non-dimensionalize the entropy gradient like
 \begin{align}
-	C \define \frac{\cp}{\Delta S} = \frac{1}{\ramod}\frac{g\topp}{\Omega_0^2H}\five\text{or equivalent}.
+	\frac{d\sref}{dr}  &=   \frac{\Delta S}{H}   \frac{d\hat{S}}{d\hat{r}}
 \end{align}
-Then the first law of thermodynamics in Equation \eqref{eq:firstlawtmprho} yields
+We then must specify a new non-dimensional parameter (the buoyancy number), i.e., 
+\begin{subequations}
 \begin{align}
-	\frac{d\hat{S}}{d\hat{r}} &= C\left[ \frac{1}{\gammaone} \frac{d\ln\hat{T}}{d\hat{r}}   -   \frac{\gammaone - 1}{\gammaone}   \frac{d\ln\hat{\rho}}{d\hat{r}}  \right].
+	\brot &\define \frac{N\topp^2}{\Omega_0^2},\label{eq:buoynum}\\
+	\where N^2(r) &\define \frac{g(r)}{\cp} \frac{d\sref}{dr}.
 \end{align}
-Note that in the current formulation of $\texttt{reference\_type = 2}$, $\d\hat{S}/d\hat{r} = 0$ (hard-coded) and the correct entropy gradient cannot be calculated without defining a new non-dimensional parameter ($C$). 
+\end{subequations}
+Then Equations \eqref{eq:firstlawtmprho}, \eqref{eq:dtdr_polytropend}, and \eqref{eq:buoynum} yield
+\begin{align}
+	\frac{\cp}{\Delta S} = \frac{\gammaone}{n(\gammaone - 1) - 1}\frac{\brot}{\ramod \dialt}
+\end{align}
+And hence
+\begin{align}
+	\frac{d\hat{S}}{d\hat{r}} &= \frac{\brot}{\ramod}\frac{\hat{g}(\hat{r})}{\hat{T}(\hat{r})}
+\end{align}
+Note that in the current formulation of $\texttt{reference\_type = 2}$, the entropy gradient $d\hat{S}/d\hat{r}$ is hard-coded to zero and the correct entropy gradient cannot be calculated correctly without introducing the new parameter $\brot$ (perhaps call it $\texttt{Buoyancy\_Number}$ in the code). 
 
 
 \subsection{Stable vs. unstable polytropes}
