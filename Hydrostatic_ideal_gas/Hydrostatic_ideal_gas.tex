@@ -270,7 +270,7 @@ a = \frac{e^{N_\rho/n} - 1 }{(1 - \beta)e^{N_\rho/n}} \five \andd \tmpref\bcz = 
 where we have defined the aspect ratio of the CZ,
 \begin{align}
 \beta\define \frac{r\bcz}{r\topp} < 1.
-\label{def:beta}
+\label{eq:beta}
 \end{align}
 Thus, instead of specifying $\tmpref\bcz$ and $\prsref\bcz$, we can specify $\rhoref\bcz$ and $N_\rho$; $\tmpref\bcz$ is then determined through \eqref{eq:ti_from_nrho} and $\prsref\bcz$ through the ideal gas law. 
 
@@ -284,7 +284,7 @@ Thus, instead of specifying $\tmpref\bcz$ and $\prsref\bcz$, we can specify $\rh
 where 
 \begin{align}
 a_c \define \frac{G\mstar}{(n+1)\gasconst \tmpref_c r_c}.
-\label{def:ac}
+\label{eq:ac}
 \end{align}
 Using a similar computation as the one leading to \eqref{eq:ti_from_nrho}, one can show that 
 \begin{align}
@@ -293,10 +293,10 @@ a_c = \frac{2\beta(e^{N_\rho/n}-1)}{(1-\beta)(\beta e^{N_\rho/n} + 1)}.
 \end{align}
 Defining 
 \begin{align}
-d&\define r\topp-r\bcz,\label{def:d}\\
-c_0&\define 1-a_c = \frac{(1+\beta)(1-\beta e^{N_\rho/n})}{(1-\beta)(\beta e^{N_\rho/n} + 1)}, \label{def:c0}\\
-c_1&\define \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)}{(1-\beta)^2(\beta e^{N_\rho/n} + 1)},\label{def:c1}\\
-\andd \zeta(r) &\define a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{d}{r}\right),\label{def:tildezeta}
+d&\define r\topp-r\bcz,\label{eq:d}\\
+c_0&\define 1-a_c = \frac{(1+\beta)(1-\beta e^{N_\rho/n})}{(1-\beta)(\beta e^{N_\rho/n} + 1)}, \label{eq:c0}\\
+c_1&\define \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)}{(1-\beta)^2(\beta e^{N_\rho/n} + 1)},\label{eq:c1}\\
+\andd \zeta(r) &\define a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{d}{r}\right),\label{eq:zeta}
 \end{align}
 \eqref{eq:tmppoly2}--\eqref{eq:rhopoly2} become
 \begin{align}
@@ -320,6 +320,14 @@ c_0 &= \frac{2\zeta\topp - \beta - 1}{1-\beta} \five\andd c_1 = \frac{(1+\beta)(
 \end{subequations}
 yielding exactly the formulation for the polytrope in Jones et al. (2011) (see their Equations (18) and (19)). 
 
+Also note that combining Equations \eqref{eq:ac} and \eqref{eq:c1} yields
+\begin{subequations}
+\begin{align}
+	c_1&=\frac{G\mstar}{(n+1)\gasconst T_cd}\\
+	&= \frac{G\mstar}{\cp T_cd}\five\text{if gas is adiabatic $(n=\tilde{n})$}\\
+\end{align}
+\end{subequations}
+
 \subsection{Stable vs. unstable polytropes}
 Figure \ref{fig:CZ_polytrope_stable} (Figure \ref{fig:CZ_polytrope_unstable}) shows a sample of convectively stable (unstable) polytropes for various values of the polytropic index $n$ in a solar-like convection zone. For very high values of $n$ (Figure \ref{fig:CZ_polytrope_stable}), the entropy gradient profile asymptotes to its maximum value and the temperature profile becomes flat---in agreement with the discussion surrounding Equation \eqref{eq:limitninfty}. For very low values of $n$ (highly unstable polytropes; Figure \ref{fig:CZ_polytrope_unstable}), the constant $a$ becomes significantly greater than 1, and the argument $\zeta(r)$ becomes negative within the convection zone, giving complex values for $\prsref\ofr$ and $\rhoref\ofr$ for $r$ greater than the radius at which $\zeta=0$ (the exception to this rule is the special case $n=1$). Thus, the polytropic formulation is unphysical for domains with large enough extent; the same is true for the stable polytropes, but the radius at which $\zeta=0$ is quite far outside the convection zone.
 
@@ -337,7 +345,7 @@ where $k$ is a dimensionless constant ($>0$) representing the stiffness of the s
 The integral $\mathscr{I}(r)$ can be recast in terms of the exponential integral function 
 \begin{align}
 E_n(x) \define \int_1^\infty\frac{e^{-xt}}{t^n}dt = x^{n-1}\int_x^\infty \frac{e^{-t}}{t^n}dt,
-\label{def:en}
+\label{eq:en}
 \end{align}
 yielding
 \begin{subequations}\label{eq:tconstsgrad}
