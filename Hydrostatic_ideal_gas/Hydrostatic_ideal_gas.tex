@@ -296,25 +296,29 @@ Defining
 d&\define r\topp-r\bcz,\label{def:d}\\
 c_0&\define 1-a_c = \frac{(1+\beta)(1-\beta e^{N_\rho/n})}{(1-\beta)(\beta e^{N_\rho/n} + 1)}, \label{def:c0}\\
 c_1&\define \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)}{(1-\beta)^2(\beta e^{N_\rho/n} + 1)},\label{def:c1}\\
-\andd \tilde{\zeta}(r) &\define a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{d}{r}\right),\label{def:tildezeta}
+\andd \zeta(r) &\define a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{d}{r}\right),\label{def:tildezeta}
 \end{align}
 \eqref{eq:tmppoly2}--\eqref{eq:rhopoly2} become
 \begin{align}
-\tmpref\ofr=\tmpref_c\tilde{\zeta}(r),\ \ \ \ \ \prsref\ofr=\prsref_c[\tilde{\zeta}(r)]^{n+1},\ \ \ \ \ \rhoref\ofr=\rhoref_c[\tilde{\zeta}(r)]^n. 
+\tmpref\ofr=\tmpref_c\zeta(r),\ \ \ \ \ \prsref\ofr=\prsref_c[\zeta(r)]^{n+1},\ \ \ \ \ \rhoref\ofr=\rhoref_c[\zeta(r)]^n. 
 \label{eq:polytrope3}
 \end{align}
-With significantly more algebra, we can also see that if we define
+We can also see that if we define
+\begin{subequations}
 \begin{align}
-\tilde{\zeta}\topp \define \tilde{\zeta}(r\topp) = \frac{1+\beta}{\beta e^{N_\rho/n} + 1}, 
+\zeta\topp \define \zeta(r\topp) &= \frac{1+\beta}{\beta e^{N_\rho/n} + 1}\\
+\with e^{N_\rho/n}&=\frac{1+\beta-\zeta\topp}{\zeta\topp},
 \end{align}
+\end{subequations}
 then 
+\begin{subequations}
 \begin{align}
-c_0 = \frac{2\tilde{\zeta}\topp - \beta - 1}{1-\beta} \ \ \ \ \ \andd c_1 = \frac{(1+\beta)(1-\tilde{\zeta}\topp)}{(1-\beta)^2},
+c_0 &= \frac{2\zeta\topp - \beta - 1}{1-\beta} \five\andd c_1 = \frac{(1+\beta)(1-\zeta\topp)}{(1-\beta)^2},\\
+\with \zeta\bcz   &\define      \zeta(r\bcz) = c_0+\left(\frac{1-\beta}{\beta}\right)c_1 = \frac{1+\beta - \zeta\topp}{\beta},
 \label{eq:c01_from_zeta0}
 \end{align}
-yielding exactly the formulation for the polytrope in Jones et al. (2011). 
-
-Both the formulation with respect to the center of the shell (Equations \eqref{def:tildezeta}--\eqref{eq:c01_from_zeta0}) and the formulation with respect to the base of the CZ (using Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} or   \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1}, possibly combined with Equations \eqref{eq:ti_from_nrho} and \eqref{def:beta} if specifying $\rhoref\bcz$ and $N_\rho$ in place of $\tmpref\bcz$ and $\prsref\bcz$) are mathematically equivalent. However, given the substantial extra notation involved in defining the constants $c_0$ and $c_1$, it seems preferable to use the latter formulation. 
+\end{subequations}
+yielding exactly the formulation for the polytrope in Jones et al. (2011) (see their Equations (18) and (19)). 
 
 \subsection{Stable vs. unstable polytropes}
 Figure \ref{fig:CZ_polytrope_stable} (Figure \ref{fig:CZ_polytrope_unstable}) shows a sample of convectively stable (unstable) polytropes for various values of the polytropic index $n$ in a solar-like convection zone. For very high values of $n$ (Figure \ref{fig:CZ_polytrope_stable}), the entropy gradient profile asymptotes to its maximum value and the temperature profile becomes flat---in agreement with the discussion surrounding Equation \eqref{eq:limitninfty}. For very low values of $n$ (highly unstable polytropes; Figure \ref{fig:CZ_polytrope_unstable}), the constant $a$ becomes significantly greater than 1, and the argument $\zeta(r)$ becomes negative within the convection zone, giving complex values for $\prsref\ofr$ and $\rhoref\ofr$ for $r$ greater than the radius at which $\zeta=0$ (the exception to this rule is the special case $n=1$). Thus, the polytropic formulation is unphysical for domains with large enough extent; the same is true for the stable polytropes, but the radius at which $\zeta=0$ is quite far outside the convection zone.
