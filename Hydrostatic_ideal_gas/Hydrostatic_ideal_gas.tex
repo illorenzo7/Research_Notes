@@ -180,7 +180,7 @@ From Equation \eqref{eq:avalid}, $n$ is restricted to the range:
 \end{align}
 ($n\rightarrow\infty$ corresponds to $a=0$, the isothermal atmosphere). 
 
-Note that $b$ is closely related to the dissipation number ($\di\define \tilde{g}H/(\cp\tilde{T})$, where $H$ is a typical length-scale and the tildes denote typical background-state values). 
+Note that $b$ is (up to a factor of order unity, depending on convention) equal to the dissipation number ($\di\define \tilde{g}H/(\cp\tilde{T})$, where $H$ is a typical length-scale and the tildes denote typical background-state values). 
 
 Putting it all together (and using the ideal gas law to derive the density), we have
 	\begin{empheq}[box=\fbox]{align}
@@ -203,15 +203,15 @@ to yield
 Similarly to the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the choices for $a$ (or equivalently, $b$ and $n$) and $r_0$ determine the range of radii for which the polytrope is valid (i.e., the range for which the thermodynamic quantities are positive):
 \begin{subequations}
 	\begin{alignat}{2}
-		0<\ &r<\rbound(n)\define \left[\frac{b}{b-(n+1)}\right]r_0\five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0} >n+1\\
-		&r > 0 \five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0}\leq n+1. 
+		0<\ &r<\rbound(n)\define \left[\frac{b}{b-(n+1)}\right]r_0\five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0} >n+1	\label{eq:rvalidpoly1}\\
+		&r > 0 \five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0}\leq n+1. 	\label{eq:rvalidpoly2}
 	\end{alignat}
 	\label{eq:rvalidpoly}
 \end{subequations}
 
-For a particular polytrope (fixed $n$), the choice of integration origin ($r_0$, $\tmpref_0$, and $\prsref_0$) has no effect on the upper bound $\rbound$. However, if $n<b-1$ (a range on $n$ which \textit{is} affected by the choice of integration origin), the polytropic index $n$ affects the upper bound. Higher $n$ yields a wider range of validity, and lower $n$ a narrower one. 
+In general, we use a polytrope as a simplified background for a localized region of a particular star. We will thus choose representative stellar values for $\mstar$, $\gasconst$, $r_0$, and $\tmpref_0$ (setting $b$), and then choose a value for $n$. For $n<b-1$, higher $n$ yields a wider range of validity, and lower $n$ a narrower one. 
 
-To make things concrete, we work out where an adiabatic polytrope is valid for the Sun. Recall $G=\sn{6.67}{-8}\ \cm^3\ \gram^{-1}\ \second^{-2}$. For the Sun ($\mstar=\msun=\sn{1.99}{33}\ {\rm{g}}$), we integrate from the base of the convection zone ($r_0=r\bcz=\sn{5.00}{10}\ \cm$; $\tmpref_0=\tmpref\bcz=\sn{2.11}{6}\ \kelv$; $\cp=\sn{3.50}{8}\ \unitent$ or $\gasconst=\sn{1.40}{8}\ \unitent$) and assume adiabatic stratification ($n=1.50$). Then $b=8.99 > 2.5$ and condition \eqref{eq:rvalidpoly} becomes
+To make things concrete, here we show where an adiabatic polytrope is valid for the Sun. Recall $G=\sn{6.67}{-8}\ \cm^3\ \gram^{-1}\ \second^{-2}$. For the Sun ($\mstar=\msun=\sn{1.99}{33}\ {\rm{g}}$), we integrate from the base of the convection zone ($r_0=r\bcz=\sn{5.00}{10}\ \cm$; $\tmpref_0=\tmpref\bcz=\sn{2.11}{6}\ \kelv$; $\cp=\sn{3.50}{8}\ \unitent$ or $\gasconst=\sn{1.40}{8}\ \unitent$) and assume adiabatic stratification ($n=1.50$). Then $b=8.99 > 2.5$ and condition \eqref{eq:rvalidpoly1} becomes
 \begin{align*}
 	0<r<(\rbound)_\odot\define\sn{6.93}{10}\ \cm. 
 \end{align*}
