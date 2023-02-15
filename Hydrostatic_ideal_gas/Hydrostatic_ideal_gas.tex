@@ -352,15 +352,42 @@ Here we show that as far as the non-dimensional system is concerned, any polytro
 \begin{subequations}
 \begin{alignat}{2}
 	\beta &\define \frac{r\inn}{r\out} && \five \text{aspect ratio}\\
-	\andd H &\define r\out - r\inn  && \five \text{shell depth}
+	\andd H &\define r\out - r\inn  && \five \text{shell depth}.
 \end{alignat}
 \end{subequations}
 
-We define the number of density scale heights across the shell as 
-
+We choose $H$ as our length-scale and thus consider the shell to occupy the range
 \begin{align}
-	\nrho 
+	\frac{\beta}{1-\beta} \leq \hat{r} \leq \frac{1}{1-\beta},
 \end{align}
+where $\hat{r}=r/H$ refers to the non-dimensional radius. 
+
+We define the number of density scale heights across the shell as 
+\begin{align}
+	\nrho \define \ln\left[ \frac{\rhoref\inn}{\rhoref\out} \right],
+\end{align}
+where the subscripts mean ``evaluated at $r\inn$ or $r\out$."
+
+We choose $r_0=r\inn$, so 
+\begin{align}
+	\zeta(\hat{r}) = a \left(\frac{\beta}{1-\beta} \right) \left( \frac{1}{\hat{r}} \right) + (1 -a).
+\end{align}
+
+From Equation \eqref{eq:rhopoly0}, we then find
+\begin{align}
+	e^{-\nrho/n} &= a(\beta-1) + 1 \nonumber \\
+	\orr a &= \frac{b}{n+1} = \frac{1 - e^{-\nrho/n}}{1-\beta}.
+\end{align}
+Each thermal profile is non-dimensionalized using a representative value from the polytrope. This could be the value of the profile at the outer boundary (e.g., \citealt{Heimpel2022}) or the volume-average of the profile (e.g., \citealt{Hindman2020}). Here instead, we choose the value at the inner boundary (since we have already set $r_0=r\inn$). We thus find
+
+\begin{empheq}[box=\fbox]{align}\label{eq:polynd}
+	\hat{T}(\hat{r}) &= \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right) \\
+	\hat{P}(\hat{r}) &= \left\{  \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)    \right\}^{n+1},\\
+	\andd\hat{\rho}(\hat{r}) &= \left\{  \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)    \right\}^n,\\
+	&\ \ \ \ \ \text{(isothermal atmosphere; polytrope with } n\rightarrow\infty). \nonumber
+\end{empheq}
+%	\frac{1}{\cp}\frac{d\sref}{d\hat{r}} &=   \left(\frac{n-\tilde{n}}{\tilde{n} + 1} \right) \left(\frac{1}{\hat{r}}\right) \frac{1}{1 - \left( \frac{1-\beta}{\beta} \right)   \left( \frac{\beta - e^{-\nrho/n}} {1-e^{-\nrho/n}} \right) \hat{r} }        \\
+
 \subsection{Non-Dimensional Polytrope ($\rayleigh\ \texttt{reference\_type = 3}$)} 
 In $\rayleigh$ (following \citealt{Heimpel2022}), we non-dimensionalize the length-scale with $H$ and $\rhoref\ofr$, $\tmpref\ofr$, $\prsref\ofr$, and $g\ofr$ with their values at the outer boundary, $\rhoref\topp$, $\tmpref\topp$, $\prsref\topp$, and $g\topp$. Using hats for the non-dimensionalized background profiles (and noting $\hat{r}=r/H$), the hydrostatic Equation \eqref{eq:hydr} becomes
 \begin{subequations}
