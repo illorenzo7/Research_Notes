@@ -130,7 +130,7 @@
 \end{empheq}
 Note: to keep thermodynamic quantities positive, we must ensure that the argument
 \begin{align}
-	\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})>0.
+	\tilde{\zeta}(r)\define \tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})>0.
 \end{align}
 This leads to the conditions on available radii $r$ (for our particular choices of $\tilde{a}$---i.e., $\mstar$,  $\gasconst$, and $\tmpref_0$---and $r_0$) for which the derived atmosphere is valid:
 \begin{subequations}
@@ -155,7 +155,11 @@ where the new constant $a$ is dimensionless. Mathematically, $a$ can be any numb
 	a&\geq0. 
 \end{align}
 
-Note the similarity of the argument $[a(r_0/r) + (1-a)]$ in Equation \eqref{eq:tmppoly00} (which was derived by assuming a divergenceless temperature gradient) to the argument in Equation \eqref{eq:tmpad} (which was derived by assuming the gas was adiabatic). 
+Note the similarity of the argument 
+\begin{align}
+\zeta(r)\define a\left(\frac{r_0}{r}\right) + (1-a)
+\end{align}
+in Equation \eqref{eq:tmppoly00} (which was derived by assuming a divergenceless temperature gradient) to the argument $\tilde{\zeta}(r)$ in Equation \eqref{eq:tmpad} (which was derived by assuming the gas was adiabatic). 
 
 Using Equation \eqref{eq:idgas} to eliminate $\rhoref\ofr$ from Equation \eqref{eq:hydr} gives
 \begin{align*}
@@ -176,7 +180,7 @@ From Equation \eqref{eq:avalid}, $n$ is restricted to the range:
 \end{align}
 ($n\rightarrow\infty$ corresponds to $a=0$, the isothermal atmosphere). 
 
-Note that $b$ is closely related to the dissipation number ($\di\define \tilde{g}H/(\cp\tilde{T})$, where $H$ is a typical eq: and the tildes denote typical background-state values). 
+Note that $b$ is closely related to the dissipation number ($\di\define \tilde{g}H/(\cp\tilde{T})$, where $H$ is a typical length-scale and the tildes denote typical background-state values). 
 
 Putting it all together (and using the ideal gas law to derive the density), we have
 	\begin{empheq}[box=\fbox]{align}
@@ -185,9 +189,9 @@ Putting it all together (and using the ideal gas law to derive the density), we 
 	\rhoref\ofr &= \rhoref_0\left[a\left(\frac{r_0}{r}\right) + (1 - a) \right]^n \ \ \ \ \ \text{(polytropic atmosphere)} \label{eq:rhopoly0}
 \end{empheq}
 
-We can also rewrite the argument in square brackets as:
+We can also rewrite $\zeta(r)$ as 
 \begin{align*}%\label{eq:arg2forms}
-	a\left(\frac{r_0}{r}\right) + (1 - a)&=\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}.
+	\zeta(r)&=\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}
 \end{align*}
 to yield
 	\begin{empheq}[box=\fbox]{align}
