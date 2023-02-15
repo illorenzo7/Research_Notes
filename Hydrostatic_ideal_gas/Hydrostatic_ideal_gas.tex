@@ -121,7 +121,9 @@
 	\tmpref(r) &= \tmpref_0\left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]  \ \ \ \ \ \text{(adiabatic atmosphere)},\label{eq:tmpad}\\
 	\text{where} \ \ \ \ \ \tilde{a}&\define \frac{G\mstar}{\cp \tmpref_0 r_0}.\label{eq:atilde}
 	\end{empheq}
-	Then, Equations  \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} yield
+	Note that $\tilde{a}$ is (up to a factor likely of order unity, depending on convention) equal to the dissipation number, $\di\define \tilde{g}H/(\cp\tilde{T})$, where $H$ is a typical length-scale and the tildes denote typical background-state values. 
+	
+	Equations  \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} yield
 	\begin{empheq}[box=\fbox]{align}
 	\prsref\ofr &= \prsref_0 \left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]^{\gammaone/(\gammaone-1)} \ \ \ \ \ \text{(adiabatic atmosphere)}
 \label{eq:prsad}\\
@@ -180,7 +182,7 @@ From Equation \eqref{eq:avalid}, $n$ is restricted to the range:
 \end{align}
 ($n\rightarrow\infty$ corresponds to $a=0$, the isothermal atmosphere). 
 
-Note that $b$ is (up to a factor of order unity, depending on convention) equal to the dissipation number ($\di\define \tilde{g}H/(\cp\tilde{T})$, where $H$ is a typical length-scale and the tildes denote typical background-state values). 
+Note that $b$ is (up to a factor likely of order unity, depending on convention) equal to the dissipation number, $\di\define \tilde{g}H/(\cp\tilde{T})$, where $H$ is a typical length-scale and the tildes denote typical background-state values.
 
 Putting it all together (and using the ideal gas law to derive the density), we have
 	\begin{empheq}[box=\fbox]{align}
@@ -243,28 +245,28 @@ and $\tilde{a}\define G\mstar/\cp\tmpref_0 r_0$ was already defined in Equation 
 From \eqref{eq:dsdrpoly1}, it is obvious that $n=\tilde{n}$ (or equivalently, $a=\tilde{a}$) corresponds to an adiabatic atmosphere, as was already shown by Equations \eqref{eq:tmpad}--\eqref{eq:rhoad}). For other values of $n$, we have
 \begin{align}
 &n > \tilde{n} \Longleftrightarrow \dsdr > 0 \text{ (atmosphere is stable to convection)}\\
-\andd &n < \tilde{n} \Longleftrightarrow \dsdr < 0 \text{ (atmosphere is unstable to convection).}
+\andd &n < \tilde{n} \Longleftrightarrow \dsdr < 0 \text{ (atmosphere may be unstable to convection).}
 \end{align}
 
 Say we want to increase the stability of a solar-like atmosphere by increasing $n$ (keeping $r_0$, $\tmpref_0$, and $\prsref_0$ fixed). What happens? We compute, for a particular radius $r$:
 \begin{align}\label{eq:dsdr_vs_n}
 	\pderiv{}{n}\left(\frac{1}{\cp}\dsdr\right)=  \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)  \left\{\frac{\tilde{n}+1-b+b(r_0/r)}{\left[n+1-b+b(r_0/r)\right]^2}\right\}. 
 \end{align}
-The sign of this partial derivative is independent of $n$. Therefore, at any given radius $r$, the magnitude of the entropy gradient monotonically increases or decreases with $n$. Let's assume we confine ourselves to $r<(\rbound)_\odot$, even though for high $n$, there will technically be a wider range of validity for the polytrope. Then $\tilde{n}+1-b+b(r_0/r)\rightarrow0$ (from above) as $r\rightarrow(\rbound)_\odot$ (from below). Thus (for sufficiently high $n$ and $r<(\rbound)_\odot$), the partial derivative in Equation \eqref{eq:dsdr_vs_n} is positive, and maximum stability is achieved for $n\rightarrow\infty$. 
+The sign of this partial derivative is independent of $n$. Therefore, at any given radius $r$, the magnitude of the entropy gradient monotonically increases or decreases with $n$. Let's assume we confine ourselves to $r<(\rbound)_\odot$, even though for high $n$, there will technically be a wider range of validity for the polytrope. Then $\tilde{n}+1-b+b(r_0/r)\rightarrow0$ (from above) as $r\rightarrow(\rbound)_\odot$ (from below). Thus (for $r<(\rbound)_\odot$), the partial derivative in Equation \eqref{eq:dsdr_vs_n} is positive, and maximum stability is achieved for $n\rightarrow\infty$, the isothermal atmosphere. 
 
-Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=\exp(x)$, Equations \eqref{eq:tmppoly1}--\eqref{eq:dsdrpoly1} show that the limit $n\rightarrow\infty$ simply corresponds to an isothermal atmosphere:
+Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=e^x$, Equations \eqref{eq:tmppoly1}--\eqref{eq:dsdrpoly1} show that the isothermal atmosphere in spherical coordinates is:
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitninfty}
 \tmpref\ofr&\rightarrow \tmpref_0, \\
 \prsref\ofr&\rightarrow \prsref_0\exp{\left[b\left(\frac{r_0}{r}-1\right)\right]},\\
 \rhoref\ofr&\rightarrow \rhoref_0\exp{\left[b\left(\frac{r_0}{r}-1\right)\right]},\\
 \frac{1}{\cp}\dsdr &\rightarrow \frac{b}{\tilde{n}+1}\left(\frac{1}{r^2}\right),\\
  \andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{b}{\tilde{n}+1}\left(1-\frac{r_0}{r}\right)\\ 
- &\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow\infty). \nonumber
+ &\ \ \ \ \ \text{(isothermal atmosphere; polytrope with } n\rightarrow\infty). \nonumber
 \end{empheq}
 \textit{If one tries to increase the stability a solar-like polytrope by increasing $n$, there is therefore a fundamental upper bound imposed by the polytropic formulation itself.}
-Similarly, as $n\rightarrow\infty$, the total entropy contrast from top to bottom and all logarithmic derivatives of the thermodynamic variables have upper bounds, meaning that all scale heights (which typically set the size of fluid motions) have lower bounds. These bounds are reached for an isothermal atmosphere.
+Similarly, as $n\rightarrow\infty$, the total entropy contrast from top to bottom and all logarithmic derivatives of the thermodynamic variables have upper bounds, meaning that all scale heights have lower bounds. These bounds are reached for an isothermal atmosphere.
 
-Finally, suppose we want to increase the \textit{instability} of the system by \textit{lowering} $n$ to $0$ (for $b=8.99$ and $r<(\rbound)_\odot$, the partial derivative in Equation \eqref{eq:dsdr_vs_n} is positive for all values of $n$). As $n\rightarrow0$, we find the unstable (isopycnic, or constant-density) atmosphere: 
+Finally, suppose we want to increase the \textit{instability} of the system by \textit{lowering} $n$ to $0$ (for $b=8.99$ and $r<(\rbound)_\odot$, Equation \eqref{eq:dsdr_vs_n} shows that $d\sref/dr$ everywhere decreases as $n$ decreases). For $n=0$, we find the maximally unstable (isopycnic, or constant-density) atmosphere: 
 
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitn0}
 	\tmpref\ofr&\rightarrow \tmpref_0\left[b\left(\frac{r_0}{r}\right)+(1-b)\right], \\
@@ -272,9 +274,9 @@ Finally, suppose we want to increase the \textit{instability} of the system by \
 	\rhoref\ofr&\rightarrow \rhoref_0,\\
 	\frac{1}{\cp}\dsdr &\rightarrow -\frac{\tilde{n}b}{\tilde{n}+1}\left(\frac{1}{r}\right)\left[\frac{1}{(1-b)(r/r_0)+b}\right],\\
 	\andd \frac{\sref\ofr}{\cp} &\rightarrow -\frac{\tilde{n}}{\tilde{n}+1}\left\{\ln{\left(\frac{r}{r_0}\right)} - \ln{\left[(1-b)\left(\frac{r}{r_0}\right)+b\right]} \right\}\\ 
-	&\ \ \ \ \ \text{(polytropic atmosphere as } n\rightarrow0). \nonumber
+	&\ \ \ \ \ \text{(isopycnic atmosphere; polytrope with $n=0$)}. \nonumber
 \end{empheq}
-Note that the $n=0$ polytrope for the Sun (if we integrate from the base of the convection zone and assume $b=8.99$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
+Note that from Equation \eqref{eq:rvalidpoly1}, this $n=0$ polytrope for the Sun (with $r_0=r\bcz$ and $b=8.99$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
 
 \subsection{Polytrope in terms of $\rhoref\bcz$ and $N_\rho$}
 Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones2011} and in the $\rayleigh$ code \citep{Featherstone2021}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $N_\rho$ across the CZ, as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $N_\rho\define\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $N_\rho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
