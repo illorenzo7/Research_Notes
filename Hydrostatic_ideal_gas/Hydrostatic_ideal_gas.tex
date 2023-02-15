@@ -24,6 +24,7 @@
 \newcommand{\rbound}{r_{\rm{bound}}}
 \newcommand{\ekp}{e^{k[(r/r\bcz)-1]}}
 \newcommand{\dialt}{\di_{\rm{alt}}}
+\newcommand{\nrho}{N_\rho}
 
 % date, author, title
 \date{\today}
@@ -278,10 +279,10 @@ Finally, suppose we want to increase the \textit{instability} of the system by \
 \end{empheq}
 Note that from Equation \eqref{eq:rvalidpoly1}, this $n=0$ polytrope for the Sun (with $r_0=r\bcz$ and $b=8.99$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
 
-\subsection{Polytrope in terms of $\rhoref\bcz$ and $N_\rho$}
-Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones2011} and in the $\rayleigh$ code \citep{Featherstone2021}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $N_\rho$ across the CZ, as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $N_\rho\define\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $N_\rho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
+\subsection{Polytrope in terms of $\rhoref\bcz$ and $\nrho$}
+Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones2011} and in the $\rayleigh$ code \citep{Featherstone2021}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $\nrho$ across the CZ, as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $\nrho\define\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $\nrho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
 \begin{align}
-a = \frac{e^{N_\rho/n} - 1 }{(1 - \beta)e^{N_\rho/n}} \five \andd \tmpref\bcz = \frac{(1 - \beta)e^{N_\rho/n}} {e^{N_\rho/n} - 1 }\frac{G\mstar}{(n+1)\gasconst r\bcz},
+a = \frac{e^{\nrho/n} - 1 }{(1 - \beta)e^{\nrho/n}} \five \andd \tmpref\bcz = \frac{(1 - \beta)e^{\nrho/n}} {e^{\nrho/n} - 1 }\frac{G\mstar}{(n+1)\gasconst r\bcz},
 \label{eq:ti_from_nrho}
 \end{align}
 where we have defined the aspect ratio of the CZ,
@@ -289,7 +290,7 @@ where we have defined the aspect ratio of the CZ,
 \beta\define \frac{r\bcz}{r\topp} < 1.
 \label{eq:beta}
 \end{align}
-Thus, instead of specifying $\tmpref\bcz$ and $\prsref\bcz$, we can specify $\rhoref\bcz$ and $N_\rho$; $\tmpref\bcz$ is then determined through \eqref{eq:ti_from_nrho} and $\prsref\bcz$ through the ideal gas law. 
+Thus, instead of specifying $\tmpref\bcz$ and $\prsref\bcz$, we can specify $\rhoref\bcz$ and $\nrho$; $\tmpref\bcz$ is then determined through \eqref{eq:ti_from_nrho} and $\prsref\bcz$ through the ideal gas law. 
 
 \subsection{Polytrope with respect to the center of the CZ}
 \citet{Jones2011} define the polytrope using the variables at the center of the CZ (i.e., in our notation $r_0=r_c\define(r\bcz+r\topp)/2$). In that case, \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} become
@@ -305,14 +306,14 @@ a_c \define \frac{G\mstar}{(n+1)\gasconst \tmpref_c r_c}.
 \end{align}
 Using a similar computation as the one leading to \eqref{eq:ti_from_nrho}, one can show that 
 \begin{align}
-a_c = \frac{2\beta(e^{N_\rho/n}-1)}{(1-\beta)(\beta e^{N_\rho/n} + 1)}.
+a_c = \frac{2\beta(e^{\nrho/n}-1)}{(1-\beta)(\beta e^{\nrho/n} + 1)}.
 \label{eq:ac_fromn}
 \end{align}
 Defining 
 \begin{align}
 H&\define r\topp-r\bcz,\label{eq:d}\\
-c_0&\define 1-a_c = \frac{(1+\beta)(1-\beta e^{N_\rho/n})}{(1-\beta)(\beta e^{N_\rho/n} + 1)}, \label{eq:c0}\\
-c_1&\define \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)}{(1-\beta)^2(\beta e^{N_\rho/n} + 1)},\label{eq:c1}\\
+c_0&\define 1-a_c = \frac{(1+\beta)(1-\beta e^{\nrho/n})}{(1-\beta)(\beta e^{\nrho/n} + 1)}, \label{eq:c0}\\
+c_1&\define \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{\nrho/n}-1)}{(1-\beta)^2(\beta e^{\nrho/n} + 1)},\label{eq:c1}\\
 \andd \zeta(r) &\define a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{H}{r}\right),\label{eq:zeta}
 \end{align}
 \eqref{eq:tmppoly2}--\eqref{eq:rhopoly2} become
@@ -323,8 +324,8 @@ c_1&\define \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{N_\rho/n}-1)
 We can also see that if we define
 \begin{subequations}
 \begin{align}
-\zeta\topp \define \zeta(r\topp) &= \frac{1+\beta}{\beta e^{N_\rho/n} + 1}\\
-\with e^{N_\rho/n}&=\frac{1+\beta-\zeta\topp}{\zeta\topp},
+\zeta\topp \define \zeta(r\topp) &= \frac{1+\beta}{\beta e^{\nrho/n} + 1}\\
+\with e^{\nrho/n}&=\frac{1+\beta-\zeta\topp}{\zeta\topp},
 \end{align}
 \end{subequations}
 then 
@@ -345,6 +346,21 @@ Also note that combining Equations \eqref{eq:ac} and \eqref{eq:c1} yields
 \end{align}
 \end{subequations}
 
+\subsection{Non-Dimensional Polytrope}
+Here we show that as far as the non-dimensional system is concerned, any polytrope in a spherical shell is fully described by three numbers: the shell's aspect ratio, the number of density scale heights across the shell, and the polytropic index. We consider a spherical shell with (dimensional) inner and outer radii $r\inn$ and $r\out$. Then
+
+\begin{subequations}
+\begin{alignat}{2}
+	\beta &\define \frac{r\inn}{r\out} && \five \text{aspect ratio}\\
+	\andd H &\define r\out - r\inn  && \five \text{shell depth}
+\end{alignat}
+\end{subequations}
+
+We define the number of density scale heights across the shell as 
+
+\begin{align}
+	\nrho 
+\end{align}
 \subsection{Non-Dimensional Polytrope ($\rayleigh\ \texttt{reference\_type = 3}$)} 
 In $\rayleigh$ (following \citealt{Heimpel2022}), we non-dimensionalize the length-scale with $H$ and $\rhoref\ofr$, $\tmpref\ofr$, $\prsref\ofr$, and $g\ofr$ with their values at the outer boundary, $\rhoref\topp$, $\tmpref\topp$, $\prsref\topp$, and $g\topp$. Using hats for the non-dimensionalized background profiles (and noting $\hat{r}=r/H$), the hydrostatic Equation \eqref{eq:hydr} becomes
 \begin{subequations}
@@ -360,9 +376,9 @@ and we have used the polytropic relations $\hat{\rho}(\hat{r})=[\hat{T}(\hat{r})
 \begin{align}
 	\hat{T}(\hat{r}) &= \frac{\dialt}{(1-\beta)^2}\frac{1}{\hat{r}} + 1 - \frac{\dialt}{1-\beta}.
 \end{align}
-And since $\hat{\rho}(\hat{r}\bcz) = e^{N_\rho}$, we also have 
+And since $\hat{\rho}(\hat{r}\bcz) = e^{\nrho}$, we also have 
 \begin{align}
-	\dialt &= \beta (e^{N_\rho/n} + 1). 
+	\dialt &= \beta (e^{\nrho/n} + 1). 
 \end{align}
 For the derivatives, note that Equation \eqref{eq:dtdr_polytropend} yields
 \begin{align}
@@ -495,7 +511,7 @@ Figures \ref{fig:CZ_RZ_quartmatch_vs_delta} and \ref{fig:CZ_RZ_quartmatch_vs_k} 
 
   \begin{figure}
 	\includegraphics[scale=0.6]{figures/CZ_polytrope_stable.pdf}
-	\caption{Sample of convectively stable polytropes for a solar-like CZ ($n\geq1.5$). The dimensional/geometric values for the polytrope (i.e., $\rm$, $r\topp$, $\rho\bcz$, $M$, $\cp$) are the solar values preceding \eqref{eq:kc_solar}, and $N_\rho=3$.}
+	\caption{Sample of convectively stable polytropes for a solar-like CZ ($n\geq1.5$). The dimensional/geometric values for the polytrope (i.e., $\rm$, $r\topp$, $\rho\bcz$, $M$, $\cp$) are the solar values preceding \eqref{eq:kc_solar}, and $\nrho=3$.}
 	\label{fig:CZ_polytrope_stable}
 \end{figure}
 
