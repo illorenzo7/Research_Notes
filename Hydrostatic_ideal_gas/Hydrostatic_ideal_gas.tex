@@ -376,18 +376,46 @@ We choose $r_0=r\inn$, so
 From Equation \eqref{eq:rhopoly0}, we then find
 \begin{align}
 	e^{-\nrho/n} &= a(\beta-1) + 1 \nonumber \\
-	\orr a &= \frac{b}{n+1} = \frac{1 - e^{-\nrho/n}}{1-\beta}.
+	\orr a &= \frac{b}{n+1} = \frac{1 - e^{-\nrho/n}}{1-\beta}.\label{eq:afromnond}
 \end{align}
-Each thermal profile is non-dimensionalized using a representative value from the polytrope. This could be the value of the profile at the outer boundary (e.g., \citealt{Heimpel2022}) or the volume-average of the profile (e.g., \citealt{Hindman2020}). Here instead, we choose the value at the inner boundary (since we have already set $r_0=r\inn$). We thus find
+Each thermal profile is non-dimensionalized using a representative value from the polytrope. This could be the value of the profile at the outer boundary (e.g., \citealt{Heimpel2022}) or the volume-average of the profile (e.g., \citealt{Hindman2020}). Instead, we choose the value at the inner boundary. Plugging everything into Equations \eqref{eq:tmppoly0}--\eqref{eq:spoly0}, we find
 
-\begin{empheq}[box=\fbox]{align}\label{eq:polynd}
-	\hat{T}(\hat{r}) &= \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right) \\
-	\hat{P}(\hat{r}) &= \left\{  \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)    \right\}^{n+1},\\
-	\andd\hat{\rho}(\hat{r}) &= \left\{  \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)    \right\}^n,\\
-	&\ \ \ \ \ \text{(isothermal atmosphere; polytrope with } n\rightarrow\infty). \nonumber
+\begin{empheq}[box=\fbox]{align}
+	\hat{T}(\hat{r}) &= \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right) 
+	\label{eq:tmppolynd}
+	\\
+	\hat{P}(\hat{r}) &= \left\{  \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)    \right\}^{n+1},
+	\label{eq:prspolynd}
+	\\
+	\hat{\rho}(\hat{r}) &= \left\{  \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)    \right\}^n,
+	\label{eq:rhopolynd}
+	\\
+		\frac{1}{\cp}\frac{d\sref}{d\hat{r}} &=   \left(\frac{n-\tilde{n}}{\tilde{n} + 1} \right) \left(\frac{1}{\hat{r}}\right) \left[1 - \left( \frac{1-\beta}{\beta} \right)   \left( \frac{\beta - e^{-\nrho/n}} {1-e^{-\nrho/n}} \right) \hat{r} \right]^{-1},    
+		\label{eq:dsdrpolynd}
+		\\
+		\frac{\sref(\hat{r})}{\cp} &= \left(\frac{n-\tilde{n}}{\tilde{n} + 1} \right)   \left\{   \ln \left[ \left( \frac{1-\beta}{\beta}\right) \hat{r}\right] -  \ln  \left[  \left(\frac{e^{-\nrho/n}-\beta}{\beta}\right) \hat{r} + \left( \frac{1 - e^{-\nrho/n}}{1 - \beta}\right)   \right]   \right\}
+		\label{eq:spolynd}
+		\\
+	&\five \text{(non-dimensional polytrope)}. \nonumber
 \end{empheq}
-%	\frac{1}{\cp}\frac{d\sref}{d\hat{r}} &=   \left(\frac{n-\tilde{n}}{\tilde{n} + 1} \right) \left(\frac{1}{\hat{r}}\right) \frac{1}{1 - \left( \frac{1-\beta}{\beta} \right)   \left( \frac{\beta - e^{-\nrho/n}} {1-e^{-\nrho/n}} \right) \hat{r} }        \\
 
+The non-dimensional polytrope is purely characterized by the three numbers $\beta$, $\nrho$, and $n$. (For completeness, we should also include $\gammaone$, or $\tilde{n}$, but for most cases we are concerned with, $\gammaone=5/3$). Note that the dissipation number $\di$ is \textit{not} an independent parameter. For example, in the non-dimensionalization chosen here, we have
+
+\begin{align*}
+	a &= \frac{G\mstar}{(n+1)\gasconst T\inn r\inn} \\
+	&= \left(\frac{\beta}{1-\beta}\right) \left(\frac{\gammaone}{\gammaone - 1}\right)  \left( \frac{1}{n+1} \right) \di,\\
+	\where \di &\define \frac{g\inn H}{\cp T\inn}
+\end{align*}
+
+This, combined with Equation \eqref{eq:afromnond}, yields
+\begin{align}
+	\di = \left(\frac{\gammaone - 1}{\gammaone}\right)  (n+1)   \left(\frac{1}{\beta} \right) (1 - e^{-\nrho/n}).
+\end{align}
+
+Finally, note that Equation \eqref{eq:spolynd} gives the entropy difference across the layer ($\Delta\sref  \define  \sref\out$):
+\begin{empheq}[box=\fbox]{align}
+	\frac{\Delta\sref}{\cp} &= \left(\frac{\nrho}{\tilde{n}+1}\right)  \left(\frac{n - \tilde{n}}{n} \right). 
+\end{empheq}
 \subsection{Non-Dimensional Polytrope ($\rayleigh\ \texttt{reference\_type = 3}$)} 
 In $\rayleigh$ (following \citealt{Heimpel2022}), we non-dimensionalize the length-scale with $H$ and $\rhoref\ofr$, $\tmpref\ofr$, $\prsref\ofr$, and $g\ofr$ with their values at the outer boundary, $\rhoref\topp$, $\tmpref\topp$, $\prsref\topp$, and $g\topp$. Using hats for the non-dimensionalized background profiles (and noting $\hat{r}=r/H$), the hydrostatic Equation \eqref{eq:hydr} becomes
 \begin{subequations}
@@ -414,7 +442,7 @@ For the derivatives, note that Equation \eqref{eq:dtdr_polytropend} yields
 \end{align}
 where we have noted that $d\hat{g}/d\hat{r}=-2\hat{g}(\hat{r})/\hat{r}$. The derivatives of density follow easily from $\hat{\rho}(\hat{r})=[\hat{T}(\hat{r})]^n$.
 
-Important: In the current formulation of $\texttt{referece\_type = 2}$ (and in \citealt{Heimpel2022}), $\dialt$ is incorrectly conflated with with $\di$. The reference state is thus physically invalid for all polytropic indices except the adiabatic one, $\tilde{n}=1/(\gammaone - 1)$. 
+Important: In the current formulation of $\texttt{referece\_type = 3}$ (and in \citealt{Heimpel2022}), $\dialt$ is incorrectly conflated with with $\di$. The reference state is thus physically invalid for all polytropic indices except the adiabatic one, $\tilde{n}=1/(\gammaone - 1)$. 
 
 Note that the entropy gradient appears in the dimensional heat equation as 
 \begin{align}
@@ -439,7 +467,7 @@ And hence
 \begin{align}
 	\frac{d\hat{S}}{d\hat{r}} &= \frac{\brot}{\ramod}\frac{\hat{g}(\hat{r})}{\hat{T}(\hat{r})}
 \end{align}
-Note that in the current formulation of $\texttt{reference\_type = 2}$, the entropy gradient $d\hat{S}/d\hat{r}$ is hard-coded to zero and the correct entropy gradient cannot be calculated correctly without introducing the new parameter $\brot$ (perhaps call it $\texttt{Buoyancy\_Number}$ in the code). 
+Note that in the current formulation of $\texttt{reference\_type = 3}$, the entropy gradient $d\hat{S}/d\hat{r}$ is hard-coded to zero and the correct entropy gradient cannot be calculated correctly without introducing the new parameter $\brot$ (perhaps call it $\texttt{Buoyancy\_Number}$ in the code). 
 
 
 \subsection{Stable vs. unstable polytropes}
