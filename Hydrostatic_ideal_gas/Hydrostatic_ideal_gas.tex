@@ -280,20 +280,20 @@ Finally, suppose we want to increase the \textit{instability} of the system by \
 Note that from Equation \eqref{eq:rvalidpoly1}, this $n=0$ polytrope for the Sun (with $r_0=r\bcz$ and $b=8.99$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
 
 \subsection{Polytrope in terms of $\rhoref\bcz$ and $\nrho$}
-Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones2011} and in the $\rayleigh$ code \citep{Featherstone2021}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $\nrho$ across the CZ, as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $\nrho\define\ln{(\rhoref\bcz/\rhoref\topp)}$, where $\rhoref\topp$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $\nrho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
+Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones2011} and in the $\rayleigh$ code \citep{Featherstone2021}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $\nrho$ across the CZ, as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $\nrho\define\ln{(\rhoref\bcz/\rhoref\out)}$, where $\rhoref\out$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $\nrho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
 \begin{align}
 a = \frac{e^{\nrho/n} - 1 }{(1 - \beta)e^{\nrho/n}} \five \andd \tmpref\bcz = \frac{(1 - \beta)e^{\nrho/n}} {e^{\nrho/n} - 1 }\frac{G\mstar}{(n+1)\gasconst r\bcz},
 \label{eq:ti_from_nrho}
 \end{align}
 where we have defined the aspect ratio of the CZ,
 \begin{align}
-\beta\define \frac{r\bcz}{r\topp} < 1.
+\beta\define \frac{r\bcz}{r\out} < 1.
 \label{eq:beta}
 \end{align}
 Thus, instead of specifying $\tmpref\bcz$ and $\prsref\bcz$, we can specify $\rhoref\bcz$ and $\nrho$; $\tmpref\bcz$ is then determined through \eqref{eq:ti_from_nrho} and $\prsref\bcz$ through the ideal gas law. 
 
 \subsection{Polytrope with respect to the center of the CZ}
-\citet{Jones2011} define the polytrope using the variables at the center of the CZ (i.e., in our notation $r_0=r_c\define(r\bcz+r\topp)/2$). In that case, \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} become
+\citet{Jones2011} define the polytrope using the variables at the center of the CZ (i.e., in our notation $r_0=r_c\define(r\bcz+r\out)/2$). In that case, \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} become
 \begin{align}
 	\tmpref\ofr &= \tmpref_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right],\label{eq:tmppoly2}\\
 	\prsref\ofr &= \prsref_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right]^{n+1},\label{eq:ppoly2}\\
@@ -311,7 +311,7 @@ a_c = \frac{2\beta(e^{\nrho/n}-1)}{(1-\beta)(\beta e^{\nrho/n} + 1)}.
 \end{align}
 Defining 
 \begin{align}
-H&\define r\topp-r\bcz,\label{eq:d}\\
+H&\define r\out-r\bcz,\label{eq:d}\\
 c_0&\define 1-a_c = \frac{(1+\beta)(1-\beta e^{\nrho/n})}{(1-\beta)(\beta e^{\nrho/n} + 1)}, \label{eq:c0}\\
 c_1&\define \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{\nrho/n}-1)}{(1-\beta)^2(\beta e^{\nrho/n} + 1)},\label{eq:c1}\\
 \andd \zeta(r) &\define a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{H}{r}\right),\label{eq:zeta}
@@ -324,15 +324,15 @@ c_1&\define \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{\nrho/n}-1)}
 We can also see that if we define
 \begin{subequations}
 \begin{align}
-\zeta\topp \define \zeta(r\topp) &= \frac{1+\beta}{\beta e^{\nrho/n} + 1}\\
-\with e^{\nrho/n}&=\frac{1+\beta-\zeta\topp}{\zeta\topp},
+\zeta\out \define \zeta(r\out) &= \frac{1+\beta}{\beta e^{\nrho/n} + 1}\\
+\with e^{\nrho/n}&=\frac{1+\beta-\zeta\out}{\zeta\out},
 \end{align}
 \end{subequations}
 then 
 \begin{subequations}
 \begin{align}
-c_0 &= \frac{2\zeta\topp - \beta - 1}{1-\beta} \five\andd c_1 = \frac{(1+\beta)(1-\zeta\topp)}{(1-\beta)^2},\\
-\with \zeta\bcz   &\define      \zeta(r\bcz) = c_0+\left(\frac{1-\beta}{\beta}\right)c_1 = \frac{1+\beta - \zeta\topp}{\beta},
+c_0 &= \frac{2\zeta\out - \beta - 1}{1-\beta} \five\andd c_1 = \frac{(1+\beta)(1-\zeta\out)}{(1-\beta)^2},\\
+\with \zeta\bcz   &\define      \zeta(r\bcz) = c_0+\left(\frac{1-\beta}{\beta}\right)c_1 = \frac{1+\beta - \zeta\out}{\beta},
 \label{eq:c01_from_zeta0}
 \end{align}
 \end{subequations}
@@ -347,12 +347,12 @@ Also note that combining Equations \eqref{eq:ac} and \eqref{eq:c1} yields
 \end{subequations}
 
 \subsection{Non-Dimensional Polytrope}
-Here we show that as far as the non-dimensional system is concerned, any polytrope in a spherical shell is fully described by three numbers: the shell's aspect ratio, the number of density scale heights across the shell, and the polytropic index. We consider a spherical shell with (dimensional) inner and outer radii $r\inn$ and $r\out$. Then
+Here we show that as far as the non-dimensional system is concerned, any polytrope in a spherical shell is fully described by three numbers: the shell's aspect ratio, the number of density scale heights across the shell, and the polytropic index. We consider a spherical shell with (dimensional) inner and outer radii $r\inn$ and $r\out$, respectively. Then
 
 \begin{subequations}
 \begin{alignat}{2}
-	\beta &\define \frac{r\inn}{r\out} && \five \text{aspect ratio}\\
-	\andd H &\define r\out - r\inn  && \five \text{shell depth}.
+	\beta &\define \frac{r\inn}{r\out} && \five \text{(aspect ratio)}\\
+	\andd H &\define r\out - r\inn  && \five \text{(shell depth)}.
 \end{alignat}
 \end{subequations}
 
@@ -366,7 +366,7 @@ We define the number of density scale heights across the shell as
 \begin{align}
 	\nrho \define \ln\left[ \frac{\rhoref\inn}{\rhoref\out} \right],
 \end{align}
-where the subscripts mean ``evaluated at $r\inn$ or $r\out$."
+where the subscripts ``in" and ``out" mean ``evaluated at $r\inn$ or $r\out$, respectively".
 
 We choose $r_0=r\inn$, so 
 \begin{align}
@@ -378,7 +378,7 @@ From Equation \eqref{eq:rhopoly0}, we then find
 	e^{-\nrho/n} &= a(\beta-1) + 1 \nonumber \\
 	\orr a &= \frac{b}{n+1} = \frac{1 - e^{-\nrho/n}}{1-\beta}.\label{eq:afromnond}
 \end{align}
-Each thermal profile is non-dimensionalized using a representative value from the polytrope. This could be the value of the profile at the outer boundary (e.g., \citealt{Heimpel2022}) or the volume-average of the profile (e.g., \citealt{Hindman2020}). Instead, we choose the value at the inner boundary. Plugging everything into Equations \eqref{eq:tmppoly0}--\eqref{eq:spoly0}, we find
+Each thermal profile is non-dimensionalized using a representative value from the polytrope. This could be the volume-average of the profile ({\rayleigh}'s \texttt{reference\_type = 2}; e.g., \citealt{Hindman2020}) or the value of the profile at the outer boundary ({\rayleigh}'s \texttt{reference\_type = 3}; e.g  \citealt{Heimpel2022}). Here, we instead choose the value at the inner boundary. Plugging everything into Equations \eqref{eq:tmppoly0}--\eqref{eq:spoly0}, we find
 
 \begin{empheq}[box=\fbox]{align}
 	\hat{T}(\hat{r}) &= \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right) 
@@ -414,26 +414,34 @@ This, combined with Equation \eqref{eq:afromnond}, yields
 
 Finally, note that Equation \eqref{eq:spolynd} gives the entropy difference across the layer ($\Delta\sref  \define  \sref\out$):
 \begin{empheq}[box=\fbox]{align}
-	\frac{\Delta\sref}{\cp} &= \left(\frac{\nrho}{\tilde{n}+1}\right)  \left(\frac{n - \tilde{n}}{n} \right). 
+	\frac{\Delta\sref}{\cp} &= \left(\frac{\nrho}{\tilde{n}+1}\right)  \left(\frac{n - \tilde{n}}{n} \right) \five \text{(non-dimensional polytrope)}. 
 \end{empheq}
+Note that for the isopycnic atmosphere ($n=0$), the entropy difference diverges to $-\infty$.
+
 \subsection{Non-Dimensional Polytrope ($\rayleigh\ \texttt{reference\_type = 3}$)} 
-In $\rayleigh$ (following \citealt{Heimpel2022}), we non-dimensionalize the length-scale with $H$ and $\rhoref\ofr$, $\tmpref\ofr$, $\prsref\ofr$, and $g\ofr$ with their values at the outer boundary, $\rhoref\topp$, $\tmpref\topp$, $\prsref\topp$, and $g\topp$. Using hats for the non-dimensionalized background profiles (and noting $\hat{r}=r/H$), the hydrostatic Equation \eqref{eq:hydr} becomes
+For $\rayleigh$'s \texttt{reference\_type = 3} (non-dimensional anelastic; e.g., \citealt{Heimpel2022}), we again consider a shell spanning $(r\inn, r\out)$ with aspect ratio $\beta=r\inn/r\out$ and choose the shell depth $H=r\out-r\inn$ to be the length-scale. We non-dimensionalize $\rhoref\ofr$, $\tmpref\ofr$, $\prsref\ofr$, and $g\ofr$ with their values at the outer boundary, $\rhoref\out$, $\tmpref\out$, $\prsref\out$, and $g\out$ (respectively). Using hats for the non-dimensionalized background profiles (again defining $\hat{r}=r/H$), the hydrostatic Equation \eqref{eq:hydr} becomes
 \begin{subequations}
 \begin{align}
-	\frac{\cancel{\rhoref}\topp\gasconst\tmpref\topp}{H}\frac{d\hat{P}}{d\hat{r}} &= -\cancel{\rhoref\topp}g\topp\hat{\rho}(\hat{r})\hat{g}(\hat{r}),\\
-	\orr \frac{d\hat{T}}{d\hat{r}} &= \dialt\hat{g}(\hat{r})\label{eq:dtdr_polytropend},\\
-	\where \di &\define \frac{g\topp H}{\cp\tmpref\topp},\\
-	\dialt &\define \frac{g\topp H}{(n+1)\gasconst \tmpref\topp} = \frac{\gammaone}{(\gammaone-1)(n+1)}\di,\\
-	\andd \hat{g}(\hat{r}) &= \frac{r\topp^2}{r^2} = \frac{1}{(1-\beta)^2}\frac{1}{\hat{r}^2},
+	\frac{\cancel{\rhoref}\out\gasconst\tmpref\out}{H}\frac{d\hat{P}}{d\hat{r}} &= -\cancel{\rhoref\out}g\out\hat{\rho}(\hat{r})\hat{g}(\hat{r}),
+	\\
+	\orr \frac{d\hat{T}}{d\hat{r}} &= \dialt\hat{g}(\hat{r})\label{eq:dtdr_polytropend},
+	\\
+	\where \di &\define \frac{g\out H}{\cp\tmpref\out},
+	\\
+	\dialt &\define \frac{g\out H}{(n+1)\gasconst \tmpref\out} \nonumber\\
+	&= \frac{\gammaone}{(\gammaone-1)(n+1)}\di \nonumber\\
+	&= \left( \frac{\tilde{n}+1}{n+1} \right) \di,
+	\\
+	\andd \hat{g}(\hat{r}) &= \frac{r\out^2}{r^2} = \frac{1}{(1-\beta)^2}\frac{1}{\hat{r}^2},
 \end{align}
 \end{subequations}
-and we have used the polytropic relations $\hat{\rho}(\hat{r})=[\hat{T}(\hat{r})]^n$ and $\hat{P}(\hat{r})=[\hat{T}(\hat{r})]^{n+1}$. This is easily integrated to yield
+and we have used the polytropic relations $\hat{\rho}(\hat{r})=[\hat{T}(\hat{r})]^n$ and $\hat{P}(\hat{r})=[\hat{T}(\hat{r})]^{n+1}$ in deriving Equation \eqref{eq:dtdr_polytropend}. These Equations are easily integrated to yield
 \begin{align}
 	\hat{T}(\hat{r}) &= \frac{\dialt}{(1-\beta)^2}\frac{1}{\hat{r}} + 1 - \frac{\dialt}{1-\beta}.
 \end{align}
-And since $\hat{\rho}(\hat{r}\bcz) = e^{\nrho}$, we also have 
+And since $\hat{\rho}\inn = [\hat{T}\inn]^n = e^{\nrho}$, we also have 
 \begin{align}
-	\dialt &= \beta (e^{\nrho/n} + 1). 
+	\dialt &= \beta (e^{\nrho/n} - 1). 
 \end{align}
 For the derivatives, note that Equation \eqref{eq:dtdr_polytropend} yields
 \begin{align}
@@ -442,7 +450,7 @@ For the derivatives, note that Equation \eqref{eq:dtdr_polytropend} yields
 \end{align}
 where we have noted that $d\hat{g}/d\hat{r}=-2\hat{g}(\hat{r})/\hat{r}$. The derivatives of density follow easily from $\hat{\rho}(\hat{r})=[\hat{T}(\hat{r})]^n$.
 
-Important: In the current formulation of $\texttt{referece\_type = 3}$ (and in \citealt{Heimpel2022}), $\dialt$ is incorrectly conflated with with $\di$. The reference state is thus physically invalid for all polytropic indices except the adiabatic one, $\tilde{n}=1/(\gammaone - 1)$. 
+Important: In the current formulation of $\texttt{referece\_type = 3}$ (and in \citealt{Heimpel2022}), $\dialt$ is incorrectly conflated with with $\di$. The reference state is thus physically invalid for all polytropic indices except the adiabatic one, $\tilde{n}=1/(\gammaone - 1)$. I believe the effect is that in the current formulation of the code (which effectively has the incorrect factor $\dialt$ in front of the viscous heating term instead of the correct $\di$), the ``viscous heating" is the true viscous heating multiplied by $(\tilde{n}+1)/(n+1)$. 
 
 Note that the entropy gradient appears in the dimensional heat equation as 
 \begin{align}
@@ -455,7 +463,7 @@ and the $\Delta S$ (which appears in the Rayleigh number) is the already-chosen 
 We then must specify a new non-dimensional parameter (the buoyancy number), i.e., 
 \begin{subequations}
 \begin{align}
-	\brot &\define \frac{N\topp^2}{\Omega_0^2},\label{eq:buoynum}\\
+	\brot &\define \frac{N\out^2}{\Omega_0^2},\label{eq:buoynum}\\
 	\where N^2(r) &\define \frac{g(r)}{\cp} \frac{d\sref}{dr}.
 \end{align}
 \end{subequations}
@@ -520,7 +528,7 @@ k_c = 3.59.
 Figures \ref{fig:RZ_polytrope_stable} and \ref{fig:RZ_const_sgrad} show stable fluid layers in a solar-like radiative zone for stable polytropes and constant-entropy fluid layers, respectively. In Figure \ref{fig:RZ_polytrope_stable}, a range of polytropic indices $n$ are used to more or less give entropy-gradient magnitudes matching those set by the $k$-values of Figure \ref{fig:RZ_const_sgrad}. For $k>3.59$ (the black and chartreuse curves in Figure \ref{fig:RZ_const_sgrad}), the entropy gradients for the constant-gradient layer begin to exceed those of the polytrope, and there is furthermore a noticeable temperature inversion within the radiative zone.
 
 \section{Hyperbolic (exponential)  matching of entropy gradient between CZ and RZ}
-We consider a domain in radius of $(r\bott,r\topp)$ with the middle radius $r\bcz$ lying in this interval. We simulate a convection zone (CZ) in the region $(r\bcz, r\topp)$ overlying a radiative zone (stable region; RZ) in the region $(r\bott,r\bcz)$. In order to smoothly match a constant-entropy-gradient RZ ($\dsdr=\ \rm{constant}\ > 0$) to a marginally stable CZ ($\dsdr\equiv 0$), we can use hyperbolic trigonometric functions:
+We consider a domain in radius of $(r\bott,r\out)$ with the middle radius $r\bcz$ lying in this interval. We simulate a convection zone (CZ) in the region $(r\bcz, r\out)$ overlying a radiative zone (stable region; RZ) in the region $(r\bott,r\bcz)$. In order to smoothly match a constant-entropy-gradient RZ ($\dsdr=\ \rm{constant}\ > 0$) to a marginally stable CZ ($\dsdr\equiv 0$), we can use hyperbolic trigonometric functions:
 
 \begin{align}
 \sref\ofr &= \frac{k\cp}{r\bcz}\left\{\frac{1}{2}\left[(r-r\bcz) -\delta\ln\cosh{\left(\frac{r-r\bcz}{\delta}\right)}\right]\right\}\label{eq:s_tanh_transition}\\
@@ -566,7 +574,7 @@ Figures \ref{fig:CZ_RZ_quartmatch_vs_delta} and \ref{fig:CZ_RZ_quartmatch_vs_k} 
 
   \begin{figure}
 	\includegraphics[scale=0.6]{figures/CZ_polytrope_stable.pdf}
-	\caption{Sample of convectively stable polytropes for a solar-like CZ ($n\geq1.5$). The dimensional/geometric values for the polytrope (i.e., $\rm$, $r\topp$, $\rho\bcz$, $M$, $\cp$) are the solar values preceding \eqref{eq:kc_solar}, and $\nrho=3$.}
+	\caption{Sample of convectively stable polytropes for a solar-like CZ ($n\geq1.5$). The dimensional/geometric values for the polytrope (i.e., $\rm$, $r\out$, $\rho\bcz$, $M$, $\cp$) are the solar values preceding \eqref{eq:kc_solar}, and $\nrho=3$.}
 	\label{fig:CZ_polytrope_stable}
 \end{figure}
 
@@ -578,7 +586,7 @@ Figures \ref{fig:CZ_RZ_quartmatch_vs_delta} and \ref{fig:CZ_RZ_quartmatch_vs_k} 
 
   \begin{figure}
 	\includegraphics[scale=0.6]{figures/RZ_polytrope_stable.pdf}
-	\caption{Sample of convectively stable polytropes for a solar-like RZ ($n\geq1.5$). Similar to Figure \ref{fig:CZ_polytrope_stable}, except the radius range is $(r\bott=4.176\times10^{10}\ {\rm{cm}},\ r\bcz=5.00\times10^{10}\ \rm{cm})$ instead of $(r\bcz,r\topp)$.}
+	\caption{Sample of convectively stable polytropes for a solar-like RZ ($n\geq1.5$). Similar to Figure \ref{fig:CZ_polytrope_stable}, except the radius range is $(r\bott=4.176\times10^{10}\ {\rm{cm}},\ r\bcz=5.00\times10^{10}\ \rm{cm})$ instead of $(r\bcz,r\out)$.}
 	\label{fig:RZ_polytrope_stable}
 \end{figure}
 
