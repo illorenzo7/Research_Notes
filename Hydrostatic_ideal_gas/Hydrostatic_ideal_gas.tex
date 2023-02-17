@@ -42,13 +42,13 @@
 	\end{align}
 	Here, $\prsref\ofr$ is the pressure, $\rhoref\ofr$ the density, $\tmpref\ofr$ the temperature, and $\gasconst$ the gas constant. We further assume that the number of degrees of freedom (d.o.f.) is constant throughout, so that $\gasconst$ is independent of radius. We note the relationship between the specific heats for an ideal gas:
 	\begin{align}
-	\cp = \gammaone\cv = \frac{\gammaone\gasconst}{\gammaone- 1}\label{eq:cp_from_gamma},
+	\cp = \gamma\cv = \frac{\gamma\gasconst}{\gamma- 1}\label{eq:cp_from_gamma},
 	\end{align}
-	where $\gammaone\define\cp/\cv$. 
+	where $\gamma\define\cp/\cv$. 
 	
 	We note the First Law of Thermodynamics for the radial thermodynamic gradients (easiest starting point is $\tmpref d\sref=\cv d\tmpref-(\prsref/\rhoref^2)d\rhoref$):
 	\begin{align}
-	\frac{1}{\cv}\dsdr =\dlntmp - (\gammaone - 1)\dlnrho.
+	\frac{1}{\cv}\dsdr =\dlntmp - (\gamma - 1)\dlnrho.
 	\label{eq:firstlaw}
 	\end{align}
 	Differentiating the ideal gas law \eqref{eq:idgas} gives
@@ -59,9 +59,9 @@
 	Combining Equations \eqref{eq:firstlaw} and \eqref{eq:idgasdr} yields the following useful forms of the First Law:
 	\begin{subequations}
 		\begin{align}
-		\frac{1}{\cp}\dsdr &=\frac{1}{\gammaone}\dlntmp - \frac{\gammaone - 1}{\gammaone}\dlnrho\label{eq:firstlawtmprho}\\
-		&=\frac{1}{\gammaone}\dlnprs - \dlnrho\label{eq:firstlawprsrho}\\
-		&= \dlntmp - \frac{\gammaone - 1}{\gammaone}\dlnprs\label{eq:firstlawtmpprs}
+		\frac{1}{\cp}\dsdr &=\frac{1}{\gamma}\dlntmp - \frac{\gamma - 1}{\gamma}\dlnrho\label{eq:firstlawtmprho}\\
+		&=\frac{1}{\gamma}\dlnprs - \dlnrho\label{eq:firstlawprsrho}\\
+		&= \dlntmp - \frac{\gamma - 1}{\gamma}\dlnprs\label{eq:firstlawtmpprs}
 		\end{align}
 		\label{eq:firstlaw3}
 	\end{subequations}
@@ -88,14 +88,14 @@
 	With $\tmpref\ofr$ now obtained, we can obtain $\prsref\ofr$ through integrating the First Law in its form \eqref{eq:firstlawtmpprs}:
 	\begin{align}
 	\boxed{
-	\prsref\ofr=\prsref_0e^{-\sref\ofr/\gasconst} \left[\frac{\tmpref\ofr}{\tmpref_0}\right]^{\gammaone/(\gammaone - 1)}.
+	\prsref\ofr=\prsref_0e^{-\sref\ofr/\gasconst} \left[\frac{\tmpref\ofr}{\tmpref_0}\right]^{\gamma/(\gamma - 1)}.
 }
 \label{eq:pgeneral}
 	\end{align}
 	Finally, $\rhoref\ofr$ is determined from Equation \eqref{eq:idgas}:
 	\begin{align}
 	\boxed{
-	\rhoref\ofr=\rhoref_0e^{-\sref\ofr/\gasconst} \left[\frac{\tmpref\ofr}{\tmpref_0}\right]^{1/(\gammaone - 1)}.
+	\rhoref\ofr=\rhoref_0e^{-\sref\ofr/\gasconst} \left[\frac{\tmpref\ofr}{\tmpref_0}\right]^{1/(\gamma - 1)}.
 }
 \label{eq:rhogeneral}
 	\end{align}
@@ -126,9 +126,9 @@
 	
 	Equations  \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} yield
 	\begin{empheq}[box=\fbox]{align}
-	\prsref\ofr &= \prsref_0 \left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]^{\gammaone/(\gammaone-1)} \ \ \ \ \ \text{(adiabatic atmosphere)}
+	\prsref\ofr &= \prsref_0 \left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]^{\gamma/(\gamma-1)} \ \ \ \ \ \text{(adiabatic atmosphere)}
 \label{eq:prsad}\\
-\andd	\rhoref\ofr &= \rhoref_0 \left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]^{1/(\gammaone-1)} \ \ \ \ \ \text{(adiabatic atmosphere).}
+\andd	\rhoref\ofr &= \rhoref_0 \left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]^{1/(\gamma-1)} \ \ \ \ \ \text{(adiabatic atmosphere).}
 \label{eq:rhoad}
 \end{empheq}
 Note: to keep thermodynamic quantities positive, we must ensure that the argument
@@ -238,7 +238,7 @@ or, in terms of $b$,
 \end{subequations}
 where
 \begin{align}
-\tilde{n}=  \frac{1}{\tilde{a}}\frac{G\mstar}{\gasconst \tmpref_0 r_0} - 1 \define\frac{1}{\gammaone - 1}
+\tilde{n}=  \frac{1}{\tilde{a}}\frac{G\mstar}{\gasconst \tmpref_0 r_0} - 1 \define\frac{1}{\gamma - 1}
 \label{eq:npolyad}
 \end{align}
 and $\tilde{a}\define G\mstar/\cp\tmpref_0 r_0$ was already defined in Equation \eqref{eq:atilde}.
@@ -399,11 +399,11 @@ Each thermal profile is non-dimensionalized using a representative value from th
 	&\five \text{(non-dimensional polytrope)}. \nonumber
 \end{empheq}
 
-The non-dimensional polytrope is purely characterized by the three numbers $\beta$, $\nrho$, and $n$. (For completeness, we should also include $\gammaone$, or $\tilde{n}$, but for most cases we are concerned with, $\gammaone=5/3$). Note that the dissipation number $\di$ is \textit{not} an independent parameter. For example, in the non-dimensionalization chosen here, we have
+The non-dimensional polytrope is purely characterized by the three numbers $\beta$, $\nrho$, and $n$. (For completeness, we should also include $\gamma$, or $\tilde{n}$, but for most cases we are concerned with, $\gamma=5/3$). Note that the dissipation number $\di$ is \textit{not} an independent parameter. For example, in the non-dimensionalization chosen here, we have
 
 \begin{align*}
 	a &= \frac{G\mstar}{(n+1)\gasconst T\inn r\inn} \\
-	&= \left(\frac{\beta}{1-\beta}\right) \left(\frac{\gammaone}{\gammaone - 1}\right)  \left( \frac{1}{n+1} \right) \di,\\
+	&= \left(\frac{\beta}{1-\beta}\right) \left(\frac{\gamma}{\gamma - 1}\right)  \left( \frac{1}{n+1} \right) \di,\\
 	&= \left(\frac{\beta}{1-\beta}\right) \left( \frac{\tilde{n}+1}{n+1} \right) \di, \\
 	\where \di &\define \frac{g\inn H}{\cp T\inn}
 \end{align*}
@@ -437,7 +437,7 @@ For $\rayleigh$'s \texttt{reference\_type = 3} (non-dimensional anelastic; e.g.,
 	\where \di &\define \frac{g\out H}{\cp\tmpref\out},
 	\\
 	\dialt &\define \frac{g\out H}{(n+1)\gasconst \tmpref\out} \nonumber\\
-	&= \frac{\gammaone}{(\gammaone-1)(n+1)}\di \nonumber\\
+	&= \frac{\gamma}{(\gamma-1)(n+1)}\di \nonumber\\
 	&= \left( \frac{\tilde{n}+1}{n+1} \right) \di,
 	\\
 	\andd \hat{g}(\hat{r}) &= \frac{r\out^2}{r^2} = \frac{1}{(1-\beta)^2}\frac{1}{\hat{r}^2},
@@ -465,7 +465,7 @@ where we have noted that $d\hat{g}/d\hat{r}=-2\hat{g}(\hat{r})/\hat{r}$. The der
 Note that in the current formulation of $\texttt{referece\_type = 3}$ (and in \citealt{Heimpel2022}), $\dialt$ seems to be conflated with with $\di$, i.e., $n = \tilde{n}$. Since \citet{Heimpel2022} choose $n=1$ and $n=2$ for Jupiter, they effectively seem to be choosing a ``strange" Jovian gas. Note that in general, 
 \begin{subequations}
 \begin{align}
-	\gammaone - 1 &= \frac{2}{f}\\
+	\gamma - 1 &= \frac{2}{f}\\
 	\orr \tilde{n} &= \frac{f}{2},
 \end{align}
 \end{subequations}
