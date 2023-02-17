@@ -404,19 +404,27 @@ The non-dimensional polytrope is purely characterized by the three numbers $\bet
 \begin{align*}
 	a &= \frac{G\mstar}{(n+1)\gasconst T\inn r\inn} \\
 	&= \left(\frac{\beta}{1-\beta}\right) \left(\frac{\gammaone}{\gammaone - 1}\right)  \left( \frac{1}{n+1} \right) \di,\\
+	&= \left(\frac{\beta}{1-\beta}\right) \left( \frac{\tilde{n}+1}{n+1} \right) \di, \\
 	\where \di &\define \frac{g\inn H}{\cp T\inn}
 \end{align*}
 
 This, combined with Equation \eqref{eq:afromnond}, yields
 \begin{align}
-	\di = \left(\frac{\gammaone - 1}{\gammaone}\right)  (n+1)   \left(\frac{1}{\beta} \right) (1 - e^{-\nrho/n}).
+	\di = \left(\frac{n+1}{\tilde{n}+1}\right)  \left(\frac{1}{\beta} \right) (1 - e^{-\nrho/n}).
 \end{align}
 
 Finally, note that Equation \eqref{eq:spolynd} gives the entropy difference across the layer ($\Delta\sref  \define  \sref\out$):
 \begin{empheq}[box=\fbox]{align}
 	\frac{\Delta\sref}{\cp} &= \left(\frac{\nrho}{\tilde{n}+1}\right)  \left(\frac{n - \tilde{n}}{n} \right) \five \text{(non-dimensional polytrope)}. 
 \end{empheq}
-Note that for the isopycnic atmosphere ($n=0$), the entropy difference diverges to $-\infty$.
+Note that for the two ``extreme" atmospheres (isopycnic and isothermal), the entropy difference across the shell is
+
+\begin{equation}
+	\frac{\Delta\sref}{\cp} = \begin{cases}
+		-\infty& \five (n=0;\ \text{isopycnic atmosphere}) \\
+		 +\frac{\nrho}{\tilde{n}+1} & \five (n=\infty;\ \text{isothermal atmosphere}).
+	\end{cases}
+\end{equation}
 
 \subsection{Non-Dimensional Polytrope ($\rayleigh\ \texttt{reference\_type = 3}$)} 
 For $\rayleigh$'s \texttt{reference\_type = 3} (non-dimensional anelastic; e.g., \citealt{Heimpel2022}), we again consider a shell spanning $(r\inn, r\out)$ with aspect ratio $\beta=r\inn/r\out$ and choose the shell depth $H=r\out-r\inn$ to be the length-scale. We non-dimensionalize $\rhoref\ofr$, $\tmpref\ofr$, $\prsref\ofr$, and $g\ofr$ with their values at the outer boundary, $\rhoref\out$, $\tmpref\out$, $\prsref\out$, and $g\out$ (respectively). Using hats for the non-dimensionalized background profiles (again defining $\hat{r}=r/H$), the hydrostatic Equation \eqref{eq:hydr} becomes
@@ -440,9 +448,13 @@ and we have used the polytropic relations $\hat{\rho}(\hat{r})=[\hat{T}(\hat{r})
 	\hat{T}(\hat{r}) &= \frac{\dialt}{(1-\beta)^2}\frac{1}{\hat{r}} + 1 - \frac{\dialt}{1-\beta}.
 \end{align}
 And since $\hat{\rho}\inn = [\hat{T}\inn]^n = e^{\nrho}$, we also have 
+\begin{subequations}
 \begin{align}
-	\dialt &= \beta (e^{\nrho/n} - 1). 
+	\dialt &= \beta (e^{\nrho/n} - 1)\\
+	\andd \di &= \left( \frac{n+1}{\tilde{n}+1} \right)\beta (e^{\nrho/n} - 1).
 \end{align}
+\end{subequations}
+
 For the derivatives, note that Equation \eqref{eq:dtdr_polytropend} yields
 \begin{align}
 	\frac{d\ln\hat{T}}{d\hat{r}} &= -\dialt \frac{\hat{g}(\hat{r})}{\hat{T}(\hat{r})}\\
@@ -450,13 +462,20 @@ For the derivatives, note that Equation \eqref{eq:dtdr_polytropend} yields
 \end{align}
 where we have noted that $d\hat{g}/d\hat{r}=-2\hat{g}(\hat{r})/\hat{r}$. The derivatives of density follow easily from $\hat{\rho}(\hat{r})=[\hat{T}(\hat{r})]^n$.
 
-Important: In the current formulation of $\texttt{referece\_type = 3}$ (and in \citealt{Heimpel2022}), $\dialt$ is incorrectly conflated with with $\di$. The reference state is thus physically invalid for all polytropic indices except the adiabatic one, $\tilde{n}=1/(\gammaone - 1)$. I believe the effect is that in the current formulation of the code (which effectively has the incorrect factor $\dialt$ in front of the viscous heating term instead of the correct $\di$), the ``viscous heating" is the true viscous heating multiplied by $(\tilde{n}+1)/(n+1)$. 
+Note that in the current formulation of $\texttt{referece\_type = 3}$ (and in \citealt{Heimpel2022}), $\dialt$ seems to be conflated with with $\di$, i.e., $n = \tilde{n}$. Since \citet{Heimpel2022} choose $n=1$ and $n=2$ for Jupiter, they effectively seem to be choosing a ``strange" Jovian gas. Note that in general, 
+\begin{subequations}
+\begin{align}
+	\gammaone - 1 &= \frac{2}{f}\\
+	\orr \tilde{n} &= \frac{f}{2},
+\end{align}
+\end{subequations}
+where $f$ is the (integer) number of degrees of freedom (d.o.f.) of the gas. It seems Jupiter should have $f=5$ (diatomic cool gas; three translational d.o.f., two rotational d.o.f.), but \citet{Heimpel2022} have either $f=2$ or $f=4$. 
 
 Note that the entropy gradient appears in the dimensional heat equation as 
 \begin{align}
 	\pderiv{S}{t} = -\frac{d\sref}{dr}u_r + ...
 \end{align}
-and the $\Delta S$ (which appears in the Rayleigh number) is the already-chosen entropy scale (see \citealt{Heimpel2022}). For consistency, we should non-dimensionalize the entropy gradient like
+and the $\Delta S$ (which appears in the Rayleigh number) is the already-chosen entropy scale. For consistency, we should non-dimensionalize the entropy gradient like
 \begin{align}
 	\frac{d\sref}{dr}  &=   \frac{\Delta S}{H}   \frac{d\hat{S}}{d\hat{r}}
 \end{align}
