@@ -471,32 +471,6 @@ Note that in the current formulation of $\texttt{referece\_type = 3}$ (and in \c
 \end{subequations}
 where $f$ is the (integer) number of degrees of freedom (d.o.f.) of the gas. It seems Jupiter should have $f=5$ (diatomic cool gas; three translational d.o.f., two rotational d.o.f.), but \citet{Heimpel2022} have either $f=2$ or $f=4$. 
 
-Note that the entropy gradient appears in the dimensional heat equation as 
-\begin{align}
-	\pderiv{S}{t} = -\frac{d\sref}{dr}u_r + ...
-\end{align}
-and the $\Delta S$ (which appears in the Rayleigh number) is the already-chosen entropy scale. For consistency, we should non-dimensionalize the entropy gradient like
-\begin{align}
-	\frac{d\sref}{dr}  &=   \frac{\Delta S}{H}   \frac{d\hat{S}}{d\hat{r}}
-\end{align}
-We then must specify a new non-dimensional parameter (the buoyancy number), i.e., 
-\begin{subequations}
-\begin{align}
-	\brot &\define \frac{N\out^2}{\Omega_0^2},\label{eq:buoynum}\\
-	\where N^2(r) &\define \frac{g(r)}{\cp} \frac{d\sref}{dr}.
-\end{align}
-\end{subequations}
-Then Equations \eqref{eq:firstlawtmprho}, \eqref{eq:dtdr_polytropend}, and \eqref{eq:buoynum} yield
-\begin{align}
-	\frac{\cp}{\Delta S} = \frac{\gammaone}{n(\gammaone - 1) - 1}\frac{\brot}{\ramod \dialt}
-\end{align}
-And hence
-\begin{align}
-	\frac{d\hat{S}}{d\hat{r}} &= \frac{\brot}{\ramod}\frac{\hat{g}(\hat{r})}{\hat{T}(\hat{r})}
-\end{align}
-Note that in the current formulation of $\texttt{reference\_type = 3}$, the entropy gradient $d\hat{S}/d\hat{r}$ is hard-coded to zero and the correct entropy gradient cannot be calculated correctly without introducing the new parameter $\brot$ (perhaps call it $\texttt{Buoyancy\_Number}$ in the code). 
-
-
 \subsection{Stable vs. unstable polytropes}
 Figure \ref{fig:CZ_polytrope_stable} (Figure \ref{fig:CZ_polytrope_unstable}) shows a sample of convectively stable (unstable) polytropes for various values of the polytropic index $n$ in a solar-like convection zone. For very high values of $n$ (Figure \ref{fig:CZ_polytrope_stable}), the entropy gradient profile asymptotes to its maximum value and the temperature profile becomes flat---in agreement with the discussion surrounding Equation \eqref{eq:limitninfty}. For very low values of $n$ (highly unstable polytropes; Figure \ref{fig:CZ_polytrope_unstable}), the constant $a$ becomes significantly greater than 1, and the argument $\zeta(r)$ becomes negative within the convection zone, giving complex values for $\prsref\ofr$ and $\rhoref\ofr$ for $r$ greater than the radius at which $\zeta=0$ (the exception to this rule is the special case $n=1$). Thus, the polytropic formulation is unphysical for domains with large enough extent; the same is true for the stable polytropes, but the radius at which $\zeta=0$ is quite far outside the convection zone.
 
