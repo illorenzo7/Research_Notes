@@ -413,6 +413,22 @@ This, combined with Equation \eqref{eq:afromnond}, yields
 	\di = \left(\frac{n+1}{\tilde{n}+1}\right)  \left(\frac{1}{\beta} \right) (1 - e^{-\nrho/n}).
 \end{align}
 
+If we instead using volume-averages for the representative values, then Equation \eqref{eq:tmppolynd} yields
+\begin{align*}
+	\frac{\avvol{\tmpref}}{\tmpref\inn} &= \left(\frac{3}{2}\right) \frac{\beta(1+\beta)[\beta(1-e^{-\nrho/n})]} {1-\beta^3} - \frac{\beta-e^{-\nrho/n}}{1-\beta}
+\end{align*}
+and $g(r)\propto 1/r^2$ yields
+\begin{align*}
+	\frac{\avvol{g}}{g\inn} &= \frac{3(1-\beta)\beta^2}{1-\beta^3}.
+\end{align*}
+Thus
+\begin{align}
+	\di_{\rm{v}} &\define \frac{\avvol{g}/g\inn}{\avvol{\tmpref}/\tmpref\inn}\di \nonumber\\
+	&= \left(\frac{n+1}{\tilde{n}+1}\right)   \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
+	 { (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})}. 
+\end{align}
+For $n=\tilde{n}=1.5$, $\beta=0.759$, and $\nrho=3$, this yields $\di_{\rm{v}}=1.723$, a familiar number.
+
 Finally, note that Equation \eqref{eq:spolynd} gives the entropy difference across the layer ($\Delta\sref  \define  \sref\out$):
 \begin{empheq}[box=\fbox]{align}
 	\frac{\Delta\sref}{\cp} &= \left(\frac{\nrho}{\tilde{n}+1}\right)  \left(\frac{n - \tilde{n}}{n} \right) \five \text{(non-dimensional polytrope)}. 
