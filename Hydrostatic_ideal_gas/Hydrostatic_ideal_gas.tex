@@ -419,17 +419,17 @@ If we instead using volume-averages for the representative values, then Equation
 \end{align*}
 and $g(r)\propto 1/r^2$ yields
 \begin{align*}
-	\frac{\avvol{g}}{g\inn} &= \frac{3(1-\beta)\beta^2}{1-\beta^3}.
+	\frac{\avvol{g}}{g\inn} &= \frac{3(1-\beta)\beta^2}{1-\beta^3},
 \end{align*}
-Thus
-\begin{align}
+where $\avvol{\cdots}$ refers to a volume average over the full shell ($\hat{r}$-range $(\beta/(1-\beta), 1/(1-\beta) )$. Thus
+\begin{align}\label{eq:digory}
 	\di_{\rm{v}} &\define \frac{\avvol{g}/g\inn}{\avvol{\tmpref}/\tmpref\inn}\di \nonumber\\
 	&= \left(\frac{n+1}{\tilde{n}+1}\right)   \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
 	 { (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})}. 
 \end{align}
-For $n=\tilde{n}=1.5$, $\beta=0.759$, and $\nrho=3$, this yields $\di_{\rm{v}}=1.723$, a familiar number.
+For $n=\tilde{n}=1.5$, $\beta=0.759$, and $\nrho=3$ (e.g., \citealt{Hindman2020, Matilsky2022}) Equation \eqref{eq:digory} yields their reported $\di_{\rm{v}}=1.72$. Note that Equation \eqref{eq:digory} is essentially the ``gory" version of \citealt{Hindman2020}'s Equation (A6). Either Equation shows that their are only three independent parameters characterizing the polytrope, so it doesn't make sense to give preferential reporting of $\di_{\rm{v}}$, as was done \citet{Hindman2020,Matilsky2022}. 
 
-Finally, note that Equation \eqref{eq:spolynd} gives the entropy difference across the layer ($\Delta\sref  \define  \sref\out$):
+Finally, note that Equation \eqref{eq:spolynd} gives the entropy difference across the layer ($\Delta\sref  \define  \sref\out$, since have chosen $\sref\inn=0$):
 \begin{empheq}[box=\fbox]{align}
 	\frac{\Delta\sref}{\cp} &= \left(\frac{\nrho}{\tilde{n}+1}\right)  \left(\frac{n - \tilde{n}}{n} \right) \five \text{(non-dimensional polytrope)}. 
 \end{empheq}
@@ -487,8 +487,8 @@ Note that in the current formulation of $\texttt{reference\_type = 3}$ (and in \
 \end{subequations}
 where $f$ is the (integer) number of degrees of freedom (d.o.f.) of the gas. It seems Jupiter should have $f=5$ (diatomic cool gas; three translational d.o.f., two rotational d.o.f.), but \citet{Heimpel2022} have either $f=2$ or $f=4$. 
 
-\subsection{Stable vs. unstable polytropes}
-Figure \ref{fig:CZ_polytrope_stable} (Figure \ref{fig:CZ_polytrope_unstable}) shows a sample of convectively stable (unstable) polytropes for various values of the polytropic index $n$ in a solar-like convection zone. For very high values of $n$ (Figure \ref{fig:CZ_polytrope_stable}), the entropy gradient profile asymptotes to its maximum value and the temperature profile becomes flat---in agreement with the discussion surrounding Equation \eqref{eq:limitninfty}. For very low values of $n$ (highly unstable polytropes; Figure \ref{fig:CZ_polytrope_unstable}), the constant $a$ becomes significantly greater than 1, and the argument $\zeta(r)$ becomes negative within the convection zone, giving complex values for $\prsref\ofr$ and $\rhoref\ofr$ for $r$ greater than the radius at which $\zeta=0$ (the exception to this rule is the special case $n=1$). Thus, the polytropic formulation is unphysical for domains with large enough extent; the same is true for the stable polytropes, but the radius at which $\zeta=0$ is quite far outside the convection zone.
+\subsection{Stable and unstable polytropes}
+Figure \ref{fig:RZ_polytrope_stable} (Figure \ref{fig:CZ_polytrope_unstable}) shows a sample of convectively stable (unstable) polytropes for various values of the polytropic index $n$ in a solar-like convection zone. For very high values of $n$ (Figure \ref{fig:RZ_polytrope_stable}), the entropy-gradient profile asymptotes to its maximum value and the temperature profile becomes flat (since the atmosphere becomes isothermal; see Equation \eqref{eq:limitninfty}. For very low values of $n$ (highly unstable polytropes; Figure \ref{fig:CZ_polytrope_unstable}), the entropy-gradient profile asymptotes to its most-negative value and the density profile becomes flat (since the atmosphere becomes isopycnic; see Equation \eqref{eq:limitn0}). Note that the isopycnic atmosphere has limited validity, with ${\rbound}_{,\odot,n=0}/\rsun=0.809$. 
 
 \subsection{Atmosphere with constant entropy gradient}
 A simple example of a fluid layer that is stable to convection is one with a constant ``stiffness," or entropy gradient. If we consider an RZ extending from the inner radius $r\bcz$ of the shell to the middle of the shell $r\bcz$, we can write
