@@ -214,7 +214,7 @@ Similarly to the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the ch
 
 In general, we use a polytrope as a simplified background for a localized region of a particular star. We will thus choose representative stellar values for $\mstar$, $\gasconst$, $r_0$, and $\tmpref_0$ (setting $b$), and then choose a value for $n$. For $n<b-1$, higher $n$ yields a wider range of validity, and lower $n$ a narrower one. 
 
-To make things concrete, here we show where an adiabatic polytrope is valid for the Sun. Recall $G=\sn{6.67}{-8}\ \cm^3\ \gram^{-1}\ \second^{-2}$. For the Sun ($\mstar=\msun=\sn{1.99}{33}\ {\rm{g}}$), we integrate from the base of the convection zone ($r_0=r\bcz=\sn{5.00}{10}\ \cm$; $\tmpref_0=\tmpref\bcz=\sn{2.11}{6}\ \kelv$; $\cp=\sn{3.50}{8}\ \unitent$ or $\gasconst=\sn{1.40}{8}\ \unitent$) and assume adiabatic stratification ($n=1.50$). Then $b=8.99 > 2.5$ and condition \eqref{eq:rvalidpoly1} becomes
+To make things concrete, here we show where an adiabatic polytrope is valid for the Sun. Recall $G=\sn{6.67}{-8}\ \cm^3\ \gram^{-1}\ \second^{-2}$. For the Sun ($\mstar=\msun=\sn{1.99}{33}\ {\rm{g}}$), we integrate from the base of the convection zone ($r_0=r\bcz=\sn{5.00}{10}\ \cm$; $\tmpref_0=\tmpref\bcz=\sn{2.11}{6}\ \kelv$; $\cp=\sn{3.50}{8}\ \unitent$ or $\gasconst=\sn{1.40}{8}\ \unitent$) and assume adiabatic stratification ($n=1.50$). Then $b=8.98 > 2.5$ and condition \eqref{eq:rvalidpoly1} becomes
 \begin{align*}
 	0<r<(\rbound)_\odot\define\sn{6.93}{10}\ \cm. 
 \end{align*}
@@ -267,7 +267,7 @@ Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=e^x$, Equations \eqref{eq:tmp
 \textit{If one tries to increase the stability a solar-like polytrope by increasing $n$, there is therefore a fundamental upper bound imposed by the polytropic formulation itself.}
 Similarly, as $n\rightarrow\infty$, the total entropy contrast from top to bottom and all logarithmic derivatives of the thermodynamic variables have upper bounds, meaning that all scale heights have lower bounds. These bounds are reached for an isothermal atmosphere.
 
-Finally, suppose we want to increase the \textit{instability} of the system by \textit{lowering} $n$ to $0$ (for $b=8.99$ and $r<(\rbound)_\odot$, Equation \eqref{eq:dsdr_vs_n} shows that $d\sref/dr$ everywhere decreases as $n$ decreases). For $n=0$, we find the maximally unstable (isopycnic, or constant-density) atmosphere: 
+Finally, suppose we want to increase the \textit{instability} of the system by \textit{lowering} $n$ to $0$ (for $b=8.98$ and $r<(\rbound)_\odot$, Equation \eqref{eq:dsdr_vs_n} shows that $d\sref/dr$ everywhere decreases as $n$ decreases). For $n=0$, we find the maximally unstable (isopycnic, or constant-density) atmosphere: 
 
 	\begin{empheq}[box=\fbox]{align}\label{eq:limitn0}
 	\tmpref\ofr&\rightarrow \tmpref_0\left[b\left(\frac{r_0}{r}\right)+(1-b)\right], \\
@@ -277,7 +277,7 @@ Finally, suppose we want to increase the \textit{instability} of the system by \
 	\andd \frac{\sref\ofr}{\cp} &\rightarrow -\frac{\tilde{n}}{\tilde{n}+1}\left\{\ln{\left(\frac{r}{r_0}\right)} - \ln{\left[(1-b)\left(\frac{r}{r_0}\right)+b\right]} \right\}\\ 
 	&\ \ \ \ \ \text{(isopycnic atmosphere; polytrope with $n=0$)}. \nonumber
 \end{empheq}
-Note that from Equation \eqref{eq:rvalidpoly1}, this $n=0$ polytrope for the Sun (with $r_0=r\bcz$ and $b=8.99$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
+Note that from Equation \eqref{eq:rvalidpoly1}, this $n=0$ polytrope for the Sun (with $r_0=r\bcz$ and $b=8.98$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
 
 \subsection{Polytrope in terms of $\rhoref\bcz$ and $\nrho$}
 Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones2011} and in the $\rayleigh$ code \citep{Featherstone2021}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $\nrho$ across the CZ, as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $\nrho\define\ln{(\rhoref\bcz/\rhoref\out)}$, where $\rhoref\out$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $\nrho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
@@ -568,19 +568,13 @@ Figures \ref{fig:CZ_RZ_quartmatch_vs_delta} and \ref{fig:CZ_RZ_quartmatch_vs_k} 
   \begin{figure}
 	\includegraphics[width=6.5in]{figures/solar_RZ_polytropes_stable.png}
 	\caption{Sample of convectively stable polytropes for a solar-like radiative zone ($n\geq1.5$). The dimensional values defining this set of polytropes (i.e., the solar values $r_0=r\bcz$, $\rhoref_0=\rhoref\bcz$, $\tmpref_0=\tmpref\bcz$, $\mstar=\msun$, $\cp$) are listed just before Equation \eqref{eq:kc_solar}. We set our bottom radius to $r\inn=\sn{2}{10}$ cm. For reference, we also plot the profiles from the isothermal atmosphere ($n=\infty$) and model S. Model S is remarkably similar (except for some of the radial-gradient profiles) to a polytrope with $n=3$. All $y$-axes are measured in cgs units.}
-	\label{fig:CZ_polytrope_stable}
-\end{figure}
-
-  \begin{figure}
-	\includegraphics[scale=0.6]{figures/CZ_polytrope_unstable.pdf}
-	\caption{Sample of convectively unstable polytropes for a solar-like CZ ($n\leq1.5$), with the same dimensional parameters as Figure \ref{fig:CZ_polytrope_stable}.}
-	\label{fig:CZ_polytrope_unstable}
-\end{figure}
-
-  \begin{figure}
-	\includegraphics[scale=0.6]{figures/RZ_polytrope_stable.pdf}
-	\caption{Sample of convectively stable polytropes for a solar-like RZ ($n\geq1.5$). Similar to Figure \ref{fig:CZ_polytrope_stable}, except the radius range is $(r\bott=4.176\times10^{10}\ {\rm{cm}},\ r\bcz=5.00\times10^{10}\ \rm{cm})$ instead of $(r\bcz,r\out)$.}
 	\label{fig:RZ_polytrope_stable}
+\end{figure}
+
+  \begin{figure}
+	\includegraphics[width=6.5in]{figures/solar_CZ_polytropes_unstable.png}
+	\caption{Sample of convectively unstable polytropes for a solar-like radiative zone ($n\leq1.5$). The dimensional values defining this set of polytropes (i.e., the solar values $r_0=r\bcz$, $\rhoref_0=\rhoref\bcz$, $\tmpref_0=\tmpref\bcz$, $\mstar=\msun$, $\cp$) are listed just before Equation \eqref{eq:kc_solar}. We set our bottom radius to $r\bcz=\sn{5}{10}$ cm and the outer radius is set to the limit $r_{\rm{bound}}$ defined in Equation \eqref{eq:rvalidpoly} for $b=8.98$. For reference, we also plot the profiles from the maximally unstable isopycnic atmosphere ($n=0$) and model S. Model S is similar (except near the photosphere) to an adiabatic polytrope with $n=1.5$. All $y$-axes are measured in cgs units.}
+	\label{fig:CZ_polytrope_unstable}
 \end{figure}
 
 \begin{figure}
