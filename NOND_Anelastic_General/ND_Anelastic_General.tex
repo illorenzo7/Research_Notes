@@ -119,7 +119,6 @@ along with the non-dimensional heating function
 	\hat{Q}(r) \define \frac{L^2}{\tilde{\rho}\tilde{T}\tilde{\kappa} \sigma} Q(r). 
 \end{align}
 
-
 Note that the dissipation number is not an independent control parameter, but a function of the non-dimensional parameters characterizing the polytrope. 
 
 In general, $\hat{Q}(r)$ is simply an arbitrary---hopefully order unity---function. If $\hat{Q}(r)\gg1$, the user is dilating their Rayleigh number without saying so. If $\hat{Q}\ll1$ (and both boundaries are not fixed-entropy), the user is contracting their Rayleigh number without saying so. If $\hat{Q}(r)\equiv0$ (and the user is running a convection simulation), the user should typically identify $\sigma$ with $-\Delta\sref$ (the entropy drop across the layer) and thus set $S\equiv1$ at $r=r\inn$ and $S\equiv0$ at $r=r\out$.
@@ -144,6 +143,43 @@ The viscous buoyancy number $\bvisc$ is the ratio of a typical squared buoyancy 
 (3) For unstable polytropes ($n<\nad$), we first note that if $n$ differs by a factor of unity from $\nad$, order-unity thermal perturbations $S/\cp$ are forced and the anelastic approximation is invalid. In any case (if the simulation survives numerically), we expect that the vigorous convection will restratify the system toward adiabaticity. In Equation \eqref{eq:endim}, a background $(dS/dr)_{\ell=0}$ will be established to be the negative of $\dsdrline$ and as in (1), the value of $\bvisc$ will be irrelevant. 
 
 (4) In the more logical case of a stable layer being pummeled by a neighboring overshooting convection layer, both $\bvisc$ and $\ra$ are truly independent (and relevant). The overshooting flows (driven by $\ra$, which is a property of the convection zone) establish the typical $\sigma$ in both the convection zone and overshoot layer. Meanwhile, $\bvisc$ (which is a property of the stable layer) controls how strongly the overshoot is decelerated. 
+
+\section{Non-Dimensional Equations; $\tau=\Omega_0^{-1}$}
+In the last section, $t$ (and things with time in the dimensions) was implied to mean $(\tilde{\nu}/H^2) t_{\rm{dim}}$, where $t_{\rm{dim}}$ was the dimensional time. We now want to use $t_{\rm{new}}= \Omega_0t_{\rm{dim}} = t/\ek$. We can thus find the new equations easily from Equations \eqref{eq:contndvisc}--\eqref{eq:indndvisc}: Every place we see a time dimension, we recall $t=\ek t_{\rm{new}}$, so we multiply the place where the dimension appears by $\ek$ and drop the ``new" subscript (e.g., $t\rightarrow \ek\ t$, $\vecu\rightarrow\vecu/\ek$, etc.).  We thus find (after rearranging terms)
+\begin{align}
+	\Div[\rhond\ofr\vecu] &= 0\label{eq:contndrot},\\
+	\Div \vecb &= 0,
+\end{align}
+\begin{subequations}\label{eq:momndrot}
+	\begin{align}
+		\rhond\ofr\left[\matderiv{\vecu} + 2\ez\times\vecu\right] = &-\rhond\ofr\nabla\left[ \frac{P}{\rhond\ofr} \right] + \ramod \rhond\ofr\gnd\ofr S\er, \nonumber\\
+		&+ \ek \Div\bm{D} +(\curl\vecb)\times\vecb,\\
+		\where D_{ij} &\define 2\rhond\ofr\nund\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
+		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
+	\end{align}
+\end{subequations}
+\begin{align}\label{eq:enndrot}
+	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\brot}{\ramod} \rhond\ofr\tmpnd\ofr \left(\frac{L}{\cp}\frac{d\sref}{dr}\right) \ur + \frac{\ek}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
+	&+ \frac{\ek}{\pr} \hat{Q}(r) + \frac{\di\ek}{\ramod} D_{ij}e_{ij} + \frac{\di\ek}{\prm\ramod} \etand\ofr|\curl\vecb|^2,
+\end{align}
+\begin{align}\label{eq:indndrot}
+	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \frac{\ek}{\prm} \curl[\eta\ofr\curl\vecb].
+\end{align}	
+
+The new non-dimensional numbers appearing are:
+\begin{subequations}
+	\begin{align}
+		\ramod &\define \frac{\ek^2}{\pr}\ra =  \frac{\tilde{g} }{L\Omega_0^2} \frac{\sigma}{\cp},\\ 
+		\andd \brot &\define \ek^2 \bvisc = \frac{\tilde{g}} {L\Omega_0^2} = \frac{1}{\text{oblateness\ factor}},
+	\end{align}
+also the ratio of a typical squared buoyancy frequency to the squared rotation frequency. 
+
+Note that the ``$\dsdrline$-terms" in the non-dimensionalizations have seemingly different definitions, they are the same, since:
+\begin{align}
+	\frac{\pr}{\ra}\bvisc = \frac{\brot}{\ramod} = \frac{\cp}{\sigma}.
+\end{align}
+\end{subequations}
+
 
 
 	\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_jstyle, 
