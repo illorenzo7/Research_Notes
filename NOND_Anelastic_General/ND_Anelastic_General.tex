@@ -40,23 +40,23 @@
 	\section{Dimensional Equations}
 	We begin by writing down the full dimensional anelastic fluid equations, as implemented in Rayleigh.
 	\begin{align}
-		\Div[\rhoref\ofr\vecu] &= 0\label{eq:contdim}\\
-		\Div \vecb &= 0
+		\Div[\rhoref\ofr\vecu] &= 0\label{eq:contdim},\\
+		\Div \vecb &= 0,
 	\end{align}
 	\begin{subequations}\label{eq:momdim}
 	\begin{align}
 		\rhoref\ofr\left[\matderiv{\vecu}+2\Omega_0\ez\times\vecu\right] = &-\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right] + \left[\frac{\rhoref\ofr g\ofr}{\cp}\right] S\er, \nonumber\\
 		&+\Div\bm{D} + \frac{1}{4\pi}(\curl\vecb)\times\vecb,\\
 		\where D_{ij} &\define 2\rhoref\ofr\nu\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
-		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right)
+		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
 	\end{align}
 	\end{subequations}
 	\begin{align}\label{eq:endim}
 		\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \rhoref\ofr\tmpref\ofr \frac{d\sref}{dr} \ur + \Div[\rhoref\ofr \tmpref\ofr \kappa\ofr \nabla S] \nonumber \\
-		&+ Q(r) + D_{ij}e_{ij} + \frac{\eta\ofr}{4\pi}|\curl\vecb|^2
+		&+ Q(r) + D_{ij}e_{ij} + \frac{\eta\ofr}{4\pi}|\curl\vecb|^2,
 	\end{align}
 	\begin{align}\label{eq:inddim}
-	\pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \curl[\eta\ofr\curl\vecb]
+	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \curl[\eta\ofr\curl\vecb].
 	\end{align}
 
 	\section{Non-Dimensional Scheme}
@@ -77,45 +77,65 @@
 		\eta\ofr &= \tilde{\eta}\etand\ofr \label{eq:ndschemeeta} 
 	\end{align}
 	\end{subequations}
-	Here, $L$ is a typical length-scale, $\tau$ is a typical time-scale, and $\sigma$ is a typical entropy scale. On the right-hand-sides of Equations \eqref{eq:ndschemenabla}--\eqref{eq:ndschemeb} (and in the following non-dimensionalizations), $\nabla$, $t$, $\vecu$, $S$, $P$, and $\vecb$ are all understood to be non-dimensional. In Equations \eqref{eq:ndschemerho}--\eqref{eq:ndschemeeta}, the tildes refer to``typical values" of the reference state functions and the hats refer to the radially dependent non-dimensional versions of the reference-state functions. 
+	Here, $L$ is a typical length-scale, $\tau$ is a typical time-scale, and $\sigma$ is a typical entropy scale. On the right-hand-sides of Equations \eqref{eq:ndschemenabla}--\eqref{eq:ndschemeb} (and in the following non-dimensionalizations), $\nabla$, $t$, $\vecu$, $S$, $P$, and $\vecb$ are all understood to be non-dimensional. In Equations \eqref{eq:ndschemerho}--\eqref{eq:ndschemeeta}, the tildes refer to``typical values" of the reference state functions and the hats refer to the radially-dependent non-dimensional versions of the reference-state functions. 
 	
 	Below, we will assume the time scale is either a viscous diffusion time (i.e., $\tau=L^2/\tilde{\nu}$) or a rotational time-scale (i.e., $\tau=\Omega_0^{-1}$). To describe the reference state, we will consider three cases for a given function's ``typical value": Its value at the inner shell boundary, its value at the outer shell boundary, or its value volume-averaged over the shell. 
 	
 	\section{Non-Dimensional Equations; $\tau=L^2/\tilde{\nu}$}
 	In this case, Equations \eqref{eq:contdim}--\eqref{eq:inddim} become 
 	\begin{align}
-	\Div[\rhond\ofr\vecu] &= 0\label{eq:contndvisc}\\
-	\Div \vecb &= 0
+	\Div[\rhond\ofr\vecu] &= 0\label{eq:contndvisc},\\
+	\Div \vecb &= 0,
 \end{align}
 \begin{subequations}\label{eq:momndvisc}
 	\begin{align}
 		\rhond\ofr\left[\matderiv{\vecu}+\frac{2}{\ek}\ez\times\vecu\right] = &-\rhond\ofr\nabla\left[ \frac{P}{\rhond\ofr} \right] + \frac{\ra}{\pr}\rhond\ofr\gnd\ofr S\er, \nonumber\\
 		&+\Div\bm{D} +(\curl\vecb)\times\vecb,\\
 		\where D_{ij} &\define 2\rhond\ofr\nund\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
-		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right)
+		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndvisc}
 	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\pr}{\ra}\bvisc\rhond\ofr\tmpnd\ofr \left(\frac{L}{\cp}\frac{d\sref}{dr}\right) \ur + \frac{1}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
-	&+ \frac{1}{\pr} \hat{Q}(r) + \frac{\pr\di}{\ra} D_{ij}e_{ij} + \frac{\pr\di}{\prm\ra} \etand\ofr|\curl\vecb|^2
+	&+ \frac{1}{\pr} \hat{Q}(r) + \frac{\pr\di}{\ra} D_{ij}e_{ij} + \frac{\pr\di}{\prm\ra} \etand\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndvisc}
-	\pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \frac{1}{\prm} \curl[\eta\ofr\curl\vecb]
+	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \frac{1}{\prm} \curl[\eta\ofr\curl\vecb].
 \end{align}	
 
 The non-dimensional numbers appearing are:
 \begin{subequations}
 \begin{align}
-	\ra &\define \frac{\tilde{g} L^3}{\tilde{\nu} \tilde{\kappa}} \frac{\sigma}{\cp}\\ 
-	\pr &\define \frac{\tilde{\nu}}{\tilde{\kappa}}\\
-	\prm &\define \frac{\tilde{\nu}}{\tilde{\eta}}\\
-	\ek &\define \frac{\tilde{\nu}}{\Omega_0H^2}\\	
-	\bvisc &\define \frac{\tilde{g}L^3}{\tilde{\nu^2}}\\
-	\di &= \frac{\tilde{g}L}{\cp\tilde{T}}
+	\ra &\define \frac{\tilde{g} L^3}{\tilde{\nu} \tilde{\kappa}} \frac{\sigma}{\cp},\\ 
+	\pr &\define \frac{\tilde{\nu}}{\tilde{\kappa}},\\
+	\prm &\define \frac{\tilde{\nu}}{\tilde{\eta}},\\
+	\ek &\define \frac{\tilde{\nu}}{\Omega_0H^2},\\	
+	\bvisc &\define \frac{\tilde{g}L^3}{\tilde{\nu^2}},\\
+	\andd \di &= \frac{\tilde{g}L}{\cp\tilde{T}},
 \end{align}
 \end{subequations}
+along with the non-dimensional heating function
+\begin{align}\label{eq:qnd}
+	\hat{Q}(r) \define \frac{L^2}{\tilde{\rho}\tilde{T}\tilde{\kappa} \sigma} Q(r). 
+\end{align}
 
-Note that the viscous buoyancy number $\bvisc$ is the ratio of a typical squared buoyancy frequency to the squared viscous diffusion time (it is essentially a kind of Richardson number). Although it has to do with background entropy stratification, $\bvisc$ is nominally independent from the Rayleigh number (which derives from the entropy perturbations associated with the thermal boundary conditions and/or heating that force energy through the layer). However, the following notes are warranted: 
+
+Note that the dissipation number is not an independent control parameter, but a function of the non-dimensional parameters characterizing the polytrope. 
+
+In general, $\hat{Q}(r)$ is simply an arbitrary---hopefully order unity---function. If $\hat{Q}(r)\gg1$, the user is dilating their Rayleigh number without saying so. If $\hat{Q}\ll1$ (and both boundaries are not fixed-entropy), the user is contracting their Rayleigh number without saying so. If $\hat{Q}(r)\equiv0$ (and the user is running a convection simulation), the user should typically identify $\sigma$ with $-\Delta\sref$ (the entropy drop across the layer) and thus set $S\equiv1$ at $r=r\inn$ and $S\equiv0$ at $r=r\out$.
+ 
+The non-dimensional heating takes a specific form if we assume the Rayleigh number is a ``flux" Rayleigh number. In that case we identify
+\begin{align}
+	\sigma = \frac{L \avvol{\fluxscalar_{\rm{nr}}\ofr}}{\tilde{\rho}\tilde{T}\tilde{\kappa}},\\
+	\where \fluxscalar_{\rm{nr}}\ofr \define \frac{1}{r^2}\int_{r\inn}^r Q(x) x^2 dx
+\end{align}
+is the flux not carried by radiation in a statistically steady state and $\avvol{\cdots}$ refers to a volume average over the whole shell. We thus have
+\begin{align}\label{eq:qnorm}
+	\hat{Q}(r) = \frac{L}{\avvol{\fluxscalar_{\rm{nr}}(r)}}Q(r)
+\end{align}
+and no matter how the user chooses the dimensional $Q(r)$, the ultimate $\hat{Q}(r)$ will be normalized in the manner given by Equation \eqref{eq:qnorm}. 
+
+The viscous buoyancy number $\bvisc$ is the ratio of a typical squared buoyancy frequency to the squared viscous diffusion time (it is essentially a kind of Richardson number). Although it has to do with background entropy stratification, $\bvisc$ is nominally independent from the Rayleigh number (which derives from the entropy perturbations associated with the thermal boundary conditions and/or heating that force energy through the layer). However, the following notes are warranted: 
 
 (1) In the typical convection problem (polytropic index $n=\nad\define1/(\gamma-1)$), $\dsdrline\equiv0$ and the value of $\bvisc$ is irrelevant. 
 
