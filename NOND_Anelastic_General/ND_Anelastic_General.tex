@@ -174,17 +174,54 @@ The new non-dimensional numbers appearing are:
 	\end{align}
 also the ratio of a typical squared buoyancy frequency to the squared rotation frequency. 
 
-Note that the ``$\dsdrline$-terms" in the non-dimensionalizations have seemingly different definitions, they are the same, since:
+Note that although the ``$\dsdrline$-terms" in the non-dimensionalizations have seemingly different definitions, they are the same, since:
 \begin{align}
 	\frac{\pr}{\ra}\bvisc = \frac{\brot}{\ramod} = \frac{\cp}{\sigma}.
 \end{align}
 \end{subequations}
 
+\section{Non-Dimensional Polytrope}
+A polytrope depends on the following four non-dimensional parameters:
+\begin{subequations}
+\begin{alignat}{2}
+	\gamma &\define \frac{\cp}{\cv} &\five \text{specific-heat ratio} ,\\
+	0 \leq n &\leq \infty &\five \text{polytropic index},\\
+	\nrho &\define \ln\left(\frac{\rhoref\inn}{\rhoref\out} \right) &\five \text{number of density scale-heights},\\
+	\andd \beta &= \frac{r\inn}{r\out} &\five \text{aspect ratio}. 
+\end{alignat}
+\end{subequations}
 
+If the typical values of the polytrope are taken at the inner boundary, we have
+\begin{subequations}\label{eq:ndpoly}
+\begin{align}
+	\hat{T}\ofr = \frac{\tmpref\ofr}{\tmpref\inn} &= \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{H}{r}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)
+	\label{eq:tmppolynd}
+	\\
+	\hat{\rho}\ofr = \frac{\rhoref\ofr}{\rhoref\inn} &= \left\{  \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{H}{r}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)    \right\}^n,
+	\label{eq:rhopolynd}
+	\\
+	\frac{L}{\cp}\frac{d\sref}{dr} &=   \frac{L}{H}\left(\frac{n-\tilde{n}}{\tilde{n} + 1} \right) \left(\frac{H}{r}\right) \left[1 - \left( \frac{1-\beta}{\beta} \right)   \left( \frac{\beta - e^{-\nrho/n}} {1-e^{-\nrho/n}} \right) \frac{r}{H} \right]^{-1}, 
+	\label{eq:dsdrpolynd}
+	\\
+	\hat{g}\ofr = \frac{g\ofr}{g\inn} &= \frac{r\inn^2}{r^2},
+	\\
+	\andd \di &= \frac{L}{H} \left(\frac{n+1}{\tilde{n}+1}\right)  \left(\frac{1}{\beta} \right) (1 - e^{-\nrho/n}),
+\end{align}
+\end{subequations}
+where $H=r\out-r\inn$ is the shell depth. 
 
-	\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_jstyle, 
-		/Users/loren/Desktop/Paper_Library/000_bibtex/proceedings,
-		/Users/loren/Desktop/Paper_Library/000_bibtex/books}
-	\bibliographystyle{aasjournal}
+Note that the range on $r/H$ is (by definition)
+\begin{align}
+	\frac{\beta}{1-\beta}\leq \frac{r}{H} \leq \frac{1}{1-\beta}. 
+\end{align}
+
+If instead we take the typical values at the outer boundary, it is simple to compute the ratios from outer to inner (e.g., $\tmpref\out/\tmpref\inn$) directly from Equations \eqref{eq:ndpoly} and thus change the non-dimensionalization of (e.g.) $\hat{T}\ofr$.
+
+If we instead take the typical values as volume-averages,  the density profile in Equations \eqref{eq:ndpoly} (because of the $n$ exponent) must be integrated numerically but it is again straightforward to re-scale. We note, however, the analytic formula for $\di$ when volume averages are used: 
+\begin{align}\label{eq:digory}
+	\di_{\rm{v}} &\define \frac{\avvol{g}/g\inn}{\avvol{\tmpref}/\tmpref\inn}\di \nonumber\\
+	&= \left(\frac{n+1}{\tilde{n}+1}\right)   \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
+	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})}. 
+\end{align}
 	
 \end{document}
