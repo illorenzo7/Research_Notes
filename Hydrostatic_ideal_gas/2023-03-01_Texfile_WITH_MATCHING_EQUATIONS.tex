@@ -1,0 +1,624 @@
+% document type and language
+\documentclass[12pt]{article}
+
+% standard packages
+\usepackage{amsmath, bm, empheq, mathrsfs, natbib, cancel}
+% label equations by section first, then equation in that section
+\numberwithin{equation}{section}
+
+% normal margins
+\usepackage[margin=1in]{geometry}
+
+% plane blue hyperlinks
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor=blue,
+	citecolor=blue
+}
+
+% common macros
+\input{../macros.tex}
+
+% other macros
+\newcommand{\rbound}{r_{\rm{bound}}}
+\newcommand{\ekp}{e^{k[(r/r\bcz)-1]}}
+\newcommand{\dialt}{\di_{\rm{alt}}}
+\newcommand{\nrho}{N_\rho}
+
+% date, author, title
+\date{\today}
+\author{Loren Matilsky}
+\title{Hydrostatic, ideal-gas reference states in spherical coordinates}
+
+%\allowdisplaybreaks
+\begin{document}
+	\maketitle
+	\section{Basic assumptions}
+	We wish to derive the thermodynamic state for an ideal, hydrostatic gas in spherical coordinates, assuming a known specific entropy stratification $\sref\ofr$ and gravitational acceleration $\grav\ofr$. In keeping with the convention used in, e.g., $\rayleigh$ and $\ash$, we will denote the thermal profiles of this reference state using overbars. In mathematical terms, we have:
+	\begin{align}
+	\frac{d\prsref}{dr} &= -\rhoref\ofr \grav\ofr\five\text{(hydrostatic balance)}\label{eq:hydr},\\
+	\andd \prsref\ofr &= \rhoref\ofr\gasconst \tmpref\ofr\five\text{(ideal gas law)}.\label{eq:idgas}
+	\end{align}
+	Here, $\prsref\ofr$ is the pressure, $\rhoref\ofr$ the density, $\tmpref\ofr$ the temperature, and $\gasconst$ the gas constant. We further assume that the number of degrees of freedom (d.o.f.) is constant throughout, so that $\gasconst$ is independent of radius. We note the relationship between the specific heats for an ideal gas:
+	\begin{align}
+	\cp = \gamma\cv = \frac{\gamma\gasconst}{\gamma- 1}\label{eq:cp_from_gamma},
+	\end{align}
+	where $\gamma\define\cp/\cv$. 
+	
+	We note the First Law of Thermodynamics for the radial thermodynamic gradients (easiest starting point is $\tmpref d\sref=\cv d\tmpref-(\prsref/\rhoref^2)d\rhoref$):
+	\begin{align}
+	\frac{1}{\cv}\dsdr =\dlntmp - (\gamma - 1)\dlnrho.
+	\label{eq:firstlaw}
+	\end{align}
+	Differentiating the ideal gas law \eqref{eq:idgas} gives
+	\begin{align}
+	\dlntmp = \frac{d\ln{\rho}}{dr} + \frac{d\ln{T}}{dr}. 
+	\label{eq:idgasdr}
+	\end{align}
+	Combining Equations \eqref{eq:firstlaw} and \eqref{eq:idgasdr} yields the following useful forms of the First Law:
+	\begin{subequations}
+		\begin{align}
+		\frac{1}{\cp}\dsdr &=\frac{1}{\gamma}\dlntmp - \frac{\gamma - 1}{\gamma}\dlnrho\label{eq:firstlawtmprho}\\
+		&=\frac{1}{\gamma}\dlnprs - \dlnrho\label{eq:firstlawprsrho}\\
+		&= \dlntmp - \frac{\gamma - 1}{\gamma}\dlnprs\label{eq:firstlawtmpprs}
+		\end{align}
+		\label{eq:firstlaw3}
+	\end{subequations}
+	Using Equations \eqref{eq:cp_from_gamma} and \eqref{eq:firstlaw3}, we can derive an ordinary differential equation for the temperature:
+	\begin{align}
+	\boxed{
+	\frac{d\tmpref}{dr} - \left[\frac{1}{\cp}\dsdr\right]\tmpref\ofr = -\frac{\grav\ofr}{\cp}.
+}
+\label{eq:tdiff}
+	\end{align}
+	We can solve Equation \eqref{eq:tdiff} via integrating factors, yielding 
+	\begin{align}
+	\tmpref(r) = -\frac{e^{\sref(r)/\cp}}{\cp}\int_{r_0}^r \grav(x)e^{-\sref(x)/\cp}dx + \tmpref_0e^{[\sref(x)-\sref_0]/\cp}
+	\label{eq:tgeneral0}
+	\end{align}
+	Here, we have defined $r_0$ as an arbitrary radius from which to start the integration. Accordingly, we define the temperature, pressure, density, and entropy at $r_0$ as $\tmpref_0$, $\prsref_0$, $\rhoref_0$, and $\sref_0$, respectively.
+	
+	Note that in equation \eqref{eq:tgeneral0}, adding a constant $\sigma$ to the entropy ($\sref\longrightarrow \sref+\sigma$) has no effect on the profile $\tmpref(r)$. Only the relative stratification of entropy is important. We therefore set $\sref_0\define0$ in what follows. Equation \eqref{eq:tgeneral0} thus becomes
+		\begin{align}
+		\boxed{
+			\tmpref(r) = e^{\sref(r)/\cp}\left[\tmpref_0-\int_{r_0}^r \frac{\grav(x)}{\cp}e^{-\sref(x)/\cp}dx \right].
+			\label{eq:tgeneral}}
+	\end{align}
+	With $\tmpref\ofr$ now obtained, we can obtain $\prsref\ofr$ through integrating the First Law in its form \eqref{eq:firstlawtmpprs}:
+	\begin{align}
+	\boxed{
+	\prsref\ofr=\prsref_0e^{-\sref\ofr/\gasconst} \left[\frac{\tmpref\ofr}{\tmpref_0}\right]^{\gamma/(\gamma - 1)}.
+}
+\label{eq:pgeneral}
+	\end{align}
+	Finally, $\rhoref\ofr$ is determined from Equation \eqref{eq:idgas}:
+	\begin{align}
+	\boxed{
+	\rhoref\ofr=\rhoref_0e^{-\sref\ofr/\gasconst} \left[\frac{\tmpref\ofr}{\tmpref_0}\right]^{1/(\gamma - 1)}.
+}
+\label{eq:rhogeneral}
+	\end{align}
+	Thus, the full state of the atmosphere is purely determined by the entropy stratification $\dsdrline$, the gravitational acceleration $\grav\ofr$, and the two constants $\tmpref_0$ and $\prsref_0$ (or $\tmpref_0$ and $\rhoref_0$, etc.) It is well-known that with an equation of state, all the thermodynamic variables can be written as functions of the other two. Effectively, we have chosen our two ``fundamental variables" to be the entropy and pressure (because of the hydrostatic assumption, we can replace pressure by gravity). 
+	
+	The state specified in equations \eqref{eq:tgeneral}--\eqref{eq:rhogeneral} is completely general, relying only on the assumptions of a hydrostatic, ideal gas with position-independent specific heats. To move forward, we must specify $\dsdrline$ and $\grav\ofr$. For relatively thin convection zones (e.g., the Sun), it is safe to assume that the gravitational acceleration comes purely from a central spherically distributed mass, i.e., 
+	\begin{align}
+	g(r)=\frac{G\mstar}{r^2},
+	\label{eq:gpointmass}
+	\end{align}
+	where $G$ is the Universal Gravitational Constant and $\mstar$ the stellar mass. 
+	\section{Adiabatic atmosphere}
+	Considering the mathematical form of \eqref{eq:tgeneral}, the simplest atmosphere to derive is one that is adiabatic (constant-entropy):
+	\begin{align}
+	\sref\ofr\equiv0\five\andd \dsdr \equiv 0.
+	\label{eq:sad}
+	\end{align}
+	In this case, all the exponentials in \eqref{eq:tgeneral} cancel to 1 and  we find 
+	\begin{align*}
+	\tmpref(r) = -\frac{G\mstar}{\cp}\int_{r_0}^r\frac{dx}{x^2} + \tmpref_0
+	\end{align*}
+	or
+	\begin{empheq}[box=\fbox]{align}
+	\tmpref(r) &= \tmpref_0\left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]  \ \ \ \ \ \text{(adiabatic atmosphere)},\label{eq:tmpad}\\
+	\text{where} \ \ \ \ \ \tilde{a}&\define \frac{G\mstar}{\cp \tmpref_0 r_0}.\label{eq:atilde}
+	\end{empheq}
+	Note that $\tilde{a}$ is (up to a factor likely of order unity, depending on convention) equal to the dissipation number, $\di\define \tilde{g}H/(\cp\tilde{T})$, where $H$ is a typical length-scale and the tildes denote typical background-state values. 
+	
+	Equations  \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} yield
+	\begin{empheq}[box=\fbox]{align}
+	\prsref\ofr &= \prsref_0 \left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]^{\gamma/(\gamma-1)} \ \ \ \ \ \text{(adiabatic atmosphere)}
+\label{eq:prsad}\\
+\andd	\rhoref\ofr &= \rhoref_0 \left[\tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})\right]^{1/(\gamma-1)} \ \ \ \ \ \text{(adiabatic atmosphere).}
+\label{eq:rhoad}
+\end{empheq}
+Note: to keep thermodynamic quantities positive, we must ensure that the argument
+\begin{align}
+	\tilde{\zeta}(r)\define \tilde{a}\parenfrac{r_0}{r} + (1-\tilde{a})>0.
+\end{align}
+This leads to the conditions on available radii $r$ (for our particular choices of $\tilde{a}$---i.e., $\mstar$,  $\gasconst$, and $\tmpref_0$---and $r_0$) for which the derived atmosphere is valid:
+\begin{subequations}
+\begin{alignat}{2}
+		0<\  &r<\rbound\define\left(\frac{\tilde{a}}{\tilde{a}-1}\right)r_0\five  &&\tilde{a}>1\\
+&r>0                       && \tilde{a}\leq1. 
+\end{alignat}
+\label{eq:rvalidad}
+\end{subequations}
+\section{Polytropes}
+The starting assumption for a ``polytrope" is that the temperature gradient is divergenceless---i.e., there is a constant flux due to radiative diffusion throughout the fluid layer. If we assume, for simplicity, a constant radiative diffusion coefficient, then $\lap\tmpref=0$, which, in spherical coordinates, is: 
+\begin{align*}
+\tmpref\ofr = \frac{A}{r} + B.
+\end{align*}
+The integration constants $A$ and $B$ are arbitrary, but one is eliminated from the condition $T(r_0) = \tmpref_0$, leaving
+\begin{align}
+\tmpref\ofr = \tmpref_0 \left[a\left(\frac{r_0}{r}\right) + (1 - a)\right]
+\label{eq:tmppoly00}
+\end{align}
+where the new constant $a$ is dimensionless. Mathematically, $a$ can be any number, with $a=0$ corresponding to an isothermal atmosphere. Physically, if we want the temperature (and as we will see shortly, the pressure and density) to decrease with radius, we restrict ourselves to 
+\begin{align}\label{eq:avalid}
+	a&\geq0. 
+\end{align}
+
+Note the similarity of the argument 
+\begin{align}
+\zeta(r)\define a\left(\frac{r_0}{r}\right) + (1-a)
+\end{align}
+in Equation \eqref{eq:tmppoly00} (which was derived by assuming a divergenceless temperature gradient) to the argument $\tilde{\zeta}(r)$ in Equation \eqref{eq:tmpad} (which was derived by assuming the gas was adiabatic). 
+
+Using Equation \eqref{eq:idgas} to eliminate $\rhoref\ofr$ from Equation \eqref{eq:hydr} gives
+\begin{align*}
+\prsref\ofr = \prsref_0\exp{\left[-\frac{1}{\gasconst}\int_{r_0}^r\frac{g(x)}{\tmpref(x)}dx\right]},
+\end{align*}
+from which
+\begin{align*}
+\prsref(r) = \prsref_0\left[a\left(\frac{r_0}{r}\right) + (1 - a)\right]^{n+1},
+\end{align*}
+where we have defined the polytropic index $n$ to be
+\begin{align}
+n&\define \frac{b}{a} - 1 \Longleftrightarrow a = \frac{b}{n+1},\label{eq:npoly}\\
+\where b&\define \frac{G\mstar}{\gasconst \tmpref_0 r_0}.\label{eq:bpoly}
+\end{align}
+From Equation \eqref{eq:avalid}, $n$ is restricted to the range:
+\begin{align}\label{eq:nvalid}
+	0\leq n&\leq\infty. 
+\end{align}
+($n\rightarrow\infty$ corresponds to $a=0$, the isothermal atmosphere). 
+
+Note that $b$ is (up to a factor likely of order unity, depending on convention) equal to the dissipation number, $\di\define \tilde{g}H/(\cp\tilde{T})$, where $H$ is a typical length-scale and the tildes denote typical background-state values.
+
+Putting it all together (and using the ideal gas law to derive the density), we have
+	\begin{empheq}[box=\fbox]{align}
+	\tmpref\ofr &= \tmpref_0\left[a\left(\frac{r_0}{r}\right) + (1 - a) \right] \ \ \ \ \ \text{(polytropic atmosphere)}.\label{eq:tmppoly0} \\
+	\prsref\ofr &= \prsref_0\left[a\left(\frac{r_0}{r}\right) + (1 - a) \right]^{n+1} \ \ \ \ \ \text{(polytropic atmosphere)}. \label{eq:prspoly0}\\
+	\rhoref\ofr &= \rhoref_0\left[a\left(\frac{r_0}{r}\right) + (1 - a) \right]^n \ \ \ \ \ \text{(polytropic atmosphere)} \label{eq:rhopoly0}
+\end{empheq}
+
+We can also rewrite $\zeta(r)$ as 
+\begin{align*}%\label{eq:arg2forms}
+	\zeta(r)&=\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}
+\end{align*}
+to yield
+	\begin{empheq}[box=\fbox]{align}
+\tmpref\ofr &= \tmpref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}\right] \ \ \ \ \ \text{(polytropic atmosphere)}.\label{eq:tmppoly1} \\
+\prsref\ofr &= \prsref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}\right]^{n+1} \ \ \ \ \ \text{(polytropic atmosphere)}. \label{eq:prspoly1}\\
+\rhoref\ofr &= \rhoref_0\left[\frac{b}{n+1}\left(\frac{r_0}{r}\right) - \frac{b-(n+1)}{n+1}\right]^n \ \ \ \ \ \text{(polytropic atmosphere)}. \label{eq:rhopoly1}
+\end{empheq}
+
+Similarly to the adiabatic atmosphere (see Equation \eqref{eq:rvalidad}), the choices for $a$ (or equivalently, $b$ and $n$) and $r_0$ determine the range of radii for which the polytrope is valid (i.e., the range for which the thermodynamic quantities are positive):
+\begin{subequations}
+	\begin{alignat}{2}
+		0<\ &r<\rbound(n)\define \left[\frac{b}{b-(n+1)}\right]r_0\five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0} >n+1	\label{eq:rvalidpoly1}\\
+		&r > 0 \five && b=\frac{G\mstar}{\gasconst \tmpref_0 r_0}\leq n+1. 	\label{eq:rvalidpoly2}
+	\end{alignat}
+	\label{eq:rvalidpoly}
+\end{subequations}
+
+In general, we use a polytrope as a simplified background for a localized region of a particular star. We will thus choose representative stellar values for $\mstar$, $\gasconst$, $r_0$, and $\tmpref_0$ (setting $b$), and then choose a value for $n$. For $n<b-1$, higher $n$ yields a wider range of validity, and lower $n$ a narrower one. 
+
+To make things concrete, here we show where an adiabatic polytrope is valid for the Sun. Recall $G=\sn{6.67}{-8}\ \cm^3\ \gram^{-1}\ \second^{-2}$. For the Sun ($\mstar=\msun=\sn{1.99}{33}\ {\rm{g}}$), we integrate from the base of the convection zone ($r_0=r\bcz=\sn{5.00}{10}\ \cm$; $\tmpref_0=\tmpref\bcz=\sn{2.11}{6}\ \kelv$; $\cp=\sn{3.50}{8}\ \unitent$ or $\gasconst=\sn{1.40}{8}\ \unitent$) and assume adiabatic stratification ($n=1.50$). Then $b=8.98 > 2.5$ and condition \eqref{eq:rvalidpoly1} becomes
+\begin{align*}
+	0<r<(\rbound)_\odot\define\sn{6.93}{10}\ \cm. 
+\end{align*}
+The upper bound is only a little less than the solar radius, $\rsun=\sn{6.96}{10}\ \cm$. This makes sense of course, since the solar convection zone \textit{is} (mostly) an adiabatic polytrope, and the photosphere corresponds to (relatively) very low temperature, density, and pressure. 
+
+Note that for the polytrope, in addition to the two integration constants $\prsref_0$ and $\tmpref_0$, there is another constant $n$ (or equivalently, $a$). Specifying $n$ (or $a$) is the same as specifying $\dsdrline$. For, plugging Equations \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} (we only need two of them) into any form of \eqref{eq:firstlaw3} yields
+\begin{subequations}\label{eq:spolytrope}
+	\begin{empheq}[box=\fbox]{align}
+		\frac{1}{\cp}\dsdr  &= \left(\frac{n - \tilde{n}}{\tilde{n} + 1}\right) \left(\frac{1}{r}\right) \left\{\frac{1}{1+[(1-a)/a](r/r_0)}\right\}]   \label{eq:dsdrpoly0}\\
+		\andd \frac{\sref\ofr}{\cp} &= \left(\frac{n - \tilde{n}}{\tilde{n} + 1}\right)   \left\{ \ln{\left(\frac{r}{r_0}\right)} - \ln{\left[a+(1-a)\left(\frac{r}{r_0}\right)\right]} \right\} \label{eq:spoly0}\\\
+		&\ \ \ \ \ \text{(polytropic atmosphere)}\nonumber,
+	\end{empheq}
+\end{subequations}
+or, in terms of $b$,
+\begin{subequations}
+\begin{empheq}[box=\fbox]{align}
+\frac{1}{\cp}\dsdr &= \left(  \frac{n-\tilde{n}}{\tilde{n}+1}  \right)       \left(\frac{1}{r}\right)         \left[  \frac{1}  {1 + [(n+1-b)/b] (r/r_0)}  \right]   \label{eq:dsdrpoly1}\\
+\andd \frac{\sref\ofr}{\cp}  &=  \left(\frac{n-\tilde{n}}{\tilde{n}+1}\right)\left\{\ln{\left(\frac{r}{r_0}\right)} - \ln{\left[  \frac{b}{n+1} +   \left(\frac{n+1-b}{n+1}\right)  \left(\frac{r}{r_0}\right) \right]}\right\}\label{eq:spoly1}\\
+&\ \ \ \ \ \text{(polytropic atmosphere)}\nonumber,
+\end{empheq}
+\end{subequations}
+where
+\begin{align}
+\tilde{n}=  \frac{1}{\tilde{a}}\frac{G\mstar}{\gasconst \tmpref_0 r_0} - 1 \define\frac{1}{\gamma - 1}
+\label{eq:npolyad}
+\end{align}
+and $\tilde{a}\define G\mstar/\cp\tmpref_0 r_0$ was already defined in Equation \eqref{eq:atilde}.
+
+From \eqref{eq:dsdrpoly1}, it is obvious that $n=\tilde{n}$ (or equivalently, $a=\tilde{a}$) corresponds to an adiabatic atmosphere, as was already shown by Equations \eqref{eq:tmpad}--\eqref{eq:rhoad}). For other values of $n$, we have
+\begin{align}
+&n > \tilde{n} \Longleftrightarrow \dsdr > 0 \text{ (atmosphere is stable to convection)}\\
+\andd &n < \tilde{n} \Longleftrightarrow \dsdr < 0 \text{ (atmosphere may be unstable to convection).}
+\end{align}
+
+Say we want to increase the stability of a solar-like atmosphere by increasing $n$ (keeping $r_0$, $\tmpref_0$, and $\prsref_0$ fixed). What happens? We compute, for a particular radius $r$:
+\begin{align}\label{eq:dsdr_vs_n}
+	\pderiv{}{n}\left(\frac{1}{\cp}\dsdr\right)=  \frac{b}{\tilde{n}+1}\left(\frac{r_0}{r^2}\right)  \left\{\frac{\tilde{n}+1-b+b(r_0/r)}{\left[n+1-b+b(r_0/r)\right]^2}\right\}. 
+\end{align}
+The sign of this partial derivative is independent of $n$. Therefore, at any given radius $r$, the magnitude of the entropy gradient monotonically increases or decreases with $n$. Let's assume we confine ourselves to $r<(\rbound)_\odot$, even though for high $n$, there will technically be a wider range of validity for the polytrope. Then $\tilde{n}+1-b+b(r_0/r)\rightarrow0$ (from above) as $r\rightarrow(\rbound)_\odot$ (from below). Thus (for $r<(\rbound)_\odot$), the partial derivative in Equation \eqref{eq:dsdr_vs_n} is positive, and maximum stability is achieved for $n\rightarrow\infty$, the isothermal atmosphere. 
+
+Recalling that $\lim_{n\rightarrow\infty}(1+x/n)^n=e^x$, Equations \eqref{eq:tmppoly1}--\eqref{eq:dsdrpoly1} show that the isothermal atmosphere in spherical coordinates is:
+	\begin{empheq}[box=\fbox]{align}\label{eq:limitninfty}
+\tmpref\ofr&\rightarrow \tmpref_0, \\
+\prsref\ofr&\rightarrow \prsref_0\exp{\left[b\left(\frac{r_0}{r}-1\right)\right]},\\
+\rhoref\ofr&\rightarrow \rhoref_0\exp{\left[b\left(\frac{r_0}{r}-1\right)\right]},\\
+\frac{1}{\cp}\dsdr &\rightarrow \frac{b}{\tilde{n}+1}\left(\frac{1}{r^2}\right),\\
+ \andd \frac{\sref\ofr}{\cp} &\rightarrow \frac{b}{\tilde{n}+1}\left(1-\frac{r_0}{r}\right)\\ 
+ &\ \ \ \ \ \text{(isothermal atmosphere; polytrope with } n\rightarrow\infty). \nonumber
+\end{empheq}
+\textit{If one tries to increase the stability a solar-like polytrope by increasing $n$, there is therefore a fundamental upper bound imposed by the polytropic formulation itself.}
+Similarly, as $n\rightarrow\infty$, the total entropy contrast from top to bottom and all logarithmic derivatives of the thermodynamic variables have upper bounds, meaning that all scale heights have lower bounds. These bounds are reached for an isothermal atmosphere.
+
+Finally, suppose we want to increase the \textit{instability} of the system by \textit{lowering} $n$ to $0$ (for $b=8.98$ and $r<(\rbound)_\odot$, Equation \eqref{eq:dsdr_vs_n} shows that $d\sref/dr$ everywhere decreases as $n$ decreases). For $n=0$, we find the maximally unstable (isopycnic, or constant-density) atmosphere: 
+
+	\begin{empheq}[box=\fbox]{align}\label{eq:limitn0}
+	\tmpref\ofr&\rightarrow \tmpref_0\left[b\left(\frac{r_0}{r}\right)+(1-b)\right], \\
+	\prsref\ofr&\rightarrow \prsref_0\left[b\left(\frac{r_0}{r}\right)+(1-b)\right],\\
+	\rhoref\ofr&\rightarrow \rhoref_0,\\
+	\frac{1}{\cp}\dsdr &\rightarrow -\frac{\tilde{n}b}{\tilde{n}+1}\left(\frac{1}{r}\right)\left[\frac{1}{(1-b)(r/r_0)+b}\right],\\
+	\andd \frac{\sref\ofr}{\cp} &\rightarrow -\frac{\tilde{n}}{\tilde{n}+1}\left\{\ln{\left(\frac{r}{r_0}\right)} - \ln{\left[(1-b)\left(\frac{r}{r_0}\right)+b\right]} \right\}\\ 
+	&\ \ \ \ \ \text{(isopycnic atmosphere; polytrope with $n=0$)}. \nonumber
+\end{empheq}
+Note that from Equation \eqref{eq:rvalidpoly1}, this $n=0$ polytrope for the Sun (with $r_0=r\bcz$ and $b=8.98$) is only valid for $r<(\rbound)_{\odot,n=0}\define \sn{5.63}{10}\ \cm$. 
+
+\subsection{Polytrope in terms of $\rhoref\bcz$ and $\nrho$}
+Suppose we use the polytrope to describe a convection zone (CZ) and integrate from the base of the CZ ($r_0=r\bcz$). In the work of \citet{Jones2011} and in the $\rayleigh$ code \citep{Featherstone2021}, the polytrope is initiated using the density at the base of the CZ ($\rhoref\bcz$) and the number of density scale heights $\nrho$ across the CZ, as opposed to the two base-of-CZ values $\prsref\bcz$ and $\tmpref\bcz$. Here $\nrho\define\ln{(\rhoref\bcz/\rhoref\out)}$, where $\rhoref\out$ is the density at the top of the CZ. We can recast Equations \eqref{eq:tmppoly0}--\eqref{eq:rhopoly0} in terms of $\rhoref\bcz$ and $\nrho$ by using \eqref{eq:npoly}, \eqref{eq:bpoly}, and \eqref{eq:rhopoly0} to yield
+\begin{align}
+a = \frac{e^{\nrho/n} - 1 }{(1 - \beta)e^{\nrho/n}} \five \andd \tmpref\bcz = \frac{(1 - \beta)e^{\nrho/n}} {e^{\nrho/n} - 1 }\frac{G\mstar}{(n+1)\gasconst r\bcz},
+\label{eq:ti_from_nrho}
+\end{align}
+where we have defined the aspect ratio of the CZ,
+\begin{align}
+\beta\define \frac{r\bcz}{r\out} < 1.
+\label{eq:beta}
+\end{align}
+Thus, instead of specifying $\tmpref\bcz$ and $\prsref\bcz$, we can specify $\rhoref\bcz$ and $\nrho$; $\tmpref\bcz$ is then determined through \eqref{eq:ti_from_nrho} and $\prsref\bcz$ through the ideal gas law. 
+
+\subsection{Polytrope with respect to the center of the CZ}
+\citet{Jones2011} define the polytrope using the variables at the center of the CZ (i.e., in our notation $r_0=r_c\define(r\bcz+r\out)/2$). In that case, \eqref{eq:tmppoly1}--\eqref{eq:rhopoly1} become
+\begin{align}
+	\tmpref\ofr &= \tmpref_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right],\label{eq:tmppoly2}\\
+	\prsref\ofr &= \prsref_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right]^{n+1},\label{eq:ppoly2}\\
+	\rhoref\ofr &= \rhoref_c\left[a_c\left(\frac{r_c}{r}\right) + (1 - a_c)\right]^n,\label{eq:rhopoly2}
+\end{align} 
+where 
+\begin{align}
+a_c \define \frac{G\mstar}{(n+1)\gasconst \tmpref_c r_c}.
+\label{eq:ac}
+\end{align}
+Using a similar computation as the one leading to \eqref{eq:ti_from_nrho}, one can show that 
+\begin{align}
+a_c = \frac{2\beta(e^{\nrho/n}-1)}{(1-\beta)(\beta e^{\nrho/n} + 1)}.
+\label{eq:ac_fromn}
+\end{align}
+Defining 
+\begin{align}
+H&\define r\out-r\bcz,\label{eq:d}\\
+c_0&\define 1-a_c = \frac{(1+\beta)(1-\beta e^{\nrho/n})}{(1-\beta)(\beta e^{\nrho/n} + 1)}, \label{eq:c0}\\
+c_1&\define \left(\frac{r_c}{d}\right)a_c = \frac{(1+\beta)\beta(e^{\nrho/n}-1)}{(1-\beta)^2(\beta e^{\nrho/n} + 1)},\label{eq:c1}\\
+\andd \zeta(r) &\define a_c\left(\frac{r_c}{r}\right) + (1-a_c) = c_0 + c_1\left(\frac{H}{r}\right),\label{eq:zeta}
+\end{align}
+\eqref{eq:tmppoly2}--\eqref{eq:rhopoly2} become
+\begin{align}
+\tmpref\ofr=\tmpref_c\zeta(r),\ \ \ \ \ \prsref\ofr=\prsref_c[\zeta(r)]^{n+1},\ \ \ \ \ \rhoref\ofr=\rhoref_c[\zeta(r)]^n. 
+\label{eq:polytrope3}
+\end{align}
+We can also see that if we define
+\begin{subequations}
+\begin{align}
+\zeta\out \define \zeta(r\out) &= \frac{1+\beta}{\beta e^{\nrho/n} + 1}\\
+\with e^{\nrho/n}&=\frac{1+\beta-\zeta\out}{\zeta\out},
+\end{align}
+\end{subequations}
+then 
+\begin{subequations}
+\begin{align}
+c_0 &= \frac{2\zeta\out - \beta - 1}{1-\beta} \five\andd c_1 = \frac{(1+\beta)(1-\zeta\out)}{(1-\beta)^2},\\
+\with \zeta\bcz   &\define      \zeta(r\bcz) = c_0+\left(\frac{1-\beta}{\beta}\right)c_1 = \frac{1+\beta - \zeta\out}{\beta},
+\label{eq:c01_from_zeta0}
+\end{align}
+\end{subequations}
+yielding exactly the formulation for the polytrope in Jones et al. (2011) (see their Equations (18) and (19)). 
+
+Also note that combining Equations \eqref{eq:ac} and \eqref{eq:c1} yields
+\begin{subequations}
+\begin{align}
+	c_1&=\frac{G\mstar}{(n+1)\gasconst T_cH}\\
+	&= \frac{G\mstar}{\cp T_cH}\five\text{if gas is adiabatic $(n=\tilde{n})$}.
+\end{align}
+\end{subequations}
+
+\subsection{Non-Dimensional Polytrope}
+Here we show that as far as the non-dimensional system is concerned, any polytrope in a spherical shell is fully described by three numbers: the shell's aspect ratio, the number of density scale heights across the shell, and the polytropic index. We consider a spherical shell with (dimensional) inner and outer radii $r\inn$ and $r\out$, respectively. Then
+
+\begin{subequations}
+\begin{alignat}{2}
+	\beta &\define \frac{r\inn}{r\out} && \five \text{(aspect ratio)}\\
+	\andd H &\define r\out - r\inn  && \five \text{(shell depth)}.
+\end{alignat}
+\end{subequations}
+
+We choose $H$ as our length-scale and thus consider the shell to occupy the range
+\begin{align}
+	\frac{\beta}{1-\beta} \leq \hat{r} \leq \frac{1}{1-\beta},
+\end{align}
+where $\hat{r}=r/H$ refers to the non-dimensional radius. 
+
+We define the number of density scale heights across the shell as 
+\begin{align}
+	\nrho \define \ln\left[ \frac{\rhoref\inn}{\rhoref\out} \right],
+\end{align}
+where the subscripts ``in" and ``out" mean ``evaluated at $r\inn$ or $r\out$, respectively".
+
+We choose $r_0=r\inn$, so 
+\begin{align}
+	\zeta(\hat{r}) = a \left(\frac{\beta}{1-\beta} \right) \left( \frac{1}{\hat{r}} \right) + (1 -a).
+\end{align}
+
+From Equation \eqref{eq:rhopoly0}, we then find
+\begin{align}
+	e^{-\nrho/n} &= a(\beta-1) + 1 \nonumber \\
+	\orr a &= \frac{b}{n+1} = \frac{1 - e^{-\nrho/n}}{1-\beta}.\label{eq:afromnond}
+\end{align}
+Each thermal profile is non-dimensionalized using a representative value from the polytrope. This could be the volume-average of the profile ({\rayleigh}'s \texttt{reference\_type = 2}; e.g., \citealt{Hindman2020}) or the value of the profile at the outer boundary ({\rayleigh}'s \texttt{reference\_type = 3}; e.g  \citealt{Heimpel2022}). Here, we instead choose the value at the inner boundary. Plugging everything into Equations \eqref{eq:tmppoly0}--\eqref{eq:spoly0}, we find
+
+\begin{empheq}[box=\fbox]{align}
+	\hat{T}(\hat{r}) &= \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right) 
+	\label{eq:tmppolynd}
+	\\
+	\hat{P}(\hat{r}) &= \left\{  \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)    \right\}^{n+1},
+	\label{eq:prspolynd}
+	\\
+	\hat{\rho}(\hat{r}) &= \left\{  \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{1}{\hat{r}}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)    \right\}^n,
+	\label{eq:rhopolynd}
+	\\
+		\frac{1}{\cp}\frac{d\sref}{d\hat{r}} &=   \left(\frac{n-\tilde{n}}{\tilde{n} + 1} \right) \left(\frac{1}{\hat{r}}\right) \left[1 - \left( \frac{1-\beta}{\beta} \right)   \left( \frac{\beta - e^{-\nrho/n}} {1-e^{-\nrho/n}} \right) \hat{r} \right]^{-1},    
+		\label{eq:dsdrpolynd}
+		\\
+		\frac{\sref(\hat{r})}{\cp} &= \left(\frac{n-\tilde{n}}{\tilde{n} + 1} \right)   \left\{   \ln \left[ \left( \frac{1-\beta}{\beta}\right) \hat{r}\right] -  \ln  \left[  \left(\frac{e^{-\nrho/n}-\beta}{\beta}\right) \hat{r} + \left( \frac{1 - e^{-\nrho/n}}{1 - \beta}\right)   \right]   \right\}
+		\label{eq:spolynd}
+		\\
+	&\five \text{(non-dimensional polytrope)}. \nonumber
+\end{empheq}
+
+The non-dimensional polytrope is purely characterized by the three numbers $\beta$, $\nrho$, and $n$. (For completeness, we should also include $\gamma$, or $\tilde{n}$, but for most cases we are concerned with, $\gamma=5/3$). Note that the dissipation number $\di$ is \textit{not} an independent parameter. For example, in the non-dimensionalization chosen here, we have
+
+\begin{align*}
+	a &= \frac{G\mstar}{(n+1)\gasconst T\inn r\inn} \\
+	&= \left(\frac{\beta}{1-\beta}\right) \left(\frac{\gamma}{\gamma - 1}\right)  \left( \frac{1}{n+1} \right) \di,\\
+	&= \left(\frac{\beta}{1-\beta}\right) \left( \frac{\tilde{n}+1}{n+1} \right) \di, \\
+	\where \di &\define \frac{g\inn H}{\cp T\inn}
+\end{align*}
+
+This, combined with Equation \eqref{eq:afromnond}, yields
+\begin{align}
+	\di = \left(\frac{n+1}{\tilde{n}+1}\right)  \left(\frac{1}{\beta} \right) (1 - e^{-\nrho/n}).
+\end{align}
+
+If we instead using volume-averages for the representative values, then Equation \eqref{eq:tmppolynd} yields
+\begin{align*}
+	\frac{\avvol{\tmpref}}{\tmpref\inn} &= \left(\frac{3}{2}\right) \frac{\beta(1+\beta)[\beta(1-e^{-\nrho/n})]} {1-\beta^3} - \frac{\beta-e^{-\nrho/n}}{1-\beta}
+\end{align*}
+and $g(r)\propto 1/r^2$ yields
+\begin{align*}
+	\frac{\avvol{g}}{g\inn} &= \frac{3(1-\beta)\beta^2}{1-\beta^3},
+\end{align*}
+where $\avvol{\cdots}$ refers to a volume average over the full shell ($\hat{r}$ ranges from $\beta/(1-\beta)$ to $1/(1-\beta)$). Thus
+\begin{align}\label{eq:digory}
+	\di_{\rm{v}} &\define \frac{\avvol{g}/g\inn}{\avvol{\tmpref}/\tmpref\inn}\di \nonumber\\
+	&= \left(\frac{n+1}{\tilde{n}+1}\right)   \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
+	 { (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})}. 
+\end{align}
+For $n=\tilde{n}=1.5$, $\beta=0.759$, and $\nrho=3$ (e.g., \citealt{Hindman2020, Matilsky2022}) Equation \eqref{eq:digory} yields their reported $\di_{\rm{v}}=1.72$. Note that Equation \eqref{eq:digory} is essentially the ``gory" version of \citealt{Hindman2020}'s Equation (A6). Either Equation shows that their are only three independent parameters characterizing the polytrope, so it may not make sense to give preferential reporting of $\di_{\rm{v}}$, as was done \citet{Hindman2020,Matilsky2022}. 
+
+Finally, note that Equation \eqref{eq:spolynd} gives the entropy difference across the layer ($\Delta\sref  \define  \sref\out$, since have chosen $\sref\inn=0$):
+\begin{empheq}[box=\fbox]{align}
+	\frac{\Delta\sref}{\cp} &= \left(\frac{\nrho}{\tilde{n}+1}\right)  \left(\frac{n - \tilde{n}}{n} \right) \five \text{(non-dimensional polytrope)}. 
+\end{empheq}
+Note that for the two ``extreme" atmospheres (isopycnic and isothermal), the entropy difference across the shell is
+
+\begin{equation}
+	\frac{\Delta\sref}{\cp} = \begin{cases}
+		-\infty& \five (n=0;\ \text{isopycnic atmosphere}) \\
+		 +\frac{\nrho}{\tilde{n}+1} & \five (n=\infty;\ \text{isothermal atmosphere}).
+	\end{cases}
+\end{equation}
+
+\subsection{Non-Dimensional Polytrope ($\rayleigh\ \texttt{reference\_type = 3}$)} 
+For $\rayleigh$'s \texttt{reference\_type = 3} (non-dimensional anelastic; e.g., \citealt{Heimpel2022}), we again consider a shell spanning $(r\inn, r\out)$ with aspect ratio $\beta=r\inn/r\out$ and choose the shell depth $H=r\out-r\inn$ to be the length-scale. We non-dimensionalize $\rhoref\ofr$, $\tmpref\ofr$, $\prsref\ofr$, and $g\ofr$ with their values at the outer boundary, $\rhoref\out$, $\tmpref\out$, $\prsref\out$, and $g\out$ (respectively). Using hats for the non-dimensionalized background profiles (again defining $\hat{r}=r/H$), the hydrostatic Equation \eqref{eq:hydr} becomes
+\begin{subequations}
+\begin{align}
+	\frac{\cancel{\rhoref}\out\gasconst\tmpref\out}{H}\frac{d\hat{P}}{d\hat{r}} &= -\cancel{\rhoref\out}g\out\hat{\rho}(\hat{r})\hat{g}(\hat{r}),
+	\\
+	\orr \frac{d\hat{T}}{d\hat{r}} &= \dialt\hat{g}(\hat{r})\label{eq:dtdr_polytropend},
+	\\
+	\where \di &\define \frac{g\out H}{\cp\tmpref\out},
+	\\
+	\dialt &\define \frac{g\out H}{(n+1)\gasconst \tmpref\out} \nonumber\\
+	&= \frac{\gamma}{(\gamma-1)(n+1)}\di \nonumber\\
+	&= \left( \frac{\tilde{n}+1}{n+1} \right) \di,
+	\\
+	\andd \hat{g}(\hat{r}) &= \frac{r\out^2}{r^2} = \frac{1}{(1-\beta)^2}\frac{1}{\hat{r}^2},
+\end{align}
+\end{subequations}
+and we have used the polytropic relations $\hat{\rho}(\hat{r})=[\hat{T}(\hat{r})]^n$ and $\hat{P}(\hat{r})=[\hat{T}(\hat{r})]^{n+1}$ in deriving Equation \eqref{eq:dtdr_polytropend}. These Equations are easily integrated to yield
+\begin{align}
+	\hat{T}(\hat{r}) &= \frac{\dialt}{(1-\beta)^2}\frac{1}{\hat{r}} + 1 - \frac{\dialt}{1-\beta}.
+\end{align}
+And since $\hat{\rho}\inn = [\hat{T}\inn]^n = e^{\nrho}$, we also have 
+\begin{subequations}
+\begin{align}
+	\dialt &= \beta (e^{\nrho/n} - 1)\\
+	\andd \di &= \left( \frac{n+1}{\tilde{n}+1} \right)\beta (e^{\nrho/n} - 1).
+\end{align}
+\end{subequations}
+
+For the derivatives, note that Equation \eqref{eq:dtdr_polytropend} yields
+\begin{align}
+	\frac{d\ln\hat{T}}{d\hat{r}} &= -\dialt \frac{\hat{g}(\hat{r})}{\hat{T}(\hat{r})}\\
+	\andd \frac{d^2\ln\hat{T}}{d\hat{r}^2} &= -\left(\frac{d\ln\hat{T}}{d\hat{r}}\right)^2 + \left[\frac{\dialt}{\hat{T}(\hat{r})}\right] \left[\frac{2\hat{g}(\hat{r})}{\hat{r}} \right],
+\end{align}
+where we have noted that $d\hat{g}/d\hat{r}=-2\hat{g}(\hat{r})/\hat{r}$. The derivatives of density follow easily from $\hat{\rho}(\hat{r})=[\hat{T}(\hat{r})]^n$.
+
+Note that in the current formulation of $\texttt{reference\_type = 3}$ (and in \citealt{Heimpel2022}), $\dialt$ seems to be conflated with with $\di$, i.e., $n = \tilde{n}$. Since \citet{Heimpel2022} choose $n=1$ and $n=2$ for Jupiter, they effectively seem to be choosing a ``strange" Jovian gas. In general, 
+\begin{subequations}
+\begin{align}
+	\gamma - 1 &= \frac{2}{f}\\
+	\orr \tilde{n} &= \frac{f}{2},
+\end{align}
+\end{subequations}
+where $f$ is the (integer) number of degrees of freedom (d.o.f.) of the gas. It seems Jupiter should have $f=5$ (diatomic cool gas; three translational d.o.f., two rotational d.o.f.), but \citet{Heimpel2022} have either $f=2$ or $f=4$. 
+
+\subsection{Stable and unstable polytropes}
+Figure \ref{fig:RZ_polytrope_stable} (Figure \ref{fig:CZ_polytrope_unstable}) shows a sample of convectively stable (unstable) polytropes for various values of the polytropic index $n$ in a solar-like convection zone. For very high values of $n$ (Figure \ref{fig:RZ_polytrope_stable}), the entropy-gradient profile asymptotes to its maximum value and the temperature profile becomes flat (since the atmosphere becomes isothermal; see Equation \eqref{eq:limitninfty}. For very low values of $n$ (highly unstable polytropes; Figure \ref{fig:CZ_polytrope_unstable}), the entropy-gradient profile asymptotes to its most-negative value and the density profile becomes flat (since the atmosphere becomes isopycnic; see Equation \eqref{eq:limitn0}). Note that the isopycnic atmosphere has limited validity, with ${\rbound}_{,\odot,n=0}/\rsun=0.809$. 
+
+\subsection{Atmosphere with constant entropy gradient}
+A simple example of a fluid layer that is stable to convection is one with a constant ``stiffness," or entropy gradient. If we consider an RZ extending from the inner radius $r\bcz$ of the shell to the middle of the shell $r\bcz$, we can write
+\begin{align}
+\boxed{
+\sref\ofr = k\cp\left(\frac{r}{r\bcz} - 1\right)\five \andd \dsdr = \frac{k\cp}{r\bcz}\five \text{(constant entropy gradient)},
+}
+\end{align}
+where $k$ is a dimensionless constant ($>0$) representing the stiffness of the stable region. We can then use \eqref{eq:tgeneral} to find $\tmpref\ofr$:
+\begin{align}
+\tmpref\ofr = -\frac{G\mstar}{\cp}\big{\{}e^{k[(r/r\bcz) - 1]}\big{\}}\underbrace{\int_{r\bcz}^r \frac{e^{-k[(r/r\bcz) - 1]}dx }{x^2}}_{\define \mathscr{I}(r)}\ +\ \tmpref\bcz e^{k[(r/r\bcz)-1]}.
+\end{align}
+The integral $\mathscr{I}(r)$ can be recast in terms of the exponential integral function 
+\begin{align}
+E_n(x) \define \int_1^\infty\frac{e^{-xt}}{t^n}dt = x^{n-1}\int_x^\infty \frac{e^{-t}}{t^n}dt,
+\label{eq:en}
+\end{align}
+yielding
+\begin{subequations}\label{eq:tconstsgrad}
+\begin{empheq}[box=\fbox]{align}
+\tmpref\ofr &= \tmpref\bcz\left\{\left[e^k\tilde{a}\left(\frac{r\bcz}{r}\right) E_2\left(\frac{kr}{r\bcz}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\right\},\\
+\five \text{with}\five \tilde{a} &\define \frac{G\mstar}{\cp \tmpref\bcz r\bcz} \ \text{(again)}.\\
+\five &\text{(constant entropy gradient).}\nonumber
+\end{empheq}
+\end{subequations}
+Using \eqref{eq:pgeneral} and \eqref{eq:rhogeneral} then yields
+	\begin{empheq}[box=\fbox]{align}
+\prsref\ofr =\ &\prsref\bcz\exp{\left[-\frac{\gamma}{\gamma-1}k\left(\frac{r}{r\bcz} - 1\right)\right]}\nonumber\\
+	&\times\left\{\left[e^k\tilde{a}\left(\frac{r\bcz}{r}\right) E_2\left(\frac{kr}{\rm}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\right\}^{\gamma/(\gamma-1)}\\
+\andd \rhoref\ofr =\ &\rhoref\bcz\exp{\left[-\frac{\gamma}{\gamma-1}k\left(\frac{r}{\rm}\right)\right]}\nonumber\\
+&\times
+\left\{\left[e^k\tilde{a}\left(\frac{r\bcz}{r}\right) E_2\left(\frac{kr}{r\bcz}\right) + (1-e^kE_2(k)\tilde{a})\right]\ekp\right\}^{1/(\gamma-1)}\\
+\five &\text{(constant entropy gradient).}\nonumber
+\end{empheq}
+Clearly if $k=0$, we recover \eqref{eq:tmpad}--\eqref{eq:rhoad} for an adiabatic atmosphere (note that $E_n(0)\equiv 1$ for all $n$).
+
+Using \eqref{eq:tdiff}, one can show that for small stiffnesses ($k$ close to $0$), $dT/dr < 0$ throughout the entire RZ, implying a monotonically decreasing temperature profile. However, for $k>k_c$, where
+\begin{align}
+k_c\define \frac{G\mstar}{\cp \tmpref\bcz r\bcz},
+\end{align}
+the temperature gradient at $r=r\bcz$ becomes positive, and there is a temperature inversion somewhere for $r<r\bcz$. Interestingly, the entropy gradient associated with this transition, $\dsdr_c=k_c\cp/r\bcz=G\mstar/\tmpref\bcz r\bcz^2$ is exactly the same as the entropy gradient at $r=r\bcz$ for an isothermal atmosphere (or the upper limit on the entropy gradient for a polytropic atmosphere as $n\rightarrow\infty$). For solar values (namely $M=M_\odot$, $r\bcz = 5.0\times10^{10}\ \rm{cm}$, $\tmpref\bcz = 2.1\times10^6\ \rm{K}$, and $\cp=3.5\times10^8\ \rm{erg\ g^{-1}\ K^{-1}}$),
+\begin{align}
+k_c = 3.59.
+\label{eq:kc_solar}
+\end{align}
+Figures \ref{fig:RZ_polytrope_stable} and \ref{fig:RZ_const_sgrad} show stable fluid layers in a solar-like radiative zone for stable polytropes and constant-entropy fluid layers, respectively. In Figure \ref{fig:RZ_polytrope_stable}, a range of polytropic indices $n$ are used to more or less give entropy-gradient magnitudes matching those set by the $k$-values of Figure \ref{fig:RZ_const_sgrad}. For $k>3.59$ (the black and chartreuse curves in Figure \ref{fig:RZ_const_sgrad}), the entropy gradients for the constant-gradient layer begin to exceed those of the polytrope, and there is furthermore a noticeable temperature inversion within the radiative zone.
+
+\section{Hyperbolic (exponential)  matching of entropy gradient between CZ and RZ}
+We consider a domain in radius of $(r\bott,r\out)$ with the middle radius $r\bcz$ lying in this interval. We simulate a convection zone (CZ) in the region $(r\bcz, r\out)$ overlying a radiative zone (stable region; RZ) in the region $(r\bott,r\bcz)$. In order to smoothly match a constant-entropy-gradient RZ ($\dsdr=\ \rm{constant}\ > 0$) to a marginally stable CZ ($\dsdr\equiv 0$), we can use hyperbolic trigonometric functions:
+
+\begin{align}
+\sref\ofr &= \frac{k\cp}{r\bcz}\left\{\frac{1}{2}\left[(r-r\bcz) -\delta\ln\cosh{\left(\frac{r-r\bcz}{\delta}\right)}\right]\right\}\label{eq:s_tanh_transition}\\
+\frac{ds}{dr} &= \frac{k\cp}{r\bcz}\left\{\frac{1}{2}\left[1 - \tanh{\left(\frac{r-r\bcz}{\delta}\right)}\right]\right\}.\label{eq:dsdr_tanh_transition}\\
+\frac{d^2s}{dr^2} &= -\frac{k\cp}{r\bcz}\left(\frac{1}{2\delta}\right){\rm{sech}}^2\left(\frac{r-r\bcz}{\delta}\right)
+\end{align}
+We then find the full thermodynamic profiles using the integral relations in \eqref{eq:tgeneral}---\eqref{eq:rhogeneral}.
+
+Figures \ref{fig:CZ_RZ_tanhmatch_vs_delta} and \ref{fig:CZ_RZ_tanhmatch_vs_k} show the thermodynamic states defined by the entropy profile \eqref{eq:s_tanh_transition} for a range of $\delta$-values and $k$-values. The hyperbolic matching condition has the disadvantage that the layer is slightly non-adiabatic even in the CZ---i.e., the tanh function does not decay quickly enough; indeed, the profile $(1/2)(1-\tanh(x))$ is still $0.0025$ for $x=3$. From Figure \ref{fig:CZ_RZ_tanhmatch_vs_delta}, the problem is diminished for very rapid transitions (small $\delta$) but this is also seen to create large spikes in the logarithmic derivatives. 
+
+\section{Quartic matching of entropy gradient between CZ and RZ}
+ In order to better control precisely where the descending downflow plumes begin to overshoot, we can demand that entropy gradient is \textit{exactly} zero in the CZ, transitioning to a nonzero value (over a width $\delta$) by means of a twice-differentiable piece-wise function for the entropy profile (the entropy gradient $\dsdr$ is once-differentiable and has a quartic form):
+\begin{equation}\label{eq:s_quart_transition}
+\sref\ofr = \begin{cases}
+\frac{8}{15}k\cp\Big{(}\frac{\delta}{r\bcz}\Big{)} + k\cp\Big{(}\frac{r}{r\bcz} - 1\Big{)} &r\leq r\bcz - \delta\\
+k\cp\Big{(}\frac{\delta}{r\bcz}\Big{)}\left[\frac{2}{3}\Big{(}\frac{r-r\bcz}{\delta}\Big{)}^3 - \frac{1}{5} \Big{(}\frac{r-r\bcz}{\delta}\Big{)}^5\right] & r\bcz - \delta < r < r\bcz\\
+0 & r\geq r\bcz
+\end{cases}
+\end{equation}
+
+\begin{equation}\label{eq:dsdr_quart_transition}
+\frac{ds}{dr} = \begin{cases}
+\frac{k\cp}{r\bcz} & r\leq r\bcz - \delta\\
+\frac{k\cp}{r\bcz}\left\{1 - \Big{[}1 - \Big{(}\frac{r-r\bcz}{\delta}\Big{)}^2\Big{]}^2\right\} & r\bcz - \delta < r < r\bcz\\
+0 & r\geq r\bcz
+\end{cases}
+\end{equation}
+
+\begin{equation}\label{eq:d2sdr2_quart_transition}
+\frac{d^2s}{dr^2} = \begin{cases}
+0 & r\leq r\bcz - \delta\\
+\frac{4}{\delta}\frac{k\cp}{r\bcz}\left[1 - \Big{(}\frac{r-r\bcz}{\delta}\Big{)}^2\right]\Big{(}\frac{r-r\bcz}{\delta}\Big{)} & r\bcz - \delta < r < r\bcz\\
+0 & r\geq r\bcz
+\end{cases}
+\end{equation}
+
+Figures \ref{fig:CZ_RZ_quartmatch_vs_delta} and \ref{fig:CZ_RZ_quartmatch_vs_k} show the thermodynamic states defined by the entropy profile \eqref{eq:s_quart_transition} for a range of $\delta$-values and $k$-values. We can see that the transition width $\delta$ is ``strict" in the sense that the entropy gradient is \textit{exactly} equal to its asymptotic values outside the transition region. Thus, the thermodynamic profiles in the CZ are exactly that of an adiabatic polytrope. However, this sharper transition is also seen to create sharper spikes in the logarithmic derivatives. 
+
+\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_jstyle, 
+	/Users/loren/Desktop/Paper_Library/000_bibtex/proceedings,
+	/Users/loren/Desktop/Paper_Library/000_bibtex/books}
+\bibliographystyle{aasjournal}
+
+  \begin{figure}
+	\includegraphics[width=6.5in]{figures/solar_RZ_polytropes_stable.png}
+	\caption{Sample of convectively stable polytropes for a solar-like radiative zone ($n\geq1.5$). The dimensional values defining this set of polytropes (i.e., the solar values $r_0=r\bcz$, $\rhoref_0=\rhoref\bcz$, $\tmpref_0=\tmpref\bcz$, $\mstar=\msun$, $\cp$) are listed just before Equation \eqref{eq:kc_solar}. We set our bottom radius to $r\inn=\sn{2}{10}$ cm. For reference, we also plot the profiles from the isothermal atmosphere ($n=\infty$) and model S. Model S is remarkably similar (except for some of the radial-gradient profiles) to a polytrope with $n=3$. All $y$-axes are measured in cgs units.}
+	\label{fig:RZ_polytrope_stable}
+\end{figure}
+
+  \begin{figure}
+	\includegraphics[width=6.5in]{figures/solar_CZ_polytropes_unstable.png}
+	\caption{Sample of convectively unstable polytropes for a solar-like radiative zone ($n\leq1.5$). The dimensional values defining this set of polytropes (i.e., the solar values $r_0=r\bcz$, $\rhoref_0=\rhoref\bcz$, $\tmpref_0=\tmpref\bcz$, $\mstar=\msun$, $\cp$) are listed just before Equation \eqref{eq:kc_solar}. We set our bottom radius to $r\bcz=\sn{5}{10}$ cm and the outer radius is set to the limit $r_{\rm{bound}}$ defined in Equation \eqref{eq:rvalidpoly} for $b=8.98$. For reference, we also plot the profiles from the maximally unstable isopycnic atmosphere ($n=0$) and model S. Model S is similar (except near the photosphere) to an adiabatic polytrope with $n=1.5$. All $y$-axes are measured in cgs units.}
+	\label{fig:CZ_polytrope_unstable}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[scale=0.6]{figures/RZ_const_sgrad.pdf}
+	\caption{Sample of constant-entropy-gradient gas layers for a solar-like RZ, with values of $k$ chosen to give entropy gradients more or less matching those of Figure \ref{fig:RZ_polytrope_stable}.}
+	\label{fig:RZ_const_sgrad}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[scale=0.6]{figures/CZ_RZ_tanhmatch_vs_delta.pdf}
+	\caption{Combined CZ and RZ fluid layer with entropy gradient profiles matched via hyperbolic tangents---different transition thicknesses $\delta$, with $k=1$ in all cases.}
+	\label{fig:CZ_RZ_tanhmatch_vs_delta}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[scale=0.6]{figures/CZ_RZ_tanhmatch_vs_k.pdf}
+	\caption{Combined CZ and RZ fluid layer with entropy gradient profiles matched via hyperbolic tangents---different levels of stiffness $k$, with $\delta/r\bcz=0.01$ in all cases.}
+	\label{fig:CZ_RZ_tanhmatch_vs_k}
+\end{figure}
+\begin{figure}
+	\includegraphics[scale=0.6]{figures/CZ_RZ_quartmatch_vs_delta.pdf}
+	\caption{Combined CZ and RZ fluid layer with entropy gradient profiles matched via quartic functions---different transition thicknesses $\delta$, with $k=1$ in all cases.}
+	\label{fig:CZ_RZ_quartmatch_vs_delta}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[scale=0.6]{figures/CZ_RZ_quartmatch_vs_k.pdf}
+	\caption{Combined CZ and RZ fluid layer with entropy gradient profiles matched via quartic functions---different levels of stiffness $k$, with $\delta/r\bcz=0.01$ in all cases.}
+	\label{fig:CZ_RZ_quartmatch_vs_k}	
+\end{figure}
+\end{document}
