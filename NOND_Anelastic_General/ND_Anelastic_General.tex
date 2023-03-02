@@ -47,8 +47,8 @@
 	\begin{align}
 		\rhoref\ofr\left[\matderiv{\vecu}+2\Omega_0\ez\times\vecu\right] = &-\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right] + \left[\frac{\rhoref\ofr g\ofr}{\cp}\right] S\er, \nonumber\\
 		&+\Div\bm{D} + \frac{1}{4\pi}(\curl\vecb)\times\vecb,\\
-		\where D_{ij} &\define 2\rhoref\ofr\nu\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
-		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
+		\where D_{ij} &\define 2\rhoref\ofr\nu\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\label{eq:dstressdim}\\
+		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),\label{eq:estressdim}
 	\end{align}
 	\end{subequations}
 	\begin{align}\label{eq:endim}
@@ -58,12 +58,21 @@
 	\begin{align}\label{eq:inddim}
 	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \curl[\eta\ofr\curl\vecb].
 	\end{align}
-
-	We note that
+	Here, the thermal variables $\rho$, $T$, $P$, and $S$ refer to the density, temperature, pressure, and entropy (respectively). An overbar on a thermal variable indicates the time-independent, spherically symmetric reference state and the lack of an overbar indicates the (assumed small) deviation from the background (for the entropy, $S/\cp$ is assumed small). The vector velocity is denoted by $\vecu$ and the vector magnetic field by $\vecb$. 
+	
+	We use standard spherical coordinates $(r,\theta,\phi)$ and cylindrical coordinates $(\lambda,\phi,z) = (r\sint,\phi, r\cost)$, and $\e_q$ in general denotes a position-dependent unit vector in the direction of increasing $q$. The equations are written in a frame rotating with angular velocity $\Omega_0$ and the centrifugal force is neglected. 
+	
+	The additional reference state variables $\nu\ofr$, $\kappa\ofr$, and $\eta\ofr$ (the momentum, thermal, and magnetic diffusivities, respectively), as well as the gravitational acceleration $g\ofr=G\mstar/r^2$ (where $G$ is the gravitational constant and $\mstar$ the stellar mass), are also assumed to be spherically symmetric and fixed in time. 
+	
+	Note that the internal heating function $Q(r)$ is also assumed spherically symmetric and fixed in time, but should be interpreted as $-\Div\frad$, where $\frad$ is the radiative heat flux and properly should be proportional to the gradient of the total (background + perturbed) temperature. If the system is a convection zone, it is driven by a combination of internal heating and the thermal boundary conditions (conditions on $S$), that together ensure a stellar luminosity is transported throughout the layer in a steady state. 
+	
+	Note that Equation \eqref{eq:estressdim} is only valid in a Cartesian coordinate system ($x_1$, $x_2$, $x_3$) (with $i$ and $j$ running over 1, 2, 3) and is translated into spherical coordinates before being used in Rayleigh. 
+	
+	Finally, we recall the relation,
 	\begin{align}
 		\dsdr = \cp \frac{N^2(r)}{g\ofr},
 	\end{align}
-	where $N^2\ofr$ is the buoyancy frequency. 
+	where $N^2\ofr$ is the squared buoyancy frequency. 
 	
 	\section{Non-Dimensional Scheme}
 	We now non-dimensionalize Equations \eqref{eq:contdim}--\eqref{eq:inddim}, according to the following scheme:
@@ -221,13 +230,13 @@ Note that the range on $r/H$ is (by definition)
 	\frac{\beta}{1-\beta}\leq \frac{r}{H} \leq \frac{1}{1-\beta}. 
 \end{align}
 
-If instead we take the typical values at the outer boundary, it is simple to compute the ratios from outer to inner (e.g., $\tmpref\out/\tmpref\inn$) directly from Equations \eqref{eq:ndpoly} and thus change the non-dimensionalization of (e.g.) $\hat{T}\ofr$.
+If instead we take the typical values at the outer boundary, it is simple to compute the ratios from outer to inner directly from Equations \eqref{eq:ndpoly} and thus change the non-dimensionalization of the polytrope. 
 
-If we instead take the typical values as volume-averages,  the density profile in Equations \eqref{eq:ndpoly} (because of the $n$ exponent) must be integrated numerically but it is again straightforward to re-scale. We note, however, the analytic formula for $\di$ when volume averages are used: 
+If we instead take the typical values as volume-averages, the density profile in Equations \eqref{eq:ndpoly} (because of the $n$ exponent) must be integrated numerically (or but it is again straightforward to re-scale. Because the formulas are complicated, it is easiest to numerically integrate the other functions as well. We note, however, the analytic formula for $\di$ when volume averages are used: 
 \begin{align}\label{eq:digory}
 	\di_{\rm{v}} &\define \frac{\avvol{g}/g\inn}{\avvol{\tmpref}/\tmpref\inn}\di \nonumber\\
-	&= \left(\frac{n+1}{\tilde{n}+1}\right)   \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
+	&= \frac{L}{H}\left(\frac{n+1}{\tilde{n}+1}\right)   \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
 	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})}. 
 \end{align}
-	
+This emphases the fact that $\di=\di(\gamma,n,\nrho,\beta,L/H)$ is not an independent control parameter of the system. 
 \end{document}
