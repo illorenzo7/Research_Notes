@@ -59,22 +59,29 @@
 	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \curl[\eta\ofr\curl\vecb].
 	\end{align}
 
+	We note that
+	\begin{align}
+		\dsdr = \cp \frac{N^2(r)}{g\ofr},
+	\end{align}
+	where $N^2\ofr$ is the buoyancy frequency. 
+	
 	\section{Non-Dimensional Scheme}
 	We now non-dimensionalize Equations \eqref{eq:contdim}--\eqref{eq:inddim}, according to the following scheme:
 	\begin{subequations}\label{eq:ndscheme}
 	\begin{align}
-		\nabla &\rightarrow \frac{1}{L}\nabla\label{eq:ndschemenabla}\\
-		t &\rightarrow \tau t\\
-		\vecu &\rightarrow \frac{L}{\tau} \vecu\\
-		S &\rightarrow \sigma S\\
-		P &\rightarrow \tilde{\rho} \frac{L^2}{\tau^2} P\\
-		\vecb &\rightarrow (4\pi\tilde{\rho})^{1/2}\frac{L}{\tau} \vecb \label{eq:ndschemeb}\\ 
-		\rhoref\ofr &= \tilde{\rho} \rhond\ofr  \label{eq:ndschemerho} \\
-		\tmpref\ofr &= \tilde{T} \tmpnd\ofr\\
-		g\ofr &= \tilde{g} \gnd\ofr\\
-		\nu\ofr &= \tilde{\nu}\nund\ofr\\
-		\kappa\ofr &= \tilde{\kappa}\kappand\ofr\\
-		\eta\ofr &= \tilde{\eta}\etand\ofr \label{eq:ndschemeeta} 
+		\nabla &\rightarrow \frac{1}{L}\nabla\label{eq:ndschemenabla},\\
+		t &\rightarrow \tau t,\\
+		\vecu &\rightarrow \frac{L}{\tau} \vecu,\\
+		S &\rightarrow \sigma S,\\
+		P &\rightarrow \tilde{\rho} \frac{L^2}{\tau^2} P,\\
+		\vecb &\rightarrow (4\pi\tilde{\rho})^{1/2}\frac{L}{\tau} \vecb \label{eq:ndschemeb},\\ 
+		\rhoref\ofr &= \tilde{\rho} \rhond\ofr  \label{eq:ndschemerho}, \\
+		\tmpref\ofr &= \tilde{T} \tmpnd\ofr,\\
+		g\ofr &= \tilde{g} \gnd\ofr,\\
+		N^2\ofr &= \widetilde{N^2} \widehat{N^2}\ofr,\\
+		\nu\ofr &= \tilde{\nu}\nund\ofr,\\
+		\kappa\ofr &= \tilde{\kappa}\kappand\ofr,\\
+		\andd \eta\ofr &= \tilde{\eta}\etand\ofr. \label{eq:ndschemeeta} 
 	\end{align}
 	\end{subequations}
 	Here, $L$ is a typical length-scale, $\tau$ is a typical time-scale, and $\sigma$ is a typical entropy scale. On the right-hand-sides of Equations \eqref{eq:ndschemenabla}--\eqref{eq:ndschemeb} (and in the following non-dimensionalizations), $\nabla$, $t$, $\vecu$, $S$, $P$, and $\vecb$ are all understood to be non-dimensional. In Equations \eqref{eq:ndschemerho}--\eqref{eq:ndschemeeta}, the tildes refer to``typical values" of the reference state functions and the hats refer to the radially-dependent non-dimensional versions of the reference-state functions. 
@@ -96,7 +103,7 @@
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndvisc}
-	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\pr}{\ra}\bvisc\rhond\ofr\tmpnd\ofr \left(\frac{L}{\cp}\frac{d\sref}{dr}\right) \ur + \frac{1}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
+	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\pr}{\ra}\bvisc\rhond\ofr\tmpnd\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} \ur + \frac{1}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
 	&+ \frac{1}{\pr} \hat{Q}(r) + \frac{\pr\di}{\ra} D_{ij}e_{ij} + \frac{\pr\di}{\prm\ra} \etand\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndvisc}
@@ -110,7 +117,7 @@ The non-dimensional numbers appearing are:
 	\pr &\define \frac{\tilde{\nu}}{\tilde{\kappa}},\\
 	\prm &\define \frac{\tilde{\nu}}{\tilde{\eta}},\\
 	\ek &\define \frac{\tilde{\nu}}{\Omega_0H^2},\\	
-	\bvisc &\define \frac{\tilde{g}L^3}{\tilde{\nu^2}},\\
+	\bvisc &\define \frac{\widetilde{N^2}L^4}{\tilde{\nu}^2},\\
 	\andd \di &= \frac{\tilde{g}L}{\cp\tilde{T}},
 \end{align}
 \end{subequations}
@@ -134,7 +141,7 @@ is the flux not carried by radiation in a statistically steady state and $\avvol
 \end{align}
 and no matter how the user chooses the dimensional $Q(r)$, the ultimate $\hat{Q}(r)$ will be normalized in the manner given by Equation \eqref{eq:qnorm}. 
 
-The viscous buoyancy number $\bvisc$ is the ratio of a typical squared buoyancy frequency to the squared viscous diffusion time (it is essentially a kind of Richardson number). Although it has to do with background entropy stratification, $\bvisc$ is nominally independent from the Rayleigh number (which derives from the entropy perturbations associated with the thermal boundary conditions and/or heating that force energy through the layer). However, the following notes are warranted: 
+The viscous buoyancy number $\bvisc$ is the ratio of the typical squared buoyancy frequency to the squared viscous diffusion time (it is essentially a kind of Richardson number). Although it has to do with background entropy stratification, $\bvisc$ is nominally independent of the Rayleigh number (which derives from the entropy perturbations associated with the thermal boundary conditions and/or heating that force energy through the layer). However, the following notes are warranted: 
 
 (1) In the typical convection problem (polytropic index $n=\nad\define1/(\gamma-1)$), $\dsdrline\equiv0$ and the value of $\bvisc$ is irrelevant. 
 
@@ -159,7 +166,7 @@ In the last section, $t$ (and things with time in the dimensions) was implied to
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndrot}
-	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\brot}{\ramod} \rhond\ofr\tmpnd\ofr \left(\frac{L}{\cp}\frac{d\sref}{dr}\right) \ur + \frac{\ek}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
+	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\brot}{\ramod} \rhond\ofr\tmpnd\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} \ur + \frac{\ek}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
 	&+ \frac{\ek}{\pr} \hat{Q}(r) + \frac{\di\ek}{\ramod} D_{ij}e_{ij} + \frac{\di\ek}{\prm\ramod} \etand\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndrot}
@@ -170,13 +177,12 @@ The new non-dimensional numbers appearing are:
 \begin{subequations}
 	\begin{align}
 		\ramod &\define \frac{\ek^2}{\pr}\ra =  \frac{\tilde{g} }{L\Omega_0^2} \frac{\sigma}{\cp},\\ 
-		\andd \brot &\define \ek^2 \bvisc = \frac{\tilde{g}} {L\Omega_0^2} = \frac{1}{\text{oblateness\ factor}},
+		\andd \brot &\define \ek^2 \bvisc = \frac{\widetilde{N^2}} {\Omega_0^2} \sim \frac{\tilde{g} }{L\Omega_0^2} =  \frac{1}{\text{oblateness\ factor}}.
 	\end{align}
-also the ratio of a typical squared buoyancy frequency to the squared rotation frequency. 
 
 Note that although the ``$\dsdrline$-terms" in the non-dimensionalizations have seemingly different definitions, they are the same, since:
 \begin{align}
-	\frac{\pr}{\ra}\bvisc = \frac{\brot}{\ramod} = \frac{\cp}{\sigma}.
+	\frac{\pr}{\ra}\bvisc = \frac{\brot}{\ramod} \sim \frac{\cp}{\sigma}.
 \end{align}
 \end{subequations}
 
