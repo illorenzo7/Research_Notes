@@ -14,6 +14,7 @@
 \hypersetup{
 	colorlinks = true,
 	linkcolor=blue,
+	urlcolor=blue,
 	citecolor=blue
 }
 
@@ -32,47 +33,73 @@
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
-\title{General Anelastic Non-Dimensionalization for Rayleigh}
+\title{Non-Dimensionalization of an Anelastic Stable--Unstable Layer in {\rayleigh}}
 
 %\allowdisplaybreaks
 \begin{document}
 	\maketitle
-	\section{Dimensional Equations}
-	We begin by writing down the full dimensional anelastic fluid equations, as implemented in Rayleigh.
+	\section{General Equations Solved in {\rayleigh}}
+	In general (with rotation and magnetism), {\rayleigh} evolves in time a set of coupled PDEs for the 3D vector velocity $\vecu$, vector magnetic field $\vecb$, pressure perturbation $P$ (perturbation away from the ``reference" or ``background" state), and entropy perturbation $S$. Note that $S$ can also be interpreted as a temperature perturbation in Boussinesq mode. For more details, see {\rayleigh}'s \href{https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/physics_math_overview.html#the-system-of-equations-solved-in-rayleigh}{Documentation}. 
+	
+	We use standard spherical coordinates $(r,\theta,\phi)$ and cylindrical coordinates $(\lambda,\phi,z) = (r\sint,\phi, r\cost)$, and $\e_q$ in general denotes a position-dependent unit vector in the direction of increasing $q$. The full PDE-set is then:
+	\begin{align}
+	\Div[f_1\ofr\vecu] &= 0\label{eq:contgen},\\
+	\Div \vecb &= 0,
+\end{align}
+\begin{subequations}\label{eq:momgen}
+	\begin{align}
+		f_1\ofr\left[\matderiv{\vecu}+c_1\ez\times\vecu\right] =&\ c_2f_2\ofr S\er - c_3 f_1\ofr\nabla\left[ \frac{P}{f_1\ofr} \right], \nonumber\\
+		& +c_4(\curl\vecb)\times\vecb+c_5\Div\bm{D},\\
+		\where D_{ij} \define&\ 2f_1\ofr f_3\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\label{eq:dstressgen}\\
+		\andd e_{ij} \define&\ \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),\label{eq:estressgen}
+	\end{align}
+\end{subequations}
+\begin{align}\label{eq:engen}
+	f_1\ofr f_4\ofr \matderiv{S} = &- f_1\ofr f_4\ofr f_{14}\ofr u_r + c_6\Div[f_1\ofr f_4\ofr f_5\ofr \nabla S] \nonumber \\
+	&+ c_6f_{10}(r) + c_8 c_5 D_{ij}e_{ij} + \frac{\eta\ofr}{4\pi}|\curl\vecb|^2,
+\end{align}
+\begin{align}\label{eq:indgen}
+	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - c_7\curl[f_7\ofr\curl\vecb],
+\end{align}
+where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material derivative. 
+	The spherically-symmetric, time-independent reference (or background) functions $f_i(r)$ and constants $c_j$ set the fluid approximation to be made. {\rayleigh} has built-in modes to set the $f$'s and $c$'s for single-layer (i.e., either convectively stable or unstable, but not both) Boussinesq or Anelastic spherical shells. More complex systems (coupled stable--unstable systems or alternative non-dimensionalizations) require the user to manually change the $f$'s and $c$'s. This can be done by editing an input binary file that {\rayleigh} reads upon initialization. The $c$'s can also be changed in the ASCII text-file (i.e., the \texttt{main\_input} file). 
+	
+	\section{Dimensional Anelastic Equations}
+	We begin by writing down the full dimensional anelastic fluid equations, as they are usually implemented in Rayleigh (\texttt{reference\_type = 2}). This form of the anelastic approximation in a spherical shell is derived in, or more accurately, attributed to (since {\rayleigh} ``updates" the background state slightly differently than the cluge-y \texttt{ASH} implementation), two common sources: \citet{Gilman1981} and \citet{Clune1999}. {\rayleigh}'s dimensional anelastic equation-set is:
 	\begin{align}
 		\Div[\rhoref\ofr\vecu] &= 0\label{eq:contdim},\\
 		\Div \vecb &= 0,
 	\end{align}
 	\begin{subequations}\label{eq:momdim}
 	\begin{align}
-		\rhoref\ofr\left[\matderiv{\vecu}+2\Omega_0\ez\times\vecu\right] = &-\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right] + \left[\frac{\rhoref\ofr g\ofr}{\cp}\right] S\er, \nonumber\\
-		&+\Div\bm{D} + \frac{1}{4\pi}(\curl\vecb)\times\vecb,\\
-		\where D_{ij} &\define 2\rhoref\ofr\nu\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\label{eq:dstressdim}\\
+		\rhoref\ofr\left[\matderiv{\vecu}+2\Omega_0\ez\times\vecu\right] = &  \left[\frac{\rhoref\ofr \gref\ofr}{\cp}\right] S\er-\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right], \nonumber\\
+		&+ \frac{1}{\mu}(\curl\vecb)\times\vecb+\Div\bm{D},\\
+		\where D_{ij} &\define 2\rhoref\ofr\nuref\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\label{eq:dstressdim}\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),\label{eq:estressdim}
 	\end{align}
 	\end{subequations}
 	\begin{align}\label{eq:endim}
-		\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \rhoref\ofr\tmpref\ofr \frac{d\sref}{dr} \ur + \Div[\rhoref\ofr \tmpref\ofr \kappa\ofr \nabla S] \nonumber \\
-		&+ Q(r) + D_{ij}e_{ij} + \frac{\eta\ofr}{4\pi}|\curl\vecb|^2,
+		\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \rhoref\ofr\tmpref\ofr \frac{d\sref}{dr} u_r + \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
+		&+ \qref(r) + D_{ij}e_{ij} + \frac{\etaref\ofr}{\mu}|\curl\vecb|^2,
 	\end{align}
 	\begin{align}\label{eq:inddim}
 	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \curl[\eta\ofr\curl\vecb].
 	\end{align}
-	Here, the thermal variables $\rho$, $T$, $P$, and $S$ refer to the density, temperature, pressure, and entropy (respectively). An overbar on a thermal variable indicates the time-independent, spherically symmetric reference state and the lack of an overbar indicates the (assumed small) deviation from the background (for the entropy, $S/\cp$ is assumed small). The vector velocity is denoted by $\vecu$ and the vector magnetic field by $\vecb$. 
+	Here, the thermal variables $\rho$, $T$, $P$, and $S$ refer to the density, temperature, pressure, and entropy (respectively). The overbars denote the spherically-symmetric, time-independent background state. The lack of an overbar on a thermal variable indicates the (assumed small) perturbation from the background (for the entropy, $S/\cp$ is assumed small).
 	
-	We use standard spherical coordinates $(r,\theta,\phi)$ and cylindrical coordinates $(\lambda,\phi,z) = (r\sint,\phi, r\cost)$, and $\e_q$ in general denotes a position-dependent unit vector in the direction of increasing $q$. The equations are written in a frame rotating with angular velocity $\Omega_0$ and the centrifugal force is neglected. 
+	Other background quantities that appear are the gravity $\gref\ofr$, the momentum, thermal, and magnetic diffusivities [$\nuref\ofr$, $\kapparef\ofr$, and $\etaref\ofr$ , respectively], the internal heating $\qref\ofr$, the frame rotation rate $\Omega_0$, the specific heat at constant pressure $\cp$, and the vacuum permeability $\mu$ ($=4\pi$ in c.g.s. units). The equations are written in a frame rotating with angular velocity $\Omega_0$ and the centrifugal force is neglected. 
 	
-	The additional reference state variables $\nu\ofr$, $\kappa\ofr$, and $\eta\ofr$ (the momentum, thermal, and magnetic diffusivities, respectively), as well as the gravitational acceleration $g\ofr=G\mstar/r^2$ (where $G$ is the gravitational constant and $\mstar$ the stellar mass), are also assumed to be spherically symmetric and fixed in time. 
+	Note that the internal heating function $\qref\ofr$ is also assumed spherically symmetric and fixed in time, but should be interpreted as $-\Div\frad$, where $\frad$ is the radiative heat flux and properly should be proportional to the gradient of the total (background + perturbed) temperature. If the system is a convection zone, it is driven by a combination of internal heating and the thermal boundary conditions (which are conditions on $S$), that together ensure the imposed energy flux is transported throughout the layer in a steady state. 
 	
-	Note that the internal heating function $Q(r)$ is also assumed spherically symmetric and fixed in time, but should be interpreted as $-\Div\frad$, where $\frad$ is the radiative heat flux and properly should be proportional to the gradient of the total (background + perturbed) temperature. If the system is a convection zone, it is driven by a combination of internal heating and the thermal boundary conditions (conditions on $S$), that together ensure a stellar luminosity is transported throughout the layer in a steady state. 
+	%Note that Equation \eqref{eq:estressdim} is only valid in a Cartesian coordinate system ($x_1$, $x_2$, $x_3$) (with $i$ and $j$ running over 1, 2, 3) and is translated into spherical coordinates before being used in Rayleigh. 
 	
-	Note that Equation \eqref{eq:estressdim} is only valid in a Cartesian coordinate system ($x_1$, $x_2$, $x_3$) (with $i$ and $j$ running over 1, 2, 3) and is translated into spherical coordinates before being used in Rayleigh. 
-	
-	Finally, we recall the relation,
+	Finally, we recall the relation
 	\begin{align}
-		\dsdr = \cp \frac{N^2(r)}{g\ofr},
+		\dsdr = \cp \frac{\nsqref\ofr}{\gref\ofr},
 	\end{align}
-	where $N^2\ofr$ is the squared buoyancy frequency. 
+	where $\nsqref\ofr$ is the squared buoyancy frequency, which we use in favor of $\dsdrline$ in subsequent equations. 
+	
+	Note that the original equations in \citet{Gilman1981} and \citet{Clune1999} were derived assuming a nearly-adiabatic background state (i.e., $\dsdrline\approx0$). \citet{Brown2012,Vasil2013} have raised concerns about using various anelastic approximations in stable layers due to non-energy-conserving gravity waves. Should we be concerned?
 	
 	\section{Non-Dimensional Scheme}
 	We now non-dimensionalize Equations \eqref{eq:contdim}--\eqref{eq:inddim}, according to the following scheme:
@@ -112,7 +139,7 @@
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndvisc}
-	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\pr}{\ra}\bvisc\rhond\ofr\tmpnd\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} \ur + \frac{1}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
+	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\pr}{\ra}\bvisc\rhond\ofr\tmpnd\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} u_r + \frac{1}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
 	&+ \frac{1}{\pr} \hat{Q}(r) + \frac{\pr\di}{\ra} D_{ij}e_{ij} + \frac{\pr\di}{\prm\ra} \etand\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndvisc}
@@ -175,7 +202,7 @@ In the previous section, $t$ (and things with time in the dimensions) was implie
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndrot}
-	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\brot}{\ramod} \rhond\ofr\tmpnd\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} \ur + \frac{\ek}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
+	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\brot}{\ramod} \rhond\ofr\tmpnd\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} u_r + \frac{\ek}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
 	&+ \frac{\ek}{\pr} \hat{Q}(r) + \frac{\di\ek}{\ramod} D_{ij}e_{ij} + \frac{\di\ek}{\prm\ramod} \etand\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndrot}
@@ -239,4 +266,13 @@ If we instead take the typical values as volume-averages, the density profile in
 	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})}. 
 \end{align}
 This emphases the fact that $\di=\di(\gamma,n,\nrho,\beta,L/H)$ is not an independent control parameter of the system. 
+
+\clearpage
+\newpage
+	\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
+	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
+			/Users/loren/Desktop/Paper_Library/000_bibtex/proceedings,
+			/Users/loren/Desktop/Paper_Library/000_bibtex/books}
+	\bibliographystyle{aasjournal}
+
 \end{document}
