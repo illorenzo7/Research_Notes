@@ -22,14 +22,8 @@
 \input{../macros.tex}
 
 % other macros
-\newcommand{\rhond}{\hat{\rho}}
-\newcommand{\tmpnd}{\hat{T}}
-\newcommand{\gnd}{\hat{g}}
-\newcommand{\nund}{\hat{\nu}}
-\newcommand{\kappand}{\hat{\kappa}}
-\newcommand{\etand}{\hat{\eta}}
 \newcommand{\nad}{n_{\rm{ad}}}
-
+\newcommand{\dimm}{_{\rm{dim}}}
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
@@ -95,52 +89,52 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 	
 	Finally, we recall the relation
 	\begin{align}
-		\dsdr = \cp \frac{\nsqref\ofr}{\gref\ofr},
+		\dsdr = \cp \frac{nsqref\ofr}{\gref\ofr},
 	\end{align}
 	where $\nsqref\ofr$ is the squared buoyancy frequency, which we use in favor of $\dsdrline$ in subsequent equations. 
 	
-	Note that the original equations in \citet{Gilman1981} and \citet{Clune1999} were derived assuming a nearly-adiabatic background state (i.e., $\dsdrline\approx0$). \citet{Brown2012,Vasil2013} have raised concerns about using various anelastic approximations in stable layers due to non-energy-conserving gravity waves. Should we be concerned?
+	Note that the original equations in \citet{Gilman1981} and \citet{Clune1999} were derived assuming a nearly-adiabatic background state (i.e., $\dsdrline\approx0$). \citet{Brown2012} and \citet{Vasil2013} have raised concerns about using various anelastic approximations in stable layers due to non-energy-conserving gravity waves. Should we be concerned?
 	
 	\section{Non-Dimensional Scheme}
 	We now non-dimensionalize Equations \eqref{eq:contdim}--\eqref{eq:inddim}, according to the following scheme:
 	\begin{subequations}\label{eq:ndscheme}
 	\begin{align}
-		\nabla &\rightarrow \frac{1}{L}\nabla\label{eq:ndschemenabla},\\
+		\nabla &\rightarrow \frac{1}{H}\nabla\label{eq:ndschemenabla},\\
 		t &\rightarrow \tau t,\\
-		\vecu &\rightarrow \frac{L}{\tau} \vecu,\\
+		\vecu &\rightarrow \frac{H}{\tau} \vecu,\\
 		S &\rightarrow \sigma S,\\
-		P &\rightarrow \tilde{\rho} \frac{L^2}{\tau^2} P,\\
-		\vecb &\rightarrow (4\pi\tilde{\rho})^{1/2}\frac{L}{\tau} \vecb \label{eq:ndschemeb},\\ 
-		\rhoref\ofr &= \tilde{\rho} \rhond\ofr  \label{eq:ndschemerho}, \\
-		\tmpref\ofr &= \tilde{T} \tmpnd\ofr,\\
-		g\ofr &= \tilde{g} \gnd\ofr,\\
-		N^2\ofr &= \widetilde{N^2} \widehat{N^2}\ofr,\\
-		\nu\ofr &= \tilde{\nu}\nund\ofr,\\
-		\kappa\ofr &= \tilde{\kappa}\kappand\ofr,\\
-		\andd \eta\ofr &= \tilde{\eta}\etand\ofr. \label{eq:ndschemeeta} 
+		P &\rightarrow \tilde{\rho} \frac{H^2}{\tau^2} P,\\
+		\vecb &\rightarrow (4\pi\tilde{\rho})^{1/2}\frac{H}{\tau} \vecb \label{eq:ndschemeb},\\ 
+		\rhoref\ofr &\rightarrow \tilde{\rho} \rhoref\ofr  \label{eq:ndschemerho}, \\
+		\tmpref\ofr &\rightarrow \tilde{T} \tmpref\ofr,\\
+		\gref\ofr &\rightarrow \tilde{g} \gref\ofr,\\
+		\nsqref\ofr &\rightarrow \widetilde{N^2} \nsqref\ofr,\\
+		\nuref\ofr &\rightarrow \tilde{\nu}\nuref\ofr,\\
+		\kapparef\ofr &\rightarrow \tilde{\kappa}\kapparef\ofr,\\
+		\andd \etaref\ofr &\rightarrow \tilde{\eta}\etaref\ofr. \label{eq:ndschemeeta} 
 	\end{align}
 	\end{subequations}
-	Here, $L$ is a typical length-scale, $\tau$ is a typical time-scale, and $\sigma$ is a typical entropy scale. On the right-hand-sides of Equations \eqref{eq:ndschemenabla}--\eqref{eq:ndschemeb} (and in the following non-dimensionalizations), $\nabla$, $t$, $\vecu$, $S$, $P$, and $\vecb$ are all understood to be non-dimensional. In Equations \eqref{eq:ndschemerho}--\eqref{eq:ndschemeeta}, the tildes refer to``typical values" of the reference state functions and the hats refer to the radially-dependent non-dimensional versions of the reference-state functions. 
+	Here, $H$ is a typical length-scale, $\tau$ is a typical time-scale, and $\sigma$ is a typical entropy scale. On the right-hand-sides of Equations \eqref{eq:ndschemenabla}--\eqref{eq:ndschemeb} and in the following non-dimensionalizations, all fluid variables, coordinates, and background-state quantities are understood to be non-dimensional. The tildes refer to``typical values" of the (dimensional) reference-state functions.
 	
-	Below, we will assume the time scale is either a viscous diffusion time (i.e., $\tau=L^2/\tilde{\nu}$) or a rotational time-scale (i.e., $\tau=\Omega_0^{-1}$). To describe the reference state, we will consider three cases for a given function's ``typical value": Its value at the inner shell boundary, its value at the outer shell boundary, or its value volume-averaged over the shell. 
+	Below, we will assume the time-scale is either a viscous diffusion time (i.e., $\tau=H^2/\tilde{\nu}$) or a rotational time-scale [i.e., $\tau=(2\Omega_0)^{-1}$]. %To describe the reference state, we will consider three cases for a given function's ``typical value": Its value at the inner shell boundary, its value at the outer shell boundary, or its value volume-averaged over the shell. 
 	
 	\section{Non-Dimensional Equations; $\tau=L^2/\tilde{\nu}$}
 	In this case, Equations \eqref{eq:contdim}--\eqref{eq:inddim} become 
 	\begin{align}
-	\Div[\rhond\ofr\vecu] &= 0\label{eq:contndvisc},\\
+	\Div[\rhoref\ofr\vecu] &= 0\label{eq:contndvisc},\\
 	\Div \vecb &= 0,
 \end{align}
 \begin{subequations}\label{eq:momndvisc}
 	\begin{align}
-		\rhond\ofr\left[\matderiv{\vecu}+\frac{2}{\ek}\ez\times\vecu\right] = &-\rhond\ofr\nabla\left[ \frac{P}{\rhond\ofr} \right] + \frac{\ra}{\pr}\rhond\ofr\gnd\ofr S\er, \nonumber\\
+		\rhoref\ofr\left[\matderiv{\vecu}+\frac{1}{\ek}\ez\times\vecu\right] = &-\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right] + \frac{\ra}{\pr}\rhoref\ofr\gref\ofr S\er, \nonumber\\
 		&+\Div\bm{D} +(\curl\vecb)\times\vecb,\\
-		\where D_{ij} &\define 2\rhond\ofr\nund\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
+		\where D_{ij} &\define 2\rhoref\ofr\nuref\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndvisc}
-	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\pr}{\ra}\bvisc\rhond\ofr\tmpnd\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} u_r + \frac{1}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
-	&+ \frac{1}{\pr} \hat{Q}(r) + \frac{\pr\di}{\ra} D_{ij}e_{ij} + \frac{\pr\di}{\prm\ra} \etand\ofr|\curl\vecb|^2,
+	\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \frac{\pr}{\ra}\bvisc\rhoref\ofr\tmpref\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} u_r + \frac{1}{\pr} \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
+	&+ \frac{1}{\pr} \qref(r) + \frac{\pr\di}{\ra} D_{ij}e_{ij} + \frac{\pr\di}{\prm\ra} \etaref\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndvisc}
 	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \frac{1}{\prm} \curl[\eta\ofr\curl\vecb].
@@ -149,22 +143,21 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 The non-dimensional numbers appearing are:
 \begin{subequations}
 \begin{align}
-	\ra &\define \frac{\tilde{g} L^3}{\tilde{\nu} \tilde{\kappa}} \frac{\sigma}{\cp},\\ 
+	\ra &\define \frac{\tilde{g} H^3}{\tilde{\nu} \tilde{\kappa}} \frac{\sigma}{\cp},\\ 
 	\pr &\define \frac{\tilde{\nu}}{\tilde{\kappa}},\\
 	\prm &\define \frac{\tilde{\nu}}{\tilde{\eta}},\\
-	\ek &\define \frac{\tilde{\nu}}{\Omega_0H^2},\\	
-	\bvisc &\define \frac{\widetilde{N^2}L^4}{\tilde{\nu}^2},\\
-	\andd \di &= \frac{\tilde{g}L}{\cp\tilde{T}},
+	\ek &\define \frac{\tilde{\nu}}{2\Omega_0H^2},\\	
+	\bvisc &\define \frac{\widetilde{N^2}H^4}{\tilde{\nu}^2},\\
+	\andd \di &= \frac{\tilde{g}H}{\cp\tilde{T}},
 \end{align}
 \end{subequations}
 along with the non-dimensional heating function
 \begin{align}\label{eq:qnd}
-	\hat{Q}(r) \define \frac{L^2}{\tilde{\rho}\tilde{T}\tilde{\kappa} \sigma} Q(r). 
+	\qref\ofr \define \frac{H^2}{\tilde{\rho}\tilde{T}\tilde{\kappa} \sigma} \qref\dimm\ofr,
 \end{align}
+where the ``dim" subscript explicitly denotes the dimensional version of a quantity. Note that the dissipation number is not an independent control parameter, but a function of the non-dimensional parameters characterizing the reference state (this will be seen in Section \ref{sec:ref}). 
 
-Note that the dissipation number is not an independent control parameter, but a function of the non-dimensional parameters characterizing the polytrope. 
-
-In general, $\hat{Q}(r)$ is simply an arbitrary---hopefully order unity---function. Assuming the thermal boundary conditions remove whatever $\hat{Q}(r)$ dumps in: If $\hat{Q}(r)\gg1$, the user is dilating their Rayleigh number without saying so. If $\hat{Q}\ll1$, the user is contracting their Rayleigh number without saying so. If $\hat{Q}(r)\equiv0$ (and the user wants to simulate a convection zone), the user should typically identify $\sigma$ with $-\Delta S=S\inn-S\out$ (the imposed entropy drop across the layer) and thus set $S\equiv1$ at $r=r\inn$ and $S\equiv0$ at $r=r\out$.
+In general, $\qref(r)$ is simply an arbitrary---hopefully order unity---function. Assuming the thermal boundary conditions remove whatever $\qref(r)$ dumps in: If $\qref(r)\gg1$, the user is dilating their Rayleigh number without saying so. If $\qref\ll1$, the user is contracting their Rayleigh number without saying so. If $\qref(r)\equiv0$ (and the user wants to simulate a convection zone), the user should typically identify $\sigma$ with $-\Delta S=S\inn-S\out$ (the imposed entropy drop across the layer) and thus set $S\equiv1$ at $r=r\inn$ and $S\equiv0$ at $r=r\out$.
  
 The non-dimensional heating takes a specific form if we assume the Rayleigh number is a ``flux" Rayleigh number. In that case we identify
 \begin{align}
@@ -173,9 +166,9 @@ The non-dimensional heating takes a specific form if we assume the Rayleigh numb
 \end{align}
 is the flux not carried by radiation in a statistically steady state and $\avvol{\cdots}$ refers to a volume average over the whole shell. We thus have
 \begin{align}\label{eq:qnorm}
-	\hat{Q}(r) = \frac{L}{\avvol{\fluxscalar_{\rm{nr}}(r)}}Q(r)
+	\qref(r) = \frac{L}{\avvol{\fluxscalar_{\rm{nr}}(r)}}Q(r)
 \end{align}
-and whatever amplitude (luminosity) the user chooses for the dimensional $Q(r)$, the ultimate $\hat{Q}(r)$ will normalize that amplitude away in Equation \eqref{eq:qnorm}. 
+and whatever amplitude (luminosity) the user chooses for the dimensional $Q(r)$, the ultimate $\qref(r)$ will normalize that amplitude away in Equation \eqref{eq:qnorm}. 
 
 The viscous buoyancy number $\bvisc$ is the ratio of the typical squared buoyancy frequency to the squared viscous diffusion time (it is essentially a kind of Richardson number). Although it has to do with background entropy stratification, $\bvisc$ is nominally independent of the Rayleigh number (which derives from the entropy perturbations associated with the thermal boundary conditions and/or heating that force energy through the layer). However, the following notes are warranted: 
 
@@ -190,20 +183,20 @@ The viscous buoyancy number $\bvisc$ is the ratio of the typical squared buoyanc
 \section{Non-Dimensional Equations; $\tau=\Omega_0^{-1}$}
 In the previous section, $t$ (and things with time in the dimensions) was implied to mean $(\tilde{\nu}/H^2) t_{\rm{dim}}$, where $t_{\rm{dim}}$ was the dimensional time. We now want to use $t_{\rm{new}}= \Omega_0t_{\rm{dim}} = t/\ek$. We can thus find the new equations easily from Equations \eqref{eq:contndvisc}--\eqref{eq:indndvisc}: Every place we see a time dimension, we recall $t=\ek t_{\rm{new}}$, so we multiply the place where the dimension appears by $\ek$ and drop the ``new" subscript (e.g., $t\rightarrow \ek\ t$, $\vecu\rightarrow\vecu/\ek$, etc.).  We thus find (after rearranging terms)
 \begin{align}
-	\Div[\rhond\ofr\vecu] &= 0\label{eq:contndrot},\\
+	\Div[\rhoref\ofr\vecu] &= 0\label{eq:contndrot},\\
 	\Div \vecb &= 0,
 \end{align}
 \begin{subequations}\label{eq:momndrot}
 	\begin{align}
-		\rhond\ofr\left[\matderiv{\vecu} + 2\ez\times\vecu\right] = &-\rhond\ofr\nabla\left[ \frac{P}{\rhond\ofr} \right] + \ramod \rhond\ofr\gnd\ofr S\er, \nonumber\\
+		\rhoref\ofr\left[\matderiv{\vecu} + 2\ez\times\vecu\right] = &-\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right] + \ramod \rhoref\ofr\gref\ofr S\er, \nonumber\\
 		&+ \ek \Div\bm{D} +(\curl\vecb)\times\vecb,\\
-		\where D_{ij} &\define 2\rhond\ofr\nund\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
+		\where D_{ij} &\define 2\rhoref\ofr\nuref\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndrot}
-	\rhond\ofr\tmpnd\ofr \matderiv{S} = &- \frac{\brot}{\ramod} \rhond\ofr\tmpnd\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} u_r + \frac{\ek}{\pr} \Div[\rhond\ofr \tmpnd\ofr \kappand\ofr \nabla S] \nonumber \\
-	&+ \frac{\ek}{\pr} \hat{Q}(r) + \frac{\di\ek}{\ramod} D_{ij}e_{ij} + \frac{\di\ek}{\prm\ramod} \etand\ofr|\curl\vecb|^2,
+	\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \frac{\brot}{\ramod} \rhoref\ofr\tmpref\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} u_r + \frac{\ek}{\pr} \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
+	&+ \frac{\ek}{\pr} \qref(r) + \frac{\di\ek}{\ramod} D_{ij}e_{ij} + \frac{\di\ek}{\prm\ramod} \etaref\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndrot}
 	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \frac{\ek}{\prm} \curl[\eta\ofr\curl\vecb].
@@ -221,51 +214,6 @@ Note that although the ``$\dsdrline$-terms" in the non-dimensionalizations have 
 	\frac{\pr}{\ra}\bvisc = \frac{\brot}{\ramod} \sim \frac{\cp}{\sigma}.
 \end{align}
 \end{subequations}
-
-\section{Non-Dimensional Polytrope}
-A polytrope depends on the following four non-dimensional parameters:
-\begin{subequations}
-\begin{alignat}{2}
-	\gamma &\define \frac{\cp}{\cv} &\five \text{specific-heat ratio} ,\\
-	0 \leq n &\leq \infty &\five \text{polytropic index},\\
-	\nrho &\define \ln\left(\frac{\rhoref\inn}{\rhoref\out} \right) &\five \text{number of density scale-heights},\\
-	\andd \beta &= \frac{r\inn}{r\out} &\five \text{aspect ratio}. 
-\end{alignat}
-\end{subequations}
-
-If the typical values of the polytrope are taken at the inner boundary, we have
-\begin{subequations}\label{eq:ndpoly}
-\begin{align}
-	\hat{T}\ofr = \frac{\tmpref\ofr}{\tmpref\inn} &= \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{H}{r}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)
-	\label{eq:tmppolynd}
-	\\
-	\hat{\rho}\ofr = \frac{\rhoref\ofr}{\rhoref\inn} &= \left\{  \left[\frac{\beta(1 - e^{-\nrho/n})}{(1-\beta)^2 } \right]  \left(\frac{H}{r}\right)  - \left(\frac{ \beta - e^{-\nrho/n} }{1 - \beta} \right)    \right\}^n,
-	\label{eq:rhopolynd}
-	\\
-	\widehat{N^2}\ofr =  \frac{N^2\ofr}{\widetilde{N^2}} &=  \left(\frac{r\inn}{r}\right)^3 \left[\frac{1-e^{-\nrho/n}}{1-\beta} -  \left( \frac{\beta - e^{-\nrho/n}} {\beta} \right) \frac{r}{H} \right]^{-1}, 
-	\label{eq:dsdrpolynd}
-	\\
-	\hat{g}\ofr = \frac{g\ofr}{g\inn} &= \frac{r\inn^2}{r^2},
-	\\
-	\andd \di &= \frac{L}{H} \left(\frac{n+1}{\tilde{n}+1}\right)  \left(\frac{1}{\beta} \right) (1 - e^{-\nrho/n}),
-\end{align}
-\end{subequations}
-where $H=r\out-r\inn$ is the shell depth. 
-
-Note that the range on $r/H$ is (by definition)
-\begin{align}
-	\frac{\beta}{1-\beta}\leq \frac{r}{H} \leq \frac{1}{1-\beta}. 
-\end{align}
-
-If instead we take the typical values at the outer boundary, it is simple to compute the ratios from outer to inner directly from Equations \eqref{eq:ndpoly} and thus change the non-dimensionalization of the polytrope. 
-
-If we instead take the typical values as volume-averages, the density profile in Equations \eqref{eq:ndpoly} (because of the $n$ exponent) must be integrated numerically (or else computed from the hypergeometric function) but it is again straightforward to re-scale. Because the formulas are complicated (and I am error-prone), it is easiest to numerically integrate the other functions as well. We note, however, the analytic formula for $\di$ when volume averages are used: 
-\begin{align}\label{eq:digory}
-	\di_{\rm{v}} &\define \frac{\avvol{g}/g\inn}{\avvol{\tmpref}/\tmpref\inn}\di \nonumber\\
-	&= \frac{L}{H}\left(\frac{n+1}{\tilde{n}+1}\right)   \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
-	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})}. 
-\end{align}
-This emphases the fact that $\di=\di(\gamma,n,\nrho,\beta,L/H)$ is not an independent control parameter of the system. 
 
 \clearpage
 \newpage
