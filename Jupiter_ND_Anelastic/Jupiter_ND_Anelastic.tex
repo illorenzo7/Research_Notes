@@ -59,7 +59,7 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 	The spherically-symmetric, time-independent reference (or background) functions $f_i(r)$ and constants $c_j$ set the fluid approximation to be made. {\rayleigh} has built-in modes to set the $f$'s and $c$'s for single-layer (i.e., either convectively stable or unstable, but not both) Boussinesq or Anelastic spherical shells. More complex systems (coupled stable--unstable systems or alternative non-dimensionalizations) require the user to manually change the $f$'s and $c$'s. This can be done by editing an input binary file that {\rayleigh} reads upon initialization. The $c$'s can also be changed in the ASCII text-file (i.e., the \texttt{main\_input} file). 
 	
 	\section{Dimensional Anelastic Equations}
-	We begin by writing down the full dimensional anelastic fluid equations, as they are usually implemented in Rayleigh (\texttt{reference\_type = 2}). This form of the anelastic approximation in a spherical shell is derived in, or more accurately, attributed to (since {\rayleigh} ``updates" the background state slightly differently than the cluge-y \texttt{ASH} implementation), two common sources: \citet{Gilman1981} and \citet{Clune1999}. {\rayleigh}'s dimensional anelastic equation-set is:
+	We begin by writing down the full dimensional anelastic fluid equations, as they are usually implemented in {\rayleigh} (\texttt{reference\_type = 2}). This form of the anelastic approximation in a spherical shell is derived in, or more accurately, attributed to (since {\rayleigh} ``updates" the background state slightly differently than the cluge-y \texttt{ASH} implementation), two common sources: \citet{Gilman1981} and \citet{Clune1999}. {\rayleigh}'s dimensional anelastic equation-set is:
 	\begin{align}
 		\Div[\rhoref\ofr\vecu] &= 0\label{eq:contdim},\\
 		\Div \vecb &= 0,
@@ -81,17 +81,19 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 	\end{align}
 	Here, the thermal variables $\rho$, $T$, $P$, and $S$ refer to the density, temperature, pressure, and entropy (respectively). The overbars denote the spherically-symmetric, time-independent background state. The lack of an overbar on a thermal variable indicates the (assumed small) perturbation from the background (for the entropy, $S/\cp$ is assumed small).
 	
-	Other background quantities that appear are the gravity $\gref\ofr$, the momentum, thermal, and magnetic diffusivities [$\nuref\ofr$, $\kapparef\ofr$, and $\etaref\ofr$ , respectively], the internal heating $\qref\ofr$, the frame rotation rate $\Omega_0$, the specific heat at constant pressure $\cp$, and the vacuum permeability $\mu$ ($=4\pi$ in c.g.s. units). The equations are written in a frame rotating with angular velocity $\Omega_0$ and the centrifugal force is neglected. 
+	Other background quantities that appear are the gravity $\gref\ofr$, the momentum, thermal, and magnetic diffusivities [$\nuref\ofr$, $\kapparef\ofr$, and $\etaref\ofr$ , respectively], the internal heating or cooling $\qref\ofr$, the frame rotation rate $\Omega_0$, the specific heat at constant pressure $\cp$, and the vacuum permeability $\mu$ ($=4\pi$ in c.g.s. units). The equations are written in a frame rotating with angular velocity $\Omega_0$ and the centrifugal force is neglected. 
 	
-	Note that the internal heating function $\qref\ofr$ is also assumed spherically symmetric and fixed in time, but should be interpreted as $-\Div\frad$, where $\frad$ is the radiative heat flux and properly should be proportional to the gradient of the total (background + perturbed) temperature. If the system is a convection zone, it is driven by a combination of internal heating and the thermal boundary conditions (which are conditions on $S$), that together ensure the imposed energy flux is transported throughout the layer in a steady state. 
+	Note that the internal heating and cooling function $\qref\ofr$ is a reference-state quantity (and thus assumed spherically-symmetric and time-independent) but should be interpreted as $-\Div\frad$, where $\frad$ is the radiative heat flux and properly should be proportional to the radiative diffusivity $\kappa_{\rm rad}$ (which takes on a specific form in the radiative diffusion approximation, derivable from the opacity) and to the gradient of the total temperature $\tmpref + T$. 
+	
+	In {\rayleigh}, a convective layer is usually driven by a combination of internal heating and the thermal boundary conditions (which are conditions on $S$), that together ensure that an imposed energy flux is transported throughout the layer in a steady state. (Note that energy could also be forced across the layer by fixing the entropy $S$ at each boundary, such that an ``adverse" (negative) radial entropy gradient is obtained in a steady state).   \textbf{In the Jupiter models, we will allow $\qref\ofr$ to also include a cooling term at the top of the convection zone. That is, we will set $\pderivline{S}{r}\equiv0$ at both the top and bottom boundary (no conduction in or out), and the flux of energy across the system will be imposed purely by the function $\qref\ofr$}. 
 	
 	%Note that Equation \eqref{eq:estressdim} is only valid in a Cartesian coordinate system ($x_1$, $x_2$, $x_3$) (with $i$ and $j$ running over 1, 2, 3) and is translated into spherical coordinates before being used in Rayleigh. 
 	
 	Finally, we recall the relation
 	\begin{align}
-		\dsdr = \cp \frac{nsqref\ofr}{\gref\ofr},
+		\dsdr = \cp \frac{\nsqref\ofr}{\gref\ofr},
 	\end{align}
-	where $\nsqref\ofr$ is the squared buoyancy frequency, which we use in favor of $\dsdrline$ in subsequent equations. 
+	where $\nsqref\ofr$ is the squared buoyancy frequency, which we will use in favor of $\dsdrline$ in subsequent equations. 
 	
 	Note that the original equations in \citet{Gilman1981} and \citet{Clune1999} were derived assuming a nearly-adiabatic background state (i.e., $\dsdrline\approx0$). \citet{Brown2012} and \citet{Vasil2013} have raised concerns about using various anelastic approximations in stable layers due to non-energy-conserving gravity waves. Should we be concerned?
 	
@@ -104,17 +106,18 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 		\vecu &\rightarrow \frac{H}{\tau} \vecu,\\
 		S &\rightarrow \sigma S,\\
 		P &\rightarrow \tilde{\rho} \frac{H^2}{\tau^2} P,\\
-		\vecb &\rightarrow (4\pi\tilde{\rho})^{1/2}\frac{H}{\tau} \vecb \label{eq:ndschemeb},\\ 
+		\vecb &\rightarrow (\mu\tilde{\rho})^{1/2}\frac{H}{\tau} \vecb \label{eq:ndschemeb},\\ 
 		\rhoref\ofr &\rightarrow \tilde{\rho} \rhoref\ofr  \label{eq:ndschemerho}, \\
 		\tmpref\ofr &\rightarrow \tilde{T} \tmpref\ofr,\\
 		\gref\ofr &\rightarrow \tilde{g} \gref\ofr,\\
 		\nsqref\ofr &\rightarrow \widetilde{N^2} \nsqref\ofr,\\
 		\nuref\ofr &\rightarrow \tilde{\nu}\nuref\ofr,\\
 		\kapparef\ofr &\rightarrow \tilde{\kappa}\kapparef\ofr,\\
-		\andd \etaref\ofr &\rightarrow \tilde{\eta}\etaref\ofr. \label{eq:ndschemeeta} 
+		 \etaref\ofr &\rightarrow \tilde{\eta}\etaref\ofr,\\ \label{eq:ndschemeeta} 
+		\andd \qref\ofr &\rightarrow \frac{H^2}{\tilde{\rho}\tilde{T}\tilde{\kappa} \sigma} \qref\ofr,
 	\end{align}
 	\end{subequations}
-	Here, $H$ is a typical length-scale, $\tau$ is a typical time-scale, and $\sigma$ is a typical entropy scale. On the right-hand-sides of Equations \eqref{eq:ndschemenabla}--\eqref{eq:ndschemeb} and in the following non-dimensionalizations, all fluid variables, coordinates, and background-state quantities are understood to be non-dimensional. The tildes refer to``typical values" of the (dimensional) reference-state functions.
+	Here, $H$ is a typical length-scale, $\tau$ a typical time-scale, and $\sigma$ a typical entropy scale. On the right-hand-sides of Equation \eqref{eq:ndscheme} and in the following non-dimensionalizations, all fluid variables, coordinates, and background-state quantities are understood to be non-dimensional. The tildes refer to``typical values" of the (dimensional) reference-state functions.
 	
 	Below, we will assume the time-scale is either a viscous diffusion time (i.e., $\tau=H^2/\tilde{\nu}$) or a rotational time-scale [i.e., $\tau=(2\Omega_0)^{-1}$]. %To describe the reference state, we will consider three cases for a given function's ``typical value": Its value at the inner shell boundary, its value at the outer shell boundary, or its value volume-averaged over the shell. 
 	
@@ -133,7 +136,7 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndvisc}
-	\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \frac{\pr}{\ra}\bvisc\rhoref\ofr\tmpref\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} u_r + \frac{1}{\pr} \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
+	\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \frac{\pr}{\ra}\bvisc\rhoref\ofr\tmpref\ofr \frac{\nsqref\ofr}{\gref\ofr} u_r + \frac{1}{\pr} \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
 	&+ \frac{1}{\pr} \qref(r) + \frac{\pr\di}{\ra} D_{ij}e_{ij} + \frac{\pr\di}{\prm\ra} \etaref\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndvisc}
@@ -195,7 +198,7 @@ In the previous section, $t$ (and things with time in the dimensions) was implie
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndrot}
-	\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \frac{\brot}{\ramod} \rhoref\ofr\tmpref\ofr \frac{\widehat{N^2}\ofr}{\hat{g}\ofr} u_r + \frac{\ek}{\pr} \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
+	\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \frac{\brot}{\ramod} \rhoref\ofr\tmpref\ofr \frac{\nsqref\ofr}{\gref\ofr} u_r + \frac{\ek}{\pr} \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
 	&+ \frac{\ek}{\pr} \qref(r) + \frac{\di\ek}{\ramod} D_{ij}e_{ij} + \frac{\di\ek}{\prm\ramod} \etaref\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndrot}
