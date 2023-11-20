@@ -126,7 +126,7 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 	
 	Below, we will assume the time-scale is either a thermal diffusion time (i.e., $\tau=H^2/\tilde{\nu}$) or a rotational time-scale [i.e., $\tau=(2\Omega_0)^{-1}$]. %To describe the reference state, we will consider three cases for a given function's ``typical value": Its value at the inner shell boundary, its value at the outer shell boundary, or its value volume-averaged over the shell. 
 	
-	\section{Non-Dimensional Equations, Non-Rotating ($\tau=L^2/\tilde{\kappa}$)}
+	\section{Non-Dimensional Equations, Non-Rotating ($\tau=H^2/\tilde{\kappa}$)}
 	In this case, Equations \eqref{eq:contdim}--\eqref{eq:inddim} become 
 	\begin{align}
 	\Div[\rhoref\ofr\vecu] &= 0\label{eq:contndvisc},\\
@@ -141,8 +141,8 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndvisc}
-	\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \frac{\pr}{\ra}\bvisc\rhoref\ofr\tmpref\ofr \frac{\nsqref\ofr}{\gref\ofr} u_r + \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
-	&+ \frac{1}{\pr} \qref(r) + \frac{\di}{\ra} D_{ij}e_{ij} + \frac{\di}{\prm\ra} \etaref\ofr|\curl\vecb|^2,
+	\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \frac{\bu}{\ra}\rhoref\ofr\tmpref\ofr \frac{\nsqref\ofr}{\gref\ofr} u_r + \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
+	&+ \qref(r) -\cref\ofr + \frac{\di}{\ra} D_{ij}e_{ij} + \frac{\di}{\prm\ra} \etaref\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndvisc}
 	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \frac{\pr}{\prm} \curl[\etaref\ofr\curl\vecb].
@@ -155,35 +155,27 @@ The non-dimensional numbers appearing are:
 	\pr &\define \frac{\tilde{\nu}}{\tilde{\kappa}}\five\text{(Prandtl number)},\\
 	\prm &\define \frac{\tilde{\nu}}{\tilde{\eta}}\five\text{(magnetic Prandtl number)},\\
 	\ek &\define \frac{\tilde{\nu}}{2\Omega_0H^2}\five\text{(Ekman number)},\\	
-	\bvisc &\define \frac{\widetilde{N^2}H^4}{\tilde{\nu}^2}\five\text{(buoyancy number)},\\
+	\bu &\define \frac{\widetilde{N^2}H^4}{\tilde{\nu}\tilde{\kappa}}\five\text{(buoyancy number)},\\
 	\andd \di &= \frac{\tilde{g}H}{\cp\tilde{T}}\five\text{(dissipation number)},
 \end{align}
 \end{subequations}
-Note that the dissipation number is not an independent control parameter, but a function of the non-dimensional parameters characterizing the reference state (this will be seen in Section \ref{sec:ref}). 
+Note that in our convention, the dissipation number is not an independent control parameter, but a function of the non-dimensional parameters characterizing the reference state (this will be seen in Section \ref{sec:ref}). 
 
-Note the form of the non-dimensional heating-and-cooling function:
-\begin{align}\label{eq:qnd}
-	\qref\ofr \define \frac{H^2}{\tilde{\rho}\tilde{T}\tilde{\kappa} \sigma} \qref\dimm\ofr,
-\end{align}
-where the ``dim" subscript explicitly denotes the dimensional version of a quantity. In general, $\qref(r)$ is simply an arbitrary---hopefully order unity---function. If $|\qref(r)|\gg1$, the user is dilating their Rayleigh number without saying so. If $|\qref\ofr|\ll1$, the user is contracting their Rayleigh number without saying so. 
- 
-The function $\qref\ofr$ takes a specific form if we assume the Rayleigh number is a ``flux" Rayleigh number. In that case, we identify the entropy scale $\sigma$ via
+Note that we have chosen the entropy-scale (and thus the Rayleigh number) based on the internal heating:
+\begin{subequations}
 \begin{align}
-	\sigma &= \frac{H \fluxnrtilde}{\tilde{\rho}\tilde{T}\tilde{\kappa}},\\
-	\where \fluxscalar_{\rm{nr}}\ofr &\define \frac{H}{r^2}\int_{r\inn}^r Q\dimm(x) x^2 dx
+	\sigma &\define \frac{\tilde{Q}\tau}{\tilde{\rho}\tilde{T}} = \frac{\tilde{Q}H^2}{\tilde{\rho}\tilde{T}\tilde{\kappa}}\label{eq:sigma}\\
+	\andd \ra &\define \frac{\tilde{g} \tilde{Q} H^3\tau}{\tilde{\rho}\tilde{T}\cp\tilde{\nu} \tilde{\kappa}} =  \frac{\tilde{g} \tilde{Q} H^5}{\tilde{\rho}\tilde{T}\cp\tilde{\nu} \tilde{\kappa}^2},\label{eq:ranonrot}\\ 
 \end{align}
-is the (dimensional) flux not carried by radiation in a statistically steady state, $\fluxnrtilde$ refers to a volume-average of $\fluxnr\ofr$ over the convection zone (CZ) of the shell, and $r\inn$ is the inner shell boundary. In general, we will ensure that $\qref\ofr$ is nonzero only in the CZ and is normalized to have a total volume integral over the CZ of zero (i.e., heating and cooling balance). Hence, $\fluxnr\ofr$ will zero outside of the CZ. 
+\end{subequations}
+where the first equality in each equation is general (it holds for any choice of time-scale $\tau$) and the second equality is specific to the non-rotating case. Essentially, we have assumed that the heating (or cooling) operates on the time-scale $\tau$ before the fluid parcel buoyantly moves to another part of the shell, carrying with it an entropy perturbation $\sigma$ (in the non-rotating case, this should happen on the thermal dissipation time-scale $\tau=H^2/\tilde{\kappa}$). 
 
-From Equation \eqref{eq:qnd}, we thus have
-\begin{align}\label{eq:qnorm}
-	\qref(r) = \frac{H}{\fluxnrtilde}\qref\dimm(r).
-\end{align}
-The user is thus free to choose the shape of $\qref\ofr$, but not its amplitude, since it will have to be renormalized according to Equation \eqref{eq:qnorm}, to be consistent with the definition of the Rayleigh number.
+The user is thus free to choose the shapes of $\qref\ofr$ and $\cref\ofr$, but not their amplitude, since they must have unity volume-averages over the CZ. 
 
-The viscous buoyancy number $\bvisc$ is the ratio of the typical squared buoyancy frequency to the squared viscous diffusion time. It is essentially a ``second (stable) Rayleigh number", and will measure the stiffness of the stable layer. In other words, $\widetilde{N^2}$ will refer to the typical value of $\nsqref\ofr$ over the stable weather layer (WL) in the shell.  The buoyancy number is independent of the Rayleigh number, which measures the ultimate instability of the CZ. 
+The buoyancy number $\bu$ is the ratio of the typical squared buoyancy frequency to the thermal and viscous diffusion times. It is essentially a ``second (stable) Rayleigh number", and measures the stiffness of the stable layer (recall $\widetilde{N^2}$ refers to the typical value of $\nsqref\ofr$ in the WL). The buoyancy number is independent of the Rayleigh number, which estimates the ultimate instability of the CZ. 
 
-\section{Non-Dimensional Equations; $\tau=\Omega_0^{-1}$}
-In the previous section, $t$ (and things with time in the dimensions) was implied to mean $(\tilde{\nu}/H^2) t_{\rm{dim}}$, where $t_{\rm{dim}}$ was the dimensional time. We now want to use a new non-dimensional time, $t_{\rm{new}}= \Omega_0t_{\rm{dim}} = t/\ek$. We can thus find the new equations easily from Equations \eqref{eq:contndvisc}--\eqref{eq:indndvisc}. Every place we see a time dimension, we recall $t=\ek t_{\rm{new}}$, so we multiply the place where the dimension appears by $\ek$ and drop the ``new" subscript (e.g., $t\rightarrow \ek\ t$, $\vecu\rightarrow\vecu/\ek$, etc.).  We thus find (after rearranging terms)
+\section{Non-Dimensional Equations, Rotating [$\tau=(2\Omega_0)^{-1}$]}
+In the previous section, $t$ (and things with time in the dimensions) was implied to mean $(\tilde{\kappa}/H^2) t_{\rm{dim}}$, where $t_{\rm{dim}}$ was the dimensional time. We now want to use a new non-dimensional time, $t_{\rm{new}}= \Omega_0t_{\rm{dim}} = (\pr/\ek)t$. We can thus find the new equations easily from Equations \eqref{eq:contndvisc}--\eqref{eq:indndvisc}. Every place we see a time dimension, we recall $t=(\ek /\pr)t_{\rm{new}}$, so we multiply the place where the time-dimension appears by $(\ek/\pr)$ and drop the ``new" subscript [e.g., $t\rightarrow (\ek/\pr)\ t$, $\vecu\rightarrow(\pr/\ek)\vecu$, etc.]  We thus find (after rearranging terms),
 \begin{align}
 	\Div[\rhoref\ofr\vecu] &= 0\label{eq:contndrot},\\
 	\Div \vecb &= 0,
