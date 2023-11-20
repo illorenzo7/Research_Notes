@@ -108,7 +108,7 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 		\nabla &\rightarrow \frac{1}{H}\nabla,\\
 		t &\rightarrow \tau t,\\
 		\vecu &\rightarrow \frac{H}{\tau} \vecu,\\
-		S &\rightarrow \sigma S,\\
+		S &\rightarrow (\Delta S) S,\\
 		P &\rightarrow \tilde{\rho} \frac{H^2}{\tau^2} P,\\
 		\vecb &\rightarrow (\mu\tilde{\rho})^{1/2}\frac{H}{\tau} \vecb,\\ 
 		\rhoref\ofr &\rightarrow \tilde{\rho} \rhoref\ofr, \\
@@ -122,7 +122,7 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 		\andd \cref\ofr &\rightarrow \tilde{Q} \cref\ofr.
 	\end{align}
 	\end{subequations}
-	Here, $H$ is a typical length-scale, $\tau$ a typical time-scale, and $\sigma$ a typical entropy scale. On the right-hand-sides of Equation \eqref{eq:ndscheme} and in the following non-dimensionalizations, all fluid variables, coordinates, and background-state quantities are understood to be non-dimensional. The tildes refer to``typical values" of the (dimensional) reference-state functions. These typical values will be a volume-average over the convection zone (CZ) of the shell, except for $\widetilde{N^2}$, which will be a volume-average over the stably stratified weather layer (WL). Since cooling takes out what heating dumps in, we will normalize such that $\tilde{C}=\tilde{Q}$. 
+	Here, $H$ is a typical length-scale, $\tau$ a typical time-scale, and $\Delta S$ a typical (\textit{estimated}) entropy scale (in Rayleigh-B\'enard-type convection, the true entropy difference is imposed directly, but we will set the true value indirectly via heating and cooling functions). On the right-hand-sides of Equation \eqref{eq:ndscheme} and in the following non-dimensionalizations, all fluid variables, coordinates, and background-state quantities are understood to be non-dimensional. The tildes refer to``typical values" of the (dimensional) reference-state functions. These typical values will be a volume-average over the convection zone (CZ) of the shell, except for $\widetilde{N^2}$, which will be a volume-average over the stably stratified weather layer (WL). Since cooling takes out what heating dumps in, we will normalize such that $\tilde{C}=\tilde{Q}$. 
 	
 	Below, we will assume the time-scale is either a thermal diffusion time (i.e., $\tau=H^2/\tilde{\nu}$) or a rotational time-scale [i.e., $\tau=(2\Omega_0)^{-1}$]. %To describe the reference state, we will consider three cases for a given function's ``typical value": Its value at the inner shell boundary, its value at the outer shell boundary, or its value volume-averaged over the shell. 
 	
@@ -151,7 +151,7 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 The non-dimensional numbers appearing are:
 \begin{subequations}
 \begin{align}
-	\ra &\define \frac{\tilde{g} H^3}{\tilde{\nu} \tilde{\kappa}} \frac{\sigma}{\cp}\five\text{(Rayleigh number)},\\ 
+	\ra &\define \frac{\tilde{g} H^3}{\tilde{\nu} \tilde{\kappa}} \frac{\Delta S}{\cp}\five\text{(Rayleigh number)},\\ 
 	\pr &\define \frac{\tilde{\nu}}{\tilde{\kappa}}\five\text{(Prandtl number)},\\
 	\prm &\define \frac{\tilde{\nu}}{\tilde{\eta}}\five\text{(magnetic Prandtl number)},\\
 	\ek &\define \frac{\tilde{\nu}}{2\Omega_0H^2}\five\text{(Ekman number)},\\	
@@ -164,18 +164,29 @@ Note that in our convention, the dissipation number is not an independent contro
 Note that we have chosen the entropy-scale (and thus the Rayleigh number) based on the internal heating:
 \begin{subequations}
 \begin{align}
-	\sigma &\define \frac{\tilde{Q}\tau}{\tilde{\rho}\tilde{T}} = \frac{\tilde{Q}H^2}{\tilde{\rho}\tilde{T}\tilde{\kappa}}\label{eq:sigma}\\
+	\Delta S &\define \frac{\tilde{Q}\tau}{\tilde{\rho}\tilde{T}} = \frac{\tilde{Q}H^2}{\tilde{\rho}\tilde{T}\tilde{\kappa}}\label{eq:dsnonrot}\\
 	\andd \ra &\define \frac{\tilde{g} \tilde{Q} H^3\tau}{\tilde{\rho}\tilde{T}\cp\tilde{\nu} \tilde{\kappa}} =  \frac{\tilde{g} \tilde{Q} H^5}{\tilde{\rho}\tilde{T}\cp\tilde{\nu} \tilde{\kappa}^2},\label{eq:ranonrot}\\ 
 \end{align}
 \end{subequations}
-where the first equality in each equation is general (it holds for any choice of time-scale $\tau$) and the second equality is specific to the non-rotating case. Essentially, we have assumed that the heating (or cooling) operates on the time-scale $\tau$ before the fluid parcel buoyantly moves to another part of the shell, carrying with it an entropy perturbation $\sigma$ (in the non-rotating case, this should happen on the thermal dissipation time-scale $\tau=H^2/\tilde{\kappa}$). 
+where the first equality in each equation is general (it holds for any choice of time-scale $\tau$) and the second equality is specific to the non-rotating case. Essentially, we have assumed that the heating (or cooling) operates on the time-scale $\tau$ before the fluid parcel buoyantly moves to another part of the shell, carrying with it an entropy perturbation $\Delta S$ (in the non-rotating case, this should happen on the thermal dissipation time-scale $\tau=H^2/\tilde{\kappa}$). 
 
 The user is thus free to choose the shapes of $\qref\ofr$ and $\cref\ofr$, but not their amplitude, since they must have unity volume-averages over the CZ. 
 
 The buoyancy number $\bu$ is the ratio of the typical squared buoyancy frequency to the thermal and viscous diffusion times. It is essentially a ``second (stable) Rayleigh number", and measures the stiffness of the stable layer (recall $\widetilde{N^2}$ refers to the typical value of $\nsqref\ofr$ in the WL). The buoyancy number is independent of the Rayleigh number, which estimates the ultimate instability of the CZ. 
 
 \section{Non-Dimensional Equations, Rotating [$\tau=(2\Omega_0)^{-1}$]}
-In the previous section, $t$ (and things with time in the dimensions) was implied to mean $(\tilde{\kappa}/H^2) t_{\rm{dim}}$, where $t_{\rm{dim}}$ was the dimensional time. We now want to use a new non-dimensional time, $t_{\rm{new}}= \Omega_0t_{\rm{dim}} = (\pr/\ek)t$. We can thus find the new equations easily from Equations \eqref{eq:contndvisc}--\eqref{eq:indndvisc}. Every place we see a time dimension, we recall $t=(\ek /\pr)t_{\rm{new}}$, so we multiply the place where the time-dimension appears by $(\ek/\pr)$ and drop the ``new" subscript [e.g., $t\rightarrow (\ek/\pr)\ t$, $\vecu\rightarrow(\pr/\ek)\vecu$, etc.]  We thus find (after rearranging terms),
+In the previous section, $t$ (and things with time in the dimensions) was implied to mean $(\tilde{\kappa}/H^2) t_{\rm{dim}}$, where $t_{\rm{dim}}$ was the dimensional time. We now want to use a new non-dimensional time, $t_{\rm{new}}= \Omega_0t_{\rm{dim}} = (\pr/\ek)t$. We can thus find the new equations easily from Equations \eqref{eq:contndvisc}--\eqref{eq:indndvisc}. Every place we see a time dimension, we recall $t=(\ek /\pr)t_{\rm{new}}$, so we multiply the place where the time-dimension appears by $(\ek/\pr)$ and drop the ``new" subscript [e.g., $t\rightarrow (\ek/\pr)\ t$, $\vecu\rightarrow(\pr/\ek)\vecu$, etc.]  
+
+Note that we should now choose a different typical entropy-scale and corresponding Rayleigh number:
+\begin{subequations}
+	\begin{align}
+		\Delta S^*&\define \frac{\tilde{Q}\tau}{\tilde{\rho}\tilde{T}} = \frac{\tilde{Q}}{2\Omega_0\tilde{\rho}\tilde{T}}\label{eq:dsrot}\\
+		\andd \ra &\define \frac{\tilde{g} \tilde{Q} H^3\tau}{\tilde{\rho}\tilde{T}\cp\tilde{\nu} \tilde{\kappa}} =  \frac{\tilde{g} \tilde{Q} H^3}{2\Omega_0\tilde{\rho}\tilde{T}\cp\tilde{\nu} \tilde{\kappa}}.\label{eq:rarot}
+	\end{align}
+\end{subequations}
+The reasoning here is that under the influence of rapid rotation, the life-times of upflows or downflows are no longer set by the thermal dissipation time, but by the rotation period. Thus, the heating or cooling of a fluid parcel occurs on a shorter time-scale, leading to a smaller entropy difference across the shell than in the non-rotating case with the same amount of heating. Of course, neither Equations \eqref{eq:dsnonrot} or \eqref{eq:dsrot} are particularly convincing estimates and there is a large degree of uncertainty in the actual magnitude of typical entropy perturbations. We can only see how good these estimates are (after the fact) by checking if the achieved (non-dimensional) entropy difference across the shell winds up being close to unity. 
+
+We thus find (after rearranging terms),
 \begin{align}
 	\Div[\rhoref\ofr\vecu] &= 0\label{eq:contndrot},\\
 	\Div \vecb &= 0,
@@ -193,22 +204,21 @@ In the previous section, $t$ (and things with time in the dimensions) was implie
 	&+ \frac{\ek}{\pr} \qref(r) + \frac{\di\ek}{\ramod} D_{ij}e_{ij} + \frac{\di\ek}{\prm\ramod} \etaref\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndrot}
-	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \frac{\ek}{\prm} \curl[\eta\ofr\curl\vecb].
+	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \frac{\ek}{\prm} \curl[\eta\ofr\curl\vecb],
 \end{align}	
-
-The new non-dimensional numbers appearing are:
+where we have introduced two modified non-dimensional numbers:
 \begin{subequations}
 	\begin{align}
-		\ramod &\define \frac{\ek^2}{\pr}\ra =  \frac{\tilde{g} }{H\Omega_0^2} \frac{\sigma}{\cp},\\ 
+		\ramod &\define \frac{\ek^2}{\pr}\ra =  \frac{\tilde{g} }{H\Omega_0^2} \frac{\Delta S}{\cp}=\frac{\tilde{g}\tilde{Q}}{(2\Omega_0)^3\tilde{\rho}\tilde{T}\cp H},\\ 
 		\andd \bumod &\define \frac{\ek^2}{\pr}\bu = \frac{\widetilde{N^2}} {4\Omega_0^2} \sim \frac{\tilde{g} }{H\Omega_0^2} =  \frac{1}{\text{geometric\ oblateness}}.
 	\end{align}
-
-Note that although the ``$\dsdrline$-terms" in the non-dimensionalizations have seemingly different definitions, they are the same, since:
-\begin{align}
-	\frac{\bu}{\ra} = \frac{\bumod}{\ramod} \sim \frac{\cp}{\sigma}.
-\end{align}
 \end{subequations}
 
+Note that although the ``$\dsdrline$-terms" in the non-dimensionalizations have seemingly different definitions, they are similar, since
+\begin{align}
+	\frac{\bu}{\ra} \sim \frac{\cp}{\Delta S}\five \andd 	\frac{\bumod}{\ramod} \sim \frac{\cp}{\Delta S^*}.
+\end{align}
+The only difference is in the different estimates $\Delta S$ and $\Delta S^*$. 
 
 \clearpage
 \newpage
