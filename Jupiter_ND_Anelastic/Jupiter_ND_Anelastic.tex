@@ -238,7 +238,7 @@ where
 \end{equation}
 We also define
 \begin{equation}
-	\psi\cz(r;r_0, \delta)\define 1 - \psi\wl(r,r_0-\delta,\delta) \begin{cases}
+	\psi\cz(r;r_0, \delta)\define 1 - \psi\wl(r;r_0-\delta,\delta) =  \begin{cases}
 		1 & r\leq r_0 \\
 		1 - \left[1 - \Big{(}\frac{r-r_0}{\delta}\Big{)}^2\right]^2 & r_0 -\delta  < r < r_0\\
 		0 & r\geq r_0.
@@ -286,24 +286,14 @@ and
 \end{align}
 where (nastily)
 \begin{align}\label{eq:digory}
-	\di &\define \frac{\tilde{g}H}{\cp\tilde{T}} =  \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
-	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})}\\
+	\di \define \frac{\tilde{g}H}{\cp\tilde{T}} &=  \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
+	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})},\\
+	\tmpref(r_0)&= \frac{(1-\beta^3)(1-\beta)}{(3\beta/2)(1-\beta^2)(e^{\nrho/n}-1) - (1-\beta^3)(\beta e^{\nrho/n}-1)},\\
 	\andd n &\define \frac{1}{1-\gamma}
 \end{align}
-is the polytropic index of the CZ (note that since $\dsdrline\equiv0$ in the CZ, the stratification of the CZ winds up being an adiabatic polytrope). We have also assumed (without loss of generality) that $\sref(r_0)=0$, so that $\sref\equiv0$ in the CZ). 
+is the polytropic index of the CZ (note that since $\dsdrline\equiv0$ in the CZ, the stratification of the CZ winds up being an adiabatic polytrope). We have also assumed (without loss of generality) that $\sref(r_0)=0$, so that $\sref\equiv0$ in the CZ). The constant $\rhoref(r_0)$ ends up not having an analytical expression but can be easily found by integration over the CZ of Equation \eqref{eq:rhohat} (and I should maybe just find $\di$ and $\tmpref(r_0)$ from integration, too, since I am error-prone).  
 
 To follow \citet{Jones2011} \citet{Heimpel2022} somewhat, we assume $n=2$. Apparently this is a common choice for Jupiter that better approximates its weird equation of state without breaking the ideal gas law. It results in the somewhat strange result $\gamma=3/2$. 
-
-We thus choose the following geometry and reference state:
-\begin{subequations}
-\begin{align}
-	\alpha &= 0.25,\\
-	\beta &= 0.9,\\
-	\gamma = 3/2,\\
-	\delta = 0.05\five \text{(may mess with this one)},\\
-	\andd N_\rho = 3.
-\end{align}
-\end{subequations}
 
 We also simplify our lives and assume constant diffusivities:
 \begin{align}
@@ -320,6 +310,17 @@ For the cooling, we choose a cooling width $w_{\rm BL}$:
 	\cref\ofr \propto \exp\left[\frac{r-r_0}{w_{\rm BL}}\right] \psi\cz(r; r_0,\delta)
 \end{align}
 
+
+We thus choose the following geometry and reference state:
+\begin{subequations}
+	\begin{align}
+		\alpha &= 0.25,\\
+		\beta &= 0.9,\\
+		\gamma = 3/2,\\
+		\delta = 0.05\five \text{(may mess with this one)},\\
+		\andd N_\rho = 3.
+	\end{align}
+\end{subequations}
 \clearpage
 \newpage
 	\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
