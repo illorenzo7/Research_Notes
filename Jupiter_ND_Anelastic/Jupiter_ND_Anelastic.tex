@@ -25,7 +25,7 @@
 \newcommand{\nad}{n_{\rm{ad}}}
 \newcommand{\dimm}{_{\rm{dim}}}
 \newcommand{\cz}{_{\rm{CZ}}}
-\newcommand{\rz}{_{\rm{RZ}}}
+\newcommand{\wl}{_{\rm{WL}}}
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
@@ -225,11 +225,11 @@ In terms of {\rayleigh}'s $f$'s and $c$'s, we compare Equations \eqref{eq:contnd
 \section{Hydrostatic, Ideal-Gas, Jovian Stable--Unstable Layer}
 To model a background CZ and WL in Jupiter, we consider a spherical shell composed of an ideal, hydrostatic gas extending between inner radius $r\inn$ and outer radius $r\out$. An assumed transition in convective stability occurs near an intermediate radius $r_0$, over width $\delta$. More specifically, we choose quartic matching of the entropy gradient between the two layers:
 \begin{align}
-	\frac{d\sref}{dr} &=\psi_{WL}(r; r_0,\delta),
+	\frac{d\sref}{dr} &=\psi\wl(r; r_0,\delta),
 \end{align}
 where
 \begin{equation}
-  \psi_{WL}(r;r_0, \delta)\define \begin{cases}
+  \psi\wl(r;r_0, \delta)\define \begin{cases}
 		0 & r\leq r_0 \\
 		1 - \left[1 - \Big{(}\frac{r-r_0}{\delta}\Big{)}^2\right]^2 & r_0  < r < r_0+ \delta\\
 		1 & r\geq r_0+\delta.
@@ -238,14 +238,14 @@ where
 \end{equation}
 We also define
 \begin{equation}
-	\psi_{CZ}(r;r_0, \delta)\define 1 - \psi_{WL}(r,r_0-\delta,\delta) \begin{cases}
+	\psi\cz(r;r_0, \delta)\define 1 - \psi\wl(r,r_0-\delta,\delta) \begin{cases}
 		1 & r\leq r_0 \\
 		1 - \left[1 - \Big{(}\frac{r-r_0}{\delta}\Big{)}^2\right]^2 & r_0 -\delta  < r < r_0\\
 		0 & r\geq r_0.
 	\end{cases}
 	\label{eq:dsdr}
 \end{equation}
-$\psi_{WL}$ thus ``senses" only the WL, and $\psi_{CZ}$ ``senses" only the CZ. 
+$\psi\wl$ thus ``senses" only the WL, and $\psi\cz$ ``senses" only the CZ. 
 
 With this formulation, the CZ is strictly unstable (really, marginally stable, but becomes unstable from the heating and cooling). This ensures that none of the stable gradient ``leaks" into the CZ, as happens with (e.g.) tanh matching. We assume a centrally-concentrated mass so that $\gref\ofr\propto 1/r^2$. 
 
@@ -312,12 +312,12 @@ We also simplify our lives and assume constant diffusivities:
 
 For the heating, we use the typical {\rayleigh} profile $\qref\propto \rhoref \tmpref$, but ensure that the heating is fully contained in the CZ:
 \begin{align}
-	\qref\ofr \propto \rhoref\ofr\tmpref\ofr \psi_{CZ}(r; r_0,\delta)
+	\qref\ofr \propto \rhoref\ofr\tmpref\ofr \psi\cz(r; r_0,\delta)
 \end{align} 
 
 For the cooling, we choose a cooling width $w_{\rm BL}$:
 \begin{align}
-	\cref\ofr \propto \exp\left[\frac{r-r_0}{w_{\rm BL}}\right] \psi_{CZ}(r; r_0,\delta)
+	\cref\ofr \propto \exp\left[\frac{r-r_0}{w_{\rm BL}}\right] \psi\cz(r; r_0,\delta)
 \end{align}
 
 \clearpage
