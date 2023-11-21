@@ -26,6 +26,7 @@
 \newcommand{\dimm}{_{\rm{dim}}}
 \newcommand{\cz}{_{\rm{CZ}}}
 \newcommand{\wl}{_{\rm{WL}}}
+\newcommand{\dcool}{\delta_{\rm{cool}}}
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
@@ -305,26 +306,25 @@ For the heating, we use the typical {\rayleigh} profile $\qref\propto \rhoref \t
 	\qref\ofr \propto \rhoref\ofr\tmpref\ofr \psi\cz(r; r_0,\delta)
 \end{align} 
 
-For the cooling, we choose a cooling width $w_{\rm BL}$:
+For the cooling, we choose a cooling width $\dcool$:
 \begin{align}
-	\cref\ofr \propto \exp\left[\frac{r-r_0}{w_{\rm BL}}\right] \psi\cz(r; r_0,\delta)
+	\cref\ofr \propto \exp\left[\frac{r-r_0}{\dcool}\right] \psi\cz(r; r_0,\delta)
 \end{align}
 
-
-We thus choose the following geometry and reference state:
+We thus fully define the following geometry and Jovian-ish reference state:
 \begin{subequations}
 	\begin{align}
 		\alpha &= 0.25,\\
 		\beta &= 0.9,\\
-		\gamma = 3/2,\\
-		\delta = 0.05\five \text{(may mess with this one)},\\
-		\andd N_\rho = 3.
+		\gamma &= 3/2,\\
+		\delta=\dcool &= 0.1\five \text{(may mess with these)},\\
+		\andd N_\rho &= 3.
 	\end{align}
 \end{subequations}
 \clearpage
 \newpage
-	\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
-	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
+%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
+	\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
 			/Users/loren/Desktop/Paper_Library/000_bibtex/proceedings,
 			/Users/loren/Desktop/Paper_Library/000_bibtex/books}
 	\bibliographystyle{aasjournal}
