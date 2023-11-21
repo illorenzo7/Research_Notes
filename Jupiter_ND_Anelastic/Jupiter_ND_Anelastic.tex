@@ -134,14 +134,14 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 \end{align}
 \begin{subequations}\label{eq:momndvisc}
 	\begin{align}
-		\rhoref\ofr\left[\matderiv{\vecu}+\frac{\pr}{\ek}\ez\times\vecu\right] = &-\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right] + \pr\ra\rhoref\ofr\gref\ofr S\er, \nonumber\\
-		&+\pr\Div\bm{D} +(\curl\vecb)\times\vecb,\\
+		\rhoref\ofr\left[\matderiv{\vecu}+\frac{\pr}{\ek}\ez\times\vecu\right] = &\ \pr\ra\rhoref\ofr\gref\ofr S\er         -\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right], \nonumber\\
+		&\ +(\curl\vecb)\times\vecb +\pr\Div\bm{D},\\
 		\where D_{ij} &\define 2\rhoref\ofr\nuref\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndvisc}
-	\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \frac{\bu}{\ra}\rhoref\ofr\tmpref\ofr \frac{\nsqref\ofr}{\gref\ofr} u_r + \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
+	\rhoref\ofr\tmpref\ofr \matderiv{S} = & - \frac{\bu}{\ra}\rhoref\ofr\tmpref\ofr \frac{\nsqref\ofr}{\gref\ofr} u_r  + \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
 	&+ \qref(r) -\cref\ofr + \frac{\di}{\ra} D_{ij}e_{ij} + \frac{\di}{\prm\ra} \etaref\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndvisc}
@@ -193,8 +193,8 @@ We thus find (after rearranging terms),
 \end{align}
 \begin{subequations}\label{eq:momndrot}
 	\begin{align}
-		\rhoref\ofr\left[\matderiv{\vecu} + \ez\times\vecu\right] = &-\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right] + \ramod \rhoref\ofr\gref\ofr S\er, \nonumber\\
-		&+ \ek \Div\bm{D} +(\curl\vecb)\times\vecb,\\
+		\rhoref\ofr\left[\matderiv{\vecu} + \ez\times\vecu\right] = &\ \ramod \rhoref\ofr\gref\ofr S\er         -\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right], \nonumber\\
+		&+(\curl\vecb)\times\vecb + \ek \Div\bm{D},\\
 		\where D_{ij} &\define 2\rhoref\ofr\nuref\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
 	\end{align}
@@ -219,6 +219,106 @@ Note that although the ``$\dsdrline$-terms" in the non-dimensionalizations have 
 	\frac{\bu}{\ra} \sim \frac{\cp}{\Delta S}\five \andd 	\frac{\bumod}{\ramod} \sim \frac{\cp}{\Delta S^*}.
 \end{align}
 The only difference is in the different estimates $\Delta S$ and $\Delta S^*$. 
+
+In terms of {\rayleigh}'s $f$'s and $c$'s, we compare Equations \eqref{eq:contndrot}--\eqref{eq:indndrot} to \eqref{eq:contgen}--\eqref{eq:indgen} and find:
+
+\section{Hydrostatic, Ideal-Gas, Jovian Stable--Unstable Layer}
+To model a background CZ and WL in Jupiter, we consider a spherical shell composed of an ideal, hydrostatic gas extending between inner radius $r\inn$ and outer radius $r\out$. An assumed transition in convective stability occurs near an intermediate radius $r_0$, over width $\delta$. More specifically, we choose quartic matching of the entropy gradient between the two layers:
+\begin{align}
+	\frac{d\sref}{dr} &=\psi_{WL}(r; r_0,\delta),
+\end{align}
+where
+\begin{equation}
+  \psi_{WL}(r;r_0, \delta)\define \begin{cases}
+		0 & r\leq r_0 \\
+		1 - \left[1 - \Big{(}\frac{r-r_0}{\delta}\Big{)}^2\right]^2 & r_0  < r < r_0+ \delta\\
+		1 & r\geq r_0+\delta.
+	\end{cases}
+	\label{eq:dsdr}
+\end{equation}
+We also define
+\begin{equation}
+	\psi_{CZ}(r;r_0, \delta)\define 1 - \psi_{WL}(r,r_0-\delta,\delta) \begin{cases}
+		1 & r\leq r_0 \\
+		1 - \left[1 - \Big{(}\frac{r-r_0}{\delta}\Big{)}^2\right]^2 & r_0 -\delta  < r < r_0\\
+		0 & r\geq r_0.
+	\end{cases}
+	\label{eq:dsdr}
+\end{equation}
+$\psi_{WL}$ thus ``senses" only the WL, and $\psi_{CZ}$ ``senses" only the CZ. 
+
+With this formulation, the CZ is strictly unstable (really, marginally stable, but becomes unstable from the heating and cooling). This ensures that none of the stable gradient ``leaks" into the CZ, as happens with (e.g.) tanh matching. We assume a centrally-concentrated mass so that $\gref\ofr\propto 1/r^2$. 
+
+It can then be shown that five non-dimensional parameters fully characterize the shell geometry, $\rhoref\ofr$, and $\tmpref\ofr$:
+\begin{subequations}
+	\begin{align}
+		\alpha&\define \frac{r\out-r_0}{r_0-r\inn} \five\text{(WL-to-CZ\ aspect ratio)},\\ 
+		\beta &\define \frac{r\inn}{r_0} \five\text{(CZ aspect ratio)},\\
+		\gamma&\define \frac{\cp}{\cv}\five\text{(specific-heat ratio)},\\
+		\delta &\five\text{(stability transition width)},\\	
+		N_\rho &\define \ln\left[\frac{\rhoref(r\inn)}{\rhoref(r\out)}\right]\five\text{(number of density scale-heights across CZ)},
+	\end{align}
+\end{subequations}
+where $\cv$ is the specific heat at constant volume. 
+
+We choose $H$ to be the thickness of the CZ ($r_0-r\inn=1$ and $r\out-r_0=\alpha$). Thus,
+\begin{subequations}
+	\begin{align}
+		r\inn &=\frac{1-\beta}{\beta},\\
+		r_0 &= \frac{1}{1-\beta},\\
+		\andd r\out &=  \frac{1}{1-\beta} + \alpha
+	\end{align}
+\end{subequations}
+If we choose $\alpha=0.25$ and $\beta=0.9$, then $(r\inn,r_0,r\out)=(9, 10, 10.25)$. 
+
+With the requirement that the volume-average of $\gref\ofr$ over the CZ be unity, we require
+\begin{align}
+	\gref\ofr &= \left[ \frac{1-\beta^3}{3(1-\beta)^3}    \right]\frac{1}{r^2}.
+\end{align}
+
+It can then be shown from the ideal-gas and hydrostatic conditions (e.g., \citealt{Matilsky2023d}) that
+\begin{align}\label{eq:tmphat}
+	\tmpref &= e^{\sref}\left[\tmpref(r_0) - \di\int_{r_0}^r \gref(x)  e^{-\sref(x)}dx\right].
+\end{align}
+and
+\begin{align}\label{eq:rhohat}
+	\rhoref &= \rhoref(r_0) \exp{\left[-\left(\frac{\gamma}{\gamma-1}\right)\sref\right]}\tmpref^{1/(\gamma-1)},
+\end{align}
+where (nastily)
+\begin{align}\label{eq:digory}
+	\di &\define \frac{\tilde{g}H}{\cp\tilde{T}} =  \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
+	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})}\\
+	\andd n &\define \frac{1}{1-\gamma}
+\end{align}
+is the polytropic index of the CZ (note that since $\dsdrline\equiv0$ in the CZ, the stratification of the CZ winds up being an adiabatic polytrope). We have also assumed (without loss of generality) that $\sref(r_0)=0$, so that $\sref\equiv0$ in the CZ). 
+
+To follow \citet{Jones2011} \citet{Heimpel2022} somewhat, we assume $n=2$. Apparently this is a common choice for Jupiter that better approximates its weird equation of state without breaking the ideal gas law. It results in the somewhat strange result $\gamma=3/2$. 
+
+We thus choose the following geometry and reference state:
+\begin{subequations}
+\begin{align}
+	\alpha &= 0.25,\\
+	\beta &= 0.9,\\
+	\gamma = 3/2,\\
+	\delta = 0.05\five \text{(may mess with this one)},\\
+	\andd N_\rho = 3.
+\end{align}
+\end{subequations}
+
+We also simplify our lives and assume constant diffusivities:
+\begin{align}
+	\nuref\ofr=\kapparef\ofr=\etaref\ofr\equiv 1.
+\end{align}
+
+For the heating, we use the typical {\rayleigh} profile $\qref\propto \rhoref \tmpref$, but ensure that the heating is fully contained in the CZ:
+\begin{align}
+	\qref\ofr \propto \rhoref\ofr\tmpref\ofr \psi_{CZ}(r; r_0,\delta)
+\end{align} 
+
+For the cooling, we choose a cooling width $w_{\rm BL}$:
+\begin{align}
+	\cref\ofr \propto \exp\left[\frac{r-r_0}{w_{\rm BL}}\right] \psi_{CZ}(r; r_0,\delta)
+\end{align}
 
 \clearpage
 \newpage
