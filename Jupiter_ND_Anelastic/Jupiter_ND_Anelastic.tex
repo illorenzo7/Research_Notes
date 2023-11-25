@@ -52,11 +52,11 @@
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:engen}
-	f_1\ofr f_4\ofr \matderiv{S} = &- f_1\ofr f_4\ofr f_{14}\ofr u_r + c_6\Div[f_1\ofr f_4\ofr f_5\ofr \nabla S] \nonumber \\
-	&+ c_{10}f_6(r) + c_8 c_5 D_{ij}e_{ij} + \frac{\eta\ofr}{4\pi}|\curl\vecb|^2,
+	f_1\ofr f_4\ofr \left[\matderiv{S} + f_{14}\ofr u_r\right] =&\ c_6\Div[f_1\ofr f_4\ofr f_5\ofr \nabla S] \nonumber \\
+	&+ c_{10}f_6(r) + c_8 c_5 D_{ij}e_{ij} +c_9f_7\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indgen}
-	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - c_7\curl[f_7\ofr\curl\vecb],
+	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - c_7 f_7\ofr\curl\vecb\right],
 \end{align}
 where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material derivative. 
 	The spherically-symmetric, time-independent reference (or background) functions $f_i(r)$ and constants $c_j$ set the fluid approximation to be made. {\rayleigh} has built-in modes to set the $f$'s and $c$'s for single-layer (i.e., either convectively stable or unstable, but not both) Boussinesq or Anelastic spherical shells. More complex systems (coupled stable--unstable systems or alternative non-dimensionalizations) require the user to manually change the $f$'s and $c$'s. This can be done by editing an input binary file that {\rayleigh} reads upon initialization. The $c$'s can also be changed in the ASCII text-file (i.e., the \texttt{main\_input} file). 
@@ -78,11 +78,11 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 	\end{align}
 	\end{subequations}
 	\begin{align}\label{eq:endim}
-		\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \rhoref\ofr\tmpref\ofr \frac{d\sref}{dr} u_r + \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
+		\rhoref\ofr\tmpref\ofr \left[\matderiv{S} + \frac{d\sref}{dr} u_r\right] = &\ \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
 		&+ \qref(r) -\cref\ofr + D_{ij}e_{ij} + \frac{\etaref\ofr}{\mu}|\curl\vecb|^2,
 	\end{align}
 	\begin{align}\label{eq:inddim}
-	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \curl[\eta\ofr\curl\vecb].
+	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \eta\ofr\curl\vecb\right].
 	\end{align}
 	Here, the thermal variables $\rho$, $T$, $P$, and $S$ refer to the density, temperature, pressure, and entropy (respectively). The overbars denote the spherically-symmetric, time-independent background state. The lack of an overbar on a thermal variable indicates the (assumed small) perturbation from the background (for the entropy, $S/\cp$ is assumed small).
 	
@@ -142,11 +142,11 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndvisc}
-	\rhoref\ofr\tmpref\ofr \matderiv{S} = & - \frac{\bu}{\ra}\rhoref\ofr\tmpref\ofr \frac{\nsqref\ofr}{\gref\ofr} u_r  + \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
+	\rhoref\ofr\tmpref\ofr\left[ \matderiv{S} + \frac{\bu}{\ra}\frac{\nsqref\ofr}{\gref\ofr} u_r\right]  = &\ \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
 	&+ \qref(r) -\cref\ofr + \frac{\di}{\ra} D_{ij}e_{ij} + \frac{\di}{\prm\ra} \etaref\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndvisc}
-	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \frac{\pr}{\prm} \curl[\etaref\ofr\curl\vecb].
+	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \frac{\pr}{\prm}\etaref\ofr\curl\vecb\right].
 \end{align}	
 
 The non-dimensional numbers appearing are:
@@ -201,11 +201,11 @@ We thus find (after rearranging terms),
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndrot}
-	\rhoref\ofr\tmpref\ofr \matderiv{S} = &- \frac{\bumod}{\ramod} \rhoref\ofr\tmpref\ofr \frac{\nsqref\ofr}{\gref\ofr} u_r + \frac{\ek}{\pr} \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
+	\rhoref\ofr\tmpref\ofr\left[ \matderiv{S}+ \frac{\bumod}{\ramod} \frac{\nsqref\ofr}{\gref\ofr} u_r\right]  = &\ \frac{\ek}{\pr} \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
 	&+ \frac{\ek}{\pr} \qref(r) + \frac{\di\ek}{\ramod} D_{ij}e_{ij} + \frac{\di\ek}{\prm\ramod} \etaref\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndrot}
-	\andd \pderiv{\vecb}{t} = \curl(\vecu\times\vecb) - \frac{\ek}{\prm} \curl[\eta\ofr\curl\vecb],
+	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \frac{\ek}{\prm} \eta\ofr\curl\vecb\right],
 \end{align}	
 where we have introduced two modified non-dimensional numbers:
 \begin{subequations}
