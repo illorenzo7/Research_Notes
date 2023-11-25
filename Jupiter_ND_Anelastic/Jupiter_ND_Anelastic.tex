@@ -52,7 +52,7 @@
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:engen}
-	f_1\ofr f_4\ofr \left[\matderiv{S} + f_{14}\ofr u_r\right] =&\ c_6\Div[f_1\ofr f_4\ofr f_5\ofr \nabla S] \nonumber \\
+	f_1\ofr f_4\ofr \left[\matderiv{S} + c_{11}f_{14}\ofr u_r\right] =&\ c_6\Div[f_1\ofr f_4\ofr f_5\ofr \nabla S] \nonumber \\
 	&+ c_{10}f_6(r) + c_8 c_5 D_{ij}e_{ij} +c_9c_7f_7\ofr|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indgen}
@@ -223,6 +223,7 @@ The only difference is in the different estimates $\Delta S$ and $\Delta S^*$.
 
 In terms of {\rayleigh}'s $f$'s and $c$'s, we compare Equations \eqref{eq:contndrot}--\eqref{eq:indndrot} to \eqref{eq:contgen}--\eqref{eq:indgen} and find:
 \begin{align*}
+	\begin{split}
 	f_1&\rightarrow \rhoref\\
 	f_2&\rightarrow\rhoref\gref \\
 	f_3 &\rightarrow \nuref\\
@@ -231,7 +232,21 @@ In terms of {\rayleigh}'s $f$'s and $c$'s, we compare Equations \eqref{eq:contnd
 	f_6 &\rightarrow \qref - \cref\\
 	f_7 &\rightarrow \etaref\\
 	\vdots\\
-	f_{14} &\rightarrow \frac{\bumod}{\ramod}\frac{\nsqref}{\gref}
+	f_{14} &\rightarrow \frac{\nsqref}{\gref}
+\end{split}
+\begin{split}
+c_1 &\rightarrow 1\\
+c_2 &\rightarrow \ramod\\
+c_3 &\rightarrow 1\\
+c_4 &\rightarrow 4\\
+c_5 &\rightarrow \ek\\
+c_6 &\rightarrow \ek/\pr\\
+c_7 &\rightarrow \ek/\prm\\
+c_8 &\rightarrow \di/\ramod\\
+c_9 &\rightarrow \di/\ramod\\
+c_{10} &\rightarrow 1\\
+c_{11} &\rightarrow \bumod/\ramod
+\end{split}
 \end{align*}
 \section{Hydrostatic, Ideal-Gas, Jovian Stable--Unstable Layer}
 To model a background CZ and WL in Jupiter, we consider a spherical shell composed of an ideal, hydrostatic gas extending between inner radius $r\inn$ and outer radius $r\out$. An assumed transition in convective stability occurs near an intermediate radius $r_0$, over width $\delta$. More specifically, we choose quartic matching of the entropy gradient between the two layers:
