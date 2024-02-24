@@ -1,236 +1,50 @@
-\documentclass[12pt]{article} % document type and language
+\documentclass[12pt]{article}
 
-\usepackage{amsmath, bm, mathtools, cancel, empheq, ulem}
-%\usepackage{newtxmath} 
+% standard packages
+\usepackage{amsmath, bm, empheq, mathrsfs, natbib, cancel}
+
+% normal margins
 \usepackage[margin=1in]{geometry}
-\newcommand{\pderiv}[2]{\frac{\partial#1}{\partial#2}}
-\newcommand{\five}{\ \ \ \ \ }
-\newcommand{\e}{\hat{\bm{e}}}
-\newcommand{\curl}{\nabla\times}
-\newcommand{\er}{\e_r}
-\newcommand{\Div}{\nabla\cdot}
-\newcommand{\phig}{\Phi_{\rm{g}}}
-\newcommand{\cp}{c_{\rm{p}}}
-\newcommand{\cv}{c_{\rm{v}}}
-\newcommand{\ri}{r_{\rm{i}}}
-\newcommand{\ro}{r_{\rm{o}}}
 
-\date{December 18, 2019}
+% plane blue hyperlinks
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor=blue,
+	citecolor=blue
+}
+
+% common macros
+\input{../macros.tex}
+
+% other macros
+\newcommand{\vecrot}{\bm{\Omega}}
+\newcommand{\vecr}{\bm{r}}
+\newcommand{\xpar}{x_\parallel}
+\newcommand{\epar}{\e_\parallel}
+\newcommand{\upar}{u_\parallel}
+\newcommand{\uperp}{\vecu_\perp}
+\newcommand{\veci}{\bm{I}}
+
+% date, author, title
+\date{\today}
 \author{Loren Matilsky}
-\title{Energy Equations Under LBR Anelastic Approximation}
+\title{An energy-conserving anelastic approximation for strongly stably-stratified fluids}
 \begin{document}
 	\maketitle
-	\section{Conservation of energy for fully-compressible MHD}
-	In fully-compressible MHD the fluid equations in a frame rotating with constant angular velocity $\bm{\Omega}_0=\Omega_0\e_z$ are
-	\begin{align}
-	\pderiv{\rho}{t}= &-\nabla\cdot(\rho\bm{u}),\label{eq:fc_cont}\\
-	\rho\pderiv{\bm{u}}{t} = &- \rho\bm{u}\cdot\nabla\bm{u} - \nabla p + \rho\bm{g} + \Div\bm{D} - 2\rho\bm{\Omega}_0\times\bm{u} + \frac{1}{4\pi}(\curl{\bm{B}})\times\bm{B},\label{eq:fc_mom}\\
-	\rho T \pderiv{s}{t} = &-\rho T\bm{u}\cdot\nabla s  - \nabla\cdot\mathbf{F}_{\rm{cond}} -\nabla\cdot\mathbf{F}_{\rm{rad}}  + \bm{D}:\nabla\bm{u} + \frac{\eta}{4\pi}|\curl\bm{B}|^2,\label{eq:fc_ent}\\
-	\five\pderiv{\bm{B}}{t} = &\curl[\bm{u}\times\bm{B}-\eta\curl\bm{B}]\label{eq:fc_ind},\\
-	\text{and}\five\Div\bm{B} \equiv &\ 0,
-	\end{align}
-	which are the continuity, momentum, entropy, induction, and ``no magnetic monopoles" equations, respectively. Here $\rho,T,s$, and $p$ are the local density, temperature, specific entropy, and pressure (respectively), $\bm{u}$ and $\bm{B}$ are the velocity and magnetic fields (respectively), $\bm{D} = \rho\nu (\nabla\bm{u} + \nabla\bm{u}^T)$, $\nu$ and $\eta$ are the momentum and magnetic diffusivities (respectively), and $\bm{g}$ is the body force (usually due to the combined effects of gravity and the centrifugal acceleration). $\mathbf{F}_{\rm{cond}}$ represents heat conduction and usually has the form $- k\nabla T$ (Fourier's law) or $-\rho T \kappa \nabla s$ (mixing-length approximation). $\mathbf{F}_{\rm{rad}}$ is the heat flux from radiation, which has the form, in the high-opacity limit, $-(4acT^3/3c_{\rm{p}}\chi_{\rm{rad}}\rho)\nabla T$ (with $\chi_{\rm{rad}}$ being the opacity) or else is imposed as an internal heating ($Q = -\Div\mathbf{F}_{\rm{rad}}$) in the Rayleigh code. 
+	\section{Introduction}
+	Abstract: When acoustic oscillations are believed to be irrelevant to the dynamics of an astrophysical fluid, it is useful to employ simplifying approximations to the equations of motion. The two most common of these (which are usually used to treat convection problem) are the Boussinesq approximation (when the background density does not significantly vary across the fluid layer) and the anelastic approximation (when the background density does vary significantly). There are many distinct forms of the anelastic approximation in the literature, and it has often been remarked that most of these do not properly conserve energy when the fluid is stable to convection. Here we show that the anelastic equations derived by Gough (1969) in fact do conserve energy for arbitrary motions of the fluid, even for strongly stratified background stratification. The key properties of these equations that allow them to conserve energy are (1) the absence of the Lantz-Braginsky-Roberts approximation in the momentum equation and (2) the inclusion of additional terms in the energy equation, which allow the proper conversion between kinetic and potential energy via compressive work. We show that the scaling analysis of Gough (1969), which implicitly assumed a single typical value of the background entropy gradient, can be valid even for convective overshoot, where the entropy gradient changes from slightly unstable in the convective region to stable (sometimes strongly so) in the overshoot region. The requirement for the anelastic equations to be valid for convective overshoot is that the buoyancy frequency be significantly less than the acoustic cutoff frequency. 
 	
-	Taking the dot product of $\bm{u}$ and \eqref{eq:fc_mom} (and using the identity $\bm{u}\cdot\nabla\bm{u} = (1/2)\nabla u^2 - \bm{u}\times(\curl\bm{u})$ and the continuity equation) yields the kinetic energy equation,
-	\begin{align}
-	\pderiv{}{t}\bigg{(}\frac{1}{2}\rho u^2\bigg{)} = &- \Div\bigg{(}\frac{1}{2}\rho u^2\bm{u}\bigg{)} - \bm{u}\cdot \nabla p + \rho\bm{u}\cdot\bm{g} + \bm{u}\cdot(\Div\bm{D}) + 
-	\frac{1}{4\pi}\bm{u}\cdot[(\curl\bm{B})\times\bm{B}].\label{eq:fc_ke}
-	\end{align}
+	The anelastic equations originally consisted of an approximation to the continuity and momentum equations, derived by assuming small thermal perturbations about a nearly adiabatically stratified hydrostatic reference atmosphere \citep{Batchelor1953,Charney1960}. The thermodynamics of the problem thus become ``linear," in the sense that products of thermodynamic variables reduced to linear expressions in the first-order perturbations. The two key consequences of linearized thermodynamics are divergenceless mass flux (i.e., $\Div(\rhoref\vecu)\equiv0$, where $\rhoref$ is the background density and $\vecu$ the fluid velocity; this takes the place of the $\Div\vecu=0$ condition from the Boussinesq approximation) and the first-order buoyancy force (associated with the first-order perturbed density and pressure) being the primary driver of the flow. \citep{Ogura1962} formalized the approximation by expanding the equations of motion in a small parameter $\epsilon$, representing the relative variation of potential temperature across the fluid layer, and hence the relative magnitude of the thermal perturbations. They recovered the equations of \citet{Batchelor1953,Charney1960} and showed an assumption about the \textit{time scale} of the motion was necessary, in addition to the assumption of small thermal perturbations. Namely, the dynamical time scale of the buoyantly driven flows must be $O(\epsilon^{-1/2})$ times \textit{larger} than the sound crossing time of the region. Sound waves, which imply rapid temporal variations on the order of the sound crossing time, are thus absent from the anelastic equations, making them ideal for numerical integration, where large time steps are required to capture significant evolution of the system. 
 	
-	The entropy equation \eqref{eq:fc_ent} may be transformed in terms of the internal energy ($e=\cv T$ for an ideal gas, with $\cv$ being the specific heat at constant volume) by the fundamental thermodynamic relation acting on moving fluid parcels: $\rho T Ds/Dt  = \rho De/Dt - \rho (p/\rho^2)D\rho/Dt = \rho De/Dt  + p(\Div\bm{u})$, where $D/Dt = \partial/\partial t + \bm{u}\cdot\nabla$ is the total (Lagrangian) derivative and we have used the continuity equation in the final equality. \eqref{eq:fc_ent} then becomes
-	\begin{align}
-	\rho \pderiv{e}{t} = &-\rho \bm{u}\cdot\nabla e  -p(\Div\bm{u}) - \nabla\cdot\mathbf{F}_{\rm{cond}} -\nabla\cdot\mathbf{F}_{\rm{rad}}  + \bm{D}:\nabla\bm{u} + \frac{\eta}{4\pi}|\curl\bm{B}|^2,\label{eq:fc_en}
-	\end{align}
-    the internal energy equation. 
-    
- 	Taking the dot product of $\bm{B}/4\pi$ and \eqref{eq:fc_ind} (and using the identity $\bm{B}\cdot\curl\bm{A} = \nabla\cdot(\bm{A}\times\bm{B}) + \bm{A}\cdot\curl\bm{B}$) gives the magnetic energy equation,
-	\begin{align}
-	\pderiv{}{t}\bigg{(}\frac{B^2}{8\pi}\bigg{)} = -\Div\bm{F}_{\rm{Poyn}} -\frac{1}{4\pi}\bm{u}\cdot[(\curl\bm{B})\times\bm{B}] - \frac{\eta}{4\pi}|\curl\bm{B}|^2, \label{eq:fc_me}
-	\end{align}
-	where 
-	\begin{align*}
-	\mathbf{F}_{\rm{Poyn}} \equiv \frac{1}{4\pi}[\eta\curl\bm{B} - \bm{u}\times\bm{B}]\times\bm{B}
-	\end{align*}
-	is the Poynting flux. 
+	We begin by writing down the 
 	
-	We then add \eqref{eq:fc_ke}, \eqref{eq:fc_en}, and \eqref{eq:fc_me} (noting that in \eqref{eq:fc_en}, $\rho\partial e/\partial t + \rho\bm{u}\cdot\nabla e = \partial(\rho e)/\partial t + \Div(\rho e\bm{u})$ by the continuity equation) to find
-	\begin{align*}
-	\pderiv{}{t}\bigg{(}\rho e + \frac{1}{2}\rho u^2 + \frac{B^2}{8\pi}\bigg{)} = &-\Div(\rho e\bm{u}) - \Div(P\bm{u})  - \nabla\cdot\mathbf{F}_{\rm{cond}} -\nabla\cdot\mathbf{F}_{\rm{rad}}  + \Div(\bm{D}\cdot\bm{u}) \\
-	&- \Div\bigg{(}\frac{1}{2}\rho u^2\bm{u}\bigg{)} -\Div\bm{F}_{\rm{Poyn}} + \rho\bm{u}\cdot\bm{g}
-	\end{align*}
-	If the body force can be written as a scalar potential $\bm{g}=-\nabla\phig$ (true if the body force is due to gravity and the centrifugal force, for example) then $\rho\bm{u}\cdot\bm{g} = -\rho\bm{u}\cdot\nabla \phig = -\Div(\rho\phig\bm{u}) + \phig\Div(\rho\bm{u}) = -\Div(\rho\phig\bm{u}) - \partial(\rho\phig)/\partial t$, with the latter equality following from the continuity equation as long as the potential $\phig$ is time-independent. We thus arrive at the total energy equation, 
-	\begin{align}
-	\pderiv{}{t}\bigg{(}\rho e + \frac{1}{2}\rho u^2 + \frac{B^2}{8\pi} + \rho\phig\bigg{)} = &-\Div(\mathbf{F}_{\rm{enth}} + \mathbf{F}_{\rm{cond}} + \nabla\cdot\mathbf{F}_{\rm{rad}}  + \mathbf{F}_{\rm{visc}} +  \mathbf{F}_{\rm{KE}} + \mathbf{F}_{\rm{Poyn}} + \mathbf{F}_{\rm{g}}),
-	\end{align}
-	where (redefining some of the fluxes for consistency)
-	\begin{align}
-	\mathbf{F}_{\rm{enth}} &\equiv (\rho e + P)\bm{u}\\	
-	\mathbf{F}_{\rm{cond}} &\equiv -k\nabla T\five\text{or}\five -\kappa\rho T \nabla s\\
-	\mathbf{F}_{\rm{rad}} &\equiv - \frac{4acT^3}{3c_{\rm{p}}\chi_{\rm{rad}}\rho}\nabla T\five\text{or}\five\Bigg{(}\frac{1}{r^2}\int_r^{{\ro}}Q(x)x^2dx\Bigg{)}\e_r\\
-	\mathbf{F}_{\rm{visc}}  &\equiv -\bm{D}\cdot\bm{u}\\
-	\mathbf{F}_{\rm{KE}} &\equiv \frac{1}{2}\rho u^2\bm{u}\\
-	\mathbf{F}_{\rm{Poyn}} &\equiv \frac{1}{4\pi}[\eta\curl\bm{B} - \bm{u}\times\bm{B}]\times\bm{B}\\
-	\mathbf{F}_{\rm{g}} &\equiv \rho\phig\bm{u}
-	\end{align}
-	\section{Conservation of energy in LBR}
-	In the LBR anelastic formulation for MHD as implemented in Rayleigh, we linearize thermodynamic variables about a time-independent, spherically-symmetric reference state ($\rho_0(r)$, $T_0(r)$, and $ds_0/dr$) and assume a divergence-less mass flux. We use a ``0" subscript to indicate the reference state and a ``1" subscript to indicate the (time-dependent, spherically asymmetric) deviations from the reference state. We also choose to diffuse the entropy instead of temperature ($\mathbf{F}_{\rm{cond}} = -\rho_0 T_0 \kappa \nabla s_1$) and implement a fixed internal heating profile $Q(r)$ to take the place of $-\Div\mathbf{F}_{\rm{rad}}$. The fluid (hydrodynamic) equations are then
-	\begin{align}
-	\nabla\cdot(\rho_0\bm{u})\equiv &\ 0,\label{eq:lbr_cont}\\
-	\rho_0\pderiv{\bm{u}}{t} = &-\rho_0\bm{u}\cdot\nabla\bm{u} -2\rho_0\bm{\Omega}_0\times\bm{u}
-	-\rho_0\nabla \bigg{(}\frac{p_1}{\rho_0}\bigg{)} - \rho_0\bigg{(}\frac{s_1}{\cp}\bigg{)}\bm{g}
-	+ \nabla\cdot \bm{D},\label{eq:lbr_mom}\\
-	\and\five \rho_0 T_0 \frac{\partial s_1}{\partial t} = &-\rho_0 T_0 \bm{u}\cdot\nabla s_1  -\rho_0 T_0 \bm{u}\cdot \nabla s_0 + \nabla\cdot(\rho_0 T_0 \kappa \nabla s_1) + Q  + \bm{D}:\nabla\bm{u}, \label{eq:lbr_ent}
-	\end{align}
-	where now $\bm{D} = \rho_0\nu(\nabla\bm{u} + \nabla\bm{u}^T)$. 
-	
-	The linearized perfect gas law (combined with the first law of thermodynamics) takes the form
-		\begin{align}
-	\frac{\rho_1}{\rho_0} = \frac{p_1}{p_0} - \frac{T_1}{T_0} = \frac{p_1}{\gamma p_0} - \frac{s_1}{{\cp}},
-	\label{eq:lbr_eos}
-	\end{align}
-	where $\gamma =\cv/\cp$. 
-	
-	The reference state is assumed to be in hydrostatic balance,
-	\begin{align}
-	\nabla p_0 = \rho_0\bm{g},
-	\label{eq:hydr}
-	\end{align}
-	satisfy the first law of thermodynamics,
-	\begin{align}
-	\frac{\nabla s_0}{\cp} = \frac{\nabla p_0}{\gamma p_0} - \frac{\nabla \rho_0}{\rho_0},
-	\label{eq:firstlaw}
-	\end{align}
-	and be a perfect gas,
-	\begin{align}
-    p_0 = \rho_0\mathcal{R}T_0,
-	\label{eq:perfgas} 
-	\end{align}
-	where $\mathcal{R} = (\gamma - 1)\cp/\gamma$ is the gas constant. 
-	
-	Using the EOS, hydrostatic-balance, and energy-balance (equations \eqref{eq:lbr_eos}, \eqref{eq:hydr}, and \eqref{eq:firstlaw}, respectively), it can be shown that 
-	\begin{align}
-  -\nabla p_1 + \rho_1\bm{g} =  -\rho_0\nabla\bigg{(}\frac{p_1}{\rho_0}\bigg{)} - \rho_0\bigg{(}\frac{s_1}{\cp}\bigg{)}\bm{g} + \frac{p_1}{\cp}\nabla s_0.
-	\end{align}
-	The LBR momentum equation \eqref{eq:lbr_mom} thus consists of ignoring the the term due to the background entropy gradient in the buoyancy, which will be exact for an adiabatic ($\nabla s_0 \equiv 0$) reference state.
-	
-	Taking the dot product of $\bm{u}$ and \eqref{eq:lbr_mom} gives
-	\begin{align*}
-	\rho_0\frac{\partial}{\partial t} \bigg{(}\frac{u^2}{2}\bigg{)} = -\rho_0\bm{u}\cdot\nabla\bigg{(}\frac{u^2}{2}\bigg{)} -\rho_0\bm{u}\cdot\nabla\bigg{(}\frac{p_1}{\rho_0}\bigg{)} - \rho_0 \bigg{(}\frac{s_1}{{\cp}}\bigg{)} \bm{u}\cdot\bm{g} + (\nabla\cdot\bm{D})\cdot\bm{u} 
-	\end{align*}
-	From \eqref{eq:lbr_cont}, we can always bring factors of $\rho_0\bm{u}$ inside the divergence operator; doing this on the pressure and advection terms in the preceding equation and rearranging terms yields 
-		\begin{align}
-	\frac{\partial}{\partial t} \bigg{(}\frac{1}{2}\rho_0 u^2\bigg{)}= -\nabla\cdot\bigg{(}\frac{1}{2}\rho_0 u^2\bm{u}\bigg{)} - \nabla\cdot{(p_1\bm{u})} - \rho_0 \bigg{(}\frac{s_1}{{\cp}}\bigg{)} \bm{u}\cdot\bm{g}  + (\nabla\cdot\bm{D})\cdot\bm{u},
-	\label{eq:lbr_kin}
-	\end{align}
-	the kinetic energy equation in LBR. 
-	
-	Adding \eqref{eq:lbr_ent} and \eqref{eq:lbr_kin} yields
-	\begin{align*}
-	\pderiv{}{t}\bigg{(}\rho_0T_0s_1 + \frac{1}{2}\rho_0u^2\bigg{)} =&\ \Div(\rho_0T_0\kappa\nabla s_1) + Q + \Div(\bm{D}\cdot\bm{u}) - \Div\bigg{(}\frac{1}{2}\rho_0u^2\bm{u}\bigg{)}\\ &- \Div(p_1\bm{u}) - \Div(\rho_0T_0s_1\bm{u}) \underbrace{- \rho_0\bigg{(}\frac{s_1}{\cp}\bigg{)}\bm{u}\cdot\bm{g} + \rho_0s_1\bm{u}\cdot\nabla T_0}_{\equiv\ \Psi} - \rho_0T_0\bm{u}\cdot\nabla s_0
-	\end{align*}
-	From hydrostatic balance, $\rho_0\bm{g} = \nabla p_0$ and from the energy-balance equation \eqref{eq:firstlaw} and perfect gas law \eqref{eq:perfgas}, $\nabla T_0/T_0 = [(\gamma - 1)/\gamma]\nabla p_0/p_0 + \nabla s_0/\cp$. The ``extra term" $\Psi$ in the total energy  equation can thus be written
-	\begin{align*}
-	\Psi &= -\frac{s_1}{\cp}\bm{u}\cdot\nabla p_0 + \rho_0 s_1\bm{u}\cdot\bigg{(}\frac{\gamma-1}{\gamma}\frac{T_0}{p_0}\nabla p_0 + T_0\frac{\nabla s_0}{\cp}\bigg{)}\\
-	&=  \cancel{-\frac{s_1}{\cp}\bm{u}\cdot\nabla p_0} + \underbrace{\frac{\gamma-1}{\gamma\mathcal{R}}}_{1/\cp}\cancel{s_1\bm{u}\cdot\nabla p_0} + \rho_0T_0\bigg{(}\frac{s_1}{\cp}\bigg{)}\bm{u}\cdot\nabla s_0 = \rho_0T_0\bigg{(}\frac{s_1}{\cp}\bigg{)}\bm{u}\cdot\nabla s_0,
-	\end{align*}
-	where in the second equality we have used the ideal gas law $\rho_0 T_0/p_0 = 1/\mathcal{R}$. The total energy equation in LBR thus becomes
-	\begin{align}\label{eq:lbr_toten}
-	\pderiv{}{t}\bigg{(}\rho_0T_0s_1 + \frac{1}{2}\rho_0u^2\bigg{)} = &-\nabla\cdot(\mathbf{F}_{\rm{KE}}+\mathbf{F}_{\rm{enth}} +\mathbf{F}_{\rm{cond}} + \mathbf{F}_{\rm{rad}} + \mathbf{F}_{\rm{visc}} )\nonumber\\
-	& + \rho_0T_0\bigg{(}\frac{s_1}{\cp} - 1\bigg{)}\bm{u}\cdot\nabla s_0
-	\end{align}
-	where we have defined the kinetic, enthalpy, conductive, viscous, and radiation fluxes as
-	\begin{align}
-	\mathbf{F}_{\rm{KE}} &\equiv \frac{1}{2}\rho_0u^2\bm{u},\\
-	\mathbf{F}_{\rm{enth}} &\equiv (\rho_0 T_0 s_1 + p_1)\bm{u},\\
-	\mathbf{F}_{\rm{cond}} &\equiv -\kappa\rho_0T_0\nabla S,\\
-	\mathbf{F}_{\rm{visc}} &\equiv  -\bm{D}\cdot\bm{u},\\
-	\text{and}\five \mathbf{F}_{\rm{rad}} &\equiv \Bigg{(}\frac{1}{r^2}\int_r^{{\ro}}Q(x)x^2dx\Bigg{)}\e_r. 
-	\end{align}
-
-	Typically, the term $E\equiv-\rho_0T_0\bm{u}\cdot\nabla s_0$ in the entropy equation \eqref{eq:lbr_ent} has the background entropy gradient chosen to dominate the convection wherever the gradient is nonzero. Thus $E$ is of the same order as the flux divergences, and the other non-flux term with the factor of $s_1/\cp$ is of second order and can be neglected. Since the integral of $u_r$ over spherical surfaces is identically zero by the divergence-less mass flux condition \eqref{eq:lbr_cont}, $E$ itself may be neglected in the radial energy balance (but not the latitudinal energy balance). 
-	
-	We note that if the LBR approximation is not made, the kinetic energy equation has the additional term $(p_1/\cp)\bm{u}\cdot\nabla s_0$ on the RHS, which is of the same order as $\rho_0T_0(s_1/\cp)\bm{u}\cdot\nabla s_0$ and can also be neglected. For reference, if the neglected terms are combined, $\rho_0T_0(s_1/\cp)\bm{u}\cdot\nabla s_0\rightarrow \rho_0T_0(T_1/T_0)\bm{u}\cdot\nabla s_0$ (see equation \eqref{eq:ps_to_t}). 
-	
-	\section{Miscellaneous}  % use *-form to suppress numbering
-	We can use the linearized equation of state \eqref{eq:lbr_eos} and perfect gas law \eqref{eq:perfgas} to write
-	\begin{align}
-	\rho_0 T_0 s_1 + p_1 &= \frac{p_0{\cp}}{\mathcal{R}}\bigg{(}\frac{s_1}{{\cp}}\bigg{)} + p_1\nonumber\\
-	&= \frac{\gamma p_0}{(\gamma-1)}\bigg{(}\frac{T_1}{T_0}-\cancel{\frac{(\gamma-1)p_1}{\gamma p_0}}\bigg{)} + \cancel{p_1}\nonumber\\
-	&= \frac{\gamma\mathcal{R}\rho_0T_1}{(\gamma - 1)}\nonumber\\
-	&= \rho_0{\cp}T_1,\label{eq:ps_to_t}
-	\end{align}
-	and thus write the enthalpy flux as \eqref{eq:smallthermopert}
-	\begin{align}
-	\bm{F}_{\rm{enth}}=\rho_0{\cp}T_1\bm{u}
-	\end{align}
-	%\renewcommand{\theequation}{A-\arabic{equation}}    
-	% redefine the command that creates the equation no.    
-	%\setcounter{equation}{0}  % reset counter     
-
-	We assume that the perturbations about a reference state in the density, temperature, pressure, and entropy ($\rho_1$, $T_1$, $p_1$, and $s_1$) are small compared to $\rho_0$, $T_0$, $p_0$, and ${\cp}$. For many systems, the fluctuations are on the order of 
-	\begin{align}
-	\frac{\rho}{\rho_0}, \frac{T_1}{T_0}, \frac{p_1}{p_0},
-	\frac{s_1}{{\cp}} \sim \rm{Ma}^2 \equiv \epsilon \sim 10^{-5}.
-	\label{eq:smallthermopert}
-	\end{align}
-	The Mach number is defined through
-	\begin{align}
-	{\rm{Ma}} \equiv \frac{u}{c_{\rm{s}}},
-	\end{align}
-	where $u$ a typical fluid speed and the adiabatic sound speed is
-	\begin{align}
-	c_{\rm{s}}^2 \equiv \frac{p_0}{\gamma \rho_0}
-	\end{align}
-	The preceding expression for the sound speed is correct as long as the atmosphere is adiabatic, i.e.,
-	\begin{align}
-	p_0\propto\rho_0^\gamma.
-	\end{align}
-	Because the thermodynamic perturbations are small, equations of state may be linearized about the reference state. For a reference state that is a perfect gas, the equation of state thus becomes
-	\begin{align}
-	\frac{\rho_1}{\rho_0} = \frac{p_1}{p_0} - \frac{T_1}{T_0} = \frac{p_1}{\gamma p_0} - \frac{s_1}{{\cp}},
-	\end{align}
-	where the second equality follows the first law of thermodynamics. The perfect gas condition itself is
-	\begin{align}
-	p_0 = \rho_0\mathcal{R}T_0,
-	\end{align}
-	where 
-	\begin{align}
-	\mathcal{R} \equiv \frac{k_B}{\mu m_H},
-	\end{align}
-	with $k_B$ Boltzmann's constant, $m_H$ the mass of atomic hydrogen, and $\mu$ the mean molecular weight. For the solar interior, current models give the abundances of hydrogen, helium, and metals as $X=0.73$, $Y=0.25$, and $Z=0.02$. The mean molecular weight of the metals is $A_Z=15.5$ (mostly oxygen; some carbon) and the gas is fully ionized, so
-	\begin{align}
-	\frac{1}{\mu}=2X + \frac{3}{4}Y+\bigg{(}\frac{1}{2}+\frac{1}{15.5}\bigg{)}Z,
-	\end{align}
-	or
-	\begin{align}
-	\mu=0.60.
-	\end{align}
-	If we assume the gas has only $f=3$ translational degrees of freedom, then
-	\begin{align}
-	{\cp} =\bigg{(}1+\frac{f}{2}\bigg{)}\mathcal{R}= \frac{5}{2}\mathcal{R} = \frac{5}{2}\frac{k_B}{\mu m_H} = 3.4\times 10^8\ \rm{erg}\ \rm{g}^{-1}\ \rm{K}^{-1}.
-	\end{align}
-	Somebody from Rayleigh/ASH didn't round right (or else the values of $X$, $Y$, $Z$, and/or $A_Z$ have ``changed"), since people seem to be using ${\cp}=3.5\times 10^8\ \rm{erg}\ \rm{g}^{-1}\ \rm{K}^{-1}$). 
-	
-	We may write the internal heating $Q(r)$ as a radiative ``flux" by computing
-	\begin{align}
-	Q(r) &= -\frac{1}{r^2}\frac{d}{dr}\int_{r}^{{\ro}} Q(x)x^2 dx\nonumber\\
-	&= -\frac{1}{r^2}\frac{d}{dr}\bigg{(}r^2\Bigg{(}\frac{1}{r^2}\int_r^{{\ro}}Q(x)x^2dx\Bigg{)}\bigg{)}\nonumber\\
-	&= -\nabla\cdot\bm{F}_{\rm{rad}},
-	\label{eq:dummy4}
-	\end{align}
-	where 
-	\begin{align}
-		\mathbf{F}_{\rm{rad}} \equiv \Bigg{(}\frac{1}{r^2}\int_r^{{\ro}}Q(x)x^2dx\Bigg{)}\hat{\bm{e}}_r.
-		\label{eq:radflux}
-	\end{align}
-	Here ${\ri}$ and ${\ro}$ represent the inner and outer radii of the shell and we have chosen an arbitrary constant (over $r^2$) in the definition of the flux such that 
-	\begin{align}
-	(4\pi r^2 F_{\rm{rad}})({\ri}) = L_* \ \ \ \ \ \text{and} \ \ \ \ \ (4\pi r^2 F_{\rm{rad}})({\ro}) = 0,
-	\end{align}
-	where 
-	\begin{align}
-	L_* \equiv 4\pi\int_{{\ri}}^{{\ro}}Q(x)x^2dx
-	\end{align}
-	is the total power driven through the shell.
-	
+	\clearpage
+	\newpage
+	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
+		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
+			/Users/loren/Desktop/Paper_Library/000_bibtex/proceedings,
+			/Users/loren/Desktop/Paper_Library/000_bibtex/books}
+		\bibliographystyle{aasjournal}
+	%, therefore getting the properties of internal gravity waves badly wrong.
 \end{document}
