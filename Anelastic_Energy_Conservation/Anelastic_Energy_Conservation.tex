@@ -171,7 +171,8 @@
 	the energy equation becomes 
 	\begin{align}\label{eq:anen}
 		\rhoref\cpref\pderiv{T_1}{t} - \deltaref\pderiv{P_1}{t} = &-\rhoref\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right) - \rhoref \tmpref \ugrad \sref\nonumber\\
-		&-\rho_1\vecu\cdot\vecg +  D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1 + [\qref - \Div\overline{\vecf}],
+		& D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1 -\rho_1\vecu\cdot\vecg - \tmpref(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\sref\nonumber\\
+		&+ [\qref - \Div\overline{\vecf}],
 	\end{align}
 	%-\nabla(\rhoref \overline{w^2}) 
   and the linearized equation of state becomes
@@ -182,7 +183,11 @@
   	&= \frac{\cpref\tmpref}{\deltaref\rhoref}\left[\frac{P_1}{\cssqref}-\rho_1\right].
   \end{align}
   \end{subequations}
-  Again, these equations are not in the identical form of \citet{Gough1969} but are mathematically equivalent. 
+  Again, these equations are not in the identical form of \citet{Gough1969} but are mathematically equivalent. Note that \citet{Gough1969} expands the momentum density $\bm{m}=\rho\vecu$ in $\epsilon$ rather than the velocity $\vecu$. Because of the zero mass flux condition \eqref{eq:nomassflux}, we can write
+  \begin{align}
+  	\bm{m} = \rhoref\vecu + \rho_1\vecu - \overline{\rho_1\vecu} + O(\epsilon^2).
+  \end{align}
+  The latter two terms are $O(\epsilon)$. In most cases, we can thus write $\bm{m} \approx \rhoref \vecu$ to translate from \citet{Gough1969} to the current notation, except when multiplying by potentially $O(0)$ quantities like $\nabla\sref$. 
   
   The differentials in Equation \eqref{eq:firstlaw} can be converted into gradients (e.g., $T\nabla S= \nabla h - \nabla P/\rho$) and the horizontally averaged form of these relations yields 
   \begin{subequations}
@@ -191,14 +196,34 @@
   	 &= \frac{\cpref\tmpref}{\deltaref\rhoref}\left[\frac{\nabla\tmpref}{\cssqref}-\nabla\rhoref\right].
   \end{align}
   \end{subequations}
-  The zeroth order (horizontally averaged) parts of Equations \eqref{eq:anmom} and \eqref{eq:anen} satisfy 
+  Note that \citet{Gough1969} uses the superadiabatic temperature gradient
   \begin{align}
+  	\beta\define -\frac{\tmpref}{\cpref}\veck\dotgrad\sref
+  \end{align}
+  in place of $\nabla \sref$. 
+  
+  The zeroth order (horizontally averaged) parts of Equations \eqref{eq:anmom} and \eqref{eq:anen} satisfy 
+  \begin{align}\label{eq:anmeanmom}
   	-\nabla\prsref + \rhoref\vecg = \nabla(\rhoref \overline{w^2})
   \end{align}
   and
-  \begin{align}
+  \begin{align}\label{eq:anmeanen}
   	\qref - \Div\overline{\vecf} = \rhoref\overline{\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right)} + \vecg\cdot\overline{\rho_1\vecu} - \overline{D_{ij}\pderiv{u_i}{x_j}}
   \end{align}
+  In each of Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}, each term on the right-hand side (RHS) is $O(\epsilon)$ compared to each term on the LHS. In particular, we can approximate 
+  \begin{align}
+  	\nabla\prsref\approx \rhoref\vecg
+  \end{align}
+  in nonlinear terms. Dotting $\vecu$ into Equation \eqref{eq:anmommain} yields the anelastic kinetic energy equation,
+	\begin{subequations}\label{eq:anke}
+	\begin{align}
+		\pderiv{}{t}\left(\frac{1}{2}\rhoref u^2\right)&=-\Div\left(\frac{1}{2}\rhoref u^2\vecu \right) - \ugrad P_1 + \rho_1\vecu\cdot\vecg + u_i\pderiv{D_{ij}}{x_j} + \ugrad(\rhoref w^2)
+	\end{align}
+\end{subequations}
+Adding Equations \eqref{eq:anen} and \eqref{eq:anke} yields the anelastic total energy equation,
+\begin{align}\label{eq:antote}
+			\pderiv{}{t}\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right)\right] = -\Div\left\{\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right) + P\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf\right\} + Q.
+\end{align}
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
