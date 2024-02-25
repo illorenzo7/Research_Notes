@@ -169,7 +169,7 @@
 	\end{align}
 	\end{subequations}
 	the energy equation becomes 
-	\begin{align}
+	\begin{align}\label{eq:anen}
 		\rhoref\cpref\pderiv{T_1}{t} - \deltaref\pderiv{P_1}{t} = &-\rhoref\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right) - \rhoref \tmpref \ugrad \sref\nonumber\\
 		&-\rho_1\vecu\cdot\vecg +  D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1 + [\qref - \Div\overline{\vecf}],
 	\end{align}
@@ -182,13 +182,23 @@
   	&= \frac{\cpref\tmpref}{\deltaref\rhoref}\left[\frac{P_1}{\cssqref}-\rho_1\right].
   \end{align}
   \end{subequations}
+  Again, these equations are not in the identical form of \citet{Gough1969} but are mathematically equivalent. 
+  
   The differentials in Equation \eqref{eq:firstlaw} can be converted into gradients (e.g., $T\nabla S= \nabla h - \nabla P/\rho$) and the horizontally averaged form of these relations yields 
   \begin{subequations}
   \begin{align}
   	\tmpref\nabla\sref &= \cpref\nabla\tmpref - \frac{\deltaref}{\rhoref}\nabla\prsref\\
-  	 &= \frac{\cpref\tmpref}{\deltaref\rhoref}\left[\frac{\nabla\tmpref}{\cssqref}-\nabla\rhoref\right]
+  	 &= \frac{\cpref\tmpref}{\deltaref\rhoref}\left[\frac{\nabla\tmpref}{\cssqref}-\nabla\rhoref\right].
   \end{align}
   \end{subequations}
+  The zeroth order (horizontally averaged) parts of Equations \eqref{eq:anmom} and \eqref{eq:anen} satisfy 
+  \begin{align}
+  	-\nabla\prsref + \rhoref\vecg = \nabla(\rhoref \overline{w^2})
+  \end{align}
+  and
+  \begin{align}
+  	\qref - \Div\overline{\vecf} = \rhoref\overline{\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right)} + \vecg\cdot\overline{\rho_1\vecu} - \overline{D_{ij}\pderiv{u_i}{x_j}}
+  \end{align}
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
