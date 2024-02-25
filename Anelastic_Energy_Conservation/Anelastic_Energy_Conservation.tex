@@ -281,6 +281,11 @@ and the ``non-LBR" heating
 \end{align}
 Both these terms vanish for an adiabatic background state (where $\nabla\sref=0$), which is expected for a fully (and sufficiently vigorously) convecting layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm LBR}$ in the energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use and its neglect seems to have not been explicitly considered. 
 
+\section{The equivalence of horizontally averaged atmospheres to fixed reference atmospheres}
+In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, referenced by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes) instead treat the background state as a fixed hydrostatic ``reference" state and let the perturbations in $S$ and $P$ develop small but nonzero horizontally averaged pertrubations about the reference state. Some codes (e.g., the {\ash} code) alternatively solve for the nonspherical perturbations directlly, retaining bracketed terms like the ones in Equations \eqref{eq:anmom} and \eqref{eq:anen}. As we now show, these two approaches are exactly equivalent to the order of the approximation, provided that the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
+
+
+
 \section{The energy-conserving Generalized Gough (EGG) anelastic approximation}
 The best path forward for codes to implement the energy-conserving anelastic Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}
 
