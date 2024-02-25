@@ -179,6 +179,7 @@
   \begin{subequations}\label{eq:aneos}
   \begin{align}
   	\tmpref S_1 &= \cpref T_1 - \frac{\deltaref}{\rhoref} P_1\\
+  	&= U_1 - \frac{\prsref}{\rhoref^2}\rho_1 \label{eq:linu}\\
   	&= h_1 - \frac{P_1}{\rho}\\
   	&= \frac{\cpref\tmpref}{\deltaref\rhoref}\left[\frac{P_1}{\cssqref}-\rho_1\right].
   \end{align}
@@ -233,7 +234,9 @@ so that the rightmost terms in brackets in Equation \eqref{eq:antote} cannot tra
 \begin{align}
 	E_{\rm tot} \define \int_V \rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right) dV
 \end{align}
-is conserved if the fluxes vanish on the boundaries. This conservation holds for arbitrary fluid motions that obey the anelastic equations (\eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos})
+is conserved if the fluxes vanish on the boundaries. This conservation holds for arbitrary fluid motions that obey the anelastic equations (\eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos}) and for arbitrary magnitudes of $|\nabla \sref|$. Whether the approximation remains \textit{consistent}, however, will depend on the magnitude of $|\nabla\sref|$.
+
+Note that from Equation \eqref{eq:linu}, the perturbed internal energy is $U_1 = \tmpref S_1 + (\prsref/\rhoref^2)\rho_1$. The latter compressive term is thus eliminated under the anelastic approximation and we instead identify $\tmpref S_1$ with the internal energy. The disappearance of this term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see \citealt{Ogura1962}). The potential energy term also disappears, which is a direct consequence of the zero-mass-flux assumption \eqref{eq:nomassflux}. 
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
