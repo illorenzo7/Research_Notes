@@ -222,8 +222,18 @@
 \end{subequations}
 Adding Equations \eqref{eq:anen} and \eqref{eq:anke} yields the anelastic total energy equation,
 \begin{align}\label{eq:antote}
-			\pderiv{}{t}\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right)\right] = -\Div\left\{\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right) + P\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf\right\} + Q.
+			\pderiv{}{t}\left[\rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right)\right] = &-\Div\left\{\left[\rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right) + P_1\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \overline{\vecf} + \vecf_1\right\}\nonumber\\
+			 &+ \qref + Q_1 - \vecu\cdot\left[\rhoref\tmpref\nabla\sref + \tmpref(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\sref - \nabla (\rhoref \overline{w^2})\right]
 \end{align}
+Note that by definition, 
+\begin{align}
+	\overline{\vecu}=0,
+\end{align}
+so that the rightmost terms in brackets in Equation \eqref{eq:antote} cannot transport any net energy across the layer. The internal heating terms $\qref + Q_1$ are assumed ``accounted for" (usually, they are inputs to drive convection) and so Equation \eqref{eq:antote} shows that the total energy integrated over the volume $V$ of the layer,
+\begin{align}
+	E_{\rm tot} \define \int_V \rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right) dV
+\end{align}
+is conserved if the fluxes vanish on the boundaries. This conservation holds for arbitrary fluid motions that obey the anelastic equations (\eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos})
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
