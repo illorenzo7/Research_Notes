@@ -178,23 +178,27 @@
   and the linearized equation of state becomes
   \begin{subequations}\label{eq:aneos}
   \begin{align}
-  	\tmpref S_1 &= \cpref T_1 - \frac{\deltaref}{\rhoref} P_1\\
+  	\tmpref S_1 &= \cpref T_1 - \frac{\deltaref}{\rhoref} P_1\label{eq:lintp}\\
   	&= U_1 - \frac{\prsref}{\rhoref^2}\rho_1 \label{eq:linu}\\
   	&= h_1 - \frac{P_1}{\rho}\\
   	&= \frac{\cpref\, \tmpref}{\deltaref\rhoref}\left[\frac{P_1}{\cssqref}-\rho_1\right].
   \end{align}
   \end{subequations}
+  Note that from Equation \eqref{eq:lintp}, the LHS of Equation \eqref{eq:anen} can be written in terms of the entropy $S_1$, 
+  \begin{align}\label{eq:anenlhs}
+  	\rhoref\cpref\pderiv{T_1}{t} - \deltaref\pderiv{P_1}{t} = \rhoref\tmpref\pderiv{S_1}{t}.
+  \end{align}
   Again, these equations are not in the identical form of \citet{Gough1969} but are mathematically equivalent. Note that \citet{Gough1969} expands the mass flux (or equivalently, the momentum density) $\bm{m}=\rho\vecu$ in $\epsilon$ rather than the velocity $\vecu$. Because of the zero mean mass flux condition \eqref{eq:nomassflux}, we can write
-  \begin{align}
+  \begin{align}\label{eq:momdensity}
   	\bm{m} = \rhoref\vecu + \rho_1\vecu - \overline{\rho_1\vecu} + O(\epsilon^2).
   \end{align}
-  The latter two terms are $O(\epsilon)$. In most cases, we can thus write $\bm{m} \approx \rhoref \vecu$ to translate from \citet{Gough1969} to the current notation (which uses $\vecu$ as the field variable), except when multiplying by potentially $O(0)$ quantities like $\nabla\sref$. 
+  The latter two terms are $O(\epsilon)$. In most cases, we can thus write $\bm{m} \approx \rhoref \vecu$ to translate from \citet{Gough1969} to the current notation (which uses $\vecu$ as the field variable), except when multiplying by potentially $O(0)$ quantities like $\nabla\sref$. We have used Equation \eqref{eq:momdensity} to yield the term $- \tmpref(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\sref$ in Equation \eqref{eq:anen}. 
   
   The differentials in Equation \eqref{eq:firstlaw} can be converted into gradients (e.g., $T\nabla S= \nabla h - \nabla P/\rho$) and the horizontally averaged form of these relations yields 
   \begin{subequations}\label{eq:anfirstlaw}
   \begin{align}
-  	\tmpref\nabla\sref &= \cpref\nabla\tmpref - \frac{\deltaref}{\rhoref}\nabla\prsref\\
-  	 &= \frac{\cpref\,\tmpref}{\deltaref\rhoref}\left[\frac{\nabla\tmpref}{\cssqref}-\nabla\rhoref\right].
+  	\tmpref\nabla\sref &= \cpref\nabla\tmpref - \frac{\deltaref}{\rhoref}\nabla\prsref + O(\epsilon^2)\\
+  	 &= \frac{\cpref\,\tmpref}{\deltaref\rhoref}\left[\frac{\nabla\tmpref}{\cssqref}-\nabla\rhoref\right]+O(\epsilon^2).
   \end{align}
   \end{subequations}
   Note that \citet{Gough1969} uses the superadiabatic temperature gradient
@@ -231,19 +235,56 @@ Note that by definition,
 \begin{align}
 	\overline{\vecu}=0,
 \end{align}
-so that the rightmost terms in brackets in Equation \eqref{eq:antote} cannot transport any net energy across the layer. The internal heating terms $\qref + Q_1$ are assumed ``accounted for" (usually, they are inputs to drive convection) and so Equation \eqref{eq:antote} shows that the total energy integrated over the volume $V$ of the layer,
+so that each of the rightmost terms in brackets in Equation \eqref{eq:antote} cannot transport any net energy across the layer. The internal heating terms $\qref + Q_1$ are assumed ``accounted for," since in modern anelastic codes, they are typically inputs to drive convection. Thus, Equation \eqref{eq:antote} shows that the total energy integrated over the volume $V$ of the layer,
 \begin{align}
 	E_{\rm tot} \define \int_V \rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right) dV
 \end{align}
-is conserved if the fluxes vanish on the boundaries. This conservation holds for arbitrary fluid motions that obey the anelastic equations (\eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos}) and for arbitrary magnitudes of $|\nabla \sref|$. Whether the approximation remains \textit{consistent}, however, \textit{does} depend on the magnitude of $|\nabla\sref|$.
+is conserved if the various fluxes in the divergence on the RHS of Equation \eqref{eq:antote} vanish on the boundaries. This conservation holds for arbitrary fluid motions that obey the anelastic equations (\eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos}) and for arbitrary magnitudes of $|\nabla \sref|$. Whether the approximation remains \textit{consistent}, however, \textit{does} depend on the magnitude of $|\nabla\sref|$.
 
 Note that from Equation \eqref{eq:linu}, the perturbed internal energy is $U_1 = \tmpref S_1 + (\prsref/\rhoref^2)\rho_1$. The latter compressive term is thus eliminated under the anelastic approximation and we instead identify $\tmpref S_1$ with the internal energy. The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see \citealt{Ogura1962}). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
 
 \section{The \citet{Gough1969} equations in more familiar form}
 Modern anelastic codes typically write the equations using the perturbed pressure and entropy ($P_1$ and $S_1$) in place the quantities $T_1$, $P_1$, $\rho_1$, and $h_1$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmeanmom}. We can convert using Equations \eqref{eq:aneos} and \eqref{eq:anfirstlaw} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
-\begin{align}
-	-\nabla P_1 + \rho_1\vecg = \rhoref\nabla\left(\frac{P_1}{\rhoref}\right) - \deltaref \rhoref \left(\frac{S_1}{\cpref}\right) \vecg + \frac{\deltaref\rhoref}{\cpref} \left(\frac{P_1}{\rhoref}\right)\nabla\sref
+\begin{align}\label{eq:anrhsmom}
+	-\nabla P_1 + \rho_1\vecg = -\rhoref\nabla\left(\frac{P_1}{\rhoref}\right) - \deltaref \rhoref \left(\frac{S_1}{\cpref}\right) \vecg + \frac{\deltaref\rhoref}{\cpref} \left(\frac{P_1}{\rhoref}\right)\nabla\sref.
 \end{align}
+In the energy equation, we find
+\begin{align}\label{eq:anrhsen}
+	-\rhoref\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right) = -\rhoref\tmpref\ugrad S_1 - \rhoref S_1\ugrad\tmpref + \left(\frac{P_1}{\rhoref}\right)\ugrad S_1.
+\end{align}
+Using Equations \eqref{eq:aneos}, \eqref{eq:anfirstlaw}, and \eqref{eq:anhydrostatic}, we compute, with some effort,
+\begin{align}\label{eq:anrhsen2}
+	- \rhoref S_1\ugrad\tmpref + \left(\frac{P_1}{\rhoref}\right)\ugrad S_1 -\rho_1\vecu\cdot\vecg = -\rhoref T_1\ugrad\sref + O(\epsilon^2).
+\end{align}
+
+Using Equation \eqref{eq:anrhsmom} in Equation \eqref{eq:anmom}, and then Equations \eqref{eq:anenlhs}, \eqref{eq:anrhsen}, and \eqref{eq:anrhsen2} in Equation \eqref{eq:anen}, we find
+	\begin{align}\label{eq:anmommod}
+		\pderiv{}{t}(\rhoref\vecu)= &-\Div(\rhoref\vecu\vecu) -\rhoref\nabla\left(\frac{P_1}{\rhoref}\right) - \deltaref \rhoref \left(\frac{S_1}{\cpref}\right) \vecg + \underbrace{\frac{\deltaref P_1}{\cpref} \nabla\sref}_{\define \bm{f}_{\rm NLBR}}+\Div \overleftrightarrow{D}\nonumber\\
+		&+[\nabla(\rhoref\overline{w^2})],
+	\end{align}
+and
+\begin{subequations}\label{eq:anenmod}
+\begin{align}
+	\rhoref\tmpref\pderiv{S_1}{t}= &-\rhoref\tmpref\ugrad S_1 - \rhoref \tmpref \ugrad \sref \underbrace{- \rhoref T_1\ugrad\sref}_{\define Q_{\rm NLBR}}+D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1  \nonumber\\
+	& +[\qref - \Div\overline{\vecf} - \tmpref(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\sref],\\
+	\where \rho_1 =& \frac{P_1}{\cssqref}-\frac{\deltaref\rhoref}{\cpref}\\
+	\andd T_1 = & \frac{\tmpref S_1}{\cpref} + \frac{\deltaref P_1}{\rhoref\cpref}.
+\end{align}
+\end{subequations}
+The final terms in brackets in these equations may be dropped without affecting energy conservation, since they do not transport any net energy. However, dropping them still makes the equations an asymptotically approximation to the true fully compressible motion. The essential terms required for energy conservation when $\nabla\sref\neq0$ are the ``non-LBR" force density
+\begin{align}
+	\bm{f}_{\rm NLBR} \define \frac{\deltaref P_1}{\cpref} \nabla\sref
+\end{align}
+and the ``non-LBR" heating
+\begin{align}\label{eq:nlbrheat}
+	Q_{\rm NLBR} \define -\rhoref T_1\ugrad\sref.
+\end{align}
+Both these terms vanish for an adiabatic background state (where $\nabla\sref=0$), which is expected for a fully (and sufficiently vigorously) convecting layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm LBR}$ in the energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use and its neglect seems to have not been explicitly considered. 
+
+\section{The energy-conserving Generalized Gough (EGG) anelastic approximation}
+The best path forward for codes to implement the energy-conserving anelastic Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}
+
+A necessary and sufficient condition for the anelastic equations to conserve energy for arbitrary motion 
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
