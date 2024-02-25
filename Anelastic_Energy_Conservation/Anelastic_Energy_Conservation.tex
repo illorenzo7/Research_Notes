@@ -75,15 +75,23 @@
 	\begin{align}\label{eq:enthalpy}
 		h\define U + \frac{P}{\rho}
 	\end{align}
-	the specific enthalpy, and
+	is the specific enthalpy, and
 	\begin{align}\label{eq:entropy}
 		S = S(P,T)
 	\end{align}
-	the specific entropy. 
+	is the specific entropy. 
 	
 	It will also be helpful to define the following fluid properties associated with the generalized equations of state \eqref{eq:eos} and \eqref{eq:entropy}: the specific heat at constant pressure, 
 	\begin{align}\label{eq:cp}
-		\cpcap\define T\left(\pderiv{S}{T}\right)_P
+		\cpcap\define T\left(\pderiv{S}{T}\right)_P,
+	\end{align}
+	the squared adiabatic sound speed,
+	\begin{align}\label{eq:cs2}
+		\cs^2\define \left(\pderiv{P}{\rho}\right)_S,
+	\end{align}
+	and the thermal expansion coefficient,
+	\begin{align}
+		\delta\define-\left(\pderiv{\ln\rho}{\ln T}\right)_P.
 	\end{align}
 	\clearpage
 	\newpage
