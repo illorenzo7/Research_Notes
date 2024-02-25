@@ -154,6 +154,41 @@
 		\frac{\Delta\sref}{\tilde{\cpcap}} = O(\epsilon),
 	\end{align}
 	i.e., the convecting layer is nearly adiabatically stratified for vigorous convection. 
+	
+	Once all of these scaling assumptions have been made, Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} are nondimensionalized, each term is expanded in powers of $\epsilon$, terms up to zeroth-order in the continuity equation and first-order in the other equations yields the anelastic equations. Note that one consequence of Equation \eqref{eq:nomassflux} is that the horizontally averaged velocity $\overline{\vecu}$ is $O(\epsilon)$ \textit{smaller} than the perturbed velocity $\vecu_1$. Hence, only $\vecu_1$ appears in the equations, and we subsequently drop the subscripts on $\vecu$. 
+	
+	Once the equations have been redimensionalized, the continuity equation becomes
+	\begin{align}\label{eq:ancont}
+		\Div(\rhoref\vecu)= 0,
+	\end{align}
+	the momentum equation becomes 
+	\begin{subequations}\label{eq:anmom}
+	\begin{align}
+		\pderiv{}{t}(\rhoref\vecu)&=-\Div(\rhoref\vecu\vecu) - \nabla P_1 +\rho_1\vecg +\Div \overleftrightarrow{D}+[-\nabla\prsref + \rhoref\vecg],\label{eq:anmommain}\\
+		\text{where now}\five D_{ij}& = \overline{\mu}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right)\label{eq:anmomvisc},
+	\end{align}
+	\end{subequations}
+	the energy equation becomes 
+	\begin{align}
+		\rhoref\cpref\pderiv{T_1}{t} - \deltaref\pderiv{P_1}{t} = &-\rhoref\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right) - \rhoref \tmpref \ugrad \sref\nonumber\\
+		&-\rho_1\vecu\cdot\vecg +  D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1 + [\qref - \Div\overline{\vecf}],
+	\end{align}
+	%-\nabla(\rhoref \overline{w^2}) 
+  and the linearized equation of state becomes
+  \begin{subequations}\label{eq:aneos}
+  \begin{align}
+  	\tmpref S_1 &= \cpref T_1 - \frac{\deltaref}{\rhoref} P_1\\
+  	&= h_1 - \frac{P_1}{\rho}\\
+  	&= \frac{\cpref\tmpref}{\deltaref\rhoref}\left[\frac{P_1}{\cssqref}-\rho_1\right].
+  \end{align}
+  \end{subequations}
+  The differentials in Equation \eqref{eq:firstlaw} can be converted into gradients (e.g., $T\nabla S= \nabla h - \nabla P/\rho$) and the horizontally averaged form of these relations yields 
+  \begin{subequations}
+  \begin{align}
+  	\tmpref\nabla\sref &= \cpref\nabla\tmpref - \frac{\deltaref}{\rhoref}\nabla\prsref\\
+  	 &= \frac{\cpref\tmpref}{\deltaref\rhoref}\left[\frac{\nabla\tmpref}{\cssqref}-\nabla\rhoref\right]
+  \end{align}
+  \end{subequations}
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
