@@ -155,9 +155,9 @@
 	\end{align}
 	i.e., the convecting layer is nearly adiabatically stratified for vigorous convection. 
 	
-	Once all of these scaling assumptions have been made, Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} are nondimensionalized, each term is expanded in powers of $\epsilon$, terms up to zeroth-order in the continuity equation and first-order in the other equations yields the anelastic equations. Note that one consequence of Equation \eqref{eq:nomassflux} is that the horizontally averaged velocity $\overline{\vecu}$ is $O(\epsilon)$ \textit{smaller} than the perturbed velocity $\vecu_1$. Hence, only $\vecu_1$ appears in the equations, and we subsequently drop the subscripts on $\vecu$. 
+	Once all of these scaling assumptions have been made, Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} are nondimensionalized, each term is expanded in powers of $\epsilon$, terms up to zeroth-order in the continuity equation and first-order in the other equations are retained, and redimensionalization then yields the anelastic equations. Note that one consequence of Equation \eqref{eq:nomassflux} is that the horizontally averaged velocity $\overline{\vecu}$ is $O(\epsilon)$ \textit{smaller} than the perturbed velocity $\vecu_1$. Hence, only the perturbation velocity $\vecu_1$ appears in the equations, and we subsequently drop the subscripts on $\vecu$ (so that, by definition, $\overline{\vecu}\equiv0$. 
 	
-	Once the equations have been redimensionalized, the continuity equation becomes
+	Under the anelastic approximation, the continuity equation becomes
 	\begin{align}\label{eq:ancont}
 		\Div(\rhoref\vecu)= 0,
 	\end{align}
@@ -181,20 +181,20 @@
   	\tmpref S_1 &= \cpref T_1 - \frac{\deltaref}{\rhoref} P_1\\
   	&= U_1 - \frac{\prsref}{\rhoref^2}\rho_1 \label{eq:linu}\\
   	&= h_1 - \frac{P_1}{\rho}\\
-  	&= \frac{\cpref\tmpref}{\deltaref\rhoref}\left[\frac{P_1}{\cssqref}-\rho_1\right].
+  	&= \frac{\cpref\, \tmpref}{\deltaref\rhoref}\left[\frac{P_1}{\cssqref}-\rho_1\right].
   \end{align}
   \end{subequations}
-  Again, these equations are not in the identical form of \citet{Gough1969} but are mathematically equivalent. Note that \citet{Gough1969} expands the momentum density $\bm{m}=\rho\vecu$ in $\epsilon$ rather than the velocity $\vecu$. Because of the zero mass flux condition \eqref{eq:nomassflux}, we can write
+  Again, these equations are not in the identical form of \citet{Gough1969} but are mathematically equivalent. Note that \citet{Gough1969} expands the mass flux (or equivalently, the momentum density) $\bm{m}=\rho\vecu$ in $\epsilon$ rather than the velocity $\vecu$. Because of the zero mean mass flux condition \eqref{eq:nomassflux}, we can write
   \begin{align}
   	\bm{m} = \rhoref\vecu + \rho_1\vecu - \overline{\rho_1\vecu} + O(\epsilon^2).
   \end{align}
-  The latter two terms are $O(\epsilon)$. In most cases, we can thus write $\bm{m} \approx \rhoref \vecu$ to translate from \citet{Gough1969} to the current notation, except when multiplying by potentially $O(0)$ quantities like $\nabla\sref$. 
+  The latter two terms are $O(\epsilon)$. In most cases, we can thus write $\bm{m} \approx \rhoref \vecu$ to translate from \citet{Gough1969} to the current notation (which uses $\vecu$ as the field variable), except when multiplying by potentially $O(0)$ quantities like $\nabla\sref$. 
   
   The differentials in Equation \eqref{eq:firstlaw} can be converted into gradients (e.g., $T\nabla S= \nabla h - \nabla P/\rho$) and the horizontally averaged form of these relations yields 
-  \begin{subequations}
+  \begin{subequations}\label{eq:anfirstlaw}
   \begin{align}
   	\tmpref\nabla\sref &= \cpref\nabla\tmpref - \frac{\deltaref}{\rhoref}\nabla\prsref\\
-  	 &= \frac{\cpref\tmpref}{\deltaref\rhoref}\left[\frac{\nabla\tmpref}{\cssqref}-\nabla\rhoref\right].
+  	 &= \frac{\cpref\,\tmpref}{\deltaref\rhoref}\left[\frac{\nabla\tmpref}{\cssqref}-\nabla\rhoref\right].
   \end{align}
   \end{subequations}
   Note that \citet{Gough1969} uses the superadiabatic temperature gradient
@@ -212,19 +212,20 @@
   	\qref - \Div\overline{\vecf} = \rhoref\overline{\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right)} + \vecg\cdot\overline{\rho_1\vecu} - \overline{D_{ij}\pderiv{u_i}{x_j}}
   \end{align}
   In each of Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}, each term on the right-hand side (RHS) is $O(\epsilon)$ compared to each term on the LHS. In particular, we can approximate 
-  \begin{align}
+  \begin{align}\label{eq:anhydrostatic}
   	\nabla\prsref\approx \rhoref\vecg
   \end{align}
-  in nonlinear terms. Dotting $\vecu$ into Equation \eqref{eq:anmommain} yields the anelastic kinetic energy equation,
+  in terms that are already of first-order in $\epsilon$. Dotting $\vecu$ into Equation \eqref{eq:anmommain} yields the anelastic kinetic energy equation,
 	\begin{subequations}\label{eq:anke}
 	\begin{align}
-		\pderiv{}{t}\left(\frac{1}{2}\rhoref u^2\right)&=-\Div\left(\frac{1}{2}\rhoref u^2\vecu \right) - \ugrad P_1 + \rho_1\vecu\cdot\vecg + u_i\pderiv{D_{ij}}{x_j} + \ugrad(\rhoref w^2)
+		\pderiv{}{t}\left(\frac{1}{2}\rhoref u^2\right)&=-\Div\left(\frac{1}{2}\rhoref u^2\vecu \right) - \ugrad P_1 + \rho_1\vecu\cdot\vecg + u_i\pderiv{D_{ij}}{x_j} + \ugrad(\rhoref \overline{w^2}),
 	\end{align}
 \end{subequations}
-Adding Equations \eqref{eq:anen} and \eqref{eq:anke} yields the anelastic total energy equation,
+where we have used Equation \eqref{eq:anmeanmom} to write the work due to the ``turbulent pressure," $\vecu\cdot\nabla (\rhoref \overline{w^2})$. 
+Using Equations \eqref{eq:ancont} and \eqref{eq:aneos} as needed and then adding Equations \eqref{eq:anen} and \eqref{eq:anke} yields the anelastic total energy equation,
 \begin{align}\label{eq:antote}
 			\pderiv{}{t}\left[\rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right)\right] = &-\Div\left\{\left[\rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right) + P_1\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \overline{\vecf} + \vecf_1\right\}\nonumber\\
-			 &+ \qref + Q_1 - \vecu\cdot\left[\rhoref\tmpref\nabla\sref + \tmpref(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\sref - \nabla (\rhoref \overline{w^2})\right]
+			 &+ \qref + Q_1 +\left[-\rhoref\tmpref\ugrad\sref +\ugrad (\rhoref \overline{w^2})- \tmpref(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\sref\right]
 \end{align}
 Note that by definition, 
 \begin{align}
@@ -234,9 +235,15 @@ so that the rightmost terms in brackets in Equation \eqref{eq:antote} cannot tra
 \begin{align}
 	E_{\rm tot} \define \int_V \rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right) dV
 \end{align}
-is conserved if the fluxes vanish on the boundaries. This conservation holds for arbitrary fluid motions that obey the anelastic equations (\eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos}) and for arbitrary magnitudes of $|\nabla \sref|$. Whether the approximation remains \textit{consistent}, however, will depend on the magnitude of $|\nabla\sref|$.
+is conserved if the fluxes vanish on the boundaries. This conservation holds for arbitrary fluid motions that obey the anelastic equations (\eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos}) and for arbitrary magnitudes of $|\nabla \sref|$. Whether the approximation remains \textit{consistent}, however, \textit{does} depend on the magnitude of $|\nabla\sref|$.
 
-Note that from Equation \eqref{eq:linu}, the perturbed internal energy is $U_1 = \tmpref S_1 + (\prsref/\rhoref^2)\rho_1$. The latter compressive term is thus eliminated under the anelastic approximation and we instead identify $\tmpref S_1$ with the internal energy. The disappearance of this term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see \citealt{Ogura1962}). The potential energy term also disappears, which is a direct consequence of the zero-mass-flux assumption \eqref{eq:nomassflux}. 
+Note that from Equation \eqref{eq:linu}, the perturbed internal energy is $U_1 = \tmpref S_1 + (\prsref/\rhoref^2)\rho_1$. The latter compressive term is thus eliminated under the anelastic approximation and we instead identify $\tmpref S_1$ with the internal energy. The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see \citealt{Ogura1962}). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
+
+\section{The \citet{Gough1969} equations in more familiar form}
+Modern anelastic codes typically write the equations using the perturbed pressure and entropy ($P_1$ and $S_1$) in place the quantities $T_1$, $P_1$, $\rho_1$, and $h_1$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmeanmom}. We can convert using Equations \eqref{eq:aneos} and \eqref{eq:anfirstlaw} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
+\begin{align}
+	-\nabla P_1 + \rho_1\vecg = \rhoref\nabla\left(\frac{P_1}{\rhoref}\right) - \deltaref \rhoref \left(\frac{S_1}{\cpref}\right) \vecg + \frac{\deltaref\rhoref}{\cpref} \left(\frac{P_1}{\rhoref}\right)\nabla\sref
+\end{align}
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
