@@ -25,7 +25,11 @@
 \newcommand{\upar}{u_\parallel}
 \newcommand{\uperp}{\vecu_\perp}
 \newcommand{\vecf}{\bm{F}}
-
+\newcommand{\veck}{\hat{\bm{k}}}
+\newcommand{\muref}{\overline{\mu}}
+\newcommand{\deltaref}{\overline{\delta}}
+\newcommand{\cpref}{\overline{\cpcap}}
+\newcommand{\cssqref}{\overline{\cs^2}}
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
@@ -33,7 +37,7 @@
 \begin{document}
 	\maketitle
 	\section{Introduction}
-	Abstract: When acoustic oscillations are believed to be irrelevant to the dynamics of an astrophysical fluid, it is useful to employ simplifying approximations to the equations of motion. The two most common of these (which are usually used to treat convection problem) are the Boussinesq approximation (when the background density does not significantly vary across the fluid layer) and the anelastic approximation (when the background density does vary significantly). There are many distinct forms of the anelastic approximation in the literature, and it has often been remarked that most of these do not properly conserve energy when the fluid is stable to convection. Here we show that the anelastic equations derived by Gough (1969) in fact do conserve energy for arbitrary motions of the fluid, even for strongly stratified background stratification. The key properties of these equations that allow them to conserve energy are (1) the absence of the Lantz-Braginsky-Roberts approximation in the momentum equation and (2) the inclusion of additional terms in the energy equation, which allow the proper conversion between kinetic and potential energy via compressive work. We show that the scaling analysis of Gough (1969), which implicitly assumed a single typical value of the background entropy gradient, can be valid even for convective overshoot, where the entropy gradient changes from slightly unstable in the convective region to stable (sometimes strongly so) in the overshoot region. The requirement for the anelastic equations to be valid for convective overshoot is that the buoyancy frequency be significantly less than the acoustic cutoff frequency. 
+	Abstract: When acoustic oscillations are believed to be irrelevant to the dynamics of an astrophysical fluid, it is useful to employ simplifying approximations to the equations of motion. The two most common of these (which are usually used to treat convection problem) are the Boussinesq approximation (when the background density does not significantly vary across the fluid layer) and the anelastic approximation (when the background density does vary significantly). There are many distinct forms of the anelastic approximation in the literature, and it has often been remarked that most of these do not properly conserve energy when the fluid is stable to convection. Here we show that the anelastic equations derived by Gough (1969) in fact do conserve energy for arbitrary motions of the fluid, even for strongly stratified background stratification. The key properties of these equations that allow them to conserve energy are (1) the absence of the Lantz-Braginsky-Roberts approximation in the momentum equation and (2) the inclusion of a historically neglected term in the energy equation, which allow the proper conversion between kinetic and potential energy at the correct order of the formal asymptotic expansion of the equations. We show that the scaling analysis of Gough (1969), which implicitly assumed a single typical value of the background entropy gradient, can be valid even for convective overshoot, where the entropy gradient changes from slightly unstable in the convecting region to stable (sometimes strongly so) in the overshoot region. The requirement for the anelastic equations to be valid for convective overshoot is that the buoyancy frequency be significantly less than the acoustic cutoff frequency. 
 	
 	The anelastic equations originally consisted of an approximation to the continuity and momentum equations, derived by assuming small thermal perturbations about a nearly adiabatically stratified hydrostatic reference atmosphere \citep{Batchelor1953,Charney1960}. The thermodynamics of the problem thus become ``linear," in the sense that products of thermodynamic variables reduced to linear expressions in the first-order perturbations. The two key consequences of linearized thermodynamics are divergenceless mass flux (i.e., $\Div(\rhoref\vecu)\equiv0$, where $\rhoref$ is the background density and $\vecu$ the fluid velocity; this takes the place of the $\Div\vecu=0$ condition from the Boussinesq approximation) and the first-order buoyancy force (associated with the first-order perturbed density and pressure) being the primary driver of the flow. \citep{Ogura1962} formalized the approximation by expanding the equations of motion in a small parameter $\epsilon$, representing the relative variation of potential temperature across the fluid layer, and hence the relative magnitude of the thermal perturbations. They recovered the equations of \citet{Batchelor1953,Charney1960} and showed an assumption about the \textit{time scale} of the motion was necessary, in addition to the assumption of small thermal perturbations. Namely, the dynamical time scale of the buoyantly driven flows must be $O(\epsilon^{-1/2})$ times \textit{larger} than the sound crossing time of the region. Sound waves, which imply rapid temporal variations on the order of the sound crossing time, are thus absent from the anelastic equations, making them ideal for numerical integration, where large time steps are required to capture significant evolution of the system. 
 	
@@ -57,11 +61,11 @@
 	\begin{align}\label{eq:en}
 		\pderiv{}{t}(\rho U) + \Div(\rho U\vecu) + P\Div\vecu = D_{ij}\pderiv{u_i}{x_j} + Q - \Div\vecf,
 	\end{align}
-	and as general equation of state,
+	and a general equation of state,
 	\begin{align}\label{eq:eos}
 		U = U(P,T).
 	\end{align}
-	Here, $t$ is the time, the $x_i$ are Cartesian spatial coordinates, $\rho$ is the density, $P$ the pressure, $T$ the temperature, $U$ the internal energy per unit mass, $\mu$ the dynamic viscosity, $\vecg$ the graviational acceleration field, $Q$ an internal heat source, $\vecf$ the combined conductive and radiative heat flux.  The symbol ``$\leftrightarrow$'' in the viscous stress tensor $\overleftrightarrow{D}$ denotes a second-order tensor, as does the dyadic notation $\vecu\vecu$. The subscripts $i$ and $j$ (taking the values 1, 2,3 ) denote vector or tensor components in any of the Cartesian spatial directions.  We use the Einstein summation convention and $\delta_{ij}$ denotes the Kronecker delta. 
+	Here, $t$ is the time, the $x_i$ are Cartesian spatial coordinates, $\rho$ is the density, $P$ the pressure, $T$ the temperature, $U$ the internal energy per unit mass, $\mu$ the dynamic viscosity, $\vecg\define -\nabla\Phi$ the graviational acceleration field, $\Phi$ the graviational potential,$Q$ an internal heat source, $\vecf$ the combined conductive and radiative heat flux. $\vecg$ is assumed to point in the vertical direction $\veck$ (either the upward Cartesian direction or the radial direction), depends only on the vertical coordinate $q$ (either the upward Cartesian coordinate $x_3$ or the radial coordinate $r$), and is time-independent (self-gravity is ignored). The symbol ``$\leftrightarrow$'' in the viscous stress tensor $\overleftrightarrow{D}$ denotes a second-order tensor, as does the dyadic notation $\vecu\vecu$. The subscripts $i$ and $j$ (taking the values 1, 2,3 ) denote vector or tensor components in any of the Cartesian spatial directions.  We use the Einstein summation convention and $\delta_{ij}$ denotes the Kronecker delta. 
 	
 	These equations are not written in the exact form of \citet{Gough1969} (and use slightly different notation) but are mathematically equivalent. Note that the left-hand side (LHS) of Equation \eqref{eq:en} can be written in several other forms which will prove useful: 
 	\begin{subequations}\label{eq:enlhs}
@@ -107,10 +111,49 @@
 	\end{align}
 	\end{subequations}
 	
-	
+	An equation for the evolution of kinetic energy can be formed from $\rho\vecu$ dotted into Equation \eqref{eq:mom},
+	\begin{align}\label{eq:ke}
+		\pderiv{}{t}\left(\frac{1}{2}\rho u^2\right) = - \Div\left(\frac{1}{2}\rho u^2\vecu \right) + \ugrad P - \rho\ugrad\Phi+ u_i\pderiv{D_{ij}}{x_j}
+	\end{align}
+	Equation \eqref{eq:cont} multiplied by $\Phi$ yields an equation for the evolution of potential energy,
+	\begin{align}\label{eq:pote}
+		\pderiv{}{t}(\rho\Phi) &= - \Phi \Div(\rho\vecu).
+	\end{align}
+	Adding Equations \eqref{eq:en}, \eqref{eq:ke}, and \eqref{eq:pote} yields an equation for the evolution of total energy,
+	\begin{align}\label{eq:tote}
+		\pderiv{}{t}\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right)\right] = -\Div\left\{\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right) + P\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf\right\} + Q.
+	\end{align}
 	\section{The anelastic approximation of \citet{Gough1969}}
+	We will not repeat the full asymptotic expansion in $\epsilon$ of Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} here. Instead, we reiterate the salient assumptions in the case where the horizontally averaged reference atmosphere is time-independent and the layer depth is thicker than the typical pressure scale height (\citet{Gough1969} also considers thin layers, in which the anelastic equations become the Boussinesq equations, and time-dependent reference atmospheres). The main assumption is that the thermodynamic perturbations from the horizontally averaged state are small, e.g.,
+	\begin{align}\label{eq:linearthermo}
+		\rho = \rhoref(q) + \rho_1(x_i,t)\five &\with \rho_1/\rhoref=O(\epsilon)\ll 1,\\
+		P = \prsref(q) + P_1(x_i,t)\five &\with P_1/\prsref=O(\epsilon)\ll1 \nonumber,
+	\end{align} 
+	and similarly for $T$, $U$, $h$, $\cpcap$, $\mu$, $\delta$, $\cs^2$, $\vecf$, and $Q$. Here, the overbars denote horizontal averages and the ``1" subscripts denote the perturbations about this average. Note that it is \textit{not} correct to write ``$S=\overline{S}(q)+S_1(x_i,t)$ with $S_1/\sref=O(\epsilon)$." The fully compressible equations of motion contain only differences in entropy and so no meaningful absolute value of $\sref$ can be defined. Instead, we must write
+	\begin{align}\label{eq:linearent}
+	S = \sref(q) + S_1(x_i,t) \five &\with S_1/\cpref=O(\epsilon)\ll 1.
+	\end{align} 
+	The second assumption is that the coordinate system can be chosen such that there is no mass flux across any horizontal surface, i.e.,
+	\begin{align}\label{eq:nomassflux}
+		\overline{\rho u_i}=0.
+	\end{align}
+	In a spherical system, the horizontal average would be an spherically symmetric average and the coordinates would point along the spatially varying curvilinear coordinate directions. 
 	
-	\clearpage
+	The characteristic length scale of variation of the fluid is assumed to be a typical value for the pressure scale height $H$. The flow is assumed to be buoyantly driven by the $O(\epsilon)$ thermal perturbations, i.e., 
+	\begin{align}\label{eq:scaleu}
+		|\vecu| = O(\sqrt{\epsilon \tilde{g} H}) = O(\sqrt{\epsilon}\tilde{\cs}),
+	\end{align}
+	where the tildes denote typical reference-state values. Thus, the squared Mach number of the flow is $O(\epsilon)$. The characteristic time scale of variation of the fluid is assumed to be advective, i.e., 
+	\begin{align}\label{eq:scaleu}
+	\left|\pderiv{}{t}\right| = O\left(\sqrt{\frac{\epsilon \tilde{g}}{H}}\right) = O\left(\sqrt{\epsilon} \frac{1}{H/\tilde{\cs}}\right).
+	\end{align}
+	Thus, the characteristic time scale is $O(\epsilon^(-1/2)$ longer than the time it takes a sound wave to cross a pressure scale height. 
+	
+	Finally, the vertical convective heat flux (which maximally could transport an energy flux of order $\rhoref \tmpref w \Delta\sref$, where $w=\veck\cdot\vecu$ is the vertical velocity and $\Delta \sref $ is the total drop in background entropy across the convecting layer) is assumed to be limited primarily by the thermal diffusion $\vecf$ (this will be true if the conductive heating $-\Div \vecf$ in Equation \eqref{eq:en} is at at least as large as the viscous and internal heatings). In the case of negligible heatings (high Rayleigh number), one expects
+	\begin{align}
+		\frac{\Delta\sref}{\tilde{\cpcap}} = O(\epsilon),
+	\end{align}
+	i.e., the convecting layer is nearly adiabatically stratified for vigorous convection. 
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
