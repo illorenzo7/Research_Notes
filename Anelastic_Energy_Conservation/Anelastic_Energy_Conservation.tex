@@ -292,25 +292,27 @@ and the ``non-LBR" heating
 Both these terms vanish for an adiabatic background state (where $\nabla\sref=0$), which is expected for a fully (and sufficiently vigorously) convecting layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use, and its neglect seems to have not been explicitly considered. 
 
 \section{The equivalence of horizontally averaged atmospheres to fixed reference atmospheres}
-In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes) instead treat the background state as a fixed hydrostatic ``reference" state and let the perturbations in $S$ and $P$ develop small but nonzero horizontally averaged pertrubations about the reference state. Some codes (e.g., the {\ash} code) alternatively solve for the nonspherical perturbations directlly, retaining bracketed terms like the ones in Equations \eqref{eq:anmom} and \eqref{eq:anen}. As we now show, these two approaches are exactly equivalent to the order of the approximation, provided that the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
+In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the perturbations in $S$ and $P$ about this reference state develop small but nonzero horizontally averaged pertrubations. Some codes (e.g., the {\ash} code) alternatively solve for the nonspherical perturbations directly, retaining horizoontally averaged terms on the RHS's of the anelastic equations, similar to the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen}. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
 
-Our approach is to define the horizontally averaged profiles as the sum of the preordained horizontally symmetric reference-state value (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
+Our approach is to define the horizontally averaged profiles as the sum of the preordained reference-state profile (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
 \begin{align}
-	\prsref &= \tilde{P} + \hat{P},\\
-	\rhoref &= \tilde{S} + \hat{\rho},\\
-	\sref &=  \tilde{S} + \hat{S},
+\prsref=	\prsref(q) &= \tilde{P}(q) + \hat{P}(q) ,\\
+\rhoref=	\rhoref(q)  &= \tilde{S}(q)  + \hat{\rho}(q) ,\\
+	\sref = \sref (q) &=  \tilde{S}(q)  + \hat{S}(q) ,
 \end{align}
 etc., where we assume (apart from the entropy) that the hatted means are $O(\epsilon)$ compared to the reference-state means. We also assume that the reference state is hydrostatic,
 \begin{align}\label{eq:refhydro}
 	\nabla \tilde{P} = \tilde{\rho}\vecg.
 \end{align}
-We denote the deviations from the reference state by primes and note that 
+We denote the (temporally and horizontally dependent) deviations from the reference state by primes and note that 
 \begin{align}
 	P^\prime & \define P - \tilde{P} = P_1 + \hat{P},\\
 	\rho^\prime & \define \rho - \tilde{\rho} = \rho_1 + \hat{\rho},\\
 	 S^\prime & \define S -  \tilde{S} =  S_1 + \hat{S},
 \end{align}
-etc. The primed quantities (except for the entropy) are always $O(\epsilon)$ compared to the reference-state means. The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:aneos},
+etc. The primed quantities (except for the entropy) are always $O(\epsilon)$ compared to the reference-state means. 
+
+The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:aneos},
 \begin{subequations}\label{eq:aneosref}
 	\begin{align}
 		\tilde{T} S^\prime &= \tilde{\cpcap} T^\prime - \frac{\tilde{\delta}}{\tilde{\rho}} P^\prime,\\
@@ -329,7 +331,7 @@ as is the linearized equation of state for the hatted quantities. We further ass
 
 To zeroth order in $\epsilon$, Equation \eqref{eq:ancont} becomes simply
 \begin{align}\label{eq:ancontref}
-	\Div(\rhoref\vecu)\equiv0
+	\Div(\tilde{\rho}\vecu)\equiv0
 \end{align}
 Because the RHS of Equatios \eqref{eq:anmom} is $O(\epsilon)$ compared to the LHS's we can write (also using Equation \eqref{eq:refhydro})
 \begin{align}\label{eq:anrhsmomref}
