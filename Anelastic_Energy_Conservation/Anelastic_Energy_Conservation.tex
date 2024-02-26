@@ -331,9 +331,9 @@ as is the linearized equation of state for the hatted quantities. We further ass
 
 To zeroth order in $\epsilon$, Equation \eqref{eq:ancont} becomes simply
 \begin{align}\label{eq:ancontref}
-	\Div(\tilde{\rho}\vecu)\equiv0
+	\Div(\tilde{\rho}\vecu)\equiv0.
 \end{align}
-Because the RHS of Equatios \eqref{eq:anmom} is $O(\epsilon)$ compared to the LHS's we can write (also using Equation \eqref{eq:refhydro})
+Because the RHS of Equatios \eqref{eq:anmom} is $O(\epsilon)$ compared to the LHS we can write, using Equation \eqref{eq:refhydro},
 \begin{align}\label{eq:anrhsmomref}
 	[-\nabla \prsref + \rhoref\vecg] &= -\nabla \hat{P} + \hat{\rho}\vecg\nonumber\\
 	&= -\tilde{\rho}\nabla\left(\frac{\hat{P}}{\tilde{\rho}}\right) - \tilde{\delta} \tilde{\rho} \left(\frac{\hat{S}}{\tilde{\cpcap}}\right) \vecg + \frac{\tilde{\delta}\tilde{\rho}}{\tilde{\cpcap}} \left(\frac{\hat{P}}{\tilde{\rho}}\right)\nabla\tilde{S}.
@@ -342,18 +342,18 @@ Note that the non-LBR force density from Equation \eqref{eq:nlbrmom} is only sig
 \begin{align}\label{eq:nlbrmom2}
 	\bm{f}_{\rm NLBR} = \frac{\deltaref P_1}{\cpref} \nabla\tilde{S} + O(\epsilon^2)
 \end{align}
-Using Equations \eqref{eq:anrhsmomref} and \eqref{eq:nlbrmom2} and noting that all terms in Equation \eqref{eq:anmommod} are of $O(\epsilon)$ (so that we can replace overbars with tildes), we find
+Plugging Equations \eqref{eq:anrhsmomref} and \eqref{eq:nlbrmom2} into Equation \eqref{eq:anmommod} and noting that all terms are of $O(\epsilon)$ (so that we can replace overbars with tildes), we find
 \begin{subequations}\label{eq:anmomref}
 	\begin{align}\label{eq:anmomrefmain}
 	\pderiv{}{t}(\tilde{\rho}\vecu)= &-\Div(\tilde{\rho}\vecu\vecu) -\tilde{\rho}\nabla\left(\frac{P^\prime}{\tilde{\rho}}\right) - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \nabla\tilde{S}+\Div \overleftrightarrow{D},\\
 	\text{where now}\five D_{ij}& = \tilde{\mu}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right)\label{eq:anmomrefvisc},
 \end{align}
 \end{subequations}
-In the energy equation \eqref{eq:anenmod}, we write 
+In the internal energy equation \eqref{eq:anenmod}, we write 
 \begin{align}\label{eq:dsdt}
 	\tilde{Q} - \Div\tilde{\vecf} \define -\tilde{\rho}\tilde{T}\pderiv{\hat{S}}{t}.
 \end{align}
-Note that this is simply a \textit{definition} for $\pderivline{\hat{S}}{t}$. The anelastic equations of \citet{Gough1969} do not specify $\hat{S}$ explicitly, the only requirement being (implicitly through the equation of state) the satisfaction of Equation \eqref{eq:anmeanmom}. 
+Note that this is simply a \textit{definition} for $\pderivline{\hat{S}}{t}$. The anelastic equations of \citet{Gough1969} do not specify $\hat{S}$ explicitly, the only requirement being (implicitly through the equation of state \eqref{eq:aneos}) the satisfaction of Equation \eqref{eq:anmeanmom}. 
 
 Equation \eqref{eq:momdensity} can be additionally written
   \begin{align}\label{eq:momdensity2}
@@ -365,7 +365,7 @@ We finally write
 \end{align}
 and 
 \begin{align}\label{eq:anenrhsfinal}
-	-\rhoref\tmpref \ugrad S_1 - \rhoref\tmpref \ugrad\sref = -\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{T}(\rhoref \vecu)\cdot\nabla\tilde{S} - \tilde{\rho}\hat{T}\ugrad\tilde{S}.
+	-\rhoref\tmpref \ugrad S_1 - \rhoref\tmpref \ugrad\sref = -\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{T}(\rhoref \vecu)\cdot\nabla\tilde{S} - \tilde{\rho}\hat{T}\ugrad\tilde{S} + O(\epsilon^2).
 \end{align}
 Plugging in Equations \eqref{eq:dsdt} through \eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} thus yields
 \begin{subequations}\label{eq:anenref}
@@ -377,29 +377,29 @@ Plugging in Equations \eqref{eq:dsdt} through \eqref{eq:anenrhsfinal} into Equat
 	\end{align}
 \end{subequations}
 
-Taking the spherical means of Equations \eqref{eq:anmomref} and \eqref{eq:anenref} and using Equations \eqref{eq:refhydro} and Equations \eqref{eq:dsdt} then recovers the mean momentum and energy equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. The formulation with fixed reference states (Equations \eqref{eq:ancontref}, \eqref{eq:anmomref} and \eqref{eq:anenref}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}). 
+Taking the spherical means of Equations \eqref{eq:anmomref} and \eqref{eq:anenref} and plugging in Equations \eqref{eq:refhydro} and \eqref{eq:dsdt} then recovers the mean momentum and energy equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. The anelastic formulation with fixed reference states (Equations \eqref{eq:ancontref}, \eqref{eq:anmomref} and \eqref{eq:anenref}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}). 
 
 \section{The Energy-conserving Generalized Gough (EGG) anelastic approximation}
-To arrive at the final form of the equations, we make one final argument: that the last term in Equation \eqref{eq:anenrefmain} is negligible. It has zero horizontal mean and therefore cannot affect the net transport of energy. Pointwise, it is always much smaller than the background advection term $-\tilde{\rho}\tilde{T}\ugrad\tilde{S}$. It therefore seems safe to neglect. 
+To arrive at the final form of an energy-conserving set of anelastic equations, we make one final argument: that the last term in Equation \eqref{eq:anenrefmain} is negligible. We do so because this term has zero horizontal mean and therefore cannot affect the net transport of energy. Furthermore, pointwise it should always be much smaller than the background advection term $-\tilde{\rho}\tilde{T}\ugrad\tilde{S}$, provided $\rho^\prime$ remains $\ll \tilde{\rho}$.
 
 The final equations, representing what we call the Energy-conserving Generalized Gough (EGG) anelastic approximation, are thus
-\begin{subequations}\label{eq:anref}
+\begin{subequations}\label{eq:anegg}
 \begin{empheq}[box=\fbox]{align}
-	\Div(\tilde{\rho}\vecu)&\equiv 0\label{eq:ancontref},\\
-	\pderiv{}{t}(\tilde{\rho}\vecu)&=-\Div(\tilde{\rho}\vecu\vecu) -\tilde{\rho}\nabla\left(\frac{P^\prime}{\tilde{\rho}}\right) - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \nabla\tilde{S}+\Div \overleftrightarrow{D},\label{eq:anmomref}\\	
+	\Div(\tilde{\rho}\vecu)&\equiv 0\label{eq:ancontegg},\\
+	\pderiv{}{t}(\tilde{\rho}\vecu)&=-\Div(\tilde{\rho}\vecu\vecu) -\tilde{\rho}\nabla\left(\frac{P^\prime}{\tilde{\rho}}\right) - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \nabla\tilde{S}+\Div \overleftrightarrow{D},\label{eq:anmomegg}\\	
 		\andd \tilde{\rho}\tilde{T}\pderiv{S^\prime}{t}&= -\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{\rho}\tilde{T} \ugrad \tilde{S} -  \left(\frac{\tilde{T} S^\prime}{\tilde{\cpcap}} + \frac{\tilde{\delta} P^\prime}{\tilde{\rho}\tilde{\cpcap}}\right)  \tilde{\rho} \ugrad\tilde{S}\nonumber\\
-		&\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime,\label{eq:anenref}
+		&\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime,\label{eq:anenegg}
 \end{empheq}
 \end{subequations}
-where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:anmomrefvisc} and it is additionally assumed that the reference state satisfies the hydrostatic condition \eqref{eq:refhydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
+where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:anmomrefvisc} and it is additionally assumed that the fixed reference state satisfies the hydrostatic condition \eqref{eq:refhydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
 
-The EGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:anmomref}, is 
+The EGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:anmomegg}, is 
 %\begin{equation}\label{eq:ankeref}
-	\begin{empheq}[box=\fbox]{align}\label{eq:ankeref}
+	\begin{empheq}[box=\fbox]{align}\label{eq:ankeegg}
 	\pderiv{}{t}\left(\frac{1}{2}\tilde{\rho}u^2\right)&=-\Div\left(\frac{1}{2}\tilde{\rho} u^2\vecu \right) - \ugrad P^\prime  - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecu\cdot \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \vecu\cdot \nabla\tilde{S}  + u_i\pderiv{D_{ij}}{x_j},
 	\end{empheq}
 %\end{equation}
-Adding Equations \eqref{eq:anenref} and \eqref{eq:ankeref} yields the EGG total energy equation,
+Adding Equations \eqref{eq:anenegg} and \eqref{eq:ankeegg} yields the EGG total energy equation,
 \begin{empheq}[box=\fbox]{align}\label{eq:antoteref}
 	\pderiv{}{t}\left[\tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime \right)\right] = &-\Div\left\{\left[\tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime\right) + P^\prime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \tilde{\vecf} + \vecf^\prime \right\} \nonumber\\ &+ Q^\prime -\tilde{\rho}\tilde{T}\ugrad\tilde{S}. 
 \end{empheq}
@@ -407,25 +407,23 @@ Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:an
 \begin{empheq}[box=\fbox]{align}\label{eq:econst}
 \tilde{E}_{\rm tot} \define \int_V \tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime\right) dV = \text{constant},
 \end{empheq}
-which mathematically holds for arbitrary fluid motion obeying Equations \eqref{eq:anref} and for all magnitudes of $|\nabla\sref|$. 
+which mathematically holds for arbitrary fluid motion obeying Equations \eqref{eq:anegg} and for all magnitudes of $|\nabla\sref|$. 
 
 Note that in practice when simulating stiff systems (large $|\nabla\tilde{S}|$) numerically (e.g., \citealt{Guerrero2016a,Matilsky2022,Matilsky2024}), the term 
 \begin{align}
 	\tilde{Q}_{\rm adv}\define  -\tilde{\rho}\tilde{T}\ugrad\tilde{S}
 \end{align}
-may pointwise be quite large. The degree to which energy is conserved numerically may thus be limited by the precision of the condition
+may pointwise be quite large. The degree to which energy is conserved numerically may thus be limited by the precision of the condition \eqref{eq:nomeanw}. In the streamfunction formulation of {\ash} and {\rayleigh} for example (e.g., \citealt{Clune1999,Featherstone2016a}), Equation \eqref{eq:nomeanw} holds to near machine precision. 
 
-In the streamfunction formulation of {\ash} and {\rayleigh} for example (e.g., \citealt{Clune1999,Featherstone2016a}), Equation \eqref{eq:nomeanw} holds to near machine precision. 
-
-To summarize, necessary conditions for anelastic codes implementing background stable layers to conserve energy are (1) including the non-LBR force density 
+To summarize, necessary conditions for anelastic codes implementing background stable layers to conserve energy are (1) including the non-LBR force density,
 \begin{align}\label{eq:nlbrmomref}
 	\tilde{\bm{f}}_{\rm NLBR} \define\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \vecu\cdot \nabla\tilde{S} 
 \end{align}
-in the momentum equation (i.e., not making the LBR approximation) and (2) including the non-LBR heating term
+in the momentum equation (i.e., not making the LBR approximation) and (2) including the non-LBR heating term,
 \begin{align}\label{eq:nlbrheatref}
 	\tilde{Q}_{\rm NLBR} \define -  \left(\frac{\tilde{T} S^\prime}{\tilde{\cpcap}} + \frac{\tilde{\delta} P^\prime}{\tilde{\rho}\tilde{\cpcap}}\right)  \tilde{\rho} \ugrad\tilde{S}
 \end{align}
-in the internal energy equation. Sufficient conditions for conserving energy will likely rest in the numerical precision with which the EGG equations \eqref{eq:anref} are actually solved. 
+in the internal energy equation. Sufficient conditions for conserving energy will likely rest in the numerical precision with which the EGG equations \eqref{eq:anegg} are actually solved. 
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
