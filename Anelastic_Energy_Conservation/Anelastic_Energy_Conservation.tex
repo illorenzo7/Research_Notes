@@ -391,13 +391,31 @@ Adding Equations \eqref{eq:anenref} and \eqref{eq:ankeref} yields the EGG total 
 \begin{empheq}[box=\fbox]{align}\label{eq:antoteref}
 	\pderiv{}{t}\left[\tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime \right)\right] = &-\Div\left\{\left[\tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime\right) + P^\prime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \tilde{\vecf} + \vecf^\prime \right\} \nonumber\\ &+ Q^\prime -\tilde{\rho}\tilde{T}\ugrad\tilde{S}. 
 \end{empheq}
-Again using condition \eqref{eq:nomeanu}, the integration of Equation \eqref{eq:antoteref} yields conservation of total energy,
-\begin{align}\label{eq:econst}
-	\tilde{E}_{\rm tot} \define \int_V \tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime\right) dV = \text{constant},
-\end{align}
+Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:ancontref}), the integration of Equation \eqref{eq:antoteref} yields conservation of total energy,
+\begin{empheq}[box=\fbox]{align}\label{eq:econst}
+\tilde{E}_{\rm tot} \define \int_V \tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime\right) dV = \text{constant},
+\end{empheq}
 which mathematically holds for arbitrary fluid motion obeying Equations \eqref{eq:anref} and for all magnitudes of $|\nabla\sref|$. 
 
-Note that in practice when simulating stiff systems (large $|\nabla\tilde{S}|$) numerically (e.g., \citealt{Guerrero2016a,Matilsky2022,2024})
+Note that in practice when simulating stiff systems (large $|\nabla\tilde{S}|$) numerically (e.g., \citealt{Guerrero2016a,Matilsky2022,Matilsky2024}), the term 
+\begin{align}
+	\tilde{Q}_{\rm adv}\define  -\tilde{\rho}\tilde{T}\ugrad\tilde{S}
+\end{align}
+may pointwise be quite large. The degree to which energy is conserved numerically may thus be limited by the precision of the condition
+\begin{align}\label{eq:nomeanw}
+	\overline{w}=0.
+\end{align}
+In the streamfunction formulation of {\ash} and {\rayleigh} for example (e.g., \citealt{Clune1999,Featherstone2016a}), Equation \eqref{eq:nomeanw} holds to near machine precision. 
+
+To summarize, necessary conditions for anelastic codes implementing background stable layers to conserve energy are (1) including the non-LBR force density 
+\begin{align}\label{eq:nlbrmomref}
+	\tilde{\bm{f}}_{\rm NLBR} \define\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \vecu\cdot \nabla\tilde{S} 
+\end{align}
+in the momentum equation (i.e., not making the LBR approximation) and (2) including the non-LBR heating term
+\begin{align}\label{eq:nlbrheatref}
+	\tilde{Q}_{\rm NLBR} \define -  \left(\frac{\tilde{T} S^\prime}{\tilde{\cpcap}} + \frac{\tilde{\delta} P^\prime}{\tilde{\rho}\tilde{\cpcap}}\right)  \tilde{\rho} \ugrad\tilde{S}
+\end{align}
+in the internal energy equation. Sufficient conditions for conserving energy will likely rest in the numerical precision with which the EGG equations \eqref{eq:anref} are actually solved. 
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
