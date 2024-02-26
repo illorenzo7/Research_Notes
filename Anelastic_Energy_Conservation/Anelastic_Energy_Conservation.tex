@@ -261,7 +261,7 @@ Using Equations \eqref{eq:aneos}, \eqref{eq:anfirstlaw}, and \eqref{eq:anhydrost
 Using Equation \eqref{eq:anrhsmom} in Equation \eqref{eq:anmom}, and then Equations \eqref{eq:anenlhs}, \eqref{eq:anrhsen}, and \eqref{eq:anrhsen2} in Equation \eqref{eq:anen}, we find
 	\begin{align}\label{eq:anmommod}
 		\pderiv{}{t}(\rhoref\vecu)= &-\Div(\rhoref\vecu\vecu) -\rhoref\nabla\left(\frac{P_1}{\rhoref}\right) - \deltaref \rhoref \left(\frac{S_1}{\cpref}\right) \vecg + \underbrace{\frac{\deltaref P_1}{\cpref} \nabla\sref}_{\define \bm{f}_{\rm NLBR}}+\Div \overleftrightarrow{D}\nonumber\\
-		&+[\nabla(\rhoref\overline{w^2})],
+		&+[-\nabla\prsref + \rhoref\vecg],
 	\end{align}
 and
 \begin{subequations}\label{eq:anenmod}
@@ -273,7 +273,7 @@ and
 \end{align}
 \end{subequations}
 The final terms in brackets in these equations may be dropped without affecting energy conservation, since they do not transport any net energy. However, dropping them still may still make the equations an asymptotically inconsistent approximation to the true fully compressible motion. The essential terms required for energy conservation when $\nabla\sref\neq0$ are the ``non-LBR" force density
-\begin{align}
+\begin{align}\label{eq:nlbrmom}
 	\bm{f}_{\rm NLBR} \define \frac{\deltaref P_1}{\cpref} \nabla\sref
 \end{align}
 and the ``non-LBR" heating
@@ -301,10 +301,66 @@ We deviation from the reference state by primes and note that
 	\rho^\prime & \define \rho - \tilde{\rho} = \rho_1 + \hat{\rho},\\
 	\nabla S^\prime & \define \nabla S - \nabla \tilde{S} = \nabla S_1 + \nabla \hat{S},
 \end{align}
-etc. The primed quantities (except for the entropy gradient) are always $O(\epsilon)$ compared to the reference-state means. Because the RHS's of Equations \eqref{eq:anmom} and \eqref{eq:anen} are $O(\epsilon)$ compared to the LHS's we can write (also using Equation \eqref{eq:refhydro})
-\begin{align}
-	[-\nabla \prsref + \rhoref\vecg] &= -\nabla 
+etc. The primed quantities (except for the entropy gradient) are always $O(\epsilon)$ compared to the reference-state means. The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:aneos},
+\begin{subequations}\label{eq:aneosref}
+	\begin{align}
+		\tilde{T} S^\prime &= \tilde{\cpcap} T^\prime - \frac{\tilde{\delta}}{\tilde{\rho}} P^\prime,\\
+		&= U^\prime - \frac{\tilde{P}}{\tilde{\rho}^2}\rho^\prime \\
+	&= h^\prime - \frac{P^\prime }{\tilde{\rho}}\\
+		&= \frac{\tilde{\cpcap} \tilde{T}}{\tilde{\delta}\tilde{\rho}}\left[\frac{P^\prime}{\tilde{\cs^2}}-\hat{\rho}\right].
+	\end{align}
+\end{subequations}
+as is the linearized equation of state for the hatted quantities. We further assume that reference state is defined to satisfy an equation analogous to Equation \eqref{eq:anfirstlaw},
+\begin{subequations}\label{eq:anfirstlawref}
+	\begin{align}
+		\tilde{T}\nabla\tilde{S} &= \tilde{\cpcap}\nabla\tilde{T} - \frac{\tilde{\delta}}{\tilde{\rho}}\nabla\tilde{P} \\
+		&= \frac{\tilde{\cpcap}\tilde{T}}{\tilde{\delta}\tilde{\rho}}\left[\frac{\nabla\tilde{P}}{\tilde{\cs^2}}-\nabla\tilde{\rho}\right].
+	\end{align}
+\end{subequations}
+
+
+
+Because the RHS's of Equations \eqref{eq:anmom} and \eqref{eq:anen} are $O(\epsilon)$ compared to the LHS's we can write (also using Equation \eqref{eq:refhydro})
+\begin{align}\label{eq:anrhsmomref}
+	[-\nabla \prsref + \rhoref\vecg] &= -\nabla \hat{P} + \hat{\rho}\vecg\nonumber\\
+	&= -\tilde{\rho}\nabla\left(\frac{\hat{P}}{\tilde{\rho}}\right) - \tilde{\delta} \tilde{\rho} \left(\frac{\hat{S}}{\tilde{\cpcap}}\right) \vecg + \frac{\tilde{\delta}\tilde{\rho}}{\tilde{\cpcap}} \left(\frac{\hat{P}}{\tilde{\rho}}\right)\nabla\tilde{S}.
 \end{align}
+Note that the non-LBR force density from Equation \eqref{eq:nlbrmom} is only significant when $\nabla\sref$ is large (in which case $\nabla\sref=\nabla\tilde{S}+O(\epsilon)$), otherwise it is $O(\epsilon^2)$. For all magnitudes of $|\nabla\sref|$, we can thus write
+\begin{align}\label{eq:nlbrmom2}
+	\bm{f}_{\rm NLBR} = \frac{\deltaref P_1}{\cpref} \nabla\tilde{S} + O(\epsilon^2)
+\end{align}
+Using Equations \eqref{eq:anrhsmomref} and \eqref{eq:nlbrmom2} and noting that all terms in Equation \eqref{eq:anmommod} are of $O(\epsilon)$ (so that we can replace overbars with tildes), we find
+	\begin{align}\label{eq:anmomref}
+	\pderiv{}{t}(\tilde{\rho}\vecu)= &-\Div(\tilde{\rho}\vecu\vecu) -\tilde{\rho}\nabla\left(\frac{P^\prime}{\tilde{\rho}}\right) - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \nabla\tilde{S}+\Div \overleftrightarrow{D},\\
+	\text{where now}\five D_{ij}& = \tilde{\mu}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right)\label{eq:anmomrefvisc},
+\end{align}
+In the energy equation \eqref{eq:anenmod}, we write 
+\begin{align}\label{eq:dsdt}
+	\tilde{Q} - \Div\tilde{\vecf} \define -\tilde{\rho}\tilde{T}\pderiv{\hat{S}}{t}.
+\end{align}
+Note that this is simply a \textit{definition} for $\pderivline{\hat{S}}{t}$. The anelastic equations of \citet{Gough1969} do not specify $\hat{S}$ explicitly, the only requirement being (implicitly through the equation of state) the satisfaction of Equation \eqref{eq:anmeanmom}. 
+
+Equation \eqref{eq:momdensity} can be additionally written
+  \begin{align}\label{eq:momdensity2}
+\rhoref\vecu + \rho_1\vecu - \overline{\rho_1\vecu} = \tilde{\rho}\vecu + \rho^\prime\vecu - \overline{\rho^\prime\vecu} + O(\epsilon^2).
+\end{align}
+We finally write 
+\begin{align}
+	Q_{\rm NLBR} = \tilde{\rho}T_1\ugrad\tilde{S} + O(\epsilon^2)
+\end{align}
+and 
+\begin{align}\label{eq:anenrhsfinal}
+	-\rhoref\tmpref \ugrad S_1 - \rhoref\tmpref \ugrad\sref = -\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{T}(\rhoref \vecu)\cdot\nabla\tilde{S} - \tilde{\rho}\hat{T}\ugrad\tilde{S}.
+\end{align}
+Plugging in Equations \eqref{eq:dsdt} through \eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} thus yields
+\begin{subequations}\label{eq:anenref}
+	\begin{align}
+		\tilde{\rho}\tilde{T}\pderiv{S^\prime}{t}= &-\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{\rho}\tilde{T} \ugrad \tilde{S} - \tilde{\rho} T^\prime\ugrad\tilde{S}+D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime  \nonumber\\
+		& - \tilde{T}(\rho^\prime \vecu-\overline{\rho^\prime\vecu})\cdot\nabla\tilde{S},\\
+		\where \rho^\prime =& \frac{P^\prime}{\tilde{\cs^2}}-\frac{\tilde{\delta}\tilde{\rho}}{\tilde{\cpcap}}\\
+		\andd T^\prime = & \frac{\tilde{T} S^\prime}{\tilde{\cpcap}} + \frac{\tilde{\delta} P^\prime}{\tilde{\rho}\tilde{\cpcap}}.
+	\end{align}
+\end{subequations}
 
 \section{The energy-conserving Generalized Gough (EGG) anelastic approximation}
 The best path forward for codes to implement the energy-conserving anelastic Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}
