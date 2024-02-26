@@ -221,11 +221,10 @@
   	\nabla\prsref\approx \rhoref\vecg
   \end{align}
   in terms that are already of first-order in $\epsilon$. Dotting $\vecu$ into Equation \eqref{eq:anmommain} yields the anelastic kinetic energy equation,
-	\begin{subequations}\label{eq:anke}
-	\begin{align}
+	\begin{align}\label{eq:anke}
 		\pderiv{}{t}\left(\frac{1}{2}\rhoref u^2\right)&=-\Div\left(\frac{1}{2}\rhoref u^2\vecu \right) - \ugrad P_1 + \rho_1\vecu\cdot\vecg + u_i\pderiv{D_{ij}}{x_j} + \ugrad(\rhoref \overline{w^2}),
 	\end{align}
-\end{subequations}
+
 where we have used Equation \eqref{eq:anmeanmom} to write the work due to the ``turbulent pressure," $\vecu\cdot\nabla (\rhoref \overline{w^2})$. 
 Using Equations \eqref{eq:ancont} and \eqref{eq:aneos} as needed and then adding Equations \eqref{eq:anen} and \eqref{eq:anke} yields the anelastic total energy equation,
 \begin{align}\label{eq:antote}
@@ -233,7 +232,7 @@ Using Equations \eqref{eq:ancont} and \eqref{eq:aneos} as needed and then adding
 			 &+ \qref + Q_1 +\left[-\rhoref\tmpref\ugrad\sref +\ugrad (\rhoref \overline{w^2})- \tmpref(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\sref\right]
 \end{align}
 Note that by definition, 
-\begin{align}
+\begin{align}\label{eq:nomeanu}
 	\overline{\vecu}=0,
 \end{align}
 so that each of the rightmost terms in brackets in Equation \eqref{eq:antote} cannot transport any net energy across the layer. The internal heating terms $\qref + Q_1$ are assumed ``accounted for," since in modern anelastic codes, they are typically inputs to drive convection. Thus, Equation \eqref{eq:antote} shows that the total energy integrated over the volume $V$ of the layer,
@@ -289,19 +288,19 @@ Our approach is to define the horizontally averaged profiles as the sum of the p
 \begin{align}
 	\prsref &= \tilde{P} + \hat{P},\\
 	\rhoref &= \tilde{S} + \hat{\rho},\\
-	\nabla\sref &= \nabla \tilde{S} + \nabla \hat{S},
+	\sref &=  \tilde{S} + \hat{S},
 \end{align}
-etc., where we assume (apart from the entropy gradient) that the hatted means are $O(\epsilon)$ compared to the reference-state means. We also assume that the reference state is hydrostatic,
+etc., where we assume (apart from the entropy) that the hatted means are $O(\epsilon)$ compared to the reference-state means. We also assume that the reference state is hydrostatic,
 \begin{align}\label{eq:refhydro}
 	\nabla \tilde{P} = \tilde{\rho}\vecg.
 \end{align}
-We deviation from the reference state by primes and note that 
+We denote the deviations from the reference state by primes and note that 
 \begin{align}
 	P^\prime & \define P - \tilde{P} = P_1 + \hat{P},\\
 	\rho^\prime & \define \rho - \tilde{\rho} = \rho_1 + \hat{\rho},\\
-	\nabla S^\prime & \define \nabla S - \nabla \tilde{S} = \nabla S_1 + \nabla \hat{S},
+	 S^\prime & \define S -  \tilde{S} =  S_1 + \hat{S},
 \end{align}
-etc. The primed quantities (except for the entropy gradient) are always $O(\epsilon)$ compared to the reference-state means. The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:aneos},
+etc. The primed quantities (except for the entropy) are always $O(\epsilon)$ compared to the reference-state means. The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:aneos},
 \begin{subequations}\label{eq:aneosref}
 	\begin{align}
 		\tilde{T} S^\prime &= \tilde{\cpcap} T^\prime - \frac{\tilde{\delta}}{\tilde{\rho}} P^\prime,\\
@@ -318,9 +317,11 @@ as is the linearized equation of state for the hatted quantities. We further ass
 	\end{align}
 \end{subequations}
 
-
-
-Because the RHS's of Equations \eqref{eq:anmom} and \eqref{eq:anen} are $O(\epsilon)$ compared to the LHS's we can write (also using Equation \eqref{eq:refhydro})
+To zeroth order in $\epsilon$, Equation \eqref{eq:ancont} becomes simply
+\begin{align}\label{eq:ancontref}
+	\Div(\rhoref\vecu)\equiv0
+\end{align}
+Because the RHS of Equatios \eqref{eq:anmom} is $O(\epsilon)$ compared to the LHS's we can write (also using Equation \eqref{eq:refhydro})
 \begin{align}\label{eq:anrhsmomref}
 	[-\nabla \prsref + \rhoref\vecg] &= -\nabla \hat{P} + \hat{\rho}\vecg\nonumber\\
 	&= -\tilde{\rho}\nabla\left(\frac{\hat{P}}{\tilde{\rho}}\right) - \tilde{\delta} \tilde{\rho} \left(\frac{\hat{S}}{\tilde{\cpcap}}\right) \vecg + \frac{\tilde{\delta}\tilde{\rho}}{\tilde{\cpcap}} \left(\frac{\hat{P}}{\tilde{\rho}}\right)\nabla\tilde{S}.
@@ -330,10 +331,12 @@ Note that the non-LBR force density from Equation \eqref{eq:nlbrmom} is only sig
 	\bm{f}_{\rm NLBR} = \frac{\deltaref P_1}{\cpref} \nabla\tilde{S} + O(\epsilon^2)
 \end{align}
 Using Equations \eqref{eq:anrhsmomref} and \eqref{eq:nlbrmom2} and noting that all terms in Equation \eqref{eq:anmommod} are of $O(\epsilon)$ (so that we can replace overbars with tildes), we find
-	\begin{align}\label{eq:anmomref}
+\begin{subequations}\label{eq:anmomref}
+	\begin{align}\label{eq:anmomrefmain}
 	\pderiv{}{t}(\tilde{\rho}\vecu)= &-\Div(\tilde{\rho}\vecu\vecu) -\tilde{\rho}\nabla\left(\frac{P^\prime}{\tilde{\rho}}\right) - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \nabla\tilde{S}+\Div \overleftrightarrow{D},\\
 	\text{where now}\five D_{ij}& = \tilde{\mu}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right)\label{eq:anmomrefvisc},
 \end{align}
+\end{subequations}
 In the energy equation \eqref{eq:anenmod}, we write 
 \begin{align}\label{eq:dsdt}
 	\tilde{Q} - \Div\tilde{\vecf} \define -\tilde{\rho}\tilde{T}\pderiv{\hat{S}}{t}.
@@ -356,16 +359,45 @@ Plugging in Equations \eqref{eq:dsdt} through \eqref{eq:anenrhsfinal} into Equat
 \begin{subequations}\label{eq:anenref}
 	\begin{align}
 		\tilde{\rho}\tilde{T}\pderiv{S^\prime}{t}= &-\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{\rho}\tilde{T} \ugrad \tilde{S} - \tilde{\rho} T^\prime\ugrad\tilde{S}+D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime  \nonumber\\
-		& - \tilde{T}(\rho^\prime \vecu-\overline{\rho^\prime\vecu})\cdot\nabla\tilde{S},\\
-		\where \rho^\prime =& \frac{P^\prime}{\tilde{\cs^2}}-\frac{\tilde{\delta}\tilde{\rho}}{\tilde{\cpcap}}\\
+		& - \tilde{T}(\rho^\prime \vecu-\overline{\rho^\prime\vecu})\cdot\nabla\tilde{S},\label{eq:anenrefmain}\\
+		\where \rho^\prime =& \frac{P^\prime}{\tilde{\cs^2}}-\frac{\tilde{\delta}\tilde{\rho}S ^\prime}{\tilde{\cpcap}}\\
 		\andd T^\prime = & \frac{\tilde{T} S^\prime}{\tilde{\cpcap}} + \frac{\tilde{\delta} P^\prime}{\tilde{\rho}\tilde{\cpcap}}.
 	\end{align}
 \end{subequations}
 
-\section{The energy-conserving Generalized Gough (EGG) anelastic approximation}
-The best path forward for codes to implement the energy-conserving anelastic Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}
+Taking the spherical means of Equations \eqref{eq:anmomref} and \eqref{eq:anenref} and using Equations \eqref{eq:refhydro} and Equations \eqref{eq:dsdt} then recovers the mean momentum and energy equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. The formulation with fixed reference states (Equations \eqref{eq:ancontref}, \eqref{eq:anmomref} and \eqref{eq:anenref}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}). 
 
-A necessary and sufficient condition for the anelastic equations to conserve energy for arbitrary motion 
+\section{The Energy-conserving Generalized Gough (EGG) anelastic approximation}
+To arrive at the final form of the equations, we make one final argument: that the last term in Equation \eqref{eq:anenrefmain} is negligible. It has zero horizontal mean and therefore cannot affect the net transport of energy. Pointwise, it is always much smaller than the background advection term $-\tilde{\rho}\tilde{T}\ugrad\tilde{S}$. It therefore seems safe to neglect. 
+
+The final equations, representing what we call the Energy-conserving Generalized Gough (EGG) anelastic approximation, are thus
+\begin{subequations}\label{eq:anref}
+\begin{empheq}[box=\fbox]{align}
+	\Div(\tilde{\rho}\vecu)&\equiv 0\label{eq:ancontref},\\
+	\pderiv{}{t}(\tilde{\rho}\vecu)&=-\Div(\tilde{\rho}\vecu\vecu) -\tilde{\rho}\nabla\left(\frac{P^\prime}{\tilde{\rho}}\right) - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \nabla\tilde{S}+\Div \overleftrightarrow{D},\label{eq:anmomref}\\	
+		\andd \tilde{\rho}\tilde{T}\pderiv{S^\prime}{t}&= -\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{\rho}\tilde{T} \ugrad \tilde{S} -  \left(\frac{\tilde{T} S^\prime}{\tilde{\cpcap}} + \frac{\tilde{\delta} P^\prime}{\tilde{\rho}\tilde{\cpcap}}\right)  \tilde{\rho} \ugrad\tilde{S}\nonumber\\
+		&\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime,\label{eq:anenref}
+\end{empheq}
+\end{subequations}
+where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:anmomrefvisc} and it is additionally assumed that the reference state satisfies the hydrostatic condition \eqref{eq:refhydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
+
+The EGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:anmomref}, is 
+%\begin{equation}\label{eq:ankeref}
+	\begin{empheq}[box=\fbox]{align}\label{eq:ankeref}
+	\pderiv{}{t}\left(\frac{1}{2}\tilde{\rho}u^2\right)&=-\Div\left(\frac{1}{2}\tilde{\rho} u^2\vecu \right) - \ugrad P^\prime  - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecu\cdot \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \vecu\cdot \nabla\tilde{S}  + u_i\pderiv{D_{ij}}{x_j},
+	\end{empheq}
+%\end{equation}
+Adding Equations \eqref{eq:anenref} and \eqref{eq:ankeref} yields the EGG total energy equation,
+\begin{empheq}[box=\fbox]{align}\label{eq:antoteref}
+	\pderiv{}{t}\left[\tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime \right)\right] = &-\Div\left\{\left[\tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime\right) + P^\prime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \tilde{\vecf} + \vecf^\prime \right\} \nonumber\\ &+ Q^\prime -\tilde{\rho}\tilde{T}\ugrad\tilde{S}. 
+\end{empheq}
+Again using condition \eqref{eq:nomeanu}, the integration of Equation \eqref{eq:antoteref} yields conservation of total energy,
+\begin{align}\label{eq:econst}
+	\tilde{E}_{\rm tot} \define \int_V \tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime\right) dV = \text{constant},
+\end{align}
+which mathematically holds for arbitrary fluid motion obeying Equations \eqref{eq:anref} and for all magnitudes of $|\nabla\sref|$. 
+
+Note that in practice when simulating stiff systems (large $|\nabla\tilde{S}|$) numerically (e.g., \citealt{Guerrero2016a,Matilsky2022,2024})
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
