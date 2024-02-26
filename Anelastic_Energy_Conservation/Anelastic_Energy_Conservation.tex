@@ -30,6 +30,7 @@
 \newcommand{\deltaref}{\overline{\delta}}
 \newcommand{\cpref}{\overline{\cpcap}}
 \newcommand{\cssqref}{\overline{\cs^2}}
+\newcommand{\subref}{_{\rm ref}}
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
@@ -198,7 +199,7 @@
   \begin{subequations}\label{eq:anfirstlaw}
   \begin{align}
   	\tmpref\nabla\sref &= \cpref\nabla\tmpref - \frac{\deltaref}{\rhoref}\nabla\prsref + O(\epsilon^2)\\
-  	 &= \frac{\cpref\,\tmpref}{\deltaref\rhoref}\left[\frac{\nabla\tmpref}{\cssqref}-\nabla\rhoref\right]+O(\epsilon^2).
+  	 &= \frac{\cpref\,\tmpref}{\deltaref\rhoref}\left[\frac{\nabla\prsref}{\cssqref}-\nabla\rhoref\right]+O(\epsilon^2).
   \end{align}
   \end{subequations}
   Note that \citet{Gough1969} uses the superadiabatic temperature gradient
@@ -271,7 +272,7 @@ and
 	\andd T_1 = & \frac{\tmpref S_1}{\cpref} + \frac{\deltaref P_1}{\rhoref\cpref}.
 \end{align}
 \end{subequations}
-The final terms in brackets in these equations may be dropped without affecting energy conservation, since they do not transport any net energy. However, dropping them still makes the equations an asymptotically approximation to the true fully compressible motion. The essential terms required for energy conservation when $\nabla\sref\neq0$ are the ``non-LBR" force density
+The final terms in brackets in these equations may be dropped without affecting energy conservation, since they do not transport any net energy. However, dropping them still may still make the equations an asymptotically inconsistent approximation to the true fully compressible motion. The essential terms required for energy conservation when $\nabla\sref\neq0$ are the ``non-LBR" force density
 \begin{align}
 	\bm{f}_{\rm NLBR} \define \frac{\deltaref P_1}{\cpref} \nabla\sref
 \end{align}
@@ -284,7 +285,26 @@ Both these terms vanish for an adiabatic background state (where $\nabla\sref=0$
 \section{The equivalence of horizontally averaged atmospheres to fixed reference atmospheres}
 In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, referenced by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes) instead treat the background state as a fixed hydrostatic ``reference" state and let the perturbations in $S$ and $P$ develop small but nonzero horizontally averaged pertrubations about the reference state. Some codes (e.g., the {\ash} code) alternatively solve for the nonspherical perturbations directlly, retaining bracketed terms like the ones in Equations \eqref{eq:anmom} and \eqref{eq:anen}. As we now show, these two approaches are exactly equivalent to the order of the approximation, provided that the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
 
-
+Our approach is to define the horizontally averaged profiles as the sum of the preordained horizontally symmetric reference-state value (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
+\begin{align}
+	\prsref &= \tilde{P} + \hat{P},\\
+	\rhoref &= \tilde{S} + \hat{\rho},\\
+	\nabla\sref &= \nabla \tilde{S} + \nabla \hat{S},
+\end{align}
+etc., where we assume (apart from the entropy gradient) that the hatted means are $O(\epsilon)$ compared to the reference-state means. We also assume that the reference state is hydrostatic,
+\begin{align}\label{eq:refhydro}
+	\nabla \tilde{P} = \tilde{\rho}\vecg.
+\end{align}
+We deviation from the reference state by primes and note that 
+\begin{align}
+	P^\prime & \define P - \tilde{P} = P_1 + \hat{P},\\
+	\rho^\prime & \define \rho - \tilde{\rho} = \rho_1 + \hat{\rho},\\
+	\nabla S^\prime & \define \nabla S - \nabla \tilde{S} = \nabla S_1 + \nabla \hat{S},
+\end{align}
+etc. The primed quantities (except for the entropy gradient) are always $O(\epsilon)$ compared to the reference-state means. Because the RHS's of Equations \eqref{eq:anmom} and \eqref{eq:anen} are $O(\epsilon)$ compared to the LHS's we can write (also using Equation \eqref{eq:refhydro})
+\begin{align}
+	[-\nabla \prsref + \rhoref\vecg] &= -\nabla 
+\end{align}
 
 \section{The energy-conserving Generalized Gough (EGG) anelastic approximation}
 The best path forward for codes to implement the energy-conserving anelastic Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}
