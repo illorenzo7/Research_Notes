@@ -318,7 +318,7 @@ The linearized equation of state for the primed quantities is exactly analogous 
 		\tilde{T} S^\prime &= \tilde{\cpcap} T^\prime - \frac{\tilde{\delta}}{\tilde{\rho}} P^\prime,\\
 		&= U^\prime - \frac{\tilde{P}}{\tilde{\rho}^2}\rho^\prime \\
 	&= h^\prime - \frac{P^\prime }{\tilde{\rho}}\\
-		&= \frac{\tilde{\cpcap} \tilde{T}}{\tilde{\delta}\tilde{\rho}}\left[\frac{P^\prime}{\tilde{\cs^2}}-\hat{\rho}\right].
+		&= \frac{\tilde{\cpcap} \tilde{T}}{\tilde{\delta}\tilde{\rho}}\left[\frac{P^\prime}{\tilde{\cs^2}}-\rho^\prime\right].
 	\end{align}
 \end{subequations}
 as is the linearized equation of state for the hatted quantities. We further assume that reference state is defined to satisfy an equation analogous to Equation \eqref{eq:anfirstlaw},
@@ -353,7 +353,7 @@ In the internal energy equation \eqref{eq:anenmod}, we write
 \begin{align}\label{eq:dsdt}
 	\tilde{Q} - \Div\tilde{\vecf} \define -\tilde{\rho}\tilde{T}\pderiv{\hat{S}}{t}.
 \end{align}
-Note that this is simply a \textit{definition} for $\pderivline{\hat{S}}{t}$. The anelastic equations of \citet{Gough1969} do not specify $\hat{S}$ explicitly, the only requirement being (implicitly through the equation of state \eqref{eq:aneos}) the satisfaction of Equation \eqref{eq:anmeanmom}. 
+Note that this is simply a \textit{definition} for the reference-state term $\tilde{Q}-\Div\tilde{\vecf}$, which can be arbitrarily chosen as long as it is horizontally symmetric and $O(\epsilon)$. The anelastic equations of \citet{Gough1969} do not specify $\hat{S}$ explicitly, the only requirement being (implicitly through the equation of state \eqref{eq:aneos}) the satisfaction of Equation \eqref{eq:anmeanmom}. 
 
 Equation \eqref{eq:momdensity} can be additionally written
   \begin{align}\label{eq:momdensity2}
@@ -365,7 +365,8 @@ We finally write
 \end{align}
 and 
 \begin{align}\label{eq:anenrhsfinal}
-	-\rhoref\tmpref \ugrad S_1 - \rhoref\tmpref \ugrad\sref = -\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{T}(\rhoref \vecu)\cdot\nabla\tilde{S} - \tilde{\rho}\hat{T}\ugrad\tilde{S} + O(\epsilon^2).
+	-\rhoref\tmpref \ugrad S_1 - \rhoref\tmpref \ugrad\sref &= -\rhoref\tmpref\ugrad\sref - \rhoref\tmpref\ugrad S^\prime\nonumber\\
+	&=-\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{T}(\rhoref \vecu)\cdot\nabla\tilde{S} - \tilde{\rho}\hat{T}\ugrad\tilde{S} + O(\epsilon^2).
 \end{align}
 Plugging in Equations \eqref{eq:dsdt} through \eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} thus yields
 \begin{subequations}\label{eq:anenref}
@@ -396,7 +397,7 @@ where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:anmomrefvisc} an
 The EGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:anmomegg}, is 
 %\begin{equation}\label{eq:ankeref}
 	\begin{empheq}[box=\fbox]{align}\label{eq:ankeegg}
-	\pderiv{}{t}\left(\frac{1}{2}\tilde{\rho}u^2\right)&=-\Div\left(\frac{1}{2}\tilde{\rho} u^2\vecu \right) - \ugrad P^\prime  - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecu\cdot \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \vecu\cdot \nabla\tilde{S}  + u_i\pderiv{D_{ij}}{x_j},
+	\pderiv{}{t}\left(\frac{1}{2}\tilde{\rho}u^2\right)&=-\Div\left(\frac{1}{2}\tilde{\rho} u^2\vecu \right) - \Div(P^\prime\vecu)  - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecu\cdot \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \vecu\cdot \nabla\tilde{S}  + u_i\pderiv{D_{ij}}{x_j},
 	\end{empheq}
 %\end{equation}
 Adding Equations \eqref{eq:anenegg} and \eqref{eq:ankeegg} yields the EGG total energy equation,
