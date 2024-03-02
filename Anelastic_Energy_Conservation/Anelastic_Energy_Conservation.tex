@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 
 % standard packages
-\usepackage{amsmath, bm, empheq, mathrsfs, natbib, cancel}
+\usepackage{amsmath, amssymb,bm, empheq, mathrsfs, natbib, cancel}
 
 % normal margins
 \usepackage[margin=1in]{geometry}
@@ -46,7 +46,7 @@
 	
 	In the original asymptotic expansion of \citet{Ogura1962}, the internal energy equation was replaced by a heat (or entropy) equation for the evolution of potential temperature, \textit{before} non-dimensionalizing the equations. The approach of considering the entropy equation instead of the energy equation before nondimensionalization is repeated in all modern implementations of the anelastic approximation that we are aware of (e.g., \citealt{Gilman1981,Lipps1982,Glatzmaier1984,Lantz1992,Braginsky1995,Lantz1999,Clune1999,Rogers2005,Brown2012,Vasil2013,Wilczyski2022}). The resulting energy equation is also used in all numerical codes we are aware of that utilize the anelastic equations, for example, the {\ash} code \citep{Brun2004}, the \texttt{MagIC} code \citep{Gastine2012}, the {\rayleigh} code \citep{Featherstone2016a,Featherstone2023}, the {\eulag} code \citep{Smolarkiewicz2004}, and the \texttt{Dedalus} code \citep{Burns2020,Brown2020}. 
 	
-	While nondimensionalizing the entropy equation instead of the internal energy equation may at first appear to be an arbitrary (and harmless) choice, we show in the present work that it leads to an asymptotically inconsistent set of equations that do not conserve energy when the background is stably stratified. \citet{Gough1969}, by contrast, took a different approach than \citet{Ogura1962} and performed a formal asymptotic expansion in $\epsilon$ after nondimensionalizing the internal energy equation. We show that this equation set, which we dub the ``Energy-conserving Generalized Gough" (EGG) anelastic equations, conserve energy for arbitrary fluid motions and for all hydrostatic background states (whether stably or unstably stratified).
+	While nondimensionalizing the entropy equation instead of the internal energy equation may at first appear to be an arbitrary (and harmless) choice, we show in the present work that it leads to an asymptotically inconsistent set of equations that do not conserve energy when the background is stably stratified. \citet{Gough1969}, by contrast, took a different approach than \citet{Ogura1962} and performed a formal asymptotic expansion in $\epsilon$ after nondimensionalizing the internal energy equation. We show that this equation set, which we dub the ``Energy-conserving Generalized Gough" (AnEGG) anelastic equations, conserve energy for arbitrary fluid motions and for all hydrostatic background states (whether stably or unstably stratified).
 	
 	\section{The fully compressible equations}
 	We begin by writing down the unapproximated fully compressible equations of motion for a nonrotating nonmagnetic fluid considered by \citet{Gough1969}. These are the continuity equation 
@@ -285,20 +285,20 @@ Evidently from Equation \eqref{eq:deftote}, the internal energy (as far as energ
 %The latter compressive term $(\prsref/\rhoref^2)\rho_1$ is thus eliminated under the anelastic approximation and we instead identify $\tmpref S_1$ with the internal energy. 
 
 \section{The \citet{Gough1969} equations in more familiar form}
-Modern anelastic codes typically write the equations using the perturbed pressure and entropy ($P_1$ and $S_1$) in place the quantities $T_1$, $P_1$, $\rho_1$, and $h_1$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmeanmom}. We can convert using Equations \eqref{eq:aneos} and \eqref{eq:anfirstlaw} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
+Modern anelastic codes typically write the equations using the perturbed pressure and entropy ($P_1$ and $S_1$) in place of the quantities $T_1$, $P_1$, $\rho_1$, and $h_1$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmeanmom}. We can convert using Equations \eqref{eq:aneos} and \eqref{eq:anfirstlaw} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
 \begin{align}\label{eq:anrhsmom}
 	-\nabla P_1 + \rho_1\vecg = -\rhoref\nabla\left(\frac{P_1}{\rhoref}\right) - \deltaref \rhoref \left(\frac{S_1}{\cpref}\right) \vecg + \frac{\deltaref\rhoref}{\cpref} \left(\frac{P_1}{\rhoref}\right)\nabla\sref.
 \end{align}
-In the energy equation, we find
+In the internal energy equation, we find
 \begin{align}\label{eq:anrhsen}
-	-\rhoref\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right) = -\rhoref\tmpref\ugrad S_1 - \rhoref S_1\ugrad\tmpref + \left(\frac{P_1}{\rhoref}\right)\ugrad S_1.
+	-\rhoref\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right) = -\rhoref\tmpref\ugrad S_1 - \rhoref S_1\ugrad\tmpref + \left(\frac{P_1}{\rhoref}\right)\ugrad \rhoref.
 \end{align}
 Using Equations \eqref{eq:aneos}, \eqref{eq:anfirstlaw}, and \eqref{eq:anhydrostatic} as needed, we compute, with some effort,
 \begin{align}\label{eq:anrhsen2}
 	- \rhoref S_1\ugrad\tmpref + \left(\frac{P_1}{\rhoref}\right)\ugrad S_1 -\rho_1\vecu\cdot\vecg = -\rhoref T_1\ugrad\sref + O(\epsilon^2).
 \end{align}
 
-Plugging Equation \eqref{eq:anrhsmom} into Equation \eqref{eq:anmom}, and then plugging Equations \eqref{eq:anenlhs}, \eqref{eq:anrhsen}, and \eqref{eq:anrhsen2} into Equation \eqref{eq:anen}, we find
+Substituting Equation \eqref{eq:anrhsmom} into Equation \eqref{eq:anmom}, and Equations \eqref{eq:anenlhs}, \eqref{eq:anrhsen}, and \eqref{eq:anrhsen2} into Equation \eqref{eq:anen}, we find
 	\begin{align}\label{eq:anmommod}
 		\pderiv{}{t}(\rhoref\vecu)= &-\Div(\rhoref\vecu\vecu) -\rhoref\nabla\left(\frac{P_1}{\rhoref}\right) - \deltaref \rhoref \left(\frac{S_1}{\cpref}\right) \vecg + \underbrace{\frac{\deltaref P_1}{\cpref} \nabla\sref}_{\define \bm{f}_{\rm NLBR}}+\Div \overleftrightarrow{D}\nonumber\\
 		&+[-\nabla\prsref + \rhoref\vecg],
@@ -314,7 +314,7 @@ and
 \end{subequations}
 Finally, the mean energy equation \eqref{eq:anmeanen} becomes
 \begin{align}\label{eq:anmeanen2}
-	\qref-\Div\overline{\vecf} = \rhoref (\overline{T_1\vecu})\dotgrad\sref + \rhoref\tmpref\, \overline{\ugrad S_1}-\overline{D_{ij}\pderiv{u_i}{x_j}}
+	\qref-\Div\overline{\vecf} = \rhoref\tmpref\, \overline{\ugrad S_1}-\overline{D_{ij}\pderiv{u_i}{x_j}} + \rhoref (\overline{T_1\vecu})\dotgrad\sref 
 \end{align}
 %The final terms in brackets in these equations may be dropped without affecting energy conservation, since they do not transport any net energy. However, dropping them still may still makes the equations an asymptotically inconsistent approximation to the true fully compressible motion, and so we retain them.
 
@@ -326,10 +326,10 @@ and the ``non-LBR" heating
 \begin{align}\label{eq:nlbrheat}
 	Q_{\rm NLBR} \define -\rhoref T_1\ugrad\sref.
 \end{align}
-Both these terms vanish for an adiabatic background state (where $\nabla\sref=0$), which is expected for a fully (and sufficiently vigorously) convecting layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use, and its neglect seems to have not been explicitly considered. 
+Both these terms vanish for an adiabatic background state (where $\nabla\sref=0$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use,ts neglect seems to have not been explicitly considered. 
 
 \section{The equivalence of horizontally averaged atmospheres to fixed reference atmospheres}
-In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the perturbations in $S$ and $P$ about this reference state develop small but nonzero horizontally averaged pertrubations. Some codes (e.g., the {\ash} code) alternatively solve for the perturbations (about the horizontal average) directly. In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the RHS's of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the horizontal means of the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
+In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the perturbations in $S$ and $P$ about this reference state develop small but nonzero horizontally averaged pertrubations. Some codes (e.g., the {\ash} code) alternatively solve for the perturbations about the horizontal average directly. In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the RHS's of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the horizontal means of the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
 
 Our approach is to define the horizontally averaged profiles as the sum of the reference-state profile (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
 \begin{align}
@@ -337,11 +337,11 @@ Our approach is to define the horizontally averaged profiles as the sum of the r
 \rhoref=	\rhoref(q,t)  &= \tilde{\rho}(q)  + \hat{\rho}(q,t) ,\\
 	\sref = \sref (q,t) &=  \tilde{S}(q)  + \hat{S}(q,t) ,
 \end{align}
-etc., where we assume (apart from the entropy) that the hatted means are $O(\epsilon)$ compared to the reference-state means. Note that the horizontal mean profiles are now time-dependent. This does not affect the asymptotic expansion leading to Equations%\eqref{eq:an
+etc., where we assume (apart from the entropy) that the hatted means are $O(\epsilon)$ compared to the reference-state means. Note that the horizontal mean profiles are now time-dependent. This does not affect the asymptotic expansion leading to Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, provided the time derivatives of the mean state are the same order as the time derivatives of the deviations [e.g., $\pderivline{\rhoref}{t}=O(\pderivline{\rho_1}{t})$]. Most reference-state profiles are chosen to be time-independent, except for $\tilde{Q}$ and $\tilde{\vecf}$ (see below). 
 
-We also assume that the reference state is hydrostatic,
+We assume that the reference state is chosen to be hydrostatic,
 \begin{align}\label{eq:refhydro}
-	\nabla \tilde{P} = \tilde{\rho}\vecg.
+	\nabla \tilde{P} = \tilde{\rho}\vecg
 \end{align}
 and that it satisfies the first law of thermodynamics for gradients (compare to Equation \eqref{eq:anfirstlaw}),
 \begin{subequations}\label{eq:anfirstlawref}
@@ -354,7 +354,7 @@ We choose the reference heating and conductive profile to satisfy
 \begin{align}\label{eq:dsdt}
 	\tilde{Q} - \Div\tilde{\vecf} \define -\tilde{\rho}\tilde{T}\pderiv{\hat{S}}{t}.
 \end{align}
-Note that this is simply a \textit{definition} for the reference-state term $\tilde{Q}-\Div\tilde{\vecf}$, which can be time-dependent (since it does not appear under the $\pderivline{}{t}$ operator), as long as it is horizontally symmetric and $O(\epsilon)$.
+Note that this is simply a \textit{definition} for the reference-state term $\tilde{Q}-\Div\tilde{\vecf}$, which can be time-dependent, as long as it is horizontally symmetric and $O(\epsilon)$.
 
 We denote the (temporally and horizontally dependent) deviations from the reference state by primes and note that 
 \begin{align}
@@ -373,13 +373,13 @@ The linearized equation of state for the primed quantities is exactly analogous 
 		&= \frac{\tilde{\cpcap} \tilde{T}}{\tilde{\delta}\tilde{\rho}}\left[\frac{P^\prime}{\tilde{\cs^2}}-\rho^\prime\right].
 	\end{align}
 \end{subequations}
-as is the linearized equation of state for the hatted quantities.
+as is the linearized equation of state for the hatted quantities. Note that in Equation \eqref{eq:aneos}, the overbars may be replace by tildes, making Equation \eqref{eq:aneosref} applicable to the ``subscript 1" quantities as well. 
 
 To zeroth order in $\epsilon$, Equation \eqref{eq:ancont} becomes simply
 \begin{align}\label{eq:ancontref}
 	\Div(\tilde{\rho}\vecu)\equiv0.
 \end{align}
-Because the RHS of Equatios \eqref{eq:anmom} is $O(\epsilon)$ compared to the LHS we can write, using Equation \eqref{eq:refhydro},
+Because the RHS of Equations \eqref{eq:anmom} is $O(\epsilon)$ compared to the LHS we can write, using Equation \eqref{eq:refhydro},
 \begin{align}\label{eq:anrhsmomref}
 	[-\nabla \prsref + \rhoref\vecg] &= -\nabla \hat{P} + \hat{\rho}\vecg\nonumber\\
 	&= -\tilde{\rho}\nabla\left(\frac{\hat{P}}{\tilde{\rho}}\right) - \tilde{\delta} \tilde{\rho} \left(\frac{\hat{S}}{\tilde{\cpcap}}\right) \vecg + \frac{\tilde{\delta}\tilde{\rho}}{\tilde{\cpcap}} \left(\frac{\hat{P}}{\tilde{\rho}}\right)\nabla\tilde{S}.
@@ -395,57 +395,57 @@ Plugging Equations \eqref{eq:anrhsmomref} and \eqref{eq:nlbrmom2} into Equation 
 	\text{where now}\five D_{ij}& = \tilde{\mu}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right)\label{eq:anmomrefvisc},
 \end{align}
 \end{subequations}
-In the internal energy equation \eqref{eq:anenmod}, we write 
+%In the internal energy equation \eqref{eq:anenmod}, we write 
 
-
-Equation \eqref{eq:momdensity} can be additionally written
+Using Equation \eqref{eq:nomeanu}, Equation \eqref{eq:momdensity} can be additionally written
   \begin{align}\label{eq:momdensity2}
 \rhoref\vecu + \rho_1\vecu - \overline{\rho_1\vecu} = \tilde{\rho}\vecu + \rho^\prime\vecu - \overline{\rho^\prime\vecu} + O(\epsilon^2).
 \end{align}
 We finally write 
 \begin{align}
-	Q_{\rm NLBR} = \tilde{\rho}T_1\ugrad\tilde{S} + O(\epsilon^2)
+	Q_{\rm NLBR} = -\tilde{\rho}T_1\ugrad\tilde{S} + O(\epsilon^2)
 \end{align}
 and 
 \begin{align}\label{eq:anenrhsfinal}
-	-\rhoref\tmpref \ugrad S_1 - \rhoref\tmpref \ugrad\sref &= -\rhoref\tmpref\ugrad\sref - \rhoref\tmpref\ugrad S^\prime\nonumber\\
+	-\rhoref\tmpref \ugrad S_1 - \rhoref\tmpref \ugrad\sref &= - \rhoref\tmpref\ugrad S^\prime -\rhoref\tmpref\ugrad\tilde{S} \nonumber\\
 	&=-\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{T}(\rhoref \vecu)\cdot\nabla\tilde{S} - \tilde{\rho}\hat{T}\ugrad\tilde{S} + O(\epsilon^2).
 \end{align}
-Plugging in Equations \eqref{eq:dsdt} through \eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} thus yields
+Substituting Equation \eqref{eq:dsdt} and Equations \eqref{eq:momdensity2} through \eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} yields
 \begin{subequations}\label{eq:anenref}
 	\begin{align}
 		\tilde{\rho}\tilde{T}\pderiv{S^\prime}{t}= &-\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{\rho}\tilde{T} \ugrad \tilde{S} - \tilde{\rho} T^\prime\ugrad\tilde{S}+D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime  \nonumber\\
 		& - \tilde{T}(\rho^\prime \vecu-\overline{\rho^\prime\vecu})\cdot\nabla\tilde{S},\label{eq:anenrefmain}\\
-		\where \rho^\prime =& \frac{P^\prime}{\tilde{\cs^2}}-\frac{\tilde{\delta}\tilde{\rho}S ^\prime}{\tilde{\cpcap}}\\
-		\andd T^\prime = & \frac{\tilde{T} S^\prime}{\tilde{\cpcap}} + \frac{\tilde{\delta} P^\prime}{\tilde{\rho}\tilde{\cpcap}}.
+		\where \rho^\prime =& \frac{P^\prime}{\tilde{\cs^2}}-\frac{\tilde{\delta}\tilde{\rho}S ^\prime}{\tilde{\cpcap}},\\
+		 T^\prime = & \frac{\tilde{T} S^\prime}{\tilde{\cpcap}} + \frac{\tilde{\delta} P^\prime}{\tilde{\rho}\tilde{\cpcap}},
 	\end{align}
 \end{subequations}
+and $D_{ij}$ is now given by Equation \eqref{eq:anmomrefvisc}. 
 
-Taking the spherical means of Equations \eqref{eq:anmomref} and \eqref{eq:anenref} and plugging in Equations \eqref{eq:refhydro} and \eqref{eq:dsdt} then recovers the mean momentum and energy equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. The anelastic formulation with fixed reference states (Equations \eqref{eq:ancontref}, \eqref{eq:anmomref} and \eqref{eq:anenref}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}). 
+Taking the horizontal means of Equations \eqref{eq:anmomref} and \eqref{eq:anenref} and then using Equations \eqref{eq:refhydro}, \eqref{eq:dsdt}, and \eqref{eq:anrhsmomref} recovers the mean momentum and energy equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen2}. The anelastic formulation with fixed reference states (Equations \eqref{eq:ancontref}, \eqref{eq:anmomref} and \eqref{eq:anenref}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}). 
 
-\section{The Energy-conserving Generalized Gough (EGG) anelastic approximation}
+\section{The Anelastic Energy-conserving Generalized Gough (AnEGG) approximation}
 To arrive at the final form of an energy-conserving set of anelastic equations, we make one final argument: that the last term in Equation \eqref{eq:anenrefmain} is negligible. We do so because this term has zero horizontal mean and therefore cannot affect the net transport of energy. Furthermore, pointwise it should always be much smaller than the background advection term $-\tilde{\rho}\tilde{T}\ugrad\tilde{S}$, provided $\rho^\prime$ remains $\ll \tilde{\rho}$.
 
-The final equations, representing what we call the Energy-conserving Generalized Gough (EGG) anelastic approximation, are thus
+The final equations, representing what we call the Anelastic Energy-conserving Generalized Gough (AnEGG) approximation, are thus
 \begin{subequations}\label{eq:anegg}
 \begin{empheq}[box=\fbox]{align}
 	\Div(\tilde{\rho}\vecu)&\equiv 0\label{eq:ancontegg},\\
-	\pderiv{}{t}(\tilde{\rho}\vecu)&=-\Div(\tilde{\rho}\vecu\vecu) -\tilde{\rho}\nabla\left(\frac{P^\prime}{\tilde{\rho}}\right) - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \nabla\tilde{S}+\Div \overleftrightarrow{D},\label{eq:anmomegg}\\	
-		\andd \tilde{\rho}\tilde{T}\pderiv{S^\prime}{t}&= -\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{\rho}\tilde{T} \ugrad \tilde{S} -  \left(\frac{\tilde{T} S^\prime}{\tilde{\cpcap}} + \frac{\tilde{\delta} P^\prime}{\tilde{\rho}\tilde{\cpcap}}\right)  \tilde{\rho} \ugrad\tilde{S}\nonumber\\
+	\pderiv{}{t}(\tilde{\rho}\vecu)&=-\Div(\tilde{\rho}\vecu\vecu) -\tilde{\rho}\nabla\left(\frac{P^\prime}{\tilde{\rho}}\right) - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecg \underbrace{+ \frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \nabla\tilde{S}}_{\define \tilde{\bm{f}}_{\rm NLBR}}+\Div \overleftrightarrow{D},\label{eq:anmomegg}\\	
+		\andd \tilde{\rho}\tilde{T}\pderiv{S^\prime}{t}&= -\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{\rho}\tilde{T} \ugrad \tilde{S} \underbrace{ -  \left(\frac{\tilde{T} S^\prime}{\tilde{\cpcap}} + \frac{\tilde{\delta} P^\prime}{\tilde{\rho}\tilde{\cpcap}}\right)  \tilde{\rho} \ugrad\tilde{S} }_{\define \tilde{Q}_{\rm NLBR}} \nonumber\\
 		&\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime,\label{eq:anenegg}
 \end{empheq}
 \end{subequations}
-where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:anmomrefvisc} and it is additionally assumed that the fixed reference state satisfies the hydrostatic condition \eqref{eq:refhydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
+where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:anmomrefvisc}. %and it is additionally assumed that the fixed reference state satisfies the hydrostatic condition \eqref{eq:refhydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
 
-The EGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:anmomegg}, is 
+The AnEGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:anmomegg}, is 
 %\begin{equation}\label{eq:ankeref}
 	\begin{empheq}[box=\fbox]{align}\label{eq:ankeegg}
 	\pderiv{}{t}\left(\frac{1}{2}\tilde{\rho}u^2\right)&=-\Div\left(\frac{1}{2}\tilde{\rho} u^2\vecu \right) - \Div(P^\prime\vecu)  - \tilde{\delta}\tilde{\rho} \left(\frac{S^\prime}{\tilde{\cpcap}}\right) \vecu\cdot \vecg +\frac{\tilde{\delta} P^\prime}{\tilde{\cpcap}} \vecu\cdot \nabla\tilde{S}  + u_i\pderiv{D_{ij}}{x_j},
 	\end{empheq}
 %\end{equation}
-Adding Equations \eqref{eq:anenegg} and \eqref{eq:ankeegg} yields the EGG total energy equation,
+Adding Equations \eqref{eq:anenegg} and \eqref{eq:ankeegg} yields the AnEGG total energy equation,
 \begin{empheq}[box=\fbox]{align}\label{eq:antoteref}
-	\pderiv{}{t}\left[\tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime \right)\right] = &-\Div\left\{\left[\tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime\right) + P^\prime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \tilde{\vecf} + \vecf^\prime \right\} \nonumber\\ &+ Q^\prime -\tilde{\rho}\tilde{T}\ugrad\tilde{S}. 
+	\pderiv{}{t}\left[\tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime \right)\right] = &-\Div\left\{\left[\tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime\right) + P^\prime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf^\prime \right\} + Q^\prime \nonumber\\ & -\tilde{\rho}\tilde{T}\ugrad\tilde{S}. 
 \end{empheq}
 Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:ancontref}), the integration of Equation \eqref{eq:antoteref} yields conservation of total energy,
 \begin{empheq}[box=\fbox]{align}\label{eq:econst}
@@ -467,7 +467,52 @@ in the momentum equation (i.e., not making the LBR approximation) and (2) includ
 \begin{align}\label{eq:nlbrheatref}
 	\tilde{Q}_{\rm NLBR} \define -  \left(\frac{\tilde{T} S^\prime}{\tilde{\cpcap}} + \frac{\tilde{\delta} P^\prime}{\tilde{\rho}\tilde{\cpcap}}\right)  \tilde{\rho} \ugrad\tilde{S}
 \end{align}
-in the internal energy equation. Sufficient conditions for conserving energy will likely rest in the numerical precision with which the EGG equations \eqref{eq:anegg} are actually solved. 
+in the internal energy equation. Alternatively, if the LBR approximation is made, (setting $\tilde{\bm{f}}_{\rm NLBR}\equiv0$ in Equation \eqref{eq:anmomref}), energy can still be conserved if $\tilde{Q}_{\rm NLBR}$ in Equation \eqref{eq:anenref} is replaced by
+\begin{align}\label{eq:lbrheating}
+	\tilde{Q}_{\rm LBR}\define - \left(\frac{\tilde{\rho}\tilde{T}}{\tilde{\cpcap}} \right) S^\prime\ugrad\tilde{S}
+\end{align}
+However, doing this would still yield an asymptotically inconsistent equation set if $|\nabla\tilde{S}|$ is large. 
+
+One slightly surprising result concerns the second law of thermodynamics. In the absence of heat sources or sinks, when the true motion should be adiabatic, Equation \eqref{eq:anenegg} becomes
+\begin{align}\label{eq:dsdtref}
+	\frac{D}{Dt}(\tilde{S} + S^\prime) = \frac{Q_{\rm NLBR}}{\tilde{\rho}\tilde{T}}.
+\end{align}
+Thus, the AnEGG equations do not conserve total entropy for adiabatic motion, violating the second law of thermodynamics if $S^\prime$ is strictly interpreted as the entropy. Apparently making the anelastic approximation allows for the conservation of energy or the second law of thermodynamics to be satisfied, but not both. 
+
+\section{Conditions for anelastic overshoot}
+[THIS SECTION IS A STUB]. What I have so far is that a downflowing plume should have kinetic energy 
+\begin{align}
+	w^2 \sim g_a H_a \left(\frac{S^\prime}{C_{{\rm p}a}}\right) \sim c_{{\rm s}a}^2 \epsilon
+\end{align}
+If it descends into a stable stratification with buoyancy frequency
+\begin{align}
+	N_a^2 =   \frac{g_a}{C_{{\rm p}a}}|\nabla S_a|,
+\end{align}
+where $|\nabla S_a|$ is a typical value for $|\nabla\tilde{S}|$ in the stable layer. At most, the plume should reach a depth $d$ before it decelerates to $w=0$, with $d$ given by
+\begin{align}
+	w^2 \sim \left(\frac{S^\prime}{C_{{\rm p}a}}\right)gd \sim \frac{g_a}{C_{{\rm p}a}}|\nabla S_a| d^2 \sim N_a^2 d^2
+\end{align}
+or 
+\begin{align}
+	d\sim \frac{w}{N_a}. 
+\end{align}
+Thus, $|S^\prime|$ should reach a maximum during overshoot of 
+\begin{align}
+	\max{\left(\frac{S^\prime}{C_{{\rm p}a}}\right)_{\rm stable}} &\sim \left(\frac{|\nabla S_a|}{C_{{\rm p}a}}\right)d \sim \left(\frac{N_a^2}{g_a}\right)\frac{w}{N_a}\nonumber\\
+	&\sim \left(\frac{N_a}{g_a}\right)c_{{\rm s}a} \epsilon^{1/2}\sim \left(\frac{N_a}{c_{{\rm s}a}^2/H_a}\right)c_{{\rm s}a} \epsilon^{1/2} = \left(\frac{N_a}{c_{{\rm s}a}/H_a}\right)\epsilon^{1/2}.
+\end{align}
+We thus expect the thermal perturbations to remain small in the stable layer, provided 
+\begin{subequations}
+\begin{align}
+	\frac{N_a^2}{\omega_{\rm cut}^2} &\lesssim \epsilon,\label{eq:conditionovershoot}\\
+	\where \omega_{\rm ac} &\define \frac{c_{{\rm s}a}}{2H_a}
+\end{align}
+\end{subequations}
+is the acoustic cutoff frequency. 
+
+In the solar radiative zone for example, $\omega_{\rm ac}\sim\sn{3}{-2}\ \rm rad\ s^{-1}$ and $N_a\sim \sn{1.4}{-3}\ \rm rad\ s^{-1}$, so condition \eqref{eq:conditionovershoot} should be satisfied if $\epsilon \sim 10^{-3}$. On the other hand, maybe the scale analysis of \citet{Gough1969} breaks down, since buoyantly decelerated flows (i.e., overshoot and g-modes) may have very different dynamical balances than buoyantly accelerated flows (i.e., convection)? So maybe another expansion is necessary that takes into account not only small thermal perturbations, but anisotropic velocity and length scales. 
+
+%Sufficient conditions for conserving energy will likely rest in the numerical precision with which the AnEGG equations \eqref{eq:anegg} are actually solved. 
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
