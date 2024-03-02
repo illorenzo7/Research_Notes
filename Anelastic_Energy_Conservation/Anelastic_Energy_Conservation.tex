@@ -229,7 +229,7 @@
   \begin{align}\label{eq:anmeanen}
   	\qref - \Div\overline{\vecf} = \rhoref\overline{\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right)} + \vecg\cdot\overline{\rho_1\vecu} - \overline{D_{ij}\pderiv{u_i}{x_j}}
   \end{align}
-   Equations \eqref{eq:ancont}--\eqref{eq:anmeanen} are mathematically equivalent to Equations (4.3)--(4.7) and(4.15)--(4.22) from \citet{Gough1969}.
+   Equations \eqref{eq:ancont}--\eqref{eq:anmeanen} are mathematically equivalent to Equations (4.3)--(4.7) and (4.15)--(4.22) from \citet{Gough1969}.
   
   In each of Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}, each term on the right-hand side (RHS) is $O(\epsilon)$ compared to each term on the LHS. In particular, we can approximate 
   \begin{align}\label{eq:anhydrostatic}
@@ -258,13 +258,31 @@ Because of Equation \eqref{eq:nomeanu}, or more specifically, the condition
 \end{align}
  each of the rightmost terms in brackets in Equation \eqref{eq:antote} cannot transport any net energy across the layer. Note that Equation \eqref{eq:nomeanw} is also a consequence of integrating Equation \eqref{eq:ancont} over volumes bounded by horizontal surfaces, and so the vanishing of the horizontal components of $\overline{\vecu}$ is not strictly necessary for the bracketed terms to conserve energy. 
  
- The internal heating (or cooling) terms $\qref + Q_1$ are assumed ``accounted for," since they represent known physical processes like nuclear burning, Kelvin-Helmholtz contraction, or radiative cooling. Thus, Equation \eqref{eq:antote} shows that the total energy integrated over the volume $V$ of the layer,
-\begin{align}
-	E_{\rm tot} \define \int_V \rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right) dV
+ The internal heating (or cooling) terms $\qref + Q_1$ are assumed ``accounted for," since they represent known physical processes such as nuclear burning, Kelvin-Helmholtz contraction, or radiative cooling. Thus, Equation \eqref{eq:antote} shows that the total energy integrated over the volume $V$ of the layer,
+\begin{align}\label{eq:deftote}
+	E_{\rm tot} \define \int_V \rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right) dV,
 \end{align}
-is conserved, to the extent that the volume-integrated internal heat sources balance the various fluxes (found under the divergence on the RHS of Equation \eqref{eq:antote}) integrated over the boundaries. This conservation holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos} and for arbitrary magnitudes of $|\nabla \sref|$. However, whether the approximation remains \textit{consistent} (i.e., if the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\sref|$.
+is conserved, to the extent that the volume-integrated internal heat sources balance the various fluxes (found under the divergence on the RHS of Equation \eqref{eq:antote}) integrated over the boundaries. This conservation holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos} and for arbitrary magnitudes of $|\nabla \sref|$. However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\sref|$.
 
-Note that from Equation \eqref{eq:linu}, the perturbed anelastic internal energy is $U_1 = \tmpref S_1 + (\prsref/\rhoref^2)\rho_1$. The latter compressive term $(\prsref/\rhoref^2)\rho_1$ is thus eliminated under the anelastic approximation and we instead identify $\tmpref S_1$ with the internal energy. The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see \citealt{Ogura1962}). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
+Note that from Equation \eqref{eq:linu}, the perturbed internal plus potential energy per unit volume is 
+\begin{align}\label{eq:perten1}
+	W_1 &= \overline{U}\rho_1 + \rhoref U_1 + \Phi \rho_1 \nonumber\\
+	&= \rhoref\tmpref S_1 + \left(\overline{U}+\frac{\prsref}{\rhoref}+\Phi\right)\rho_1.
+\end{align}
+
+Evidently from Equation \eqref{eq:deftote}, the internal energy (as far as energy transport is concerned) becomes simply $\rhoref\tmpref S_1$ and the potential energy is eliminated entirely. Both effects are consequences of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. This also has the consequence that $S_1$ should be interpreted as a deviation of internal energy from the mean, rather than as an entropy. 
+
+%For a perfect gas [$U=\cvcap T$ and $P=(\cpcap-\cvcap)\rho T)$, with constant specific heats] with a hydrostatic, adiabatic mean background state satisfying Equations \eqref{eq:anfirstlaw} and \eqref{eq:anhydrostatic}, we have
+%\begin{align}\label{eq:tmppot}
+%	\Phi = -\cpcap \tmpref + K,
+%\end{align}
+%where $K$ is a constant. Equation \eqref{eq:perten1} then becomes
+%\begin{align}\label{eq:perten2}
+%	W_1 = - \frac{\rhoref\Phi}{\cpcap}S_1 + K\frac{P_1}{\cssqref}
+%\end{align}
+ %The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see \citealt{Ogura1962}). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
+
+%The latter compressive term $(\prsref/\rhoref^2)\rho_1$ is thus eliminated under the anelastic approximation and we instead identify $\tmpref S_1$ with the internal energy. 
 
 \section{The \citet{Gough1969} equations in more familiar form}
 Modern anelastic codes typically write the equations using the perturbed pressure and entropy ($P_1$ and $S_1$) in place the quantities $T_1$, $P_1$, $\rho_1$, and $h_1$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmeanmom}. We can convert using Equations \eqref{eq:aneos} and \eqref{eq:anfirstlaw} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
