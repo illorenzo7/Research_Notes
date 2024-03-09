@@ -59,8 +59,8 @@
 	
 	While nondimensionalizing the entropy equation instead of the internal energy equation may at first appear to be an arbitrary (and harmless) choice, we show in the present work that it leads to an asymptotically inconsistent set of equations that do not conserve energy when the background is stably stratified. \citet{Gough1969}, by contrast, took a different approach than \citet{Ogura1962} and performed a formal asymptotic expansion in $\epsilon$ after nondimensionalizing the internal energy equation. We show that this equation set, which we dub the ``Energy-conserving Generalized Gough" (AnEGG) anelastic equations, conserve energy for arbitrary fluid motions and for all hydrostatic background states (whether stably or unstably stratified).
 	
-	\section{The fully compressible equations}
-	We begin by writing down the unapproximated fully compressible equations of motion for a nonrotating nonmagnetic fluid considered by \citet{Gough1969}. These are the continuity equation 
+	\section{The fully compressible fluid equations}
+	We begin by writing down the unapproximated fully compressible equations of motion for a nonrotating nonmagnetic fluid considered by \citet{Gough1969} (see Equations (2.1)--(2.5) from that paper). These are the continuity equation 
 	\begin{align}\label{eq:cont}
 		\pderiv{\rho}{t}=-\Div(\rho\vecu) 
 	\end{align}
@@ -68,7 +68,7 @@
 	\begin{subequations}\label{eq:mom}
 	\begin{align}
 		\pderiv{}{t}(\rho\vecu)&=-\Div(\rho\vecu\vecu) - \nabla P +\rho\vecg +\Div \overleftrightarrow{D},\label{eq:mommain}\\
-		\where D_{ij}& = \mu\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right),\label{eq:momvisc}
+		\where D_{ij}& = \mu\left[\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right],\label{eq:momvisc}
 	\end{align}
 	\end{subequations}
 	the internal energy equation,
@@ -79,15 +79,45 @@
 	\begin{align}\label{eq:eos}
 		U = U(P,T).
 	\end{align}
-	Here, $t$ is the time, the $x_i$ are Cartesian spatial coordinates, $\rho$ is the density, $P$ the pressure, $T$ the temperature, $U$ the internal energy per unit mass, $\mu$ the dynamic viscosity, $\vecg\define -\nabla\Phi$ the graviational acceleration field, $\Phi$ the gravitational potential, $Q$ an internal heat source, and $\vecf$ the combined conductive and radiative heat flux. The gravity $\vecg$ is assumed to point in the vertical direction $\veck$ (either the upward Cartesian direction for a plane-parallel fluid layer or the radial direction for spherical shell). Additionally, $\vecg$ is assumed to depend only on the vertical coordinate $q$ (either the upward Cartesian coordinate $x_3$ or the radial coordinate $r$) and to be time-independent (i.e., self-gravity is ignored). The symbol ``$\leftrightarrow$'' in the viscous stress tensor $\overleftrightarrow{D}$ denotes a second-order tensor, as does the dyadic notation $\vecu\vecu$. The subscripts $i$ and $j$ (taking on the values 1, 2, and 3) denote vector or tensor components in any of the Cartesian coordinate directions.  We use the Einstein summation convention and $\delta_{ij}$ denotes the Kronecker delta. 
+	Here, $t$ is the time, the $x_i$ are Cartesian spatial coordinates, $\rho$ is the density, $P$ the pressure, $T$ the temperature, $U$ the internal energy per unit mass, $\mu$ the dynamic viscosity, $\vecg\define -\nabla\Phi$ the graviational acceleration field, $\Phi$ the gravitational potential, $Q$ an internal heat source, and $\vecf$ the combined conductive and radiative heat flux. The gravity $\vecg$ is assumed to point in the vertical direction $\veck$ (either the upward Cartesian direction for a plane-parallel fluid layer or the radial direction for spherical shell). Additionally, $\vecg$ is assumed to depend only on the vertical coordinate $q$ (either the upward Cartesian coordinate $x_3$ or the radial coordinate $r$) and to be time-independent (i.e., self-gravity is ignored). The symbol ``$\leftrightarrow$'' in the viscous stress tensor $\overleftrightarrow{D}$ denotes a second-order tensor, as does the dyadic notation $\vecu\vecu$. The subscripts $i$ and $j$ (taking on the values 1, 2, and 3) denote vector or tensor components in any of the Cartesian coordinate directions.  We use the Einstein summation convention and $\delta_{ij}$ denotes the Kronecker delta. These equations are not written in the exact form of \citet{Gough1969} and use slightly different notation but are mathematically equivalent. 
 	
-	These equations are not written in the exact form of \citet{Gough1969} (and use slightly different notation) but are mathematically equivalent. Note that the left-hand side (LHS) of Equation \eqref{eq:en} can be written in several other forms which will prove useful: 
-	\begin{subequations}\label{eq:enlhs}
-	\begin{align}
-		\pderiv{}{t}(\rho U) + \Div(\rho U\vecu) + P\Div\vecu &= \rho\matderiv{U} - \frac{P}{\rho}\matderiv{\rho}\\
-		&= \rho\matderiv{h} -\matderiv{P}\\
-		&=\rho T \matderiv{S},
+	An equation for the evolution of kinetic energy can be formed from $\vecu$ dotted into Equation \eqref{eq:mom},
+	\begin{align}\label{eq:ke}
+		\pderiv{}{t}\left(\frac{1}{2}\rho u^2\right) = - \Div\left(\frac{1}{2}\rho u^2\vecu \right) + \ugrad P - \rho\ugrad\Phi+ u_i\pderiv{D_{ij}}{x_j}.
 	\end{align}
+	Equation \eqref{eq:cont} multiplied by $\Phi$ yields an equation for the evolution of potential energy,
+	\begin{align}\label{eq:pote}
+		\pderiv{}{t}(\rho\Phi) &= - \Phi \Div(\rho\vecu).
+	\end{align}
+	Adding Equations \eqref{eq:en}, \eqref{eq:ke}, and \eqref{eq:pote} yields an equation for the evolution of total energy,
+	\begin{align}\label{eq:tote}
+		\pderiv{}{t}\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right)\right] = -\Div\left\{\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right) + P\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf\right\} + Q.
+	\end{align}
+	Integrating Equation \eqref{eq:tote} over the volume $V$ of the fluid layer, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields\footnote{Throughout this work, we use the symbol ``$\define$" for definitions (i.e., for ``is defined to be equal to") and ``$\equiv$" for homogeneous equivalence (i.e., for ``is equal to [some constant value] everywhere and for all time").}
+	\begin{subequations}\label{eq:econst}
+	\begin{align}
+		\etot &\define \int_V \wtot dV \equiv \text{constant},\\
+		\where \wtot &\define \wke + \wint + \wpot,\\
+		\wke &\define \frac{1}{2}\rho u^2,\\
+		\wint &\define \rho U,\\
+		\andd \wpot &\define \rho \Phi. 
+	\end{align}
+	\end{subequations}
+	Equation \eqref{eq:econst} expresses the conservation of total energy that is implicit to the fully compressible fluid equations \eqref{eq:cont}--\eqref{eq:eos}. The volume-integrated total energy is conserved, as long as the total surface fluxes balance the total internal heat sources. Locally, by contrast, fluid parcels can exchange total energy with one another, and the sources of these exchanges are further partitioned into kinetic, internal, and potential energy. 
+	
+	One of the main goals of this work is to elucidate how Equation \eqref{eq:econst} is modified under the anelastic approximation for a general equation of state. It will be found that \textit{only} exchange between internal energy (due to heating) and kinetic energy is possible for an energetically constistent anelastic approximation. Conversion to and from potential energy, by contrast, is fundamentally impossible. This is essentially a new result, which has been overlooked for several decades, mainly because of the pathological coincidence that for a perfect, adiabatically stratified gas, the internal energy due to heating \textit{looks} exactly like a potential energy. For non-adiabatic stratification, or for an imperfect gas, the coincidence no longer holds, and the more general law for conservation of total energy that is derived here should be considered. 
+	
+The other new and related result is that total energy \textit{should} be conserved under the anelastic approximation, for arbitrary fluid motions and equations of state and for all stratifications, even for strongly subadiabatic ones. The anelastic equations of \citet{Gough1969} satisfy such a general conservation law, while modern implementations of the anelastic approximation do not. Thus, a major part of this paper is devoted to translating \citet{Gough1969}'s equations into more conventional notation and elucidating the origin and form of the term (which should be present in the internal energy equation for asymptotic consistency) that is missing from modern anelastic implementations. 
+
+Finally, we note that \citet{Gough1969} assumed zero net vertical transport of mass for the ``true" fully compressible fluid whose motion the anelastic equations are intended to approximate. This may at first seem like an arbitrary choice to make the small-parameter expansion simpler. It is concluded in this work, however, that the ``zero mean mass flux" assumption is in fact fundamental to ensure the energetic consistency of the anelastic approximation. 
+	
+		Note that the left-hand side (LHS) of Equation \eqref{eq:en} can be written in several other forms which will prove useful: 
+	\begin{subequations}\label{eq:enlhs}
+		\begin{align}
+			\pderiv{}{t}(\rho U) + \Div(\rho U\vecu) + P\Div\vecu &= \rho\matderiv{U} - \frac{P}{\rho}\matderiv{\rho}\\
+			&= \rho\matderiv{h} -\matderiv{P}\\
+			&=\rho T \matderiv{S},
+		\end{align}
 	\end{subequations}
 	where 
 	\begin{align}\label{eq:matderiv}
@@ -101,7 +131,7 @@
 	\begin{align}\label{eq:entropy}
 		S = S(P,T)
 	\end{align}
-	is the specific entropy. Throughout this work, we use the symbol ``$\define$" for definitions (i.e., for ``is defined to be equal to") and ``$\equiv$" for homogeneous equivalence (i.e., for ``is equal to [some constant value] everywhere and for all time"). 
+	is the specific entropy. 
 	
 	It will also be helpful to define the following fluid properties associated with the generalized equations of state \eqref{eq:eos} and \eqref{eq:entropy}: the specific heat at constant pressure, 
 	\begin{align}\label{eq:cp}
@@ -117,37 +147,14 @@
 	\end{align}
 	The first law of thermodynamics takes the following forms:
 	\begin{subequations}\label{eq:firstlaw}
-	\begin{align}
-		TdS &= dU - \frac{P}{\rho^2}d\rho \\
-		&= dh - \frac{dP}{\rho}\\
-		&= \cpcap dT - \frac{\delta}{\rho}dP\\
-		&=\frac{\cpcap T}{\rho\delta}\left[\frac{dP}{\cs^2}-d\rho\right].
-	\end{align}
+		\begin{align}
+			TdS &= dU - \frac{P}{\rho^2}d\rho \\
+			&= dh - \frac{dP}{\rho}\\
+			&= \cpcap dT - \frac{\delta}{\rho}dP\\
+			&=\frac{\cpcap T}{\rho\delta}\left[\frac{dP}{\cs^2}-d\rho\right].
+		\end{align}
 	\end{subequations}
 	
-	An equation for the evolution of kinetic energy can be formed from $\vecu$ dotted into Equation \eqref{eq:mom},
-	\begin{align}\label{eq:ke}
-		\pderiv{}{t}\left(\frac{1}{2}\rho u^2\right) = - \Div\left(\frac{1}{2}\rho u^2\vecu \right) + \ugrad P - \rho\ugrad\Phi+ u_i\pderiv{D_{ij}}{x_j}.
-	\end{align}
-	Equation \eqref{eq:cont} multiplied by $\Phi$ yields an equation for the evolution of potential energy,
-	\begin{align}\label{eq:pote}
-		\pderiv{}{t}(\rho\Phi) &= - \Phi \Div(\rho\vecu).
-	\end{align}
-	Adding Equations \eqref{eq:en}, \eqref{eq:ke}, and \eqref{eq:pote} yields an equation for the evolution of total energy,
-	\begin{align}\label{eq:tote}
-		\pderiv{}{t}\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right)\right] = -\Div\left\{\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right) + P\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf\right\} + Q.
-	\end{align}
-	Integrating Equation \eqref{eq:tote} over the volume $V$ of the fluid layer, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
-	\begin{subequations}\label{eq:econst}
-	\begin{align}
-		\etot &\define \int_V \wtot dV \equiv \text{constant},\\
-		\where \wtot &\define \wke + \wint + \wpot,\\
-		\wke &\define \frac{1}{2}\rho u^2,\\
-		\wint &\define \rho U,\\
-		\andd \wpot &\define \rho \Phi. 
-	\end{align}
-	\end{subequations}
-	Equation \eqref{eq:econst} 
 	\section{The anelastic approximation of \citet{Gough1969}}
 	We will not repeat the full asymptotic expansion in $\epsilon$ of Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} here. Instead, we reiterate the salient assumptions in the case where the horizontally averaged background atmosphere is time-independent and the layer depth is thicker than the typical pressure scale height.\footnote{\citet{Gough1969} also considers thin layers, in which the anelastic equations become the Boussinesq equations, and time-dependent (moving) background atmospheres. Note that the assumption of time-independence can be relaxed slightly without affecting the asymptotics, as we discuss below.} The main assumption is that the thermodynamic perturbations from the horizontally averaged background state are small, e.g.,
 	\begin{align}\label{eq:linearthermo}
