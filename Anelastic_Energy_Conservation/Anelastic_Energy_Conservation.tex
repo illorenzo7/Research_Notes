@@ -27,7 +27,7 @@
 \newcommand{\vecf}{\bm{F}}
 \newcommand{\veck}{\hat{\bm{k}}}
 
-\newcommand{\wint}{W^\prime_{\rm internal}}
+\newcommand{\wheat}{W^\prime_{\rm heat}}
 \newcommand{\wcomp}{W^\prime_{\rm compression}}
 \newcommand{\wpot}{W^\prime_{\rm potential}}
 \newcommand{\welast}{W^\prime_{\rm elastic}}
@@ -430,10 +430,14 @@ Adding Equations \eqref{eq:anenegg} and \eqref{eq:ankeegg} yields the AnEGG tota
 	\pderiv{}{t}\left[\rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime \right)\right] = &-\Div\left\{\left[\rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime\right) + \prsprime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf^\prime \right\} + Q^\prime \nonumber\\ & -\rhotilde\tilde{T}\ugrad\tilde{S}. 
 \end{empheq}
 Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:ancontref}), the integration of Equation \eqref{eq:antoteref} yields conservation of total energy,
+
+\begin{subequations}
 \begin{empheq}[box=\fbox]{align}\label{eq:econst}
-\tilde{E}_{\rm tot} \define \int_V \rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime\right) dV = \text{constant},
+E_{\rm tot} &\define \int_V W_{\rm tot} dV = \text{constant},\\
+\where W_{\rm tot} &\define \rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime\right)
 \end{empheq}
-which mathematically holds for arbitrary fluid motion obeying Equations \eqref{eq:anegg} and for all magnitudes of $|\nabla\entrover|$. 
+\end{subequations}
+is the total energy density per unit volume. This conservation law holds for arbitrary fluid motions obeying Equations \eqref{eq:anegg} and for all magnitudes of $|\nabla\entrover|$. 
 
 Note that in practice when simulating stiff systems (large $|\nabla\tilde{S}|$) numerically (e.g., \citealt{Guerrero2016a,Matilsky2022,Matilsky2024}), the term 
 \begin{align}
@@ -465,19 +469,19 @@ Thus, the AnEGG equations do not conserve total entropy for adiabatic motion, vi
 From Equation \eqref{eq:linuref}, the primed (i.e., perturbed from the reference state) internal plus potential energy per unit volume is 
 \begin{align}\label{eq:perten1}
 	W^\prime &= \tilde{U}\rhoprime + \rhotilde U^\prime + \Phi \rhoprime \nonumber\\
-	&= \underbrace{\rhotilde\tilde{T} \entrprime}_{\define \wint} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime}_{\define\wcomp}.
+	&= \underbrace{\rhotilde\tilde{T} \entrprime}_{\define \wheat} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime}_{\define\wcomp}.
 \end{align}
 
-Reexamining Equation \eqref{eq:linuref}, which is really just an expression of the first law of thermodynamics (which states that changes in the internal energy of fluid parcels come from the sum of external heating and pressure work done by the environment during compression), it is clear that \textit{only} changes in internal energy from heat sources enter into the total energy budget of Equation \eqref{eq:econst}. The changes in internal energy from density variations, $\intetilde\rhoprime$; the pressure work, $\prstilde(\rhoprime/\rhotilde)$; and the changes in potential energy, $\Phi\rhoprime$; are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we write
+Equation \eqref{eq:linuref} is really an expression of the first law of thermodynamics, which states that changes in the internal energy of fluid parcels come from the sum of external heating and pressure work done by the environment during compression. Comparing to Equation \eqref{eq:econst}, it is clear that \textit{only} changes in internal energy from heat sources can effect the total energy. The changes in internal energy from density variations ($\intetilde\rhoprime$) the pressure work, $\prstilde(\rhoprime/\rhotilde)$; and the changes in potential energy, $\Phi\rhoprime$; are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we write
 \begin{subequations}\label{eq:perten2}
 	\begin{align}
-		W^\prime &= \wint + \wcomp,\\
-		\where \wint&\define \rhotilde\tmptilde \entrprime\\
+		W^\prime &= \wheat + \wcomp,\\
+		\where \wheat&\define \rhotilde\tmptilde \entrprime\\
 		\andd \wcomp &\define \left(\intetilde+\frac{\prstilde}{\rhotilde}+\Phi\right)\rhoprime
 	\end{align}
 \end{subequations}
-and note that 
 
+We note that
 \begin{align}\label{eq:wcomp0}
 	\wcomp\equiv0\five\text{under the anelastic approximation},
 \end{align}
