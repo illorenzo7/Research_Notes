@@ -27,10 +27,21 @@
 \newcommand{\vecf}{\bm{F}}
 \newcommand{\veck}{\hat{\bm{k}}}
 
-\newcommand{\wheat}{W^\prime_{\rm heat}}
-\newcommand{\wcomp}{W^\prime_{\rm compression}}
-\newcommand{\wpot}{W^\prime_{\rm potential}}
-\newcommand{\welast}{W^\prime_{\rm elastic}}
+% total energies and energy densities
+\newcommand{\etot}{E_{\rm tot}}
+
+\newcommand{\wtot}{W_{\rm tot}}
+\newcommand{\wke}{W_{\rm KE}}
+\newcommand{\wint}{W_{\rm int}}
+\newcommand{\wpot}{W_{\rm pot}}
+
+\newcommand{\wptot}{W^\prime_{\rm tot}}
+\newcommand{\wpke}{W^\prime_{\rm KE}}
+\newcommand{\wpheat}{W^\prime_{\rm heat}}
+\newcommand{\wpcomp}{W^\prime_{\rm comp}}
+\newcommand{\wppot}{W^\prime_{\rm pot}}
+\newcommand{\wpelast}{W^\prime_{\rm elast}}
+
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
@@ -68,7 +79,7 @@
 	\begin{align}\label{eq:eos}
 		U = U(P,T).
 	\end{align}
-	Here, $t$ is the time, the $x_i$ are Cartesian spatial coordinates, $\rho$ is the density, $P$ the pressure, $T$ the temperature, $U$ the internal energy per unit mass, $\mu$ the dynamic viscosity, $\vecg\define -\nabla\Phi$ the graviational acceleration field, $\Phi$ the gravitational potential, $Q$ an internal heat source, and $\vecf$ the combined conductive and radiative heat flux. The gravity $\vecg$ is assumed to point in the vertical direction $\veck$ (either the upward Cartesian direction for a plane-parallel fluid layer or the radial direction for spherical shell). Additionally, $\vecg$ is assumed to depend only on the vertical coordinate $q$ (either the upward Cartesian coordinate $x_3$ or the radial coordinate $r$) and to be time-independent (i.e., self-gravity is ignored). The symbol ``$\leftrightarrow$'' in the viscous stress tensor $\overleftrightarrow{D}$ denotes a second-order tensor, as does the dyadic notation $\vecu\vecu$. The subscripts $i$ and $j$ (taking the values 1,2,3 ) denote vector or tensor components in any of the Cartesian spatial directions.  We use the Einstein summation convention and $\delta_{ij}$ denotes the Kronecker delta. 
+	Here, $t$ is the time, the $x_i$ are Cartesian spatial coordinates, $\rho$ is the density, $P$ the pressure, $T$ the temperature, $U$ the internal energy per unit mass, $\mu$ the dynamic viscosity, $\vecg\define -\nabla\Phi$ the graviational acceleration field, $\Phi$ the gravitational potential, $Q$ an internal heat source, and $\vecf$ the combined conductive and radiative heat flux. The gravity $\vecg$ is assumed to point in the vertical direction $\veck$ (either the upward Cartesian direction for a plane-parallel fluid layer or the radial direction for spherical shell). Additionally, $\vecg$ is assumed to depend only on the vertical coordinate $q$ (either the upward Cartesian coordinate $x_3$ or the radial coordinate $r$) and to be time-independent (i.e., self-gravity is ignored). The symbol ``$\leftrightarrow$'' in the viscous stress tensor $\overleftrightarrow{D}$ denotes a second-order tensor, as does the dyadic notation $\vecu\vecu$. The subscripts $i$ and $j$ (taking on the values 1, 2, and 3) denote vector or tensor components in any of the Cartesian coordinate directions.  We use the Einstein summation convention and $\delta_{ij}$ denotes the Kronecker delta. 
 	
 	These equations are not written in the exact form of \citet{Gough1969} (and use slightly different notation) but are mathematically equivalent. Note that the left-hand side (LHS) of Equation \eqref{eq:en} can be written in several other forms which will prove useful: 
 	\begin{subequations}\label{eq:enlhs}
@@ -90,7 +101,7 @@
 	\begin{align}\label{eq:entropy}
 		S = S(P,T)
 	\end{align}
-	is the specific entropy. 
+	is the specific entropy. Throughout this work, we use the symbol ``$\define$" for definitions (i.e., for ``is defined to be equal to") and ``$\equiv$" for homogeneous equivalence (i.e., for ``is equal to [some constant value] everywhere and for all time"). 
 	
 	It will also be helpful to define the following fluid properties associated with the generalized equations of state \eqref{eq:eos} and \eqref{eq:entropy}: the specific heat at constant pressure, 
 	\begin{align}\label{eq:cp}
@@ -126,6 +137,17 @@
 	\begin{align}\label{eq:tote}
 		\pderiv{}{t}\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right)\right] = -\Div\left\{\left[\rho\left(\frac{1}{2} u^2 + U + \Phi\right) + P\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf\right\} + Q.
 	\end{align}
+	Integrating Equation \eqref{eq:tote} over the volume $V$ of the fluid layer, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
+	\begin{subequations}\label{eq:econst}
+	\begin{align}
+		\etot &\define \int_V \wtot dV \equiv \text{constant},\\
+		\where \wtot &\define \wke + \wint + \wpot,\\
+		\wke &\define \frac{1}{2}\rho u^2,\\
+		\wint &\define \rho U,\\
+		\andd \wpot &\define \rho \Phi. 
+	\end{align}
+	\end{subequations}
+	Equation \eqref{eq:econst} 
 	\section{The anelastic approximation of \citet{Gough1969}}
 	We will not repeat the full asymptotic expansion in $\epsilon$ of Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} here. Instead, we reiterate the salient assumptions in the case where the horizontally averaged background atmosphere is time-independent and the layer depth is thicker than the typical pressure scale height.\footnote{\citet{Gough1969} also considers thin layers, in which the anelastic equations become the Boussinesq equations, and time-dependent (moving) background atmospheres. Note that the assumption of time-independence can be relaxed slightly without affecting the asymptotics, as we discuss below.} The main assumption is that the thermodynamic perturbations from the horizontally averaged background state are small, e.g.,
 	\begin{align}\label{eq:linearthermo}
@@ -431,8 +453,8 @@ Adding Equations \eqref{eq:anenegg} and \eqref{eq:ankeegg} yields the AnEGG tota
 \end{empheq}
 Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:ancontref}), the integration of Equation \eqref{eq:antoteref} yields conservation of total energy,
 
-\begin{subequations}
-\begin{empheq}[box=\fbox]{align}\label{eq:econst}
+\begin{subequations}\label{eq:anrefeconst}
+\begin{empheq}[box=\fbox]{align}
 E_{\rm tot} &\define \int_V W_{\rm tot} dV = \text{constant},\\
 \where W_{\rm tot} &\define \rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime\right)
 \end{empheq}
@@ -469,21 +491,21 @@ Thus, the AnEGG equations do not conserve total entropy for adiabatic motion, vi
 From Equation \eqref{eq:linuref}, the primed (i.e., perturbed from the reference state) internal plus potential energy per unit volume is 
 \begin{align}\label{eq:perten1}
 	W^\prime &= \tilde{U}\rhoprime + \rhotilde U^\prime + \Phi \rhoprime \nonumber\\
-	&= \underbrace{\rhotilde\tilde{T} \entrprime}_{\define \wheat} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime}_{\define\wcomp}.
+	&= \underbrace{\rhotilde\tilde{T} \entrprime}_{\define \wpheat} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime}_{\define\wpcomp}.
 \end{align}
 
 Equation \eqref{eq:linuref} is really an expression of the first law of thermodynamics, which states that changes in the internal energy of fluid parcels come from the sum of external heating and pressure work done by the environment during compression. Comparing to Equation \eqref{eq:econst}, it is clear that \textit{only} changes in internal energy from heat sources can effect the total energy. The changes in internal energy from density variations ($\intetilde\rhoprime$) the pressure work, $\prstilde(\rhoprime/\rhotilde)$; and the changes in potential energy, $\Phi\rhoprime$; are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we write
 \begin{subequations}\label{eq:perten2}
 	\begin{align}
-		W^\prime &= \wheat + \wcomp,\\
-		\where \wheat&\define \rhotilde\tmptilde \entrprime\\
-		\andd \wcomp &\define \left(\intetilde+\frac{\prstilde}{\rhotilde}+\Phi\right)\rhoprime
+		W^\prime &= \wpheat + \wpcomp,\\
+		\where \wpheat&\define \rhotilde\tmptilde \entrprime\\
+		\andd \wpcomp &\define \left(\intetilde+\frac{\prstilde}{\rhotilde}+\Phi\right)\rhoprime
 	\end{align}
 \end{subequations}
 
 We note that
 \begin{align}\label{eq:wcomp0}
-	\wcomp\equiv0\five\text{under the anelastic approximation},
+	\wpcomp\equiv0\five\text{under the anelastic approximation},
 \end{align}
 i.e., \textit{no} compression effects can alter the total energy of the fluid at a particular vertical level.
 
