@@ -76,6 +76,17 @@
 % may want to append this
 \newcommand{\ofr}{(r)}
 
+% reference-state constantsF_{\rm nr}
+\newcommand{\cv}{c_{\rm{v}}}
+\newcommand{\cp}{c_{\rm{p}}}
+\newcommand{\cpcap}{C_{\rm{p}}}
+\newcommand{\cvcap}{C_{\rm{v}}}
+\newcommand{\cs}{c_{\rm s}}
+\newcommand{\gasconst}{\mathcal{R}}
+\newcommand{\gammaone}{\Gamma_1}
+\newcommand{\omref}{\Omega_0}
+\newcommand{\omrefvec}{\bm{\Omega}_0}
+
 % total thermal variables (may wish to switch this stuff around later--I've always hated this notation of "no subscripts" = perturbation
 \newcommand{\tot}{_{\rm{tot}}}
 \newcommand{\rhotot}{\rho\tot}
@@ -85,18 +96,67 @@
 \newcommand{\dsdrtot}{\frac{dS\tot}{dr}}
 \newcommand{\dsdrtotline}{dS\tot/dr}
 
-% reference state
-\newcommand{\rhoref}{\overline{\rho}}
-\newcommand{\tmpref}{\overline{T}}
-\newcommand{\prsref}{\overline{P}}
-\newcommand{\sref}{\overline{S}}
-\newcommand{\gref}{\overline{g}}
-\newcommand{\nuref}{\overline{\nu}}
-\newcommand{\kapparef}{\overline{\kappa}}
-\newcommand{\etaref}{\overline{\eta}}
-\newcommand{\nsqref}{\overline{N^2}}
-\newcommand{\qref}{\overline{Q}}
-\newcommand{\cref}{\overline{C}}
+% reference or mean state
+\newcommand{\rhoover}{\overline{\rho}}
+\newcommand{\tmpover}{\overline{T}}
+\newcommand{\prsover}{\overline{P}}
+\newcommand{\entrover}{\overline{S}}
+\newcommand{\inteover}{\overline{U}}
+\newcommand{\enthover}{\overline{h}}
+\newcommand{\heatover}{\overline{Q}}
+\newcommand{\coolover}{\overline{C}}
+\newcommand{\nsqover}{\overline{N^2}}
+\newcommand{\gover}{\overline{g}}
+\newcommand{\nuover}{\overline{\nu}}
+\newcommand{\kappaover}{\overline{\kappa}}
+\newcommand{\etaover}{\overline{\eta}}
+\newcommand{\muover}{\overline{\mu}}
+\newcommand{\deltaover}{\overline{\delta}}
+\newcommand{\cpover}{\overline{\cpcap}}
+\newcommand{\cssqover}{\overline{\cs^2}}
+
+\newcommand{\rhotilde}{\tilde{\rho}}
+\newcommand{\tmptilde}{\tilde{T}}
+\newcommand{\prstilde}{\tilde{P}}
+\newcommand{\entrtilde}{\tilde{S}}
+\newcommand{\intetilde}{\tilde{U}}
+\newcommand{\enthtilde}{\tilde{h}}
+\newcommand{\heattilde}{\tilde{Q}}
+\newcommand{\cooltilde}{\tilde{C}}
+\newcommand{\nsqtilde}{\tilde{N^2}}
+\newcommand{\gtilde}{\tilde{g}}
+\newcommand{\nutilde}{\tilde{\nu}}
+\newcommand{\kappatilde}{\tilde{\kappa}}
+\newcommand{\etatilde}{\tilde{\eta}}
+\newcommand{\mutilde}{\tilde{\mu}}
+\newcommand{\deltatilde}{\tilde{\delta}}
+\newcommand{\cptilde}{\tilde{\cpcap}}
+\newcommand{\cssqtilde}{\tilde{\cs^2}}
+
+% perturbations from reference state
+\newcommand{\rhoprime}{\rho^\prime}
+\newcommand{\tmpprime}{T^\prime}
+\newcommand{\prsprime}{P^\prime}
+\newcommand{\entrprime}{S^\prime}
+\newcommand{\inteprime}{\U^\prime}
+\newcommand{\enthprime}{h^\prime}
+
+\newcommand{\rhohat}{\hat{\rho}}
+\newcommand{\tmphat}{\hat{T}}
+\newcommand{\prshat}{\hat{P}}
+\newcommand{\entrhat}{\hat{S}}
+\newcommand{\intehat}{\hat{U}}
+\newcommand{\enthhat}{\hat{h}}
+
+\newcommand{\rhoone}{\rho_1}
+\newcommand{\tmpone}{T_1}
+\newcommand{\prsone}{P_1}
+\newcommand{\entrone}{S_1}
+\newcommand{\inteone}{U_1}
+\newcommand{\enthone}{h_1}
+
+\newcommand{\pomega}{\varpi}
+
 \newcommand{\fluxnr}{\overline{F_{\rm nr}}}
 \newcommand{\fluxnrtilde}{\widetilde{F_{\rm nr}}}
 
@@ -122,24 +182,6 @@
 
 \newcommand{\hrho}{H_\rho}
 \newcommand{\hprs}{H_{\rm{p}}}
-
-% reference-state constantsF_{\rm nr}
-\newcommand{\cv}{c_{\rm{v}}}
-\newcommand{\cp}{c_{\rm{p}}}
-\newcommand{\cpcap}{C_{\rm{p}}}
-\newcommand{\cvcap}{C_{\rm{v}}}
-\newcommand{\cs}{c_{\rm s}}
-\newcommand{\gasconst}{\mathcal{R}}
-\newcommand{\gammaone}{\Gamma_1}
-\newcommand{\omref}{\Omega_0}
-\newcommand{\omrefvec}{\bm{\Omega}_0}
-
-% perturbations from reference state
-\newcommand{\rhopert}{\rho}
-\newcommand{\tmppert}{T}
-\newcommand{\prspert}{P}
-\newcommand{\spert}{S}
-\newcommand{\pomega}{\varpi}
 
 % FLUID VARIABLES
 

@@ -26,11 +26,7 @@
 \newcommand{\uperp}{\vecu_\perp}
 \newcommand{\vecf}{\bm{F}}
 \newcommand{\veck}{\hat{\bm{k}}}
-\newcommand{\muref}{\overline{\mu}}
-\newcommand{\deltaref}{\overline{\delta}}
-\newcommand{\cpref}{\overline{\cpcap}}
-\newcommand{\cssqref}{\overline{\cs^2}}
-\newcommand{\subref}{_{\rm ref}}
+
 \newcommand{\wint}{(W_1)_{\rm internal}}
 \newcommand{\wcomp}{(W_1)_{\rm compression}}
 \newcommand{\wpot}{(W_1)_{\rm potential}}
@@ -44,7 +40,7 @@
 	\section{Introduction}
 	Abstract: When acoustic oscillations are believed to be irrelevant to the dynamics of a fluid, it is useful to employ simplifying approximations to the equations of motion. The two most common of these (which are usually used to treat convection problems) are the Boussinesq approximation (when the background density does not significantly vary across the fluid layer) and the anelastic approximation (when the background density does vary significantly). There are many distinct forms of the anelastic approximation in the literature, and it has often been remarked that they do not properly conserve energy when the fluid is stable to convection. Here we show that the anelastic equations derived by Gough (1969) in fact do conserve energy for arbitrary motions of the fluid, even for strongly stratified background stratification. The key properties of these equations that allow them to conserve energy are (1) the absence of the Lantz-Braginsky-Roberts (LBR) approximation in the momentum equation and (2) the inclusion of a historically neglected term in the internal energy equation. These two properties allow the proper conversion between kinetic and internal energy at the correct order of the formal asymptotic expansion of the equations. We show that the scaling analysis of Gough (1969), which implicitly assumed a single typical value of the background entropy gradient, can be valid even for convective overshoot, where the entropy gradient changes from slightly unstable in the convecting region to stable (sometimes strongly so) in the overshoot region. The requirement for the anelastic equations to be valid for convective overshoot is that the buoyancy frequency be significantly less than the acoustic cutoff frequency. 
 	\\
-	%(i.e., $\Div(\rhoref\vecu)\equiv0$, where $\rhoref$ is the background density and $\vecu$ the fluid velocity; this takes the place of the $\Div\vecu=0$ condition from the Boussinesq approximation)
+	%(i.e., $\Div(\overline{\rho}\vecu)\equiv0$, where $\overline{\rho}$ is the background density and $\vecu$ the fluid velocity; this takes the place of the $\Div\vecu=0$ condition from the Boussinesq approximation)
 	
 	The anelastic equations consist of an approximation to the continuity and momentum equations, originally derived by assuming small thermal perturbations about a nearly adiabatically stratified hydrostatic reference atmosphere \citep{Batchelor1953,Charney1960}. The thermodynamics of the problem thus become ``linear," in the sense that products of thermodynamic variables reduce to linear expressions in the first-order perturbations. The two key consequences of linearized thermodynamics are divergenceless mass flux and the first-order buoyancy force (associated with the first-order perturbed density and pressure) being the primary driver of the flow. \citet{Ogura1962} formalized the approximation by expanding the fluid equations in a small parameter $\epsilon$, representing the relative variation of potential temperature across the fluid layer, and hence the relative magnitude of the thermal perturbations. They recovered the equations of \citet{Batchelor1953} and \citet{Charney1960} and showed an assumption about the \textit{time scale} of the motion was necessary, in addition to the assumption of small thermal perturbations. Namely, the dynamical time scale of the buoyantly driven flows must be $O(\epsilon^{-1/2})$ times \textit{larger} than the sound crossing time of the region. Sound waves, which imply rapid temporal variations on the order of the sound crossing time, are thus absent from the anelastic equations, making them ideal for numerical integration, where large time steps are required to capture significant evolution of the system. 
 	
@@ -133,12 +129,12 @@
 	\section{The anelastic approximation of \citet{Gough1969}}
 	We will not repeat the full asymptotic expansion in $\epsilon$ of Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} here. Instead, we reiterate the salient assumptions in the case where the horizontally averaged background atmosphere is time-independent and the layer depth is thicker than the typical pressure scale height.\footnote{\citet{Gough1969} also considers thin layers, in which the anelastic equations become the Boussinesq equations, and time-dependent (moving) background atmospheres. Note that the assumption of time-independence can be relaxed slightly without affecting the asymptotics, as we discuss below.} The main assumption is that the thermodynamic perturbations from the horizontally averaged background state are small, e.g.,
 	\begin{align}\label{eq:linearthermo}
-		\rho = \rhoref(q) + \rho_1(x_i,t)\five &\with \rho_1/\rhoref=O(\epsilon)\ll 1,\\
-		P = \prsref(q) + P_1(x_i,t)\five &\with P_1/\prsref=O(\epsilon)\ll1 \nonumber,
+		\rho = \overline{\rho}(q) + \rho_1(x_i,t)\five &\with \rho_1/\overline{\rho}=O(\epsilon)\ll 1,\\
+		P = \prsover(q) + P_1(x_i,t)\five &\with P_1/\prsover=O(\epsilon)\ll1 \nonumber,
 	\end{align} 
-	and similarly for $T$, $U$, $h$, $\cpcap$, $\mu$, $\delta$, $\cs^2$, $\vecf$, and $Q$. Here, the overbars denote horizontal averages and the ``1" subscripts denote the perturbations about this average. Note that it is \textit{not} correct to write ``$S=\overline{S}(q)+S_1(x_i,t)$ with $S_1/\sref=O(\epsilon)$." The fully compressible equations of motion contain only differences in entropy and so no meaningful absolute value of $\sref$ can be defined. Instead, we must write
+	and similarly for $T$, $U$, $h$, $\cpcap$, $\mu$, $\delta$, $\cs^2$, $\vecf$, and $Q$. Here, the overbars denote horizontal averages and the ``1" subscripts denote the perturbations about this average. Note that it is \textit{not} correct to write ``$S=\overline{S}(q)+S_1(x_i,t)$ with $S_1/\entrover=O(\epsilon)$." The fully compressible equations of motion contain only differences in entropy and so no meaningful absolute value of $\entrover$ can be defined. Instead, we must write
 	\begin{align}\label{eq:linearent}
-	S = \sref(q) + S_1(x_i,t) \five &\with S_1/\cpref=O(\epsilon)\ll 1.
+	S = \entrover(q) + S_1(x_i,t) \five &\with S_1/\cpover=O(\epsilon)\ll 1.
 	\end{align} 
 	The second assumption is that the coordinate system can be chosen such that there is no mass flux across any horizontal surface, i.e.,
 	\begin{align}\label{eq:nomassflux}
@@ -156,18 +152,18 @@
 	\end{align}
 	Thus, the characteristic time scale is $O(\epsilon^{-1/2})$ times longer than the time it takes a sound wave to cross a pressure scale height. 
 	
-	Finally, the vertical convective heat flux, which maximally could transport an energy flux of order $\rhoref \tmpref w \Delta\sref$, where 
+	Finally, the vertical convective heat flux, which maximally could transport an energy flux of order $\overline{\rho} \tmpover w \Delta\entrover$, where 
 	\begin{align}\label{eq:defw}
 		w\define\veck\cdot\vecu
-	\end{align} is the vertical velocity and $\Delta \sref $ is the total drop in background entropy across the convecting layer, is assumed to be limited primarily by the thermal diffusion $\vecf$. This will be true if the conductive heating $-\Div \vecf$ in Equation \eqref{eq:en} is at at least as large as the viscous and internal heatings. In the case of negligible heatings (high Rayleigh number), one expects
+	\end{align} is the vertical velocity and $\Delta \entrover $ is the total drop in background entropy across the convecting layer, is assumed to be limited primarily by the thermal diffusion $\vecf$. This will be true if the conductive heating $-\Div \vecf$ in Equation \eqref{eq:en} is at at least as large as the viscous and internal heatings. In the case of negligible heatings (high Rayleigh number), one expects
 	\begin{align}
-		\frac{\Delta\sref}{C_{{\rm p}a}} = O(\epsilon),
+		\frac{\Delta\entrover}{C_{{\rm p}a}} = O(\epsilon),
 	\end{align}
 	i.e., the convecting layer should be nearly adiabatically stratified for vigorous convection. 
 	
-	One consequence of Equation \eqref{eq:nomassflux} is that the horizontally averaged velocity $\overline{\vecu}$ is $O(\epsilon)$ \textit{smaller} than the perturbed velocity $\vecu_1$. For the total mass flux (or equivalently, momentum density), $\bm{m}\define \rho\vecu=(\rhoref+\rho_1)(\overline{\vecu}+\vecu_1)$, we can thus write
+	One consequence of Equation \eqref{eq:nomassflux} is that the horizontally averaged velocity $\overline{\vecu}$ is $O(\epsilon)$ \textit{smaller} than the perturbed velocity $\vecu_1$. For the total mass flux (or equivalently, momentum density), $\bm{m}\define \rho\vecu=(\overline{\rho}+\rho_1)(\overline{\vecu}+\vecu_1)$, we can thus write
 		\begin{align}\label{eq:momdensityorig}
-		\bm{m} = \bm{m}-\overline{\bm{m}}=\rhoref\vecu_1 + \rho_1\vecu_1 - \overline{\rho_1\vecu_1} + O(\epsilon^2).
+		\bm{m} = \bm{m}-\overline{\bm{m}}=\overline{\rho}\vecu_1 + \rho_1\vecu_1 - \overline{\rho_1\vecu_1} + O(\epsilon^2).
 	\end{align}
 	Hence, at $O(\epsilon)$, only the perturbation velocity $\vecu_1$ appears in the equations, so we subsequently use $\vecu$ as shorthand for $\vecu_1$ and drop the subscript ``1." Under this convention,
 \begin{align}\label{eq:nomeanu}
@@ -175,86 +171,86 @@
 \end{align}
 	and Equation \eqref{eq:momdensityorig} becomes
 	\begin{align}\label{eq:momdensity}
-		\bm{m} = \rhoref\vecu + \rho_1\vecu - \overline{\rho_1\vecu} + O(\epsilon^2).
+		\bm{m} = \overline{\rho}\vecu + \rho_1\vecu - \overline{\rho_1\vecu} + O(\epsilon^2).
 	\end{align}
-	Each of the two terms $\rho_1\vecu$ and $-\overline{\rho_1\vecu}$ are $O(\epsilon)$. In most cases, we can thus write $\bm{m} \approx \rhoref \vecu$ to translate from \citet{Gough1969} to the current notation (in which we use $\vecu$ as the primary field variable), except when multiplying by potentially zeroth-order quantities.
+	Each of the two terms $\rho_1\vecu$ and $-\overline{\rho_1\vecu}$ are $O(\epsilon)$. In most cases, we can thus write $\bm{m} \approx \overline{\rho} \vecu$ to translate from \citet{Gough1969} to the current notation (in which we use $\vecu$ as the primary field variable), except when multiplying by potentially zeroth-order quantities.
 	
 	 One other change in notation is that \citet{Gough1969} uses the superadiabatic mean background temperature gradient
 	\begin{align}\label{eq:superad}
-		\beta &\define -\frac{1}{\cpref}\veck\cdot\left[\nabla\overline{h}-\frac{1}{\rhoref}\nabla\prsref\right]\nonumber\\
-		&=-\frac{\tmpref}{\cpref}\veck\dotgrad\sref + O(\epsilon^2),
+		\beta &\define -\frac{1}{\cpover}\veck\cdot\left[\nabla\overline{h}-\frac{1}{\overline{\rho}}\nabla\prsover\right]\nonumber\\
+		&=-\frac{\tmpover}{\cpover}\veck\dotgrad\entrover + O(\epsilon^2),
 	\end{align}
-	whereas we will use $\nabla \sref$. 
+	whereas we will use $\nabla \entrover$. 
 	
 	Once all of the above scaling assumptions have been made, Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} are nondimensionalized, each term is expanded in powers of $\epsilon$, terms up to zeroth-order in the continuity equation and first-order in the other equations are retained, and redimensionalization then yields the anelastic equations. Specifically, we discuss Equations (4.3)--(4.7) and(4.15)--(4.22) from \citet{Gough1969}. We translate these equations using the change of variables outlined in Equations \eqref{eq:momdensity} and \eqref{eq:superad}. 
 	
 	Under \citet{Gough1969}'s anelastic approximation, the continuity equation \eqref{eq:cont} becomes
 	\begin{align}\label{eq:ancont}
-		\Div(\rhoref\vecu)\equiv 0,
+		\Div(\overline{\rho}\vecu)\equiv 0,
 	\end{align}
 	the momentum equation \eqref{eq:mom} becomes 
 	\begin{subequations}\label{eq:anmom}
 	\begin{align}
-		\pderiv{}{t}(\rhoref\vecu)&=-\Div(\rhoref\vecu\vecu) - \nabla P_1 +\rho_1\vecg +\Div \overleftrightarrow{D}+[-\nabla\prsref + \rhoref\vecg],\label{eq:anmommain}\\
+		\pderiv{}{t}(\overline{\rho}\vecu)&=-\Div(\overline{\rho}\vecu\vecu) - \nabla P_1 +\rho_1\vecg +\Div \overleftrightarrow{D}+[-\nabla\prsover + \overline{\rho}\vecg],\label{eq:anmommain}\\
 		\text{where now}\five D_{ij}& = \overline{\mu}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right)\label{eq:anmomvisc},
 	\end{align}
 	\end{subequations}
 	the energy equation \eqref{eq:en} becomes 
 	\begin{align}\label{eq:anen}
-		\rhoref\cpref\pderiv{T_1}{t} - \deltaref\pderiv{P_1}{t} = &-\rhoref\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right) - \rhoref \tmpref \ugrad \sref\nonumber\\
-		& D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1 -\rho_1\vecu\cdot\vecg - \tmpref(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\sref\nonumber\\
-		&+ [\qref - \Div\overline{\vecf}],
+		\overline{\rho}\cpover\pderiv{T_1}{t} - \deltaover\pderiv{P_1}{t} = &-\overline{\rho}\vecu\cdot\left(\nabla h_1-\frac{1}{\overline{\rho}}\nabla P_1\right) - \overline{\rho} \tmpover \ugrad \entrover\nonumber\\
+		& D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1 -\rho_1\vecu\cdot\vecg - \tmpover(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\entrover\nonumber\\
+		&+ [\heatover - \Div\overline{\vecf}],
 	\end{align}
-	%-\nabla(\rhoref \overline{w^2}) 
+	%-\nabla(\overline{\rho} \overline{w^2}) 
   and the equation of state \eqref{eq:eos} becomes linearized, with
   \begin{subequations}\label{eq:aneos}
   \begin{align}
-  	\tmpref S_1 &= \cpref T_1 - \frac{\deltaref}{\rhoref} P_1\label{eq:lintp}\\
-  	&= U_1 - \frac{\prsref}{\rhoref^2}\rho_1 \label{eq:linu}\\
+  	\tmpover S_1 &= \cpover T_1 - \frac{\deltaover}{\overline{\rho}} P_1\label{eq:lintp}\\
+  	&= U_1 - \frac{\prsover}{\overline{\rho}^2}\rho_1 \label{eq:linu}\\
   	&= h_1 - \frac{P_1}{\rho}\\
-  	&= \frac{\cpref\, \tmpref}{\deltaref\rhoref}\left[\frac{P_1}{\cssqref}-\rho_1\right].
+  	&= \frac{\cpover\, \tmpover}{\deltaover\overline{\rho}}\left[\frac{P_1}{\cssqover}-\rho_1\right].
   \end{align}
   \end{subequations}
-  We have used Equation \eqref{eq:momdensity} to yield the term $- \tmpref(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\sref$ in Equation \eqref{eq:anen}. 
+  We have used Equation \eqref{eq:momdensity} to yield the term $- \tmpover(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\entrover$ in Equation \eqref{eq:anen}. 
   
    The differentials in Equation \eqref{eq:firstlaw} can be converted into gradients (e.g., $T\nabla S= \nabla h - \nabla P/\rho$) and the horizontally averaged form of these relations yields 
   \begin{subequations}\label{eq:anfirstlaw}
   	\begin{align}
-  		\tmpref\nabla\sref &= \cpref\nabla\tmpref - \frac{\deltaref}{\rhoref}\nabla\prsref + O(\epsilon^2)\\
-  		&= \frac{\cpref\,\tmpref}{\deltaref\rhoref}\left[\frac{\nabla\prsref}{\cssqref}-\nabla\rhoref\right]+O(\epsilon^2).
+  		\tmpover\nabla\entrover &= \cpover\nabla\tmpover - \frac{\deltaover}{\overline{\rho}}\nabla\prsover + O(\epsilon^2)\\
+  		&= \frac{\cpover\,\tmpover}{\deltaover\overline{\rho}}\left[\frac{\nabla\prsover}{\cssqover}-\nabla\overline{\rho}\right]+O(\epsilon^2).
   	\end{align}
   \end{subequations}
   
    The horizontal averages of Equations \eqref{eq:anmom} and \eqref{eq:anen} satisfy 
   \begin{align}\label{eq:anmeanmom}
-  	-\nabla\prsref + \rhoref\vecg = \nabla(\rhoref \overline{w^2})
+  	-\nabla\prsover + \overline{\rho}\vecg = \nabla(\overline{\rho} \overline{w^2})
   \end{align}
   and
   \begin{align}\label{eq:anmeanen}
-  	\qref - \Div\overline{\vecf} = \rhoref\overline{\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right)} + \vecg\cdot\overline{\rho_1\vecu} - \overline{D_{ij}\pderiv{u_i}{x_j}}
+  	\heatover - \Div\overline{\vecf} = \overline{\rho}\overline{\vecu\cdot\left(\nabla h_1-\frac{1}{\overline{\rho}}\nabla P_1\right)} + \vecg\cdot\overline{\rho_1\vecu} - \overline{D_{ij}\pderiv{u_i}{x_j}}
   \end{align}
    Equations \eqref{eq:ancont}--\eqref{eq:anmeanen} are mathematically equivalent to Equations (4.3)--(4.7) and (4.15)--(4.22) from \citet{Gough1969}.
   
   In each of Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}, each term on the right-hand side (RHS) is $O(\epsilon)$ compared to each term on the LHS. In particular, we can approximate 
   \begin{align}\label{eq:anhydrostatic}
-  	\nabla\prsref\approx \rhoref\vecg
+  	\nabla\prsover\approx \overline{\rho}\vecg
   \end{align}
   in terms that are already of first order in $\epsilon$. 
   
 Dotting $\vecu$ into Equation \eqref{eq:anmommain} and using Equation \eqref{eq:anmeanmom} yields the anelastic kinetic energy equation,
 	\begin{align}\label{eq:anke}
-		\pderiv{}{t}\left(\frac{1}{2}\rhoref u^2\right)&=-\Div\left(\frac{1}{2}\rhoref u^2\vecu \right) - \ugrad P_1 + \rho_1\vecu\cdot\vecg + u_i\pderiv{D_{ij}}{x_j} + \ugrad(\rhoref \overline{w^2}).
+		\pderiv{}{t}\left(\frac{1}{2}\overline{\rho} u^2\right)&=-\Div\left(\frac{1}{2}\overline{\rho} u^2\vecu \right) - \ugrad P_1 + \rho_1\vecu\cdot\vecg + u_i\pderiv{D_{ij}}{x_j} + \ugrad(\overline{\rho} \overline{w^2}).
 	\end{align}
 
  Note that from Equation \eqref{eq:lintp}, the LHS of Equation \eqref{eq:anen} can be written in terms of the entropy $S_1$, 
 \begin{align}\label{eq:anenlhs}
-	\rhoref\cpref\pderiv{T_1}{t} - \deltaref\pderiv{P_1}{t} = \rhoref\tmpref\pderiv{S_1}{t}.
+	\overline{\rho}\cpover\pderiv{T_1}{t} - \deltaover\pderiv{P_1}{t} = \overline{\rho}\tmpover\pderiv{S_1}{t}.
 \end{align}
 
 Using Equations \eqref{eq:ancont}, \eqref{eq:aneos}, and \eqref{eq:anenlhs} and then adding Equations \eqref{eq:anen} and \eqref{eq:anke} yields \citet{Gough1969}'s total energy equation,
 \begin{align}\label{eq:antote}
-			\pderiv{}{t}\left[\rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right)\right] = &-\Div\left\{\left[\rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right) + P_1\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \overline{\vecf} + \vecf_1\right\}+ \qref + Q_1 \nonumber\\
-			 &+\left[-\rhoref\tmpref\ugrad\sref +\ugrad (\rhoref \overline{w^2})- \tmpref(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\sref\right].
+			\pderiv{}{t}\left[\overline{\rho}\left(\frac{1}{2} u^2 + \tmpover S_1\right)\right] = &-\Div\left\{\left[\overline{\rho}\left(\frac{1}{2} u^2 + \tmpover S_1\right) + P_1\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \overline{\vecf} + \vecf_1\right\}+ \heatover + Q_1 \nonumber\\
+			 &+\left[-\overline{\rho}\tmpover\ugrad\entrover +\ugrad (\overline{\rho} \overline{w^2})- \tmpover(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\entrover\right].
 \end{align}
 Because of Equation \eqref{eq:nomeanu}, or more specifically, the condition
 \begin{align}\label{eq:nomeanw}
@@ -262,66 +258,66 @@ Because of Equation \eqref{eq:nomeanu}, or more specifically, the condition
 \end{align}
  each of the rightmost terms in brackets in Equation \eqref{eq:antote} cannot transport any net energy across the layer. Note that Equation \eqref{eq:nomeanw} is also a consequence of integrating Equation \eqref{eq:ancont} over volumes bounded by horizontal surfaces, and so the vanishing of the horizontal components of $\overline{\vecu}$ is not strictly necessary for the bracketed terms to conserve energy. 
  
- The internal heating (or cooling) terms $\qref + Q_1$ are assumed ``accounted for," since they represent known physical processes such as nuclear burning, Kelvin-Helmholtz contraction, or radiative cooling. Thus, Equation \eqref{eq:antote} shows that the total energy integrated over the volume $V$ of the layer,
+ The internal heating (or cooling) terms $\heatover + Q_1$ are assumed ``accounted for," since they represent known physical processes such as nuclear burning, Kelvin-Helmholtz contraction, or radiative cooling. Thus, Equation \eqref{eq:antote} shows that the total energy integrated over the volume $V$ of the layer,
 \begin{align}\label{eq:deftote}
-	E_{\rm tot} \define \int_V \rhoref\left(\frac{1}{2} u^2 + \tmpref S_1\right) dV,
+	E_{\rm tot} \define \int_V \overline{\rho}\left(\frac{1}{2} u^2 + \tmpover S_1\right) dV,
 \end{align}
-is conserved, to the extent that the volume-integrated internal heat sources balance the various fluxes (found under the divergence on the RHS of Equation \eqref{eq:antote}) integrated over the boundaries. This conservation holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos} and for arbitrary magnitudes of $|\nabla \sref|$. However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\sref|$.
+is conserved, to the extent that the volume-integrated internal heat sources balance the various fluxes (found under the divergence on the RHS of Equation \eqref{eq:antote}) integrated over the boundaries. This conservation holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos} and for arbitrary magnitudes of $|\nabla \entrover|$. However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
 
 \section{The \citet{Gough1969} equations in more familiar form}
 Modern anelastic codes typically write the equations using the perturbed pressure and entropy ($P_1$ and $S_1$) in place of the quantities $T_1$, $P_1$, $\rho_1$, and $h_1$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmeanmom}. We can convert using Equations \eqref{eq:aneos} and \eqref{eq:anfirstlaw} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
 \begin{align}\label{eq:anrhsmom}
-	-\nabla P_1 + \rho_1\vecg = -\rhoref\nabla\left(\frac{P_1}{\rhoref}\right) - \deltaref \rhoref \left(\frac{S_1}{\cpref}\right) \vecg + \frac{\deltaref\rhoref}{\cpref} \left(\frac{P_1}{\rhoref}\right)\nabla\sref.
+	-\nabla P_1 + \rho_1\vecg = -\overline{\rho}\nabla\left(\frac{P_1}{\overline{\rho}}\right) - \deltaover \overline{\rho} \left(\frac{S_1}{\cpover}\right) \vecg + \frac{\deltaover\overline{\rho}}{\cpover} \left(\frac{P_1}{\overline{\rho}}\right)\nabla\entrover.
 \end{align}
 In the internal energy equation, we find
 \begin{align}\label{eq:anrhsen}
-	-\rhoref\vecu\cdot\left(\nabla h_1-\frac{1}{\rhoref}\nabla P_1\right) = -\rhoref\tmpref\ugrad S_1 - \rhoref S_1\ugrad\tmpref + \left(\frac{P_1}{\rhoref}\right)\ugrad \rhoref.
+	-\overline{\rho}\vecu\cdot\left(\nabla h_1-\frac{1}{\overline{\rho}}\nabla P_1\right) = -\overline{\rho}\tmpover\ugrad S_1 - \overline{\rho} S_1\ugrad\tmpover + \left(\frac{P_1}{\overline{\rho}}\right)\ugrad \overline{\rho}.
 \end{align}
 Using Equations \eqref{eq:aneos}, \eqref{eq:anfirstlaw}, and \eqref{eq:anhydrostatic} as needed, we compute, with some effort,
 \begin{align}\label{eq:anrhsen2}
-	- \rhoref S_1\ugrad\tmpref + \left(\frac{P_1}{\rhoref}\right)\ugrad S_1 -\rho_1\vecu\cdot\vecg = -\rhoref T_1\ugrad\sref + O(\epsilon^2).
+	- \overline{\rho} S_1\ugrad\tmpover + \left(\frac{P_1}{\overline{\rho}}\right)\ugrad S_1 -\rho_1\vecu\cdot\vecg = -\overline{\rho} T_1\ugrad\entrover + O(\epsilon^2).
 \end{align}
 
 Substituting Equation \eqref{eq:anrhsmom} into Equation \eqref{eq:anmom}, and Equations \eqref{eq:anenlhs}, \eqref{eq:anrhsen}, and \eqref{eq:anrhsen2} into Equation \eqref{eq:anen}, we find
 	\begin{align}\label{eq:anmommod}
-		\pderiv{}{t}(\rhoref\vecu)= &-\Div(\rhoref\vecu\vecu) -\rhoref\nabla\left(\frac{P_1}{\rhoref}\right) - \deltaref \rhoref \left(\frac{S_1}{\cpref}\right) \vecg + \underbrace{\frac{\deltaref P_1}{\cpref} \nabla\sref}_{\define \bm{f}_{\rm NLBR}}+\Div \overleftrightarrow{D}\nonumber\\
-		&+[-\nabla\prsref + \rhoref\vecg],
+		\pderiv{}{t}(\overline{\rho}\vecu)= &-\Div(\overline{\rho}\vecu\vecu) -\overline{\rho}\nabla\left(\frac{P_1}{\overline{\rho}}\right) - \deltaover \overline{\rho} \left(\frac{S_1}{\cpover}\right) \vecg + \underbrace{\frac{\deltaover P_1}{\cpover} \nabla\entrover}_{\define \bm{f}_{\rm NLBR}}+\Div \overleftrightarrow{D}\nonumber\\
+		&+[-\nabla\prsover + \overline{\rho}\vecg],
 	\end{align}
 and
 \begin{subequations}\label{eq:anenmod}
 \begin{align}
-	\rhoref\tmpref\pderiv{S_1}{t}= &-\rhoref\tmpref\ugrad S_1 - \rhoref \tmpref \ugrad \sref \underbrace{- \rhoref T_1\ugrad\sref}_{\define Q_{\rm NLBR}}+D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1  \nonumber\\
-	& +[\qref - \Div\overline{\vecf} - \tmpref(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\sref],\\
-	\where \rho_1 =& \frac{P_1}{\cssqref}-\frac{\deltaref\rhoref S_1}{\cpref}\\
-	\andd T_1 = & \frac{\tmpref S_1}{\cpref} + \frac{\deltaref P_1}{\rhoref\cpref}.
+	\overline{\rho}\tmpover\pderiv{S_1}{t}= &-\overline{\rho}\tmpover\ugrad S_1 - \overline{\rho} \tmpover \ugrad \entrover \underbrace{- \overline{\rho} T_1\ugrad\entrover}_{\define Q_{\rm NLBR}}+D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1  \nonumber\\
+	& +[\heatover - \Div\overline{\vecf} - \tmpover(\rho_1\vecu-\overline{\rho_1\vecu})\cdot\nabla\entrover],\\
+	\where \rho_1 =& \frac{P_1}{\cssqover}-\frac{\deltaover\overline{\rho} S_1}{\cpover}\\
+	\andd T_1 = & \frac{\tmpover S_1}{\cpover} + \frac{\deltaover P_1}{\overline{\rho}\cpover}.
 \end{align}
 \end{subequations}
 Finally, the mean energy equation \eqref{eq:anmeanen} becomes
 \begin{align}\label{eq:anmeanen2}
-	\qref-\Div\overline{\vecf} = \rhoref\tmpref\, \overline{\ugrad S_1}-\overline{D_{ij}\pderiv{u_i}{x_j}} + \rhoref (\overline{T_1\vecu})\dotgrad\sref 
+	\heatover-\Div\overline{\vecf} = \overline{\rho}\tmpover\, \overline{\ugrad S_1}-\overline{D_{ij}\pderiv{u_i}{x_j}} + \overline{\rho} (\overline{T_1\vecu})\dotgrad\entrover 
 \end{align}
 %The final terms in brackets in these equations may be dropped without affecting energy conservation, since they do not transport any net energy. However, dropping them still may still makes the equations an asymptotically inconsistent approximation to the true fully compressible motion, and so we retain them.
 
-The essential terms required for energy conservation when $\nabla\sref\neq0$ are the ``non-LBR" force density
+The essential terms required for energy conservation when $\nabla\entrover\neq0$ are the ``non-LBR" force density
 \begin{align}\label{eq:nlbrmom}
-	\bm{f}_{\rm NLBR} \define \frac{\deltaref P_1}{\cpref} \nabla\sref
+	\bm{f}_{\rm NLBR} \define \frac{\deltaover P_1}{\cpover} \nabla\entrover
 \end{align}
 and the ``non-LBR" heating
 \begin{align}\label{eq:nlbrheat}
-	Q_{\rm NLBR} \define -\rhoref T_1\ugrad\sref.
+	Q_{\rm NLBR} \define -\overline{\rho} T_1\ugrad\entrover.
 \end{align}
-Both these terms vanish for an adiabatic background state (where $\nabla\sref=0$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use,ts neglect seems to have not been explicitly considered. 
+Both these terms vanish for an adiabatic background state (where $\nabla\entrover=0$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use,ts neglect seems to have not been explicitly considered. 
 
 \section{The equivalence of horizontally averaged atmospheres to fixed reference atmospheres}
 In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the perturbations in $S$ and $P$ about this reference state develop small but nonzero horizontally averaged pertrubations. Some codes (e.g., the {\ash} code) alternatively solve for the perturbations about the horizontal average directly. In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the RHS's of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the horizontal means of the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
 
 Our approach is to define the horizontally averaged profiles as the sum of the reference-state profile (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
 \begin{align}
-\prsref=	\prsref(q,t) &= \tilde{P}(q) + \hat{P}(q,t) ,\\
-\rhoref=	\rhoref(q,t)  &= \tilde{\rho}(q)  + \hat{\rho}(q,t) ,\\
-	\sref = \sref (q,t) &=  \tilde{S}(q)  + \hat{S}(q,t) ,
+\prsover=	\prsover(q,t) &= \tilde{P}(q) + \hat{P}(q,t) ,\\
+\overline{\rho}=	\overline{\rho}(q,t)  &= \tilde{\rho}(q)  + \hat{\rho}(q,t) ,\\
+	\entrover = \entrover (q,t) &=  \tilde{S}(q)  + \hat{S}(q,t) ,
 \end{align}
-etc., where we assume (apart from the entropy) that the hatted means are $O(\epsilon)$ compared to the reference-state means. Note that the horizontal mean profiles are now time-dependent. This does not affect the asymptotic expansion leading to Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, provided the time derivatives of the mean state are the same order as the time derivatives of the deviations [e.g., $\pderivline{\rhoref}{t}=O(\pderivline{\rho_1}{t})$]. Most reference-state profiles are chosen to be time-independent, except for $\tilde{Q}$ and $\tilde{\vecf}$ (see below). 
+etc., where we assume (apart from the entropy) that the hatted means are $O(\epsilon)$ compared to the reference-state means. Note that the horizontal mean profiles are now time-dependent. This does not affect the asymptotic expansion leading to Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, provided the time derivatives of the mean state are the same order as the time derivatives of the deviations [e.g., $\pderivline{\overline{\rho}}{t}=O(\pderivline{\rho_1}{t})$]. Most reference-state profiles are chosen to be time-independent, except for $\tilde{Q}$ and $\tilde{\vecf}$ (see below). 
 
 We assume that the reference state is chosen to be hydrostatic,
 \begin{align}\label{eq:refhydro}
@@ -354,7 +350,7 @@ The linearized equation of state for the primed quantities is exactly analogous 
 \begin{subequations}\label{eq:aneosref}
 	\begin{align}
 		\tilde{T} S^\prime &= \tilde{\cpcap} T^\prime - \frac{\tilde{\delta}}{\tilde{\rho}} P^\prime,\\
-  	&= U^\prime - \frac{\prsref}{\rhoref^2}\rho_1 \label{eq:linuref}\\
+  	&= U^\prime - \frac{\prsover}{\overline{\rho}^2}\rho_1 \label{eq:linuref}\\
 &= h_1 - \frac{P_1}{\rho}\\
 		&= \frac{\tilde{\cpcap} \tilde{T}}{\tilde{\delta}\tilde{\rho}}\left[\frac{P^\prime}{\tilde{\cs^2}}-\rho^\prime\right].
 	\end{align}
@@ -367,12 +363,12 @@ To zeroth order in $\epsilon$, Equation \eqref{eq:ancont} becomes simply
 \end{align}
 Because the RHS of Equations \eqref{eq:anmom} is $O(\epsilon)$ compared to the LHS we can write, using Equation \eqref{eq:refhydro},
 \begin{align}\label{eq:anrhsmomref}
-	[-\nabla \prsref + \rhoref\vecg] &= -\nabla \hat{P} + \hat{\rho}\vecg\nonumber\\
+	[-\nabla \prsover + \overline{\rho}\vecg] &= -\nabla \hat{P} + \hat{\rho}\vecg\nonumber\\
 	&= -\tilde{\rho}\nabla\left(\frac{\hat{P}}{\tilde{\rho}}\right) - \tilde{\delta} \tilde{\rho} \left(\frac{\hat{S}}{\tilde{\cpcap}}\right) \vecg + \frac{\tilde{\delta}\tilde{\rho}}{\tilde{\cpcap}} \left(\frac{\hat{P}}{\tilde{\rho}}\right)\nabla\tilde{S}.
 \end{align}
-Note that the non-LBR force density from Equation \eqref{eq:nlbrmom} is only significant when $\nabla\sref$ is large (in which case $\nabla\sref=\nabla\tilde{S}+O(\epsilon)$), otherwise it is $O(\epsilon^2)$. For all magnitudes of $|\nabla\sref|$, we can thus write
+Note that the non-LBR force density from Equation \eqref{eq:nlbrmom} is only significant when $\nabla\entrover$ is large (in which case $\nabla\entrover=\nabla\tilde{S}+O(\epsilon)$), otherwise it is $O(\epsilon^2)$. For all magnitudes of $|\nabla\entrover|$, we can thus write
 \begin{align}\label{eq:nlbrmom2}
-	\bm{f}_{\rm NLBR} = \frac{\deltaref P_1}{\cpref} \nabla\tilde{S} + O(\epsilon^2)
+	\bm{f}_{\rm NLBR} = \frac{\deltaover P_1}{\cpover} \nabla\tilde{S} + O(\epsilon^2)
 \end{align}
 Plugging Equations \eqref{eq:anrhsmomref} and \eqref{eq:nlbrmom2} into Equation \eqref{eq:anmommod} and noting that all terms are of $O(\epsilon)$ (so that we can replace overbars with tildes), we find
 \begin{subequations}\label{eq:anmomref}
@@ -385,7 +381,7 @@ Plugging Equations \eqref{eq:anrhsmomref} and \eqref{eq:nlbrmom2} into Equation 
 
 Using Equation \eqref{eq:nomeanu}, Equation \eqref{eq:momdensity} can be additionally written
   \begin{align}\label{eq:momdensity2}
-\rhoref\vecu + \rho_1\vecu - \overline{\rho_1\vecu} = \tilde{\rho}\vecu + \rho^\prime\vecu - \overline{\rho^\prime\vecu} + O(\epsilon^2).
+\overline{\rho}\vecu + \rho_1\vecu - \overline{\rho_1\vecu} = \tilde{\rho}\vecu + \rho^\prime\vecu - \overline{\rho^\prime\vecu} + O(\epsilon^2).
 \end{align}
 We finally write 
 \begin{align}
@@ -393,8 +389,8 @@ We finally write
 \end{align}
 and 
 \begin{align}\label{eq:anenrhsfinal}
-	-\rhoref\tmpref \ugrad S_1 - \rhoref\tmpref \ugrad\sref &= - \rhoref\tmpref\ugrad S^\prime -\rhoref\tmpref\ugrad\tilde{S} \nonumber\\
-	&=-\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{T}(\rhoref \vecu)\cdot\nabla\tilde{S} - \tilde{\rho}\hat{T}\ugrad\tilde{S} + O(\epsilon^2).
+	-\overline{\rho}\tmpover \ugrad S_1 - \overline{\rho}\tmpover \ugrad\entrover &= - \overline{\rho}\tmpover\ugrad S^\prime -\overline{\rho}\tmpover\ugrad\tilde{S} \nonumber\\
+	&=-\tilde{\rho}\tilde{T}\ugrad S^\prime - \tilde{T}(\overline{\rho} \vecu)\cdot\nabla\tilde{S} - \tilde{\rho}\hat{T}\ugrad\tilde{S} + O(\epsilon^2).
 \end{align}
 Substituting Equation \eqref{eq:dsdt} and Equations \eqref{eq:momdensity2} through \eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} yields
 \begin{subequations}\label{eq:anenref}
@@ -437,7 +433,7 @@ Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:an
 \begin{empheq}[box=\fbox]{align}\label{eq:econst}
 \tilde{E}_{\rm tot} \define \int_V \tilde{\rho}\left(\frac{1}{2} u^2 + \tilde{T} S^\prime\right) dV = \text{constant},
 \end{empheq}
-which mathematically holds for arbitrary fluid motion obeying Equations \eqref{eq:anegg} and for all magnitudes of $|\nabla\sref|$. 
+which mathematically holds for arbitrary fluid motion obeying Equations \eqref{eq:anegg} and for all magnitudes of $|\nabla\entrover|$. 
 
 Note that in practice when simulating stiff systems (large $|\nabla\tilde{S}|$) numerically (e.g., \citealt{Guerrero2016a,Matilsky2022,Matilsky2024}), the term 
 \begin{align}
@@ -472,12 +468,12 @@ From Equation \eqref{eq:linu}, the perturbed internal plus potential energy per 
 	&= \underbrace{\tilde{\rho}\tilde{T} S^\prime}_{\define \wint} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\tilde{\rho}}+\Phi\right)\rho^\prime}_{\define\wcomp}.
 \end{align}
 
-Reexamining Equation \eqref{eq:aneos}, which is really just an expression of the first law of thermodynamics (which states that changes in the internal energy of fluid parcels come from the sum of external heating and pressure work done by the environment during compression), it is clear that \textit{only} changes in internal energy from heat sources enter into the total energy budget of Equation \eqref{eq:deftote}. The changes in internal energy from density variations ($\overline{U}\rho_1$), the pressure work ($\prsref(\rho_1/\rhoref)$), and the changes in potential energy ($\Phi\rho_1$) are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we write
+Reexamining Equation \eqref{eq:aneos}, which is really just an expression of the first law of thermodynamics (which states that changes in the internal energy of fluid parcels come from the sum of external heating and pressure work done by the environment during compression), it is clear that \textit{only} changes in internal energy from heat sources enter into the total energy budget of Equation \eqref{eq:deftote}. The changes in internal energy from density variations ($\overline{U}\rho_1$), the pressure work ($\prsover(\rho_1/\overline{\rho})$), and the changes in potential energy ($\Phi\rho_1$) are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we write
 \begin{subequations}\label{eq:perten2}
 	\begin{align}
 		W_1 &= \wint + \wcomp,\\
-		\where \wint&\define \rhoref\tmpref S_1\\
-		\andd \wcomp &\define \left(\overline{U}+\frac{\prsref}{\rhoref}+\Phi\right)\rho_1
+		\where \wint&\define \overline{\rho}\tmpover S_1\\
+		\andd \wcomp &\define \left(\overline{U}+\frac{\prsover}{\overline{\rho}}+\Phi\right)\rho_1
 	\end{align}
 \end{subequations}
 and note that 
@@ -489,30 +485,30 @@ i.e., \textit{no} compression effects can alter the total energy of the fluid at
 
 A possibly deeper interpretation of Equation \eqref{eq:wcomp0} is that the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}, is \textit{fundamental} if the anelastic approximation is to be energetically consistent. For the ``true" (i.e., fully compressible) fluid, Equation \eqref{eq:nomassflux} applied to the continuity equation \eqref{eq:cont} yields
 \begin{align}
-	\pderiv{\rhoref}{t}\equiv0,
+	\pderiv{\overline{\rho}}{t}\equiv0,
 \end{align}
 i.e., there can be no
-Evidently from Equation \eqref{eq:deftote}, the internal energy (as far as energy transport is concerned) becomes simply $\rhoref\tmpref S_1$ and the potential energy is eliminated entirely. Both effects are consequences of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. This also has the consequence that $S_1$ should be interpreted as a deviation of internal energy from the mean, rather than as an entropy. 
+Evidently from Equation \eqref{eq:deftote}, the internal energy (as far as energy transport is concerned) becomes simply $\overline{\rho}\tmpover S_1$ and the potential energy is eliminated entirely. Both effects are consequences of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. This also has the consequence that $S_1$ should be interpreted as a deviation of internal energy from the mean, rather than as an entropy. 
 
 \citet{Ogura1962} write
 \begin{align}\label{eq:pertenogura}
-	W_1 &= -\rhoref\Phi\left(\frac{S_1}{\cpcap}\right)+\rhoref\cvcap\tmpref_0\left(\frac{P_1}{\prsref}\right)\nonumber\\
-	&=  -\rhoref\Phi\left(\frac{S_1}{\cpcap}\right)+\frac{P_1}{\gamma-1}
+	W_1 &= -\overline{\rho}\Phi\left(\frac{S_1}{\cpcap}\right)+\overline{\rho}\cvcap\tmpover_0\left(\frac{P_1}{\prsover}\right)\nonumber\\
+	&=  -\overline{\rho}\Phi\left(\frac{S_1}{\cpcap}\right)+\frac{P_1}{\gamma-1}
 \end{align}
-where the gas here is assumed to be perfect (i.e., $\overline{\cpcap}\equiv\cpcap$ and $\overline{\cvcap}\equiv\cvcap$, where $\cpcap$ and $\cvcap$ are constants and $\gamma\define\cpcap/\cvcap$) and adiabatically stratified ($\nabla\sref\equiv0$), and the gravitational potential $\Phi$ is measured from the location $q_0$ where $\tmpref(q=q_0)\define \tmpref_0$  is equal to the assumed-constant background potential temperature.\footnote{See the equation immediately following Equation (31) from \citet{Ogura1962}. To see the equivalence to our Equation \eqref{eq:pertenogura}, note that \citet{Ogura1962} use $\theta$ for the non-dimensional order-unity perturbed potential temperature, $gz^\prime$ for the gravitational potential, and $\Theta$ for the constant (dimensional) potential temperature (equal to $\tmpref_0$) of the adiabatically stratified background. Also note the relation $S_1=\epsilon\cpcap\theta$.}
+where the gas here is assumed to be perfect (i.e., $\overline{\cpcap}\equiv\cpcap$ and $\overline{\cvcap}\equiv\cvcap$, where $\cpcap$ and $\cvcap$ are constants and $\gamma\define\cpcap/\cvcap$) and adiabatically stratified ($\nabla\entrover\equiv0$), and the gravitational potential $\Phi$ is measured from the location $q_0$ where $\tmpover(q=q_0)\define \tmpover_0$  is equal to the assumed-constant background potential temperature.\footnote{See the equation immediately following Equation (31) from \citet{Ogura1962}. To see the equivalence to our Equation \eqref{eq:pertenogura}, note that \citet{Ogura1962} use $\theta$ for the non-dimensional order-unity perturbed potential temperature, $gz^\prime$ for the gravitational potential, and $\Theta$ for the constant (dimensional) potential temperature (equal to $\tmpover_0$) of the adiabatically stratified background. Also note the relation $S_1=\epsilon\cpcap\theta$.}
 
-\citealt{Eckart1960} (p. 54) discussed the energy density associated with small perturbations about a background static atmosphere and identified $P_1^2/(2\rhoref\cssqref)$ as the ``elastic" energy density from acoustics (\citealt{Morse1948}, p. 237). \citealt{Ogura1962} note that the The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see ). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
+\citealt{Eckart1960} (p. 54) discussed the energy density associated with small perturbations about a background static atmosphere and identified $P_1^2/(2\overline{\rho}\cssqover)$ as the ``elastic" energy density from acoustics (\citealt{Morse1948}, p. 237). \citealt{Ogura1962} note that the The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see ). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
 %For a perfect gas [$U=\cvcap T$ and $P=(\cpcap-\cvcap)\rho T)$, with constant specific heats] with a hydrostatic, adiabatic mean background state satisfying Equations \eqref{eq:anfirstlaw} and \eqref{eq:anhydrostatic}, we have
 %\begin{align}\label{eq:tmppot}
-%	\Phi = -\cpcap \tmpref + K,
+%	\Phi = -\cpcap \tmpover + K,
 %\end{align}
 %where $K$ is a constant. Equation \eqref{eq:perten1} then becomes
 %\begin{align}\label{eq:perten2}
-%	W_1 = - \frac{\rhoref\Phi}{\cpcap}S_1 + K\frac{P_1}{\cssqref}
+%	W_1 = - \frac{\overline{\rho}\Phi}{\cpcap}S_1 + K\frac{P_1}{\cssqover}
 %\end{align}
 %The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see \citealt{Ogura1962}). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
 
-%The latter compressive term $(\prsref/\rhoref^2)\rho_1$ is thus eliminated under the anelastic approximation and we instead identify $\tmpref S_1$ with the internal energy. 
+%The latter compressive term $(\prsover/\overline{\rho}^2)\rho_1$ is thus eliminated under the anelastic approximation and we instead identify $\tmpover S_1$ with the internal energy. 
 
 \section{Conditions for anelastic overshoot}
 [THIS SECTION IS A STUB]. What I have so far is that a downflowing plume should have kinetic energy 
