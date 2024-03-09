@@ -31,6 +31,10 @@
 \newcommand{\cpref}{\overline{\cpcap}}
 \newcommand{\cssqref}{\overline{\cs^2}}
 \newcommand{\subref}{_{\rm ref}}
+\newcommand{\wint}{(W_1)_{\rm internal}}
+\newcommand{\wcomp}{(W_1)_{\rm compression}}
+\newcommand{\wpot}{(W_1)_{\rm potential}}
+\newcommand{\welast}{(W_1)_{\rm elastic}}
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
@@ -267,11 +271,39 @@ is conserved, to the extent that the volume-integrated internal heat sources bal
 Note that from Equation \eqref{eq:linu}, the perturbed internal plus potential energy per unit volume is 
 \begin{align}\label{eq:perten1}
 	W_1 &= \overline{U}\rho_1 + \rhoref U_1 + \Phi \rho_1 \nonumber\\
-	&= \rhoref\tmpref S_1 + \left(\overline{U}+\frac{\prsref}{\rhoref}+\Phi\right)\rho_1.
+	&= \underbrace{\rhoref\tmpref S_1}_{\define \wint} + \underbrace{\left(\overline{U}+\frac{\prsref}{\rhoref}+\Phi\right)\rho_1}_{\define\wcomp}.
 \end{align}
 
-Evidently from Equation \eqref{eq:deftote}, the internal energy (as far as energy transport is concerned) becomes simply $\rhoref\tmpref S_1$ and the potential energy is eliminated entirely. Both effects are consequences of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. This also has the consequence that $S_1$ should be interpreted as a deviation of internal energy from the mean, rather than as an entropy. 
+Reexamining Equation \eqref{eq:aneos}, which is really just an expression of the first law of thermodynamics (which states that changes in the internal energy of fluid parcels come from the sum of external heating and pressure work done by the environment during compression), it is clear that \textit{only} changes in internal energy from heat sources enter into the total energy budget of Equation \eqref{eq:deftote}. The changes in internal energy from density variations ($\overline{U}\rho_1$), the pressure work ($\prsref(\rho_1/\rhoref)$), and the changes in potential energy ($\Phi\rho_1$) are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we write
+\begin{subequations}\label{eq:perten2}
+\begin{align}
+	W_1 &= \wint + \wcomp,\\
+	\where \wint&\define \rhoref\tmpref S_1\\
+	\andd \wcomp &\define \left(\overline{U}+\frac{\prsref}{\rhoref}+\Phi\right)\rho_1
+\end{align}
+\end{subequations}
+and note that 
 
+\begin{align}\label{eq:wcomp0}
+	\wcomp\equiv0\five\text{under the anelastic approximation},
+\end{align}
+i.e., \textit{no} compression effects can alter the total energy of the fluid at a particular vertical level.
+
+A possibly deeper interpretation of Equation \eqref{eq:wcomp0} is that the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}, is \textit{fundamental} if the anelastic approximation is to be energetically consistent. For the ``true" (i.e., fully compressible) fluid, Equation \eqref{eq:nomassflux} applied to the continuity equation \eqref{eq:cont} yields
+\begin{align}
+	\pderiv{\rhoref}{t}\equiv0,
+\end{align}
+i.e., there can be no
+  Evidently from Equation \eqref{eq:deftote}, the internal energy (as far as energy transport is concerned) becomes simply $\rhoref\tmpref S_1$ and the potential energy is eliminated entirely. Both effects are consequences of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. This also has the consequence that $S_1$ should be interpreted as a deviation of internal energy from the mean, rather than as an entropy. 
+
+\citet{Ogura1962} write
+\begin{align}\label{eq:pertenogura}
+	W_1 &= -\rhoref\Phi\left(\frac{S_1}{\cpcap}\right)+\rhoref\cvcap\tmpref_0\left(\frac{P_1}{\prsref}\right)\nonumber\\
+	&=  -\rhoref\Phi\left(\frac{S_1}{\cpcap}\right)+\frac{P_1}{\gamma-1}
+\end{align}
+where the gas here is assumed to be perfect (i.e., $\overline{\cpcap}\equiv\cpcap$ and $\overline{\cvcap}\equiv\cvcap$, where $\cpcap$ and $\cvcap$ are constants and $\gamma\define\cpcap/\cvcap$) and adiabatically stratified ($\nabla\sref\equiv0$), and the gravitational potential $\Phi$ is measured from the location $q_0$ where $\tmpref(q=q_0)\define \tmpref_0$  is equal to the assumed-constant background potential temperature.\footnote{See the equation immediately following Equation (31) from \citet{Ogura1962}. To see the equivalence to our Equation \eqref{eq:pertenogura}, note that \citet{Ogura1962} use $\theta$ for the non-dimensional order-unity perturbed potential temperature, $gz^\prime$ for the gravitational potential, and $\Theta$ for the constant (dimensional) potential temperature (equal to $\tmpref_0$) of the adiabatically stratified background. Also note the relation $S_1=\epsilon\cpcap\theta$.}
+
+ \citealt{Eckart1960} (p. 54) discussed the energy density associated with small perturbations about a background static atmosphere and identified $P_1^2/(2\rhoref\cssqref)$ as the ``elastic" energy density from acoustics (\citealt{Morse1948}, p. 237). \citealt{Ogura1962} note that the The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see ). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
 %For a perfect gas [$U=\cvcap T$ and $P=(\cpcap-\cvcap)\rho T)$, with constant specific heats] with a hydrostatic, adiabatic mean background state satisfying Equations \eqref{eq:anfirstlaw} and \eqref{eq:anhydrostatic}, we have
 %\begin{align}\label{eq:tmppot}
 %	\Phi = -\cpcap \tmpref + K,
