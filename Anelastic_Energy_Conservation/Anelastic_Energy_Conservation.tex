@@ -27,11 +27,17 @@
 \newcommand{\vecf}{\bm{F}}
 \newcommand{\veck}{\hat{\bm{k}}}
 
+\newcommand{\uover}{\overline{\vecu}}
+
+% background atmosphere values
+\newcommand{\csa}{c_{{\rm s}a}}
+\newcommand{\cpa}{C_{{\rm p}a}}
 % total energies and energy densities
 \newcommand{\etot}{E_{\rm tot}}
 
 \newcommand{\wtot}{W_{\rm tot}}
 \newcommand{\wke}{W_{\rm KE}}
+\newcommand{\wnke}{W_{\rm NKE}}
 \newcommand{\wint}{W_{\rm int}}
 \newcommand{\wpot}{W_{\rm pot}}
 
@@ -59,8 +65,8 @@
 	
 	While nondimensionalizing the entropy equation instead of the internal energy equation may at first appear to be an arbitrary (and harmless) choice, we show in the present work that it leads to an asymptotically inconsistent set of equations that do not conserve energy when the background is stably stratified. \citet{Gough1969}, by contrast, took a different approach than \citet{Ogura1962} and performed a formal asymptotic expansion in $\epsilon$ after nondimensionalizing the internal energy equation. We show that this equation set, which we dub the ``Energy-conserving Generalized Gough" (AnEGG) anelastic equations, conserve energy for arbitrary fluid motions and for all hydrostatic background states (whether stably or unstably stratified).
 	
-	\section{The fully compressible fluid equations}
-	We begin by writing down the unapproximated fully compressible equations of motion for a nonrotating nonmagnetic fluid considered by \citet{Gough1969} (see Equations (2.1)--(2.5) from that paper). These are the continuity equation 
+	\section{Energy conservation under the fully compressible fluid equations}
+	We begin by writing down the unapproximated fully compressible equations of motion for a nonrotating nonmagnetic fluid. These are \citet{Gough1969}'s Equations (2.1)--(2.5), consisting of the continuity equation 
 	\begin{align}\label{eq:cont}
 		\pderiv{\rho}{t}=-\Div(\rho\vecu) 
 	\end{align}
@@ -79,7 +85,7 @@
 	\begin{align}\label{eq:eos}
 		U = U(P,T).
 	\end{align}
-	Here, $t$ is the time, the $x_i$ are Cartesian spatial coordinates, $\rho$ is the density, $P$ the pressure, $T$ the temperature, $U$ the internal energy per unit mass, $\mu$ the dynamic viscosity, $\vecg\define -\nabla\Phi$ the graviational acceleration field, $\Phi$ the gravitational potential, $Q$ an internal heat source, and $\vecf$ the combined conductive and radiative heat flux. The gravity $\vecg$ is assumed to point in the vertical direction $\veck$ (either the upward Cartesian direction for a plane-parallel fluid layer or the radial direction for spherical shell). Additionally, $\vecg$ is assumed to depend only on the vertical coordinate $q$ (either the upward Cartesian coordinate $x_3$ or the radial coordinate $r$) and to be time-independent (i.e., self-gravity is ignored). The symbol ``$\leftrightarrow$'' in the viscous stress tensor $\overleftrightarrow{D}$ denotes a second-order tensor, as does the dyadic notation $\vecu\vecu$. The subscripts $i$ and $j$ (taking on the values 1, 2, and 3) denote vector or tensor components in any of the Cartesian coordinate directions.  We use the Einstein summation convention and $\delta_{ij}$ denotes the Kronecker delta. These equations are not written in the exact form of \citet{Gough1969} and use slightly different notation but are mathematically equivalent. 
+	Here, $t$ is the time, the $x_i$ are Cartesian spatial coordinates, $\rho$ is the density, $P$ the pressure, $T$ the temperature, $U$ the internal energy per unit mass, $\mu$ the dynamic viscosity, $\vecg\define -\nabla\Phi$ the gravitational acceleration field, $\Phi$ the gravitational potential, $Q$ an internal heat source, and $\vecf$ the combined conductive and radiative heat flux. The subscripts $i$ and $j$ (taking on the values 1, 2, and 3) denote vector or tensor components in any of the Cartesian coordinate directions. The gravity $\vecg$ is assumed to point in the vertical direction $\veck$ (either the upward Cartesian direction for a plane-parallel fluid layer or the radial direction for spherical shell). Additionally, $\vecg$ is assumed to depend only on the vertical coordinate $q$ (either the upward Cartesian coordinate $x_3$ or the radial coordinate $r$) and to be time-independent (meaning that, among other consequences, self-gravity is ignored). The symbol ``$\leftrightarrow$'' in the viscous stress tensor $\overleftrightarrow{D}$ denotes a second-order tensor, as does the dyadic notation $\vecu\vecu$.   We use the Einstein summation convention and $\delta_{ij}$ denotes the Kronecker delta. These equations are not written in the exact form of \citet{Gough1969} and use slightly different notation but are mathematically equivalent. 
 	
 	An equation for the evolution of kinetic energy can be formed from $\vecu$ dotted into Equation \eqref{eq:mom},
 	\begin{align}\label{eq:ke}
@@ -103,16 +109,55 @@
 		\andd \wpot &\define \rho \Phi. 
 	\end{align}
 	\end{subequations}
-	Equation \eqref{eq:econst} expresses the conservation of total energy that is implicit to the fully compressible fluid equations \eqref{eq:cont}--\eqref{eq:eos}. The volume-integrated total energy is conserved, as long as the total surface fluxes balance the total internal heat sources. Locally, by contrast, fluid parcels can exchange total energy with one another, and the sources of these exchanges are further partitioned into kinetic, internal, and potential energy. 
 	
-	One of the main goals of this work is to elucidate how Equation \eqref{eq:econst} is modified under the anelastic approximation for a general equation of state. It will be found that \textit{only} exchange between internal energy (due to heating) and kinetic energy is possible for an energetically constistent anelastic approximation. Conversion to and from potential energy, by contrast, is fundamentally impossible. This is essentially a new result, which has been overlooked for several decades, mainly because of the pathological coincidence that for a perfect, adiabatically stratified gas, the internal energy due to heating \textit{looks} exactly like a potential energy. For non-adiabatic stratification, or for an imperfect gas, the coincidence no longer holds, and the more general law for conservation of total energy that is derived here should be considered. 
+	We additionally define
+	\begin{align}\label{eq:wnke}
+		\wnke &\define \wtot - \wke = \wint + \wpot 
+	\end{align}
+	as the combined internal and potential energy density (i.e., the ``nonkinetic" energy). 
+	
+	Equation \eqref{eq:econst} expresses the conservation of total energy that is implicit to the fully compressible fluid equations \eqref{eq:cont}--\eqref{eq:eos}. The volume-integrated total energy is conserved, as long as the total surface fluxes balance the total internal heat sources. Locally by contrast, fluid parcels can exchange total energy density with one another, and these exchanges are further partitioned into kinetic, internal, and potential energy densities. 
+	
+	One of the main goals of this work is to elucidate how Equation \eqref{eq:econst} is modified under the anelastic approximation for a general equation of state and nonadiabatic stratification. It will be found that \textit{only} exchange between internal energy (due to heating) and kinetic energy is possible for an energetically constistent anelastic approximation. Conversion to and from potential energy, by contrast, is fundamentally impossible. This is essentially a new result, which has been overlooked for several decades, mainly because of the pathological coincidence that for a perfect, adiabatically stratified gas, the internal energy due to heating \textit{looks} exactly like a potential energy.\footnote{We use the nomenclature that an ``ideal gas" refers to a fluid for which the internal energy depends only on the temperature (i.e., $U=U(T)$), whereas a ``perfect gas" is a fluid that is not only ideal, but has specific heats that are constants, independent of temperature.} For non-adiabatic stratification, or for an imperfect gas, the coincidence no longer holds, and the more general law for conservation of total energy that is derived here should be considered. 
 	
 The other new and related result is that total energy \textit{should} be conserved under the anelastic approximation, for arbitrary fluid motions and equations of state and for all stratifications, even for strongly subadiabatic ones. The anelastic equations of \citet{Gough1969} satisfy such a general conservation law, while modern implementations of the anelastic approximation do not. Thus, a major part of this paper is devoted to translating \citet{Gough1969}'s equations into more conventional notation and elucidating the origin and form of the term (which should be present in the internal energy equation for asymptotic consistency) that is missing from modern anelastic implementations. 
 
 Finally, we note that \citet{Gough1969} assumed zero net vertical transport of mass for the ``true" fully compressible fluid whose motion the anelastic equations are intended to approximate. This may at first seem like an arbitrary choice to make the small-parameter expansion simpler. It is concluded in this work, however, that the ``zero mean mass flux" assumption is in fact fundamental to ensure the energetic consistency of the anelastic approximation. 
-	
-	\section{Thermodynamics for a general equation of state}
-			Note that the left-hand side (LHS) of Equation \eqref{eq:en} can be written in several other forms which will prove useful: 
+
+	\section{The anelastic approximation of \citet{Gough1969}}
+	To set the stage, we define some new thermodynamic variables, namely, the specific enthalpy,
+\begin{align}\label{eq:enthalpy}
+	h\define U + \frac{P}{\rho}
+\end{align}
+and the specific entropy,
+\begin{align}\label{eq:eosentr}
+	S = S(P,T).
+\end{align}
+Equation \eqref{eq:eosentr} is also an equation of state, containing the equivalent information of Equation \eqref{eq:eos}. 
+
+We define several first derivatives of thermodynamic quantities derivable from the generalized equation of state \eqref{eq:eos} or \eqref{eq:eosentr}: the specific heat at constant pressure, 
+\begin{align}\label{eq:cp}
+	\cpcap=\cpcap(P,T)\define T\left(\pderiv{S}{T}\right)_P,
+\end{align}
+the squared adiabatic sound speed,
+\begin{align}\label{eq:cs2}
+	\cs^2=\cs^2(P,T)\define \left(\pderiv{P}{\rho}\right)_S,
+\end{align}
+and the thermal expansion coefficient,
+\begin{align}
+	\delta=\delta(P,T)\define-\left(\pderiv{\ln\rho}{\ln T}\right)_P.
+\end{align}
+The first law of thermodynamics\footnote{We assume local thermodynamic equilibrium holds for the fluid.} then takes the following forms:
+\begin{subequations}\label{eq:firstlaw}
+	\begin{align}
+		TdS &= dU - \frac{P}{\rho^2}d\rho \\
+		&= dh - \frac{dP}{\rho}\\
+		&= \cpcap dT - \frac{\delta}{\rho}dP\\
+		&=\frac{\cpcap T}{\rho\delta}\left[\frac{dP}{\cs^2}-d\rho\right].
+	\end{align}
+\end{subequations}
+
+	From Equations \eqref{eq:cont} and \eqref{eq:firstlaw}, the left-hand side of Equation \eqref{eq:en} can be written in several equivalent forms:
 	\begin{subequations}\label{eq:enlhs}
 		\begin{align}
 			\pderiv{}{t}(\rho U) + \Div(\rho U\vecu) + P\Div\vecu &= \rho\matderiv{U} - \frac{P}{\rho}\matderiv{\rho}\\
@@ -125,73 +170,52 @@ Finally, we note that \citet{Gough1969} assumed zero net vertical transport of m
 		\matderiv{}{}\define \pderiv{}{t} + \ugrad
 	\end{align}
 	is the material (or Lagrangian) derivative,
-	\begin{align}\label{eq:enthalpy}
-		h\define U + \frac{P}{\rho}
-	\end{align}
-	is the specific enthalpy, and
-	\begin{align}\label{eq:entropy}
-		S = S(P,T)
-	\end{align}
-	is the specific entropy. 
 	
-	It will also be helpful to define the following fluid properties associated with the generalized equations of state \eqref{eq:eos} and \eqref{eq:entropy}: the specific heat at constant pressure, 
-	\begin{align}\label{eq:cp}
-		\cpcap=\cpcap(P,T)\define T\left(\pderiv{S}{T}\right)_P,
-	\end{align}
-	the squared adiabatic sound speed,
-	\begin{align}\label{eq:cs2}
-		\cs^2=\cs^2(P,T)\define \left(\pderiv{P}{\rho}\right)_S,
-	\end{align}
-	and the thermal expansion coefficient,
-	\begin{align}
-		\delta=\delta(P,T)\define-\left(\pderiv{\ln\rho}{\ln T}\right)_P.
-	\end{align}
-	The first law of thermodynamics takes the following forms:
-	\begin{subequations}\label{eq:firstlaw}
-		\begin{align}
-			TdS &= dU - \frac{P}{\rho^2}d\rho \\
-			&= dh - \frac{dP}{\rho}\\
-			&= \cpcap dT - \frac{\delta}{\rho}dP\\
-			&=\frac{\cpcap T}{\rho\delta}\left[\frac{dP}{\cs^2}-d\rho\right].
-		\end{align}
-	\end{subequations}
 	
-	\section{The anelastic approximation of \citet{Gough1969}}
-	We will not repeat the full asymptotic expansion in $\epsilon$ of Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} here. Instead, we reiterate the salient assumptions in the case where the horizontally averaged background atmosphere is time-independent and the layer depth is thicker than the typical pressure scale height.\footnote{\citet{Gough1969} also considers thin layers, in which the anelastic equations become the Boussinesq equations, and time-dependent (moving) background atmospheres. Note that the assumption of time-independence can be relaxed slightly without affecting the asymptotics, as we discuss below.} The main assumption is that the thermodynamic perturbations from the horizontally averaged background state are small, e.g.,
+	We will not repeat the full asymptotic expansion in $\epsilon$ performed by \citet{Gough1969} of Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} here. Instead, we reiterate the salient assumptions in the case where the horizontally averaged background atmosphere is time-independent and the layer depth is thicker than the typical pressure scale height.\footnote{\citet{Gough1969} also considers thin layers, in which the anelastic equations become the Boussinesq equations, and time-dependent (moving) background atmospheres. Note that the assumption of time-independence can be relaxed slightly without affecting the asymptotics, as we discuss below.} The main assumption is that the thermodynamic perturbations from the horizontally averaged background state are small, e.g.,
 	\begin{align}\label{eq:linearthermo}
 		\rho = \rhoover(q) + \rhoone(x_i,t)\five &\with \rhoone/\rhoover=O(\epsilon)\ll 1,\\
 		P = \prsover(q) + \prsone(x_i,t)\five &\with \prsone/\prsover=O(\epsilon)\ll1 \nonumber,
 	\end{align} 
-	and similarly for $T$, $U$, $h$, $\cpcap$, $\mu$, $\delta$, $\cs^2$, $\vecf$, and $Q$. Here, the overbars denote horizontal averages and the ``1" subscripts denote the perturbations about this average. Note that it is \textit{not} correct to write ``$S=\entrover(q)+\entrone(x_i,t)$ with $\entrone/\entrover=O(\epsilon)$." The fully compressible equations of motion contain only differences in entropy and so no meaningful absolute value of $\entrover$ can be defined. Instead, we must write
+	and similarly for $T$, $U$, $h$, $\cpcap$, $\mu$, $\delta$, $\cs^2$, $\vecf$, and $Q$. Here, the overbars denote horizontal averages (taken at a particular instant in time) and the ``1" subscripts denote the perturbations about this average. Note that it is \textit{not} correct to write ``$S=\entrover(q)+\entrone(x_i,t)$ with $\entrone/\entrover=O(\epsilon)$." The fully compressible equations of motion contain only differences in entropy and so no meaningful absolute value of $\entrover$ can be defined. Instead, we must write
 	\begin{align}\label{eq:linearent}
 	S = \entrover(q) + \entrone(x_i,t) \five &\with \entrone/\cpover=O(\epsilon)\ll 1.
-	\end{align} 
+	\end{align}
+	
+	By writing, e.g., $\rhoover=\rhoover(q)$, \citet{Gough1969} implicitly assumes that the horizontally averaged state is time-independent. We keep this assumption for now but relax it later, since the asymptotic expansion is unaffected by temporally varying background states, as long as the evolution is slow enough. 
+	% This can also be interpreted to mean that the convection has established statistically steady mean profiles in the thermal variables, and the goal of the anelastic approximation is to solve for small thermal perturbations about these mean profiles. The mean state is thus unknown a priori, but can be solved for after statistically steady convection has been established. 
+	
 	The second assumption is that the coordinate system can be chosen such that there is no mass flux across any horizontal surface, i.e.,
 	\begin{align}\label{eq:nomassflux}
 		\overline{\rho u_i}=0.
 	\end{align}
-	In a spherical system, the horizontal average would be a spherically symmetric average and the coordinates would point along the spatially varying curvilinear coordinate directions. 
+	In a spherical system (e.g., a spherical shell), the horizontal average would be a spherically symmetric average and the coordinates would point along the spatially varying curvilinear coordinate directions. 
 	
 	The characteristic length scale of variation of the fluid is assumed to be a typical value $H_a$ for the pressure scale height. The flow is assumed to be buoyantly driven by the $O(\epsilon)$ thermal perturbations, i.e., 
 	\begin{align}\label{eq:scaleu}
-		|\vecu| = O(\sqrt{\epsilon g_a H_a}) = O(\sqrt{\epsilon}c_{{\rm s}a}),
+		|\vecu| = O(\sqrt{\epsilon g_a H_a}) = O(\sqrt{\epsilon}\csa),
 	\end{align}
 	where ``a" subscripts denote typical atmospheric background-state values. Thus, the squared Mach number of the flow is assumed to be $O(\epsilon)$. The characteristic time scale of variation of the fluid is assumed to be advective, i.e., 
 	\begin{align}\label{eq:scaleu}
-	\left|\pderiv{}{t}\right|  \define O\left(\sqrt{\frac{\epsilon g_a}{H_a}}\right) = O\left(\sqrt{\epsilon} \frac{1}{H_a/c_{{\rm s}a}}\right).
+	\left|\pderiv{}{t}\right|  = O\left(\sqrt{\frac{\epsilon g_a}{H_a}}\right) = O\left(\sqrt{\epsilon} \frac{1}{H_a/\csa}\right).
 	\end{align}
-	Thus, the characteristic time scale is $O(\epsilon^{-1/2})$ times longer than the time it takes a sound wave to cross a pressure scale height. 
+	Thus, the characteristic time scale of variation for the convection is $O(\epsilon^{-1/2})$ times longer than the time it takes a sound wave to cross a pressure scale height. 
 	
 	Finally, the vertical convective heat flux, which maximally could transport an energy flux of order $\rhoover \tmpover w \Delta\entrover$, where 
 	\begin{align}\label{eq:defw}
 		w\define\veck\cdot\vecu
 	\end{align} is the vertical velocity and $\Delta \entrover $ is the total drop in background entropy across the convecting layer, is assumed to be limited primarily by the thermal diffusion $\vecf$. This will be true if the conductive heating $-\Div \vecf$ in Equation \eqref{eq:en} is at at least as large as the viscous and internal heatings. In the case of negligible heatings (high Rayleigh number), one expects
 	\begin{align}
-		\frac{\Delta\entrover}{C_{{\rm p}a}} = O(\epsilon),
+		\frac{|\Delta\entrover|}{\cpa} = O(\epsilon),
 	\end{align}
 	i.e., the convecting layer should be nearly adiabatically stratified for vigorous convection. 
 	
-	One consequence of Equation \eqref{eq:nomassflux} is that the horizontally averaged velocity $\overline{\vecu}$ is $O(\epsilon)$ \textit{smaller} than the perturbed velocity $\vecu_1$. For the total mass flux (or equivalently, momentum density), $\bm{m}\define \rho\vecu=(\rhoover+\rhoone)(\overline{\vecu}+\vecu_1)$, we can thus write
+	One consequence of Equation \eqref{eq:nomassflux} is that the horizontally averaged velocity $\overline{\vecu}$ is $O(\epsilon)$ \textit{smaller} than the perturbed velocity $\vecu_1$. To see this, we write
+	\begin{align}
+		0 &= \overline{(\rhoover+\rhoone)(\overline{\vecu}+\vecu_1)} = \rhoover\,\uover + \overline{\rhoone\vecu_1},\nonumber\\
+		\orr |\uover| &= \left|-\frac{\overline{\rhoone\vecu_1}}{\rhoover}\right| = O(\epsilon|\vecu_1|).
+	\end{align}
+	For the total mass flux (or equivalently, momentum density), $\bm{m}\define \rho\vecu=(\rhoover+\rhoone)(\overline{\vecu}+\vecu_1)$, we can thus write
 		\begin{align}\label{eq:momdensityorig}
 		\bm{m} = \bm{m}-\overline{\bm{m}}=\rhoover\vecu_1 + \rhoone\vecu_1 - \overline{\rhoone\vecu_1} + O(\epsilon^2).
 	\end{align}
@@ -261,7 +285,7 @@ Finally, we note that \citet{Gough1969} assumed zero net vertical transport of m
   \end{align}
    Equations \eqref{eq:ancont}--\eqref{eq:anmeanen} are mathematically equivalent to Equations (4.3)--(4.7) and (4.15)--(4.22) from \citet{Gough1969}.
   
-  In each of Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}, each term on the right-hand side (RHS) is $O(\epsilon)$ compared to each term on the LHS. In particular, we can approximate 
+  In each of Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}, each term on the right-hand side is $O(\epsilon)$ compared to each term on the left-hand side. In particular, we can approximate 
   \begin{align}\label{eq:anhydrostatic}
   	\nabla\prsover\approx \rhoover\vecg
   \end{align}
@@ -272,7 +296,7 @@ Dotting $\vecu$ into Equation \eqref{eq:anmommain} and using Equation \eqref{eq:
 		\pderiv{}{t}\left(\frac{1}{2}\rhoover u^2\right)&=-\Div\left(\frac{1}{2}\rhoover u^2\vecu \right) - \ugrad \prsone + \rhoone\vecu\cdot\vecg + u_i\pderiv{D_{ij}}{x_j} + \ugrad(\rhoover \overline{w^2}).
 	\end{align}
 
- Note that from Equation \eqref{eq:lintp}, the LHS of Equation \eqref{eq:anen} can be written in terms of the entropy $\entrone$, 
+ Note that from Equation \eqref{eq:lintp}, the left-hand side of Equation \eqref{eq:anen} can be written in terms of the entropy $\entrone$, 
 \begin{align}\label{eq:anenlhs}
 	\rhoover\cpover\pderiv{\tmpone}{t} - \deltaover\pderiv{\prsone}{t} = \rhoover\tmpover\pderiv{\entrone}{t}.
 \end{align}
@@ -292,7 +316,7 @@ Because of Equation \eqref{eq:nomeanu}, or more specifically, the condition
 \begin{align}\label{eq:deftote}
 	E_{\rm tot} \define \int_V \rhoover\left(\frac{1}{2} u^2 + \tmpover \entrone\right) dV,
 \end{align}
-is conserved, to the extent that the volume-integrated internal heat sources balance the various fluxes (found under the divergence on the RHS of Equation \eqref{eq:antote}) integrated over the boundaries. This conservation holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos} and for arbitrary magnitudes of $|\nabla \entrover|$. However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
+is conserved, to the extent that the volume-integrated internal heat sources balance the various fluxes (found under the divergence on the right-hand side of Equation \eqref{eq:antote}) integrated over the boundaries. This conservation holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos} and for arbitrary magnitudes of $|\nabla \entrover|$. However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
 
 \section{The \citet{Gough1969} equations in more familiar form}
 Modern anelastic codes typically write the equations using the perturbed pressure and entropy ($\prsone$ and $\entrone$) in place of the quantities $\tmpone$, $\prsone$, $\rhoone$, and $\enthone$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmeanmom}. We can convert using Equations \eqref{eq:aneos} and \eqref{eq:anfirstlaw} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
@@ -339,7 +363,7 @@ and the ``non-LBR" heating
 Both these terms vanish for an adiabatic background state (where $\nabla\entrover=0$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use,ts neglect seems to have not been explicitly considered. 
 
 \section{The equivalence of horizontally averaged atmospheres to fixed reference atmospheres}
-In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the perturbations in $S$ and $P$ about this reference state develop small but nonzero horizontally averaged pertrubations. Some codes (e.g., the {\ash} code) alternatively solve for the perturbations about the horizontal average directly. In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the RHS's of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the horizontal means of the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
+In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the perturbations in $S$ and $P$ about this reference state develop small but nonzero horizontally averaged pertrubations. Some codes (e.g., the {\ash} code) alternatively solve for the perturbations about the horizontal average directly. In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the right-hand side's of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the horizontal means of the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
 
 Our approach is to define the horizontally averaged profiles as the sum of the reference-state profile (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
 \begin{align}
@@ -391,7 +415,7 @@ To zeroth order in $\epsilon$, Equation \eqref{eq:ancont} becomes simply
 \begin{align}\label{eq:ancontref}
 	\Div(\rhotilde\vecu)\equiv0.
 \end{align}
-Because the RHS of Equations \eqref{eq:anmom} is $O(\epsilon)$ compared to the LHS we can write, using Equation \eqref{eq:refhydro},
+Because the right-hand side of Equations \eqref{eq:anmom} is $O(\epsilon)$ compared to the left-hand side we can write, using Equation \eqref{eq:refhydro},
 \begin{align}\label{eq:anrhsmomref}
 	[-\nabla \prsover + \rhoover\vecg] &= -\nabla \prshat + \rhohat\vecg\nonumber\\
 	&= -\rhotilde\nabla\left(\frac{\prshat}{\rhotilde}\right) - \tilde{\delta} \rhotilde \left(\frac{\entrhat}{\tilde{\cpcap}}\right) \vecg + \frac{\tilde{\delta}\rhotilde}{\tilde{\cpcap}} \left(\frac{\prshat}{\rhotilde}\right)\nabla\tilde{S}.
@@ -547,15 +571,15 @@ where the gas here is assumed to be perfect (i.e., $\overline{\cpcap}\equiv\cpca
 \section{Conditions for anelastic overshoot}
 [THIS SECTION IS A STUB]. What I have so far is that a downflowing plume should have kinetic energy 
 \begin{align}
-	w^2 \sim g_a H_a \left(\frac{\entrprime}{C_{{\rm p}a}}\right) \sim c_{{\rm s}a}^2 \epsilon
+	w^2 \sim g_a H_a \left(\frac{\entrprime}{\cpa}\right) \sim \csa^2 \epsilon
 \end{align}
 If it descends into a stable stratification with buoyancy frequency
 \begin{align}
-	N_a^2 =   \frac{g_a}{C_{{\rm p}a}}|\nabla S_a|,
+	N_a^2 =   \frac{g_a}{\cpa}|\nabla S_a|,
 \end{align}
 where $|\nabla S_a|$ is a typical value for $|\nabla\tilde{S}|$ in the stable layer. At most, the plume should reach a depth $d$ before it decelerates to $w=0$, with $d$ given by
 \begin{align}
-	w^2 \sim \left(\frac{\entrprime}{C_{{\rm p}a}}\right)gd \sim \frac{g_a}{C_{{\rm p}a}}|\nabla S_a| d^2 \sim N_a^2 d^2
+	w^2 \sim \left(\frac{\entrprime}{\cpa}\right)gd \sim \frac{g_a}{\cpa}|\nabla S_a| d^2 \sim N_a^2 d^2
 \end{align}
 or 
 \begin{align}
@@ -563,14 +587,14 @@ or
 \end{align}
 Thus, $|\entrprime|$ should reach a maximum during overshoot of 
 \begin{align}
-	\max{\left(\frac{\entrprime}{C_{{\rm p}a}}\right)_{\rm stable}} &\sim \left(\frac{|\nabla S_a|}{C_{{\rm p}a}}\right)d \sim \left(\frac{N_a^2}{g_a}\right)\frac{w}{N_a}\nonumber\\
-	&\sim \left(\frac{N_a}{g_a}\right)c_{{\rm s}a} \epsilon^{1/2}\sim \left(\frac{N_a}{c_{{\rm s}a}^2/H_a}\right)c_{{\rm s}a} \epsilon^{1/2} = \left(\frac{N_a}{c_{{\rm s}a}/H_a}\right)\epsilon^{1/2}.
+	\max{\left(\frac{\entrprime}{\cpa}\right)_{\rm stable}} &\sim \left(\frac{|\nabla S_a|}{\cpa}\right)d \sim \left(\frac{N_a^2}{g_a}\right)\frac{w}{N_a}\nonumber\\
+	&\sim \left(\frac{N_a}{g_a}\right)\csa \epsilon^{1/2}\sim \left(\frac{N_a}{\csa^2/H_a}\right)\csa \epsilon^{1/2} = \left(\frac{N_a}{\csa/H_a}\right)\epsilon^{1/2}.
 \end{align}
 We thus expect the thermal perturbations to remain small in the stable layer, provided 
 \begin{subequations}
 \begin{align}
 	\frac{N_a^2}{\omega_{\rm ac}^2} &\lesssim \epsilon,\label{eq:conditionovershoot}\\
-	\where \omega_{\rm ac} &\define \frac{c_{{\rm s}a}}{2H_a}
+	\where \omega_{\rm ac} &\define \frac{\csa}{2H_a}
 \end{align}
 \end{subequations}
 is the acoustic cutoff frequency. 
