@@ -236,7 +236,7 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
 	\end{align}
 	whereas we will use $\nabla \entrover$. 
 	
-	Once all of the above scaling assumptions have been made, Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} are nondimensionalized, each term is expanded in powers of $\epsilon$, terms up to zeroth-order in the continuity equation and first-order in the other equations are retained, and redimensionalization then yields the anelastic equations. Specifically, we discuss Equations (4.3)--(4.7) and(4.15)--(4.22) from \citet{Gough1969}. We translate these equations using the change of variables outlined in Equations \eqref{eq:momdensity} and \eqref{eq:superad}. 
+	Once all of the above scaling assumptions have been made, Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} are nondimensionalized, each term is expanded in powers of $\epsilon$, terms up to zeroth-order in the continuity equation and first-order in the other equations are retained, and redimensionalization then yields the anelastic equations. Specifically, we discuss \citet{Gough1969}'s Equations (4.3)--(4.7) and (4.15)--(4.22). We translate these equations using the change of variables outlined in Equations \eqref{eq:momdensity} and \eqref{eq:superad}. 
 	
 	Under \citet{Gough1969}'s anelastic approximation, the continuity equation \eqref{eq:cont} becomes
 	\begin{align}\label{eq:ancont}
@@ -256,10 +256,10 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
 		&+ [\heatover - \Div\overline{\vecf}],
 	\end{align}
 	%-\nabla(\rhoover \overline{w^2}) 
-  and the equation of state \eqref{eq:eos} becomes linearized, with
-  \begin{subequations}\label{eq:aneos}
+  and the equation of state \eqref{eq:eos} or \eqref{eq:eosentr} becomes linearized via the first law of thermodynamics \eqref{eq:firstlaw}, with
+  \begin{subequations}\label{eq:anfirstlawpert}
   \begin{align}
-  	\tmpover \entrone &= \cpover \tmpone - \frac{\deltaover}{\rhoover} \prsone\label{eq:lintp}\\
+  	\tmpover \entrone &= \cpover \tmpone - \frac{\deltaover}{\rhoover} \prsone\label{eq:anfirstlawperttp}\\
   	&= U_1 - \frac{\prsover}{\rhoover^2}\rhoone \label{eq:linu}\\
   	&= \enthone - \frac{\prsone}{\rho}\\
   	&= \frac{\cpover\, \tmpover}{\deltaover\rhoover}\left[\frac{\prsone}{\cssqover}-\rhoone\right].
@@ -268,7 +268,7 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
   We have used Equation \eqref{eq:momdensity} to yield the term $- \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover$ in Equation \eqref{eq:anen}. 
   
    The differentials in Equation \eqref{eq:firstlaw} can be converted into gradients (e.g., $T\nabla S= \nabla h - \nabla P/\rho$) and the horizontally averaged form of these relations yields 
-  \begin{subequations}\label{eq:anfirstlaw}
+  \begin{subequations}\label{eq:anfirstlawmean}
   	\begin{align}
   		\tmpover\nabla\entrover &= \cpover\nabla\tmpover - \frac{\deltaover}{\rhoover}\nabla\prsover + O(\epsilon^2)\\
   		&= \frac{\cpover\,\tmpover}{\deltaover\rhoover}\left[\frac{\nabla\prsover}{\cssqover}-\nabla\rhoover\right]+O(\epsilon^2).
@@ -276,32 +276,32 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
   \end{subequations}
   
    The horizontal averages of Equations \eqref{eq:anmom} and \eqref{eq:anen} satisfy 
-  \begin{align}\label{eq:anmeanmom}
+  \begin{align}\label{eq:anmommean}
   	-\nabla\prsover + \rhoover\vecg = \nabla(\rhoover \overline{w^2})
   \end{align}
   and
-  \begin{align}\label{eq:anmeanen}
+  \begin{align}\label{eq:anenmean}
   	\heatover - \Div\overline{\vecf} = \rhoover\overline{\vecu\cdot\left(\nabla \enthone-\frac{1}{\rhoover}\nabla \prsone\right)} + \vecg\cdot\overline{\rhoone\vecu} - \overline{D_{ij}\pderiv{u_i}{x_j}}
   \end{align}
-   Equations \eqref{eq:ancont}--\eqref{eq:anmeanen} are mathematically equivalent to Equations (4.3)--(4.7) and (4.15)--(4.22) from \citet{Gough1969}.
+   Equations \eqref{eq:ancont}--\eqref{eq:anenmean} are mathematically equivalent to \citet{Gough1969}'s Equations (4.3)--(4.7) and (4.15)--(4.22).
   
-  In each of Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}, each term on the right-hand side is $O(\epsilon)$ compared to each term on the left-hand side. In particular, we can approximate 
+  In each of Equations \eqref{eq:anmommean} and \eqref{eq:anenmean}, each term on the right-hand side is $O(\epsilon)$ compared to each term on the left-hand side. In particular, we can make the mean hydrostatic approximation, 
   \begin{align}\label{eq:anhydrostatic}
-  	\nabla\prsover\approx \rhoover\vecg
+  	\nabla\prsover\approx \rhoover\vecg,
   \end{align}
-  in terms that are already of first order in $\epsilon$. 
+  when multiplying by terms that are already of first order in $\epsilon$. 
   
-Dotting $\vecu$ into Equation \eqref{eq:anmommain} and using Equation \eqref{eq:anmeanmom} yields the anelastic kinetic energy equation,
+Dotting $\vecu$ into Equation \eqref{eq:anmommain} and using Equation \eqref{eq:anmommean} yields the anelastic kinetic energy equation,
 	\begin{align}\label{eq:anke}
 		\pderiv{}{t}\left(\frac{1}{2}\rhoover u^2\right)&=-\Div\left(\frac{1}{2}\rhoover u^2\vecu \right) - \ugrad \prsone + \rhoone\vecu\cdot\vecg + u_i\pderiv{D_{ij}}{x_j} + \ugrad(\rhoover \overline{w^2}).
 	\end{align}
 
- Note that from Equation \eqref{eq:lintp}, the left-hand side of Equation \eqref{eq:anen} can be written in terms of the entropy $\entrone$, 
+ Note that from Equation \eqref{eq:anfirstlawperttp}, the left-hand side of Equation \eqref{eq:anen} can be written in terms of the entropy $\entrone$, 
 \begin{align}\label{eq:anenlhs}
 	\rhoover\cpover\pderiv{\tmpone}{t} - \deltaover\pderiv{\prsone}{t} = \rhoover\tmpover\pderiv{\entrone}{t}.
 \end{align}
 
-Using Equations \eqref{eq:ancont}, \eqref{eq:aneos}, and \eqref{eq:anenlhs} and then adding Equations \eqref{eq:anen} and \eqref{eq:anke} yields \citet{Gough1969}'s total energy equation,
+Using Equations \eqref{eq:ancont}, \eqref{eq:anfirstlawpert}, and \eqref{eq:anenlhs} and then adding Equations \eqref{eq:anen} and \eqref{eq:anke} yields \citet{Gough1969}'s total energy equation,
 \begin{align}\label{eq:antote}
 			\pderiv{}{t}\left[\rhoover\left(\frac{1}{2} u^2 + \tmpover \entrone\right)\right] = &-\Div\left\{\left[\rhoover\left(\frac{1}{2} u^2 + \tmpover \entrone\right) + \prsone\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \overline{\vecf} + \vecf_1\right\}+ \heatover + Q_1 \nonumber\\
 			 &+\left[-\rhoover\tmpover\ugrad\entrover +\ugrad (\rhoover \overline{w^2})- \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover\right].
@@ -316,10 +316,10 @@ Because of Equation \eqref{eq:nomeanu}, or more specifically, the condition
 \begin{align}\label{eq:deftote}
 	E_{\rm tot} \define \int_V \rhoover\left(\frac{1}{2} u^2 + \tmpover \entrone\right) dV,
 \end{align}
-is conserved, to the extent that the volume-integrated internal heat sources balance the various fluxes (found under the divergence on the right-hand side of Equation \eqref{eq:antote}) integrated over the boundaries. This conservation holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:aneos} and for arbitrary magnitudes of $|\nabla \entrover|$. However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
+is conserved, to the extent that the volume-integrated internal heat sources balance the various fluxes (found under the divergence on the right-hand side of Equation \eqref{eq:antote}) integrated over the boundaries. This conservation holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:anfirstlawpert} and for arbitrary magnitudes of $|\nabla \entrover|$. However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
 
 \section{The \citet{Gough1969} equations in more familiar form}
-Modern anelastic codes typically write the equations using the perturbed pressure and entropy ($\prsone$ and $\entrone$) in place of the quantities $\tmpone$, $\prsone$, $\rhoone$, and $\enthone$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmeanmom}. We can convert using Equations \eqref{eq:aneos} and \eqref{eq:anfirstlaw} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
+Modern anelastic codes typically write the equations using the perturbed pressure and entropy ($\prsone$ and $\entrone$) in place of the quantities $\tmpone$, $\prsone$, $\rhoone$, and $\enthone$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmommean}. We can convert using Equations \eqref{eq:anfirstlawpert} and \eqref{eq:anfirstlaw} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
 \begin{align}\label{eq:anrhsmom}
 	-\nabla \prsone + \rhoone\vecg = -\rhoover\nabla\left(\frac{\prsone}{\rhoover}\right) - \deltaover \rhoover \left(\frac{\entrone}{\cpover}\right) \vecg + \frac{\deltaover\rhoover}{\cpover} \left(\frac{\prsone}{\rhoover}\right)\nabla\entrover.
 \end{align}
@@ -327,7 +327,7 @@ In the internal energy equation, we find
 \begin{align}\label{eq:anrhsen}
 	-\rhoover\vecu\cdot\left(\nabla \enthone-\frac{1}{\rhoover}\nabla \prsone\right) = -\rhoover\tmpover\ugrad \entrone - \rhoover \entrone\ugrad\tmpover + \left(\frac{\prsone}{\rhoover}\right)\ugrad \rhoover.
 \end{align}
-Using Equations \eqref{eq:aneos}, \eqref{eq:anfirstlaw}, and \eqref{eq:anhydrostatic} as needed, we compute, with some effort,
+Using Equations \eqref{eq:anfirstlawpert}, \eqref{eq:anfirstlaw}, and \eqref{eq:anhydrostatic} as needed, we compute, with some effort,
 \begin{align}\label{eq:anrhsen2}
 	- \rhoover \entrone\ugrad\tmpover + \left(\frac{\prsone}{\rhoover}\right)\ugrad \entrone -\rhoone\vecu\cdot\vecg = -\rhoover \tmpone\ugrad\entrover + O(\epsilon^2).
 \end{align}
@@ -346,8 +346,8 @@ and
 	\andd \tmpone = & \frac{\tmpover \entrone}{\cpover} + \frac{\deltaover \prsone}{\rhoover\cpover}.
 \end{align}
 \end{subequations}
-Finally, the mean energy equation \eqref{eq:anmeanen} becomes
-\begin{align}\label{eq:anmeanen2}
+Finally, the mean energy equation \eqref{eq:anenmean} becomes
+\begin{align}\label{eq:anenmean2}
 	\heatover-\Div\overline{\vecf} = \rhoover\tmpover\, \overline{\ugrad \entrone}-\overline{D_{ij}\pderiv{u_i}{x_j}} + \rhoover (\overline{\tmpone\vecu})\dotgrad\entrover 
 \end{align}
 %The final terms in brackets in these equations may be dropped without affecting energy conservation, since they do not transport any net energy. However, dropping them still may still makes the equations an asymptotically inconsistent approximation to the true fully compressible motion, and so we retain them.
@@ -363,7 +363,7 @@ and the ``non-LBR" heating
 Both these terms vanish for an adiabatic background state (where $\nabla\entrover=0$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use,ts neglect seems to have not been explicitly considered. 
 
 \section{The equivalence of horizontally averaged atmospheres to fixed reference atmospheres}
-In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the perturbations in $S$ and $P$ about this reference state develop small but nonzero horizontally averaged pertrubations. Some codes (e.g., the {\ash} code) alternatively solve for the perturbations about the horizontal average directly. In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the right-hand side's of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the horizontal means of the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
+In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmommean} and \eqref{eq:anenmean}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the perturbations in $S$ and $P$ about this reference state develop small but nonzero horizontally averaged pertrubations. Some codes (e.g., the {\ash} code) alternatively solve for the perturbations about the horizontal average directly. In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the right-hand side's of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the horizontal means of the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
 
 Our approach is to define the horizontally averaged profiles as the sum of the reference-state profile (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
 \begin{align}
@@ -400,8 +400,8 @@ etc. The primed quantities (except for the entropy) are thus $O(\epsilon)$ compa
 %	&= h^\prime - \frac{\prsprime }{\rhotilde}\\
 % 		&= U^\prime - \frac{\tilde{P}}{\rhotilde^2}\rhoprime \\
 
-The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:aneos},
-\begin{subequations}\label{eq:aneosref}
+The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:anfirstlawpert},
+\begin{subequations}\label{eq:anfirstlawpertref}
 	\begin{align}
 		\tilde{T} \entrprime &= \tilde{\cpcap} \tmpprime - \frac{\tilde{\delta}}{\rhotilde} \prsprime,\\
   	&= U^\prime - \frac{\prstilde}{\rhotilde^2}\rhoprime \label{eq:linuref}\\
@@ -409,7 +409,7 @@ The linearized equation of state for the primed quantities is exactly analogous 
 		&= \frac{\tilde{\cpcap} \tilde{T}}{\tilde{\delta}\rhotilde}\left[\frac{\prsprime}{\tilde{\cs^2}}-\rhoprime\right].
 	\end{align}
 \end{subequations}
-as is the linearized equation of state for the hatted quantities. Note that in Equation \eqref{eq:aneos}, the overbars may be replace by tildes, making Equation \eqref{eq:aneosref} applicable to the ``subscript 1" quantities as well. 
+as is the linearized equation of state for the hatted quantities. Note that in Equation \eqref{eq:anfirstlawpert}, the overbars may be replace by tildes, making Equation \eqref{eq:anfirstlawpertref} applicable to the ``subscript 1" quantities as well. 
 
 To zeroth order in $\epsilon$, Equation \eqref{eq:ancont} becomes simply
 \begin{align}\label{eq:ancontref}
@@ -457,7 +457,7 @@ Substituting Equation \eqref{eq:dsdt} and Equations \eqref{eq:momdensity2} throu
 \end{subequations}
 and $D_{ij}$ is now given by Equation \eqref{eq:anmomrefvisc}. 
 
-Taking the horizontal means of Equations \eqref{eq:anmomref} and \eqref{eq:anenref} and then using Equations \eqref{eq:refhydro}, \eqref{eq:dsdt}, and \eqref{eq:anrhsmomref} recovers the mean momentum and energy equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen2}. The anelastic formulation with fixed reference states (Equations \eqref{eq:ancontref}, \eqref{eq:anmomref} and \eqref{eq:anenref}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmeanmom} and \eqref{eq:anmeanen}). 
+Taking the horizontal means of Equations \eqref{eq:anmomref} and \eqref{eq:anenref} and then using Equations \eqref{eq:refhydro}, \eqref{eq:dsdt}, and \eqref{eq:anrhsmomref} recovers the mean momentum and energy equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. The anelastic formulation with fixed reference states (Equations \eqref{eq:ancontref}, \eqref{eq:anmomref} and \eqref{eq:anenref}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmommean} and \eqref{eq:anenmean}). 
 
 \section{The Anelastic Energy-conserving Generalized Gough (AnEGG) approximation}
 To arrive at the final form of an energy-conserving set of anelastic equations, we make one final argument: that the last term in Equation \eqref{eq:anenrefmain} is negligible. We do so because this term has zero horizontal mean and therefore cannot affect the net transport of energy. Furthermore, pointwise it should always be much smaller than the background advection term $-\rhotilde\tilde{T}\ugrad\tilde{S}$, provided $\rhoprime$ remains $\ll \rhotilde$.
