@@ -422,21 +422,21 @@ to be in thermal equilibrium,
 and to satisfy the first law of thermodynamics for gradients (compare to Equation \eqref{eq:anfirstlawmean}),
 \begin{subequations}\label{eq:anfirstlawref}
 	\begin{align}
-		\tilde{T}\nabla\entrtilde &= \cptilde\nabla\tilde{T} - \frac{\deltatilde }{\rhotilde}\nabla\tilde{P} \\
-		&= \frac{\cptilde\tilde{T}}{\deltatilde \rhotilde}\left[\frac{\nabla\tilde{P}}{\tilde{\cs^2}}-\nabla\rhotilde\right].
+		\tmptilde\nabla\entrtilde &= \cptilde\nabla\tmptilde - \frac{\deltatilde }{\rhotilde}\nabla\tilde{P} \\
+		&= \frac{\cptilde\tmptilde}{\deltatilde \rhotilde}\left[\frac{\nabla\tilde{P}}{\tilde{\cs^2}}-\nabla\rhotilde\right].
 	\end{align}
 \end{subequations}
 
 
 %Note that this is simply a \textit{definition} for the reference-state term $\tilde{Q}-\Div\tilde{\vecf}$, which can be time-dependent. This is the one reference-state term that is assumed to not be set a priori. Instead, it is moved to the left-hand side of the internal energy equation and the evolution of the sum $\entrprime=\entrhat + \entrone$ is solved for. The approximation remains consistent as long as $\tilde{Q}-\Div\tilde{\vecf}$ remains $O(\epsilon)$ for all time (i.e., it satisfies Equations \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall}). 
-%  \define -\rhotilde\tilde{T}\pderiv{\entrhat}{t}.
+%  \define -\rhotilde\tmptilde\pderiv{\entrhat}{t}.
 The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:anfirstlawpert},
 \begin{subequations}\label{eq:anfirstlawpertref}
 	\begin{align}
-		\tilde{T} \entrprime &= \cptilde \tmpprime - \frac{\deltatilde }{\rhotilde} \prsprime,\\
+		\tmptilde \entrprime &= \cptilde \tmpprime - \frac{\deltatilde }{\rhotilde} \prsprime,\\
   	&= U^\prime - \frac{\prstilde}{\rhotilde^2}\rhoprime \label{eq:linuref}\\
 &= \enthprime - \frac{\prsprime}{\rhotilde}\\
-		&= \frac{\cptilde \tilde{T}}{\deltatilde \rhotilde}\left[\frac{\prsprime}{\tilde{\cs^2}}-\rhoprime\right].
+		&= \frac{\cptilde \tmptilde}{\deltatilde \rhotilde}\left[\frac{\prsprime}{\tilde{\cs^2}}-\rhoprime\right].
 	\end{align}
 \end{subequations}
 as is the linearized equation of state for the hatted quantities. Note that in Equation \eqref{eq:anfirstlawpert}, the overbars may be replace by tildes, making Equation \eqref{eq:anfirstlawpertref} applicable to the ``subscript 1" quantities as well. 
@@ -475,15 +475,15 @@ We finally write
 and 
 \begin{align}\label{eq:anenrhsfinal}
 	-\rhoover\tmpover \ugrad \entrone - \rhoover\tmpover \ugrad\entrover &= - \rhoover\tmpover\ugrad \entrprime -\rhoover\tmpover\ugrad\entrtilde \nonumber\\
-	&=-\rhotilde\tilde{T}\ugrad \entrprime - \tilde{T}(\rhoover \vecu)\cdot\nabla\entrtilde - \rhotilde\tmphat\ugrad\entrtilde + O(\epsilon^2).
+	&=-\rhotilde\tmptilde\ugrad \entrprime - \tmptilde(\rhoover \vecu)\cdot\nabla\entrtilde - \rhotilde\tmphat\ugrad\entrtilde + O(\epsilon^2).
 \end{align}
 Substituting Equations \eqref{eq:refthermalequil} and \eqref{eq:momdensity2}--\eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} yields
 \begin{subequations}\label{eq:refen}
 	\begin{align}
-		\rhotilde\tilde{T}\pderiv{\entrprime}{t}= &-\rhotilde\tilde{T}\ugrad \entrprime - \rhotilde\tilde{T} \ugrad \entrtilde - \rhotilde \tmpprime\ugrad\entrtilde+D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime  \nonumber\\
-		& - \tilde{T}(\rhoprime \vecu-\overline{\rhoprime\vecu})\cdot\nabla\entrtilde,\label{eq:refenmain}\\
+		\rhotilde\tmptilde\pderiv{\entrprime}{t}= &-\rhotilde\tmptilde\ugrad \entrprime - \rhotilde\tmptilde \ugrad \entrtilde - \rhotilde \tmpprime\ugrad\entrtilde+D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime  \nonumber\\
+		& - \tmptilde(\rhoprime \vecu-\overline{\rhoprime\vecu})\cdot\nabla\entrtilde,\label{eq:refenmain}\\
 		\where \rhoprime =& \frac{\prsprime}{\tilde{\cs^2}}-\frac{\deltatilde \rhotilde S ^\prime}{\cptilde},\\
-		 \tmpprime = & \frac{\tilde{T} \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde},
+		 \tmpprime = & \frac{\tmptilde \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde},
 	\end{align}
 \end{subequations}
 and $D_{ij}$ is now given by Equation \eqref{eq:refmomvisc}. 
@@ -497,28 +497,28 @@ One pernicious aspect of the reference-state formulation is that the equations h
 To summarize: as long as the true fully compressible system is not expected to change its mean state by more than $O(\epsilon)$ during evolution, either the mean-state or reference-state anelastic equations may be used with asymptotically equivalent results. If secular variation of the real system \textit{is} expected, it must be slow enough to satisfy Equation \eqref{eq:meanvariationslow}. Only then is the use of the mean-state anelastic equations justified.
 
 \section{The Anelastic Energy-conserving Generalized Gough (AnEGG) approximation}
-To arrive at the final form of an energy-conserving set of anelastic equations, we make one final argument: that the last term in Equation \eqref{eq:refenmain} is negligible. We do so because this term has zero horizontal mean and therefore cannot affect conservation of energy energy or the mean stratification $\pderivline{\entrover}{q}$. Furthermore, pointwise it should always be much smaller than the background advection term $-\rhotilde\tilde{T}\ugrad\entrtilde$, provided $\rhoprime$ remains $\ll \rhotilde$. 
+To arrive at the final form of an energy-conserving set of anelastic equations, we make one final argument: that the last term in Equation \eqref{eq:refenmain} is negligible. We do so because this term has zero horizontal mean and therefore cannot affect conservation of energy energy or the mean stratification $\pderivline{\entrover}{q}$. Furthermore, pointwise it should always be much smaller than the background advection term $-\rhotilde\tmptilde\ugrad\entrtilde$, provided $\rhoprime$ remains $\ll \rhotilde$. 
 
 The final equations, representing what we call the Anelastic Energy-conserving Generalized Gough (AnEGG) approximation, written for time-independent reference states, are thus
-\begin{subequations}\label{eq:anegg}
+\begin{subequations}\label{eq:egg}
 \begin{empheq}[box=\fbox]{align}
-	\Div(\rhotilde\vecu)&\equiv 0\label{eq:ancontegg},\\
-	\pderiv{}{t}(\rhotilde\vecu)&=-\Div(\rhotilde\vecu\vecu) -\rhotilde\nabla\left(\frac{\prsprime}{\rhotilde}\right) - \deltatilde \rhotilde \left(\frac{\entrprime}{\cptilde}\right) \vecg \underbrace{+ \frac{\deltatilde  \prsprime}{\cptilde} \nabla\entrtilde}_{\define \tilde{\bm{f}}_{\rm NLBR}}+\Div \overleftrightarrow{D},\label{eq:anmomegg}\\	
-		\andd \rhotilde\tilde{T}\pderiv{\entrprime}{t}&= -\rhotilde\tilde{T}\ugrad \entrprime - \rhotilde\tilde{T} \ugrad \entrtilde \underbrace{ -  \left(\frac{\tilde{T} \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde}\right)  \rhotilde \ugrad\entrtilde }_{\define \tilde{Q}_{\rm NLBR}} \nonumber\\
-		&\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime,\label{eq:anenegg}
+	\Div(\rhotilde\vecu)&\equiv 0\label{eq:eggcont},\\
+	\pderiv{}{t}(\rhotilde\vecu)&=-\Div(\rhotilde\vecu\vecu) -\rhotilde\nabla\left(\frac{\prsprime}{\rhotilde}\right) - \deltatilde \rhotilde \left(\frac{\entrprime}{\cptilde}\right) \vecg \underbrace{+ \frac{\deltatilde  \prsprime}{\cptilde} \nabla\entrtilde}_{\define \tilde{\bm{f}}_{\rm NLBR}}+\Div \overleftrightarrow{D},\label{eq:eggmom}\\	
+		\andd \rhotilde\tmptilde\pderiv{\entrprime}{t}&= -\rhotilde\tmptilde\ugrad \entrprime - \rhotilde\tmptilde \ugrad \entrtilde \underbrace{ -  \left(\frac{\tmptilde \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde}\right)  \rhotilde \ugrad\entrtilde }_{\define \tilde{Q}_{\rm NLBR}} \nonumber\\
+		&\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime,\label{eq:eggen}
 \end{empheq}
 \end{subequations}
 where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:refmomvisc}. %and it is additionally assumed that the fixed reference state satisfies the hydrostatic condition \eqref{eq:refhydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
 
-The AnEGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:anmomegg}, is 
+The AnEGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:eggmom}, is 
 %\begin{equation}\label{eq:ankeref}
 	\begin{empheq}[box=\fbox]{align}\label{eq:ankeegg}
 	\pderiv{}{t}\left(\frac{1}{2}\rhotilde u^2\right)&=-\Div\left(\frac{1}{2}\rhotilde u^2\vecu \right) - \Div(\prsprime\vecu)  - \deltatilde \rhotilde \left(\frac{\entrprime}{\cptilde}\right) \vecu\cdot \vecg +\frac{\deltatilde  \prsprime}{\cptilde} \vecu\cdot \nabla\entrtilde  + u_i\pderiv{D_{ij}}{x_j},
 	\end{empheq}
 %\end{equation}
-Adding Equations \eqref{eq:anenegg} and \eqref{eq:ankeegg} yields the AnEGG total energy equation,
+Adding Equations \eqref{eq:eggen} and \eqref{eq:ankeegg} yields the AnEGG total energy equation,
 \begin{empheq}[box=\fbox]{align}\label{eq:reftote}
-	\pderiv{}{t}\left[\rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime \right)\right] = &-\Div\left\{\left[\rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime\right) + \prsprime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf^\prime \right\} + Q^\prime \nonumber\\ & -\rhotilde\tilde{T}\ugrad\entrtilde. 
+	\pderiv{}{t}\left[\rhotilde\left(\frac{1}{2} u^2 + \tmptilde \entrprime \right)\right] = &-\Div\left\{\left[\rhotilde\left(\frac{1}{2} u^2 + \tmptilde \entrprime\right) + \prsprime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf^\prime \right\} + Q^\prime \nonumber\\ & -\rhotilde\tmptilde\ugrad\entrtilde. 
 \end{empheq}
 Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:refcont} and assuming $w\equiv0$ on the boundaries), integrating Equation \eqref{eq:reftote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
 \begin{subequations}\label{eq:anrefeconst}
@@ -526,42 +526,42 @@ Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:re
 \eggetot &\define \int_V \eggwtot dV = \text{constant},\\
 \where \eggwtot &\define \eggwke + \eggwheat,\\
  \eggwke &\define \frac{1}{2} \rhotilde u^2,\\
- \andd \eggwheat &\define \rhotilde\tilde{T} \entrprime.
+ \andd \eggwheat &\define \rhotilde\tmptilde \entrprime.
 \end{empheq}
 \end{subequations}
-This conservation law holds for arbitrary fluid motions obeying Equations \eqref{eq:anegg} and for all magnitudes of $|\nabla\entrover|$. 
+This conservation law holds for arbitrary fluid motions obeying Equations \eqref{eq:egg} and for all magnitudes of $|\nabla\entrover|$. 
 
 Note that in practice when simulating stiff systems (large $|\nabla\entrtilde|$) numerically (e.g., \citealt{Guerrero2016a,Matilsky2022,Matilsky2024}), the term 
 \begin{align}
-	\tilde{Q}_{\rm adv}\define  -\rhotilde\tilde{T}\ugrad\entrtilde
+	\tilde{Q}_{\rm adv}\define  -\rhotilde\tmptilde\ugrad\entrtilde
 \end{align}
-may pointwise be quite large. The degree to which energy is conserved numerically may thus be limited by the precision of the condition \eqref{eq:nomeanw}. In the streamfunction formulation of {\ash} and {\rayleigh} for example (e.g., \citealt{Clune1999,Featherstone2016a}), Equation \eqref{eq:nomeanw} holds to near machine precision. 
+may pointwise be quite large (though it can never alter the mean stability $\pderivline{\entrhat}{q}$). The degree to which energy is conserved numerically may thus be limited by the precision of the condition \eqref{eq:nomeanw}. In the streamfunction formulation of {\ash} and {\rayleigh} for example (e.g., \citealt{Clune1999,Featherstone2016a}), Equation \eqref{eq:nomeanw} holds to near machine precision. 
 
-To summarize, necessary conditions for anelastic codes implementing background stable layers to conserve energy are (1) including the non-LBR force density,
+To summarize this section, necessary conditions for anelastic codes implementing background stable layers to conserve energy are (1) including the non-LBR force density,
 \begin{align}\label{eq:nlbrmomref}
 	\tilde{\bm{f}}_{\rm NLBR} \define\frac{\deltatilde  \prsprime}{\cptilde} \vecu\cdot \nabla\entrtilde 
 \end{align}
 in the momentum equation (i.e., not making the LBR approximation) and (2) including the non-LBR heating term,
 \begin{align}\label{eq:nlbrheatref}
-	\tilde{Q}_{\rm NLBR} \define -  \left(\frac{\tilde{T} \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde}\right)  \rhotilde \ugrad\entrtilde
+	\tilde{Q}_{\rm NLBR} \define -  \left(\frac{\tmptilde \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde}\right)  \rhotilde \ugrad\entrtilde
 \end{align}
-in the internal energy equation. Alternatively, if the LBR approximation is made, (setting $\tilde{\bm{f}}_{\rm NLBR}\equiv0$ in Equation \eqref{eq:refmom}), energy can still be conserved if $\tilde{Q}_{\rm NLBR}$ in Equation \eqref{eq:refen} is replaced by
+in the internal energy equation. Alternatively, if the LBR approximation is made, (setting $\tilde{\bm{f}}_{\rm NLBR}\equiv0$ in Equation \eqref{eq:refmom}), total energy will still be conserved if $\tilde{Q}_{\rm NLBR}$ in Equation \eqref{eq:refen} is replaced by
 \begin{align}\label{eq:lbrheating}
-	\tilde{Q}_{\rm LBR}\define - \left(\frac{\rhotilde\tilde{T}}{\cptilde} \right) \entrprime\ugrad\entrtilde
+	\tilde{Q}_{\rm LBR}\define - \left(\frac{\rhotilde\tmptilde}{\cptilde} \right) \entrprime\ugrad\entrtilde.
 \end{align}
-However, doing this would still yield an asymptotically inconsistent equation set if $|\nabla\entrtilde|$ is large. 
+However, doing this would yield an asymptotically inconsistent equation set if $|\nabla\entrtilde|$ is large. 
 
-One slightly surprising result concerns the second law of thermodynamics. In the absence of heat sources or sinks, when the true motion should be adiabatic, Equation \eqref{eq:anenegg} becomes
-\begin{align}\label{eq:dsdtref}
-	\frac{D}{Dt}(\entrtilde + \entrprime) = \frac{Q_{\rm NLBR}}{\rhotilde\tilde{T}}.
-\end{align}
-Thus, the AnEGG equations do not conserve total entropy for adiabatic motion, violating the second law of thermodynamics if $\entrprime$ is strictly interpreted as the entropy. Apparently making the anelastic approximation allows for the conservation of energy or the second law of thermodynamics to be satisfied, but not both. 
+%One slightly surprising result concerns the second law of thermodynamics. In the absence of heat sources or sinks, when the true motion should be adiabatic, Equation \eqref{eq:eggen} becomes
+%\begin{align}\label{eq:dsdtref}
+%	\frac{D}{Dt}(\entrtilde + \entrprime) = \frac{Q_{\rm NLBR}}{\rhotilde\tmptilde}.
+%\end{align}
+%Thus, the AnEGG equations do not conserve total entropy for adiabatic motion, violating the second law of thermodynamics if $\entrprime$ is strictly interpreted as the entropy. Apparently making the anelastic approximation allows for the conservation of energy or the second law of thermodynamics to be satisfied, but not both. 
 
 \section{The meaning of total energy under the anelastic approximation}\label{sec:meaningtote}
 From Equation \eqref{eq:linuref}, the primed (i.e., perturbed from the reference state) internal plus potential energy per unit volume is 
 \begin{align}\label{eq:perten1}
 	W^\prime &= \tilde{U}\rhoprime + \rhotilde U^\prime + \Phi \rhoprime \nonumber\\
-	&= \underbrace{\rhotilde\tilde{T} \entrprime}_{\define \wpheat} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime}_{\define\wpcomp}.
+	&= \underbrace{\rhotilde\tmptilde \entrprime}_{\define \wpheat} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime}_{\define\wpcomp}.
 \end{align}
 
 Equation \eqref{eq:linuref} is really an expression of the first law of thermodynamics, which states that changes in the internal energy of fluid parcels come from the sum of external heating and pressure work done by the environment during compression. Comparing to Equation \eqref{eq:econst}, it is clear that \textit{only} changes in internal energy from heat sources can effect the total energy. The changes in internal energy from density variations ($\intetilde\rhoprime$) the pressure work, $\prstilde(\rhoprime/\rhotilde)$; and the changes in potential energy, $\Phi\rhoprime$; are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we write
@@ -639,7 +639,7 @@ is the acoustic cutoff frequency.
 
 In the solar radiative zone for example, $\omega_{\rm ac}\sim\sn{3}{-2}\ \rm rad\ s^{-1}$ and $N_a\sim \sn{1.4}{-3}\ \rm rad\ s^{-1}$, so condition \eqref{eq:conditionovershoot} should be satisfied if $\epsilon \sim 10^{-3}$. On the other hand, maybe the scale analysis of \citet{Gough1969} breaks down, since buoyantly decelerated flows (i.e., overshoot and g-modes) may have very different dynamical balances than buoyantly accelerated flows (i.e., convection)? So maybe another expansion is necessary that takes into account not only small thermal perturbations, but anisotropic velocity and length scales. 
 
-%Sufficient conditions for conserving energy will likely rest in the numerical precision with which the AnEGG equations \eqref{eq:anegg} are actually solved. 
+%Sufficient conditions for conserving energy will likely rest in the numerical precision with which the AnEGG equations \eqref{eq:egg} are actually solved. 
 	\newpage
 	%\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
 		\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library, 
