@@ -346,7 +346,7 @@ when multiplying by terms that are already of first order in $\epsilon$.
 
 We can change variables using Equations \eqref{eq:anfirstlawpert} and \eqref{eq:anfirstlawmean} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
 \begin{align}\label{eq:anrhsmom}
-	-\nabla \prsone + \rhoone\vecg = -\rhoover\nabla\left(\frac{\prsone}{\rhoover}\right) - \deltaover \rhoover \left(\frac{\entrone}{\cpover}\right) \vecg + \frac{\deltaover\rhoover}{\cpover} \left(\frac{\prsone}{\rhoover}\right)\nabla\entrover.
+	-\nabla \prsone + \rhoone\vecg = -\rhoover\nabla\left(\frac{\prsone}{\rhoover}\right) - \deltaover \rhoover \left(\frac{\entrone}{\cpover}\right) \vecg + \frac{\deltaover\prsone}{\cpover}\nabla\entrover.
 \end{align}
 In the internal energy equation, we find
 \begin{align}\label{eq:anrhsen}
@@ -365,7 +365,7 @@ Substituting Equation \eqref{eq:anrhsmom} into Equation \eqref{eq:anmom}, and Eq
 and
 \begin{subequations}\label{eq:anenmod}
 \begin{align}
-	\rhoover\tmpover\pderiv{\entrone}{t}= &-\rhoover\tmpover\ugrad \entrone - \rhoover \tmpover \ugrad \entrover \underbrace{- \rhoover \tmpone\ugrad\entrover}_{\define Q_{\rm NLBR}}+D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1  \nonumber\\
+	\rhoover\tmpover\left(\pderiv{\entrone}{t}+\pderiv{\entrover}{t}\right)= &-\rhoover\tmpover\ugrad \entrone - \rhoover \tmpover \ugrad \entrover \underbrace{- \rhoover \tmpone\ugrad\entrover}_{\define Q_{\rm NLBR}}+D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1  \nonumber\\
 	& +[\heatover - \Div\overline{\vecf} - \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover],\\
 	\where \rhoone =& \frac{\prsone}{\cssqover}-\frac{\deltaover\rhoover \entrone}{\cpover}\\
 	\andd \tmpone = & \frac{\tmpover \entrone}{\cpover} + \frac{\deltaover \prsone}{\rhoover\cpover}.
@@ -373,7 +373,7 @@ and
 \end{subequations}
 Finally, the mean momentum equation \eqref{eq:anmommean} becomes
 \begin{align}\label{eq:anmommean2}
-	[-\nabla \prsover + \rhoover\vecg] &= -\rhoover\nabla\left(\frac{\prsover}{\rhoover}\right) - \deltaover  \rhoover \left(\frac{\entrover}{\cpover}\right) \vecg + \frac{\deltaover \rhoover}{\cpover} \left(\frac{\prsover}{\rhoover}\right)\nabla\entrover\nonumber\\
+	[-\nabla \prsover + \rhoover\vecg] &= -\rhoover\nabla\left(\frac{\prsover}{\rhoover}\right) - \deltaover  \rhoover \left(\frac{\entrover}{\cpover}\right) \vecg + \frac{\deltaover \prsover}{\cpover}\nabla\entrover\nonumber\\
 	&= \nabla(\rhoover\overline{w^2})
 \end{align}
 and the mean internal energy equation \eqref{eq:anenmean} becomes
