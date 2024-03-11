@@ -32,8 +32,11 @@
 % background atmosphere values
 \newcommand{\csa}{c_{{\rm s}a}}
 \newcommand{\cpa}{C_{{\rm p}a}}
+
 % total energies and energy densities
 \newcommand{\etot}{E_{\rm tot}}
+\newcommand{\anetot}{E_{\rm tot}^{\rm an}}
+\newcommand{\refetot}{E_{\rm tot}^{\rm ref}}
 
 \newcommand{\wtot}{W_{\rm tot}}
 \newcommand{\wke}{W_{\rm KE}}
@@ -43,10 +46,19 @@
 
 \newcommand{\wptot}{W^\prime_{\rm tot}}
 \newcommand{\wpke}{W^\prime_{\rm KE}}
+\newcommand{\wpnke}{W^\prime_{\rm NKE}}
 \newcommand{\wpheat}{W^\prime_{\rm heat}}
 \newcommand{\wpcomp}{W^\prime_{\rm comp}}
 \newcommand{\wppot}{W^\prime_{\rm pot}}
 \newcommand{\wpelast}{W^\prime_{\rm elast}}
+
+\newcommand{\anwtot}{W^{\rm an}_{\rm tot}}
+\newcommand{\anwke}{W^{\rm an}_{\rm KE}}
+\newcommand{\anwheat}{W^{\rm an}_{\rm heat}}
+
+\newcommand{\refwtot}{W^{\rm ref}_{\rm tot}}
+\newcommand{\refwke}{W^{\rm ref}_{\rm KE}}
+\newcommand{\refwheat}{W^{\rm ref}_{\rm heat}}
 
 % date, author, title
 \date{\today}
@@ -54,7 +66,7 @@
 \title{An energy-conserving anelastic approximation for strongly stably-stratified fluids}
 \begin{document}
 	\maketitle
-	\section{Introduction}
+	\section{Introduction}\label{sec:intro}
 	Abstract: When acoustic oscillations are believed to be irrelevant to the dynamics of a fluid, it is useful to employ simplifying approximations to the equations of motion. The two most common of these (which are usually used to treat convection problems) are the Boussinesq approximation (when the background density does not significantly vary across the fluid layer) and the anelastic approximation (when the background density does vary significantly). There are many distinct forms of the anelastic approximation in the literature, and it has often been remarked that they do not properly conserve energy when the fluid is stable to convection. Here we show that the anelastic equations derived by Gough (1969) in fact do conserve energy for arbitrary motions of the fluid, even for strongly stratified background stratification. The key properties of these equations that allow them to conserve energy are (1) the absence of the Lantz-Braginsky-Roberts (LBR) approximation in the momentum equation and (2) the inclusion of a historically neglected term in the internal energy equation. These two properties allow the proper conversion between kinetic and internal energy at the correct order of the formal asymptotic expansion of the equations. We show that the scaling analysis of Gough (1969), which implicitly assumed a single typical value of the background entropy gradient, can be valid even for convective overshoot, where the entropy gradient changes from slightly unstable in the convecting region to stable (sometimes strongly so) in the overshoot region. The requirement for the anelastic equations to be valid for convective overshoot is that the buoyancy frequency be significantly less than the acoustic cutoff frequency. 
 	\\
 	%(i.e., $\Div(\rhoover\vecu)\equiv0$, where $\rhoover$ is the background density and $\vecu$ the fluid velocity; this takes the place of the $\Div\vecu=0$ condition from the Boussinesq approximation)
@@ -65,7 +77,7 @@
 	
 	While nondimensionalizing the entropy equation instead of the internal energy equation may at first appear to be an arbitrary (and harmless) choice, we show in the present work that it leads to an asymptotically inconsistent set of equations that do not conserve energy when the background is stably stratified. \citet{Gough1969}, by contrast, took a different approach than \citet{Ogura1962} and performed a formal asymptotic expansion in $\epsilon$ after nondimensionalizing the internal energy equation. We show that this equation set, which we dub the ``Energy-conserving Generalized Gough" (AnEGG) anelastic equations, conserve energy for arbitrary fluid motions and for all hydrostatic background states (whether stably or unstably stratified).
 	
-	\section{Energy conservation under the fully compressible fluid equations}
+	\section{Energy conservation under the fully compressible fluid equations}\label{sec:fullycompressible}
 	We begin by writing down the unapproximated fully compressible equations of motion for a nonrotating nonmagnetic fluid. These are \citet{Gough1969}'s Equations (2.1)--(2.5), consisting of the continuity equation 
 	\begin{align}\label{eq:cont}
 		\pderiv{\rho}{t}=-\Div(\rho\vecu) 
@@ -283,7 +295,7 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
   \begin{align}\label{eq:anenmean}
   	\heatover - \Div\overline{\vecf} = \rhoover\overline{\vecu\cdot\left(\nabla \enthone-\frac{1}{\rhoover}\nabla \prsone\right)} + \vecg\cdot\overline{\rhoone\vecu} - \overline{D_{ij}\pderiv{u_i}{x_j}}
   \end{align}
-   Equations \eqref{eq:ancont}--\eqref{eq:anenmean} are mathematically equivalent to \citet{Gough1969}'s Equations (4.3)--(4.7) and (4.15)--(4.22).
+   Equations \eqref{eq:ancont}--\eqref{eq:anenmean} are mathematically equivalent to \citet{Gough1969}'s Equations (4.3)--(4.7) and (4.15)--(4.22). Together, they form a complete system that can be solved for the evolution of both the fluctuating thermal variables and velocity, as well as the mean thermal profiles. Strictly, however, the approximation is only consistent if the mean state does not evolve. We show that this restriction can be relaxed slightly in Section \ref{sec:meantoref}. 
   
   In each of Equations \eqref{eq:anmommean} and \eqref{eq:anenmean}, each term on the right-hand side is $O(\epsilon)$ compared to each term on the left-hand side. In particular, we can make the mean hydrostatic approximation, 
   \begin{align}\label{eq:anhydrostatic}
@@ -311,16 +323,23 @@ Because of Equation \eqref{eq:nomeanu}, or more specifically, the condition
 \begin{align}\label{eq:nomeanw}
 	\overline{w}\equiv0,
 \end{align}
- each of the rightmost terms in brackets in Equation \eqref{eq:antote} cannot transport any net energy across the layer. Note that Equation \eqref{eq:nomeanw} is also a consequence of integrating Equation \eqref{eq:ancont} over volumes bounded by horizontal surfaces, and so the vanishing of the horizontal components of $\overline{\vecu}$ is not strictly necessary for the bracketed terms to conserve energy. 
+ each of the rightmost terms in brackets in Equation \eqref{eq:antote} vanishes (i.e., cannot transport any net energy vertically) after volume integration over $V$. Note that Equation \eqref{eq:nomeanw} is also a consequence of integrating Equation \eqref{eq:ancont} over volumes bounded by horizontal surfaces (and also assuming $w$ vanishes on the boundaries). Thus, the vanishing of the horizontal components of $\overline{\vecu}$ is not strictly necessary for the bracketed terms to conserve energy. 
  
- The internal heating (or cooling) terms $\heatover + Q_1$ are assumed ``accounted for," since they represent known physical processes such as nuclear burning, Kelvin-Helmholtz contraction, or radiative cooling. Thus, Equation \eqref{eq:antote} shows that the total energy integrated over the volume $V$ of the layer,
-\begin{align}\label{eq:deftote}
-	E_{\rm tot} \define \int_V \rhoover\left(\frac{1}{2} u^2 + \tmpover \entrone\right) dV,
-\end{align}
-is conserved, to the extent that the volume-integrated internal heat sources balance the various fluxes (found under the divergence on the right-hand side of Equation \eqref{eq:antote}) integrated over the boundaries. This conservation holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:anfirstlawpert} and for arbitrary magnitudes of $|\nabla \entrover|$. However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
+ Integrating Equation \eqref{eq:antote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
+ \begin{subequations}\label{eq:aneconst}
+ 	\begin{align}
+ 		\anetot &\define \int_V \anwtot dV \equiv \text{constant},\\
+ 		\where \anwtot &\define \anwke + \anwheat,\\
+ 		\anwke &\define \frac{1}{2}\rhoover u^2,\\
+ 		\andd \anwheat &\define \rhoover \tmpover S_1.
+ 	\end{align}
+ \end{subequations}
+ We have used the superscript ``an" to denote energies and densities under the anelastic approximation and defined $\anwheat$ to be internal energy density of fluid parcels associated with irreversible heating processes (entropy increases). The conservation law \eqref{eq:aneconst} holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:anfirstlawpert} and for arbitrary magnitudes of $|\nabla \entrover|$. Note that the partition of energy density is fundamentally different than in the fully compressible conservation law \eqref{eq:econst}; most notably, the potential energy density is absent under the anelastic approximation. We return to this central point in Section \ref{sec:meaningtote}. %However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
 
-\section{The \citet{Gough1969} equations in more familiar form}
-Modern anelastic codes typically write the equations using the perturbed pressure and entropy ($\prsone$ and $\entrone$) in place of the quantities $\tmpone$, $\prsone$, $\rhoone$, and $\enthone$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmommean}. We can convert using Equations \eqref{eq:anfirstlawpert} and \eqref{eq:anfirstlaw} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
+\section{The \citet{Gough1969} equations in terms of $\entrone$ and $\prsone$}\label{sec:goughsp}
+The anelastic equations are often written using the perturbed pressure and entropy ($\prsone$ and $\entrone$) in place of the quantities $\tmpone$, $\prsone$, $\rhoone$, and $\enthone$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmommean}. This is more than just a matter of convention, since transforming variables to $\entrone$ and $\prsone$ isolates terms in the equations that depend on the mean entropy gradient $\nabla\entrover$, which can be neglected if $\nabla\entrover$ is small, as it should be for a vigorously convecting layer. 
+
+We can change variables using Equations \eqref{eq:anfirstlawpert} and \eqref{eq:anfirstlawmean} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
 \begin{align}\label{eq:anrhsmom}
 	-\nabla \prsone + \rhoone\vecg = -\rhoover\nabla\left(\frac{\prsone}{\rhoover}\right) - \deltaover \rhoover \left(\frac{\entrone}{\cpover}\right) \vecg + \frac{\deltaover\rhoover}{\cpover} \left(\frac{\prsone}{\rhoover}\right)\nabla\entrover.
 \end{align}
@@ -328,7 +347,7 @@ In the internal energy equation, we find
 \begin{align}\label{eq:anrhsen}
 	-\rhoover\vecu\cdot\left(\nabla \enthone-\frac{1}{\rhoover}\nabla \prsone\right) = -\rhoover\tmpover\ugrad \entrone - \rhoover \entrone\ugrad\tmpover + \left(\frac{\prsone}{\rhoover}\right)\ugrad \rhoover.
 \end{align}
-Using Equations \eqref{eq:anfirstlawpert}, \eqref{eq:anfirstlaw}, and \eqref{eq:anhydrostatic} as needed, we compute, with some effort,
+We then compute, with some effort,
 \begin{align}\label{eq:anrhsen2}
 	- \rhoover \entrone\ugrad\tmpover + \left(\frac{\prsone}{\rhoover}\right)\ugrad \entrone -\rhoone\vecu\cdot\vecg = -\rhoover \tmpone\ugrad\entrover + O(\epsilon^2).
 \end{align}
@@ -353,7 +372,7 @@ Finally, the mean energy equation \eqref{eq:anenmean} becomes
 \end{align}
 %The final terms in brackets in these equations may be dropped without affecting energy conservation, since they do not transport any net energy. However, dropping them still may still makes the equations an asymptotically inconsistent approximation to the true fully compressible motion, and so we retain them.
 
-The essential terms required for energy conservation when $\nabla\entrover\neq0$ are the ``non-LBR" force density
+The essential terms required for energy conservation when $\nabla\entrover\neq0$ are thus the ``non-LBR" force density
 \begin{align}\label{eq:nlbrmom}
 	\bm{f}_{\rm NLBR} \define \frac{\deltaover \prsone}{\cpover} \nabla\entrover
 \end{align}
@@ -361,9 +380,9 @@ and the ``non-LBR" heating
 \begin{align}\label{eq:nlbrheat}
 	Q_{\rm NLBR} \define -\rhoover \tmpone\ugrad\entrover.
 \end{align}
-Both these terms vanish for an adiabatic background state (where $\nabla\entrover=0$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use,ts neglect seems to have not been explicitly considered. 
+Both these terms vanish for a nearly adiabatic background state (where $\nabla\entrover=O(\epsilon)$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use. Its neglect seems to have not been explicitly considered. 
 
-\section{The equivalence of horizontally averaged atmospheres to fixed reference atmospheres}
+\section{The equivalence of horizontally averaged atmospheres to fixed reference atmospheres}\label{sec:meantoref}
 In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmommean} and \eqref{eq:anenmean}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the perturbations in $S$ and $P$ about this reference state develop small but nonzero horizontally averaged pertrubations. Some codes (e.g., the {\ash} code) alternatively solve for the perturbations about the horizontal average directly. In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the right-hand side's of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the horizontal means of the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
 
 Our approach is to define the horizontally averaged profiles as the sum of the reference-state profile (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
@@ -520,7 +539,7 @@ One slightly surprising result concerns the second law of thermodynamics. In the
 \end{align}
 Thus, the AnEGG equations do not conserve total entropy for adiabatic motion, violating the second law of thermodynamics if $\entrprime$ is strictly interpreted as the entropy. Apparently making the anelastic approximation allows for the conservation of energy or the second law of thermodynamics to be satisfied, but not both. 
 
-\section{The meaning of total energy under the anelastic approximation}
+\section{The meaning of total energy under the anelastic approximation}\label{sec:meaningtote}
 From Equation \eqref{eq:linuref}, the primed (i.e., perturbed from the reference state) internal plus potential energy per unit volume is 
 \begin{align}\label{eq:perten1}
 	W^\prime &= \tilde{U}\rhoprime + \rhotilde U^\prime + \Phi \rhoprime \nonumber\\
