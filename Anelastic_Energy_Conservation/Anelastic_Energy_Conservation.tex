@@ -183,27 +183,31 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
 	\end{align}
 	is the material (or Lagrangian) derivative,
 	
-	
-	We will not repeat the full asymptotic expansion in $\epsilon$ performed by \citet{Gough1969} of Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} here. Instead, we reiterate the salient assumptions in the case where the horizontally averaged background atmosphere is time-independent and the layer depth is thicker than the typical pressure scale height.\footnote{\citet{Gough1969} also considers thin layers, in which the anelastic equations become the Boussinesq equations, and time-dependent (moving) background atmospheres. Note that the assumption of time-independence can be relaxed slightly without affecting the asymptotics, as we discuss below.} The main assumption is that the thermodynamic perturbations from the horizontally averaged background state are small, e.g.,
-	\begin{align}\label{eq:linearthermo}
-		\rho = \rhoover(q) + \rhoone(x_i,t)\five &\with \rhoone/\rhoover=O(\epsilon)\ll 1,\\
-		P = \prsover(q) + \prsone(x_i,t)\five &\with \prsone/\prsover=O(\epsilon)\ll1 \nonumber,
+	\subsection{\citet{Gough1969}'s anelastic scale analysis for convection}
+	We will not repeat the full asymptotic expansion in $\epsilon$ performed by \citet{Gough1969} of Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} here. Instead, we reiterate the salient assumptions in the case where the horizontally averaged background atmosphere is time-independent and the layer depth is thicker than the typical pressure scale height.\footnote{\citet{Gough1969} also considers thin layers, in which the anelastic equations become the Boussinesq equations.} The main assumption is that the thermodynamic perturbations from the horizontally averaged background state are small,
+	\begin{align}\label{eq:smallthermalpert}
+		f = \overline{f}(q,t) + f_1(x_i,t)\five &\with f_1/\overline{f}=O(\epsilon)\ll 1,
 	\end{align} 
-	and similarly for $T$, $U$, $h$, $\cpcap$, $\mu$, $\delta$, $\cs^2$, $\vecf$, and $Q$. Here, the overbars denote horizontal averages (taken at a particular instant in time) and the ``1" subscripts denote the perturbations about this average. Note that it is \textit{not} correct to write ``$S=\entrover(q)+\entrone(x_i,t)$ with $\entrone/\entrover=O(\epsilon)$." The fully compressible equations of motion contain only differences in entropy and so no meaningful absolute value of $\entrover$ can be defined. Instead, we must write
+	where $f$ denotes either $\rho$, $P$, $T$, $U$, $h$, $\cpcap$, $\mu$, $\delta$, $\cs^2$, $\vecf$, or $Q$. Here, the overbars denote horizontal averages (taken at a particular instant in time) and the ``1" subscripts denote the perturbations about this average. Note that it is \textit{not} correct to write ``$S=\entrover(q,t)+\entrone(x_i,t)$ with $\entrone/\entrover=O(\epsilon)$." The fully compressible equations of motion contain only differences in entropy and so no meaningful absolute value of $\entrover$ can be defined. Instead, we must write
 	\begin{align}\label{eq:linearent}
-	S = \entrover(q) + \entrone(x_i,t) \five &\with \entrone/\cpover=O(\epsilon)\ll 1.
+	S = \entrover(q,t) + \entrone(x_i,t) \five &\with \entrone/\cpover=O(\epsilon)\ll 1.
 	\end{align}
 	
-	By writing, e.g., $\rhoover=\rhoover(q)$, \citet{Gough1969} implicitly assumes that the horizontally averaged state is time-independent. We keep this assumption for now but relax it later, since the asymptotic expansion is unaffected by temporally varying background states, as long as the evolution is slow enough. 
-	% This can also be interpreted to mean that the convection has established statistically steady mean profiles in the thermal variables, and the goal of the anelastic approximation is to solve for small thermal perturbations about these mean profiles. The mean state is thus unknown a priori, but can be solved for after statistically steady convection has been established. 
-	
-	The second assumption is that the coordinate system can be chosen such that there is no mass flux across any horizontal surface, i.e.,
+	The second central assumption is that the coordinate system can be chosen such that there is no mass flux across any horizontal surface, i.e.,
 	\begin{align}\label{eq:nomassflux}
-		\overline{\rho u_i}=0.
+		\overline{\rho u_i}\equiv0.
 	\end{align}
 	In a spherical system (e.g., a spherical shell), the horizontal average would be a spherically symmetric average and the coordinates would point along the spatially varying curvilinear coordinate directions. 
-	
-	The characteristic length scale of variation of the fluid is assumed to be a typical value $H_a$ for the pressure scale height. The flow is assumed to be buoyantly driven by the $O(\epsilon)$ thermal perturbations, i.e., 
+
+	In writing $\overline{f}=\overline{f}(q,t)$ in Equation \eqref{eq:smallthermalpert}, we make a third central assumption not made by \citet{Gough1969}, namely, that the mean state may be time-dependent.\footnote{\citet{Gough1969} also considered time-dependent atmospheres, but this was in the different context of pulsations, where the atmosphere itself was moving. In the present work, we consider ``Eulerian-only" time-dependence of the mean state.} In order to still be consistent with \citet{Gough1969}'s asymptotic expansion, we must assume that the time-variation of the mean state is sufficiently slow, i.e., comparable in magnitude to the time variation of the fluctuations:
+\begin{align}\label{eq:meanvariationslow}
+	\left|\pderiv{\overline{f}}{t}\right| = O\left(\left|\pderiv{f_1}{t}\right|\right).
+\end{align}
+%= O\left(|f_1|\sqrt{\frac{\epsilon g_a}{H_a}}\right)
+%By writing, e.g., $\rhoover=\rhoover(q)$, \citet{Gough1969} implicitly assumes that the horizontally averaged state is time-independent. We keep this assumption for now but relax it later, since the asymptotic expansion is unaffected by temporally varying background states, as long as the evolution is slow enough. 
+% This can also be interpreted to mean that the convection has established statistically steady mean profiles in the thermal variables, and the goal of the anelastic approximation is to solve for small thermal perturbations about these mean profiles. The mean state is thus unknown a priori, but can be solved for after statistically steady convection has been established. 
+
+	The rest of the assumptions of \citet{Gough1969} concern scale analysis, which is appropriate for convection in the presence of mean density stratification $\pderivline{\rhoover}{q}\neq0$. The characteristic length scale of variation of the fluid is assumed to be a typical value $H_a$ for the pressure scale height. The flow is assumed to be buoyantly driven by the $O(\epsilon)$ thermal perturbations, i.e., 
 	\begin{align}\label{eq:scaleu}
 		|\vecu| = O(\sqrt{\epsilon g_a H_a}) = O(\sqrt{\epsilon}\csa),
 	\end{align}
@@ -211,7 +215,7 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
 	\begin{align}\label{eq:scaleu}
 	\left|\pderiv{}{t}\right|  = O\left(\sqrt{\frac{\epsilon g_a}{H_a}}\right) = O\left(\sqrt{\epsilon} \frac{1}{H_a/\csa}\right).
 	\end{align}
-	Thus, the characteristic time scale of variation for the convection is $O(\epsilon^{-1/2})$ times longer than the time it takes a sound wave to cross a pressure scale height. 
+	Thus, the characteristic time scale of variation for the convection is $O(\epsilon^{-1/2})$ times longer than the time it takes a sound wave to cross a pressure scale height. From Equation \eqref{eq:meanvariationslow}, the characteristic time scale of variation for the mean state is $O(\epsilon^{-3/2})$ times longer than the sound crossing time. 
 	
 	Finally, the vertical convective heat flux, which maximally could transport an energy flux of order $\rhoover \tmpover w \Delta\entrover$, where 
 	\begin{align}\label{eq:defw}
@@ -248,9 +252,10 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
 	\end{align}
 	whereas we will use $\nabla \entrover$. 
 	
+	\subsection{\citet{Gough1969}'s anelastic equations}
 	Once all of the above scaling assumptions have been made, Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} are nondimensionalized, each term is expanded in powers of $\epsilon$, terms up to zeroth-order in the continuity equation and first-order in the other equations are retained, and redimensionalization then yields the anelastic equations. Specifically, we discuss \citet{Gough1969}'s Equations (4.3)--(4.7) and (4.15)--(4.22). We translate these equations using the change of variables outlined in Equations \eqref{eq:momdensity} and \eqref{eq:superad}. 
 	
-	Under \citet{Gough1969}'s anelastic approximation, the continuity equation \eqref{eq:cont} becomes
+	Under \citet{Gough1969}'s anelastic approximation (with the additional assumption \eqref{eq:meanvariationslow}), the continuity equation \eqref{eq:cont} becomes
 	\begin{align}\label{eq:ancont}
 		\Div(\rhoover\vecu)\equiv 0,
 	\end{align}
@@ -263,7 +268,7 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
 	\end{subequations}
 	the energy equation \eqref{eq:en} becomes 
 	\begin{align}\label{eq:anen}
-		\rhoover\cpover\pderiv{\tmpone}{t} - \deltaover\pderiv{\prsone}{t} = &-\rhoover\vecu\cdot\left(\nabla \enthone-\frac{1}{\rhoover}\nabla \prsone\right) - \rhoover \tmpover \ugrad \entrover\nonumber\\
+		\rhoover\cpover\left(\pderiv{\tmpone}{t}+\pderiv{\tmpover}{t}\right)- \deltaover\left(\pderiv{\prsone}{t} + \pderiv{\prsover}{t}\right) = &-\rhoover\vecu\cdot\left(\nabla \enthone-\frac{1}{\rhoover}\nabla \prsone\right) - \rhoover \tmpover \ugrad \entrover\nonumber\\
 		& D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1 -\rhoone\vecu\cdot\vecg - \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover\nonumber\\
 		&+ [\heatover - \Div\overline{\vecf}],
 	\end{align}
@@ -277,7 +282,7 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
   	&= \frac{\cpover\, \tmpover}{\deltaover\rhoover}\left[\frac{\prsone}{\cssqover}-\rhoone\right].
   \end{align}
   \end{subequations}
-  We have used Equation \eqref{eq:momdensity} to yield the term $- \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover$ in Equation \eqref{eq:anen}. Note that the continuity equation \eqref{eq:ancont} (where \citealt{Gough1969} omits the term $\pderivline{\rhoover}{t}$) and the left-hand side of the internal energy equation \eqref{eq:anen} (where \citealt{Gough1969} omits terms like $\rhoover\cpover\pderivline{\tmpover}{t}$) are the only places where the assumption of a time-independent mean state is used. By contrast, the left-hand of the momentum equation \eqref{eq:anmom}, would be unaltered for time-dependent $\rhoover$, since $\rhoover$ is still under the time derivative. 
+  We have used Equation \eqref{eq:momdensity} to yield the term $- \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover$ in Equation \eqref{eq:anen}. Note that the continuity equation \eqref{eq:ancont} is unchanged from \citet{Gough1969}'s Equation (4.16), despite $\pderivline{\rhoover}{t}$ being nonzero. This is because $\pderivline{\rhoover}{t}$ shows up only at $O(\epsilon)$ by Equation \eqref{eq:meanvariationslow}. Similarly, the momentum equation \eqref{eq:anmom} takes the same form regardless of whether the mean state is time-dependent, since we can replace $\pderivline{\bm{m}}{t}$ with $\pderivline{(\rhoover\vecu)}{t}$ by virtue of Equations \eqref{eq:meanvariationslow} and \eqref{eq:momdensity}. The left-hand side of the internal energy equation \eqref{eq:anen} and the right-hand side of the mean internal energy equation \eqref{eq:anenmean} below, where we must keep the time-variation of the mean state, is the only place our equations differ materially from those of \citet{Gough1969}, specifically, his Equations (4.17) and (4.7).
   
    The differentials in Equation \eqref{eq:firstlaw} can be converted into gradients (e.g., $T\nabla S= \nabla h - \nabla P/\rho$) and the horizontally averaged form of these relations yields 
   \begin{subequations}\label{eq:anfirstlawmean}
@@ -293,37 +298,31 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
   \end{align}
   and
   \begin{align}\label{eq:anenmean}
-  	\heatover - \Div\overline{\vecf} = \rhoover\overline{\vecu\cdot\left(\nabla \enthone-\frac{1}{\rhoover}\nabla \prsone\right)} + \vecg\cdot\overline{\rhoone\vecu} - \overline{D_{ij}\pderiv{u_i}{x_j}}
+  	\heatover - \Div\overline{\vecf} = \rhoover\overline{\vecu\cdot\left(\nabla \enthone-\frac{1}{\rhoover}\nabla \prsone\right)} + \vecg\cdot\overline{\rhoone\vecu} - \overline{D_{ij}\pderiv{u_i}{x_j}} +	\rhoover\cpover\pderiv{\tmpover}{t}- \deltaover \pderiv{\prsover}{t}
   \end{align}
-   Equations \eqref{eq:ancont}--\eqref{eq:anenmean} are mathematically equivalent to \citet{Gough1969}'s Equations (4.3)--(4.7) and (4.15)--(4.22). Together, they form a complete system that can be solved for the evolution of both the fluctuating thermal variables and velocity, as well as the mean thermal profiles. Strictly, however, the approximation is only consistent if the mean state does not evolve. We show that this restriction can be relaxed slightly in Section \ref{sec:meantoref}. 
-  
-  In each of Equations \eqref{eq:anmommean} and \eqref{eq:anenmean}, each term on the right-hand side is $O(\epsilon)$ compared to each term on the left-hand side. In particular, we can make the mean hydrostatic approximation, 
-  \begin{align}\label{eq:anhydrostatic}
-  	\nabla\prsover\approx \rhoover\vecg,
-  \end{align}
-  when multiplying by terms that are already of first order in $\epsilon$. 
+   Equations \eqref{eq:ancont}--\eqref{eq:anenmean} are mathematically equivalent to \citet{Gough1969}'s Equations (4.3)--(4.7) and (4.15)--(4.22), with the minor exceptions of Equations \eqref{eq:anen} and \eqref{eq:anenmean}. Together, they form a complete system that can be solved for the evolution of both the fluctuating thermal variables and velocity, as well as the mean thermal profiles. %Strictly, however, the approximation is only consistent if the mean state does not evolve. We show that this restriction can be relaxed slightly in Section \ref{sec:meantoref}. 
+
   
 Dotting $\vecu$ into Equation \eqref{eq:anmommain} and using Equation \eqref{eq:anmommean} yields the anelastic kinetic energy equation,
 	\begin{align}\label{eq:anke}
 		\pderiv{}{t}\left(\frac{1}{2}\rhoover u^2\right)&=-\Div\left(\frac{1}{2}\rhoover u^2\vecu \right) - \ugrad \prsone + \rhoone\vecu\cdot\vecg + u_i\pderiv{D_{ij}}{x_j} + \ugrad(\rhoover \overline{w^2}).
 	\end{align}
 
- Note that from differentiating Equation \eqref{eq:anfirstlawperttp} with respect to time, the left-hand side of Equation \eqref{eq:anen} can be written in terms of the entropy $\entrone$, 
+Converting the differentials in Equation \eqref{eq:firstlaw} into Eulerian differentials in time, the left-hand side of Equation \eqref{eq:anen} can be written in terms of the total entropy $\entrone + \entrover$, 
 \begin{align}\label{eq:anenlhs}
-	\rhoover\cpover\pderiv{\tmpone}{t} - \deltaover\pderiv{\prsone}{t} = \rhoover\tmpover\pderiv{\entrone}{t},
+	\rhoover\cpover\left(\pderiv{\tmpone}{t}+\pderiv{\tmpover}{t}\right)- \deltaover\left(\pderiv{\prsone}{t} + \pderiv{\prsover}{t}\right) = \rhoover\tmpover\pderiv{\entrone}{t} +  \rhoover\tmpover\pderiv{\entrover}{t}.
 \end{align}
-where again we have used the assumption of a time-independent mean state. 
 
 Using Equations \eqref{eq:ancont}, \eqref{eq:h1}, and \eqref{eq:anenlhs} and then adding Equations \eqref{eq:anen} and \eqref{eq:anke} yields \citet{Gough1969}'s total energy equation,
 \begin{align}\label{eq:antote}
-			\pderiv{}{t}\left[\rhoover\left(\frac{1}{2} u^2 + \tmpover \entrone\right)\right] = &-\Div\left\{\left[\rhoover\left(\frac{1}{2} u^2 + \tmpover \entrone\right) + \prsone\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \overline{\vecf} + \vecf_1\right\}+ \heatover + Q_1 \nonumber\\
+			\pderiv{}{t}\left\{\rhoover\left[\frac{1}{2} u^2 + \tmpover (\entrone+\entrover)\right]\right\} = &-\Div\left\{\left[\rhoover\left(\frac{1}{2} u^2 + \tmpover \entrone\right) + \prsone\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \overline{\vecf} + \vecf_1\right\}+ \heatover + Q_1 \nonumber\\
 			 &+\left[-\rhoover\tmpover\ugrad\entrover +\ugrad (\rhoover \overline{w^2})- \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover\right].
 \end{align}
 Because of Equation \eqref{eq:nomeanu}, or more specifically, the condition
 \begin{align}\label{eq:nomeanw}
 	\overline{w}\equiv0,
 \end{align}
- each of the rightmost terms in brackets in Equation \eqref{eq:antote} vanishes (i.e., cannot transport any net energy vertically) after volume integration over $V$. Note that Equation \eqref{eq:nomeanw} is also a consequence of integrating Equation \eqref{eq:ancont} over volumes bounded by horizontal surfaces (and also assuming $w$ vanishes on the boundaries). Thus, the vanishing of the horizontal components of $\overline{\vecu}$ is not strictly necessary for the bracketed terms to conserve energy. 
+ each of the rightmost terms in brackets in Equation \eqref{eq:antote} vanishes after volume integration over $V$ (i.e., cannot transport any net energy). Note that Equation \eqref{eq:nomeanw} is also a consequence of integrating Equation \eqref{eq:ancont} over volumes bounded by horizontal surfaces (and also assuming $w$ vanishes on the boundaries). Thus, the vanishing of the horizontal components of $\overline{\vecu}$ is not strictly necessary for the bracketed terms to conserve energy. 
  
  Integrating Equation \eqref{eq:antote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
  \begin{subequations}\label{eq:aneconst}
@@ -331,13 +330,19 @@ Because of Equation \eqref{eq:nomeanu}, or more specifically, the condition
  		\anetot &\define \int_V \anwtot dV \equiv \text{constant},\\
  		\where \anwtot &\define \anwke + \anwheat,\\
  		\anwke &\define \frac{1}{2}\rhoover u^2,\\
- 		\andd \anwheat &\define \rhoover \tmpover S_1.
+ 		\andd \anwheat &\define \rhoover \tmpover (\entrone+\entrover).
  	\end{align}
  \end{subequations}
  We have used the superscript ``an" to denote energies and densities under the anelastic approximation and defined $\anwheat$ to be internal energy density of fluid parcels associated with irreversible heating processes (entropy increases). The conservation law \eqref{eq:aneconst} holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:anfirstlawpert} and for arbitrary magnitudes of $|\nabla \entrover|$. Note that the partition of energy density is fundamentally different than in the fully compressible conservation law \eqref{eq:econst}; most notably, the potential energy density is absent under the anelastic approximation. We return to this central point in Section \ref{sec:meaningtote}. %However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
 
 \section{The \citet{Gough1969} equations in terms of $\entrone$ and $\prsone$}\label{sec:goughsp}
 The anelastic equations are often written using the perturbed pressure and entropy ($\prsone$ and $\entrone$) in place of the quantities $\tmpone$, $\prsone$, $\rhoone$, and $\enthone$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmommean}. This is more than just a matter of convention, since transforming the variables to $\entrone$ and $\prsone$ isolates terms in the equations that depend on the mean entropy gradient $\nabla\entrover$, which can be neglected if $\nabla\entrover$ is small.
+
+  In each of Equations \eqref{eq:anmommean} and \eqref{eq:anenmean}, each term on the right-hand side is $O(\epsilon)$ compared to each term on the left-hand side. In particular, we can make the mean hydrostatic approximation, 
+\begin{align}\label{eq:anhydrostatic}
+	\nabla\prsover\approx \rhoover\vecg,
+\end{align}
+when multiplying by terms that are already of first order in $\epsilon$. 
 
 We can change variables using Equations \eqref{eq:anfirstlawpert} and \eqref{eq:anfirstlawmean} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
 \begin{align}\label{eq:anrhsmom}
@@ -384,11 +389,6 @@ Both these terms vanish for a nearly adiabatic background state (where $\nabla\e
 
 \section{The equivalence of horizontally averaged atmospheres to fixed reference atmospheres}\label{sec:meantoref}
 In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, is assumed to be time-independent. Furthermore, it cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the thermal perturbations about this reference state develop small but nonzero horizontal means. Some codes (e.g., the {\ash} code) alternatively solve for the perturbations about the horizontal average directly. In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the right-hand sides of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the horizontal means of the thermal variables wander on an advective timescale and by no more than $O(\epsilon)$ away from their preordained reference state values. 
-
-Thus, we now consider time-dependent means, i.e., $\overline{f}=\overline{f}(q,t)$, where $f$ stands for one of the thermal variables. The evolution of the mean state is assumed to satisfy
-\begin{align}\label{eq:meanvariationslow}
-	\left|\pderiv{\overline{f}}{t}\right| = O\left(\left|\pderiv{f_1}{t}\right|\right) = O\left(|f_1|\sqrt{\frac{\epsilon g_a}{H_a}}\right).
-\end{align}
 
 We define the horizontally averaged profiles as the sum of the reference-state profile (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
 \begin{subequations}\label{eq:meanvariationsmall}
@@ -501,7 +501,7 @@ and $D_{ij}$ is now given by Equation \eqref{eq:anmomrefvisc}.
 
 Taking the horizontal means of Equations \eqref{eq:anmomref} and \eqref{eq:anenref} and then using Equations \eqref{eq:refhydro}, \eqref{eq:refthermalequil}, and \eqref{eq:anrhsmomref} recovers the mean momentum and energy equations \eqref{eq:anmommean} and \eqref{eq:anenmean3}. The anelastic formulation with fixed reference states (Equations \eqref{eq:ancontref}, \eqref{eq:anmomref} and \eqref{eq:anenref}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}---with the modified left-hand side given in Equation \eqref{eq:anenmodlhs}---combined with Equations \eqref{eq:anmommean} and \eqref{eq:anenmean3}), provided the restrictions \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall}.
 
-
+Intuitively, none of the results of this section should seem too surprising and may even seem obvious. However, formalizing the equivalence between mean-state expansions of the anelastic equations and reference-state expansions via \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall} is important. The mean-state anelastic approximation of (e.g.) \citet{Gough1969} can consistently allow for time-varying mean states, subject only to the slow-variation constraint \eqref{eq:meanvariationslow}. 
 
 \section{The Anelastic Energy-conserving Generalized Gough (AnEGG) approximation}
 To arrive at the final form of an energy-conserving set of anelastic equations, we make one final argument: that the last term in Equation \eqref{eq:anenrefmain} is negligible. We do so because this term has zero horizontal mean and therefore cannot affect the net transport of energy. Furthermore, pointwise it should always be much smaller than the background advection term $-\rhotilde\tilde{T}\ugrad\tilde{S}$, provided $\rhoprime$ remains $\ll \rhotilde$.
