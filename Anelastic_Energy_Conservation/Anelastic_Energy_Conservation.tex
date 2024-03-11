@@ -442,7 +442,7 @@ The linearized equation of state for the primed quantities is exactly analogous 
 as is the linearized equation of state for the hatted quantities. Note that in Equation \eqref{eq:anfirstlawpert}, the overbars may be replace by tildes, making Equation \eqref{eq:anfirstlawpertref} applicable to the ``subscript 1" quantities as well. 
 
 To zeroth order in $\epsilon$, Equation \eqref{eq:ancont} becomes simply
-\begin{align}\label{eq:ancontref}
+\begin{align}\label{eq:refcont}
 	\Div(\rhotilde\vecu)\equiv0.
 \end{align}
 Because the right-hand side of Equations \eqref{eq:anmom} is $O(\epsilon)$ compared to the left-hand side we can write, using Equations \eqref{eq:refhydro} and \eqref{eq:anfirstlawpert} for the hatted variables,
@@ -455,10 +455,10 @@ Because the right-hand side of Equations \eqref{eq:anmom} is $O(\epsilon)$ compa
 %	\bm{f}_{\rm NLBR} = \frac{\deltaover \prsone}{\cpover} \nabla\entrtilde + O(\epsilon^2)
 %\end{align}
 Substituting Equation \eqref{eq:anrhsmomref} into Equation \eqref{eq:anmommod} and noting that all terms are of $O(\epsilon)$ (so that we can replace overbars with tildes), we find
-\begin{subequations}\label{eq:anmomref}
-	\begin{align}\label{eq:anmomrefmain}
+\begin{subequations}\label{eq:refmom}
+	\begin{align}\label{eq:refmommain}
 	\pderiv{}{t}(\rhotilde\vecu)= &-\Div(\rhotilde\vecu\vecu) -\rhotilde\nabla\left(\frac{\prsprime}{\rhotilde}\right) - \deltatilde \rhotilde \left(\frac{\entrprime}{\cptilde}\right) \vecg +\frac{\deltatilde  \prsprime}{\cptilde} \nabla\entrtilde+\Div \overleftrightarrow{D},\\
-	\text{where now}\five D_{ij}& = \tilde{\mu}\left[\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right]\label{eq:anmomrefvisc},
+	\text{where now}\five D_{ij}& = \tilde{\mu}\left[\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right]\label{eq:refmomvisc},
 \end{align}
 \end{subequations}
 %In the internal energy equation \eqref{eq:anenmod}, we write 
@@ -478,17 +478,17 @@ and
 	&=-\rhotilde\tilde{T}\ugrad \entrprime - \tilde{T}(\rhoover \vecu)\cdot\nabla\entrtilde - \rhotilde\tmphat\ugrad\entrtilde + O(\epsilon^2).
 \end{align}
 Substituting Equations \eqref{eq:refthermalequil} and \eqref{eq:momdensity2}--\eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} yields
-\begin{subequations}\label{eq:anenref}
+\begin{subequations}\label{eq:refen}
 	\begin{align}
 		\rhotilde\tilde{T}\pderiv{\entrprime}{t}= &-\rhotilde\tilde{T}\ugrad \entrprime - \rhotilde\tilde{T} \ugrad \entrtilde - \rhotilde \tmpprime\ugrad\entrtilde+D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime  \nonumber\\
-		& - \tilde{T}(\rhoprime \vecu-\overline{\rhoprime\vecu})\cdot\nabla\entrtilde,\label{eq:anenrefmain}\\
+		& - \tilde{T}(\rhoprime \vecu-\overline{\rhoprime\vecu})\cdot\nabla\entrtilde,\label{eq:refenmain}\\
 		\where \rhoprime =& \frac{\prsprime}{\tilde{\cs^2}}-\frac{\deltatilde \rhotilde S ^\prime}{\cptilde},\\
 		 \tmpprime = & \frac{\tilde{T} \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde},
 	\end{align}
 \end{subequations}
-and $D_{ij}$ is now given by Equation \eqref{eq:anmomrefvisc}. 
+and $D_{ij}$ is now given by Equation \eqref{eq:refmomvisc}. 
 
-Taking the horizontal means of Equations \eqref{eq:anmomref} and \eqref{eq:anenref} and then using Equations \eqref{eq:refhydro}, \eqref{eq:refthermalequil}, and \eqref{eq:anrhsmomref} recovers the mean momentum and energy equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. The anelastic formulation with fixed reference states (Equations \eqref{eq:ancontref}, \eqref{eq:anmomref} and \eqref{eq:anenref}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}), provided the restriction \eqref{eq:meanvariationsmall} holds.
+Taking the horizontal means of Equations \eqref{eq:refmom} and \eqref{eq:refen} and then using Equations \eqref{eq:refhydro}, \eqref{eq:refthermalequil}, and \eqref{eq:anrhsmomref} recovers the mean momentum and energy equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. The anelastic formulation with fixed reference states (Equations \eqref{eq:refcont}, \eqref{eq:refmom} and \eqref{eq:refen}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}), provided the restriction \eqref{eq:meanvariationsmall} holds.
 
 Intuitively, none of the results of this section should seem too surprising and may even seem obvious. However, formalizing the equivalence between mean-state expansions of the anelastic equations and reference-state expansions via \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall} is important. The mean-state anelastic approximation of (e.g.) \citet{Gough1969} can consistently allow for time-varying mean states, subject only to the slow-variation constraint \eqref{eq:meanvariationslow}. Furthermore, the mean-state equations can allow for secular change in the mean state (e.g., a growing or shrinking convection zone) self-consistently, as long as the evolution is slow. The reference-state formulation, by contrast, does not allow for secular changes in the mean state, because the total change must remain small as per Equation \eqref{eq:meanvariationsmall}.
 
@@ -497,9 +497,9 @@ One pernicious aspect of the reference-state formulation is that the equations h
 To summarize: as long as the true fully compressible system is not expected to change its mean state by more than $O(\epsilon)$ during evolution, either the mean-state or reference-state anelastic equations may be used with asymptotically equivalent results. If secular variation of the real system \textit{is} expected, it must be slow enough to satisfy Equation \eqref{eq:meanvariationslow}. Only then is the use of the mean-state anelastic equations justified.
 
 \section{The Anelastic Energy-conserving Generalized Gough (AnEGG) approximation}
-To arrive at the final form of an energy-conserving set of anelastic equations, we make one final argument: that the last term in Equation \eqref{eq:anenrefmain} is negligible. We do so because this term has zero horizontal mean and therefore cannot affect the net transport of energy. Furthermore, pointwise it should always be much smaller than the background advection term $-\rhotilde\tilde{T}\ugrad\entrtilde$, provided $\rhoprime$ remains $\ll \rhotilde$. 
+To arrive at the final form of an energy-conserving set of anelastic equations, we make one final argument: that the last term in Equation \eqref{eq:refenmain} is negligible. We do so because this term has zero horizontal mean and therefore cannot affect conservation of energy energy or the mean stratification $\pderivline{\entrover}{q}$. Furthermore, pointwise it should always be much smaller than the background advection term $-\rhotilde\tilde{T}\ugrad\entrtilde$, provided $\rhoprime$ remains $\ll \rhotilde$. 
 
-The final equations, representing what we call the Anelastic Energy-conserving Generalized Gough (AnEGG) approximation, are thus
+The final equations, representing what we call the Anelastic Energy-conserving Generalized Gough (AnEGG) approximation, written for time-independent reference states, are thus
 \begin{subequations}\label{eq:anegg}
 \begin{empheq}[box=\fbox]{align}
 	\Div(\rhotilde\vecu)&\equiv 0\label{eq:ancontegg},\\
@@ -508,7 +508,7 @@ The final equations, representing what we call the Anelastic Energy-conserving G
 		&\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime,\label{eq:anenegg}
 \end{empheq}
 \end{subequations}
-where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:anmomrefvisc}. %and it is additionally assumed that the fixed reference state satisfies the hydrostatic condition \eqref{eq:refhydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
+where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:refmomvisc}. %and it is additionally assumed that the fixed reference state satisfies the hydrostatic condition \eqref{eq:refhydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
 
 The AnEGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:anmomegg}, is 
 %\begin{equation}\label{eq:ankeref}
@@ -517,10 +517,10 @@ The AnEGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eq
 	\end{empheq}
 %\end{equation}
 Adding Equations \eqref{eq:anenegg} and \eqref{eq:ankeegg} yields the AnEGG total energy equation,
-\begin{empheq}[box=\fbox]{align}\label{eq:antoteref}
+\begin{empheq}[box=\fbox]{align}\label{eq:reftote}
 	\pderiv{}{t}\left[\rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime \right)\right] = &-\Div\left\{\left[\rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime\right) + \prsprime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf^\prime \right\} + Q^\prime \nonumber\\ & -\rhotilde\tilde{T}\ugrad\entrtilde. 
 \end{empheq}
-Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:ancontref}), the integration of Equation \eqref{eq:antoteref} yields conservation of total energy,
+Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:refcont}), integrating Equation \eqref{eq:reftote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
 
 \begin{subequations}\label{eq:anrefeconst}
 \begin{empheq}[box=\fbox]{align}
@@ -544,7 +544,7 @@ in the momentum equation (i.e., not making the LBR approximation) and (2) includ
 \begin{align}\label{eq:nlbrheatref}
 	\tilde{Q}_{\rm NLBR} \define -  \left(\frac{\tilde{T} \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde}\right)  \rhotilde \ugrad\entrtilde
 \end{align}
-in the internal energy equation. Alternatively, if the LBR approximation is made, (setting $\tilde{\bm{f}}_{\rm NLBR}\equiv0$ in Equation \eqref{eq:anmomref}), energy can still be conserved if $\tilde{Q}_{\rm NLBR}$ in Equation \eqref{eq:anenref} is replaced by
+in the internal energy equation. Alternatively, if the LBR approximation is made, (setting $\tilde{\bm{f}}_{\rm NLBR}\equiv0$ in Equation \eqref{eq:refmom}), energy can still be conserved if $\tilde{Q}_{\rm NLBR}$ in Equation \eqref{eq:refen} is replaced by
 \begin{align}\label{eq:lbrheating}
 	\tilde{Q}_{\rm LBR}\define - \left(\frac{\rhotilde\tilde{T}}{\cptilde} \right) \entrprime\ugrad\entrtilde
 \end{align}
