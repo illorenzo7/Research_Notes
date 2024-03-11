@@ -36,7 +36,7 @@
 % total energies and energy densities
 \newcommand{\etot}{E_{\rm tot}}
 \newcommand{\anetot}{E_{\rm tot}^{\rm an}}
-\newcommand{\refetot}{E_{\rm tot}^{\rm ref}}
+\newcommand{\eggetot}{E_{\rm tot}^{\rm EGG}}
 
 \newcommand{\wtot}{W_{\rm tot}}
 \newcommand{\wke}{W_{\rm KE}}
@@ -56,9 +56,9 @@
 \newcommand{\anwke}{W^{\rm an}_{\rm KE}}
 \newcommand{\anwheat}{W^{\rm an}_{\rm heat}}
 
-\newcommand{\refwtot}{W^{\rm ref}_{\rm tot}}
-\newcommand{\refwke}{W^{\rm ref}_{\rm KE}}
-\newcommand{\refwheat}{W^{\rm ref}_{\rm heat}}
+\newcommand{\eggwtot}{W^{\rm EGG}_{\rm tot}}
+\newcommand{\eggwke}{W^{\rm EGG}_{\rm KE}}
+\newcommand{\eggwheat}{W^{\rm EGG}_{\rm heat}}
 
 % date, author, title
 \date{\today}
@@ -520,15 +520,16 @@ Adding Equations \eqref{eq:anenegg} and \eqref{eq:ankeegg} yields the AnEGG tota
 \begin{empheq}[box=\fbox]{align}\label{eq:reftote}
 	\pderiv{}{t}\left[\rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime \right)\right] = &-\Div\left\{\left[\rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime\right) + \prsprime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf^\prime \right\} + Q^\prime \nonumber\\ & -\rhotilde\tilde{T}\ugrad\entrtilde. 
 \end{empheq}
-Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:refcont}), integrating Equation \eqref{eq:reftote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
-
+Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:refcont} and assuming $w\equiv0$ on the boundaries), integrating Equation \eqref{eq:reftote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
 \begin{subequations}\label{eq:anrefeconst}
 \begin{empheq}[box=\fbox]{align}
-E_{\rm tot} &\define \int_V W_{\rm tot} dV = \text{constant},\\
-\where W_{\rm tot} &\define \rhotilde\left(\frac{1}{2} u^2 + \tilde{T} \entrprime\right)
+\eggetot &\define \int_V \eggwtot dV = \text{constant},\\
+\where \eggwtot &\define \eggwke + \eggwheat,\\
+ \eggwke &\define \frac{1}{2} \rhotilde u^2,\\
+ \andd \eggwheat &\define \rhotilde\tilde{T} \entrprime.
 \end{empheq}
 \end{subequations}
-is the total energy density per unit volume. This conservation law holds for arbitrary fluid motions obeying Equations \eqref{eq:anegg} and for all magnitudes of $|\nabla\entrover|$. 
+This conservation law holds for arbitrary fluid motions obeying Equations \eqref{eq:anegg} and for all magnitudes of $|\nabla\entrover|$. 
 
 Note that in practice when simulating stiff systems (large $|\nabla\entrtilde|$) numerically (e.g., \citealt{Guerrero2016a,Matilsky2022,Matilsky2024}), the term 
 \begin{align}
