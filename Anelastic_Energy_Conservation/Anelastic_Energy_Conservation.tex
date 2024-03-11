@@ -261,11 +261,11 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
   \begin{align}
   	\tmpover \entrone &= \cpover \tmpone - \frac{\deltaover}{\rhoover} \prsone\label{eq:anfirstlawperttp}\\
   	&= U_1 - \frac{\prsover}{\rhoover^2}\rhoone \label{eq:linu}\\
-  	&= \enthone - \frac{\prsone}{\rho}\\
+  	&= \enthone - \frac{\prsone}{\rhoover}\label{eq:h1}\\
   	&= \frac{\cpover\, \tmpover}{\deltaover\rhoover}\left[\frac{\prsone}{\cssqover}-\rhoone\right].
   \end{align}
   \end{subequations}
-  We have used Equation \eqref{eq:momdensity} to yield the term $- \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover$ in Equation \eqref{eq:anen}. 
+  We have used Equation \eqref{eq:momdensity} to yield the term $- \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover$ in Equation \eqref{eq:anen}. Note that the left-hand side of Equation \eqref{eq:anen} is the only place \citet{Gough1969} uses the assumption of a time-independent mean state (by omitting terms like $\rhoover\cpover\pderivline{\tmpover}{t}$, for instance). The left-hand of Equation \eqref{eq:anmom}, by contrast, admits time-dependent $\rhoover$, since $\rhoover$ is still under the time derivative. 
   
    The differentials in Equation \eqref{eq:firstlaw} can be converted into gradients (e.g., $T\nabla S= \nabla h - \nabla P/\rho$) and the horizontally averaged form of these relations yields 
   \begin{subequations}\label{eq:anfirstlawmean}
@@ -296,12 +296,13 @@ Dotting $\vecu$ into Equation \eqref{eq:anmommain} and using Equation \eqref{eq:
 		\pderiv{}{t}\left(\frac{1}{2}\rhoover u^2\right)&=-\Div\left(\frac{1}{2}\rhoover u^2\vecu \right) - \ugrad \prsone + \rhoone\vecu\cdot\vecg + u_i\pderiv{D_{ij}}{x_j} + \ugrad(\rhoover \overline{w^2}).
 	\end{align}
 
- Note that from Equation \eqref{eq:anfirstlawperttp}, the left-hand side of Equation \eqref{eq:anen} can be written in terms of the entropy $\entrone$, 
+ Note that from differentiating Equation \eqref{eq:anfirstlawperttp} with respect to time, the left-hand side of Equation \eqref{eq:anen} can be written in terms of the entropy $\entrone$, 
 \begin{align}\label{eq:anenlhs}
-	\rhoover\cpover\pderiv{\tmpone}{t} - \deltaover\pderiv{\prsone}{t} = \rhoover\tmpover\pderiv{\entrone}{t}.
+	\rhoover\cpover\pderiv{\tmpone}{t} - \deltaover\pderiv{\prsone}{t} = \rhoover\tmpover\pderiv{\entrone}{t},
 \end{align}
+where again we have used the assumption of a time-independent mean state. 
 
-Using Equations \eqref{eq:ancont}, \eqref{eq:anfirstlawpert}, and \eqref{eq:anenlhs} and then adding Equations \eqref{eq:anen} and \eqref{eq:anke} yields \citet{Gough1969}'s total energy equation,
+Using Equations \eqref{eq:ancont}, \eqref{eq:h1}, and \eqref{eq:anenlhs} and then adding Equations \eqref{eq:anen} and \eqref{eq:anke} yields \citet{Gough1969}'s total energy equation,
 \begin{align}\label{eq:antote}
 			\pderiv{}{t}\left[\rhoover\left(\frac{1}{2} u^2 + \tmpover \entrone\right)\right] = &-\Div\left\{\left[\rhoover\left(\frac{1}{2} u^2 + \tmpover \entrone\right) + \prsone\right]\vecu- \vecu\cdot\overleftrightarrow{D} + \overline{\vecf} + \vecf_1\right\}+ \heatover + Q_1 \nonumber\\
 			 &+\left[-\rhoover\tmpover\ugrad\entrover +\ugrad (\rhoover \overline{w^2})- \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover\right].
