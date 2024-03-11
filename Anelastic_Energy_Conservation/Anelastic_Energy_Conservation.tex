@@ -277,7 +277,7 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
   	&= \frac{\cpover\, \tmpover}{\deltaover\rhoover}\left[\frac{\prsone}{\cssqover}-\rhoone\right].
   \end{align}
   \end{subequations}
-  We have used Equation \eqref{eq:momdensity} to yield the term $- \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover$ in Equation \eqref{eq:anen}. Note that the left-hand side of Equation \eqref{eq:anen} is the only place \citet{Gough1969} uses the assumption of a time-independent mean state (by omitting terms like $\rhoover\cpover\pderivline{\tmpover}{t}$, for instance). The left-hand of Equation \eqref{eq:anmom}, by contrast, admits time-dependent $\rhoover$, since $\rhoover$ is still under the time derivative. 
+  We have used Equation \eqref{eq:momdensity} to yield the term $- \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover$ in Equation \eqref{eq:anen}. Note that the continuity equation \eqref{eq:ancont} (where \citealt{Gough1969} omits the term $\pderivline{\rhoover}{t}$) and the left-hand side of the internal energy equation \eqref{eq:anen} (where \citealt{Gough1969} omits terms like $\rhoover\cpover\pderivline{\tmpover}{t}$) are the only places where the assumption of a time-independent mean state is used. By contrast, the left-hand of the momentum equation \eqref{eq:anmom}, would be unaltered for time-dependent $\rhoover$, since $\rhoover$ is still under the time derivative. 
   
    The differentials in Equation \eqref{eq:firstlaw} can be converted into gradients (e.g., $T\nabla S= \nabla h - \nabla P/\rho$) and the horizontally averaged form of these relations yields 
   \begin{subequations}\label{eq:anfirstlawmean}
@@ -337,7 +337,7 @@ Because of Equation \eqref{eq:nomeanu}, or more specifically, the condition
  We have used the superscript ``an" to denote energies and densities under the anelastic approximation and defined $\anwheat$ to be internal energy density of fluid parcels associated with irreversible heating processes (entropy increases). The conservation law \eqref{eq:aneconst} holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:anfirstlawpert} and for arbitrary magnitudes of $|\nabla \entrover|$. Note that the partition of energy density is fundamentally different than in the fully compressible conservation law \eqref{eq:econst}; most notably, the potential energy density is absent under the anelastic approximation. We return to this central point in Section \ref{sec:meaningtote}. %However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
 
 \section{The \citet{Gough1969} equations in terms of $\entrone$ and $\prsone$}\label{sec:goughsp}
-The anelastic equations are often written using the perturbed pressure and entropy ($\prsone$ and $\entrone$) in place of the quantities $\tmpone$, $\prsone$, $\rhoone$, and $\enthone$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmommean}. This is more than just a matter of convention, since transforming variables to $\entrone$ and $\prsone$ isolates terms in the equations that depend on the mean entropy gradient $\nabla\entrover$, which can be neglected if $\nabla\entrover$ is small, as it should be for a vigorously convecting layer. 
+The anelastic equations are often written using the perturbed pressure and entropy ($\prsone$ and $\entrone$) in place of the quantities $\tmpone$, $\prsone$, $\rhoone$, and $\enthone$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmommean}. This is more than just a matter of convention, since transforming the variables to $\entrone$ and $\prsone$ isolates terms in the equations that depend on the mean entropy gradient $\nabla\entrover$, which can be neglected if $\nabla\entrover$ is small.
 
 We can change variables using Equations \eqref{eq:anfirstlawpert} and \eqref{eq:anfirstlawmean} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
 \begin{align}\label{eq:anrhsmom}
@@ -383,43 +383,65 @@ and the ``non-LBR" heating
 Both these terms vanish for a nearly adiabatic background state (where $\nabla\entrover=O(\epsilon)$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use. Its neglect seems to have not been explicitly considered. 
 
 \section{The equivalence of horizontally averaged atmospheres to fixed reference atmospheres}\label{sec:meantoref}
-In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmommean} and \eqref{eq:anenmean}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the perturbations in $S$ and $P$ about this reference state develop small but nonzero horizontally averaged pertrubations. Some codes (e.g., the {\ash} code) alternatively solve for the perturbations about the horizontal average directly. In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the right-hand side's of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the horizontal means of the thermal variables do not wander by more than $O(\epsilon)$ away from their preordained reference state values. 
+In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, is assumed to be time-independent. Furthermore, it cannot be specified a priori because it depends on the ultimate flow via Equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) instead treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the thermal perturbations about this reference state develop small but nonzero horizontal means. Some codes (e.g., the {\ash} code) alternatively solve for the perturbations about the horizontal average directly. In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the right-hand sides of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided that the horizontal means of the thermal variables wander on an advective timescale and by no more than $O(\epsilon)$ away from their preordained reference state values. 
 
-Our approach is to define the horizontally averaged profiles as the sum of the reference-state profile (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
+Thus, we now consider time-dependent means, i.e., $\overline{f}=\overline{f}(q,t)$, where $f$ stands for one of the thermal variables. The evolution of the mean state is assumed to satisfy
+\begin{align}\label{eq:meanvariationslow}
+	\left|\pderiv{\overline{f}}{t}\right| = O\left(\left|\pderiv{f_1}{t}\right|\right) = O\left(|f_1|\sqrt{\frac{\epsilon g_a}{H_a}}\right).
+\end{align}
+
+We define the horizontally averaged profiles as the sum of the reference-state profile (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
+\begin{subequations}\label{eq:meanvariationsmall}
 \begin{align}
-\prsover=	\prsover(q,t) &= \tilde{P}(q) + \prshat(q,t) ,\\
-\rhoover=	\rhoover(q,t)  &= \rhotilde(q)  + \rhohat(q,t) ,\\
-	\entrover = \entrover (q,t) &=  \tilde{S}(q)  + \entrhat(q,t) ,
+\prsover=	\prsover(q,t) &= \tilde{P}(q) + \prshat(q,t)\five\with \prshat/\prstilde = O(\epsilon),\\
+\rhoover=	\rhoover(q,t)  &= \rhotilde(q)  + \rhohat(q,t)\five\with \rhohat/\rhotilde = O(\epsilon),\\
+	\entrover = \entrover (q,t) &=  \tilde{S}(q)  + \entrhat(q,t)\five\with \entrhat/\cptilde =O(\epsilon),
 \end{align}
-etc., where we assume (apart from the entropy) that the hatted means are $O(\epsilon)$ compared to the reference-state means. Note that the horizontal mean profiles are now time-dependent. This does not affect the asymptotic expansion leading to Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, provided the time derivatives of the mean state are the same order as the time derivatives of the deviations [e.g., $\pderivline{\rhoover}{t}=O(\pderivline{\rhoone}{t})$]. Most reference-state profiles are chosen to be time-independent, except for $\tilde{Q}$ and $\tilde{\vecf}$ (see below). 
+\end{subequations}
+etc. Most reference-state profiles are chosen to be time-independent, except for $\tilde{Q}$ and $\tilde{\vecf}$ (see below). 
 
-We assume that the reference state is chosen to be hydrostatic,
-\begin{align}\label{eq:refhydro}
-	\nabla \tilde{P} = \rhotilde\vecg
+In plain English, Equation \eqref{eq:meanvariationslow} requires that the time variation of the mean state is slow (e.g., altered by the convection on an advective time scale), while Equation \eqref{eq:meanvariationsmall} requires that the total variation of the mean state (integrated over all time) remains small. 
+
+%Note that the horizontal mean profiles are now time-dependent. This does not affect the asymptotic expansion leading to Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, provided the time derivatives of the mean state are the same order as the time derivatives of the deviations [e.g., $\pderivline{\rhoover}{t}=O(\pderivline{\rhoone}{t})$]. 
+We denote the (temporally and horizontally dependent) deviations from the reference state by primes and note that 
+\begin{subequations}\label{eq:defprime}
+\begin{align}
+	\prsprime & \define P - \tilde{P} =\prshat +  \prsone,\\
+	\rhoprime & \define \rho - \rhotilde = \rhohat + \rhoone,\\
+	\entrprime & \define S -  \tilde{S} =  \entrhat + \entrone,
 \end{align}
-and that it satisfies the first law of thermodynamics for gradients (compare to Equation \eqref{eq:anfirstlaw}),
+\end{subequations}
+etc. The primed quantities, being the sum of two assumed-small quantities, thus remain small as long Equations \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall} are satisfied. 
+%	&= h^\prime - \frac{\prsprime }{\rhotilde}\\
+% 		&= U^\prime - \frac{\tilde{P}}{\rhotilde^2}\rhoprime \\
+
+Strictly, \citet{Gough1969} assumes a time-independent mean state in deriving the continuity equation \eqref{eq:ancont} and the left-hand side of the internal energy equation \eqref{eq:anenmod}. However, these equations are essentially unaltered (to the order of the asymptotic expansion from which they are derived) as long as the slow-variation condition \eqref{eq:meanvariationslow} holds. To see this, note that $\pderivline{\rhoover}{t}$ would be $O(\epsilon)$ and thus the zeroth-order continuity equation remains unchanged. The left-hand side of the internal energy equation must now include the $O(\epsilon)$ term $\rhoover\tmpover \pderivline{\entrhat}{t}$ and is thus transformed from
+\begin{align}\label{eq:anenmodlhs}
+	\rhoover\tmpover\pderiv{\entrone}{t}\five\text{to}\five  \rhoover\tmpover\pderiv{\entrprime}{t}.
+\end{align}
+The mean energy equation \eqref{eq:anenmean2} also must be transformed to
+\begin{align}\label{eq:anenmean3}
+	\heatover-\Div\overline{\vecf} = \rhoover\tmpover\, \overline{\ugrad \entrone}-\overline{D_{ij}\pderiv{u_i}{x_j}} + \rhoover (\overline{\tmpone\vecu})\dotgrad\entrover + \rhoover\tmpover\pderiv{\entrover}{t}.
+\end{align}
+We assume that the reference state has been chosen to be hydrostatic,
+\begin{align}\label{eq:refhydro}
+	\nabla \tilde{P} = \rhotilde\vecg,
+\end{align}
+to be in thermal equilibrium,
+\begin{align}\label{eq:refthermalequil}
+	\tilde{Q} = \Div\tilde{\vecf},
+\end{align}
+and to satisfy the first law of thermodynamics for gradients (compare to Equation \eqref{eq:anfirstlawmean}),
 \begin{subequations}\label{eq:anfirstlawref}
 	\begin{align}
 		\tilde{T}\nabla\tilde{S} &= \tilde{\cpcap}\nabla\tilde{T} - \frac{\tilde{\delta}}{\rhotilde}\nabla\tilde{P} \\
 		&= \frac{\tilde{\cpcap}\tilde{T}}{\tilde{\delta}\rhotilde}\left[\frac{\nabla\tilde{P}}{\tilde{\cs^2}}-\nabla\rhotilde\right].
 	\end{align}
 \end{subequations}
-We choose the reference heating and conductive profile to satisfy
-\begin{align}\label{eq:dsdt}
-	\tilde{Q} - \Div\tilde{\vecf} \define -\rhotilde\tilde{T}\pderiv{\entrhat}{t}.
-\end{align}
-Note that this is simply a \textit{definition} for the reference-state term $\tilde{Q}-\Div\tilde{\vecf}$, which can be time-dependent, as long as it is horizontally symmetric and $O(\epsilon)$.
 
-We denote the (temporally and horizontally dependent) deviations from the reference state by primes and note that 
-\begin{align}
-	\prsprime & \define P - \tilde{P} = \prsone + \prshat,\\
-	\rhoprime & \define \rho - \rhotilde = \rhoone + \rhohat,\\
-	 \entrprime & \define S -  \tilde{S} =  \entrone + \entrhat,
-\end{align}
-etc. The primed quantities (except for the entropy) are thus $O(\epsilon)$ compared to the reference-state means, since they are the sum of two $O(\epsilon)$ perturbations. 
-%	&= h^\prime - \frac{\prsprime }{\rhotilde}\\
-% 		&= U^\prime - \frac{\tilde{P}}{\rhotilde^2}\rhoprime \\
 
+%Note that this is simply a \textit{definition} for the reference-state term $\tilde{Q}-\Div\tilde{\vecf}$, which can be time-dependent. This is the one reference-state term that is assumed to not be set a priori. Instead, it is moved to the left-hand side of the internal energy equation and the evolution of the sum $\entrprime=\entrhat + \entrone$ is solved for. The approximation remains consistent as long as $\tilde{Q}-\Div\tilde{\vecf}$ remains $O(\epsilon)$ for all time (i.e., it satisfies Equations \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall}). 
+%  \define -\rhotilde\tilde{T}\pderiv{\entrhat}{t}.
 The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:anfirstlawpert},
 \begin{subequations}\label{eq:anfirstlawpertref}
 	\begin{align}
@@ -440,7 +462,7 @@ Because the right-hand side of Equations \eqref{eq:anmom} is $O(\epsilon)$ compa
 	[-\nabla \prsover + \rhoover\vecg] &= -\nabla \prshat + \rhohat\vecg\nonumber\\
 	&= -\rhotilde\nabla\left(\frac{\prshat}{\rhotilde}\right) - \tilde{\delta} \rhotilde \left(\frac{\entrhat}{\tilde{\cpcap}}\right) \vecg + \frac{\tilde{\delta}\rhotilde}{\tilde{\cpcap}} \left(\frac{\prshat}{\rhotilde}\right)\nabla\tilde{S}.
 \end{align}
-Note that the non-LBR force density from Equation \eqref{eq:nlbrmom} is only significant when $\nabla\entrover$ is large (in which case $\nabla\entrover=\nabla\tilde{S}+O(\epsilon)$), otherwise it is $O(\epsilon^2)$. For all magnitudes of $|\nabla\entrover|$, we can thus write
+Note that the non-LBR force density from Equation \eqref{eq:nlbrmom} is only significant when $\nabla\entrover$ is large (in which case, $\nabla\entrover=\nabla\tilde{S}+O(\epsilon)$ by Equations \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall}), otherwise it is $O(\epsilon^2)$. For all magnitudes of $|\nabla\entrover|$, we can thus write
 \begin{align}\label{eq:nlbrmom2}
 	\bm{f}_{\rm NLBR} = \frac{\deltaover \prsone}{\cpover} \nabla\tilde{S} + O(\epsilon^2)
 \end{align}
@@ -466,7 +488,7 @@ and
 	-\rhoover\tmpover \ugrad \entrone - \rhoover\tmpover \ugrad\entrover &= - \rhoover\tmpover\ugrad \entrprime -\rhoover\tmpover\ugrad\tilde{S} \nonumber\\
 	&=-\rhotilde\tilde{T}\ugrad \entrprime - \tilde{T}(\rhoover \vecu)\cdot\nabla\tilde{S} - \rhotilde\tmphat\ugrad\tilde{S} + O(\epsilon^2).
 \end{align}
-Substituting Equation \eqref{eq:dsdt} and Equations \eqref{eq:momdensity2} through \eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} yields
+Substituting Equation \eqref{eq:refthermalequil} and Equations \eqref{eq:momdensity2}--\eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} (with the modified left-hand side given by Equation \eqref{eq:anenmodlhs}) yields
 \begin{subequations}\label{eq:anenref}
 	\begin{align}
 		\rhotilde\tilde{T}\pderiv{\entrprime}{t}= &-\rhotilde\tilde{T}\ugrad \entrprime - \rhotilde\tilde{T} \ugrad \tilde{S} - \rhotilde \tmpprime\ugrad\tilde{S}+D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime  \nonumber\\
@@ -477,7 +499,9 @@ Substituting Equation \eqref{eq:dsdt} and Equations \eqref{eq:momdensity2} throu
 \end{subequations}
 and $D_{ij}$ is now given by Equation \eqref{eq:anmomrefvisc}. 
 
-Taking the horizontal means of Equations \eqref{eq:anmomref} and \eqref{eq:anenref} and then using Equations \eqref{eq:refhydro}, \eqref{eq:dsdt}, and \eqref{eq:anrhsmomref} recovers the mean momentum and energy equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. The anelastic formulation with fixed reference states (Equations \eqref{eq:ancontref}, \eqref{eq:anmomref} and \eqref{eq:anenref}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmommean} and \eqref{eq:anenmean}). 
+Taking the horizontal means of Equations \eqref{eq:anmomref} and \eqref{eq:anenref} and then using Equations \eqref{eq:refhydro}, \eqref{eq:refthermalequil}, and \eqref{eq:anrhsmomref} recovers the mean momentum and energy equations \eqref{eq:anmommean} and \eqref{eq:anenmean3}. The anelastic formulation with fixed reference states (Equations \eqref{eq:ancontref}, \eqref{eq:anmomref} and \eqref{eq:anenref}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}---with the modified left-hand side given in Equation \eqref{eq:anenmodlhs}---combined with Equations \eqref{eq:anmommean} and \eqref{eq:anenmean3}), provided the restrictions \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall}.
+
+
 
 \section{The Anelastic Energy-conserving Generalized Gough (AnEGG) approximation}
 To arrive at the final form of an energy-conserving set of anelastic equations, we make one final argument: that the last term in Equation \eqref{eq:anenrefmain} is negligible. We do so because this term has zero horizontal mean and therefore cannot affect the net transport of energy. Furthermore, pointwise it should always be much smaller than the background advection term $-\rhotilde\tilde{T}\ugrad\tilde{S}$, provided $\rhoprime$ remains $\ll \rhotilde$.
