@@ -115,7 +115,7 @@
 	\begin{subequations}\label{eq:econst}
 	\begin{align}
 		\etot &\define \int_V \wtot dV \equiv \text{constant},\\
-		\where \wtot &\define \wke + \wint + \wpot,\\
+		\where \wtot &\define \wke + \wint + \wpot,\label{eq:wtot}\\
 		\wke &\define \frac{1}{2}\rho u^2,\\
 		\wint &\define \rho U,\\
 		\andd \wpot &\define \rho \Phi. 
@@ -420,18 +420,17 @@ to be in thermal equilibrium,
 	\tilde{Q} = \Div\tilde{\vecf},
 \end{align}
 and to satisfy the first law of thermodynamics for gradients (compare to Equation \eqref{eq:anfirstlawmean}),
-\begin{subequations}\label{eq:anfirstlawref}
+\begin{subequations}\label{eq:reffirstlawmean}
 	\begin{align}
 		\tmptilde\nabla\entrtilde &= \cptilde\nabla\tmptilde - \frac{\deltatilde }{\rhotilde}\nabla\tilde{P} \\
 		&= \frac{\cptilde\tmptilde}{\deltatilde \rhotilde}\left[\frac{\nabla\tilde{P}}{\tilde{\cs^2}}-\nabla\rhotilde\right].
 	\end{align}
 \end{subequations}
 
-
 %Note that this is simply a \textit{definition} for the reference-state term $\tilde{Q}-\Div\tilde{\vecf}$, which can be time-dependent. This is the one reference-state term that is assumed to not be set a priori. Instead, it is moved to the left-hand side of the internal energy equation and the evolution of the sum $\entrprime=\entrhat + \entrone$ is solved for. The approximation remains consistent as long as $\tilde{Q}-\Div\tilde{\vecf}$ remains $O(\epsilon)$ for all time (i.e., it satisfies Equations \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall}). 
 %  \define -\rhotilde\tmptilde\pderiv{\entrhat}{t}.
 The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:anfirstlawpert},
-\begin{subequations}\label{eq:anfirstlawpertref}
+\begin{subequations}\label{eq:reffirstlawpert}
 	\begin{align}
 		\tmptilde \entrprime &= \cptilde \tmpprime - \frac{\deltatilde }{\rhotilde} \prsprime,\\
   	&= U^\prime - \frac{\prstilde}{\rhotilde^2}\rhoprime \label{eq:linuref}\\
@@ -445,7 +444,7 @@ To zeroth order in $\epsilon$, Equation \eqref{eq:ancont} becomes simply
 \begin{align}\label{eq:refcont}
 	\Div(\rhotilde\vecu)\equiv0.
 \end{align}
-Because the right-hand side of Equations \eqref{eq:anmom} is $O(\epsilon)$ compared to the left-hand side we can write, using Equations \eqref{eq:refhydro} and \eqref{eq:anfirstlawpert} for the hatted variables,
+Because the right-hand side of Equations \eqref{eq:anmom} is $O(\epsilon)$ compared to the left-hand side we can write, using Equations \eqref{eq:egghydro} and \eqref{eq:anfirstlawpert} for the hatted variables,
 \begin{align}\label{eq:anrhsmomref}
 	[-\nabla \prsover + \rhoover\vecg] &= -\nabla \prshat + \rhohat\vecg\nonumber\\
 	&= -\rhotilde\nabla\left(\frac{\prshat}{\rhotilde}\right) - \deltatilde  \rhotilde \left(\frac{\entrhat}{\cptilde}\right) \vecg + \frac{\deltatilde \rhotilde}{\cptilde} \left(\frac{\prshat}{\rhotilde}\right)\nabla\entrtilde.
@@ -477,18 +476,18 @@ and
 	-\rhoover\tmpover \ugrad \entrone - \rhoover\tmpover \ugrad\entrover &= - \rhoover\tmpover\ugrad \entrprime -\rhoover\tmpover\ugrad\entrtilde \nonumber\\
 	&=-\rhotilde\tmptilde\ugrad \entrprime - \tmptilde(\rhoover \vecu)\cdot\nabla\entrtilde - \rhotilde\tmphat\ugrad\entrtilde + O(\epsilon^2).
 \end{align}
-Substituting Equations \eqref{eq:refthermalequil} and \eqref{eq:momdensity2}--\eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} yields
+Substituting Equations \eqref{eq:eggfirstlaw} and \eqref{eq:momdensity2}--\eqref{eq:anenrhsfinal} into Equation \eqref{eq:anenmod} yields
 \begin{subequations}\label{eq:refen}
 	\begin{align}
 		\rhotilde\tmptilde\pderiv{\entrprime}{t}= &-\rhotilde\tmptilde\ugrad \entrprime - \rhotilde\tmptilde \ugrad \entrtilde - \rhotilde \tmpprime\ugrad\entrtilde+D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime  \nonumber\\
 		& - \tmptilde(\rhoprime \vecu-\overline{\rhoprime\vecu})\cdot\nabla\entrtilde,\label{eq:refenmain}\\
-		\where \rhoprime =& \frac{\prsprime}{\tilde{\cs^2}}-\frac{\deltatilde \rhotilde S ^\prime}{\cptilde},\\
-		 \tmpprime = & \frac{\tmptilde \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde},
+		\where \rhoprime =& \frac{\prsprime}{\tilde{\cs^2}}-\frac{\deltatilde \rhotilde S ^\prime}{\cptilde},\label{eq:refenrhopert}\\
+		 \tmpprime = & \frac{\tmptilde \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde},\label{eq:refentmppert}
 	\end{align}
 \end{subequations}
 and $D_{ij}$ is now given by Equation \eqref{eq:refmomvisc}. 
 
-Taking the horizontal means of Equations \eqref{eq:refmom} and \eqref{eq:refen} and then using Equations \eqref{eq:refhydro}, \eqref{eq:refthermalequil}, and \eqref{eq:anrhsmomref} recovers the mean momentum and energy equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. The anelastic formulation with fixed reference states (Equations \eqref{eq:refcont}, \eqref{eq:refmom} and \eqref{eq:refen}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}), provided the restriction \eqref{eq:meanvariationsmall} holds.
+Taking the horizontal means of Equations \eqref{eq:refmom} and \eqref{eq:refen} and then using Equations \eqref{eq:egghydro}, \eqref{eq:eggfirstlaw}, and \eqref{eq:anrhsmomref} recovers the mean momentum and energy equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. The anelastic formulation with fixed reference states (Equations \eqref{eq:eggcont}, \eqref{eq:refmom} and \eqref{eq:refen}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}), provided the restriction \eqref{eq:meanvariationsmall} holds.
 
 Intuitively, none of the results of this section should seem too surprising and may even seem obvious. However, formalizing the equivalence between mean-state expansions of the anelastic equations and reference-state expansions via \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall} is important. The mean-state anelastic approximation of (e.g.) \citet{Gough1969} can consistently allow for time-varying mean states, subject only to the slow-variation constraint \eqref{eq:meanvariationslow}. Furthermore, the mean-state equations can allow for secular change in the mean state (e.g., a growing or shrinking convection zone) self-consistently, as long as the evolution is slow. The reference-state formulation, by contrast, does not allow for secular changes in the mean state, because the total change must remain small as per Equation \eqref{eq:meanvariationsmall}.
 
@@ -508,7 +507,7 @@ The final equations, representing what we call the Anelastic Energy-conserving G
 		&\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime,\label{eq:eggen}
 \end{empheq}
 \end{subequations}
-where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:refmomvisc}. %and it is additionally assumed that the fixed reference state satisfies the hydrostatic condition \eqref{eq:refhydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
+where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:refmomvisc}. %and it is additionally assumed that the fixed reference state satisfies the hydrostatic condition \eqref{eq:egghydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
 
 The AnEGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:eggmom}, is 
 %\begin{equation}\label{eq:ankeref}
@@ -520,7 +519,7 @@ Adding Equations \eqref{eq:eggen} and \eqref{eq:eggke} yields the AnEGG total en
 \begin{empheq}[box=\fbox]{align}\label{eq:eggtote}
 	\pderiv{}{t}\left[\rhotilde\left(\frac{1}{2} u^2 + \tmptilde \entrprime \right)\right] = &-\Div\left\{\left[\rhotilde\left(\frac{1}{2} u^2 + \tmptilde \entrprime\right) + \prsprime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf^\prime \right\} + Q^\prime \nonumber\\ & -\rhotilde\tmptilde\ugrad\entrtilde. 
 \end{empheq}
-Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:refcont} and assuming $w\equiv0$ on the boundaries), integrating Equation \eqref{eq:eggtote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
+Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:eggcont} and assuming $w\equiv0$ on the boundaries), integrating Equation \eqref{eq:eggtote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
 \begin{subequations}\label{eq:eggeconst}
 \begin{empheq}[box=\fbox]{align}
 \eggetot &\define \int_V \eggwtot dV = \text{constant},\\
@@ -568,7 +567,7 @@ From Equations \eqref{eq:wnke} and \eqref{eq:linuref}, the primed internal plus 
 %	&= \underbrace{\rhotilde\tmptilde \entrprime}_{\define \wpheat} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime}_{\define\wpcomp}.
 %\end{align}
 
-Equation \eqref{eq:linuref} is really an expression of the first law of thermodynamics, which states that changes in the internal energy of fluid parcels come from the sum of external heating and pressure work done by the environment during compression. Comparing to Equation \eqref{eq:eggeconst}, it is clear that \textit{only} changes in internal energy from heat sources can effect the total energy. The changes in internal energy from density variations ($\intetilde\rhoprime$), the pressure work $\prstilde(\rhoprime/\rhotilde)$, and the changes in potential energy $\Phi\rhoprime$ are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we write
+Equation \eqref{eq:linuref} is really an expression of the first law of thermodynamics, which states that changes in the internal energy of fluid parcels come from the sum of irreversible heating processes and pressure work done by the environment during compression. Comparing to Equation \eqref{eq:eggeconst}, it is clear that \textit{only} changes in internal energy from heat sources can effect the total energy. The changes in internal energy from density variations $\intetilde\rhoprime$, the pressure work $\prstilde(\rhoprime/\rhotilde)$, and the changes in potential energy $\Phi\rhoprime$ are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we rewrite Equation \eqref{eq:perten1} as
 \begin{subequations}\label{eq:pertennke}
 	\begin{align}
 		\wpnke &= \wpheat + \wpcomp,\\
@@ -577,7 +576,7 @@ Equation \eqref{eq:linuref} is really an expression of the first law of thermody
 	\end{align}
 \end{subequations}
 
-We also write 
+We also write the linear form of Equation \eqref{eq:wtot} as
 \begin{subequations}\label{eq:pertenke}
 	\begin{align}
 		\wptot &\define \wpke + \wpnke,\\
@@ -585,8 +584,64 @@ We also write
 	\end{align}
 \end{subequations}
 
-$\wptot$ represents the total energy density whose volume integral the true fully compressible fluid would conserve (at first order in $\epsilon$) under the assumption \eqref{eq:smallthermalpert} of small thermal perturbations. Comparing Equations \eqref{eq:eggeconst}, \eqref{eq:pertennke}, and \eqref{eq:pertenke}, we see that the fully compressible motion is formally able to convert kinetic energy to and from internal energy from heating $\wpheat$ \textit{and} to and from the compression effects accounted for by $\wpcomp$. By contrast, the anelastic motion is \textit{only} convert kinetic energy to and from internal energy from heating.
+$\wptot$ represents the total energy density whose volume integral the true fully compressible fluid would conserve (at first order in $\epsilon$) under the assumption \eqref{eq:smallthermalpert} of small thermal perturbations. Comparing Equations \eqref{eq:eggeconst}, \eqref{eq:pertennke}, and \eqref{eq:pertenke}, we see that the fully compressible motion is formally able to convert kinetic energy to and from internal energy from heating $\wpheat$ \textit{and} to and from the compression effects accounted for by $\wpcomp$. By contrast, the anelastic motion is \textit{only} able to convert kinetic energy to and from internal energy from heating.
+%	&=  -\rhotilde\Phi\left(\frac{\entrprime}{\cpcap}\right)+\frac{\prsprime}{\gamma-1}
 
+In contrast to Equation \eqref{eq:pertennke}, \citet{Ogura1962} write
+\begin{subequations}\label{eq:pertenogura}
+\begin{align}
+	\wpnke &\define \wppot + \wpelast,\\
+	\where \wppot &\define -\rhotilde\Phi\left(\frac{\entrprime}{\cpcap}\right)\\
+	\and \wpelast &\define \rhotilde\cvcap\tmptilde_0\left(\frac{\prsprime}{\prstilde}\right)
+\end{align}
+\end{subequations}
+Here, the gas is assumed to be perfect, i.e., $\tilde{\cpcap}\equiv\cpcap$ and $\tilde{\cvcap}\equiv\cvcap$, where $\cpcap$ and $\cvcap$ are constants and 
+\begin{subequations}\label{eq:idgas}
+	\begin{align}
+	\prstilde &= (\gamma-1)\cvcap\rhotilde\tmptilde, \label{eq:idgasprs}\\
+	 \tilde{U} &= \cvcap \tmptilde, \label{eq:idgasinte}\\
+	 \andd \cssqtilde &= (\gamma-1)\cpcap\tmptilde, \label{eq:idgascs2}
+\end{align}
+\end{subequations}
+where we define $\gamma\define\cpcap/\cvcap$. The gravitational potential $\Phi$ is measured from the location $q_0$ of the reference pressure for the potential temperature (in \citealt{Ogura1962}, this is the bottom of the fluid layer). The background state is assumed to be adiabatic,
+\begin{align}\label{eq:refadiabatic}
+	\frac{d\entrtilde}{dq}\equiv0,
+\end{align}
+and thus the background potential temperature is constant and equal to $\tmptilde_0\define \tmptilde(q_0)$.\footnote{See the original equation immediately following \citet{Ogura1962}'s Equation (31). To see the equivalence to our Equation \eqref{eq:pertenogura}, note that \citet{Ogura1962} use $\theta$ for the non-dimensional order-unity perturbed potential temperature, $gz^\prime$ for the dimensional gravitational potential (equal to $\Phi$ here), and $\Theta$ for the constant dimensional potential temperature (equal to $\tmptilde_0$ here) of the adiabatically stratified background. Also note the relation $\entrprime=\epsilon\cpcap\theta$.}
+
+\citealt{Eckart1960} (p. 54) discussed the energy density associated with small perturbations about a background static atmosphere and identified a term with pressure perturbations, $\prsprime^2/(2\rhotilde\cssqtilde)$, as the ``elastic" energy density from acoustics (for the acoustics definition of the term, see \citealt{Morse1948}, p. 237). \citet{Ogura1962} identify $\wppot$ as a potential energy and note that the energy density $\wpelast$, which also contains the pressure perturbation, disappears from the equation of total energy conservation (see \citealt{Ogura1962}'s Equation (31)). This disappearance is apparently the origin of the term ``anelastic," coined by Jule Charney.% The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
+
+However, in light of Equation \eqref{eq:pertennke}, which must be the more general form of Equation \eqref{eq:pertenogura}, it is clear that the partition $\wpnke = \wppot + \wpelast$ can only hold under very specific circumstances, namely one in which $\tmptilde$ is proportional to $\Phi$. It turns out this partition \textit{only} holds for the unique circumstance of an adiabatically stratified perfect gas (we assume up front that the gas is hydrostatically stratified). 
+
+Using hydrostatic balance \eqref{eq:egghydro}, the first law of thermodynamics \eqref{eq:eggfirstlaw} yields
+\begin{align}\label{eq:tmpphi1}
+	\frac{d\Phi}{dq} = -\frac{\cptilde}{\deltatilde}\frac{d\tmptilde}{dq} + \frac{\tmptilde}{\deltatilde}\frac{d\entrtilde}{dq}
+\end{align}
+If and only if $\cptilde/\deltatilde\equiv\cpcap/\delta$ is constant (the constancy of the individual coefficients comes later), Equation \eqref{eq:tmpphi1} can be integrated to yield
+\begin{align}\label{eq:tmpphi2}
+	\Phi = -\frac{\cpcap}{\delta}(\tmptilde-\tmptilde_0) + \int_{q_0}^q\frac{\tmptilde(q^\prime)}{\deltatilde(q^\prime)}\frac{d\entrtilde}{dq^\prime}dq^\prime
+\end{align}
+Then, if and only if the background is adiabatically stratified (i.e., Equation \eqref{eq:refadiabatic} holds), there exists a simple proportionality between temperature and gravitational potential:\footnote{Technically, we also exclude the case of a pressure-independent entropy $\entrtilde=\entrtilde(\tmptilde)$. However, this is possible if and only if $\deltatilde\equiv0$, in which case hydrostatic balance decouples from the rest of the thermodynamics and Equation \eqref{eq:tmpphi1} cannot be used.}
+\begin{align}\label{eq:tmpphi3}
+	\Phi = -\frac{\cpcap}{\delta}(\tmptilde-\tmptilde_0).
+\end{align}
+Using Equations \eqref{eq:reffirstlawpert} and \eqref{eq:tmpphi3}, Equation \eqref{eq:pertennke} becomes
+\begin{align}\label{eq:pertennke2}
+	\wpnke = -\frac{\delta}{\cpcap}\Phi \entrprime + \frac{\cpcap}{\delta}\frac{\tmptilde_0\prsprime}{\cssqtilde} + \left(\enthtilde - \frac{\cpcap}{\delta}\tmptilde\right)\rhoprime.
+\end{align}
+	
+
+Finally, if the gas is adiabatically stratified \textit{and} perfect, so $\delta=1$ and Equations \eqref{eq:idgas} hold in addition to Equation \eqref{eq:tmpphi3}, we have
+\begin{align}
+	\tilde{U} + \frac{\prstilde}{\rhotilde} + \Phi = \cpcap\tmptilde_0
+\end{align}
+and Equation \eqref{eq:pertennke} becomes
+\begin{align}
+	\wpnke = \rhotilde\left(\tmptilde_0 - \frac{\Phi}{\cpcap}\right)\entrprime + \cpcap\tmptilde_0\rhoprime,
+\end{align}
+which reduces to Equation \eqref{eq:pertenogura} after using Equations \eqref{eq:refenrho} and \eqref{eq:idgascs2}
+%Even once the relation \eqref{eq:tmpphi3} exists, Equation \eqref{eq:pertennke} does not reduce 
+ 
 i.e., \textit{no} compression effects can alter the total energy of the fluid at a particular vertical level.
 
 A possibly deeper interpretation of Equation \eqref{eq:wcomp0} is that the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}, is \textit{fundamental} if the anelastic approximation is to be energetically consistent. For the ``true" (i.e., fully compressible) fluid, Equation \eqref{eq:nomassflux} applied to the continuity equation \eqref{eq:cont} yields
@@ -595,15 +650,6 @@ A possibly deeper interpretation of Equation \eqref{eq:wcomp0} is that the assum
 \end{align}
 i.e., there can be no
 Evidently from Equation \eqref{eq:deftote}, the internal energy (as far as energy transport is concerned) becomes simply $\rhoover\tmpover \entrprime$ and the potential energy is eliminated entirely. Both effects are consequences of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. This also has the consequence that $\entrprime$ should be interpreted as a deviation of internal energy from the mean, rather than as an entropy. 
-
-\citet{Ogura1962} write
-\begin{align}\label{eq:pertenogura}
-	W_1 &= -\rhoover\Phi\left(\frac{\entrprime}{\cpcap}\right)+\rhoover\cvcap\tmpover_0\left(\frac{\prsprime}{\prsover}\right)\nonumber\\
-	&=  -\rhoover\Phi\left(\frac{\entrprime}{\cpcap}\right)+\frac{\prsprime}{\gamma-1}
-\end{align}
-where the gas here is assumed to be perfect (i.e., $\overline{\cpcap}\equiv\cpcap$ and $\overline{\cvcap}\equiv\cvcap$, where $\cpcap$ and $\cvcap$ are constants and $\gamma\define\cpcap/\cvcap$) and adiabatically stratified ($\nabla\entrover\equiv0$), and the gravitational potential $\Phi$ is measured from the location $q_0$ where $\tmpover(q=q_0)\define \tmpover_0$  is equal to the assumed-constant background potential temperature.\footnote{See the equation immediately following Equation (31) from \citet{Ogura1962}. To see the equivalence to our Equation \eqref{eq:pertenogura}, note that \citet{Ogura1962} use $\theta$ for the non-dimensional order-unity perturbed potential temperature, $gz^\prime$ for the gravitational potential, and $\Theta$ for the constant (dimensional) potential temperature (equal to $\tmpover_0$) of the adiabatically stratified background. Also note the relation $\entrprime=\epsilon\cpcap\theta$.}
-
-\citealt{Eckart1960} (p. 54) discussed the energy density associated with small perturbations about a background static atmosphere and identified $\prsone^2/(2\rhoover\cssqover)$ as the ``elastic" energy density from acoustics (\citealt{Morse1948}, p. 237). \citealt{Ogura1962} note that the The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see ). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
 %For a perfect gas [$U=\cvcap T$ and $P=(\cpcap-\cvcap)\rho T)$, with constant specific heats] with a hydrostatic, adiabatic mean background state satisfying Equations \eqref{eq:anfirstlaw} and \eqref{eq:anhydrostatic}, we have
 %\begin{align}\label{eq:tmppot}
 %	\Phi = -\cpcap \tmpover + K,
