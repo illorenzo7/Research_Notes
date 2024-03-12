@@ -512,16 +512,16 @@ where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:refmomvisc}. %an
 
 The AnEGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:eggmom}, is 
 %\begin{equation}\label{eq:ankeref}
-	\begin{empheq}[box=\fbox]{align}\label{eq:ankeegg}
+	\begin{empheq}[box=\fbox]{align}\label{eq:eggke}
 	\pderiv{}{t}\left(\frac{1}{2}\rhotilde u^2\right)&=-\Div\left(\frac{1}{2}\rhotilde u^2\vecu \right) - \Div(\prsprime\vecu)  - \deltatilde \rhotilde \left(\frac{\entrprime}{\cptilde}\right) \vecu\cdot \vecg +\frac{\deltatilde  \prsprime}{\cptilde} \vecu\cdot \nabla\entrtilde  + u_i\pderiv{D_{ij}}{x_j},
 	\end{empheq}
 %\end{equation}
-Adding Equations \eqref{eq:eggen} and \eqref{eq:ankeegg} yields the AnEGG total energy equation,
-\begin{empheq}[box=\fbox]{align}\label{eq:reftote}
+Adding Equations \eqref{eq:eggen} and \eqref{eq:eggke} yields the AnEGG total energy equation,
+\begin{empheq}[box=\fbox]{align}\label{eq:eggtote}
 	\pderiv{}{t}\left[\rhotilde\left(\frac{1}{2} u^2 + \tmptilde \entrprime \right)\right] = &-\Div\left\{\left[\rhotilde\left(\frac{1}{2} u^2 + \tmptilde \entrprime\right) + \prsprime \right]\vecu- \vecu\cdot\overleftrightarrow{D} + \vecf^\prime \right\} + Q^\prime \nonumber\\ & -\rhotilde\tmptilde\ugrad\entrtilde. 
 \end{empheq}
-Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:refcont} and assuming $w\equiv0$ on the boundaries), integrating Equation \eqref{eq:reftote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
-\begin{subequations}\label{eq:anrefeconst}
+Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:refcont} and assuming $w\equiv0$ on the boundaries), integrating Equation \eqref{eq:eggtote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
+\begin{subequations}\label{eq:eggeconst}
 \begin{empheq}[box=\fbox]{align}
 \eggetot &\define \int_V \eggwtot dV = \text{constant},\\
 \where \eggwtot &\define \eggwke + \eggwheat,\\
@@ -558,25 +558,35 @@ However, doing this would yield an asymptotically inconsistent equation set if $
 %Thus, the AnEGG equations do not conserve total entropy for adiabatic motion, violating the second law of thermodynamics if $\entrprime$ is strictly interpreted as the entropy. Apparently making the anelastic approximation allows for the conservation of energy or the second law of thermodynamics to be satisfied, but not both. 
 
 \section{The meaning of total energy under the anelastic approximation}\label{sec:meaningtote}
-From Equation \eqref{eq:linuref}, the primed (i.e., perturbed from the reference state) internal plus potential energy per unit volume is 
+From Equations \eqref{eq:wnke} and \eqref{eq:linuref}, the primed internal plus potential energy per unit volume is 
 \begin{align}\label{eq:perten1}
-	W^\prime &= \tilde{U}\rhoprime + \rhotilde U^\prime + \Phi \rhoprime \nonumber\\
-	&= \underbrace{\rhotilde\tmptilde \entrprime}_{\define \wpheat} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime}_{\define\wpcomp}.
+	\wpnke &=  \rhotilde U^\prime + \tilde{U}\rhoprime + \Phi \rhoprime \nonumber\\
+	&= \rhotilde\tmptilde \entrprime + \left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime.
 \end{align}
+%\begin{align}\label{eq:perten1}
+%	\wpnke &=  \rhotilde U^\prime + \tilde{U}\rhoprime + \Phi \rhoprime \nonumber\\
+%	&= \underbrace{\rhotilde\tmptilde \entrprime}_{\define \wpheat} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime}_{\define\wpcomp}.
+%\end{align}
 
-Equation \eqref{eq:linuref} is really an expression of the first law of thermodynamics, which states that changes in the internal energy of fluid parcels come from the sum of external heating and pressure work done by the environment during compression. Comparing to Equation \eqref{eq:econst}, it is clear that \textit{only} changes in internal energy from heat sources can effect the total energy. The changes in internal energy from density variations ($\intetilde\rhoprime$) the pressure work, $\prstilde(\rhoprime/\rhotilde)$; and the changes in potential energy, $\Phi\rhoprime$; are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we write
-\begin{subequations}\label{eq:perten2}
+Equation \eqref{eq:linuref} is really an expression of the first law of thermodynamics, which states that changes in the internal energy of fluid parcels come from the sum of external heating and pressure work done by the environment during compression. Comparing to Equation \eqref{eq:eggeconst}, it is clear that \textit{only} changes in internal energy from heat sources can effect the total energy. The changes in internal energy from density variations ($\intetilde\rhoprime$), the pressure work $\prstilde(\rhoprime/\rhotilde)$, and the changes in potential energy $\Phi\rhoprime$ are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we write
+\begin{subequations}\label{eq:pertennke}
 	\begin{align}
-		W^\prime &= \wpheat + \wpcomp,\\
+		\wpnke &= \wpheat + \wpcomp,\\
 		\where \wpheat&\define \rhotilde\tmptilde \entrprime\\
 		\andd \wpcomp &\define \left(\intetilde+\frac{\prstilde}{\rhotilde}+\Phi\right)\rhoprime
 	\end{align}
 \end{subequations}
 
-We note that
-\begin{align}\label{eq:wcomp0}
-	\wpcomp\equiv0\five\text{under the anelastic approximation},
-\end{align}
+We also write 
+\begin{subequations}\label{eq:pertenke}
+	\begin{align}
+		\wptot &\define \wpke + \wpnke,\\
+		\where \wpke &\define \frac{1}{2}\rhotilde u^2 = \eggwke.
+	\end{align}
+\end{subequations}
+
+$\wptot$ represents the total energy density whose volume integral the true fully compressible fluid would conserve (at first order in $\epsilon$) under the assumption \eqref{eq:smallthermalpert} of small thermal perturbations. Comparing Equations \eqref{eq:eggeconst}, \eqref{eq:pertennke}, and \eqref{eq:pertenke}, we see that the fully compressible motion is formally able to convert kinetic energy to and from internal energy from heating $\wpheat$ \textit{and} to and from the compression effects accounted for by $\wpcomp$. By contrast, the anelastic motion is \textit{only} convert kinetic energy to and from internal energy from heating.
+
 i.e., \textit{no} compression effects can alter the total energy of the fluid at a particular vertical level.
 
 A possibly deeper interpretation of Equation \eqref{eq:wcomp0} is that the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}, is \textit{fundamental} if the anelastic approximation is to be energetically consistent. For the ``true" (i.e., fully compressible) fluid, Equation \eqref{eq:nomassflux} applied to the continuity equation \eqref{eq:cont} yields
