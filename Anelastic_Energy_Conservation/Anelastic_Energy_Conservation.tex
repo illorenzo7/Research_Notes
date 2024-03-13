@@ -147,7 +147,11 @@ and the specific entropy,
 \end{align}
 Equation \eqref{eq:eosentr} is also an equation of state, containing the equivalent information of Equation \eqref{eq:eos}. 
 
-We define several first derivatives of thermodynamic quantities derivable from the generalized equation of state \eqref{eq:eos} or \eqref{eq:eosentr}: the specific heat at constant pressure, 
+We define several first derivatives of thermodynamic quantities derivable from the generalized equation of state \eqref{eq:eos} or \eqref{eq:eosentr}: the specific heat at constant volume
+\begin{align}\label{eq:cv}
+	\cvcap=\cvcap(P,T)\define T\left(\pderiv{S}{T}\right)_\rho,
+\end{align}
+the specific heat at constant pressure, 
 \begin{align}\label{eq:cp}
 	\cpcap=\cpcap(P,T)\define T\left(\pderiv{S}{T}\right)_P,
 \end{align}
@@ -155,15 +159,20 @@ the squared adiabatic sound speed,
 \begin{align}\label{eq:cs2}
 	\cs^2=\cs^2(P,T)\define \left(\pderiv{P}{\rho}\right)_S,
 \end{align}
-and the thermal expansion coefficient,
-\begin{align}
-	\delta=\delta(P,T)\define-\left(\pderiv{\ln\rho}{\ln T}\right)_P.
+the (isobaric) thermal expansion coefficient,
+\begin{align}\label{eq:delta}
+	\delta=\delta(P,T)\define-\left(\pderiv{\ln\rho}{\ln T}\right)_P,
+\end{align}
+and the (isochoric) thermal pressure coefficient, 
+\begin{align}\label{eq:eta}
+	\eta=\eta(P,T)\define-\left(\pderiv{\ln P}{\ln T}\right)_\rho.
 \end{align}
 The first law of thermodynamics\footnote{We assume local thermodynamic equilibrium holds for the fluid.} then takes the following forms:
 \begin{subequations}\label{eq:firstlaw}
 	\begin{align}
 		TdS &= dU - \frac{P}{\rho^2}d\rho \\
 		&= dh - \frac{dP}{\rho}\\
+		&= \cvcap dT - \frac{P\eta}{\rho^2}d\rho\\		
 		&= \cpcap dT - \frac{\delta}{\rho}dP\\
 		&=\frac{\cpcap T}{\rho\delta}\left[\frac{dP}{\cs^2}-d\rho\right].
 	\end{align}
