@@ -287,7 +287,7 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
   \begin{align}
   	\tmpover \entrone &= \cpover \tmpone - \frac{\deltaover}{\rhoover} \prsone\label{eq:anfirstlawperttmpprs}\\
   	&= U_1 - \frac{\prsover}{\rhoover^2}\rhoone \label{eq:anfirstlawpertinterho}\\
-  	&= \enthone - \frac{\prsone}{\rhoover}\label{eq:anfirstlawpertenthprs}\\
+  	&= \enthone - \frac{\prsone}{\rhoover}\label{eq:anfirstlawwpthprs}\\
   	&= \cvover \tmpone - \frac{\prsover\etaover}{\rhoover^2}\rhoone\label{eq:anfirstlawperttmprho}\\		
   	&= \frac{\cpover\, \tmpover}{\deltaover\rhoover}\left[\frac{\prsone}{\cssqover}-\rhoone\right].\label{eq:anfirstlawpertprsrho}
   \end{align}
@@ -430,13 +430,15 @@ to be in thermal equilibrium,
 	\tilde{Q} = \Div\tilde{\vecf},
 \end{align}
 and to satisfy the first law of thermodynamics for gradients (compare to Equation \eqref{eq:anfirstlawmean}),
-\begin{subequations}\label{eq:reffirstlawmean}
+  \begin{subequations}\label{eq:reffirstlawmean}
 	\begin{align}
-		\tmptilde\nabla\entrtilde &= \cptilde\nabla\tmptilde - \frac{\deltatilde }{\rhotilde}\nabla\tilde{P} \\
-		&= \frac{\cptilde\tmptilde}{\deltatilde \rhotilde}\left[\frac{\nabla\tilde{P}}{\tilde{\cs^2}}-\nabla\rhotilde\right].
+		\tmptilde \nabla\entrtilde &= \cptilde \nabla\tmptilde - \frac{\deltatilde}{\rhotilde} \nabla\prstilde\label{eq:reffirstlawmeantmpprs}\\
+		&= \nabla\intetilde - \frac{\prstilde}{\rhotilde^2}\nabla\rhotilde \label{eq:reffirstlawmeaninterho}\\
+		&= \nabla \enthtilde - \frac{\nabla\prstilde}{\rhotilde}\label{eq:reffirstlawmeanenthprs}\\
+		&= \cvtilde \nabla\tmptilde - \frac{\prstilde\etatilde}{\rhotilde^2}\nabla\rhotilde\label{eq:reffirstlawmeantmprho}\\		
+		&= \frac{\cptilde\, \tmptilde}{\deltatilde\rhotilde}\left[\frac{\nabla\prstilde}{\cssqtilde}-\nabla\rhotilde\right].\label{eq:reffirstlawmeanprsrho}
 	\end{align}
 \end{subequations}
-
 %Note that this is simply a \textit{definition} for the reference-state term $\tilde{Q}-\Div\tilde{\vecf}$, which can be time-dependent. This is the one reference-state term that is assumed to not be set a priori. Instead, it is moved to the left-hand side of the internal energy equation and the evolution of the sum $\entrprime=\entrhat + \entrone$ is solved for. The approximation remains consistent as long as $\tilde{Q}-\Div\tilde{\vecf}$ remains $O(\epsilon)$ for all time (i.e., it satisfies Equations \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall}). 
 %  \define -\rhotilde\tmptilde\pderiv{\entrhat}{t}.
 The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:anfirstlawpert},
@@ -444,7 +446,7 @@ The linearized equation of state for the primed quantities is exactly analogous 
 	\begin{align}
 		\tmptilde \entrprime &= \cptilde \tmpprime - \frac{\deltatilde}{\rhotilde} \prsprime\label{eq:reffirstlawperttmpprs}\\
 		&= \inteprime - \frac{\prstilde}{\rhotilde^2}\rhoprime \label{eq:reffirstlawpertinterho}\\
-		&= \enthprime - \frac{\prsprime}{\rhotilde}\label{eq:reffirstlawpertenthprs}\\
+		&= \enthprime - \frac{\prsprime}{\rhotilde}\label{eq:reffirstlawwpthprs}\\
 		&= \cvtilde \tmpprime - \frac{\prstilde\etatilde}{\rhotilde^2}\rhoprime\label{eq:reffirstlawperttmprho}\\		
 		&= \frac{\cptilde\, \tmptilde}{\deltatilde\rhotilde}\left[\frac{\prsprime}{\cssqtilde}-\rhoprime\right].\label{eq:reffirstlawpertprsrho}
 	\end{align}
@@ -569,17 +571,17 @@ However, doing this would yield an asymptotically inconsistent equation set if $
 
 \section{The meaning of total energy under the anelastic approximation}\label{sec:meaningtote}
 From Equations \eqref{eq:wnke} and \eqref{eq:linuref}, the primed internal plus potential energy per unit volume is 
-\begin{align}\label{eq:perten1}
+\begin{align}\label{eq:wp1}
 	\wpnke &=  \rhotilde U^\prime + \tilde{U}\rhoprime + \Phi \rhoprime \nonumber\\
 	&= \rhotilde\tmptilde \entrprime + \left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime.
 \end{align}
-%\begin{align}\label{eq:perten1}
+%\begin{align}\label{eq:wp1}
 %	\wpnke &=  \rhotilde U^\prime + \tilde{U}\rhoprime + \Phi \rhoprime \nonumber\\
 %	&= \underbrace{\rhotilde\tmptilde \entrprime}_{\define \wpheat} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime}_{\define\wpcomp}.
 %\end{align}
 
-Equation \eqref{eq:linuref} is really an expression of the first law of thermodynamics, which states that changes in the internal energy of fluid parcels come from the sum of irreversible heating processes and pressure work done by the environment during compression. Comparing to Equation \eqref{eq:eggeconst}, it is clear that \textit{only} changes in internal energy from heat sources can effect the total energy. The changes in internal energy from density variations $\intetilde\rhoprime$, the pressure work $\prstilde(\rhoprime/\rhotilde)$, and the changes in potential energy $\Phi\rhoprime$ are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we rewrite Equation \eqref{eq:perten1} as
-\begin{subequations}\label{eq:pertennke}
+Equation \eqref{eq:linuref} is really an expression of the first law of thermodynamics, which states that changes in the internal energy of fluid parcels come from the sum of irreversible heating processes and pressure work done by the environment during compression. Comparing to Equation \eqref{eq:eggeconst}, it is clear that \textit{only} changes in internal energy from heat sources can effect the total energy. The changes in internal energy from density variations $\intetilde\rhoprime$, the pressure work $\prstilde(\rhoprime/\rhotilde)$, and the changes in potential energy $\Phi\rhoprime$ are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we rewrite Equation \eqref{eq:wp1} as
+\begin{subequations}\label{eq:wpnke}
 	\begin{align}
 		\wpnke &= \wpheat + \wpcomp,\\
 		\where \wpheat&\define \rhotilde\tmptilde \entrprime\\
@@ -588,80 +590,85 @@ Equation \eqref{eq:linuref} is really an expression of the first law of thermody
 \end{subequations}
 
 We also write the linear form of Equation \eqref{eq:wtot} as
-\begin{subequations}\label{eq:pertenke}
+\begin{subequations}\label{eq:wpke}
 	\begin{align}
 		\wptot &\define \wpke + \wpnke,\\
 		\where \wpke &\define \frac{1}{2}\rhotilde u^2 = \eggwke.
 	\end{align}
 \end{subequations}
 
-$\wptot$ represents the total energy density whose volume integral the true fully compressible fluid would conserve (at first order in $\epsilon$) under the assumption \eqref{eq:smallthermalpert} of small thermal perturbations. Comparing Equations \eqref{eq:eggeconst}, \eqref{eq:pertennke}, and \eqref{eq:pertenke}, we see that the fully compressible motion is formally able to convert kinetic energy to and from internal energy from heating $\wpheat$ \textit{and} to and from the compression effects accounted for by $\wpcomp$. By contrast, the anelastic motion is \textit{only} able to convert kinetic energy to and from internal energy from heating.
+$\wptot$ represents the total energy density whose volume integral the true fully compressible fluid would conserve (at first order in $\epsilon$) under the assumption \eqref{eq:smallthermalpert} of small thermal perturbations. Comparing Equations \eqref{eq:eggeconst}, \eqref{eq:wpnke}, and \eqref{eq:wpke}, we see that the fully compressible motion is formally able to convert kinetic energy to and from internal energy from heating $\wpheat$ \textit{and} to and from the compression effects accounted for by $\wpcomp$. By contrast, the anelastic motion is \textit{only} able to convert kinetic energy to and from internal energy from heating.
 %	&=  -\rhotilde\Phi\left(\frac{\entrprime}{\cpcap}\right)+\frac{\prsprime}{\gamma-1}
-
-In contrast to Equation \eqref{eq:pertennke}, \citet{Ogura1962} write
-\begin{subequations}\label{eq:pertenogura}
+% where $\cpcap$ and $\cvcap$ are constants and 
+%\begin{subequations}\label{eq:idgas}
+%	\begin{align}
+	%	\prstilde &= (\gamma-1)\cvcap\rhotilde\tmptilde, \label{eq:idgasprs}\\
+	%	 \tilde{U} &= \cvcap \tmptilde, \label{eq:idgasinte}\\
+	%	 \andd \cssqtilde &= (\gamma-1)\cpcap\tmptilde, \label{eq:idgascs2}
+	%\end{align}
+	%\end{subequations}
+	%where we define $\gamma\define\cpcap/\cvcap$. 
+	
+In contrast to Equation \eqref{eq:wpnke}, \citet{Ogura1962} write
+\begin{subequations}\label{eq:wpogura}
 \begin{align}
 	\wpnke &\define \wppot + \wpelast,\\
 	\where \wppot &\define -\rhotilde\Phi\left(\frac{\entrprime}{\cpcap}\right)\\
 	\and \wpelast &\define \rhotilde\cvcap\tmptilde_0\left(\frac{\prsprime}{\prstilde}\right)
 \end{align}
 \end{subequations}
-Here, the gas is assumed to be perfect, i.e., $\tilde{\cpcap}\equiv\cpcap$ and $\tilde{\cvcap}\equiv\cvcap$, where $\cpcap$ and $\cvcap$ are constants and 
-\begin{subequations}\label{eq:idgas}
-	\begin{align}
-	\prstilde &= (\gamma-1)\cvcap\rhotilde\tmptilde, \label{eq:idgasprs}\\
-	 \tilde{U} &= \cvcap \tmptilde, \label{eq:idgasinte}\\
-	 \andd \cssqtilde &= (\gamma-1)\cpcap\tmptilde, \label{eq:idgascs2}
-\end{align}
-\end{subequations}
-where we define $\gamma\define\cpcap/\cvcap$. The gravitational potential $\Phi$ is measured from the location $q_0$ of the reference pressure for the potential temperature (in \citealt{Ogura1962}, this is the bottom of the fluid layer). The background state is assumed to be adiabatic,
+Here, $\tilde{\cpcap}\equiv\cpcap$ and $\tilde{\cvcap}\equiv\cvcap$ are constants, since \citet{Ogura1962} assumed a perfect gas. The gravitational potential $\Phi$ is measured from the location $q_0$ of the reference pressure for the potential temperature (in \citealt{Ogura1962}, this is the bottom of the fluid layer) and $\tmptilde_0\define \tmptilde(q_0)$. The reference state is assumed to be adiabatic,
 \begin{align}\label{eq:refadiabatic}
 	\frac{d\entrtilde}{dq}\equiv0,
 \end{align}
-and thus the background potential temperature is constant and equal to $\tmptilde_0\define \tmptilde(q_0)$.\footnote{See the original equation immediately following \citet{Ogura1962}'s Equation (31). To see the equivalence to our Equation \eqref{eq:pertenogura}, note that \citet{Ogura1962} use $\theta$ for the non-dimensional order-unity perturbed potential temperature, $gz^\prime$ for the dimensional gravitational potential (equal to $\Phi$ here), and $\Theta$ for the constant dimensional potential temperature (equal to $\tmptilde_0$ here) of the adiabatically stratified background. Also note the relation $\entrprime=\epsilon\cpcap\theta$.}
+and thus the background potential temperature is constant and equal to $\tmptilde_0$.\footnote{See the original equation immediately following \citet{Ogura1962}'s Equation (31). To see the equivalence to our Equation \eqref{eq:wpogura}, note that \citet{Ogura1962} use $\theta$ for the non-dimensional order-unity perturbed potential temperature, $gz^\prime$ for the dimensional gravitational potential (equal to $\Phi$ here), and $\Theta$ for the constant dimensional potential temperature (equal to $\tmptilde_0$ here) of the adiabatically stratified background. Also note the relation $\entrprime=\epsilon\cpcap\theta$.}
 
 \citealt{Eckart1960} (p. 54) discussed the energy density associated with small perturbations about a background static atmosphere and identified a term with pressure perturbations, $\prsprime^2/(2\rhotilde\cssqtilde)$, as the ``elastic" energy density from acoustics (for the acoustics definition of the term, see \citealt{Morse1948}, p. 237). \citet{Ogura1962} identify $\wppot$ as a potential energy and note that the energy density $\wpelast$, which also contains the pressure perturbation, disappears from the equation of total energy conservation (see \citealt{Ogura1962}'s Equation (31)). This disappearance is apparently the origin of the term ``anelastic," coined by Jule Charney.% The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
 
-However, in light of Equation \eqref{eq:pertennke}, which must be the more general form of Equation \eqref{eq:pertenogura}, it is clear that the partition $\wpnke = \wppot + \wpelast$ can only hold under very specific circumstances, namely one in which $\tmptilde$ is proportional to $\Phi$. The latter condition holds only for an adiabatically stratified fluid where also $\cptilde/\deltatilde\equiv\text{constant}$. Furthermore, it turns out that the partition of Equation \eqref{eq:pertenogura} \textit{only} holds for the unique circumstance of a gas that is not only adiabatically stratified, but also perfect (we assume up front that the gas is hydrostatically stratified). 
+However, in light of Equation \eqref{eq:wpnke}, which must be the more general form of Equation \eqref{eq:wpogura}, it is clear that the partition $\wpnke = \wppot + \wpelast$ can only hold under very specific circumstances, namely one in which $\tmptilde$ is proportional to $\Phi$. The latter condition holds only for an adiabatically stratified fluid where also $\cptilde/\deltatilde\equiv\text{constant}$. Furthermore, it turns out that the partition of Equation \eqref{eq:wpogura} \textit{only} holds for the unique circumstance of a gas that is not only adiabatically stratified, but also perfect (we assume up front that the gas is hydrostatically stratified). This should not be a surprise (since \citealt{Ogura1962} assumed a perfect gas to begin with), however, it is useful to go through the proof in order to understand that the appearance of $\wppot$ as a potential energy (which, it will be found, it fundamentally is not) is almost exclusively unique to adiabatically stratified perfect gases. 
 
-To see this, we use hydroastic balance \eqref{eq:refhydro}, the first law of thermodynamics \eqref{eq:reffirstlawmean} to yield
+We use hydroastic balance \eqref{eq:refhydro} and the first law of thermodynamics for the reference-state gradients \eqref{eq:reffirstlawmean} to yield
 \begin{align}\label{eq:tmpphi1}
-	\frac{d\Phi}{dq} = -\frac{\cptilde}{\deltatilde}\frac{d\tmptilde}{dq} + \frac{\tmptilde}{\deltatilde}\frac{d\entrtilde}{dq}
+	\frac{d\Phi}{dq} = -\frac{\cptilde}{\deltatilde}\frac{d\tmptilde}{dq} + \frac{\tmptilde}{\deltatilde}\frac{d\entrtilde}{dq}.
 \end{align}
 If and only if 
 \begin{align}\label{eq:cpdeltaconst}
 	\frac{\cptilde}{\deltatilde} \equiv \text{constant} \define \frac{\cpcap}{\delta}
 \end{align}
-(the constancy of the individual coefficients comes later), Equation \eqref{eq:tmpphi1} can be integrated to yield
+(the constancy of the individual coefficients comes later; we also write $\delta/\cpcap\define(\cpcap/\delta)^{-1}$), Equation \eqref{eq:tmpphi1} can be integrated to yield
 \begin{align}\label{eq:tmpphi2}
 	\Phi = -\frac{\cpcap}{\delta}(\tmptilde-\tmptilde_0) + \int_{q_0}^q\frac{\tmptilde(q^\prime)}{\deltatilde(q^\prime)}\frac{d\entrtilde}{dq^\prime}dq^\prime
 \end{align}
-Then, if and only if the background is adiabatically stratified ($d\entrtilde/dq\equiv0$), there exists a simple proportionality between temperature and gravitational potential:\footnote{Technically, we also exclude the case of a pressure-independent entropy $\entrtilde=\entrtilde(\tmptilde)$, which could yield $d\Phi\propto d\tmptilde$ in Equation \eqref{eq:tmpphi1}, even with nonzero $d\entrtilde/dq$. However, this would be possible if and only if $\deltatilde\equiv0$, in which case hydrostatic balance would decouple from the rest of the thermodynamics and Equation \eqref{eq:tmpphi1} could not be used to begin with. We also exclude the case of degenerate matter ($\deltatilde\equiv\infty$). }
+Then, if and only if the background is adiabatically stratified ($d\entrtilde/dq\equiv0$), there exists a simple proportionality between temperature and gravitational potential:\footnote{We exclude the case $\tmptilde d\entrtilde = (\cptilde + K \deltatilde)d\tmptilde$, where $K$ is a constant, which would yield $d\Phi = K d\tmptilde$ in Equation \eqref{eq:tmpphi1} even with nonzero $d\entrtilde/dq$. However, from Equation \eqref{eq:reffirstlawmeantmpprs}, this would be possible if and only if $\deltatilde\equiv0$, in which case hydrostatic balance would decouple from the rest of the thermodynamics. We also exclude the case of degenerate matter ($\deltatilde\equiv\infty$).}
 \begin{align}\label{eq:tmpphi3}
 	\Phi = -\frac{\cpcap}{\delta}(\tmptilde-\tmptilde_0).
 \end{align}
-Using Equations \eqref{eq:reffirstlawpert} and \eqref{eq:tmpphi3}, Equation \eqref{eq:pertennke} becomes
-\begin{align}\label{eq:pertennke2}
+Using Equations \eqref{eq:reffirstlawpertprsrho} and \eqref{eq:tmpphi3}, Equation \eqref{eq:wpnke} becomes
+\begin{align}\label{eq:wpnke2}
 	\wpnke = \rhotilde\left[-\frac{\delta}{\cpcap}\Phi - \frac{\delta}{\cpcap}\left(\enthtilde - \frac{\cpcap}{\delta}\tmptilde\right)\right] \entrprime +\left[\left(\enthtilde-\frac{\cpcap}{\delta}\tmptilde\right) + \frac{\cpcap}{\delta}\tmptilde_0\right]\frac{\prsprime}{\cssqtilde}.
 \end{align}
-This reduces to Equation \eqref{eq:pertenogura} if and only if 
+This reduces to Equation \eqref{eq:wpogura} if and only if 
 \begin{align}\label{eq:enthfunctmp}
 	\enthtilde = \frac{\cpcap}{\delta}\tmptilde = \enthtilde(\tmptilde). 
 \end{align}
-Comparing Equations \eqref{eq:firstlawenthprs} and \eqref{eq:firstlawtmpprs}, Equation \eqref{eq:enthfunctmp} implies $\deltatilde\equiv\delta=1$ and thus $\cptilde\equiv\cpcap=\text{constant}$ by Equation \eqref{eq:cpdeltaconst}.  
+Comparing Equations \eqref{eq:reffirstlawmeanenthprs} and \eqref{eq:reffirstlawmeantmpprs}, Equation \eqref{eq:enthfunctmp} implies $\deltatilde\equiv\delta=1$ and thus $\cptilde\equiv\cpcap=\text{constant}$ by Equation \eqref{eq:cpdeltaconst}.  
 
-From Equations \eqref{eq:reffirstlawmean} and \eqref{eq:refadiabatic}, it can be shown that
+From Equations \eqref{eq:reffirstlawmeantmprho}, \eqref{eq:reffirstlawmeanprsrho}, and \eqref{eq:refadiabatic}, it can be shown that
 \begin{align}\label{eq:cpcssq}
 	\frac{\cpcap}{\cssqtilde} = \frac{\rhotilde\cvtilde}{\etatilde\prstilde}.
 \end{align}
 
-Substituting Equations \eqref{eq:enthfunctmp} and \eqref{eq:cpcssq} into Equation \eqref{eq:pertennke2} then yields
-\begin{align}\label{eq:pertennke3}
+Substituting Equations \eqref{eq:enthfunctmp} and \eqref{eq:cpcssq} into Equation \eqref{eq:wpnke2} then yields
+\begin{align}\label{eq:wpnke3}
 	\wpnke =-\rhotilde\Phi\left(\frac{\entrprime}{\cpcap}\right) + \frac{\rhotilde\cvtilde\tmptilde_0}{\etatilde}\left(\frac{\prsprime}{\prstilde}\right),
 \end{align}
-which finally reduces to Equation \eqref{eq:pertenogura} if and only if $\etatilde\equiv1$. It can be shown that the conditions $\deltatilde=\etatilde\equiv1$ imply the ideal gas law, and the condition $\cptilde=\text{constant}$ then implies the gas is perfect.
- 
-i.e., \textit{no} compression effects can alter the total energy of the fluid at a particular vertical level.
+which finally reduces to Equation \eqref{eq:wpogura} if and only if $\cvtilde\equiv\cvcap=\text{constant}$ and $\etatilde\equiv1$. It can be shown that the conditions $\deltatilde\equiv\etatilde\equiv1$ imply the ideal gas law (and thus $\intetilde=\intetilde(\tmptilde)$), and the condition $\cptilde=\text{constant}$ then implies that the gas is perfect.
+
+Technically, the same conclusion reached by \citet{Ogura1962} (that the term $\wppot$ comes from residual potential energy) is suggested by Equation \eqref{eq:wpnke3}, even for the slightly more general case of adiabatically stratified but nonideal gases ($\cvtilde\neq\text{constant}$, $\etatilde\neq1$, $\intetilde\neq\intetilde(\tmptilde)$). However, given that $\enthtilde=\enthtilde(\tmptilde)$, $\deltatilde\equiv1$, and $\cptilde\equiv\text{constant}$ are all necessary conditions for the term $\wppot$ to appear, it seems likely that adiabatically stratified perfect gases are the most common systems where the coincidence occurs. 
+
+The main point is that the term $\wppot$ in no way derives from a potential energy and the pressure-fluctuation term $\wpelast$ is not the term eliminated from anelastic energy conservation. The seeming partition of $\wpnke$ into potential and ``elastic" components (either Equation \eqref{eq:wpogura} or Equation \eqref{eq:wpnke3}) is a coincidence unique to adiabatic stratification and arises almost exclusively in perfect gases. The true partition of $\wpnke$ (Equation \eqref{eq:wpnke}) yields a component of increased internal energy due to to irreversible heating, $\wpheat$, and a component due to compression effects, $\wpcomp$. Under the anelastic approximation, $\wpcomp$ (which contains the potential energy) is entirely eliminated from the energy budget. In light of this discussion, a better name for the ``anelastic" approximation would be the ``incompressible" approximation, although such a rebranding is not possible for obvious reasons. 
+
+\section{Discussion}
 
 A possibly deeper interpretation of Equation \eqref{eq:wcomp0} is that the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}, is \textit{fundamental} if the anelastic approximation is to be energetically consistent. For the ``true" (i.e., fully compressible) fluid, Equation \eqref{eq:nomassflux} applied to the continuity equation \eqref{eq:cont} yields
 \begin{align}
@@ -673,8 +680,8 @@ Evidently from Equation \eqref{eq:deftote}, the internal energy (as far as energ
 %\begin{align}\label{eq:tmppot}
 %	\Phi = -\cpcap \tmpover + K,
 %\end{align}
-%where $K$ is a constant. Equation \eqref{eq:perten1} then becomes
-%\begin{align}\label{eq:perten2}
+%where $K$ is a constant. Equation \eqref{eq:wp1} then becomes
+%\begin{align}\label{eq:wp2}
 %	W_1 = - \frac{\rhoover\Phi}{\cpcap}\entrone + K\frac{\prsone}{\cssqover}
 %\end{align}
 %The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see \citealt{Ogura1962}). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
