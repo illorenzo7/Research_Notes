@@ -337,10 +337,10 @@ Because of Equation \eqref{eq:nomeanu}, or more specifically, the condition
  Integrating Equation \eqref{eq:antote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
  \begin{subequations}\label{eq:aneconst}
  	\begin{align}
- 		\anetot &\define \int_V \anwtot dV \equiv \text{constant},\\
- 		\where \anwtot &\define \anwke + \anwheat,\\
- 		\anwke &\define \frac{1}{2}\rhoover u^2,\\
- 		\andd \anwheat &\define \rhoover \tmpover (\entrone+\entrover).
+ 		\anetot &\define \int_V \anwtot dV \equiv \text{constant},\label{eq:anetot}\\
+ 		\where \anwtot &\define \anwke + \anwheat,\label{eq:anwtot}\\
+ 		\anwke &\define \frac{1}{2}\rhoover u^2,\label{eq:anwke}\\
+ 		\andd \anwheat &\define \rhoover \tmpover (\entrone+\entrover).\label{eq:anwnke}
  	\end{align}
  \end{subequations}
  We have used the superscript ``an" to denote energies and densities under the anelastic approximation and defined $\anwheat$ to be internal energy density of fluid parcels associated with irreversible heating processes (entropy increases). The conservation law \eqref{eq:aneconst} holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:anfirstlawpert} and for arbitrary magnitudes of $|\nabla \entrover|$. Note that the partition of energy density is fundamentally different than in the fully compressible conservation law \eqref{eq:econst}; most notably, the potential energy density is absent under the anelastic approximation. We return to this central point in Section \ref{sec:meaningtote}. %However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
@@ -458,7 +458,7 @@ To zeroth order in $\epsilon$, Equation \eqref{eq:ancont} becomes simply
 	\Div(\rhotilde\vecu)\equiv0.
 \end{align}
 Because the right-hand side of Equations \eqref{eq:anmom} is $O(\epsilon)$ compared to the left-hand side we can write, using Equations \eqref{eq:egghydro} and \eqref{eq:anfirstlawpert} for the hatted variables,
-\begin{align}\label{eq:anrhsmomref}
+\begin{align}\label{eq:refturbpressure}
 	[-\nabla \prsover + \rhoover\vecg] &= -\nabla \prshat + \rhohat\vecg\nonumber\\
 	&= -\rhotilde\nabla\left(\frac{\prshat}{\rhotilde}\right) - \deltatilde  \rhotilde \left(\frac{\entrhat}{\cptilde}\right) \vecg + \frac{\deltatilde \rhotilde}{\cptilde} \left(\frac{\prshat}{\rhotilde}\right)\nabla\entrtilde.
 \end{align}
@@ -535,10 +535,10 @@ Adding Equations \eqref{eq:eggen} and \eqref{eq:eggke} yields the AnEGG total en
 Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:eggcont} and assuming $w\equiv0$ on the boundaries), integrating Equation \eqref{eq:eggtote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
 \begin{subequations}\label{eq:eggeconst}
 \begin{empheq}[box=\fbox]{align}
-\eggetot &\define \int_V \eggwtot dV = \text{constant},\\
-\where \eggwtot &\define \eggwke + \eggwheat,\\
- \eggwke &\define \frac{1}{2} \rhotilde u^2,\\
- \andd \eggwheat &\define \rhotilde\tmptilde \entrprime.
+\eggetot &\define \int_V \eggwtot dV = \text{constant},\label{eq:eggetot}\\
+\where \eggwtot &\define \eggwke + \eggwheat,\label{eq:eggwtot}\\
+ \eggwke &\define \frac{1}{2} \rhotilde u^2,\label{eq:eggwke}\\
+ \andd \eggwheat &\define \rhotilde\tmptilde \entrprime.\label{eq:eggwheat}
 \end{empheq}
 \end{subequations}
 This conservation law holds for arbitrary fluid motions obeying Equations \eqref{eq:egg} and for all magnitudes of $|\nabla\entrover|$. 
@@ -563,14 +563,15 @@ in the internal energy equation. Alternatively, if the LBR approximation is made
 \end{align}
 However, doing this would yield an asymptotically inconsistent equation set if $|\nabla\entrtilde|$ is large. 
 
-%One slightly surprising result concerns the second law of thermodynamics. In the absence of heat sources or sinks, when the true motion should be adiabatic, Equation \eqref{eq:eggen} becomes
-%\begin{align}\label{eq:dsdtref}
-%	\frac{D}{Dt}(\entrtilde + \entrprime) = \frac{Q_{\rm NLBR}}{\rhotilde\tmptilde}.
-%\end{align}
-%Thus, the AnEGG equations do not conserve total entropy for adiabatic motion, violating the second law of thermodynamics if $\entrprime$ is strictly interpreted as the entropy. Apparently making the anelastic approximation allows for the conservation of energy or the second law of thermodynamics to be satisfied, but not both. 
-
 \section{The meaning of total energy under the anelastic approximation}\label{sec:meaningtote}
-From Equations \eqref{eq:wnke} and \eqref{eq:linuref}, the primed internal plus potential energy per unit volume is 
+In this section, we discuss how the expression for total energy under the anelastic approximation $\eggwtot$ (or equivalently, $\anwtot$) arises. The form of $\eggwtot$ places unique constraints on possible avenues for the transfer of energy under the anelastic approximation, and these fundamentally differ from the avenues available for the true compressible motion. It is found that all compressible effects, including the potential energy, are entirely eliminated from the energy budget. 
+
+One perhaps surprising corollary is that \textit{no transfer between potential and kinetic energy is possible for anelastic convection.} Given the prevalence of the concept of ``available potential energy" (APE), especially in atmospheric physics (e.g., \citealt{Vallis2017}, p. 138), these may seem like fighting words, and so we tread with extra mathematical caution in this section. The true available energy (which fundamentally is due to changes in internal energy from heating or cooling, i.e., entropy changes) can resemble a potential energy because of a pathological coincidence that is unique to adiabatically stratified background states and constant $\cptilde/\deltatilde$. Since these conditions are satisfied for a fully and vigorously convecting perfect gas (which is thus nearly adiabatically stratified), in many cases the distinction between potential and heat energy is a philosophical one. However, in more general circumstances (such as convective overshoot into a stably stratified region), the distinction is important. 
+
+We note a priori that the zero mean mass flux condition \eqref{eq:nomassflux} immediately eliminates possible conversion to and from potential energy for the fully compressible flow (since no net mass can be transferred vertically). Thus, it may not be surprising after all that potential energy disappears from the anelastic energy budget. Perhaps one of the main new results of this work is that the assumption of zero mean mass flux is \textit{fundamental} for the energetic consistency of the anelastic approximation. 
+
+\subsection{General expression for $\wpnke$}
+From Equations \eqref{eq:wnke} and \eqref{eq:linuref}, the perturbed nonkinetic energy per unit volume is 
 \begin{align}\label{eq:wp1}
 	\wpnke &=  \rhotilde U^\prime + \tilde{U}\rhoprime + \Phi \rhoprime \nonumber\\
 	&= \rhotilde\tmptilde \entrprime + \left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime.
@@ -608,7 +609,8 @@ $\wptot$ represents the total energy density whose volume integral the true full
 	%\end{align}
 	%\end{subequations}
 	%where we define $\gamma\define\cpcap/\cvcap$. 
-	
+
+\subsection{Special form  of $\wpnke$ for adiabatically stratified perfect gases}
 In contrast to Equation \eqref{eq:wpnke}, \citet{Ogura1962} write
 \begin{subequations}\label{eq:wpogura}
 \begin{align}
@@ -664,18 +666,29 @@ Substituting Equations \eqref{eq:enthfunctmp} and \eqref{eq:cpcssq} into Equatio
 \end{align}
 which finally reduces to Equation \eqref{eq:wpogura} if and only if $\cvtilde\equiv\cvcap=\text{constant}$ and $\etatilde\equiv1$. It can be shown that the conditions $\deltatilde\equiv\etatilde\equiv1$ imply the ideal gas law (and thus $\intetilde=\intetilde(\tmptilde)$), and the condition $\cptilde=\text{constant}$ then implies that the gas is perfect.
 
+\subsection{The absence of potential energy and the importance of zero mean mass flux}
 Technically, the same conclusion reached by \citet{Ogura1962} (that the term $\wppot$ comes from residual potential energy) is suggested by Equation \eqref{eq:wpnke3}, even for the slightly more general case of adiabatically stratified but nonideal gases ($\cvtilde\neq\text{constant}$, $\etatilde\neq1$, $\intetilde\neq\intetilde(\tmptilde)$). However, given that $\enthtilde=\enthtilde(\tmptilde)$, $\deltatilde\equiv1$, and $\cptilde\equiv\text{constant}$ are all necessary conditions for the term $\wppot$ to appear, it seems likely that adiabatically stratified perfect gases are the most common systems where the coincidence occurs. 
 
-The main point is that the term $\wppot$ in no way derives from a potential energy and the pressure-fluctuation term $\wpelast$ is not the term eliminated from anelastic energy conservation. The seeming partition of $\wpnke$ into potential and ``elastic" components (either Equation \eqref{eq:wpogura} or Equation \eqref{eq:wpnke3}) is a coincidence unique to adiabatic stratification and arises almost exclusively in perfect gases. The true partition of $\wpnke$ (Equation \eqref{eq:wpnke}) yields a component of increased internal energy due to to irreversible heating, $\wpheat$, and a component due to compression effects, $\wpcomp$. Under the anelastic approximation, $\wpcomp$ (which contains the potential energy) is entirely eliminated from the energy budget. In light of this discussion, a better name for the ``anelastic" approximation would be the ``incompressible" approximation, although such a rebranding is not possible for obvious reasons. 
+The main point is that the term $\wppot$ in no way derives from a potential energy and the pressure-fluctuation term $\wpelast$ is not the term eliminated from anelastic energy conservation. The seeming partition of $\wpnke$ into potential and ``elastic" components (either Equation \eqref{eq:wpogura} or Equation \eqref{eq:wpnke3}) is a coincidence unique to adiabatic stratification and arises almost exclusively in perfect gases. The true partition of $\wpnke$ (Equation \eqref{eq:wpnke}) yields two components: one due due changes in internal energy due to to irreversible heating ($\wpheat$) and one due to compression effects ($\wpcomp$). Under the anelastic approximation, $\wpcomp$ (which contains the potential energy) is entirely eliminated from the energy budget. In light of this discussion, a better name for the ``anelastic" approximation might be the ``incompressible" approximation, although such a rebranding is not possible for obvious reasons. 
 
-\section{Discussion}
-
-A possibly deeper interpretation of Equation \eqref{eq:wcomp0} is that the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}, is \textit{fundamental} if the anelastic approximation is to be energetically consistent. For the ``true" (i.e., fully compressible) fluid, Equation \eqref{eq:nomassflux} applied to the continuity equation \eqref{eq:cont} yields
-\begin{align}
+For the true fully compressible fluid, Equation \eqref{eq:nomassflux} applied to the continuity equation \eqref{eq:cont} yields the obvious result
+\begin{align}\label{eq:drhodt0}
 	\pderiv{\rhoover}{t}\equiv0,
 \end{align}
-i.e., there can be no
-Evidently from Equation \eqref{eq:deftote}, the internal energy (as far as energy transport is concerned) becomes simply $\rhoover\tmpover \entrprime$ and the potential energy is eliminated entirely. Both effects are consequences of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. This also has the consequence that $\entrprime$ should be interpreted as a deviation of internal energy from the mean, rather than as an entropy. 
+i.e., there can be no net increase or decrease in mass at any particular vertical level (here the vanishing of the horizontal components of $\overline{\rho\vecu}$, where in this section $\vecu$ again refers to the total velocity, becomes necessary\footnote{Or the vanishing of the horizontal components of $\vecu$ on the horizontal boundaries, or semi-periodic boundaries, as in a spherical shell. The only requirement is that $\Div(\overline{\rho\vecu})\equiv0$.}). As such, no increase or decrease in energy due to compression effects (including potential energy) is possible. Thus, the compressible motion is energetically consistent with the anelastic approximation if the zero mean mass flux condition holds. 
+
+Furthermore, the anelastic approximation only conserves energy (for all magnitudes of $|\nabla\entrtilde|$) if at least the vertical component of mass flux, $\overline{\rho w}$, is assumed to vanish up to $O(\epsilon)$. To see this, first note that if we do not assume any of the components of $\overline{\rho \vecu}$ vanish a priori (and recall that $\vecu$ and $w$ now refer to the total---mean plus perturbed---velocity), the anelastic condition is still $\nabla\cdot(\rhotilde\vecu)\equiv0$ (e.g., \citealt{Ogura1962}), which can be integrated to yield $\overline{w}\equiv0$, as long as $w$ vanishes on the boundaries. We then expand the term representing Lagrangian evolution of heat energy as
+\begin{align}\label{eq:enlhsfirstorder}
+	\rho T\frac{DS}{Dt} =\rhotilde\tmptilde\pderiv{\entrprime}{t}  + \rhotilde\tmptilde\ugrad \entrprime + \underbrace{\rhotilde\tmptilde \ugrad \entrtilde}_{=-\tilde{Q}_{\rm adv}}+ \underbrace{ \rhoprime\tmptilde \ugrad\entrtilde }_{\define- \tilde{Q}_{\rm massflux}} + \underbrace{ \tmpprime\rhotilde \ugrad\entrtilde }_{=- \tilde{Q}_{\rm NLBR}} + O(\epsilon^2). 
+\end{align}
+
+Since the continuity and momentum equations \eqref{eq:eggcont} and \eqref{eq:eggmom} are unmodified even if there may be mean mass flux (with the exception that $\vecu$ is now taken to mean the full velocity) and  $\tilde{Q}_{\rm massflux}$ is the only new term that would appear on the right-hand side of Equation \eqref{eq:eggen}, total energy conservation remains possible if and only if the volume integral of $\tilde{Q}_{\rm massflux}$ vanishes. This is guaranteed if and only if we demand $\overline{\rho^\prime w}\equiv0$, i.e., the vertical mass flux in both equation sets (fully compressible and anelastic) vanishes to first order in $\epsilon$.
+
+From Equation \eqref{eq:enlhsfirstorder}, we begin to see why the AnEGG equations include the term $\tilde{Q}_{\rm NLBR}$ (which is crucial for energy conservation), but other anelastic equation sets do not (and hence do not conserve energy for nonadiabatic stratification). \citet{Gough1969} nondimensionalized the internal energy equation and then linearized by expanding to first order in $\epsilon$. The other approximations instead linearized the entropy (or potential temperature) equation (e.g., \citealt{Batchelor1953,Ogura1962,Rogers2005}). If this is done, the Lagrangian evolution of entropy, 
+\begin{align}
+	content...
+\end{align}
+%\footnote{Strictly, this is not an ``and only if" statement, since $\tilde{Q}_{\rm massflux}$ could vanish if $\overline{\rho^\prime w}$ is nonzero but cancels itself out when integrated vertically. However, there is no reason to expect such cancellation from the equations.}
 %For a perfect gas [$U=\cvcap T$ and $P=(\cpcap-\cvcap)\rho T)$, with constant specific heats] with a hydrostatic, adiabatic mean background state satisfying Equations \eqref{eq:anfirstlaw} and \eqref{eq:anhydrostatic}, we have
 %\begin{align}\label{eq:tmppot}
 %	\Phi = -\cpcap \tmpover + K,
@@ -687,6 +700,19 @@ Evidently from Equation \eqref{eq:deftote}, the internal energy (as far as energ
 %The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see \citealt{Ogura1962}). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomassflux}. 
 
 %The latter compressive term $(\prsover/\rhoover^2)\rhoone$ is thus eliminated under the anelastic approximation and we instead identify $\tmpover \entrone$ with the internal energy. 
+\section{Conservation of mass and the second law of thermodynamics}
+Although there is no mean mass flux in both the fully compressible and anelastic equations (see Equations \eqref{eq:nomassflux} and either \eqref{eq:momdensity} or \eqref{eq:momdensity2}), total mass is \textit{not} conserved at first order under the anelastic approximation.\footnote{In this section, $\vecu$ again refers to $\vecu_1$} Instead of Equation \eqref{eq:drhodt0}, we have from (e.g.) Equation \eqref{eq:refenrhopert}, 
+\begin{align}\label{eq:drhodtnot0}
+ \pderiv{\rhoover}{t} &= \frac{1}{\tilde{\cs^2}}\pderiv{\prsover}{t}-\frac{\deltatilde \rhotilde}{\cptilde}\pderiv{\entrover}{t}\nonumber\\
+ &=  \frac{1}{\tilde{\cs^2}}\pderiv{\prshat}{t}-\frac{\deltatilde \rhotilde}{\cptilde}\pderiv{\entrhat}{t}.\
+\end{align}
+$\pderivline{\prshat}{t}$ can be written in terms of $\pderivline{\overline{w^2}}{t}$ and $\pderivline{\entrhat}{t}$ via Equations \eqref{eq:anmommean} and \eqref{eq:refturbpressure} and $\pderivline{\entrhat}{t}$ comes directly from the mean of Equation \eqref{eq:eggen}. 
+
+%One slightly surprising result concerns the second law of thermodynamics. In the absence of heat sources or sinks, when the true motion should be adiabatic, Equation \eqref{eq:eggen} becomes
+%\begin{align}\label{eq:dsdtref}
+%	\frac{D}{Dt}(\entrtilde + \entrprime) = \frac{Q_{\rm NLBR}}{\rhotilde\tmptilde}.
+%\end{align}
+%Thus, the AnEGG equations do not conserve total entropy for adiabatic motion, violating the second law of thermodynamics if $\entrprime$ is strictly interpreted as the entropy. Apparently making the anelastic approximation allows for the conservation of energy or the second law of thermodynamics to be satisfied, but not both. 
 
 \section{Conditions for anelastic overshoot}
 [THIS SECTION IS A STUB]. What I have so far is that a downflowing plume should have kinetic energy 
