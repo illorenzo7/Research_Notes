@@ -27,6 +27,14 @@
 \newcommand{\vecf}{\bm{F}}
 \newcommand{\veck}{\hat{\bm{k}}}
 
+\newcommand{\heatlbr}{Q_{\rm LBR}}
+\newcommand{\heatnlbr}{Q_{\rm NLBR}}
+\newcommand{\forcenlbr}{\bm{f}_{\rm NLBR}}
+\newcommand{\heatmassflux}{Q_{\rm massflux}}
+\newcommand{\heatadv}{Q_{\rm adv}}
+\newcommand{\heatcomp}{Q_{\rm comp}}
+\newcommand{\heatbuoy}{Q_{\rm buoy}}
+
 \newcommand{\uover}{\overline{\vecu}}
 
 % background atmosphere values
@@ -369,7 +377,7 @@ We then compute, with effort,
 
 Substituting Equation \eqref{eq:anrhsmom} into Equation \eqref{eq:anmom}, and Equations \eqref{eq:anenlhs}, \eqref{eq:anrhsen}, and \eqref{eq:anrhsen2} into Equation \eqref{eq:anen}, we find
 	\begin{align}\label{eq:anmommod}
-		\pderiv{}{t}(\rhoover\vecu)= &-\Div(\rhoover\vecu\vecu) -\rhoover\nabla\left(\frac{\prsone}{\rhoover}\right) - \deltaover \rhoover \left(\frac{\entrone}{\cpover}\right) \vecg + \underbrace{\frac{\deltaover \prsone}{\cpover} \nabla\entrover}_{\define \bm{f}_{\rm NLBR}}+\Div \overleftrightarrow{D}\nonumber\\
+		\pderiv{}{t}(\rhoover\vecu)= &-\Div(\rhoover\vecu\vecu) -\rhoover\nabla\left(\frac{\prsone}{\rhoover}\right) - \deltaover \rhoover \left(\frac{\entrone}{\cpover}\right) \vecg + \underbrace{\frac{\deltaover \prsone}{\cpover} \nabla\entrover}_{\define \forcenlbr}+\Div \overleftrightarrow{D}\nonumber\\
 		&+[-\nabla\prsover + \rhoover\vecg],
 	\end{align}
 and
@@ -389,13 +397,13 @@ Finally, the mean internal energy equation \eqref{eq:anenmean} becomes
 
 The essential terms required for energy conservation when $\nabla\entrover\neq0$ are thus the ``non-LBR" force density
 \begin{align}\label{eq:nlbrmom}
-	\bm{f}_{\rm NLBR} \define \frac{\deltaover \prsone}{\cpover} \nabla\entrover
+	\forcenlbr \define \frac{\deltaover \prsone}{\cpover} \nabla\entrover
 \end{align}
 and the ``non-LBR" heating
 \begin{align}\label{eq:nlbrheat}
 	Q_{\rm NLBR} \define -\rhoover \tmpone\ugrad\entrover.
 \end{align}
-Both these terms vanish for a nearly adiabatic background state (where $\nabla\entrover=O(\epsilon)$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\bm{f}_{\rm NLBR}$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use. Its neglect seems to have not been explicitly considered. 
+Both these terms vanish for a nearly adiabatic background state (where $\nabla\entrover=O(\epsilon)$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\forcenlbr$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use. Its neglect seems to have not been explicitly considered. 
 
 \section{The partial equivalence between horizontally averaged atmospheres to fixed reference atmospheres}\label{sec:meantoref}
 In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, was originally assumed to be time-independent. We have relaxed that assumption here, but we must consider how the mean state depends on the flow via Equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the thermal perturbations about this reference state develop small but nonzero horizontal means. Some codes (e.g., the {\ash} code) alternatively solve for both the perturbations about the horizontal average and the mean state itself, choosing some initial mean state consistent with zero flow.\footnote{This initial state, satisfying Equations \eqref{eq:anmommean}, \eqref{eq:anfirstlawmean}, and \eqref{eq:anenmean2} with $\vecu\equiv0$, would resemble a 1-D stellar structure model, for example.} In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the right-hand sides of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided we make a fourth central assumption: that the horizontal means of the thermal variables wander by no more than $O(\epsilon)$ away from their preordained reference-state values. 
@@ -427,7 +435,7 @@ We assume that the reference state has been chosen to be hydrostatic,
 \end{align}
 to be in thermal equilibrium,
 \begin{align}\label{eq:refthermalequil}
-	\tilde{Q} = \Div\tilde{\vecf},
+	\heattilde = \Div\tilde{\vecf},
 \end{align}
 and to satisfy the first law of thermodynamics for gradients (compare to Equation \eqref{eq:anfirstlawmean}),
   \begin{subequations}\label{eq:reffirstlawmean}
@@ -439,7 +447,7 @@ and to satisfy the first law of thermodynamics for gradients (compare to Equatio
 		&= \frac{\cptilde\, \tmptilde}{\deltatilde\rhotilde}\left[\frac{\nabla\prstilde}{\cssqtilde}-\nabla\rhotilde\right].\label{eq:reffirstlawmeanprsrho}
 	\end{align}
 \end{subequations}
-%Note that this is simply a \textit{definition} for the reference-state term $\tilde{Q}-\Div\tilde{\vecf}$, which can be time-dependent. This is the one reference-state term that is assumed to not be set a priori. Instead, it is moved to the left-hand side of the internal energy equation and the evolution of the sum $\entrprime=\entrhat + \entrone$ is solved for. The approximation remains consistent as long as $\tilde{Q}-\Div\tilde{\vecf}$ remains $O(\epsilon)$ for all time (i.e., it satisfies Equations \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall}). 
+%Note that this is simply a \textit{definition} for the reference-state term $\heattilde-\Div\tilde{\vecf}$, which can be time-dependent. This is the one reference-state term that is assumed to not be set a priori. Instead, it is moved to the left-hand side of the internal energy equation and the evolution of the sum $\entrprime=\entrhat + \entrone$ is solved for. The approximation remains consistent as long as $\heattilde-\Div\tilde{\vecf}$ remains $O(\epsilon)$ for all time (i.e., it satisfies Equations \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall}). 
 %  \define -\rhotilde\tmptilde\pderiv{\entrhat}{t}.
 The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:anfirstlawpert},
   \begin{subequations}\label{eq:reffirstlawpert}
@@ -464,7 +472,7 @@ Because the right-hand side of Equations \eqref{eq:anmom} is $O(\epsilon)$ compa
 \end{align}
 %Note that the non-LBR force density from Equation \eqref{eq:nlbrmom} is only significant, i.e., $O(\epsilon)$, when $\nabla\entrover$ is large (in which case, $\nabla\entrover=\nabla\entrtilde+O(\epsilon)$ by Equations \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall}), otherwise it is $O(\epsilon^2)$. For all magnitudes of $|\nabla\entrover|$, we can thus write
 %\begin{align}\label{eq:nlbrmom2}
-%	\bm{f}_{\rm NLBR} = \frac{\deltaover \prsone}{\cpover} \nabla\entrtilde + O(\epsilon^2)
+%	\forcenlbr = \frac{\deltaover \prsone}{\cpover} \nabla\entrtilde + O(\epsilon^2)
 %\end{align}
 Substituting Equation \eqref{eq:anrhsmomref} into Equation \eqref{eq:anmommod} and noting that all terms are of $O(\epsilon)$ (so that we can replace overbars with tildes), we find
 \begin{subequations}\label{eq:refmom}
@@ -515,8 +523,8 @@ The final equations, representing what we call the Anelastic Energy-conserving G
 \begin{subequations}\label{eq:egg}
 \begin{empheq}[box=\fbox]{align}
 	\Div(\rhotilde\vecu)&\equiv 0\label{eq:eggcont},\\
-	\pderiv{}{t}(\rhotilde\vecu)&=-\Div(\rhotilde\vecu\vecu) -\rhotilde\nabla\left(\frac{\prsprime}{\rhotilde}\right) - \deltatilde \rhotilde \left(\frac{\entrprime}{\cptilde}\right) \vecg \underbrace{+ \frac{\deltatilde  \prsprime}{\cptilde} \nabla\entrtilde}_{\define \tilde{\bm{f}}_{\rm NLBR}}+\Div \overleftrightarrow{D},\label{eq:eggmom}\\	
-		\andd \rhotilde\tmptilde\pderiv{\entrprime}{t}&= -\rhotilde\tmptilde\ugrad \entrprime - \rhotilde\tmptilde \ugrad \entrtilde \underbrace{ -  \left(\frac{\tmptilde \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde}\right)  \rhotilde \ugrad\entrtilde }_{\define \tilde{Q}_{\rm NLBR}} \nonumber\\
+	\pderiv{}{t}(\rhotilde\vecu)&=-\Div(\rhotilde\vecu\vecu) -\rhotilde\nabla\left(\frac{\prsprime}{\rhotilde}\right) - \deltatilde \rhotilde \left(\frac{\entrprime}{\cptilde}\right) \vecg \underbrace{+ \frac{\deltatilde  \prsprime}{\cptilde} \nabla\entrtilde}_{\define \forcenlbr}+\Div \overleftrightarrow{D},\label{eq:eggmom}\\	
+		\andd \rhotilde\tmptilde\pderiv{\entrprime}{t}&= -\rhotilde\tmptilde\ugrad \entrprime - \rhotilde\tmptilde \ugrad \entrtilde \underbrace{ -  \left(\frac{\tmptilde \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde}\right)  \rhotilde \ugrad\entrtilde }_{\define \heatnlbr} \nonumber\\
 		&\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime,\label{eq:eggen}
 \end{empheq}
 \end{subequations}
@@ -545,21 +553,21 @@ This conservation law holds for arbitrary fluid motions obeying Equations \eqref
 
 Note that in practice when simulating stiff systems (large $|\nabla\entrtilde|$) numerically (e.g., \citealt{Guerrero2016a,Matilsky2022,Matilsky2024}), the term 
 \begin{align}
-	\tilde{Q}_{\rm adv}\define  -\rhotilde\tmptilde\ugrad\entrtilde
+	\heatadv\define  -\rhotilde\tmptilde\ugrad\entrtilde
 \end{align}
 may pointwise be quite large (though it can never alter the mean stability $\pderivline{\entrhat}{q}$). The degree to which energy is conserved numerically may thus be limited by the precision of the condition \eqref{eq:nomeanw}. In the streamfunction formulation of {\ash} and {\rayleigh} for example (e.g., \citealt{Clune1999,Featherstone2016a}), Equation \eqref{eq:nomeanw} holds to near machine precision. 
 
 To summarize this section, necessary conditions for anelastic codes implementing background stable layers to conserve energy are (1) including the non-LBR force density,
 \begin{align}\label{eq:nlbrmomref}
-	\tilde{\bm{f}}_{\rm NLBR} \define\frac{\deltatilde  \prsprime}{\cptilde} \vecu\cdot \nabla\entrtilde 
+	\forcenlbr \define\frac{\deltatilde  \prsprime}{\cptilde} \vecu\cdot \nabla\entrtilde 
 \end{align}
 in the momentum equation (i.e., not making the LBR approximation) and (2) including the non-LBR heating term,
 \begin{align}\label{eq:nlbrheatref}
-	\tilde{Q}_{\rm NLBR} \define -  \left(\frac{\tmptilde \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde}\right)  \rhotilde \ugrad\entrtilde
+	\heatnlbr \define -  \left(\frac{\tmptilde \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde}\right)  \rhotilde \ugrad\entrtilde
 \end{align}
-in the internal energy equation. Alternatively, if the LBR approximation is made, (setting $\tilde{\bm{f}}_{\rm NLBR}\equiv0$ in Equation \eqref{eq:refmom}), total energy will still be conserved if $\tilde{Q}_{\rm NLBR}$ in Equation \eqref{eq:refen} is replaced by
+in the internal energy equation. Alternatively, if the LBR approximation is made, (setting $\forcenlbr\equiv0$ in Equation \eqref{eq:refmom}), total energy will still be conserved if $\heatnlbr$ in Equation \eqref{eq:refen} is replaced by
 \begin{align}\label{eq:lbrheating}
-	\tilde{Q}_{\rm LBR}\define - \left(\frac{\rhotilde\tmptilde}{\cptilde} \right) \entrprime\ugrad\entrtilde.
+	\heatlbr\define - \left(\frac{\rhotilde\tmptilde}{\cptilde} \right) \entrprime\ugrad\entrtilde.
 \end{align}
 However, doing this would yield an asymptotically inconsistent equation set if $|\nabla\entrtilde|$ is large. 
 
@@ -679,24 +687,24 @@ i.e., there can be no net increase or decrease in mass at any particular vertica
 
 Furthermore, the anelastic approximation only conserves energy (for all magnitudes of $|\nabla\entrtilde|$) if at least the vertical component of mass flux, $\overline{\rho w}$, is assumed to vanish up to $O(\epsilon)$. To see this, first note that if we do not assume any of the components of $\overline{\rho \vecu}$ vanish a priori (and recall that $\vecu$ and $w$ now refer to the total---mean plus perturbed---velocity), the anelastic condition is still $\nabla\cdot(\rhotilde\vecu)\equiv0$ (e.g., \citealt{Ogura1962}), which can be integrated to yield $\overline{w}\equiv0$, as long as $w$ vanishes on the boundaries. We then expand the term representing Lagrangian evolution of heat energy in the fully compressible equations as
 \begin{align}\label{eq:enlhsfirstorder}
-	\rho T\frac{DS}{Dt} =\rhotilde\tmptilde\pderiv{\entrprime}{t}  + \rhotilde\tmptilde\ugrad \entrprime + \underbrace{\rhotilde\tmptilde \ugrad \entrtilde}_{=-\tilde{Q}_{\rm adv}}+ \underbrace{ \rhoprime\tmptilde \ugrad\entrtilde }_{\define- \tilde{Q}_{\rm massflux}} + \underbrace{ \tmpprime\rhotilde \ugrad\entrtilde }_{=- \tilde{Q}_{\rm NLBR}} + O(\epsilon^2). 
+	\rho T\frac{DS}{Dt} =\rhotilde\tmptilde\pderiv{\entrprime}{t}  + \rhotilde\tmptilde\ugrad \entrprime + \underbrace{\rhotilde\tmptilde \ugrad \entrtilde}_{=-\heatadv}+ \underbrace{ \rhoprime\tmptilde \ugrad\entrtilde }_{\define- \heatmassflux} + \underbrace{ \tmpprime\rhotilde \ugrad\entrtilde }_{=- \heatnlbr} + O(\epsilon^2). 
 \end{align}
 
-Since the continuity and momentum equations \eqref{eq:eggcont} and \eqref{eq:eggmom} are unmodified even if there may be mean mass flux (with the exception that $\vecu$ is now taken to mean the full velocity) and  $\tilde{Q}_{\rm massflux}$ is the only new term that would appear on the right-hand side of the anelastic Equation \eqref{eq:eggen}, total energy conservation remains possible if and only if the volume integral of $\tilde{Q}_{\rm massflux}$ vanishes. This is guaranteed if and only if we demand $\overline{\rho^\prime w}\equiv0$, i.e., the vertical mass flux in both equation sets (fully compressible and anelastic) vanishes to first order in $\epsilon$.
+Since the continuity and momentum equations \eqref{eq:eggcont} and \eqref{eq:eggmom} are unmodified even if there may be mean mass flux (with the exception that $\vecu$ is now taken to mean the full velocity) and  $\heatmassflux$ is the only new term that would appear on the right-hand side of the anelastic Equation \eqref{eq:eggen}, total energy conservation remains possible if and only if the volume integral of $\heatmassflux$ vanishes. This is guaranteed if and only if we demand $\overline{\rho^\prime w}\equiv0$, i.e., the vertical mass flux in both equation sets (fully compressible and anelastic) vanishes to first order in $\epsilon$.
 
-From Equation \eqref{eq:enlhsfirstorder}, we begin to see why the AnEGG equations include the term $\tilde{Q}_{\rm NLBR}$ (which is crucial for energy conservation), but other anelastic equation sets do not (and hence do not conserve energy for nonadiabatic stratification). \citet{Gough1969} nondimensionalized the internal energy equation and then linearized by expanding to first order in $\epsilon$. The other approximations instead linearized the entropy (or potential temperature) equation (e.g., \citealt{Batchelor1953,Ogura1962,Brown2012}). If this is done, the Lagrangian evolution of entropy in the fully compressible equations becomes
+From Equation \eqref{eq:enlhsfirstorder}, we begin to see why the AnEGG equations include the term $\heatnlbr$ (which is crucial for energy conservation), but other anelastic equation sets do not (and hence do not conserve energy for nonadiabatic stratification). \citet{Gough1969} nondimensionalized the internal energy equation and then linearized by expanding to first order in $\epsilon$. The other approximations instead linearized the entropy (or potential temperature) equation (e.g., \citealt{Batchelor1953,Ogura1962,Brown2012}). If this is done, the Lagrangian evolution of entropy in the fully compressible equations becomes
 \begin{align}\label{eq:entrlhsfirstorder}
 	\frac{DS}{Dt} =\pderiv{\entrprime}{t}  + \ugrad \entrprime + \ugrad \entrtilde + O(\epsilon^2)
 \end{align}
-After multiplying by $\rhotilde\tmptilde$, the anelastic internal energy equation thus lacks the term $\tilde{Q}_{\rm massflux}$ (which is good for energy conservation), but also lacks the crucial term $\tilde{Q}_{\rm NLBR}$ (which is bad). Interestingly, \citet{Gilman1981} did expand the internal energy equation exactly in the form of Equation \eqref{eq:enlhsfirstorder}, but dropped both $\tilde{Q}_{\rm massflux}$ and $\tilde{Q}_{\rm NLBR}$ on the grounds that the background entropy gradient was weak. \citet{Rogers2005} technically did expand the Lagrangian evolution of heat energy for a perfect gas, but used the form $\cvcap [DT/Dt + (\gamma-1)T\Div\vecu]=\text{[sum of heating terms]}$. Doing this implicitly assumes that the continuity equation is satisfied at first order (which is contradicted by the divergence-free mass flux condition) and has the same effect as linearizing the Lagrangian evolution of entropy instead. By happenstance (or more likely a profound understanding of the true nature of anelasticity), \citet{Gough1969} both assumed zero mass flux for the fully compressible flow and wrote the Lagrangian evolution of heat energy using different thermodynamic relations (specifically Equations \eqref{eq:firstlawtmpprs} and \eqref{eq:firstlawenthprs}) in the Eulerian and advective components. This had the fortunate consequence of properly subtracting the buoyancy work, $\rhoprime \vecu\cdot \vecg$, from the right-hand side of the internal energy equation. 
+After multiplying by $\rhotilde\tmptilde$, the anelastic internal energy equation thus lacks the term $\heatmassflux$ (which is good for energy conservation), but also lacks the crucial term $\heatnlbr$ (which is bad). Interestingly, \citet{Gilman1981} did expand the internal energy equation exactly in the form of Equation \eqref{eq:enlhsfirstorder}, but dropped both $\heatmassflux$ and $\heatnlbr$ on the grounds that the background entropy gradient was weak. \citet{Rogers2005} technically did expand the Lagrangian evolution of heat energy for a perfect gas, but used the form $\cvcap [DT/Dt + (\gamma-1)T\Div\vecu]=\text{[sum of heating terms]}$. Doing this implicitly assumes that the continuity equation is satisfied at first order (which is contradicted by the divergence-free mass flux condition) and has the same effect as linearizing the Lagrangian evolution of entropy instead. By happenstance (or more likely a profound understanding of the true nature of anelasticity), \citet{Gough1969} both assumed zero mass flux for the fully compressible flow and wrote the Lagrangian evolution of heat energy using different thermodynamic relations (specifically Equations \eqref{eq:firstlawtmpprs} and \eqref{eq:firstlawenthprs}) in the Eulerian and advective components. This had the fortunate consequence of properly subtracting the buoyancy work, $\rhoprime \vecu\cdot \vecg$, from the right-hand side of the internal energy equation. 
 
-Explicitly, following the original notation of \citet{Gough1969}, Equation \eqref{eq:eggen} can be rewritten as (compare to Equation \eqref{eq:anen})
+Explicitly, hewing more closely to the original notation of \citet{Gough1969}, Equation \eqref{eq:eggen} can be rewritten as (compare to Equation \eqref{eq:anen})
 \begin{align}\label{eq:eggen2}
 \pderiv{}{t}(\rhotilde\tmptilde\entrprime)+ \Div(\rhotilde\tmptilde \entrprime\vecu) &= -\prsprime\Div\vecu -\rhoprime \vecu\cdot \vecg- \rhotilde\tmptilde \ugrad \entrtilde\nonumber\\
 &\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime.
 \end{align}
 Equation \eqref{eq:eggen2} shows again that $\rhotilde\tmptilde \entrprime$ is the internal energy under the anelastic approximation. Furthermore, internal energy inside a volume $V$ can change via advective flux of internal energy into $V$, work done by ``compression" ($\prsprime\vecu$ integrated over $\partial V$; note that this does not actually produce any compression of the fluid in terms of increasing $\rhoprime$, since the first-order continuity equation is not satisfied), work done on the fluid via buoyancy, 
-%\footnote{Strictly, this is not an ``and only if" statement, since $\tilde{Q}_{\rm massflux}$ could vanish if $\overline{\rho^\prime w}$ is nonzero but cancels itself out when integrated vertically. However, there is no reason to expect such cancellation from the equations.}
+%\footnote{Strictly, this is not an ``and only if" statement, since $\heatmassflux$ could vanish if $\overline{\rho^\prime w}$ is nonzero but cancels itself out when integrated vertically. However, there is no reason to expect such cancellation from the equations.}
 %For a perfect gas [$U=\cvcap T$ and $P=(\cpcap-\cvcap)\rho T)$, with constant specific heats] with a hydrostatic, adiabatic mean background state satisfying Equations \eqref{eq:anfirstlaw} and \eqref{eq:anhydrostatic}, we have
 %\begin{align}\label{eq:tmppot}
 %	\Phi = -\cpcap \tmpover + K,
