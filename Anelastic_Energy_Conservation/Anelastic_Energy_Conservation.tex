@@ -209,7 +209,7 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
 	%is the material (or Lagrangian) derivative.
 	
 	\subsection{\citet{Gough1969}'s anelastic scale analysis for convection}
-	We will not repeat the full asymptotic expansion in $\epsilon$ performed by \citet{Gough1969} of Equations \eqref{eq:cont}--\eqref{eq:eos} here. Instead, we reiterate the salient assumptions in the case where the layer depth is thicker than the typical pressure scale height.\footnote{\citet{Gough1969} also considers thin layers, in which the anelastic equations become the Boussinesq equations.} The main assumption is that the thermodynamic perturbations from the horizontally averaged background state are small,
+	We will not repeat the full asymptotic expansion in $\epsilon$ performed by \citet{Gough1969} of Equations \eqref{eq:cont}--\eqref{eq:eos} here. Instead, we reiterate the salient assumptions in the case where the layer depth is thicker than the typical pressure scale height.\footnote{\citet{Gough1969} also considers thin layers, in which the anelastic equations become the Boussinesq equations.} The main assumption is that the thermodynamic perturbations from the horizontally averaged background state of the fully compressible system are small, i.e.,
 	\begin{align}\label{eq:smallthermalpert}
 		f = \overline{f}(q,t) + f_1(x_i,t)\five &\with f_1/\overline{f}=O(\epsilon)\ll 1,
 	\end{align} 
@@ -227,7 +227,7 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
 	
 	%the vertical component of Equation \eqref{eq:nomeanmassflux} is always assumed to hold (i.e., $\overline{\rho w}\equiv0$, where $w$ is the vertical velocity) and demands that there is no vertical transport of mass at any time. In a spherical system, this eliminates pulsations, for example. In an infinite plane layer, the horizontal components of Equation \eqref{eq:nomeanmassflux} are also assumed to hold ($\overline{\rho u_1}\equiv\overline{\rho u_2}\equiv0$) and demand that there is no net build-up of mass via horizontal compression. In a spherical system (e.g., a spherical shell), the horizontal average would be a spherically symmetric average and the coordinates would point along the spatially varying curvilinear coordinate directions. The horizontal components of \eqref{eq:nomeanmassflux} then do not need to hold (e.g., to accommodate rotation), as long as the boundary conditions are such that there is no build-up of mass at any vertical level. 
 
-	In writing $\overline{f}=\overline{f}(q,t)$ in Equation \eqref{eq:smallthermalpert}, we make a third central assumption not made by \citet{Gough1969}, namely, that the mean state may be time-dependent.\footnote{\citet{Gough1969} also considers time-dependent atmospheres, but this is in the different context of pulsations, where the atmosphere itself is moving. In the present work, we consider ``Eulerian-only" time-dependence of the mean state.} In order to still be consistent with \citet{Gough1969}'s asymptotic expansion, we must assume that the time-variation of the mean state is sufficiently slow, i.e., comparable in magnitude to the time variation of the fluctuations:
+	In writing $\overline{f}=\overline{f}(q,t)$ in Equation \eqref{eq:smallthermalpert}, we make a third central assumption not made by \citet{Gough1969}, namely, that the mean state of the compressible system may be time-dependent.\footnote{\citet{Gough1969} also considers time-dependent atmospheres, but this is in the different context of pulsations, where the atmosphere itself is moving. In the present work, we consider ``Eulerian-only" time-dependence of the mean state.} In order to still be consistent with \citet{Gough1969}'s asymptotic expansion, we must assume that the time-variation of the mean state is sufficiently slow, i.e., comparable in magnitude to the time variation of the fluctuations:
 \begin{align}\label{eq:meanvariationslow}
 	\left|\pderiv{\overline{f}}{t}\right| = O\left(\left|\pderiv{f_1}{t}\right|\right).
 \end{align}
@@ -383,19 +383,19 @@ The anelastic equations are often written using the pressure and entropy ($\prso
 when multiplying by terms that are already of first order in $\epsilon$. 
 
 We can change variables using Equations \eqref{eq:anfirstlawpert} and \eqref{eq:anfirstlawmean} and the approximation \eqref{eq:anhydrostatic}. In the momentum equation, we find
-\begin{align}\label{eq:anrhsmom}
+\begin{align}\label{eq:anmomrhs}
 	-\nabla \prsone + \rhoone\vecg = -\rhoover\nabla\left(\frac{\prsone}{\rhoover}\right) - \deltaover \rhoover \left(\frac{\entrone}{\cpover}\right) \vecg + \frac{\deltaover\prsone}{\cpover}\nabla\entrover.
 \end{align}
 In the internal energy equation, we find
-\begin{align}\label{eq:anrhsen}
+\begin{align}\label{eq:anenrhs}
 	-\rhoover\vecu\cdot\left(\nabla \enthone-\frac{1}{\rhoover}\nabla \prsone\right) = -\rhoover\tmpover\ugrad \entrone - \rhoover \entrone\ugrad\tmpover + \left(\frac{\prsone}{\rhoover}\right)\ugrad \rhoover.
 \end{align}
-We then compute, with effort,
-\begin{align}\label{eq:anrhsen2}
+We then compute, with some effort,
+\begin{align}\label{eq:anenrhs2}
 	- \rhoover \entrone\ugrad\tmpover + \left(\frac{\prsone}{\rhoover}\right)\ugrad \entrone -\rhoone\vecu\cdot\vecg = -\rhoover \tmpone\ugrad\entrover + O(\epsilon^2).
 \end{align}
 
-Substituting Equation \eqref{eq:anrhsmom} into Equation \eqref{eq:anmom}, and Equations \eqref{eq:anenlhs}, \eqref{eq:anrhsen}, and \eqref{eq:anrhsen2} into Equation \eqref{eq:anen}, we find
+Substituting Equation \eqref{eq:anmomrhs} into Equation \eqref{eq:anmom}, and Equations \eqref{eq:anenlhs}, \eqref{eq:anenrhs}, and \eqref{eq:anenrhs2} into Equation \eqref{eq:anen}, we find
 	\begin{align}\label{eq:anmommod}
 		\pderiv{}{t}(\rhoover\vecu)= &-\Div(\rhoover\vecu\vecu) -\rhoover\nabla\left(\frac{\prsone}{\rhoover}\right) - \deltaover \rhoover \left(\frac{\entrone}{\cpover}\right) \vecg + \underbrace{\frac{\deltaover \prsone}{\cpover} \nabla\entrover}_{\define \forcenlbr}+\Div \overleftrightarrow{D}\nonumber\\
 		&+[-\nabla\prsover + \rhoover\vecg],
@@ -404,38 +404,38 @@ and
 \begin{subequations}\label{eq:anenmod}
 \begin{align}
 	\rhoover\tmpover\left(\pderiv{\entrone}{t}+\pderiv{\entrover}{t}\right)= &-\rhoover\tmpover\ugrad \entrone - \rhoover \tmpover \ugrad \entrover \underbrace{- \rhoover \tmpone\ugrad\entrover}_{\define Q_{\rm NLBR}}+D_{ij}\pderiv{u_i}{x_j} + Q _1- \Div\vecf_1  \nonumber\\
-	& +[\heatover - \Div\overline{\vecf} - \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover],\\
-	\where \rhoone =& \frac{\prsone}{\cssqover}-\frac{\deltaover\rhoover \entrone}{\cpover}\\
-	\andd \tmpone = & \frac{\tmpover \entrone}{\cpover} + \frac{\deltaover \prsone}{\rhoover\cpover}.
+	& +[\heatover - \Div\overline{\vecf} - \tmpover(\rhoone\vecu-\overline{\rhoone\vecu})\cdot\nabla\entrover],\label{eq:anenmodmain}\\
+	\where \rhoone =& \frac{\prsone}{\cssqover}-\frac{\deltaover\rhoover \entrone}{\cpover}\label{eq:anenmodrhoone}\\
+	\andd \tmpone = & \frac{\tmpover \entrone}{\cpover} + \frac{\deltaover \prsone}{\rhoover\cpover}.\label{eq:anenmodtmpone}
 \end{align}
 \end{subequations}
-Finally, the mean internal energy equation \eqref{eq:anenmean} becomes
+Finally, we make no changes to the mean momentum equation \eqref{eq:anmommean} (since it does not contain any perturbed thermal variables), but eliminate $h_1$ in the mean internal energy equation \eqref{eq:anenmean} by using Equations \eqref{eq:anenrhs} and \eqref{eq:anenrhs2}:
 \begin{align}\label{eq:anenmean2}
 	\heatover-\Div\overline{\vecf} = \rhoover\tmpover\, \overline{\ugrad \entrone}-\overline{D_{ij}\pderiv{u_i}{x_j}} + \rhoover (\overline{\tmpone\vecu})\dotgrad\entrover + \rhoover\tmpover\pderiv{\entrover}{t}.
 \end{align}
 %The final terms in brackets in these equations may be dropped without affecting energy conservation, since they do not transport any net energy. However, dropping them still may still makes the equations an asymptotically inconsistent approximation to the true fully compressible motion, and so we retain them.
 
-The essential terms required for energy conservation when $\nabla\entrover\neq0$ are thus the ``nonLBR" force density
-\begin{align}\label{eq:nlbrmom}
-	\forcenlbr \define \frac{\deltaover \prsone}{\cpover} \nabla\entrover
-\end{align}
-and the ``nonLBR" heating
-\begin{align}\label{eq:nlbrheat}
-	Q_{\rm NLBR} \define -\rhoover \tmpone\ugrad\entrover.
-\end{align}
-Both these terms vanish for a nearly adiabatic background state (where $\nabla\entrover=O(\epsilon)$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\forcenlbr$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is referred as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use. Its neglect seems to have not been explicitly considered. 
+%\begin{align}\label{eq:nlbrmom}
+%	\forcenlbr \define \frac{\deltaover \prsone}{\cpover} \nabla\entrover
+%\end{align}
+%and the ``nonLBR" heating
+%\begin{align}\label{eq:nlbrheat}
+%	Q_{\rm NLBR} \define -\rhoover \tmpone\ugrad\entrover.
+%\end{align}
+
+The essential terms required for energy conservation when $\nabla\entrover\neq0$ are thus the ``non-LBR" force density $\forcenlbr$, which we have defined in Equation \eqref{eq:anmommod}, and the ``non-LBR" heating $\heatnlbr$, which we have defined in Equation \eqref{eq:anenmod}. Both these terms vanish for a nearly adiabatic background state (where $\nabla\entrover=O(\epsilon)$), which is expected for a fully (and sufficiently vigorously) convecting fluid layer.  Neglecting $\forcenlbr$ was first done independently by \citet{Lantz1992} and \citet{Braginsky1995} and is therefore referred to as the ``Lantz-Braginsky-Roberts" (LBR) approximation. The term $Q_{\rm NLBR}$ in the internal energy equation, which was implicitly contained in the equations of \citet{Gough1969}, seems to be absent in the other forms of the anelastic equations currently in use. Its neglect seems to have not been explicitly considered. 
 
 \section{The partial equivalence between horizontally averaged atmospheres to fixed reference atmospheres}\label{sec:meantoref}
-In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, was originally assumed to be time-independent. We have relaxed that assumption here, but we must consider how the mean state depends on the flow via Equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the thermal perturbations about this reference state develop small but nonzero horizontal means. Some codes (e.g., the {\ash} code) alternatively solve for both the perturbations about the horizontal average and the mean state itself, choosing some initial mean state consistent with zero flow.\footnote{This initial state, satisfying Equations \eqref{eq:anmommean}, \eqref{eq:anfirstlawmean}, and \eqref{eq:anenmean2} with $\vecu\equiv0$, would resemble a 1-D stellar structure model, for example.} In the latter approach, horizontally averaged terms like the bracketed terms in Equations \eqref{eq:anmom} and \eqref{eq:anen} are retained on the right-hand sides of the momentum and energy equations. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided we make a fourth central assumption: that the horizontal means of the thermal variables wander by no more than $O(\epsilon)$ away from their preordained reference-state values. 
+In the formalism of \citet{Gough1969}, the horizontally averaged atmosphere, denoted by the overbars, was originally assumed to be time-independent. We have relaxed that assumption here, but we must consider how the mean state depends on the flow via Equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. Many anelastic numerical codes (e.g., the {\rayleigh}, {\eulag}, and \texttt{MagIC} codes, which simulate the anelastic equations in spherical shells) treat the background state as a fixed-in-time, spherically symmetric, hydrostatic ``reference" state and let the thermal perturbations about this reference state develop small but nonzero horizontal means. Some codes (e.g., the {\ash} code) alternatively solve for both the perturbations about the horizontal average and the mean state itself, choosing some initial mean state consistent with zero flow.\footnote{This initial state, satisfying Equations \eqref{eq:anfirstlawmean}, \eqref{eq:anmommean}, and \eqref{eq:anenmean2} with $\vecu\equiv0$, would resemble a one-dimensional stellar structure model, for example.} In the latter approach, horizontally averaged terms are retained on the right-hand sides of the momentum and energy equations, similar to the bracketed terms in Equations \eqref{eq:anmommod} and \eqref{eq:anenmodmain}. As we now show, these two approaches are exactly equivalent to the order of the anelastic equations, provided we make a fourth central assumption: that the horizontal means of the thermal variables ultimately wander by no more than $O(\epsilon)$ away from their preordained reference-state values. 
 
-We formalize this new assumption by defining the horizontally averaged profiles as the sum of the reference-state profile (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
+We formalize this new assumption by defining each horizontally averaged thermal profile as the sum of the reference-state profile (denoted by a tilde) and a horizontally symmetric deviation (denoted by a hat):
 \begin{align}\label{eq:meanvariationsmall}
 \overline{f}=\overline{f}(q,t) &= \tilde{f}(q) + \hat{f}(q,t)\five\with \hat{f}/\tilde{f} = O(\epsilon),
 \end{align}
-where again $f$ denotes either $\rho$, $P$, $T$, $U$, $h$, $\cpcap$, $\mu$, $\delta$, $\cs^2$, $\vecf$, or $Q$. In physical terms, Equation \eqref{eq:meanvariationslow} requires that the time variation of the mean state is slow (e.g., altered by the convection on an advective time scale), while Equation \eqref{eq:meanvariationsmall} additionally requires that the total variation of the mean state away from the reference state (integrated over all time) remains small. 
+where again $f$ denotes either $\rho$, $P$, $T$, $U$, $h$, $\cvcap$, $\cpcap$, $\mu$, $\delta$, $\eta$, $\cs^2$, $\vecf$, or $Q$. In physical terms, Equation \eqref{eq:meanvariationslow} requires that the time variation of the mean state of the fully compressible system is slow (e.g., altered by the convection on an advective time scale), while Equation \eqref{eq:meanvariationsmall} additionally requires that the total variation of the mean state away from the reference state (integrated from $t=0$) always remains small. 
 
 %Note that the horizontal mean profiles are now time-dependent. This does not affect the asymptotic expansion leading to Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, provided the time derivatives of the mean state are the same order as the time derivatives of the deviations [e.g., $\pderivline{\rhoover}{t}=O(\pderivline{\rhoone}{t})$]. 
-We denote the (temporally and horizontally dependent) deviations from the reference state by primes and note that 
+We denote the (temporally and horizontally dependent) deviations from the reference state by primes and note that by definition, 
 \begin{align}\label{eq:defprime}
 	f^\prime & \define f - \tilde{f} =\hat{f} +  f_1.
 \end{align}
@@ -457,7 +457,7 @@ to be in thermal equilibrium,
 \begin{align}\label{eq:refthermalequil}
 	\heattilde = \Div\tilde{\vecf},
 \end{align}
-and to satisfy the first law of thermodynamics for gradients (compare to Equation \eqref{eq:anfirstlawmean}),
+and to satisfy the first law of thermodynamics for gradients, exactly analogously to Equations \eqref{eq:anfirstlawmean},
   \begin{subequations}\label{eq:reffirstlawmean}
 	\begin{align}
 		\tmptilde \nabla\entrtilde &= \cptilde \nabla\tmptilde - \frac{\deltatilde}{\rhotilde} \nabla\prstilde\label{eq:reffirstlawmeantmpprs}\\
@@ -469,7 +469,7 @@ and to satisfy the first law of thermodynamics for gradients (compare to Equatio
 \end{subequations}
 %Note that this is simply a \textit{definition} for the reference-state term $\heattilde-\Div\tilde{\vecf}$, which can be time-dependent. This is the one reference-state term that is assumed to not be set a priori. Instead, it is moved to the left-hand side of the internal energy equation and the evolution of the sum $\entrprime=\entrhat + \entrone$ is solved for. The approximation remains consistent as long as $\heattilde-\Div\tilde{\vecf}$ remains $O(\epsilon)$ for all time (i.e., it satisfies Equations \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall}). 
 %  \define -\rhotilde\tmptilde\pderiv{\entrhat}{t}.
-The linearized equation of state for the primed quantities is exactly analogous to Equation \eqref{eq:anfirstlawpert},
+The linearized equation of state for the primed quantities is exactly analogous to Equations \eqref{eq:anfirstlawpert},
   \begin{subequations}\label{eq:reffirstlawpert}
 	\begin{align}
 		\tmptilde \entrprime &= \cptilde \tmpprime - \frac{\deltatilde}{\rhotilde} \prsprime\label{eq:reffirstlawperttmpprs}\\
@@ -494,7 +494,7 @@ Because the right-hand side of Equations \eqref{eq:anmom} is $O(\epsilon)$ compa
 %\begin{align}\label{eq:nlbrmom2}
 %	\forcenlbr = \frac{\deltaover \prsone}{\cpover} \nabla\entrtilde + O(\epsilon^2)
 %\end{align}
-Substituting Equation \eqref{eq:anrhsmomref} into Equation \eqref{eq:anmommod} and noting that all terms are of $O(\epsilon)$ (so that we can replace overbars with tildes), we find
+Substituting Equation \eqref{eq:anmomrhsref} into Equation \eqref{eq:anmommod} and noting that all terms are of $O(\epsilon)$ (so that we can replace overbars with tildes), we find
 \begin{subequations}\label{eq:refmom}
 	\begin{align}\label{eq:refmommain}
 	\pderiv{}{t}(\rhotilde\vecu)= &-\Div(\rhotilde\vecu\vecu) -\rhotilde\nabla\left(\frac{\prsprime}{\rhotilde}\right) - \deltatilde \rhotilde \left(\frac{\entrprime}{\cptilde}\right) \vecg +\frac{\deltatilde  \prsprime}{\cptilde} \nabla\entrtilde+\Div \overleftrightarrow{D},\\
@@ -528,7 +528,7 @@ Substituting Equations \eqref{eq:eggfirstlaw} and \eqref{eq:massflux2}--\eqref{e
 \end{subequations}
 and $D_{ij}$ is now given by Equation \eqref{eq:refmomvisc}. 
 
-Taking the horizontal means of Equations \eqref{eq:refmom} and \eqref{eq:refen} and then using Equations \eqref{eq:egghydro}, \eqref{eq:eggfirstlaw}, and \eqref{eq:anrhsmomref} recovers the mean momentum and energy equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. The anelastic formulation with fixed reference states (Equations \eqref{eq:eggcont}, \eqref{eq:refmom} and \eqref{eq:refen}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}), provided the restriction \eqref{eq:meanvariationsmall} holds.
+Taking the horizontal means of Equations \eqref{eq:refmom} and \eqref{eq:refen} and then using Equations \eqref{eq:egghydro}, \eqref{eq:eggfirstlaw}, and \eqref{eq:anmomrhsref} recovers the mean momentum and energy equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}. The anelastic formulation with fixed reference states (Equations \eqref{eq:eggcont}, \eqref{eq:refmom} and \eqref{eq:refen}) is thus seen to be asymptotically equivalent to the formulation with horizontally averaged background states (Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, combined with Equations \eqref{eq:anmommean} and \eqref{eq:anenmean2}), provided the restriction \eqref{eq:meanvariationsmall} holds.
 
 Intuitively, none of the results of this section should seem too surprising and may even seem obvious. However, formalizing the equivalence between mean-state expansions of the anelastic equations and reference-state expansions via \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall} is important. The mean-state anelastic approximation of (e.g.) \citet{Gough1969} can consistently allow for time-varying mean states, subject only to the slow-variation constraint \eqref{eq:meanvariationslow}. Furthermore, the mean-state equations can allow for secular change in the mean state (e.g., a growing or shrinking convection zone) self-consistently, as long as the evolution is slow. The reference-state formulation, by contrast, does not allow for secular changes in the mean state, because the total change must remain small as per Equation \eqref{eq:meanvariationsmall}.
 
@@ -541,14 +541,18 @@ To arrive at the final form of an energy-conserving set of anelastic equations, 
 
 The final equations, representing what we call the Anelastic Energy-conserving Generalized Gough (AnEGG) approximation, written for time-independent reference states, are thus
 \begin{subequations}\label{eq:egg}
-\begin{empheq}[box=\fbox]{align}
+%\begin{empheq}[box=\fbox]{align}
+\begin{align}
 	\Div(\rhotilde\vecu)&\equiv 0\label{eq:eggcont},\\
 	\pderiv{}{t}(\rhotilde\vecu)&=-\Div(\rhotilde\vecu\vecu) -\rhotilde\nabla\left(\frac{\prsprime}{\rhotilde}\right) - \deltatilde \rhotilde \left(\frac{\entrprime}{\cptilde}\right) \vecg \underbrace{+ \frac{\deltatilde  \prsprime}{\cptilde} \nabla\entrtilde}_{\define \forcenlbr}+\Div \overleftrightarrow{D},\label{eq:eggmom}\\	
 		\andd \rhotilde\tmptilde\pderiv{\entrprime}{t}&= -\rhotilde\tmptilde\ugrad \entrprime - \rhotilde\tmptilde \ugrad \entrtilde \underbrace{ -  \left(\frac{\tmptilde \entrprime}{\cptilde} + \frac{\deltatilde  \prsprime}{\rhotilde\cptilde}\right)  \rhotilde \ugrad\entrtilde }_{\define \heatnlbr} \nonumber\\
-		&\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime,\label{eq:eggen}
-\end{empheq}
+		&\ \ \ \ +D_{ij}\pderiv{u_i}{x_j} + Q^\prime- \Div\vecf^\prime,\label{eq:eggen}\\
+	\text{where we note}\five \rhoprime &= \frac{\prsprime}{\cssqtilde}-\frac{\deltatilde\rhotilde \entrprime}{\cptilde}\label{eq:eggenrhoprime}\\
+\andd \tmpprime &=  \frac{\tmptilde \entrprime}{\cptilde} + \frac{\deltatilde \prsprime}{\rhotilde\cptilde}.\label{eq:eggentmpprime}
+%\end{empheq}
+\end{align}
 \end{subequations}
-where $\overleftrightarrow{D}$ is defined in Equation \eqref{eq:refmomvisc}. %and it is additionally assumed that the fixed reference state satisfies the hydrostatic condition \eqref{eq:egghydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
+ $\overleftrightarrow{D}$ is  now defined by Equation \eqref{eq:refmomvisc}. %and it is additionally assumed that the fixed reference state satisfies the hydrostatic condition \eqref{eq:egghydro} and the first law of thermodynamics in gradient form, Equation \eqref{eq:anfirstlawref}. 
 
 The AnEGG kinetic energy equation, derived from $\vecu$ dotted into Equation \eqref{eq:eggmom}, is 
 %\begin{equation}\label{eq:ankeref}
