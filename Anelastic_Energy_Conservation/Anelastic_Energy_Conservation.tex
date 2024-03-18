@@ -62,6 +62,8 @@
 
 \newcommand{\anwtot}{W^{\rm an}_{\rm tot}}
 \newcommand{\anwke}{W^{\rm an}_{\rm KE}}
+\newcommand{\anwnke}{W^{\rm an}_{\rm NKE}}
+\newcommand{\anwint}{W^{\rm an}_{\rm int}}
 \newcommand{\anwheat}{W^{\rm an}_{\rm heat}}
 
 \newcommand{\eggwtot}{W^{\rm EGG}_{\rm tot}}
@@ -130,7 +132,7 @@ We also show that the total conserved energy is partitioned into two types only:
 	\end{align}
 	Integrating Equation \eqref{eq:tote} over the volume $V$ of the fluid layer, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating and cooling yields\footnote{Throughout this work, we use the symbol ``$\define$" for definitions (i.e., for ``is defined to be equal to") and ``$\equiv$" for homogeneous equivalence (i.e., for ``is equal to [some constant value] everywhere and for all time").}
 	\begin{align}\label{eq:econst}
-		\etot &\define \int_V \bigg{(}\underbrace{\frac{1}{2}\rho u^2}_{\define\wke} +\underbrace{\rho U}_{\define\wint} +  \underbrace{\rho \Phi}_{\define\wpot}\bigg{)}dV\equiv \text{constant},
+		\etot &\define \int_V \bigg{(}\underbrace{\frac{1}{2}\rho u^2}_{\define\wke} +\underbrace{\rho U}_{\define\wint} +  \underbrace{\rho \Phi}_{\define\wpot}\bigg{)}dV\equiv \text{constant}.
 	\end{align}
 	
 	We additionally define
@@ -142,11 +144,11 @@ We also show that the total conserved energy is partitioned into two types only:
 	\end{subequations}
 	as the total energy density and the combined internal and potential energy density (i.e., the ``nonkinetic" energy), respectively.
 	
-	Equation \eqref{eq:econst} expresses the conservation of total energy that is implicit to the fully compressible fluid equations \eqref{eq:cont}--\eqref{eq:eos}. The volume-integrated total energy is conserved, as long as the total surface fluxes balance the total internal heat sources. Locally by contrast, fluid parcels can exchange total energy density with one another, and these exchanges are further partitioned into kinetic, internal, and potential energy densities. 
+	Equation \eqref{eq:econst} expresses the conservation of total energy that is implicit to the fully compressible fluid equations \eqref{eq:cont}--\eqref{eq:eos}. The volume-integrated total energy is conserved, as long as the total surface fluxes balance the total internal heat sources. Locally by contrast, fluid parcels can exchange total energy density with one another, and these exchanges are further partitioned into conversions between kinetic, internal, and potential energy density.
 	
-	One of the main goals of this work is to elucidate how Equation \eqref{eq:econst} is modified under the anelastic approximation for a general equation of state and nonadiabatic stratification. It will be found that \textit{only} exchange between internal and kinetic energy is possible for an energetically constistent anelastic approximation. \textit{Conversion to and from potential energy, by contrast, is fundamentally impossible.} This seems to be a new, or at least underappreciated result, which is easy to overlook because of a pathological coincidence: for a perfect, adiabatically stratified gas, the internal energy due to heating \textit{looks} exactly like a potential energy.\footnote{We use the nomenclature that an ``ideal gas" refers to a fluid for which the internal energy and specific enthalpy depend only on the temperature (i.e., $U=U(T)$ and $h=h(T)$). It can be shown from Equations \eqref{eq:firstlaw} these two conditions yield the ideal gas law, $P=\mathcal{R}\rho T$, where $\mathcal{R}\define\cpcap-\cvcap$ is a constant and the individual specific heats depend only on temperature. A``perfect gas" is a gas that is not only ideal, but has specific heats that are individually constants, independent of temperature.} For nonadiabatic stratification, or for an imperfect gas, the coincidence no longer holds, and the more general law for conservation of total energy that is derived here should be considered. 
+	One of the main goals of this work is to elucidate how Equation \eqref{eq:econst} is modified under the anelastic approximation for a general equation of state and nonadiabatic stratification. It will be found that \textit{only} exchange between internal and kinetic energy is possible for an energetically constistent anelastic approximation. \textit{Conversion to and from gravitational potential energy, by contrast, is fundamentally impossible.} This seems to be an underappreciated result, which is easy to overlook because of a pathological coincidence: for a perfect, adiabatically stratified gas, the internal energy \textit{looks} exactly like a gravitational potential energy.\footnote{We use the nomenclature that an ``ideal gas" refers to a fluid for which the internal energy and specific enthalpy depend only on the temperature (i.e., $U=U(T)$ and $h=h(T)$). It can be shown from Equations \eqref{eq:firstlaw} these two conditions yield the ideal gas law, $P=\mathcal{R}\rho T$, where $\mathcal{R}\define\cpcap-\cvcap$ is a constant and the individual specific heats depend only on temperature. A``perfect gas" is a gas that is not only ideal, but has specific heats that are individually constants, independent of temperature.} For nonadiabatic stratification, or for an imperfect gas, the coincidence no longer holds, and the more general law derived here for conservation of total energy, which includes only internal and kinetic energy, must be used. 
 	
-The other new and related result is that total energy \textit{should} be conserved under the anelastic approximation, for arbitrary fluid motions and equations of state and for all stratifications, even for strongly subadiabatic ones. The anelastic equations of \citet{Gough1969} satisfy such a general conservation law, while modern implementations of the anelastic approximation do not. Thus, a major part of this paper is devoted to translating \citet{Gough1969}'s equations into more conventional notation and elucidating the origin and form of the term (which should be present in the internal energy equation for asymptotic consistency) that is missing from modern anelastic implementations. 
+The other new and related result is that total energy \textit{should} be conserved under the anelastic approximation, for arbitrary fluid motions and equations of state and for all stratifications, even for strongly subadiabatic ones. The anelastic equations of \citet{Gough1969} satisfy such a general conservation law, while modern implementations of the anelastic approximation do not. Therefore, a major part of this paper is devoted to translating \citet{Gough1969}'s equations into more conventional notation and elucidating the origin and form of the term (which should be present in the internal energy equation for asymptotic consistency) that is missing from modern anelastic implementations. 
 
 Finally, we note that \citet{Gough1969} assumed zero net vertical transport of mass for the ``true" fully compressible fluid whose motion the anelastic equations are intended to approximate. This may at first seem like an arbitrary choice to make the small-parameter expansion simpler. It is concluded in this work, however, that the ``zero mean mass flux" assumption is in fact fundamental to ensure the energetic consistency of the anelastic approximation. 
 
@@ -265,18 +267,18 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
 \begin{align}\label{eq:nomeanu}
 	\overline{\vecu}\equiv0
 \end{align}
-	and Equation \eqref{eq:massfluxorig} becomes
+	by definition and Equation \eqref{eq:massfluxorig} becomes
 	\begin{align}\label{eq:massflux}
 		\bm{m} = \rhoover\vecu + \rhoone\vecu - \overline{\rhoone\vecu} + O(\epsilon^2).
 	\end{align}
-	Each of the two terms $\rhoone\vecu$ and $-\overline{\rhoone\vecu}$ are $O(\epsilon)$. In most cases, we can thus write $\bm{m} \approx \rhoover \vecu$ to translate from \citet{Gough1969} to the current notation (in which we use $\vecu$ as the primary field variable), except when multiplying by potentially zeroth-order quantities. Using Equation \eqref{eq:massflux} to translate from \citet{Gough1969}'s equations to ours also means that, to $O(\epsilon)$, there is no mean mass flux in the anelastic equations. 
+	Each of the two terms $\rhoone\vecu$ and $-\overline{\rhoone\vecu}$ are $O(\epsilon)$. In most cases, we can thus write $\bm{m} \approx \rhoover \vecu$ to translate from \citet{Gough1969} to the current notation (in which we use the fluctuating velocity $\vecu$ as the primary field variable), except when multiplying by potentially zeroth-order quantities. Using Equation \eqref{eq:massflux} to translate from \citet{Gough1969}'s equations to ours also means that, to $O(\epsilon)$, there is no mean mass flux in the anelastic equations. 
 	
 	 One other change in notation concerns the background stratification. \citet{Gough1969} uses the superadiabatic mean background temperature gradient
 	\begin{align}\label{eq:superad}
 		\beta &\define -\frac{1}{\cpover}\veck\cdot\left[\nabla\overline{h}-\frac{1}{\rhoover}\nabla\prsover\right]\nonumber\\
 		&=-\frac{\tmpover}{\cpover}\veck\dotgrad\entrover + O(\epsilon^2),
 	\end{align}
-	whereas we will use $\nabla \entrover$. 
+	whereas we will use $\nabla \entrover$. Compare to \citet{Gough1969}'s Equation (3.7). We translate using Equation \eqref{eq:anfirstlawmeanenthprs} below. 
 	
 	\subsection{\citet{Gough1969}'s anelastic equations}
 	Once all of the above scaling assumptions have been made, Equations \eqref{eq:cont}, \eqref{eq:mom}, \eqref{eq:en}, and \eqref{eq:eos} are nondimensionalized, each dependent variable is expanded in powers of $\epsilon$, terms up to zeroth-order in the continuity equation and first-order in the other equations are retained, and redimensionalization then yields the anelastic equations. Specifically, we discuss \citet{Gough1969}'s Equations (4.3)--(4.7) and (4.15)--(4.22). We translate these equations using the change of variables outlined in Equations \eqref{eq:massflux} and \eqref{eq:superad}. 
@@ -317,6 +319,9 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
   \begin{subequations}\label{eq:anfirstlawmean}
   	\begin{align}
   		\tmpover\nabla\entrover &= \cpover\nabla\tmpover - \frac{\deltaover}{\rhoover}\nabla\prsover + O(\epsilon^2)\label{eq:anfirstlawmeantmpprs}\\
+	 		&= \nabla\inteover - \frac{\prsover}{\rhoover^2}\nabla\rhoover + O(\epsilon^2) \label{eq:anfirstlawmeaninterho}\\
+	 &= \nabla \enthover - \frac{\nabla\prsover}{\rhoover} + O(\epsilon^2)\label{eq:anfirstlawmeanenthprs}\\
+	 &= \cvover \nabla\tmpover - \frac{\prsover\etaover}{\rhoover^2}\nabla\rhoover + O(\epsilon^2)\label{eq:anfirstlawmeantmprho}\\		
   		&= \frac{\cpover\,\tmpover}{\deltaover\rhoover}\left[\frac{\nabla\prsover}{\cssqover}-\nabla\rhoover\right]+O(\epsilon^2).\label{eq:anfirstlawmeanprsrho}
   	\end{align}
   \end{subequations}
@@ -329,10 +334,10 @@ The first law of thermodynamics\footnote{We assume local thermodynamic equilibri
   \begin{align}\label{eq:anenmean}
   	\heatover - \Div\overline{\vecf} = \rhoover\overline{\vecu\cdot\left(\nabla \enthone-\frac{1}{\rhoover}\nabla \prsone\right)} + \vecg\cdot\overline{\rhoone\vecu} - \overline{D_{ij}\pderiv{u_i}{x_j}} +	\rhoover\cpover\pderiv{\tmpover}{t}- \deltaover \pderiv{\prsover}{t}
   \end{align}
-   Equations \eqref{eq:ancont}--\eqref{eq:anenmean} are mathematically equivalent to \citet{Gough1969}'s Equations (4.3)--(4.7) and (4.15)--(4.22), with the minor exception of the mean-state time derivatives in Equations \eqref{eq:anen} and \eqref{eq:anenmean}. Together, they form a complete system that can be solved for the evolution of the fluctuating thermal variables and velocity, and then (using correlations between the fluctuations) for the evolution of the mean thermal profiles. %Strictly, however, the approximation is only consistent if the mean state does not evolve. We show that this restriction can be relaxed slightly in Section \ref{sec:meantoref}. 
+   Equations \eqref{eq:ancont}--\eqref{eq:anenmean} are mathematically equivalent to \citet{Gough1969}'s Equations (4.3)--(4.7) and (4.15)--(4.22), with the minor exception of the mean-state time derivatives in Equations \eqref{eq:anen} and \eqref{eq:anenmean}. Together (with a set of appropriate initial and boundary conditions), they form a complete system that can be solved for the evolution of the fluctuating thermal variables and velocity, and then (using the correlations between fluctuations) for the evolution of the mean thermal profiles. %Strictly, however, the approximation is only consistent if the mean state does not evolve. We show that this restriction can be relaxed slightly in Section \ref{sec:meantoref}. 
 
   
-Dotting $\vecu$ into Equation \eqref{eq:anmommain} and using Equation \eqref{eq:anmommean} yields the anelastic kinetic energy equation,
+Dotting $\vecu$ into Equation \eqref{eq:anmommain} and using Equation \eqref{eq:anmommean} yields \citet{Gough1969}'s anelastic kinetic energy equation,
 	\begin{align}\label{eq:anke}
 		\pderiv{}{t}\left(\frac{1}{2}\rhoover u^2\right)&=-\Div\left(\frac{1}{2}\rhoover u^2\vecu \right) - \ugrad \prsone + \rhoone\vecu\cdot\vecg + u_i\pderiv{D_{ij}}{x_j} + \ugrad(\rhoover \overline{w^2}).
 	\end{align}
@@ -354,18 +359,22 @@ Because of Equation \eqref{eq:nomeanu}, or more specifically, the condition
  each of the rightmost terms in brackets in Equation \eqref{eq:antote} vanishes after volume integration over $V$ (i.e., none of the terms can transport any net energy). Note that Equation \eqref{eq:nomeanw} is also a consequence of integrating Equation \eqref{eq:ancont} over volumes bounded by horizontal surfaces (and also assuming $w$ vanishes on the boundaries). Thus, the vanishing of the horizontal components of $\overline{\vecu}$ is not strictly necessary for the bracketed terms to conserve energy. 
  
  Integrating Equation \eqref{eq:antote} over $V$, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating yields
- \begin{subequations}\label{eq:aneconst}
- 	\begin{align}
- 		\anetot &\define \int_V \anwtot dV \equiv \text{constant},\label{eq:anetot}\\
- 		\where \anwtot &\define \anwke + \anwheat,\label{eq:anwtot}\\
- 		\anwke &\define \frac{1}{2}\rhoover u^2,\label{eq:anwke}\\
- 		\andd \anwheat &\define \rhoover \tmpover (\entrone+\entrover).\label{eq:anwnke}
- 	\end{align}
- \end{subequations}
- We have used the superscript ``an" to denote energies and densities under the anelastic approximation and defined $\anwheat$ to be internal energy density of fluid parcels associated with irreversible heating processes (entropy increases). The conservation law \eqref{eq:aneconst} holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:anfirstlawpert} and for arbitrary magnitudes of $|\nabla \entrover|$. Note that the partition of energy density is fundamentally different than in the fully compressible conservation law \eqref{eq:econst}; most notably, the potential energy density is absent under the anelastic approximation. We return to this central point in Section \ref{sec:meaningtote}. %However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
+\begin{align}\label{eq:aneconst}
+	\anetot &\define \int_V \bigg{[}  \underbrace{\frac{1}{2}\rhoover u^2}_{\define \anwke} + \underbrace{\rhoover \tmpover (\entrone+\entrover)}_{\define\anwint} \bigg{]} dV \equiv \text{constant}.
+\end{align}
+ We have used the superscript ``an" to denote energies and densities under \citet{Gough1969}'s anelastic approximation. We additionally define
+	\begin{subequations}\label{eq:anwtotnke}
+	\begin{align}
+		\anwtot &\define \anwke + \anwint = \rhoover\left[\frac{1}{2}u^2 + \tmpover(\entrone+\entrover \right]\label{eq:anwtot}\\
+		\andd \anwnke &\define \anwtot - \anwke = \anwint =\rhoover \tmpover (\entrone+\entrover)\label{eq:anwnke}
+	\end{align}
+\end{subequations}
+as the total anelastic energy density and the internal anelastic energy density (which makes up the total ``nonkinetic" energy), respectively. Note that an arbitrary constant can be added to $\entrover$ without affecting the dynamics. 
+
+The conservation law \eqref{eq:aneconst} holds for arbitrary fluid motions that obey Equations \eqref{eq:ancont}, \eqref{eq:anmom}, \eqref{eq:anen}, and \eqref{eq:anfirstlawpert} and for arbitrary magnitudes of $|\nabla \entrover|$. Note that the partition of energy density is fundamentally different than in the fully compressible conservation law \eqref{eq:econst}. Most notably, the potential energy density is absent under the anelastic approximation. Furthermore, $\anwint$ takes a fundamentally different form than might be expected from Equation \eqref{eq:anfirstlawpertinterho}. We return to this central point in Section \ref{sec:meaningtote}. %However, whether the approximation remains \textit{consistent} (i.e., whether the thermal perturbations remain small) \textit{does} depend on the magnitude of $|\nabla\entrover|$.
 
 \section{\citet{Gough1969}'s anelastic equations in terms of pressure and entropy}\label{sec:goughprsentr}
-The anelastic equations are often written using the pressure and entropy ($\prsone$, $\entrone$, and $\entrover$) in place of the quantities $\tmpone$, $\tmpover$, $\prsone$, $\prsover$, $\rhoone$, and $\enthone$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmommean}. This is more than just a matter of convention, since transforming the variables to pressure and entropy isolates terms in the equations that depend on the mean entropy gradient $\nabla\entrover$, which can be neglected if $\nabla\entrover$ is small.
+The anelastic equations are often written using the pressure and entropy ($\prsone$, $\entrone$, and $\entrover$) in place of the quantities $\tmpone$, $\tmpover$, $\prsone$, $\prsover$, $\rhoone$, and $\enthone$ that appear in Equations \eqref{eq:anmom} and \eqref{eq:anmommean}. This is more than just a matter of convention, since transforming the variables to pressure and entropy isolates terms in the equations that depend on the mean entropy gradient $\nabla\entrover$. Historically, these terms were neglected on the grounds that $\nabla\entrover$ should be small for a fully and vigorously convecting fluid. To accommodate stable stratification, however (while retaining the exact total energy conservation law of Equation \eqref{eq:aneconst}), these terms must be kept. 
 
   In each of Equations \eqref{eq:anmommean} and \eqref{eq:anenmean}, each term on the right-hand side is $O(\epsilon)$ compared to each term on the left-hand side. In particular, we can make the mean hydrostatic approximation, 
 \begin{align}\label{eq:anhydrostatic}
@@ -428,7 +437,7 @@ where again $f$ denotes either $\rho$, $P$, $T$, $U$, $h$, $\cpcap$, $\mu$, $\de
 %Note that the horizontal mean profiles are now time-dependent. This does not affect the asymptotic expansion leading to Equations \eqref{eq:ancont}, \eqref{eq:anmommod}, and \eqref{eq:anenmod}, provided the time derivatives of the mean state are the same order as the time derivatives of the deviations [e.g., $\pderivline{\rhoover}{t}=O(\pderivline{\rhoone}{t})$]. 
 We denote the (temporally and horizontally dependent) deviations from the reference state by primes and note that 
 \begin{align}\label{eq:defprime}
-	f^\prime & \define f - \tilde{f} =\hat{f} +  f_1,
+	f^\prime & \define f - \tilde{f} =\hat{f} +  f_1.
 \end{align}
 The primed quantities, being the sum of two assumed-small quantities, thus remain small as long Equations \eqref{eq:meanvariationslow} and \eqref{eq:meanvariationsmall} are both satisfied. 
 %	&= h^\prime - \frac{\prsprime }{\rhotilde}\\
