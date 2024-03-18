@@ -582,13 +582,13 @@ Adding Equations \eqref{eq:eggen} and \eqref{eq:eggke} yields the AnEGG total en
 %\end{empheq}
 Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:eggcont} and assuming $w\equiv0$ on the boundaries), integrating Equation \eqref{eq:eggtote} over the volume $V$ of the fluid layer, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating and cooling yields (exactly analogously to Equation \eqref{eq:aneconst})
 \begin{align}\label{eq:eggeconst}
-	\anetot &\define \int_V \bigg{[}  \underbrace{\frac{1}{2}\rhoover u^2}_{\define \anwke} + \underbrace{\rhoover \tmpover (\entrone+\entrover)}_{\define\anwint} \bigg{]} dV \equiv \text{constant}.
+	\anetot &\define \int_V \bigg{[}  \underbrace{\frac{1}{2}\rhoover u^2}_{\define \eggwke} + \underbrace{\rhoover \tmpover (\entrone+\entrover)}_{\define\eggwint} \bigg{]} dV \equiv \text{constant}.
 \end{align}
-We have used the superscript ``EGG" to denote energies and densities under the AnEGG approximation and defined the kinetic and internal energy densities $\eggwke$ and $\eggwint$ (respectively).. We additionally define
+We have used the superscript ``EGG" to denote energies and densities under the AnEGG approximation and defined the kinetic and internal energy densities $\eggwke$ and $\eggwint$ (respectively). We additionally define
 \begin{subequations}\label{eq:eggwtotnke}
 	\begin{align}
-		\anwtot &\define \anwke + \anwint = \rhoover\left[\frac{1}{2}u^2 + \tmpover(\entrone+\entrover \right]\label{eq:eggwtot}\\
-		\andd \anwnke &\define \anwtot - \anwke = \anwint =\rhoover \tmpover (\entrone+\entrover)\label{eq:eggwnke}
+		\eggwtot &\define \eggwke + \eggwint = \rhoover\left[\frac{1}{2}u^2 + \tmpover(\entrone+\entrover \right]\label{eq:eggwtot}\\
+		\andd \eggwnke &\define \eggwtot - \eggwke = \eggwint =\rhoover \tmpover (\entrone+\entrover)\label{eq:eggwnke}
 	\end{align}
 \end{subequations}
 This conservation law holds for arbitrary fluid motions obeying Equations \eqref{eq:egg} and for all magnitudes of $|\nabla\entrover|$. 
