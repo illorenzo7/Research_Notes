@@ -592,7 +592,7 @@ Adding Equations \eqref{eq:eggen} and \eqref{eq:eggke} yields the AnEGG total en
 %\end{empheq}
 Again using condition \eqref{eq:nomeanu} (or equivalently, Equation \eqref{eq:eggcont} and assuming $w\equiv0$ on the boundaries), integrating Equation \eqref{eq:eggtote} over the volume $V$ of the fluid layer, using the divergence theorem, and assuming that the sum of the surface-integrated fluxes balances the volume-integrated heating and cooling yields (analogously to Equation \eqref{eq:aneconst})
 \begin{align}\label{eq:eggeconst}
-	\anetot &\define \int_V \bigg{[}  \underbrace{\frac{1}{2}\rhotilde u^2}_{\define \eggwke} + \underbrace{\rhotilde \tmptilde \entrprime}_{\define\eggwint} \bigg{]} dV \equiv \text{constant}.
+	\eggetot &\define \int_V \bigg{[}  \underbrace{\frac{1}{2}\rhotilde u^2}_{\define \eggwke} + \underbrace{\rhotilde \tmptilde \entrprime}_{\define\eggwint} \bigg{]} dV \equiv \text{constant}.
 \end{align}
 We have used the superscript ``EGG" to denote energies and densities under the AnEGG approximation and defined the kinetic and internal energy densities $\eggwke$ and $\eggwint$ (respectively). We additionally define
 \begin{subequations}\label{eq:eggwtotnke}
@@ -622,36 +622,36 @@ in the internal energy equation. Alternatively, the LBR approximation can still 
 \end{align}
 However, doing this would yield an asymptotically inconsistent equation set if $|\nabla\entrtilde|$ is large. 
 
-Furthermore, the term $\heatnomassflux$ in Equation \eqref{eq:eggen}, although it does not affect the total energy conservation law \eqref{eq:eggeconst}, should be kept, both for asymptotic consistency and for consistency with the assumption of zero mean mass flux. Moreover, in rotating spherical shells, it is often the case that small deviations from ``thermal wind balance" (e.g., \citealt{Vallis2017,Rempel2005,Matilsky2023}) are the primary driver of the all-important meridional circulation (e.g., \citealt{Choudhuri2020}). Thus, although $\heatnomassflux\ll\heatadv$ (as long as $\rhoprime$ remains $\ll\rhotilde$), it may still play a large role in the residual balance that determines the latitudinal thermal profiles of a rotating spherical system. Put more simply, if the anelastic $\vecu$ ``wants" to transport net mass (i.e., if $\overline{\rhoprime\vecu}=\overline{\rhoprime\utotprime} + O(\epsilon^2) \neq0$), the term $\heatnomassflux$ ensures that there is no accompanying heat transport. This is consistent with the behavior of the fully compressible system, which does not transport any net mass or associated heat.
+Furthermore, the term $\heatnomassflux$ in Equation \eqref{eq:eggen}, although it does not affect the total energy conservation law \eqref{eq:eggeconst}, should be kept, both for asymptotic consistency and for consistency with the assumption of zero mean mass flux. Moreover, in rotating spherical shells, it is often the case that small deviations from ``thermal wind balance" (e.g., \citealt{Rempel2005,Vallis2017,Matilsky2023}) are the primary driver of the all-important meridional circulation (e.g., \citealt{Choudhuri2020}). Thus, although $\heatnomassflux\ll\heatadv$ (as long as $\rhoprime$ remains $\ll\rhotilde$), it may still play a large role in the residual energy balance that determines the latitudinal thermal profiles of a rotating spherical system. Put more simply (for all geometries, not just spherical), if the anelastic $\vecu$ ``wants" to transport net mass (i.e., if $\overline{\rhoprime\vecu}=\overline{\rhoprime\utotprime} + O(\epsilon^2) \neq0$), the term $\heatnomassflux$ ensures that there is no accompanying heat transport. This is consistent with the behavior of the fully compressible system, which should not transport any net mass or associated heat.
 
 \section{The meaning of total energy under the anelastic approximation}\label{sec:meaningtote}
 In this section, we discuss how the expression for total energy under the anelastic approximation $\eggwtot$ (or equivalently, $\anwtot$) arises. The form of $\eggwtot$ places unique constraints on possible avenues for the transfer of energy under the anelastic approximation, and these fundamentally differ from the avenues available for the true compressible motion. It is found that all compressible effects, including the potential energy, are entirely eliminated from the energy budget. 
 
-One perhaps surprising corollary is that \textit{no transfer between potential and kinetic energy is possible for anelastic convection.} Given the prevalence of the concept of ``available potential energy" (APE), especially in atmospheric physics (e.g., \citealt{Vallis2017}, p. 138), these may seem like fighting words, and so we tread with extra mathematical caution in this section. The true available energy (which fundamentally is due to changes in internal energy from heating or cooling, i.e., entropy changes) can resemble a potential energy because of a pathological coincidence that is unique to adiabatically stratified background states and constant $\cptilde/\deltatilde$. Since these conditions are satisfied for a fully and vigorously convecting perfect gas (which is thus nearly adiabatically stratified), in many cases the distinction between potential and heat energy is a philosophical one. However, in more general circumstances (such as convective overshoot into a stably stratified region), the distinction is important. 
+One perhaps surprising corollary is that \textit{no transfer between gravitational potential and kinetic energy is possible for anelastic convection.} Given the prevalence of the concept of ``available potential energy" (APE), especially in atmospheric physics (e.g., \citealt{Vallis2017}, p. 138), these may seem like fighting words, and so we tread with extra mathematical caution in this section. The true available energy (which fundamentally is due to changes in internal energy from heating or cooling, i.e., entropy changes) can resemble a potential energy because of a pathological coincidence that is unique to adiabatically stratified background states and constant $\cptilde/\deltatilde$. Since these conditions are satisfied for a fully and vigorously convecting perfect gas (which is thus nearly adiabatically stratified), in many cases the distinction between potential and heat energy is a philosophical one. However, in more general circumstances (such as convective overshoot into a stably stratified region), the distinction is important. 
 
 We note a priori that the zero mean mass flux condition \eqref{eq:nomeanmassflux} immediately eliminates possible conversion to and from potential energy for the fully compressible flow (since no net mass can be transferred vertically). Thus, it may not be surprising after all that potential energy disappears from the anelastic energy budget. Perhaps one of the main new results of this work is that the assumption of zero mean mass flux is \textit{fundamental} for the energetic consistency of the anelastic approximation. 
 
 \subsection{General expression for $\wpnke$}
-From Equations \eqref{eq:wnke} and \eqref{eq:linuref}, the perturbed nonkinetic energy per unit volume is 
-\begin{align}\label{eq:wp1}
+From Equations \eqref{eq:wnke} and \eqref{eq:reffirstlawpertinterho}, the perturbed\footnote{As in, perturbed from the reference state. However, all these arguments go through analogously for the time-varying mean-state formulation of the anelastic approximation presented in Section \ref{sec:goughprsentr}.}  nonkinetic energy density for the fully compressible system is 
+\begin{align}\label{eq:wpnke1}
 	\wpnke &=  \rhotilde U^\prime + \tilde{U}\rhoprime + \Phi \rhoprime \nonumber\\
 	&= \rhotilde\tmptilde \entrprime + \left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime.
 \end{align}
-%\begin{align}\label{eq:wp1}
+%\begin{align}\label{eq:wpnke1}
 %	\wpnke &=  \rhotilde U^\prime + \tilde{U}\rhoprime + \Phi \rhoprime \nonumber\\
 %	&= \underbrace{\rhotilde\tmptilde \entrprime}_{\define \wpheat} + \underbrace{\left(\tilde{U}+\frac{\tilde{P}}{\rhotilde}+\Phi\right)\rhoprime}_{\define\wpcomp}.
 %\end{align}
 
-Equation \eqref{eq:linuref} is really an expression of the first law of thermodynamics, which states that changes in the internal energy of fluid parcels come from the sum of irreversible heating processes and pressure work done by the environment during compression. Comparing to Equation \eqref{eq:eggeconst}, it is clear that \textit{only} changes in internal energy from heat sources can effect the total energy. The changes in internal energy from density variations $\intetilde\rhoprime$, the pressure work $\prstilde(\rhoprime/\rhotilde)$, and the changes in potential energy $\Phi\rhoprime$ are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we rewrite Equation \eqref{eq:wp1} as
+Equation \eqref{eq:reffirstlawpertinterho} is really an expression of the first law of thermodynamics, which states that changes in the internal energy of fluid parcels come from the sum of irreversible heating processes and pressure work done by the environment during compression. Comparing to Equation \eqref{eq:eggwnke}, it is clear that \textit{only} changes in internal energy from heat sources can affect the nonkinetic energy density for the \textit{anelastic} system (i.e., this is why $\eggwnke=\eggwint=\rhotilde\tmptilde\entrprime$). The changes in internal energy from density variations $\intetilde\rhoprime$, the pressure work $\prstilde(\rhoprime/\rhotilde)$, and the changes in potential energy $\Phi\rhoprime$ are all absent. Since all three of these latter effects are due to density variations (i.e., compression or expansion of the fluid), we rewrite Equation \eqref{eq:wpnke1} as
 \begin{subequations}\label{eq:wpnke}
 	\begin{align}
 		\wpnke &= \wpheat + \wpcomp,\\
-		\where \wpheat&\define \rhotilde\tmptilde \entrprime\\
+		\where \wpheat&\define \rhotilde\tmptilde \entrprime=\eggwint\\
 		\andd \wpcomp &\define \left(\intetilde+\frac{\prstilde}{\rhotilde}+\Phi\right)\rhoprime
 	\end{align}
 \end{subequations}
 
-We also write the linear form of Equation \eqref{eq:wtot} as
+We also write the perturbed form of Equation \eqref{eq:wtot} as
 \begin{subequations}\label{eq:wpke}
 	\begin{align}
 		\wptot &\define \wpke + \wpnke,\\
@@ -659,7 +659,7 @@ We also write the linear form of Equation \eqref{eq:wtot} as
 	\end{align}
 \end{subequations}
 
-$\wptot$ represents the total energy density whose volume integral the true fully compressible fluid would conserve (at first order in $\epsilon$) under the assumption \eqref{eq:smallthermalpert} of small thermal perturbations. Comparing Equations \eqref{eq:eggeconst}, \eqref{eq:wpnke}, and \eqref{eq:wpke}, we see that the fully compressible motion is formally able to convert kinetic energy to and from internal energy from heating $\wpheat$ \textit{and} to and from the compression effects accounted for by $\wpcomp$. By contrast, the anelastic motion is \textit{only} able to convert kinetic energy to and from internal energy from heating.
+$\wptot$ represents the total energy density whose volume integral the true fully compressible fluid would conserve (at first order in $\epsilon$) under the assumption \eqref{eq:smallthermalpert} of small thermal perturbations. Thus, the fully compressible motion is formally able to convert kinetic energy to and from internal energy from heating $\wpheat$ \textit{and} to and from the compression effects accounted for by $\wpcomp$. However, it \textit{should not} convert (net) energy to and from $\wpcomp$ if the zero-mean-mass-flux assumption \eqref{eq:nomeanmassflux} is valid. By contrast, the anelastic motion is \textit{unable} to convert kinetic energy to and from $\wpcomp$ and can only convert between kinetic energy and internal energy from heat sources. This is a direct consequence of (and is energetically consistent with) the assumption of zero mean mass flux. 
 %	&=  -\rhotilde\Phi\left(\frac{\entrprime}{\cpcap}\right)+\frac{\prsprime}{\gamma-1}
 % where $\cpcap$ and $\cvcap$ are constants and 
 %\begin{subequations}\label{eq:idgas}
@@ -762,7 +762,7 @@ Equation \eqref{eq:eggen2} shows again that $\rhotilde\tmptilde \entrprime$ is t
 %\begin{align}\label{eq:tmppot}
 %	\Phi = -\cpcap \tmpover + K,
 %\end{align}
-%where $K$ is a constant. Equation \eqref{eq:wp1} then becomes
+%where $K$ is a constant. Equation \eqref{eq:wpnke1} then becomes
 %\begin{align}\label{eq:wp2}
 %	W_1 = - \frac{\rhoover\Phi}{\cpcap}\entrone + K\frac{\prsone}{\cssqover}
 %\end{align}
