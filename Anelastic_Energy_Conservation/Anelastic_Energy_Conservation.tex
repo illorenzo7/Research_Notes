@@ -803,17 +803,20 @@ Nonconservation of mass is also the reason the anelastic equations violate the s
 \end{align}
 
 By contrast, for the anelastic motion, Equation \eqref{eq:eggen} (with $Q^\prime\equiv0$, $\vecf^\prime\equiv0$, and $\mutilde\equiv0$) yields
- \begin{align}\label{snotconst}
+ \begin{align}\label{eq:snotconst}
  	\frac{d\gptot}{dt}= \int_V\entrtilde \pderiv{\rhoover}{t}dV + \int_V \frac{\heatnlbr}{\tmptilde}dV, 
  \end{align}
- which $\neq0$ under any circumstances because $\pderivline{\rhoover}{t}\neq0$. there are no circumstances in which the anelastic motion conserves total entropy. 
- Equation \eqref{eq:eggen} becomes
+ which $\neq0$ (except at isolated instances) under any circumstances because $\pderivline{\rhoover}{t}\neq0$ and $\entrtilde\neq0$ (by the third law of thermodynamics, which states that $S>0$ even when $T=0$, i.e., absolute zero). Thus, there are no systems (even convection zones with $d\entrtilde/dq\equiv0$) for which the anelastic motion conserves total entropy. 
+ 
+The careful reader might at first complain about this sweeping statement for two obvious reasons. First, the fluid equations \eqref{eq:cont}--\eqref{eq:eos} are insensitive to the absolute value of $S$. In a convection zone, then (where $\heatnlbr$ already vanishes identically), might we be free to set $\entrtilde\equiv0$ and thus conserve entropy? The answer is ``no" and also a bit subtle. It is true that the fluid equations as written are insensitive to the absolute value of the \textit{specific} entropy $S$. However, the second law of thermodynamics concerns the \textit{total} (extensive) entropy $\gtot$, or for small thermal perturbations, $\gptot$. The evolution of total entropy \textit{does} depend on the absolute value of $S$ for the simple reason that $\pderivline{(\rho S)}{t} = S\pderivline{\rho}{t} + \rho\pderivline{S}{t}$. Essentially then, Equation \eqref{eq:snotconst} states that because mass is not conserved at first order under the anelastic approximation, and because the total entropy can change via changes in mass, there is no way any anelastic approximation can satisfy the second law of thermodynamics. 
 
-%One slightly surprising result concerns the second law of thermodynamics. In the absence of heat sources or sinks, when the true motion should be adiabatic, Equation \eqref{eq:eggen} becomes
-%\begin{align}\label{eq:dsdtref}
-%	\frac{D}{Dt}(\entrtilde + \entrprime) = \frac{Q_{\rm NLBR}}{\rhotilde\tmptilde}.
-%\end{align}
-%Thus, the AnEGG equations do not conserve total entropy for adiabatic motion, violating the second law of thermodynamics if $\entrprime$ is strictly interpreted as the entropy. Apparently making the anelastic approximation allows for the conservation of energy or the second law of thermodynamics to be satisfied, but not both. 
+The second complaint might be that \textit{we} are (currently) the only ones advocating to introduce the terms $\heatnlbr$ and $\heatnomassflux$. Anelastic simulations have for decades been perfectly fine not including these terms. Furthermore, Equation \eqref{eq:snotconst} clearly shows that by introducing $\heatnlbr$ specifically, we are making the violation of the second law of thermodynamics worse.\footnote{The statements in this paragraph are, of course, only relevant for nonzero $d\entrtilde/dq$, which is the only way to have nonzero $\heatnlbr$ and $\heatnomassflux$.} If we examine the Lagrangian evolution of a fluid parcel's specific entropy with no heat sources or sinks, Equation \eqref{eq:eggen} yields 
+\begin{align}\label{eq:dsdtnoheat}
+	\frac{D}{Dt}(\entrtilde + \entrprime) = \frac{\heatnlbr+\heatnomassflux}{\rhotilde\tmptilde}.
+\end{align}
+In other words, the AnEGG approximation has the seemingly undesirable result that fluid parcels do not conserve specific entropy during adiabatic motion. If we throw away $\heatnlbr$ and $\heatnomassflux$, then perhaps energy would not be conserved, but at least specific entropy of fluid parcels would be conserved in the absence of heat sources and sinks. Our position is to keep $\heatnlbr$ and $\heatnomassflux$ because specific entropy should \textit{not} be conserved during anelastic adiabatic motion. Equation \eqref{eq:snotconst} clearly shows that the second law of thermodynamics is violated no matter what. On the righthand side of Equation \eqref{eq:dsdtnoheat}, the missing term $-(\entrtilde/\rhotilde)D\rhoprime/Dt$ is no less of an issue than the new term $(\heatnlbr+\heatnomassflux)/(\rhotilde\tmptilde)$. 
+
+We can summarize this section by stating that the anelastic asymptotic expansion is fundamentally a strange one, because all the equations are expanded to first order except the continuity equation, which is expanded only to zeroth order. This is bound to introduce some severe unphysical consequences. The root of all unphysicality is the nonconservation of mass at first order. As a result, the second law of thermodynamics seems unenforceable under all circumstances. By contrast, energy conservation when $d\entrtilde/dq\neq0$ is easily enforceable (and consistent with the true compressible motion) by assuming no mean mass flux and restoring the terms $\forcenlbr$, $\heatnlbr$, and $\heatnomassflux$ to the anelastic equations of motion. 
 
 \section{Conditions for anelastic overshoot}\label{sec:overshoot}
 [THIS SECTION IS A STUB]. What I have so far is that a downflowing plume should have kinetic energy 
