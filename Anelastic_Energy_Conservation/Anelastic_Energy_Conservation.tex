@@ -30,7 +30,7 @@
 \newcommand{\heatmassflux}{Q_{\rm massflux}}
 \newcommand{\heatadv}{Q_{\rm adv}}
 \newcommand{\heatcomp}{Q_{\rm comp}}
-\newcommand{\heatbuoy}{C_{\rm buoy}}
+\newcommand{\heatbuoy}{Q_{\rm buoy}}
 \newcommand{\heatfluxin}{Q_{\rm flux}}
 
 \newcommand{\uover}{{\overline{\vecu}}}
@@ -81,6 +81,9 @@
 \newcommand{\eggwnke}{W^{\rm EGG}_{\rm NKE}}
 \newcommand{\eggwint}{W^{\rm EGG}_{\rm int}}
 \newcommand{\eggwheat}{W^{\rm EGG}_{\rm heat}}
+
+\newcommand{\gtot}{G_{\rm tot}  }
+\newcommand{\gptot}{G^\prime_{\rm tot}  }
 
 % date, author, title
 \date{\today}
@@ -786,13 +789,25 @@ Finally, we note that the explicit presence of the buoyancy work in the heat equ
 %The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see \citealt{Ogura1962}). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomeanmassflux}. 
 
 %The latter compressive term $(\prsover/\rhoover^2)\rhoone$ is thus eliminated under the anelastic approximation and we instead identify $\tmpover \entrone$ with the internal energy. 
-\section{Conservation of mass and the second law of thermodynamics}\label{sec:secondlaw}
-Although there is no mean mass flux in both the fully compressible and anelastic equations (see Equations \eqref{eq:nomeanmassflux} and either \eqref{eq:massflux} or \eqref{eq:massflux2}), total mass is \textit{not} conserved at first order under the anelastic approximation.\footnote{In this section, $\vecu$ again refers to $\uone$} Instead of Equation \eqref{eq:drhodt0}, we have from (e.g.) Equation \eqref{eq:refenrhopert}, 
+\section{Anelastic Nonconservation of mass and the second law of thermodynamics}\label{sec:secondlaw}
+Although there is no mean mass flux in both the fully compressible and anelastic equations (see Equations \eqref{eq:nomeanmassflux} and either \eqref{eq:massflux} or \eqref{eq:massflux2}), total mass is \textit{not} conserved at first order under the anelastic approximation. Instead of Equation \eqref{eq:drhodt0}, we have from (e.g.) Equation \eqref{eq:refenrhopert}, 
 \begin{align}\label{eq:drhodtnot0}
  \pderiv{\rhoover}{t} &= \frac{1}{\tilde{\cs^2}}\pderiv{\prsover}{t}-\frac{\deltatilde \rhotilde}{\cptilde}\pderiv{\entrover}{t}\nonumber\\
  &=  \frac{1}{\tilde{\cs^2}}\pderiv{\prshat}{t}-\frac{\deltatilde \rhotilde}{\cptilde}\pderiv{\entrhat}{t}.\
 \end{align}
-$\pderivline{\prshat}{t}$ can be written in terms of $\pderivline{\overline{w^2}}{t}$ and $\pderivline{\entrhat}{t}$ via Equations \eqref{eq:anmommean} and \eqref{eq:refturbpressure} and $\pderivline{\entrhat}{t}$ comes directly from the mean of Equation \eqref{eq:eggen}. 
+$\pderivline{\prshat}{t}$ can be written in terms of $\pderivline{\overline{w^2}}{t}$ and $\pderivline{\entrhat}{t}$ via Equations \eqref{eq:anmommean} and \eqref{eq:refmomrhs} and $\pderivline{\entrhat}{t}$ comes directly from the mean of Equation \eqref{eq:eggen} (which is also Equation \eqref{eq:anenmean2}). Thus, there is thus no guarantee that $\pderivline{\rhoover}{t}\equiv0$ and in general it will not. This should be expected, since one of the main purposes of the anelastic approximation is to ``sound proof" the equations, which is accomplished by using only the zeroth-order part of the continuity equation. There is thus the somewhat odd result that the anelastic equations do not contain any mean mass flux, but \textit{do} allow for net increases and decreases of mass at any particular vertical level. 
+
+Nonconservation of mass is also the reason the anelastic equations violate the second law of thermodynamics under all circumstances. In the absence of heat sources or sinks ($Q\equiv0$, $\vecf\equiv0$, and $\mu\equiv0$), the full compressible motion is adiabatic everywhere and thus conserves the system's total (extensive) entropy, $\gtot\define\int_V\rho SdV$, at all orders. At first order, this means that for the fully compressible motion,
+\begin{align}\label{eq:sconst}
+	\gptot\define \int_V(\entrtilde\rhoprime + \rhotilde\entrprime)dV \equiv \text{constant}.
+\end{align}
+
+By contrast, for the anelastic motion, Equation \eqref{eq:eggen} (with $Q^\prime\equiv0$, $\vecf^\prime\equiv0$, and $\mutilde\equiv0$) yields
+ \begin{align}\label{snotconst}
+ 	\frac{d\gptot}{dt}= \int_V\entrtilde \pderiv{\rhoover}{t}dV + \int_V \frac{\heatnlbr}{\tmptilde}dV, 
+ \end{align}
+ which $\neq0$ under any circumstances because $\pderivline{\rhoover}{t}\neq0$. there are no circumstances in which the anelastic motion conserves total entropy. 
+ Equation \eqref{eq:eggen} becomes
 
 %One slightly surprising result concerns the second law of thermodynamics. In the absence of heat sources or sinks, when the true motion should be adiabatic, Equation \eqref{eq:eggen} becomes
 %\begin{align}\label{eq:dsdtref}
