@@ -57,6 +57,12 @@
 \newcommand{\anetot}{E_{\rm tot}^{\rm an}}
 \newcommand{\eggetot}{E_{\rm tot}^{\rm EGG}}
 
+\newcommand{\gtot}{G_{\rm tot}}
+\newcommand{\gptot}{G_{\rm tot}^\prime}
+\newcommand{\angtot}{G_{\rm tot}^{\rm an}}
+\newcommand{\egggtot}{G_{\rm tot}^{\rm EGG}}
+
+
 \newcommand{\wtot}{W_{\rm tot}}
 \newcommand{\wke}{W_{\rm KE}}
 \newcommand{\wnke}{W_{\rm NKE}}
@@ -82,9 +88,6 @@
 \newcommand{\eggwnke}{W^{\rm EGG}_{\rm NKE}}
 \newcommand{\eggwint}{W^{\rm EGG}_{\rm int}}
 \newcommand{\eggwheat}{W^{\rm EGG}_{\rm heat}}
-
-\newcommand{\gtot}{G_{\rm tot}  }
-\newcommand{\gptot}{G^\prime_{\rm tot}  }
 
 \newcommand{\sstable}{|\entrprime_{\rm stable}|}
 \newcommand{\sunstable}{|\entrprime_{\rm unstable}|}
@@ -794,39 +797,72 @@ Finally, we note that the explicit presence of the compression buoyancy work in 
 %The disappearance of the compressive term, which was called the ``elastic energy" in \citet{Eckart1956}, is the origin of the term ``anelastic," coined by Jule Charney (see \citealt{Ogura1962}). The potential energy term also disappears, which is a direct consequence of the assumption of zero mean mass flux, Equation \eqref{eq:nomeanmassflux}. 
 
 %The latter compressive term $(\prsover/\rhoover^2)\rhoone$ is thus eliminated under the anelastic approximation and we instead identify $\tmpover \entrone$ with the internal energy. 
-\section{Anelastic nonconservation of mass and the second law of thermodynamics}\label{sec:secondlaw}
-Although there is no mean mass flux in both the fully compressible and anelastic equations (see Equations \eqref{eq:nomeanmassflux} and either \eqref{eq:massflux} or \eqref{eq:massflux2}), total mass is \textit{not} conserved at first order under the anelastic approximation. Instead of Equation \eqref{eq:drhodt0}, we have from (e.g.) Equation \eqref{eq:refenrhopert}, 
-\begin{align}\label{eq:drhodtnot0}
- \pderiv{\rhoover}{t} &= \frac{1}{\tilde{\cs^2}}\pderiv{\prsover}{t}-\frac{\deltatilde \rhotilde}{\cptilde}\pderiv{\entrover}{t}\nonumber\\
- &=  \frac{1}{\tilde{\cs^2}}\pderiv{\prshat}{t}-\frac{\deltatilde \rhotilde}{\cptilde}\pderiv{\entrhat}{t}.\
+\section{Anelastic violation of the second law of thermodynamics when $\nabla\entrtilde\neq0$}
+The fully compressible equations \eqref{eq:cont}--\eqref{eq:en} satisfy the second law of thermodynamics, which states that the total (extensive) entropy of the fluid layer must increase or stay constant with time. The easiest way to see this is in the absence of heat sources or sinks ($Q\equiv0$, $\vecf\equiv0$, and $\mu\equiv0$). In that case, it is easily shown that the total entropy is conserved, i.e.,
+\begin{align}\label{eq:gconst}
+	\gtot\define\int_V\rho SdV=\text{constant}. 
 \end{align}
-$\pderivline{\prshat}{t}$ can be written in terms of $\pderivline{\overline{w^2}}{t}$ and $\pderivline{\entrhat}{t}$ via Equations \eqref{eq:anmommean} and \eqref{eq:refmomrhs} and $\pderivline{\entrhat}{t}$ comes directly from the mean of Equation \eqref{eq:eggen} (which is also Equation \eqref{eq:anenmean2}). Thus, there is thus no guarantee that $\pderivline{\rhoover}{t}\equiv0$ and in general it will not. This should be expected, since one of the main purposes of the anelastic approximation is to ``sound proof" the equations, which is accomplished by using only the zeroth-order part of the continuity equation. There is thus the somewhat odd result that the anelastic equations do not contain any mean mass flux, but \textit{do} allow for net increases and decreases of mass at any particular vertical level. 
+Also, the motion of any particular fluid parcel is adiabatic, i.e.,
+\begin{align}\label{eq:admotion}
+	\frac{DS}{Dt}\equiv0.
+\end{align}
+For the AnEGG equations with $\nabla\entrtilde\equiv0$, the same is true, i.e.,
+\begin{align}\label{eq:egggconst}
+	\egggtot\define \int_V \rhotilde\entrprime dV \equiv \text{constant}
+\end{align}
+and 
+\begin{align}\label{eq:eggadmotion}
+	\frac{D\entrprime}{Dt}\equiv0.
+\end{align}
+Upon careful consideration, this is actually rather remarkable. We saw in Section \ref{sec:meaningtote} that the AnEGG heat equation \eqref{eq:eggen2} contains two ``heating" terms ($\heatcomp$ and $\heatbuoy$) that are due to fully reversible processes. Seemingly magically, when there is no background stratification, these two terms combine in just the right way to preserve the second law of thermodynamics. Explicitly (compare again to Equation \eqref{eq:anenrhs2}), when $\nabla\entrtilde\equiv0$, we have
+\begin{align}
+	\heatcomp + \heatbuoy = \rhotilde\entrprime\ugrad\tmptilde.
+\end{align}
+When divided by $\tmptilde$, the heat equation \eqref{eq:eggen2}---with no sources or sinks and $\nabla\entrtilde\equiv0$---thus becomes Equation \eqref{eq:eggadmotion} for adiabatic motion. Using the continuity equation \eqref{eq:eggcont} then yields total entropy conservation \eqref{eq:egggconst}.
 
-Nonconservation of mass is also the reason the anelastic equations violate the second law of thermodynamics under all circumstances. In the absence of heat sources or sinks ($Q\equiv0$, $\vecf\equiv0$, and $\mu\equiv0$), the full compressible motion is adiabatic everywhere and thus conserves the system's total (extensive) entropy, $\gtot\define\int_V\rho SdV$, at all orders. At first order, this means that for the fully compressible motion,
-\begin{align}\label{eq:sconst}
-	\gptot\define \int_V(\entrtilde\rhoprime + \rhotilde\entrprime)dV \equiv \text{constant}.
+For those still not convinced that this is remarkable, consider the converse. It seems remarkable that the simple expression for linearized adiabatic motion, $D\entrprime/Dt\equiv0$, can be rearranged to yield both the compression and buoyancy heatings ($\heatcomp$ and $\heatbuoy$, respectively) and simultaneously identify $\rhotilde\tmptilde\entrprime$ as the total internal energy under the anelastic approximation. 
+
+When $\nabla\entrtilde\neq0$, we now have a problem. The full heat equation \eqref{eq:eggen} (still with no sources or sinks) and the continuity equation \eqref{eq:eggcont} yield
+\begin{align}\label{eq:egggnonconst}
+  \frac{d\egggtot}{dt}= -\int_V \rhotilde\tmpprime\ugrad\entrtilde=\int_V \frac{\heatnlbr}{\tmptilde}dV \neq0
+\end{align}	
+and
+\begin{align}\label{eq:eggnonadmotion}
+	\frac{D}{Dt}(\entrtilde + \entrprime) =  -\left(\frac{\tmpprime}{\tmptilde}+\frac{\rhoprime}{\rhotilde}\right)\ugrad\entrtilde=\frac{\heatnlbr+\heatnomassflux}{\rhotilde\tmptilde}.
 \end{align}
 
-By contrast, for the anelastic motion, Equation \eqref{eq:eggen} (with $Q^\prime\equiv0$, $\vecf^\prime\equiv0$, and $\mutilde\equiv0$) yields
- \begin{align}\label{eq:snotconst}
- 	\frac{d\gptot}{dt}= \int_V\entrtilde \pderiv{\rhoover}{t}dV + \int_V \frac{\heatnlbr}{\tmptilde}dV, 
- \end{align}
- which $\neq0$ (except at isolated instances) under any circumstances because $\pderivline{\rhoover}{t}\neq0$ and $\entrtilde\neq0$ (by the third law of thermodynamics, which states that $S>0$ even when $T=0$, i.e., absolute zero). Thus, there are no systems (even convection zones with $d\entrtilde/dq\equiv0$) for which the anelastic motion conserves total entropy. 
- 
-The careful reader might at first complain about this sweeping statement for two obvious reasons. First, the fluid equations \eqref{eq:cont}--\eqref{eq:eos} are insensitive to the absolute value of $S$. In a convection zone, then (where $\heatnlbr$ already vanishes identically), might we be free to set $\entrtilde\equiv0$ and thus conserve entropy? The answer is ``no" and also a bit subtle. It is true that the fluid equations as written are insensitive to the absolute value of the \textit{specific} entropy $S$. However, the second law of thermodynamics concerns the \textit{total} (extensive) entropy $\gtot$, or for small thermal perturbations, $\gptot$. The evolution of total entropy \textit{does} depend on the absolute value of $S$ for the simple reason that $\pderivline{(\rho S)}{t} = S\pderivline{\rho}{t} + \rho\pderivline{S}{t}$. Essentially then, Equation \eqref{eq:snotconst} states that because mass is not conserved at first order under the anelastic approximation, and because the total entropy can change via changes in mass, there is no way any anelastic approximation can satisfy the second law of thermodynamics. 
+Thus, the AnEGG equations do \textit{not} satisfy the second law of thermodynamics in the presence of background stratification (nor is the motion adiabatic in the absence of heat sources or sinks). This violation happens precisely because of the terms $\heatnlbr$ and $\heatnomassflux$ that allow the AnEGG equations to conserve total energy, as well as be asymptotically and energetically consistent with the fully compressible equations under the no mean mass flux condition \eqref{eq:nomeanmassflux}. 
 
-The second complaint might be that \textit{we} are (currently) the only ones advocating to introduce the terms $\heatnlbr$ and $\heatnomassflux$. Anelastic simulations have for decades been perfectly fine not including these terms. Furthermore, Equation \eqref{eq:snotconst} clearly shows that by introducing $\heatnlbr$ specifically, we are making the violation of the second law of thermodynamics worse.\footnote{The statements in this paragraph are, of course, only relevant for nonzero $d\entrtilde/dq$, which is the only way to have nonzero $\heatnlbr$ and $\heatnomassflux$.} If we examine the Lagrangian evolution of a fluid parcel's specific entropy with no heat sources or sinks, Equation \eqref{eq:eggen} yields 
-\begin{align}\label{eq:dsdtnoheat}
-	\frac{D}{Dt}(\entrtilde + \entrprime) = \frac{\heatnlbr+\heatnomassflux}{\rhotilde\tmptilde}.
+We are thus led to the inexorable (and maybe undesirable) result that in the presence of background stratification, the anelastic equations can be made to conserve total energy or to satisfy the second law of thermodynamics, but not both simultaneously. Prior anelastic approximations (whether by conscious choice or inherited custom) seem to have opted to satisfy the second law, but not conserve energy. Whether one chooses to conserve energy instead (and thus include the terms $\heatnlbr$ and $\heatnomassflux$ in the energy equation) is ultimately a matter of preference, depending on which law one believes is more physically fundamental. Our position is that conservation of energy is more fundamental. The assumption of zero mean mass flux makes the interpretation of $\wpheat=\rhotilde\tmptilde\entrprime$ as \textit{some} sort of internal energy reasonable. However, the presence of fully reversible terms in Equation \eqref{eq:eggen} means that $\wpheat$ is not a strict internal \textit{heat} energy (and thus $\entrprime$ is not a strict entropy), even if $\egggtot$ is conserved for $\nabla\entrtilde=0$ in the absence of sources or sinks.
+
+Before leaving this section, it is worth noting that this mutual exclusion of energy conservation and the second law of thermodynamics does not appear to be unique to the anelastic approximation, but applies whenever the thermal variables are linearized. 
+
+First, we note that the fully compressible heat equation, when linearized specifically to preserve the second law, does \textit{not} yield adiabatic motion of fluid parcels in the absence of heat sources or sinks, at least not in the form \eqref{eq:eggadmotion}. The reason for this is that adiabatic motion fundamentally means conservation of a fluid parcel's total entropy, not its specific entropy. In other words, the fully compressible adiabatic motion satisfies 
+\begin{align}\label{eq:fcadmotion}
+	\frac{D}{Dt}(\rho S) = -\rho S\Div\vecu\five\orr \rho\frac{DS}{Dt}\equiv0,
+\end{align} 
+as long as the continuity equation \eqref{eq:cont} is satisfied. Note that dividing the righthand form of this equation by $\rho$ before linearizing is not allowed! It is true of course that Equation \eqref{eq:fcadmotion} yields adiabatic motion for the full thermal variables in standard form, $DS/Dt\equiv0$. However, when Equation \eqref{eq:fcadmotion} is thermally linearized (as per Equation \eqref{eq:smallthermalpert}), and if the continuity equation is satisfied at both zero and first order, we find
+\begin{align}\label{eq:fcadmotionpert}
+	\frac{D}{Dt}(\entrprime+\entrtilde)=  - \frac{\rhoprime}{\rhotilde}\ugrad\entrtilde= \frac{\heatmassflux}{\rhotilde\tmptilde}.
 \end{align}
-In other words, the AnEGG approximation has the seemingly undesirable result that fluid parcels do not conserve specific entropy during adiabatic motion. If we throw away $\heatnlbr$ and $\heatnomassflux$, then perhaps energy would not be conserved, but at least specific entropy of fluid parcels would be conserved in the absence of heat sources and sinks. Our position is to keep $\heatnlbr$ and $\heatnomassflux$ because specific entropy should \textit{not} be conserved during anelastic adiabatic motion. Equation \eqref{eq:snotconst} clearly shows that the second law of thermodynamics is violated no matter what. On the righthand side of Equation \eqref{eq:dsdtnoheat}, the missing term $-(\entrtilde/\rhotilde)D\rhoprime/Dt$ is no less of an issue than the new term $(\heatnlbr+\heatnomassflux)/(\rhotilde\tmptilde)$. 
+Even if there is zero mean mass flux (so $\heatmassflux=\heatnomassflux$), the righthand side of Equation \eqref{eq:fcadmotionpert} is still pointwise nonzero and the motion is ``nonadiabatic" in the traditional sense. If we do assume zero mean mass flux, then the integral of Equation \eqref{eq:fcadmotionpert} over $V$ yields 
+\begin{align}\label{eq:gconstpert}
+	\gptot\define\int_V\rhotilde (\entrprime + \entrtilde)dV=\text{constant},
+\end{align}
+even when $\nabla\entrtilde\neq0$. Thus, the thermally linearized fully compressible heat equation can be made to satisfy the second law, but conservation of a fluid parcel's specific entropy (traditionally interpreted as ``adiabatic motion" does not result). 
 
-We can summarize this section by stating that the anelastic asymptotic expansion is fundamentally a strange one, because all the equations are expanded to first order except the continuity equation, which is expanded only to zeroth order. This is bound to introduce some severe unphysical consequences. The root of all unphysicality is the nonconservation of mass at first order. As a result, the second law of thermodynamics seems unenforceable under all circumstances. By contrast, energy conservation when $d\entrtilde/dq\neq0$ is easily enforceable (and consistent with the true compressible motion) by assuming no mean mass flux and restoring the terms $\forcenlbr$, $\heatnlbr$, and $\heatnomassflux$ to the anelastic equations of motion. 
+Second, it seems that the only hope to conserve total energy after thermally linearizing is to start with the dimensions of energy in the heat equation. If continuity is assumed at all orders, the lefthand side of Equation \eqref{eq:en} is given by	$\pderivline{}{t}(\rho U) + \Div(\rho U\vecu) + P\Div\vecu = \rho T DS/Dt$. When there are no sources or sinks and zero mean mass flux, the linearized form of Equation \eqref{eq:en} thus reduces to Equations \eqref{eq:egggnonconst} and \eqref{eq:eggnonadmotion}, yielding the (fundamentally) nonadiabatic term $\heatnlbr$ in addition to $\heatnomassflux$.\footnote{This might seem obvious, but differs slightly from the derivation of AnEGG in that we must assume the continuity equation holds at first order.} Thus, if the linearized fully compressible heat equation is to yield conservation of total energy in stable layers (assuming no mean mass flux for simplicity, although that does not limit the conclusion), the new terms $\heatnlbr$ and $\heatnomassflux$ must appear, thereby violating the second law. 
+
+We can summarize this section via two multiplications: first by $\rho$, then by $T$. These results apply to any thermally linearized system in the presence of nonadiabatic background stratification, provided the continuity equation holds at both zeroth and first order.\footnote{They apply to the anelastic approximation too of course, which only satisfies the continuity equation at zeroth order. However, in that case we must interpret the total entropy as $\egggtot$, which misses entropy from $\int_V\entrtilde\rhoprime dV$.}  First, it is fundamentally incorrect to write $DS/Dt\equiv0$ for adiabatic motion and then linearize, since the motion of fluid parcels will not be \textit{truly} adiabatic. Instead, we must write $\rho DS/Dt\equiv0$, then linearize. Doing so introduces the new term ($\heatmassflux$ or $\heatnomassflux$) and allows both true adiabatic motion and the second law to be satisfied. If we would rather conserve total energy, then we must write $\rho T DS/Dt\equiv0$, introducing the term $\heatnlbr$ in addition to $\heatmassflux$ (or $\heatnomassflux$). Then total energy \textit{may} be conserved, but truly adiabatic motion is not possible and the second law is violated. 
+
+%\begin{align}
+%	\rhotilde\tmptilde\frac{D}{Dt}(\entrtilde+\entrprime) = - \rhotilde\tmpprime\ugrad\entrtilde - \rhoprime\tmptilde\ugrad\entrtilde= \heatnlbr + \heatmassflux
+%\end{align}
 
 \section{Conditions for anelastic overshoot}\label{sec:overshoot}
 Up to this point, we have carefully sidestepped the issue that \citet{Gough1969} implicitly assumed small $|\nabla \entrtilde|$.\footnote{This fact is ``hidden" in \citet{Gough1969}'s nondimensionalization of the background superadiabatic gradient, which appears in the unmarked equation immediately following his Equation (3.10). Here, \citet{Gough1969} chooses the scale $\theta/d$ for $\beta$ (recall Equation \eqref{eq:superad}), where $d$ is the layer depth ($\sim$$H_a$ for our purposes) and $\theta$ is the integral of $\beta$ across the convective region. Then, in \citet{Gough1969}'s Equation (3.11), he implicitly assumes that $\theta/T_a\sim\epsilon$ for high Rayleigh number. Since $\theta/T_a\sim (1/\cpa)|\nabla\entrtilde|$, this means $|\nabla\entrtilde|$ is assumed to be small relative to $\cpa/H_a$.} Although we have shown that \citet{Gough1969}'s equations conserve energy for all values of $|\nabla \entrtilde|$, it still may be that \citet{Gough1969}'s scale analysis presented in Section \ref{sec:goughorig} breaks down, along with the subsequent nondimensionalization and asymptotic expansion leading to AnEGG. To systematically show that AnEGG can be used consistently for stably stratified layers would require a new scale analysis (considering overshoot and gravity-wave excitation instead of only convection) and subsequent formal asymptotic expansion of the fully compressible equations, which we do not attempt to do here. Instead, we argue that the anelastic approximation \textit{may} remain valid in the limited scenario of convective overshoot, in the sense that the thermal perturbations should remain small when certain conditions are met. %, provided the typical buoyancy frequency is less than the acoustic cutoff frequency. 
 
-The obvious issue with nonzero $d\entrtilde/dq$ is that moving fluid may develop very large thermal perturbations via the term $\heatadv$, which violates the key assumption \eqref{eq:smallthermalpert} of the anelastic approximation. For negative $d\entrtilde/dq$ (i.e., in a convection zone accelerated by the reference state), there seems to be no way around this issue. If $|d\entrtilde/dq|\sim \cpa/H_a$, for example, a fluid parcel will be accelerated across the full length of $H_a$ and develop a thermal perturbation $|\entrprime/\cpa|\sim H_a|d\entrtilde/dq|/\cpa=O(1)$. Instead, we must assume small $|d\entrtilde/dq|$ for a convection zone only, making the whole discussion of energy conservation (and the new terms we introduce) irrelevant. 
+The obvious issue with nonzero $d\entrtilde/dq$ is that moving fluid may develop very large thermal perturbations via the term $\heatadv$, which violates the key assumption \eqref{eq:smallthermalpert} of the anelastic approximation. For negative $d\entrtilde/dq$ (i.e., in a convection zone whose overturning motions are accelerated by the reference state), there seems to be no way around this issue. If $|d\entrtilde/dq|\sim \cpa/H_a$, for example, a fluid parcel will be accelerated across the full length of $H_a$ and develop a thermal perturbation $|\entrprime/\cpa|\sim H_a|d\entrtilde/dq|/\cpa=O(1)$. Instead, we must assume small $|d\entrtilde/dq|$ for a convection zone only, making the whole discussion about energy conservation (and the new terms we introduce) irrelevant. 
 
 In a strongly stable layer, by contrast, an initially buoyant fluid parcel should be immediately decelerated and turned around before it has made it far enough to acquire a large thermal perturbation. The stronger the stable gradient is, the larger this restriction on total distance traveled will be. 
 
@@ -866,7 +902,7 @@ which remains $\lesssim\epsilon$ provided that
 \end{align}
 In other words, we expect the thermal perturbations to remain small in the stable layer, provided that the \textit{second} derivative of $\entrtilde$ is small enough at the base of the convection zone. 
 
-If Equation \eqref{eq:criterion1} holds, then Equation \eqref{eq:ddescent1} yields $d\sim\hdsdq\epsilon^{1/2}$, which is consistent with the Taylor expansion \eqref{eq:sdescent1}. T
+If Equation \eqref{eq:criterion1} holds, then Equation \eqref{eq:ddescent1} yields $d\sim\hdsdq\epsilon^{1/2}$, which is consistent with the Taylor expansion \eqref{eq:sdescent1}.
 
  If instead, the stability transition is particularly abrupt (large $|\nabla^2\entrtilde|_{q=q_0}$) or $\epsilon$ is not particularly small, then the Taylor expansion of Equation \eqref{eq:sdescent1} becomes insufficient because $d\gtrsim\hdsdq$. In other words, the plume descends all the way into regions of large $d\entrtilde/dq$ and we would estimate
  \begin{align}\label{eq:sdescent2}
@@ -875,7 +911,7 @@ If Equation \eqref{eq:criterion1} holds, then Equation \eqref{eq:ddescent1} yiel
  during descent. Here, $|\nabla S_a|$ and $N_a^2$ are typical values of $|\nabla\entrtilde|$ and $\nsqtilde$ in the bulk of the stable layer. 
  
  From arguments similar to the ones above, we then estimate
- \begin{align}
+ \begin{align}\label{eq:ddescent2}
  	d\sim H_a\frac{\omac}{N_a}\epsilon^{1/2}
 \end{align}
 and 
@@ -890,8 +926,9 @@ Here, $\omac\define \csa/H_a\sim \sqrt{g_a/H_a}$ is a typical value of the acous
 
 In other words, for abrupt stability transitions, we expect the thermal perturbations to remain small in the stable layer, provided the buoyancy frequency is sufficiently smaller than the acoustic cutoff frequency. 
 
-Which criteria is applicable to the overshoot (either Equations \eqref{eq:criterion1} or \eqref{eq:criterion2}) depends on the magnitudes of 
+Which criterion is applicable to the overshoot (either Equations \eqref{eq:criterion1} or \eqref{eq:criterion2}) depends on the magnitudes of $\epsilon$, $|\nabla^2\entrtilde|_{q=q_0}$, and $H_a$. If Equation \eqref{eq:criterion1} holds, then small $\sstable/\cpa$ is at least assured (perhaps not as small as $\epsilon$) provided $d\ll \hdsdq$. For, say $d=\epsilon_d\hdsdq$ (with $\epsilon_d\ll1$), then Equation \eqref{eq:ddescent1} yields $H_a/\hdsdq\sim \epsilon_d^3/\epsilon$ and Equation \eqref{eq:entrpert1} gives $\sstable\sim\epsilon_d^2\ll1$. Conversely, $d\sim\hdsdq$ yields $\sstable/\cpa=O(1)$ and the anelastic equation certainly breaks down. 
 
+If Equation \eqref{eq:criterion2} holds (large $d$, likely for large $\epsilon$ and/or small $\hdsdq$---i.e., sharp stability transitions), small $\sstable/\cpa$ seems likely in all cases (though possibly not as small as $\epsilon$). That is because $N_a^2$ should not differ much from $\omac$, given that hydrostatic balance should set the magnitude of all the background thermal gradients, including the ``bulk" $d\entrtilde/dq$. In in the solar radiative zone, for example, we estimate from Model S \citep{ChristensenDalsgaard1996}, $N_a^2\sim 10^{-6}\ \rm (rad\ s^{-1})^2$ and $\omac^2\sim 2\times10^{-5}\ \rm (rad\ s^{-1})^2$. \textit{If} the stability transition in the Sun is sharp, we would thus need $\epsilon\sim0.05$ for the convection (fairly high, also implying $\sim$5\% error in the anelastic approximation in the first place) for the overshoot to remain anelastic. Note that little is known about the precise magnitude of $\hdsdq$ due to the current width of helioseismic kernels (e.g., \citealt{Howe2009,Basu2016}).  
 
 \section{Internal gravity waves}\label{sec:gravitywaves}
 
