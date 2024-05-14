@@ -36,7 +36,7 @@
 \begin{document}
 	\maketitle
 	\section{General Equations Solved in {\rayleigh}}
-	In general (with rotation and magnetism), {\rayleigh} evolves in time a set of coupled PDEs for the 3D vector velocity $\vecu$, vector magnetic field $\vecb$, pressure perturbation $P$ (perturbation away from the ``reference" or ``background" state), and entropy perturbation $S$. Note that $S$ can also be interpreted as a temperature perturbation in Boussinesq mode. For more details, see {\rayleigh}'s \href{https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/physics_math_overview.html#the-system-of-equations-solved-in-rayleigh}{Documentation}. 
+	In general (with rotation and magnetism), {\rayleigh} time-evolves a set of coupled PDEs for the 3D vector velocity $\vecu$, vector magnetic field $\vecb$, pressure perturbation $\prsprime$ (perturbation away from the ``reference" or ``background" state pressure $\prstilde$), and entropy perturbation $\entrprime$ (perturbation away from $\entrtilde$). Note that $\entrprime$ can also be interpreted as a temperature perturbation in Boussinesq mode. For more details, see {\rayleigh}'s \href{https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/physics_math_overview.html#the-system-of-equations-solved-in-rayleigh}{Documentation}. 
 	
 	We use standard spherical coordinates $(r,\theta,\phi)$ and cylindrical coordinates $(\lambda,\phi,z) = (r\sint,\phi, r\cost)$, and $\e_q$ in general denotes a position-dependent unit vector in the direction of increasing $q$. The full PDE-set is then:
 	\begin{align}
@@ -62,7 +62,7 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 	The spherically-symmetric, time-independent reference (or background) functions $f_i(r)$ and constants $c_j$ set the fluid approximation to be made. {\rayleigh} has built-in modes to set the $f$'s and $c$'s for single-layer (i.e., either convectively stable or unstable, but not both) Boussinesq or Anelastic spherical shells. More complex systems (coupled stable--unstable systems or alternative non-dimensionalizations) require the user to manually change the $f$'s and $c$'s. This can be done by editing an input binary file that {\rayleigh} reads upon initialization. The $c$'s can also be changed in the ASCII text-file (i.e., the \texttt{main\_input} file). 
 	
 	\section{Dimensional Anelastic Equations}
-	We begin by writing down the full dimensional anelastic fluid equations, as they are usually implemented in {\rayleigh} (\texttt{reference\_type = 2}). We differ slightly from ``tradition" by assuming at the outset that there is both volumetric heating (preferentially in the bottom of the layer), $\qref\ofr$ and volumetric cooling (preferentially at the top of the layer), $\cref\ofr$ (our convention is that both $\qref$ and $\cref$ are positive; the cooling gets subtracted).
+	We begin by writing down the full dimensional anelastic fluid equations, as they are usually implemented in {\rayleigh} (\texttt{reference\_type = 2}). We differ slightly from ``tradition" by assuming at the outset that there is both volumetric heating (preferentially in the bottom of the layer), 
 	
 	This form of the anelastic approximation in a spherical shell is derived in, or more accurately, attributed to (since {\rayleigh} ``updates" the background state slightly differently than the cluge-y \texttt{ASH} implementation), two common sources: \citet{Gilman1981} and \citet{Clune1999}. {\rayleigh}'s dimensional anelastic equation-set is then:
 	\begin{align}
