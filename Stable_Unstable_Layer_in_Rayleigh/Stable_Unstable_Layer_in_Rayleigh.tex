@@ -27,6 +27,7 @@
 \newcommand{\cz}{_{\rm{CZ}}}
 \newcommand{\wl}{_{\rm{WL}}}
 \newcommand{\dcool}{\delta_{\rm{cool}}}
+\newcommand{\vecf}{\bm{F}}
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
@@ -88,11 +89,39 @@ More complex systems, which {\rayleigh} also supports, require the user to manua
 	
 	Other background quantities that appear are the full gravitational acceleration $\gtilde$, the momentum, thermal, and magnetic diffusivities ($\nutilde$, $\kappatilde$, and $\etatilde$ , respectively; these all have c.g.s. units of $\stoke$), the internal heating $\heattilde$, the frame rotation rate $\Omega_0$, the specific heat at constant pressure $\cp$, and the vacuum permeability $\mu$ ($=4\pi$ in c.g.s. units). The equations are written in a frame rotating with angular velocity $\Omega_0\ez$ and the centrifugal force is neglected. Note that $\cp$ is always assumed to be constant, while in a real stellar (or gas-giant) structure model, it should really vary in radius.
 	
-	%Note that $\heattilde$ is a reference-state quantity (and thus assumed to be spherically-symmetric and time-independent) but should be interpreted as $\heattilde=-\Div\frad$, where $\frad$ is the radiative heat flux. Properly, $\heattilde$ should be proportional to the radiative diffusivity $\kappa_{\rm rad}$ (which takes on a specific form in the radiative diffusion approximation, derivable from the opacity) and to the gradient of the total temperature $\tmptilde + T$; and $C$ should be calculated using complicated near-surface physics. 
-	
 	\subsection{The reference state}
-	Ideally, the reference state would be chosen based on a state-of-the-art structure model, incorporating all known physics. In the Sun, for example, this structure model is fairly well agreed-upon (e.g., \citealt{ChristensenDalsgaard1996}); but in the Jovian case, much less so (e.g., \citealt{Guillot2005}). In our (or possibly just Loren's) philosophy, the form of the reference state itself matters far less than the fact that we cannot approach realistic astrophysical conditions for stars or gas giants. Therefore, we choose the reference state somewhat arbitrarily. We do, however demand 
+	Ideally, the reference state would be chosen based on a state-of-the-art structure model, incorporating all known physics. In the Sun, for example, this structure model is fairly well agreed-upon (e.g., \citealt{ChristensenDalsgaard1996}); but in the Jovian case, much less so (e.g., \citealt{Guillot2005}). In our (or possibly just Loren's) philosophy, the form of the reference state itself matters far less than the fact that we cannot approach realistic astrophysical conditions for stars or gas giants. Therefore, we choose the reference state somewhat arbitrarily. Put another way, we choose the$f_i$ to be slightly inaccurate and are consoled by the fact that the $c_j$ are \textit{incredibly} wrong. 
 	
+	We do, however demand that the gas be in hydrostatic balance,
+	\begin{align}\label{eq:dimhydro}
+	\frac{d\tilde{P}}{dr}= -\rhotilde \gtilde,
+	\end{align}
+	be perfect,
+	\begin{align}
+	\prstilde &= \rhotilde\gasconst \tmptilde,\label{eq:dimidgas}
+	\end{align}
+	and be in local thermodynamic equilibrium (LTE), 
+	\begin{subequations}\label{eq:dimfirstlaw}
+	\begin{align}
+		\frac{1}{\cp}\frac{d\entrtilde}{dr}&=\frac{1}{\gamma}\frac{d\ln\tmptilde}{dr} - \frac{\gamma - 1}{\gamma}\frac{d\ln\rhotilde}{dr}\label{eq:dimfirstlawtmprho}\\
+		&=\frac{1}{\gamma}\frac{d\ln\prstilde}{dr} - \frac{d\ln\rhotilde}{dr}\label{eq:dimfirstlawprsrho}\\
+		&= \frac{d\ln\tmptilde}{dr} - \frac{\gamma - 1}{\gamma}\frac{d\ln\prstilde}{dr}\label{eq:dimfirstlawtmpprs}
+	\end{align}
+	\label{eq:firstlaw3}
+\end{subequations}
+Here, $\gasconst=\cp-\cv$ is the gas constant, $\cv$ is the specific heat at constant volume (or density), and $\gamma=\cp/\cv$ is the ratio of specific heats. All are assumed to be constant (that is the definition of a perfect, not just ideal, gas). 
+
+Really, Equation \eqref{eq:dimfirstlaw} is simply an expression of the first law of thermodynamics. It doesn't further constrain the structure problem, but rather introduces a new unknown, i.e., the entropy $\entrtilde$. In an ideal world, we would therefore also demand a condition for thermal (in stars, radiative) equilibrium. This would generate another equation $\tmptilde$ and $\prstilde$ in addition to Equations \eqref{eq:dimhydro}--\eqref{eq:dimfirstlaw}, and thus fully define the structure problem. Under the radiative diffusion approximation, this equation would be
+\begin{subequations}
+\begin{align}
+	\heattilde &=  \frac{1}{r^2}\frac{d}{dr} r^2\frac{d\tilde{F}_{\rm rad}}{dr},\\
+	\where \tilde{\vecf}_{\rm rad} &\define -\rhotilde \cp 
+\end{align}
+\end{subequations}
+
+% After the structure problem was solved  %Note that $\heattilde$ is a reference-state quantity (and thus assumed to be spherically-symmetric and time-independent) but should be interpreted as $\heattilde=-\Div\frad$, where $\frad$ is the radiative heat flux. Properly, $\heattilde$ should be proportional to the radiative diffusivity $\kappa_{\rm rad}$ (which takes on a specific form in the radiative diffusion approximation, derivable from the opacity) and to the gradient of the total temperature $\tmptilde + T$; and $C$ should be calculated using complicated near-surface physics. 
+
+
 	In {\rayleigh}, a convective layer is usually driven by a combination of internal heating and the thermal boundary conditions (which are conditions on $\entrtilde$), that together ensure that an imposed energy flux is transported throughout the layer in a steady state. (Note that energy could also be forced across the layer by fixing the entropy $\entrtilde$ at each boundary, such that an ``adverse" (negative) radial entropy gradient is obtained in a steady state).   \textbf{In the Jupiter models, which will have both internal heating and cooling, we will set $\pderivline{S}{r}\equiv0$ at both the top and bottom boundary (no conduction in or out), and the flux of energy across the system will be imposed purely by the combination $Q-C$}. 
 	
 	%Note that Equation \eqref{eq:estressdim} is only valid in a Cartesian coordinate system ($x_1$, $x_2$, $x_3$) (with $i$ and $j$ running over 1, 2, 3) and is translated into spherical coordinates before being used in Rayleigh. 
