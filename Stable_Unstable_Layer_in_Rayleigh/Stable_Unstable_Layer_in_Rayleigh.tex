@@ -36,69 +36,72 @@
 \begin{document}
 	\maketitle
 	\section{General Equations Solved in {\rayleigh}}
-	In general (with rotation and magnetism), {\rayleigh} time-evolves a set of coupled PDEs for the 3D vector velocity $\vecu$, vector magnetic field $\vecb$, pressure perturbation $\prsprime$ (perturbation away from the ``reference" or ``background" state pressure $\prstilde$), and entropy perturbation $\entrprime$ (perturbation away from $\entrtilde$). Note that $\entrprime$ can also be interpreted as a temperature perturbation in Boussinesq mode. For more details, see {\rayleigh}'s \href{https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/physics_math_overview.html#the-system-of-equations-solved-in-rayleigh}{Documentation}. 
+	In general (with rotation and magnetism), {\rayleigh} time-evolves a set of coupled PDEs for the 3D vector velocity $\vecu$, vector magnetic field $\vecb$, pressure perturbation $\prsprime$ (perturbation away from the ``reference-state" pressure $\prstilde$), and entropy perturbation $\entrprime$ (perturbation away from $\entrtilde$). Note that $\entrprime$ can also be interpreted as a temperature perturbation in Boussinesq mode. For more details, see {\rayleigh}'s \href{https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/physics_math_overview.html#the-system-of-equations-solved-in-rayleigh}{Documentation}. 
 	
-	We use standard spherical coordinates $(r,\theta,\phi)$ and cylindrical coordinates $(\lambda,\phi,z) = (r\sint,\phi, r\cost)$, and $\e_q$ in general denotes a position-dependent unit vector in the direction of increasing $q$. The full PDE-set is then:
+	We use spherical coordinates: $r$ (spherical radius), $\theta$ (colatitude), $\phi$ (azimuth angle), as well as cylindrical coordinates: $\lambda=r\sint$ (cylindrical radius, or moment arm) and $z=\cost$ (axial coordinate). In general, $\e_q$ denotes a position-dependent unit vector in the direction of increasing $q$. With this notation, the full PDE-set solved by {\rayleigh} is:
 	\begin{align}
-	\Div[f_1\ofr\vecu] &= 0\label{eq:contgen},\\
+	\Div(f_1\vecu) &= 0\label{eq:contgen},\\
 	\Div \vecb &= 0,
 \end{align}
 \begin{subequations}\label{eq:momgen}
 	\begin{align}
-		f_1\ofr\left[\matderiv{\vecu}+c_1\ez\times\vecu\right] =&\ c_2f_2\ofr S\er - c_3 f_1\ofr\nabla\left[ \frac{P}{f_1\ofr} \right], \nonumber\\
+		f_1\left(\matderiv{\vecu}+c_1\ez\times\vecu\right) =&\ c_2f_2 S\er - c_3 f_1\nabla\left(\frac{P}{f_1} \right), \nonumber\\
 		& +c_4(\curl\vecb)\times\vecb+c_5\Div\bm{D},\\
-		\where D_{ij} \define&\ 2f_1\ofr f_3\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\label{eq:dstressgen}\\
+		\where D_{ij} \define&\ 2f_1 f_3 \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\label{eq:dstressgen}\\
 		\andd e_{ij} \define&\ \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),\label{eq:estressgen}
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:engen}
-	f_1\ofr f_4\ofr \left[\matderiv{S} + c_{11}f_{14}\ofr u_r\right] =&\ c_6\Div[f_1\ofr f_4\ofr f_5\ofr \nabla S] \nonumber \\
-	&+ c_{10}f_6(r) + c_8 c_5 D_{ij}e_{ij} +c_9c_7f_7\ofr|\curl\vecb|^2,
+	f_1 f_4 \left(\matderiv{S} + c_{11}f_{14} u_r\right) =&\ c_6\Div(f_1 f_4 f_5 \nabla S) \nonumber \\
+	&+ c_{10}f_6(r) + c_8 c_5 D_{ij}e_{ij} +c_9c_7f_7|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indgen}
-	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - c_7 f_7\ofr\curl\vecb\right],
+	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - c_7 f_7\curl\vecb\right],
 \end{align}
 where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material derivative. 
-	The spherically-symmetric, time-independent reference (or background) functions $f_i(r)$ and constants $c_j$ set the fluid approximation to be made. {\rayleigh} has built-in modes to set the $f$'s and $c$'s for single-layer (i.e., either convectively stable or unstable, but not both) Boussinesq or Anelastic spherical shells. More complex systems (coupled stable--unstable systems or alternative non-dimensionalizations) require the user to manually change the $f$'s and $c$'s. This can be done by editing an input binary file that {\rayleigh} reads upon initialization. The $c$'s can also be changed in the ASCII text-file (i.e., the \texttt{main\_input} file). 
+
+The shell geometry (i.e., aspect ratio) and reference state fully define the problem. (I have always found that initial conditions seem to ultimately be irrelevant to the final state of the system, although this of course doesn't rule out hysteresis effects from occurring in future cases). The reference state is defined by the spherically-symmetric, time-independent functions $f_i=f_i(r)$ and constants $c_j$. By adjusting the $f_i$ and $c_j$, the user can choose between a Boussinesq or anelastic approximation (the specific form of each approximation is described more fully in the  \href{https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/physics_math_overview.html#the-system-of-equations-solved-in-rayleigh}{Documentation}), choose any arbitrary nondimensionalization of these two equation sets, and/or set the nondimensional parameters (Rayleigh number, Prandtl number, etc.) of the problem.  {\rayleigh} has built-in modes to set the $f_i$ and $c_j$ for the single-layer (i.e., either convectively stable or unstable, but not both) Boussinesq approximation (nondimensional only) and anelastic approximation (either dimensional or nondimensional)
+
+More complex systems, which {\rayleigh} also supports, require the user to manually change the $f_i$ and $c_j$. This can be done by editing an input binary file that {\rayleigh} reads upon initialization. This document essentially describes how to produce such a ``custom" input file (here called {\texttt{customfile}}) for a coupled stable--unstable anelastic system, using a variety of chosen time-scales in the nondimensionalization. Note that the $c_j$ can also be over-written at run-time by an ASCII text-file (i.e., the \texttt{main\_input} file), allowing easy changes of the nondimensional numbers for a simulation suite that uses a common reference state---all without modifying the  {\texttt{customfile}}.
 	
 	\section{Dimensional Anelastic Equations}
 	We begin by writing down the full dimensional anelastic fluid equations, as they are usually implemented in {\rayleigh} (\texttt{reference\_type = 2}). We differ slightly from ``tradition" by assuming at the outset that there is both volumetric heating (preferentially in the bottom of the layer), 
 	
 	This form of the anelastic approximation in a spherical shell is derived in, or more accurately, attributed to (since {\rayleigh} ``updates" the background state slightly differently than the cluge-y \texttt{ASH} implementation), two common sources: \citet{Gilman1981} and \citet{Clune1999}. {\rayleigh}'s dimensional anelastic equation-set is then:
 	\begin{align}
-		\Div[\rhoref\ofr\vecu] &= 0\label{eq:contdim},\\
+		\Div[\rhotilde\vecu] &= 0\label{eq:contdim},\\
 		\Div \vecb &= 0,
 	\end{align}
 	\begin{subequations}\label{eq:momdim}
 	\begin{align}
-		\rhoref\ofr\left[\matderiv{\vecu}+2\Omega_0\ez\times\vecu\right] = &  \left[\frac{\rhoref\ofr \gref\ofr}{\cp}\right] S\er-\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right], \nonumber\\
+		\rhotilde\left[\matderiv{\vecu}+2\Omega_0\ez\times\vecu\right] = &  \left[\frac{\rhotilde \gtilde}{\cp}\right] S\er-\rhotilde\nabla\left[ \frac{P}{\rhotilde} \right], \nonumber\\
 		&+ \frac{1}{\mu}(\curl\vecb)\times\vecb+\Div\bm{D},\\
-		\where D_{ij} &\define 2\rhoref\ofr\nuref\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\label{eq:dstressdim}\\
+		\where D_{ij} &\define 2\rhotilde\nutilde \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\label{eq:dstressdim}\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),\label{eq:estressdim}
 	\end{align}
 	\end{subequations}
 	\begin{align}\label{eq:endim}
-		\rhoref\ofr\tmpref\ofr \left[\matderiv{S} + \frac{d\sref}{dr} u_r\right] = &\ \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
-		&+ \qref(r) -\cref\ofr + D_{ij}e_{ij} + \frac{\etaref\ofr}{\mu}|\curl\vecb|^2,
+		\rhotilde\tmptilde \left[\matderiv{S} + \frac{d\entrtilde}{dr} u_r\right] = &\ \Div[\rhotilde \tmptilde \kappatilde \nabla S] \nonumber \\
+		&+ Q(r) -C + D_{ij}e_{ij} + \frac{\etatilde}{\mu}|\curl\vecb|^2,
 	\end{align}
 	\begin{align}\label{eq:inddim}
-	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \eta\ofr\curl\vecb\right].
+	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \eta\curl\vecb\right].
 	\end{align}
 	Here, the thermal variables $\rho$, $T$, $P$, and $S$ refer to the density, temperature, pressure, and entropy (respectively). The overbars denote the spherically-symmetric, time-independent background state. The lack of an overbar on a thermal variable indicates the (assumed small) perturbation from the background (for the entropy, $S/\cp$ is assumed small).
 	
-	Other background quantities that appear are the gravity $\gref\ofr$, the momentum, thermal, and magnetic diffusivities [$\nuref\ofr$, $\kapparef\ofr$, and $\etaref\ofr$ , respectively], the internal heating or cooling $\qref\ofr$, the frame rotation rate $\Omega_0$, the specific heat at constant pressure $\cp$, and the vacuum permeability $\mu$ ($=4\pi$ in c.g.s. units). The equations are written in a frame rotating with angular velocity $\Omega_0$ and the centrifugal force is neglected. 
+	Other background quantities that appear are the gravity $\gtilde$, the momentum, thermal, and magnetic diffusivities [$\nutilde$, $\kappatilde$, and $\etatilde$ , respectively], the internal heating or cooling $Q$, the frame rotation rate $\Omega_0$, the specific heat at constant pressure $\cp$, and the vacuum permeability $\mu$ ($=4\pi$ in c.g.s. units). The equations are written in a frame rotating with angular velocity $\Omega_0$ and the centrifugal force is neglected. 
 	
-	Note that the internal heating and cooling functions $\qref\ofr$ and $\cref\ofr$ are reference-state quantities (and thus assumed spherically-symmetric and time-independent) but should be interpreted as $\qref-\cref=-\Div\frad$, where $\frad$ is the radiative heat flux. Properly, $\qref$ should be proportional to the radiative diffusivity $\kappa_{\rm rad}$ (which takes on a specific form in the radiative diffusion approximation, derivable from the opacity) and to the gradient of the total temperature $\tmpref + T$; and $\cref$ should be calculated using complicated near-surface physics. 
+	Note that the internal heating and cooling functions $Q$ and $C$ are reference-state quantities (and thus assumed spherically-symmetric and time-independent) but should be interpreted as $Q-C=-\Div\frad$, where $\frad$ is the radiative heat flux. Properly, $Q$ should be proportional to the radiative diffusivity $\kappa_{\rm rad}$ (which takes on a specific form in the radiative diffusion approximation, derivable from the opacity) and to the gradient of the total temperature $\tmptilde + T$; and $C$ should be calculated using complicated near-surface physics. 
 	
-	In {\rayleigh}, a convective layer is usually driven by a combination of internal heating and the thermal boundary conditions (which are conditions on $S$), that together ensure that an imposed energy flux is transported throughout the layer in a steady state. (Note that energy could also be forced across the layer by fixing the entropy $S$ at each boundary, such that an ``adverse" (negative) radial entropy gradient is obtained in a steady state).   \textbf{In the Jupiter models, which will have both internal heating and cooling, we will set $\pderivline{S}{r}\equiv0$ at both the top and bottom boundary (no conduction in or out), and the flux of energy across the system will be imposed purely by the combination $\qref-\cref$}. 
+	In {\rayleigh}, a convective layer is usually driven by a combination of internal heating and the thermal boundary conditions (which are conditions on $S$), that together ensure that an imposed energy flux is transported throughout the layer in a steady state. (Note that energy could also be forced across the layer by fixing the entropy $S$ at each boundary, such that an ``adverse" (negative) radial entropy gradient is obtained in a steady state).   \textbf{In the Jupiter models, which will have both internal heating and cooling, we will set $\pderivline{S}{r}\equiv0$ at both the top and bottom boundary (no conduction in or out), and the flux of energy across the system will be imposed purely by the combination $Q-C$}. 
 	
 	%Note that Equation \eqref{eq:estressdim} is only valid in a Cartesian coordinate system ($x_1$, $x_2$, $x_3$) (with $i$ and $j$ running over 1, 2, 3) and is translated into spherical coordinates before being used in Rayleigh. 
 	
 	Also, we recall the relation
 	\begin{align}
-		\dsdr = \cp \frac{\nsqref\ofr}{\gref\ofr},
+		\dsdr = \cp \frac{\nsqtilde}{\gtilde},
 	\end{align}
-	where $\nsqref\ofr$ is the squared buoyancy frequency, which we will use in favor of $\dsdrline$ in subsequent equations. 
+	where $\nsqtilde$ is the squared buoyancy frequency, which we will use in favor of $\dsdrline$ in subsequent equations. 
 	
 	Note that the original equations in \citet{Gilman1981} and \citet{Clune1999} were derived assuming a nearly-adiabatic background state (i.e., $\dsdrline\approx0$). \citet{Brown2012} and \citet{Vasil2013} have raised concerns about using various anelastic approximations in stable layers due to non-energy-conserving gravity waves. Should we be concerned?
 	
@@ -112,15 +115,15 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 		S &\rightarrow (\Delta S) S,\\
 		P &\rightarrow \tilde{\rho} \frac{H^2}{\tau^2} P,\\
 		\vecb &\rightarrow (\mu\tilde{\rho})^{1/2}\frac{H}{\tau} \vecb,\\ 
-		\rhoref\ofr &\rightarrow \tilde{\rho} \rhoref\ofr, \\
-		\tmpref\ofr &\rightarrow \tilde{T} \tmpref\ofr,\\
-		\gref\ofr &\rightarrow \tilde{g} \gref\ofr,\\
-		\nsqref\ofr &\rightarrow \widetilde{N^2} \nsqref\ofr,\\
-		\nuref\ofr &\rightarrow \tilde{\nu}\nuref\ofr,\\
-		\kapparef\ofr &\rightarrow \tilde{\kappa}\kapparef\ofr,\\
-		 \etaref\ofr &\rightarrow \tilde{\eta}\etaref\ofr,\\ 
-		\qref\ofr &\rightarrow \tilde{C} \qref\ofr,\\
-		\andd \cref\ofr &\rightarrow \tilde{Q} \cref\ofr.
+		\rhotilde &\rightarrow \tilde{\rho} \rhotilde, \\
+		\tmptilde &\rightarrow \tilde{T} \tmptilde,\\
+		\gtilde &\rightarrow \tilde{g} \gtilde,\\
+		\nsqtilde &\rightarrow \widetilde{N^2} \nsqtilde,\\
+		\nutilde &\rightarrow \tilde{\nu}\nutilde,\\
+		\kappatilde &\rightarrow \tilde{\kappa}\kappatilde,\\
+		 \etatilde &\rightarrow \tilde{\eta}\etatilde,\\ 
+		Q &\rightarrow \tilde{C} Q,\\
+		\andd C &\rightarrow \tilde{Q} C.
 	\end{align}
 	\end{subequations}
 	Here, $H$ is a typical length-scale, $\tau$ a typical time-scale, and $\Delta S$ a typical (\textit{estimated}) entropy scale (in Rayleigh-B\'enard-type convection, the true entropy difference is imposed directly, but we will set the true value indirectly via heating and cooling functions). On the right-hand-sides of Equation \eqref{eq:ndscheme} and in the following non-dimensionalizations, all fluid variables, coordinates, and background-state quantities are understood to be non-dimensional. The tildes refer to``typical values" of the (dimensional) reference-state functions. These typical values will be a volume-average over the convection zone (CZ) of the shell, except for $\widetilde{N^2}$, which will be a volume-average over the stably stratified weather layer (WL). Since cooling takes out what heating dumps in, we will normalize such that $\tilde{C}=\tilde{Q}$. 
@@ -130,23 +133,23 @@ where $D/Dt\define \partial/\partial t+\vecu\cdot\nabla$ denotes the material de
 	\section{Non-Dimensional Equations, Non-Rotating ($\tau=H^2/\tilde{\kappa}$)}
 	In this case, Equations \eqref{eq:contdim}--\eqref{eq:inddim} become 
 	\begin{align}
-	\Div[\rhoref\ofr\vecu] &= 0\label{eq:contndvisc},\\
+	\Div[\rhotilde\vecu] &= 0\label{eq:contndvisc},\\
 	\Div \vecb &= 0,
 \end{align}
 \begin{subequations}\label{eq:momndvisc}
 	\begin{align}
-		\rhoref\ofr\left[\matderiv{\vecu}+\frac{\pr}{\ek}\ez\times\vecu\right] = &\ \pr\ra\rhoref\ofr\gref\ofr S\er         -\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right], \nonumber\\
+		\rhotilde\left[\matderiv{\vecu}+\frac{\pr}{\ek}\ez\times\vecu\right] = &\ \pr\ra\rhotilde\gtilde S\er         -\rhotilde\nabla\left[ \frac{P}{\rhotilde} \right], \nonumber\\
 		&\ +(\curl\vecb)\times\vecb +\pr\Div\bm{D},\\
-		\where D_{ij} &\define 2\rhoref\ofr\nuref\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
+		\where D_{ij} &\define 2\rhotilde\nutilde \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndvisc}
-	\rhoref\ofr\tmpref\ofr\left[ \matderiv{S} + \frac{\bu}{\ra}\frac{\nsqref\ofr}{\gref\ofr} u_r\right]  = &\ \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
-	&+ \qref(r) -\cref\ofr + \frac{\di}{\ra} D_{ij}e_{ij} + \frac{\di}{\prm\ra} \etaref\ofr|\curl\vecb|^2,
+	\rhotilde\tmptilde\left[ \matderiv{S} + \frac{\bu}{\ra}\frac{\nsqtilde}{\gtilde} u_r\right]  = &\ \Div[\rhotilde \tmptilde \kappatilde \nabla S] \nonumber \\
+	&+ Q(r) -C + \frac{\di}{\ra} D_{ij}e_{ij} + \frac{\di}{\prm\ra} \etatilde|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndvisc}
-	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \frac{\pr}{\prm}\etaref\ofr\curl\vecb\right].
+	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \frac{\pr}{\prm}\etatilde\curl\vecb\right].
 \end{align}	
 
 The non-dimensional numbers appearing are:
@@ -171,9 +174,9 @@ Note that we have chosen the entropy-scale (and thus the Rayleigh number) based 
 \end{subequations}
 where the first equality in each equation is general (it holds for any choice of time-scale $\tau$) and the second equality is specific to the non-rotating case. Essentially, we have assumed that the heating (or cooling) operates on the time-scale $\tau$ before the fluid parcel buoyantly moves to another part of the shell, carrying with it an entropy perturbation $\Delta S$ (in the non-rotating case, this should happen on the thermal dissipation time-scale $\tau=H^2/\tilde{\kappa}$). 
 
-The user is thus free to choose the shapes of $\qref\ofr$ and $\cref\ofr$, but not their amplitude, since they must have unity volume-averages over the CZ. 
+The user is thus free to choose the shapes of $Q$ and $C$, but not their amplitude, since they must have unity volume-averages over the CZ. 
 
-The buoyancy number $\bu$ is the ratio of the typical squared buoyancy frequency to the thermal and viscous diffusion times. It is essentially a ``second (stable) Rayleigh number", and measures the stiffness of the stable layer (recall $\widetilde{N^2}$ refers to the typical value of $\nsqref\ofr$ in the WL). The buoyancy number is independent of the Rayleigh number, which estimates the ultimate instability of the CZ. 
+The buoyancy number $\bu$ is the ratio of the typical squared buoyancy frequency to the thermal and viscous diffusion times. It is essentially a ``second (stable) Rayleigh number", and measures the stiffness of the stable layer (recall $\widetilde{N^2}$ refers to the typical value of $\nsqtilde$ in the WL). The buoyancy number is independent of the Rayleigh number, which estimates the ultimate instability of the CZ. 
 
 \section{Non-Dimensional Equations, Rotating [$\tau=(2\Omega_0)^{-1}$]}
 In the previous section, $t$ (and things with time in the dimensions) was implied to mean $(\tilde{\kappa}/H^2) t_{\rm{dim}}$, where $t_{\rm{dim}}$ was the dimensional time. We now want to use a new non-dimensional time, $t_{\rm{new}}= \Omega_0t_{\rm{dim}} = (\pr/\ek)t$. We can thus find the new equations easily from Equations \eqref{eq:contndvisc}--\eqref{eq:indndvisc}. Every place we see a time dimension, we recall $t=(\ek /\pr)t_{\rm{new}}$, so we multiply the place where the time-dimension appears by $(\ek/\pr)$ and drop the ``new" subscript [e.g., $t\rightarrow (\ek/\pr)\ t$, $\vecu\rightarrow(\pr/\ek)\vecu$, etc.]  
@@ -189,23 +192,23 @@ The reasoning here is that under the influence of rapid rotation, the life-times
 
 We thus find (after rearranging terms),
 \begin{align}
-	\Div[\rhoref\ofr\vecu] &= 0\label{eq:contndrot},\\
+	\Div[\rhotilde\vecu] &= 0\label{eq:contndrot},\\
 	\Div \vecb &= 0,
 \end{align}
 \begin{subequations}\label{eq:momndrot}
 	\begin{align}
-		\rhoref\ofr\left[\matderiv{\vecu} + \ez\times\vecu\right] = &\ \ramod \rhoref\ofr\gref\ofr S\er         -\rhoref\ofr\nabla\left[ \frac{P}{\rhoref\ofr} \right], \nonumber\\
+		\rhotilde\left[\matderiv{\vecu} + \ez\times\vecu\right] = &\ \ramod \rhotilde\gtilde S\er         -\rhotilde\nabla\left[ \frac{P}{\rhotilde} \right], \nonumber\\
 		&+(\curl\vecb)\times\vecb + \ek \Div\bm{D},\\
-		\where D_{ij} &\define 2\rhoref\ofr\nuref\ofr \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
+		\where D_{ij} &\define 2\rhotilde\nutilde \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndrot}
-	\rhoref\ofr\tmpref\ofr\left[ \matderiv{S}+ \frac{\bumod}{\ramod} \frac{\nsqref\ofr}{\gref\ofr} u_r\right]  = &\ \frac{\ek}{\pr} \Div[\rhoref\ofr \tmpref\ofr \kapparef\ofr \nabla S] \nonumber \\
-	&+  \qref\ofr-\cref\ofr + \frac{\di\ek}{\ramod} D_{ij}e_{ij} + \frac{\di\ek}{\prm\ramod} \etaref\ofr|\curl\vecb|^2,
+	\rhotilde\tmptilde\left[ \matderiv{S}+ \frac{\bumod}{\ramod} \frac{\nsqtilde}{\gtilde} u_r\right]  = &\ \frac{\ek}{\pr} \Div[\rhotilde \tmptilde \kappatilde \nabla S] \nonumber \\
+	&+  Q-C + \frac{\di\ek}{\ramod} D_{ij}e_{ij} + \frac{\di\ek}{\prm\ramod} \etatilde|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indndrot}
-	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \frac{\ek}{\prm} \eta\ofr\curl\vecb\right],
+	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \frac{\ek}{\prm} \eta\curl\vecb\right],
 \end{align}	
 where we have introduced two modified non-dimensional numbers:
 \begin{subequations}
@@ -224,15 +227,15 @@ The only difference is in the different estimates $\Delta S$ and $\Delta S^*$.
 In terms of {\rayleigh}'s $f$'s and $c$'s, we compare Equations \eqref{eq:contndrot}--\eqref{eq:indndrot} to \eqref{eq:contgen}--\eqref{eq:indgen} and find:
 \begin{align*}
 	\begin{split}
-	f_1&\rightarrow \rhoref\\
-	f_2&\rightarrow\rhoref\gref \\
-	f_3 &\rightarrow \nuref\\
-	f_4 &\rightarrow \tmpref\\
-	f_5 &\rightarrow \kapparef\\
-	f_6 &\rightarrow \qref - \cref\\
-	f_7 &\rightarrow \etaref\\
+	f_1&\rightarrow \rhotilde\\
+	f_2&\rightarrow\rhotilde\gtilde \\
+	f_3 &\rightarrow \nutilde\\
+	f_4 &\rightarrow \tmptilde\\
+	f_5 &\rightarrow \kappatilde\\
+	f_6 &\rightarrow Q - C\\
+	f_7 &\rightarrow \etatilde\\
 	\vdots\\
-	f_{14} &\rightarrow \frac{\nsqref}{\gref}
+	f_{14} &\rightarrow \frac{\nsqtilde}{\gtilde}
 \end{split}
 \begin{split}
 c_1 &\rightarrow 1\\
@@ -251,7 +254,7 @@ c_{11} &\rightarrow \bumod/\ramod
 \section{Hydrostatic, Ideal-Gas, Jovian Stable--Unstable Layer}
 To model a background CZ and WL in Jupiter, we consider a spherical shell composed of an ideal, hydrostatic gas extending between inner radius $r\inn$ and outer radius $r\out$. An assumed transition in convective stability occurs near an intermediate radius $r_0$, over width $\delta$. More specifically, we choose quartic matching of the entropy gradient between the two layers:
 \begin{align}
-	\frac{d\sref}{dr} &=\psi\wl(r; r_0,\delta),
+	\frac{d\entrtilde}{dr} &=\psi\wl(r; r_0,\delta),
 \end{align}
 where
 \begin{equation}
@@ -273,16 +276,16 @@ We also define
 \end{equation}
 $\psi\wl$ thus ``senses" only the WL, and $\psi\cz$ ``senses" only the CZ. 
 
-With this formulation, the CZ is strictly unstable (really, marginally stable, but becomes unstable from the heating and cooling). This ensures that none of the stable gradient ``leaks" into the CZ, as happens with (e.g.) tanh matching. We assume a centrally-concentrated mass so that $\gref\ofr\propto 1/r^2$. 
+With this formulation, the CZ is strictly unstable (really, marginally stable, but becomes unstable from the heating and cooling). This ensures that none of the stable gradient ``leaks" into the CZ, as happens with (e.g.) tanh matching. We assume a centrally-concentrated mass so that $\gtilde\propto 1/r^2$. 
 
-It can then be shown that five non-dimensional parameters fully characterize the shell geometry, $\rhoref\ofr$, and $\tmpref\ofr$:
+It can then be shown that five non-dimensional parameters fully characterize the shell geometry, $\rhotilde$, and $\tmptilde$:
 \begin{subequations}
 	\begin{align}
 		\alpha&\define \frac{r\out-r_0}{r_0-r\inn} \five\text{(WL-to-CZ\ aspect ratio)},\\ 
 		\beta &\define \frac{r\inn}{r_0} \five\text{(CZ aspect ratio)},\\
 		\gamma&\define \frac{\cp}{\cv}\five\text{(specific-heat ratio)},\\
 		\delta &\five\text{(stability transition width)},\\	
-		N_\rho &\define \ln\left[\frac{\rhoref(r_0)}{\rhoref(r\out)}\right]\five\text{(number of density scale-heights across CZ)},
+		N_\rho &\define \ln\left[\frac{\rhotilde(r_0)}{\rhotilde(r\out)}\right]\five\text{(number of density scale-heights across CZ)},
 	\end{align}
 \end{subequations}
 where $\cv$ is the specific heat at constant volume. 
@@ -297,43 +300,43 @@ We choose $H$ to be the thickness of the CZ ($r_0-r\inn=1$ and $r\out-r_0=\alpha
 \end{subequations}
 If we choose $\alpha=0.25$ and $\beta=0.9$, then $(r\inn,r_0,r\out)=(9, 10, 10.25)$. 
 
-With the requirement that the volume-average of $\gref\ofr$ over the CZ be unity, we require
+With the requirement that the volume-average of $\gtilde$ over the CZ be unity, we require
 \begin{align}
-	\gref\ofr &= \left[ \frac{1-\beta^3}{3(1-\beta)^3}    \right]\frac{1}{r^2}.
+	\gtilde &= \left[ \frac{1-\beta^3}{3(1-\beta)^3}    \right]\frac{1}{r^2}.
 \end{align}
 
 It can then be shown from the ideal-gas and hydrostatic conditions (e.g., \citealt{Matilsky2023d}) that
 \begin{align}\label{eq:tmphat}
-	\tmpref &= e^{\sref}\left[\tmpref(r_0) - \di\int_{r_0}^r \gref(x)  e^{-\sref(x)}dx\right].
+	\tmptilde &= e^{\entrtilde}\left[\tmptilde(r_0) - \di\int_{r_0}^r \gtilde(x)  e^{-\entrtilde(x)}dx\right].
 \end{align}
 and
 \begin{align}\label{eq:rhohat}
-	\rhoref &= \rhoref(r_0) \exp{\left[-\left(\frac{\gamma}{\gamma-1}\right)\sref\right]}\tmpref^{1/(\gamma-1)},
+	\rhotilde &= \rhotilde(r_0) \exp{\left[-\left(\frac{\gamma}{\gamma-1}\right)\entrtilde\right]}\tmptilde^{1/(\gamma-1)},
 \end{align}
 where (nastily)
 \begin{align}\label{eq:digory}
 	\di \define \frac{\tilde{g}H}{\cp\tilde{T}} &=  \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
 	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})},\\
-	\tmpref(r_0)&= \frac{(1-\beta^3)(1-\beta)}{(3\beta/2)(1-\beta^2)(e^{\nrho/n}-1) - (1-\beta^3)(\beta e^{\nrho/n}-1)},\\
+	\tmptilde(r_0)&= \frac{(1-\beta^3)(1-\beta)}{(3\beta/2)(1-\beta^2)(e^{\nrho/n}-1) - (1-\beta^3)(\beta e^{\nrho/n}-1)},\\
 	\andd n &\define \frac{1}{1-\gamma}
 \end{align}
-is the polytropic index of the CZ (note that since $\dsdrline\equiv0$ in the CZ, the stratification of the CZ winds up being an adiabatic polytrope). We have also assumed (without loss of generality) that $\sref(r_0)=0$, so that $\sref\equiv0$ in the CZ). The constant $\rhoref(r_0)$ ends up not having an analytical expression but can be easily found by integration over the CZ of Equation \eqref{eq:rhohat} (and I should maybe just find $\di$ and $\tmpref(r_0)$ from integration, too, since I am error-prone).  
+is the polytropic index of the CZ (note that since $\dsdrline\equiv0$ in the CZ, the stratification of the CZ winds up being an adiabatic polytrope). We have also assumed (without loss of generality) that $\entrtilde(r_0)=0$, so that $\entrtilde\equiv0$ in the CZ). The constant $\rhotilde(r_0)$ ends up not having an analytical expression but can be easily found by integration over the CZ of Equation \eqref{eq:rhohat} (and I should maybe just find $\di$ and $\tmptilde(r_0)$ from integration, too, since I am error-prone).  
 
 To follow \citet{Jones2011} \citet{Heimpel2022} somewhat, we assume $n=2$. Apparently this is a common choice for Jupiter that better approximates its weird equation of state without breaking the ideal gas law. It results in the somewhat strange result $\gamma=3/2$. 
 
 We also simplify our lives and assume constant diffusivities:
 \begin{align}
-	\nuref\ofr=\kapparef\ofr=\etaref\ofr\equiv 1.
+	\nutilde=\kappatilde=\etatilde\equiv 1.
 \end{align}
 
-For the heating, we use the typical {\rayleigh} profile $\qref\propto \rhoref \tmpref$, but ensure that the heating is fully contained in the CZ:
+For the heating, we use the typical {\rayleigh} profile $Q\propto \rhotilde \tmptilde$, but ensure that the heating is fully contained in the CZ:
 \begin{align}
-	\qref\ofr \propto \rhoref\ofr\tmpref\ofr \psi\cz(r; r_0,\delta)
+	Q \propto \rhotilde\tmptilde \psi\cz(r; r_0,\delta)
 \end{align} 
 
 For the cooling, we choose a cooling width $\dcool$:
 \begin{align}
-	\cref\ofr \propto \exp\left[\frac{r-r_0}{\dcool}\right] \psi\cz(r; r_0,\delta)
+	C \propto \exp\left[\frac{r-r_0}{\dcool}\right] \psi\cz(r; r_0,\delta)
 \end{align}
 
 We thus fully define the following geometry and Jovian-ish reference state:
