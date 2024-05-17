@@ -120,11 +120,18 @@ More complex systems, which {\rayleigh} also supports, require the user to manua
 Here, $\gasconst=\cpcap-\cvcap$ is the gas constant, $\cvcap$ is the specific heat at constant volume (or equivalently, constant density), and $\gamma=\cpcap/\cvcap$ is the ratio of specific heats. All are assumed to be constant (that is the definition of a perfect, not just ideal, gas). 
 
 Really, Equation \eqref{eq:dimfirstlaw} is simply an expression of the first law of thermodynamics. It doesn't further constrain the structure problem, but rather introduces a new unknown, i.e., the entropy $\entrtilde$. In an ideal world, we would therefore also demand a condition for thermal (in stars, radiative) equilibrium. This would generate another equation constraining $\tmptilde$ and $\prstilde$ in addition to Equations \eqref{eq:dimhydro}--\eqref{eq:dimfirstlaw}, and thus fully define the structure problem. Under the radiative diffusion approximation, this equation would be
-\begin{subequations}
+\begin{subequations}\label{eq:dimradequil}
 \begin{align}
 	\heattilde &=  \frac{1}{r^2}\frac{d}{dr} (r^2\fradtilde),\\
-	\where \fradtilde &\define -\rhotilde \cpcap
+	\where \fradtilde &\define -\rhotilde \cpcap\kradtilde \frac{d\tmptilde}{dr},
 \end{align}
+\end{subequations}
+where $\heattilde$ is the reference-state internal heating per unit volume (likely due to nuclear burning in the core, or in Jupiter, Helmholtz contraction) and $\kradtilde$ is the reference-state radiative diffusivity, which in turn depends on the opacity. This is assuming the radiative conduction of heat dominates over the molecular ($\kappatilde$) conduction of heat. Clearly, subtracting Equation \eqref{eq:dimradequil} from the fully compressible heat equation would yield the combination 
+\begin{subequations}
+	\begin{align}
+		\heatprime - \Div(&\fradprime + \fcondprime),\\
+		\where \fradprime &\define \left(\frac{\rhoprime}{\rhotilde} + \frac{\kradprime}{\kradtilde} + \frac{d\tmpprime/dr}{d\tmptilde/dr}\right)\fradtilde
+	\end{align}
 \end{subequations}
 
 % After the structure problem was solved  %Note that $\heattilde$ is a reference-state quantity (and thus assumed to be spherically-symmetric and time-independent) but should be interpreted as $\heattilde=-\Div\frad$, where $\frad$ is the radiative heat flux. Properly, $\heattilde$ should be proportional to the radiative diffusivity $\kappa_{\rm rad}$ (which takes on a specific form in the radiative diffusion approximation, derivable from the opacity) and to the gradient of the total temperature $\tmptilde + T$; and $C$ should be calculated using complicated near-surface physics. 
