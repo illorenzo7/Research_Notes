@@ -28,6 +28,13 @@
 \newcommand{\wl}{_{\rm{WL}}}
 \newcommand{\dcool}{\delta_{\rm{cool}}}
 \newcommand{\vecf}{\bm{F}}
+
+\newcommand{\csa}{c_{{\rm s}a}}
+\newcommand{\cpa}{C_{{\rm p}a}}
+\newcommand{\tmpa}{T_{\rm a}}
+\newcommand{\rhoa}{\rho_{\rm a}}
+\newcommand{\prsa}{P_{\rm a}}
+
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
@@ -73,24 +80,24 @@ More complex systems, which {\rayleigh} also supports, require the user to manua
 	\end{align}
 	\begin{subequations}\label{eq:momdim}
 	\begin{align}
-		\rhotilde\left(\matderiv{\vecu}+2\Omega_0\ez\times\vecu\right) = &  \left(\frac{\rhotilde \gtilde}{\cp}\right) \entrprime\er-\rhotilde\nabla\left( \frac{\prsprime}{\rhotilde} \right), \nonumber\\
+		\rhotilde\left(\matderiv{\vecu}+2\Omega_0\ez\times\vecu\right) = &  \left(\frac{\rhotilde \gtilde}{\cpcap}\right) \entrprime\er-\rhotilde\nabla\left( \frac{\prsprime}{\rhotilde} \right), \nonumber\\
 		&+ \frac{1}{\mu}(\curl\vecb)\times\vecb+\Div\bm{D},\\
 		\where D_{ij} &\define 2\rhotilde\nutilde \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\label{eq:dstressdim}\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),\label{eq:estressdim}
 	\end{align}
 	\end{subequations}
 	\begin{align}\label{eq:endim}
-		\rhotilde\tmptilde \left(\matderiv{\entrprime} + \frac{d\entrtilde}{dr} u_r\right) = &\ \Div(\rhotilde \tmptilde \kappatilde \nabla \entrprime) +\heattilde+ D_{ij}e_{ij} + \frac{\etatilde}{\mu}|\curl\vecb|^2,
+		\rhotilde\tmptilde \left(\matderiv{\entrprime} + \frac{d\entrtilde}{dr} u_r\right) = &\ \Div(\rhotilde \tmptilde \kappatilde \nabla \entrprime) +Q+ D_{ij}e_{ij} + \frac{\etatilde}{\mu}|\curl\vecb|^2,
 	\end{align}
 	\begin{align}\label{eq:inddim}
 	\andd \pderiv{\vecb}{t} = \curl\left(\vecu\times\vecb - \etatilde\curl\vecb\right).
 	\end{align}
-	Here, the thermal variables $\rho$, $T$, $P$, and $S$ refer to the density, temperature, pressure, and entropy (respectively). The tildes denote the reference state and the primes denote the (assumed small) perturbations from the reference state (for the entropy, $\entrprime/\cp$ is assumed small). 
+	Here, the thermal variables $\rho$, $T$, $P$, and $S$ refer to the density, temperature, pressure, and entropy (respectively). The tildes denote the reference state and the primes denote the (assumed small) perturbations from the reference state. More specifically, the essence of the anelastic approximation involves assuming all relative thermal perturbations ($\rhoprime/\rhoa$, $\tmpprime/\tmpa$, $\prsprime/\prsa$, and $\entrprime/\cpcap$) are $O(\epsilon)$, where $\epsilon\ll1$ (e.g., \citealt{Ogura1962,Gough1969} and \citealt{Matilsky2024b}, coming soon!). Here, the ``a" subscripts denote ``typical reference-state values" and $\epsilon$ is also the same (small) size as the typical squared Mach number of the flow. 
 	
-	Other background quantities that appear are the full gravitational acceleration $\gtilde$, the momentum, thermal, and magnetic diffusivities ($\nutilde$, $\kappatilde$, and $\etatilde$ , respectively; these all have c.g.s. units of $\stoke$), the internal heating $\heattilde$, the frame rotation rate $\Omega_0$, the specific heat at constant pressure $\cp$, and the vacuum permeability $\mu$ ($=4\pi$ in c.g.s. units). The equations are written in a frame rotating with angular velocity $\Omega_0\ez$ and the centrifugal force is neglected. Note that $\cp$ is always assumed to be constant, while in a real stellar (or gas-giant) structure model, it should really vary in radius.
+	Other background quantities that appear are the full gravitational acceleration $\gtilde$, the momentum, thermal, and magnetic diffusivities ($\nutilde$, $\kappatilde$, and $\etatilde$ , respectively; these all have c.g.s. units of $\stoke$), the internal heating $Q$, the frame rotation rate $\Omega_0$, the specific heat at constant pressure $\cpcap$, and the vacuum permeability $\mu$ ($=4\pi$ in c.g.s. units). The equations are written in a frame rotating with angular velocity $\Omega_0\ez$ and the centrifugal force is neglected. Note that $\cpcap$ is always assumed to be constant, while in a real stellar (or gas-giant) structure model, it should really vary in radius.
 	
 	\subsection{The reference state}
-	Ideally, the reference state would be chosen based on a state-of-the-art structure model, incorporating all known physics. In the Sun, for example, this structure model is fairly well agreed-upon (e.g., \citealt{ChristensenDalsgaard1996}); but in the Jovian case, much less so (e.g., \citealt{Guillot2005}). In our (or possibly just Loren's) philosophy, the form of the reference state itself matters far less than the fact that we cannot approach realistic astrophysical conditions for stars or gas giants. Therefore, we choose the reference state somewhat arbitrarily. Put another way, we choose the$f_i$ to be slightly inaccurate and are consoled by the fact that the $c_j$ are \textit{incredibly} wrong. 
+	Ideally, the reference state would be chosen based on a state-of-the-art structure model, incorporating all known physics. In the Sun, for example, this structure model is fairly well agreed-upon (e.g., \citealt{ChristensenDalsgaard1996}); but in the Jovian case, much less so (e.g., \citealt{Guillot2005}). In our (or possibly just Loren's) philosophy, the form of the reference state itself matters far less than the fact that we cannot approach realistic astrophysical conditions for stars or gas giants. Therefore, we choose the reference state somewhat arbitrarily. Put another way, we choose the $f_i$ to be slightly wrong and are consoled by the fact that the $c_j$ are \textit{incredibly} wrong. 
 	
 	We do, however demand that the gas be in hydrostatic balance,
 	\begin{align}\label{eq:dimhydro}
@@ -103,19 +110,20 @@ More complex systems, which {\rayleigh} also supports, require the user to manua
 	and be in local thermodynamic equilibrium (LTE), 
 	\begin{subequations}\label{eq:dimfirstlaw}
 	\begin{align}
-		\frac{1}{\cp}\frac{d\entrtilde}{dr}&=\frac{1}{\gamma}\frac{d\ln\tmptilde}{dr} - \frac{\gamma - 1}{\gamma}\frac{d\ln\rhotilde}{dr}\label{eq:dimfirstlawtmprho}\\
+		\frac{1}{\cpcap}\frac{d\entrtilde}{dr}&=\frac{1}{\gamma}\frac{d\ln\tmptilde}{dr} - \frac{\gamma - 1}{\gamma}\frac{d\ln\rhotilde}{dr}\label{eq:dimfirstlawtmprho}\\
 		&=\frac{1}{\gamma}\frac{d\ln\prstilde}{dr} - \frac{d\ln\rhotilde}{dr}\label{eq:dimfirstlawprsrho}\\
 		&= \frac{d\ln\tmptilde}{dr} - \frac{\gamma - 1}{\gamma}\frac{d\ln\prstilde}{dr}\label{eq:dimfirstlawtmpprs}
 	\end{align}
 	\label{eq:firstlaw3}
 \end{subequations}
-Here, $\gasconst=\cp-\cv$ is the gas constant, $\cv$ is the specific heat at constant volume (or density), and $\gamma=\cp/\cv$ is the ratio of specific heats. All are assumed to be constant (that is the definition of a perfect, not just ideal, gas). 
 
-Really, Equation \eqref{eq:dimfirstlaw} is simply an expression of the first law of thermodynamics. It doesn't further constrain the structure problem, but rather introduces a new unknown, i.e., the entropy $\entrtilde$. In an ideal world, we would therefore also demand a condition for thermal (in stars, radiative) equilibrium. This would generate another equation $\tmptilde$ and $\prstilde$ in addition to Equations \eqref{eq:dimhydro}--\eqref{eq:dimfirstlaw}, and thus fully define the structure problem. Under the radiative diffusion approximation, this equation would be
+Here, $\gasconst=\cpcap-\cvcap$ is the gas constant, $\cvcap$ is the specific heat at constant volume (or equivalently, constant density), and $\gamma=\cpcap/\cvcap$ is the ratio of specific heats. All are assumed to be constant (that is the definition of a perfect, not just ideal, gas). 
+
+Really, Equation \eqref{eq:dimfirstlaw} is simply an expression of the first law of thermodynamics. It doesn't further constrain the structure problem, but rather introduces a new unknown, i.e., the entropy $\entrtilde$. In an ideal world, we would therefore also demand a condition for thermal (in stars, radiative) equilibrium. This would generate another equation constraining $\tmptilde$ and $\prstilde$ in addition to Equations \eqref{eq:dimhydro}--\eqref{eq:dimfirstlaw}, and thus fully define the structure problem. Under the radiative diffusion approximation, this equation would be
 \begin{subequations}
 \begin{align}
-	\heattilde &=  \frac{1}{r^2}\frac{d}{dr} r^2\frac{d\tilde{F}_{\rm rad}}{dr},\\
-	\where \tilde{\vecf}_{\rm rad} &\define -\rhotilde \cp 
+	\heattilde &=  \frac{1}{r^2}\frac{d}{dr} (r^2\fradtilde),\\
+	\where \fradtilde &\define -\rhotilde \cpcap
 \end{align}
 \end{subequations}
 
