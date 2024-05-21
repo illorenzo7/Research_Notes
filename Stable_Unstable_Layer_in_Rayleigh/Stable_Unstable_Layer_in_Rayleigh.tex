@@ -119,14 +119,23 @@ More complex systems, which {\rayleigh} also supports, require the user to manua
 
 Here, $\gasconst=\cpcap-\cvcap$ is the gas constant, $\cvcap$ is the specific heat at constant volume (or equivalently, constant density), and $\gamma=\cpcap/\cvcap$ is the ratio of specific heats. All are assumed to be constant (that is the definition of a perfect, not just ideal, gas). 
 
-Really, Equation \eqref{eq:dimfirstlaw} is simply an expression of the first law of thermodynamics. It doesn't further constrain the structure problem, but rather introduces a new unknown, i.e., the entropy $\entrtilde$. In an ideal world, we would therefore also demand a condition for thermal (in stars, radiative) equilibrium. This would generate another equation constraining $\tmptilde$ and $\prstilde$ in addition to Equations \eqref{eq:dimhydro}--\eqref{eq:dimfirstlaw}, and thus fully define the structure problem. Under the radiative diffusion approximation, this equation would be
+Really, Equation \eqref{eq:dimfirstlaw} is simply an expression of the first law of thermodynamics. It doesn't further constrain the structure problem, but rather introduces a new unknown, i.e., the entropy $\entrtilde$. In an ideal world, we would therefore also demand a condition for thermal (in stars, ``radiative") equilibrium. This would generate another equation constraining $\rhotilde$ and $\tmptilde$ in addition to Equations \eqref{eq:dimhydro}--\eqref{eq:dimfirstlaw}, and thus fully define the structure problem. Let's consider radiative equilibrium first, since this applies in stars. Radiative diffusion makes the structure problem there much easier than for the (relatively cold) matter in gas giants, since we only need consider the opacity of a fully ionized gas. Under the radiative diffusion approximation, the equation of thermal equilibrium is
 \begin{subequations}\label{eq:dimradequil}
 \begin{align}
-	\heattilde &=  \frac{1}{r^2}\frac{d}{dr} (r^2\fradtilde),\\
-	\where \fradtilde &\define -\rhotilde \cpcap\kradtilde \frac{d\tmptilde}{dr},
+	\heattilde - \Div\fradtilde &= \Div\fconvtilde\label{eq:dimradequil1},\\
+	\where \fradtilde &\define  -\rhotilde \cpcap\kradtilde \nabla\tmptilde=-\rhotilde \cpcap\kradtilde \frac{d\tmptilde}{dr}\er,\label{eq:dimradequil2}\\
+	 \Div\fconvtilde &\define \begin{cases} 0 \five &\text{for}\five \nabla_{\rm rad} <\nabla_{\rm ad}\ \text{(stable to convection)}\\
+		\frac{1}{r^2}\frac{d}{dr}\left(\rhotilde r^2\kradtilde\frac{d\tmptilde_{\rm ad}}{dr}\right) &\text{for}\five \nabla_{\rm rad} >\nabla_{\rm ad}\ \text{(unstable to convection)}\
+		\end{cases},\label{eq:dimradequil3}\\
+		\nabla_{\rm rad}&\define \frac{d\ln\tmptilde_{\rm rad}/dr}{d\ln\prstilde/dr} = -\frac{\gamma-1}{\gamma}\frac{\lstar}{4\pi r^2 \gtilde \rhotilde \kradtilde},\label{eq:dimradequil4}\\
+		\andd \nabla_{\rm ad}&\define  \left(\frac{d\ln\tmptilde}{d\ln\prstilde}\right)_{\rm ad} = \frac{\gamma-1}{\gamma}.
 \end{align}
 \end{subequations}
-where $\heattilde$ is the reference-state internal heating per unit volume (likely due to nuclear burning in the core, or in Jupiter, Helmholtz contraction) and $\kradtilde$ is the reference-state radiative diffusivity, which in turn depends on the opacity. This is assuming the radiative conduction of heat dominates over the molecular ($\kappatilde$) conduction of heat. Clearly, subtracting Equation \eqref{eq:dimradequil} from the fully compressible heat equation would yield the combination 
+Here, $\heattilde=\heattilde(\rhotilde,\tmptilde)$ is the reference-state internal heating per unit volume (likely due to nuclear burning in the core, or in Jupiter, Helmholtz contraction), $\lstar$ is the total luminosity (power output) of the object, and $\kradtilde=\kradtilde(\rhotilde,\tmptilde)$ is the reference-state radiative diffusivity (units $\stoke$), which in turn depends on the opacity. Note that $\heattilde$ and the $Q$ used by {\rayleigh} have physically quite different origin. 
+
+In practice, Equations \eqref{eq:dimhydro}--\eqref{eq:dimradequil} would be solved by integrating inward from an appropriate boundary condition at the photosphere. At each point, the relative values of $\nabla_{\rm rad}$ and $\nabla_{\rm ad}$ would be compared to determine which of the two forms of Equation \eqref{eq:dimradequil3} to use. Doing so implicitly adheres to the mixing-length assumption, because it is implied that ``convection is locally determined." Of course, convection is a \textit{global} phenomenon. The fully compressible system could theoretically lead to a horizontally averaged state where locally, $\gradrad<\gradad$, but vigorous global convective modes still exist there. This would make the structure model inaccurate. 
+
+This is assuming the radiative conduction of heat dominates over the molecular ($\kappatilde$) conduction of heat. Clearly, subtracting Equation \eqref{eq:dimradequil} from the fully compressible heat equation would yield the combination 
 \begin{subequations}
 	\begin{align}
 		\heatprime - \Div(&\fradprime + \fcondprime),\\
