@@ -39,7 +39,7 @@
 \newcommand{\nua}{\nu_{\rm a}}
 \newcommand{\kappaa}{\kappa_{\rm a}}
 \newcommand{\etaa}{\eta_{\rm a}}
-\newcommand{\fnra}{F_{\rm{nr,a}}}
+\newcommand{\fnrada}{F_{\rm{nrad,a}}}
 
 \newcommand{\lumirrad}{L_{\rm irrad}}
 \newcommand{\lumkh}{L_{\rm KH}}
@@ -52,6 +52,9 @@
 %\allowdisplaybreaks
 \begin{document}
 	\maketitle
+	\section{Purpose}
+	This document describes how to implement, using the {\rayleigh} code, a coupled stable--unstable system. More precisely, the system consists of an unstable convection zone (CZ) that lies adjacent to a stable radiative zone (RZ) in a spherical shell. If the CZ is on top of the RZ we describe the system as ``solar-like" or a ``tachocline," etc. If the CZ is underneath the RZ (now considered a ``weather layer") we describe the system as ``Jovian" or "Jupiter," etc. It essentially the same problem (at least to specify) either away, making this document relevant to Nic \& COFFIES (tachocline), and to Geoff, Nic, and Matt (Jupiter). In the following sections, we describe the nondimensionalization, governing equations, and reference state. 
+	
 	\section{General Equations Solved in {\rayleigh}}
 	In general (with rotation and magnetism), {\rayleigh} time-evolves a set of coupled PDEs for the 3D vector velocity $\vecu$, vector magnetic field $\vecb$, pressure perturbation $\prsprime$ (perturbation away from the ``reference-state" pressure $\prstilde$), and entropy perturbation $\entrprime$ (perturbation away from $\entrtilde$). Note that $\entrprime$ can also be interpreted as a temperature perturbation in Boussinesq mode. For more details, see {\rayleigh}'s \href{https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/physics_math_overview.html#the-system-of-equations-solved-in-rayleigh}{Documentation}. 
 	
@@ -205,13 +208,27 @@ This is all to say, I am now fully converted to the idea of setting stability vi
 	%Note that the original equations in \citet{Gilman1981} and \citet{Clune1999} were derived assuming a nearly-adiabatic background state (i.e., $\dsdrtildeline\approx0$). \citet{Brown2012} and \citet{Vasil2013} have raised concerns about using various anelastic approximations in stable layers due to non-energy-conserving gravity waves. Should we be concerned?
 	
 	\section{Non-Dimensional Scheme}
+	In this section, $H$ denotes the typical length-scale (chosen to be the CZ thickness) and $\tau$ the typical time-scale (left general for now). 
+	
 	We recall the relation,
 	\begin{align}
-	\dsdrtilde = \cpcap\frac{\nsqtilde}{\gtilde},
+	\nsqtilde = \frac{\gtilde}{\cpcap}\dsdrtilde,
 	\end{align}
-		where $\nsqtilde$ is the squared buoyancy frequency, which we will use in favor of $\dsdrtildeline$ in subsequent equations.
+	where $\nsqtilde$ is the squared buoyancy frequency, which we will use in favor of $\dsdrtildeline$ in subsequent equations.
 	
-	We now non-dimensionalize Equations \eqref{eq:contdim}--\eqref{eq:inddim}, according to the following scheme:
+	We define the ``energy flux not carried by radiation" via
+	\begin{align}
+		\fnradtilde \define \frac{1}{r^2}\int_{\rbcz}^r\heatra(x)x^2dx,
+	\end{align}
+	where $\rbcz$ is the radius of the base of the CZ. We also denote the top of the CZ by $\rtcz$, the base of the RZ by $\rbrz$, and the top of the RZ by $\rtrz$. Note that $\fnradtilde$ is basically similar to $|\fconvtilde|$, however in the context of stellar structure theory, $\fconvtilde$ is computed according to a definite logic, whereas we choose our $\heatra$ arbitrarily.
+	
+	$\Delta S$ denotes the (\textit{estimated}) entropy difference across the CZ, and thus a typical value of $\entrprime$ in the CZ. In Rayleigh-B\'enard-type convection, the true entropy difference is imposed directly. We could do this as well, by fixing $\entrprime$ itself at the inner and outer boundaries. However, instead we typically set the entropy difference indirectly by adding an internal heating $\heatra$ and balancing it with the conductive energy flux at the boundaries (which we set by fixing $\pderivline{\entrprime}{r}$ at the boundaries in place of $\entrprime$ itself). We estimate the resultant entropy difference via
+	\begin{align}\label{eq:deltas}
+		\Delta S \define \frac{\fnrada H}{\rhoa\tmpa\kappaa},
+	\end{align}
+	The ``a" subscripts again refer to``typical values" of the (dimensional) atmospheric reference-state functions. Equation \eqref{eq:deltas} essentially assumes that there is a conductive boundary layer (at the top of the CZ, since $\heatra$ must be concentrated more toward the base of the CZ in order to drive convection) that carries the full internal luminosity $L\define 4\pi \int_{\rbcz}^{\rtcz}\heatra(x)x^2dx$ out of the CZ. Note that this is a crude estimate, since the ultimate boundary layer thickness is unknown (and will be substantially less than $H$). Furthermore, we will choose CZ volume-averages for the ``typical values" of $\rhotilde$, $\fnradtilde$, etc., which will be higher than the boundary-layer appropriate values. We can easily see how bad our assumption is, by calculating the entropy difference across the CZ post-equilibration and comparing to 1. 
+	
+	We now nondimensionalize Equations \eqref{eq:contdim}--\eqref{eq:inddim}, according to the following scheme:
 	\begin{subequations}\label{eq:ndscheme}
 	\begin{align}
 		\nabla &\rightarrow \frac{1}{H}\nabla,\\
@@ -228,26 +245,20 @@ This is all to say, I am now fully converted to the idea of setting stability vi
 		\nutilde &\rightarrow \nua\nutilde,\\
 		\kappatilde &\rightarrow\kappaa\kappatilde,\\
 		 \etatilde &\rightarrow \etaa\etatilde,\\ 
-		\andd \heatra &\rightarrow \frac{\fnra}{H} \heatra
+		\andd \heatra &\rightarrow \frac{\fnrada}{H} \heatra
 	\end{align}
 	\end{subequations}
-	Here, $H$ is a typical length-scale, $\tau$ a typical time-scale, and $\Delta S$ a typical (\textit{estimated}) entropy difference across the convection zone (CZ). In Rayleigh-B\'enard-type convection, the true entropy difference is imposed directly, but we set this difference indirectly via the internal heating $\heatra$ and thermal boundary conditions. We define the ``energy flux not carried by radiation" via
-	\begin{align}
-		\fnrtilde \define \frac{1}{r^2}\int_{\rbcz}^r\heatra(x)x^2dx,
-	\end{align}
-	where $\rbcz$ is the radius of the base of the CZ.
+	On the right-hand-sides of Equation \eqref{eq:ndscheme} and in the following equations, all fluid variables, coordinates, and background-state quantities are understood to be nondimensional. The ```typical values" denoted by the ``a" subscripts are chosen to be volume-averages over the CZ, except for $\nsqa$, which is chosen to be the volume-average over the stably stratified RZ (really ``weather layer" in the case of Jupiter). 
 	
-	On the right-hand-sides of Equation \eqref{eq:ndscheme} and in the following equations, all fluid variables, coordinates, and background-state quantities are understood to be non-dimensional. The ``a" subscripts again refer to``typical values" of the (dimensional) atmospheric reference-state functions. These typical values are chosen to be volume-averages over the convection zone of the shell, except for $\nsqa$, which is chosen to be the volume-average over the stably stratified ``radiative zone" (RZ; really ``weather layer" in the case of Jupiter). 
-	
-	We also denote the top of the CZ by $\rtcz$, the base of the RZ by $\rbrz$, and the top of the RZ by $\rtrz$. We define the relative thicknesses of the RZ and CZ via
+	We define the relative thicknesses of the RZ and CZ via the ``first aspect ratio"
 	\begin{align}\label{eq:alpha}
 		\alpha\define \frac{\rtrz-\rbrz}{\rtcz-\rbcz}
 	\end{align}
-	and the aspect ratio of the CZ via 
+	and the aspect ratio of the CZ (the ``second aspect ratio") via 
 	\begin{align}\label{eq:beta}
 		\beta = \frac{\rbcz}{\rtcz}.
 	\end{align}
-	 We set $H$ to be the thickness of the CZ. We thus have 
+	 Since $H$ is the thickness of the CZ, we have 
 	 \begin{subequations}
 	 \begin{align}
 	 	\rbcz &= \frac{\beta}{1-\beta},\\
@@ -258,7 +269,7 @@ This is all to say, I am now fully converted to the idea of setting stability vi
 	 \begin{subequations}
 	\begin{align}
 		\rbrz &=\rtrz - \alpha,\\
-		\with \rtrz &= \rbcz\five\five\five\text{for solar tachocline}
+		\with \rtrz &= \rbcz\five\five\five\text{for the solar tachocline}
 	\end{align}
 \end{subequations}
 	and
@@ -270,9 +281,45 @@ This is all to say, I am now fully converted to the idea of setting stability vi
 \end{subequations}
 The only difference between Jupiter and the tachocline is which of the CZ or RZ is on top. 
 
-We leave the time-scale general for now, but ultimately assume it is a rotational time-scale when running the simulations [i.e., $\tau=(2\Omega_0)^{-1}$]. This allows easy translation between different nondimensionalizations. %To describe the reference state, we will consider three cases for a given function's ``typical value": Its value at the inner shell boundary, its value at the outer shell boundary, or its value volume-averaged over the shell. 
+We leave the time-scale general for now, but ultimately assume it is a rotational time-scale when running the simulations [i.e., $\tau=(2\Omega_0)^{-1}$]. Leaving $\tau$ general allows easy translation between different nondimensionalizations, if they are needed later. %To describe the reference state, we will consider three cases for a given function's ``typical value": Its value at the inner shell boundary, its value at the outer shell boundary, or its value volume-averaged over the shell. 
 	
 	\section{Non-Dimensional Equations (General $\tau$)}
+	There are several time-scales relevant to the problem. Putting the nondimensional parameters in terms of these more clearly elucidates their meaning. Practically, it also makes translating between different nondimensionalizations easier. The relevant (dimensional) timescales are:
+	\begin{subequations}\label{eq:timescales}
+		\begin{align}
+			\taunu &\define \frac{H^2}{\nua}\five\five\text{viscous diffusion time (across the CZ)},\\
+			\taukappa &\define \frac{H^2}{\kappaa}\five\five\text{thermal diffusion time (across the CZ)}\\
+			\taueta &\define \frac{H^2}{\etaa}\five\five\text{magnetic diffusion time (across the CZ)}\\
+			\tauff &\define \sqrt{\frac{\cpcap H}{\Delta S \ga}}\five\text{``effective" free-fall time},\\
+			\tauomega &\define \frac{1}{2\omnought}\five\five\text{rotational (Coriolis) time-scale},\\
+			\taun &\define \frac{1}{N_{\rm a}}\five\five\text{buoyancy (gravity-wave) time-scale},\\
+			\taues &\define \frac{\nsqa}{4\omnought^2}\frac{H^2}{\kappaa}=\left(\frac{\tauomega^2}{\taun^2}\right)\taukappa\five\five\text{Eddington-sweet time}
+		\end{align}
+	\end{subequations}
+	
+	The relevant nondimensional parameters are:
+	\begin{subequations}\label{eq:nondparams}
+		\begin{align}
+			\ra &\define \frac{\taunu\taukappa}{\tauff^2}=\frac{\ga H^3}{\nua \kappaa} \frac{\Delta S}{\cpcap}\five\text{(Rayleigh number)},\\ 
+			\pr &\define \frac{\taukappa}{\taunu}=\frac{\nua}{\kappaa}\five\text{(Prandtl number)},\\
+			\prm &\define \frac{\taueta}{\taunu}=\frac{\nua}{\tilde{\eta}}\five\text{(magnetic Prandtl number)},\\
+			\ek &\define \frac{\tauomega}{\taunu}=\frac{\nua}{2\Omega_0H^2}\five\text{(Ekman number)},\\	
+			\bu &\define \frac{\taunu^2}{\taun^2}=\frac{\nsqa H^4}{\nua^2}\five\text{(buoyancy number)},\\
+			\andd \di &= \frac{\ga H}{\cpcap\tilde{T}}\five\text{(dissipation number)},
+		\end{align}
+	\end{subequations}
+	Note that in our convention, the dissipation number is not an independent control parameter, but a function of the non-dimensional parameters characterizing the reference state (this will be seen in Section \ref{sec:ref2}). 
+
+	Assuming rotation is present, we also define some derivative nondimensional parameters that can be formed from the parameters in Equation \eqref{eq:nondparams}: 
+	\begin{subequations}\label{eq:nondparams2}
+	\begin{align}
+		\ramod &\define \frac{\tauomega^2}{\tauff^2}=\frac{\ra\ek^2}{\pr}=\frac{\ga}{4\omnought^2H} \frac{\Delta S}{\cp}\five\text{(modified Rayleigh number)},\\ 
+		\roc&\define \frac{\tauomega}{\tauff}=\ek\sqrt{\frac{\ra}{\pr}}\five\text{(convective Rossby number)},\\
+		\bumod &\define \frac{\tauomega^2}{\taun^2}=\frac{\taues}{\taukappa}=\bu\ek^2=\frac{\nsqa}{4\omnought^2} \five\text{(modified buoyancy number)},\\ 
+		\sigma &\define \sqrt{\frac{\taues}{\taunu}} = \sqrt{\bumod\pr}=\frac{N_{\rm a}}{2\omnought}\sqrt{\pr}\five\text{(``$\sigma$ parameter")}
+		\end{align}
+	\end{subequations}
+
 	In this case, Equations \eqref{eq:contdim}--\eqref{eq:inddim} become 
 	\begin{align}
 	\Div[\rhotilde\vecu] &= 0\label{eq:contndvisc},\\
@@ -294,40 +341,27 @@ We leave the time-scale general for now, but ultimately assume it is a rotationa
 	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \frac{\pr}{\prm}\etatilde\curl\vecb\right].
 \end{align}	
 
-The non-dimensional numbers appearing are:
-\begin{subequations}
-\begin{align}
-	\ra &\define \frac{\tilde{g} H^3}{\tilde{\nu} \tilde{\kappa}} \frac{\Delta S}{\cp}\five\text{(Rayleigh number)},\\ 
-	\pr &\define \frac{\tilde{\nu}}{\tilde{\kappa}}\five\text{(Prandtl number)},\\
-	\prm &\define \frac{\tilde{\nu}}{\tilde{\eta}}\five\text{(magnetic Prandtl number)},\\
-	\ek &\define \frac{\tilde{\nu}}{2\Omega_0H^2}\five\text{(Ekman number)},\\	
-	\bu &\define \frac{\widetilde{N^2}H^4}{\tilde{\nu}\tilde{\kappa}}\five\text{(buoyancy number)},\\
-	\andd \di &= \frac{\tilde{g}H}{\cp\tilde{T}}\five\text{(dissipation number)},
-\end{align}
-\end{subequations}
-Note that in our convention, the dissipation number is not an independent control parameter, but a function of the non-dimensional parameters characterizing the reference state (this will be seen in Section \ref{sec:ref}). 
-
 Note that we have chosen the entropy-scale (and thus the Rayleigh number) based on the internal heating:
 \begin{subequations}
 \begin{align}
-	\Delta S &\define \frac{\tilde{Q}\tau}{\tilde{\rho}\tilde{T}} = \frac{\tilde{Q}H^2}{\tilde{\rho}\tilde{T}\tilde{\kappa}}\label{eq:dsnonrot}\\
-	\andd \ra &\define \frac{\tilde{g} \tilde{Q} H^3\tau}{\tilde{\rho}\tilde{T}\cp\tilde{\nu} \tilde{\kappa}} =  \frac{\tilde{g} \tilde{Q} H^5}{\tilde{\rho}\tilde{T}\cp\tilde{\nu} \tilde{\kappa}^2},\label{eq:ranonrot}\\ 
+	\Delta S &\define \frac{\tilde{Q}\tau}{\tilde{\rho}\tilde{T}} = \frac{\tilde{Q}H^2}{\tilde{\rho}\tilde{T}\kappaa}\label{eq:dsnonrot}\\
+	\andd \ra &\define \frac{\ga \tilde{Q} H^3\tau}{\tilde{\rho}\tilde{T}\cp\nua \kappaa} =  \frac{\ga \tilde{Q} H^5}{\tilde{\rho}\tilde{T}\cp\nua \kappaa^2},\label{eq:ranonrot}\\ 
 \end{align}
 \end{subequations}
-where the first equality in each equation is general (it holds for any choice of time-scale $\tau$) and the second equality is specific to the non-rotating case. Essentially, we have assumed that the heating (or cooling) operates on the time-scale $\tau$ before the fluid parcel buoyantly moves to another part of the shell, carrying with it an entropy perturbation $\Delta S$ (in the non-rotating case, this should happen on the thermal dissipation time-scale $\tau=H^2/\tilde{\kappa}$). 
+where the first equality in each equation is general (it holds for any choice of time-scale $\tau$) and the second equality is specific to the non-rotating case. Essentially, we have assumed that the heating (or cooling) operates on the time-scale $\tau$ before the fluid parcel buoyantly moves to another part of the shell, carrying with it an entropy perturbation $\Delta S$ (in the non-rotating case, this should happen on the thermal dissipation time-scale $\tau=H^2/\kappaa$). 
 
 The user is thus free to choose the shapes of $Q$ and $C$, but not their amplitude, since they must have unity volume-averages over the CZ. 
 
-The buoyancy number $\bu$ is the ratio of the typical squared buoyancy frequency to the thermal and viscous diffusion times. It is essentially a ``second (stable) Rayleigh number", and measures the stiffness of the stable layer (recall $\widetilde{N^2}$ refers to the typical value of $\nsqtilde$ in the WL). The buoyancy number is independent of the Rayleigh number, which estimates the ultimate instability of the CZ. 
+The buoyancy number $\bu$ is the ratio of the typical squared buoyancy frequency to the thermal and viscous diffusion times. It is essentially a ``second (stable) Rayleigh number", and measures the stiffness of the stable layer (recall $\nsqa$ refers to the typical value of $\nsqtilde$ in the WL). The buoyancy number is independent of the Rayleigh number, which estimates the ultimate instability of the CZ. 
 
 \section{Non-Dimensional Equations, Rotating [$\tau=(2\Omega_0)^{-1}$]}
-In the previous section, $t$ (and things with time in the dimensions) was implied to mean $(\tilde{\kappa}/H^2) t_{\rm{dim}}$, where $t_{\rm{dim}}$ was the dimensional time. We now want to use a new non-dimensional time, $t_{\rm{new}}= \Omega_0t_{\rm{dim}} = (\pr/\ek)t$. We can thus find the new equations easily from Equations \eqref{eq:contndvisc}--\eqref{eq:indndvisc}. Every place we see a time dimension, we recall $t=(\ek /\pr)t_{\rm{new}}$, so we multiply the place where the time-dimension appears by $(\ek/\pr)$ and drop the ``new" subscript [e.g., $t\rightarrow (\ek/\pr)\ t$, $\vecu\rightarrow(\pr/\ek)\vecu$, etc.]  
+In the previous section, $t$ (and things with time in the dimensions) was implied to mean $(\kappaa/H^2) t_{\rm{dim}}$, where $t_{\rm{dim}}$ was the dimensional time. We now want to use a new non-dimensional time, $t_{\rm{new}}= \Omega_0t_{\rm{dim}} = (\pr/\ek)t$. We can thus find the new equations easily from Equations \eqref{eq:contndvisc}--\eqref{eq:indndvisc}. Every place we see a time dimension, we recall $t=(\ek /\pr)t_{\rm{new}}$, so we multiply the place where the time-dimension appears by $(\ek/\pr)$ and drop the ``new" subscript [e.g., $t\rightarrow (\ek/\pr)\ t$, $\vecu\rightarrow(\pr/\ek)\vecu$, etc.]  
 
 Note that we should now choose a different typical entropy-scale and corresponding Rayleigh number:
 \begin{subequations}
 	\begin{align}
 		\Delta S^*&\define \frac{\tilde{Q}\tau}{\tilde{\rho}\tilde{T}} = \frac{\tilde{Q}}{2\Omega_0\tilde{\rho}\tilde{T}}\label{eq:dsrot}\\
-		\andd \ra &\define \frac{\tilde{g} \tilde{Q} H^3\tau}{\tilde{\rho}\tilde{T}\cp\tilde{\nu} \tilde{\kappa}} =  \frac{\tilde{g} \tilde{Q} H^3}{2\Omega_0\tilde{\rho}\tilde{T}\cp\tilde{\nu} \tilde{\kappa}}.\label{eq:rarot}
+		\andd \ra &\define \frac{\ga \tilde{Q} H^3\tau}{\tilde{\rho}\tilde{T}\cp\nua \kappaa} =  \frac{\ga \tilde{Q} H^3}{2\Omega_0\tilde{\rho}\tilde{T}\cp\nua \kappaa}.\label{eq:rarot}
 	\end{align}
 \end{subequations}
 The reasoning here is that under the influence of rapid rotation, the life-times of upflows or downflows are no longer set by the thermal dissipation time, but by the rotation period. Thus, the heating or cooling of a fluid parcel occurs on a shorter time-scale, leading to a smaller entropy difference across the shell than in the non-rotating case with the same amount of heating. Of course, neither Equations \eqref{eq:dsnonrot} or \eqref{eq:dsrot} are particularly convincing estimates and there is a large degree of uncertainty in the actual magnitude of typical entropy perturbations. We can only see how good these estimates are (after the fact) by checking if the achieved (non-dimensional) entropy difference across the shell winds up being close to unity. 
@@ -355,8 +389,8 @@ We thus find (after rearranging terms),
 where we have introduced two modified non-dimensional numbers:
 \begin{subequations}
 	\begin{align}
-		\ramod &\define \frac{\ek^2}{\pr}\ra =  \frac{\tilde{g} }{H\Omega_0^2} \frac{\Delta S}{\cp}=\frac{\tilde{g}\tilde{Q}}{(2\Omega_0)^3\tilde{\rho}\tilde{T}\cp H},\\ 
-		\andd \bumod &\define \frac{\ek^2}{\pr}\bu = \frac{\widetilde{N^2}} {4\Omega_0^2} \sim \frac{\tilde{g} }{H\Omega_0^2} =  \frac{1}{\text{geometric\ oblateness}}.
+		\ramod &\define \frac{\ek^2}{\pr}\ra =  \frac{\ga }{H\Omega_0^2} \frac{\Delta S}{\cp}=\frac{\ga\tilde{Q}}{(2\Omega_0)^3\tilde{\rho}\tilde{T}\cp H},\\ 
+		\andd \bumod &\define \frac{\ek^2}{\pr}\bu = \frac{\nsqa} {4\Omega_0^2} \sim \frac{\ga }{H\Omega_0^2} =  \frac{1}{\text{geometric\ oblateness}}.
 	\end{align}
 \end{subequations}
 
@@ -457,7 +491,7 @@ and
 \end{align}
 where (nastily)
 \begin{align}\label{eq:digory}
-	\di \define \frac{\tilde{g}H}{\cp\tilde{T}} &=  \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
+	\di \define \frac{\ga H}{\cp\tilde{T}} &=  \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
 	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})},\\
 	\tmptilde(r_0)&= \frac{(1-\beta^3)(1-\beta)}{(3\beta/2)(1-\beta^2)(e^{\nrho/n}-1) - (1-\beta^3)(\beta e^{\nrho/n}-1)},\\
 	\andd n &\define \frac{1}{1-\gamma}
