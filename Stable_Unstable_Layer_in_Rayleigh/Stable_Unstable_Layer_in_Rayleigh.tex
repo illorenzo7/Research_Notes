@@ -39,6 +39,7 @@
 \newcommand{\nua}{\nu_{\rm a}}
 \newcommand{\kappaa}{\kappa_{\rm a}}
 \newcommand{\etaa}{\eta_{\rm a}}
+\newcommand{\fnra}{F_{\rm{nr,a}}}
 
 \newcommand{\lumirrad}{L_{\rm irrad}}
 \newcommand{\lumkh}{L_{\rm KH}}
@@ -222,17 +223,54 @@ This is all to say, I am now fully converted to the idea of setting stability vi
 		\rhotilde &\rightarrow \rhoa \rhotilde, \\
 		\tmptilde &\rightarrow \tmpa \tmptilde,\\
 		\gtilde &\rightarrow g_a \gtilde,\\
-		\nsqtilde &\rightarrow \widetilde{N^2} \nsqtilde,\\
-		\nutilde &\rightarrow \tilde{\nu}\nutilde,\\
-		\kappatilde &\rightarrow \tilde{\kappa}\kappatilde,\\
-		 \etatilde &\rightarrow \tilde{\eta}\etatilde,\\ 
-		Q &\rightarrow \tilde{C} Q,\\
-		\andd C &\rightarrow \tilde{Q} C.
+		\nsqtilde &\rightarrow \nsqa \nsqtilde,\\
+		\entrtilde &\rightarrow \cpcap \entrtilde,\\
+		\nutilde &\rightarrow \nua\nutilde,\\
+		\kappatilde &\rightarrow\kappaa\kappatilde,\\
+		 \etatilde &\rightarrow \etaa\etatilde,\\ 
+		\andd \heatra &\rightarrow \frac{\fnra}{H} \heatra
 	\end{align}
 	\end{subequations}
-	Here, $H$ is a typical length-scale, $\tau$ a typical time-scale, and $\Delta S$ a typical (\textit{estimated}) entropy scale (in Rayleigh-B\'enard-type convection, the true entropy difference is imposed directly, but we will set the true value indirectly via heating and cooling functions). On the right-hand-sides of Equation \eqref{eq:ndscheme} and in the following non-dimensionalizations, all fluid variables, coordinates, and background-state quantities are understood to be non-dimensional. The tildes refer to``typical values" of the (dimensional) reference-state functions. These typical values will be a volume-average over the convection zone (CZ) of the shell, except for $\widetilde{N^2}$, which will be a volume-average over the stably stratified weather layer (WL). Since cooling takes out what heating dumps in, we will normalize such that $\tilde{C}=\tilde{Q}$. 
+	Here, $H$ is a typical length-scale, $\tau$ a typical time-scale, and $\Delta S$ a typical (\textit{estimated}) entropy difference across the convection zone (CZ). In Rayleigh-B\'enard-type convection, the true entropy difference is imposed directly, but we set this difference indirectly via the internal heating $\heatra$ and thermal boundary conditions. We define the ``energy flux not carried by radiation" via
+	\begin{align}
+		\fnrtilde \define \frac{1}{r^2}\int_{\rbcz}^r\heatra(x)x^2dx,
+	\end{align}
+	where $\rbcz$ is the radius of the base of the CZ.
 	
-	Below, we will assume the time-scale is either a thermal diffusion time (i.e., $\tau=H^2/\tilde{\nu}$) or a rotational time-scale [i.e., $\tau=(2\Omega_0)^{-1}$]. %To describe the reference state, we will consider three cases for a given function's ``typical value": Its value at the inner shell boundary, its value at the outer shell boundary, or its value volume-averaged over the shell. 
+	On the right-hand-sides of Equation \eqref{eq:ndscheme} and in the following equations, all fluid variables, coordinates, and background-state quantities are understood to be non-dimensional. The ``a" subscripts again refer to``typical values" of the (dimensional) atmospheric reference-state functions. These typical values are chosen to be volume-averages over the convection zone of the shell, except for $\nsqa$, which is chosen to be the volume-average over the stably stratified ``radiative zone" (RZ; really ``weather layer" in the case of Jupiter). 
+	
+	We also denote the top of the CZ by $\rtcz$, the base of the RZ by $\rbrz$, and the top of the RZ by $\rtrz$. We define the relative thicknesses of the RZ and CZ via
+	\begin{align}\label{eq:alpha}
+		\alpha\define \frac{\rtrz-\rbrz}{\rtcz-\rbcz}
+	\end{align}
+	and the aspect ratio of the CZ via 
+	\begin{align}\label{eq:beta}
+		\beta = \frac{\rbcz}{\rtcz}.
+	\end{align}
+	 We set $H$ to be the thickness of the CZ. We thus have 
+	 \begin{subequations}
+	 \begin{align}
+	 	\rbcz &= \frac{\beta}{1-\beta},\\
+	 	\rtcz &= \frac{1}{1-\beta},
+	 \end{align}
+	\end{subequations}
+	and 
+	 \begin{subequations}
+	\begin{align}
+		\rbrz &=\rtrz - \alpha,\\
+		\with \rtrz &= \rbcz\five\five\five\text{for solar tachocline}
+	\end{align}
+\end{subequations}
+	and
+	 \begin{subequations}
+	\begin{align}
+		\rbrz &=\rtcz ,\\
+		\andd \rtrz &= \rbrz + \alpha \five\five\five\text{for Jupiter.}
+	\end{align}
+\end{subequations}
+The only difference between Jupiter and the tachocline is which of the CZ or RZ lies above the other one. 
+
+We leave the time-scale general for now, but ultimately assume it is a rotational time-scale [i.e., $\tau=(2\Omega_0)^{-1}$]. %To describe the reference state, we will consider three cases for a given function's ``typical value": Its value at the inner shell boundary, its value at the outer shell boundary, or its value volume-averaged over the shell. 
 	
 	\section{Non-Dimensional Equations, Non-Rotating ($\tau=H^2/\tilde{\kappa}$)}
 	In this case, Equations \eqref{eq:contdim}--\eqref{eq:inddim} become 

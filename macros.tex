@@ -129,7 +129,7 @@
 \newcommand{\lumtilde}{\tilde{L}}
 \newcommand{\heatra}{\tilde{Q}_{\texttt{Ra}}}
 \newcommand{\cooltilde}{\tilde{C}}
-\newcommand{\nsqtilde}{\tilde{N^2}}
+\newcommand{\nsqtilde}{\widetilde{N^2}}
 \newcommand{\gtilde}{\tilde{g}}
 \newcommand{\nutilde}{\tilde{\nu}}
 \newcommand{\kappatilde}{\tilde{\kappa}}
@@ -148,12 +148,22 @@
 \newcommand{\dlnrhotilde}{\frac{d\ln\rhotilde}{dr}}
 \newcommand{\dlntmptilde}{\frac{d\ln\tmptilde}{dr}}
 \newcommand{\dlnprstilde}{\frac{d\ln\prstilde}{dr}}
-\newcommand{\dsdrtilde}{\frac{\entrtilde}{dr}}
+\newcommand{\dsdrtilde}{\frac{d\entrtilde}{dr}}
 \newcommand{\dlnrhotildeline}{d\ln\rhotilde/dr}
 \newcommand{\dlntmptildeline}{d\ln\tmptilde/dr}
 \newcommand{\dlnprstildeline}{d\ln\prstilde/dr}
 \newcommand{\dsdrtildeline}{d\entrtilde/dr}
 
+% some other ancillary reference state quantities (sort of)
+\newcommand{\grav}{g}
+\newcommand{\vecg}{\bm{g}}
+\newcommand{\geff}{g_{\rm{eff}}}
+\newcommand{\vecgeff}{\bm{g}_{\rm{eff}}}
+\newcommand{\heat}{Q}
+\newcommand{\buoyfreq}{N}
+\newcommand{\nsq}{N^2}
+\newcommand{\hrho}{H_\rho}
+\newcommand{\hprs}{H_{\rm{p}}}
 
 % grad ad and grad rad
 \newcommand{\gradrad}{\nabla_{\rm rad}}
@@ -188,21 +198,6 @@
 \newcommand{\enthone}{h_1}
 
 \newcommand{\pomega}{\varpi}
-
-\newcommand{\fluxnr}{F_{\rm nr}}
-\newcommand{\fluxnrtilde}{\widetilde{F_{\rm nr}}}
-
-\newcommand{\grav}{g}
-\newcommand{\vecg}{\bm{g}}
-\newcommand{\geff}{g_{\rm{eff}}}
-\newcommand{\vecgeff}{\bm{g}_{\rm{eff}}}
-
-\newcommand{\heat}{Q}
-\newcommand{\buoyfreq}{N}
-\newcommand{\nsq}{N^2}
-
-\newcommand{\hrho}{H_\rho}
-\newcommand{\hprs}{H_{\rm{p}}}
 
 % FLUID VARIABLES
 
@@ -342,9 +337,13 @@
 \newcommand{\fcond}{\flux_{\rm{cond}}}
 \newcommand{\fenth}{\flux_{\rm{enth}}}
 \newcommand{\frad}{\flux_{\rm{rad}}}
+\newcommand{\fnr}{\flux_{\rm{nr}}}
+
 \newcommand{\fcondscalar}{F_{\rm{cond}}}
 \newcommand{\fenthscalar}{F_{\rm{enth}}}
 \newcommand{\fradscalar}{F_{\rm{rad}}}
+\newcommand{\fnrscalar}{F_{\rm{nr}}}
+\newcommand{\fnrtilde}{\widetilde{F_{\rm nr}}}
 
 % UNITS
 \newcommand{\gram}{{\rm{g}}}
@@ -370,6 +369,12 @@
 \newcommand{\emf}{\bm{\mathcal{E}}}
 \newcommand{\meanemf}{\overline{\bm{\mathcal{E}}}}
 \newcommand{\meanbpol}{\overline{\bm{B}_{\rm{pol}}}}
+
+% key radii
+\newcommand{\rbcz}{r_{\rm bcz}}
+\newcommand{\rtcz}{r_{\rm tcz}}
+\newcommand{\rbrz}{r_{\rm bcz}}
+\newcommand{\rtrz}{r_{\rm tcz}}
 
 % SIMULATION CODES
 \newcommand{\rayleigh}{\texttt{Rayleigh}}
