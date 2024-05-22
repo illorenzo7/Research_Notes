@@ -310,14 +310,14 @@ We leave the time-scale general for now, but ultimately assume it is a rotationa
 		\end{align}
 	\end{subequations}
 	Note that in our convention, the dissipation number is not an independent control parameter, but a function of the non-dimensional parameters characterizing the reference state (this will be seen in Section \ref{sec:ref2}). 
-
+%The buoyancy number $\bu$ is the ratio of the typical squared buoyancy frequency to the thermal and viscous diffusion times. It is essentially a ``second (stable) Rayleigh number", and measures the stiffness of the stable layer (recall $\nsqa$ refers to the typical value of $\nsqtilde$ in the WL). The buoyancy number is independent of the Rayleigh number, which estimates the ultimate instability of the CZ. 
 	Assuming rotation is present, we also define some derivative nondimensional parameters that can be formed from the parameters in Equation \eqref{eq:nondparams}: 
 	\begin{subequations}\label{eq:nondparams2}
 	\begin{align}
 		\ramod &\define \frac{\tauomega^2}{\tauff^2}=\frac{\ra\ek^2}{\pr}=\frac{\ga}{4\omnought^2H} \frac{\Delta S}{\cp}\five\text{(modified Rayleigh number)},\\ 
 		\roc&\define \frac{\tauomega}{\tauff}=\ek\sqrt{\frac{\ra}{\pr}}\five\text{(convective Rossby number)},\\
 		\bumod &\define \frac{\tauomega^2}{\taun^2}=\frac{\taues}{\taukappa}=\frac{\bu\ek^2}{\pr}=\frac{\nsqa}{4\omnought^2} \five\text{(modified buoyancy number)},\\ 
-		\sigma &\define \sqrt{\frac{\taues}{\taunu}} =\frac{N_{\rm a}}{2\omnought}\sqrt{\pr}\five\text{(``$\sigma$ parameter")}
+		\sigma &\define \sqrt{\frac{\taues}{\taunu}}=\sqrt{\bumod\pr} =\frac{N_{\rm a}}{2\omnought}\sqrt{\pr}\five\text{(``$\sigma$ parameter")}
 		\end{align}
 	\end{subequations}
 
@@ -334,72 +334,39 @@ We leave the time-scale general for now, but ultimately assume it is a rotationa
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
 	\end{align}
 \end{subequations}
-\begin{align}\label{eq:enndvisc}
-	\rhotilde\tmptilde\left( \matderiv{\entrprime} + \frac{\bu}{\ra}\frac{\nsqtilde}{\gtilde} u_r\right)  = &\ \frac{1}{\pr}\tauovertaunu\Div(\rhotilde \tmptilde \kappatilde \nabla \entrprime) \nonumber \\
-	& + \frac{1}{\pr}\tauovertaunu\heattilde + \frac{\pr\di}{\ra}\left(\frac{\taunu}{\tau}\right)\left( D_{ij}e_{ij} + \frac{1}{\prm} \etatilde|\curl\vecb|^2\right),
+\begin{align}\label{eq:ennd}
+	\rhotilde\tmptilde\left( \matderiv{\entrprime} + \frac{\bu}{\ra}\frac{\nsqtilde}{\gtilde} u_r\right)  = &\ \frac{1}{\pr}\tauovertaunu[\Div(\rhotilde \tmptilde \kappatilde \nabla \entrprime) + \heatra] \nonumber \\
+	& + \frac{\pr\di}{\ra}\left(\frac{\taunu}{\tau}\right)\left( D_{ij}e_{ij} + \frac{1}{\prm} \etatilde|\curl\vecb|^2\right),
 \end{align}
-\begin{align}\label{eq:indndvisc}
+\begin{align}\label{eq:indnd}
 	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \frac{1}{\prm}\tauovertaunu\etatilde\curl\vecb\right].
 \end{align}	
 
-Note that we have chosen the entropy-scale (and thus the Rayleigh number) based on the internal heating:
-\begin{subequations}
+It is now clear how to reach any desired nondimensionalization. Use Equations \eqref{eq:nondparams} and \eqref{eq:nondparams2} to compute the ratio $\tau/\taunu$ in terms of the nondimensional parameters. The easiest choice (given our derivation) is $\tau=\taunu$.
+
+\section{Nondimensional equations, functions, and constants for $\tau=\tauomega$}
+We now reach the end of the main part of the document, where we write down the nondimensional equations to be used, and how to input these equations into {\rayleigh} by setting the $f_i$ and $c_j$. 
+
+For $\tau=\tauomega$, we have $\tau/\taunu=\ek$. Equations \eqref{eq:contnd}--\eqref{eq:indnd}, after simplification, become
 \begin{align}
-	\Delta S &\define \frac{\tilde{Q}\tau}{\tilde{\rho}\tilde{T}} = \frac{\tilde{Q}H^2}{\tilde{\rho}\tilde{T}\kappaa}\label{eq:dsnonrot}\\
-	\andd \ra &\define \frac{\ga \tilde{Q} H^3\tau}{\tilde{\rho}\tilde{T}\cp\nua \kappaa} =  \frac{\ga \tilde{Q} H^5}{\tilde{\rho}\tilde{T}\cp\nua \kappaa^2},\label{eq:ranonrot}\\ 
-\end{align}
-\end{subequations}
-where the first equality in each equation is general (it holds for any choice of time-scale $\tau$) and the second equality is specific to the non-rotating case. Essentially, we have assumed that the heating (or cooling) operates on the time-scale $\tau$ before the fluid parcel buoyantly moves to another part of the shell, carrying with it an entropy perturbation $\Delta S$ (in the non-rotating case, this should happen on the thermal dissipation time-scale $\tau=H^2/\kappaa$). 
-
-The user is thus free to choose the shapes of $Q$ and $C$, but not their amplitude, since they must have unity volume-averages over the CZ. 
-
-The buoyancy number $\bu$ is the ratio of the typical squared buoyancy frequency to the thermal and viscous diffusion times. It is essentially a ``second (stable) Rayleigh number", and measures the stiffness of the stable layer (recall $\nsqa$ refers to the typical value of $\nsqtilde$ in the WL). The buoyancy number is independent of the Rayleigh number, which estimates the ultimate instability of the CZ. 
-
-\section{Non-Dimensional Equations, Rotating [$\tau=(2\Omega_0)^{-1}$]}
-In the previous section, $t$ (and things with time in the dimensions) was implied to mean $(\kappaa/H^2) t_{\rm{dim}}$, where $t_{\rm{dim}}$ was the dimensional time. We now want to use a new non-dimensional time, $t_{\rm{new}}= \Omega_0t_{\rm{dim}} = (\pr/\ek)t$. We can thus find the new equations easily from Equations \eqref{eq:contndvisc}--\eqref{eq:indndvisc}. Every place we see a time dimension, we recall $t=(\ek /\pr)t_{\rm{new}}$, so we multiply the place where the time-dimension appears by $(\ek/\pr)$ and drop the ``new" subscript [e.g., $t\rightarrow (\ek/\pr)\ t$, $\vecu\rightarrow(\pr/\ek)\vecu$, etc.]  
-
-Note that we should now choose a different typical entropy-scale and corresponding Rayleigh number:
-\begin{subequations}
-	\begin{align}
-		\Delta S^*&\define \frac{\tilde{Q}\tau}{\tilde{\rho}\tilde{T}} = \frac{\tilde{Q}}{2\Omega_0\tilde{\rho}\tilde{T}}\label{eq:dsrot}\\
-		\andd \ra &\define \frac{\ga \tilde{Q} H^3\tau}{\tilde{\rho}\tilde{T}\cp\nua \kappaa} =  \frac{\ga \tilde{Q} H^3}{2\Omega_0\tilde{\rho}\tilde{T}\cp\nua \kappaa}.\label{eq:rarot}
-	\end{align}
-\end{subequations}
-The reasoning here is that under the influence of rapid rotation, the life-times of upflows or downflows are no longer set by the thermal dissipation time, but by the rotation period. Thus, the heating or cooling of a fluid parcel occurs on a shorter time-scale, leading to a smaller entropy difference across the shell than in the non-rotating case with the same amount of heating. Of course, neither Equations \eqref{eq:dsnonrot} or \eqref{eq:dsrot} are particularly convincing estimates and there is a large degree of uncertainty in the actual magnitude of typical entropy perturbations. We can only see how good these estimates are (after the fact) by checking if the achieved (non-dimensional) entropy difference across the shell winds up being close to unity. 
-
-We thus find (after rearranging terms),
-\begin{align}
-	\Div[\rhotilde\vecu] &= 0\label{eq:contndrot},\\
+	\Div(\rhotilde\vecu) &= 0\label{eq:contndrot},\\
 	\Div \vecb &= 0,
 \end{align}
 \begin{subequations}\label{eq:momndrot}
 	\begin{align}
-		\rhotilde\left[\matderiv{\vecu} + \ez\times\vecu\right] = &\ \ramod \rhotilde\gtilde S\er         -\rhotilde\nabla\left[ \frac{P}{\rhotilde} \right], \nonumber\\
+		\rhotilde\left(\matderiv{\vecu} + \ez\times\vecu\right) = &\ \roc^2 \rhotilde\gtilde S\er         -\rhotilde\nabla\left[ \frac{P}{\rhotilde} \right], \nonumber\\
 		&+(\curl\vecb)\times\vecb + \ek \Div\bm{D},\\
 		\where D_{ij} &\define 2\rhotilde\nutilde \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndrot}
-	\rhotilde\tmptilde\left[ \matderiv{S}+ \frac{\bumod}{\ramod} \frac{\nsqtilde}{\gtilde} u_r\right]  = &\ \frac{\ek}{\pr} \Div[\rhotilde \tmptilde \kappatilde \nabla S] \nonumber \\
-	&+  Q-C + \frac{\di\ek}{\ramod} D_{ij}e_{ij} + \frac{\di\ek}{\prm\ramod} \etatilde|\curl\vecb|^2,
+	\rhotilde\tmptilde\left( \matderiv{\entrprime}+ \frac{\sigma^2}{{\rm Ro_c^2}\pr} \frac{\nsqtilde}{\gtilde} u_r\right)  = &\ \frac{\ek}{\pr} [\Div(\rhotilde \tmptilde \kappatilde \nabla \entrtilde) + \heatra] \nonumber \\
+	&+ \sqrt{\frac{\pr}{\ra}}\left(\frac{\di}{\roc}\right) \left( D_{ij}e_{ij} + \frac{1}{\prm} \etatilde|\curl\vecb|^2\right),
 \end{align}
 \begin{align}\label{eq:indndrot}
-	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \frac{\ek}{\prm} \eta\curl\vecb\right],
+	\andd \pderiv{\vecb}{t} = \curl\left(\vecu\times\vecb - \frac{\ek}{\prm} \etatilde\curl\vecb\right),
 \end{align}	
-where we have introduced two modified non-dimensional numbers:
-\begin{subequations}
-	\begin{align}
-		\ramod &\define \frac{\ek^2}{\pr}\ra =  \frac{\ga }{H\Omega_0^2} \frac{\Delta S}{\cp}=\frac{\ga\tilde{Q}}{(2\Omega_0)^3\tilde{\rho}\tilde{T}\cp H},\\ 
-		\andd \bumod &\define \frac{\ek^2}{\pr}\bu = \frac{\nsqa} {4\Omega_0^2} \sim \frac{\ga }{H\Omega_0^2} =  \frac{1}{\text{geometric\ oblateness}}.
-	\end{align}
-\end{subequations}
-
-Note that although the ``$\dsdrtildeline$-terms" in the non-dimensionalizations have seemingly different definitions, they are similar, since
-\begin{align}
-	\frac{\bu}{\ra} \sim \frac{\cp}{\Delta S}\five \andd 	\frac{\bumod}{\ramod} \sim \frac{\cp}{\Delta S^*}.
-\end{align}
-The only difference is in the different estimates $\Delta S$ and $\Delta S^*$. 
 
 In terms of {\rayleigh}'s $f$'s and $c$'s, we compare Equations \eqref{eq:contndrot}--\eqref{eq:indndrot} to \eqref{eq:contgen}--\eqref{eq:indgen} and find:
 \begin{align*}
