@@ -34,6 +34,11 @@
 \newcommand{\tmpa}{T_{\rm a}}
 \newcommand{\rhoa}{\rho_{\rm a}}
 \newcommand{\prsa}{P_{\rm a}}
+\newcommand{\ga}{g_{\rm a}}
+\newcommand{\nsqa}{N^2_{\rm a}}
+\newcommand{\nua}{\nu_{\rm a}}
+\newcommand{\kappaa}{\kappa_{\rm a}}
+\newcommand{\etaa}{\eta_{\rm a}}
 
 \newcommand{\lumirrad}{L_{\rm irrad}}
 \newcommand{\lumkh}{L_{\rm KH}}
@@ -194,27 +199,29 @@ This is all to say, I am now fully converted to the idea of setting stability vi
 	
 	%Note that Equation \eqref{eq:estressdim} is only valid in a Cartesian coordinate system ($x_1$, $x_2$, $x_3$) (with $i$ and $j$ running over 1, 2, 3) and is translated into spherical coordinates before being used in Rayleigh. 
 	
-	Also, we recall the relation
-	\begin{align}
-		\dsdr = \cp \frac{\nsqtilde}{\gtilde},
-	\end{align}
-	where $\nsqtilde$ is the squared buoyancy frequency, which we will use in favor of $\dsdrline$ in subsequent equations. 
+
 	
-	Note that the original equations in \citet{Gilman1981} and \citet{Clune1999} were derived assuming a nearly-adiabatic background state (i.e., $\dsdrline\approx0$). \citet{Brown2012} and \citet{Vasil2013} have raised concerns about using various anelastic approximations in stable layers due to non-energy-conserving gravity waves. Should we be concerned?
+	%Note that the original equations in \citet{Gilman1981} and \citet{Clune1999} were derived assuming a nearly-adiabatic background state (i.e., $\dsdrline\approx0$). \citet{Brown2012} and \citet{Vasil2013} have raised concerns about using various anelastic approximations in stable layers due to non-energy-conserving gravity waves. Should we be concerned?
 	
 	\section{Non-Dimensional Scheme}
+	We recall the relation,
+	\begin{align}
+	d\entrtilde/dr = \cp \frac{\nsqtilde}{\gtilde},
+	\end{align}
+		where $\nsqtilde$ is the squared buoyancy frequency, which we will use in favor of $\dsdrline$ in subsequent equations.
+	
 	We now non-dimensionalize Equations \eqref{eq:contdim}--\eqref{eq:inddim}, according to the following scheme:
 	\begin{subequations}\label{eq:ndscheme}
 	\begin{align}
 		\nabla &\rightarrow \frac{1}{H}\nabla,\\
 		t &\rightarrow \tau t,\\
 		\vecu &\rightarrow \frac{H}{\tau} \vecu,\\
-		S &\rightarrow (\Delta S) S,\\
-		P &\rightarrow \tilde{\rho} \frac{H^2}{\tau^2} P,\\
+		\entrprime &\rightarrow (\Delta S) \entrprime,\\
+		\prsprime &\rightarrow \tilde{\rho} \frac{H^2}{\tau^2} \prsprime,\\
 		\vecb &\rightarrow (\mu\tilde{\rho})^{1/2}\frac{H}{\tau} \vecb,\\ 
-		\rhotilde &\rightarrow \tilde{\rho} \rhotilde, \\
-		\tmptilde &\rightarrow \tilde{T} \tmptilde,\\
-		\gtilde &\rightarrow \tilde{g} \gtilde,\\
+		\rhotilde &\rightarrow \rhoa \rhotilde, \\
+		\tmptilde &\rightarrow \tmpa \tmptilde,\\
+		\gtilde &\rightarrow g_a \gtilde,\\
 		\nsqtilde &\rightarrow \widetilde{N^2} \nsqtilde,\\
 		\nutilde &\rightarrow \tilde{\nu}\nutilde,\\
 		\kappatilde &\rightarrow \tilde{\kappa}\kappatilde,\\
