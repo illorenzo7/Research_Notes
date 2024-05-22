@@ -335,11 +335,11 @@ We leave the time-scale general for now, but ultimately assume it is a rotationa
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndvisc}
-	\rhotilde\tmptilde\left[ \matderiv{S} + \frac{\bu}{\ra}\frac{\nsqtilde}{\gtilde} u_r\right]  = &\ \Div[\rhotilde \tmptilde \kappatilde \nabla S] \nonumber \\
-	&+ Q(r) -C + \frac{\di}{\ra} D_{ij}e_{ij} + \frac{\di}{\prm\ra} \etatilde|\curl\vecb|^2,
+	\rhotilde\tmptilde\left( \matderiv{\entrprime} + \frac{\bu}{\ra}\frac{\nsqtilde}{\gtilde} u_r\right)  = &\ \frac{1}{\pr}\tauovertaunu\Div(\rhotilde \tmptilde \kappatilde \nabla \entrprime) \nonumber \\
+	& + \frac{1}{\pr}\tauovertaunu\heattilde + \frac{\pr\di}{\ra}\left(\frac{\taunu}{\tau}\right)\left( D_{ij}e_{ij} + \frac{1}{\prm} \etatilde|\curl\vecb|^2\right),
 \end{align}
 \begin{align}\label{eq:indndvisc}
-	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \frac{\pr}{\prm}\etatilde\curl\vecb\right].
+	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - \frac{1}{\prm}\tauovertaunu\etatilde\curl\vecb\right].
 \end{align}	
 
 Note that we have chosen the entropy-scale (and thus the Rayleigh number) based on the internal heating:
