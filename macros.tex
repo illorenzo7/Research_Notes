@@ -79,13 +79,13 @@
 % reference-state constantsF_{\rm nr}
 \newcommand{\cv}{c_{\rm{v}}}
 \newcommand{\cp}{c_{\rm{p}}}
-\newcommand{\cpcap}{C_{\rm{p}}}
 \newcommand{\cvcap}{C_{\rm{v}}}
+\newcommand{\cpcap}{C_{\rm{p}}}
 \newcommand{\cs}{c_{\rm s}}
 \newcommand{\gasconst}{\mathcal{R}}
 \newcommand{\gammaone}{\Gamma_1}
-\newcommand{\omref}{\Omega_0}
-\newcommand{\omrefvec}{\bm{\Omega}_0}
+\newcommand{\omnought}{\Omega_0}
+\newcommand{\omnoughtvec}{\bm{\Omega}_0}
 
 % total thermal variables (may wish to switch this stuff around later--I've always hated this notation of "no subscripts" = perturbation
 \newcommand{\tot}{_{\rm{tot}}}
@@ -96,7 +96,7 @@
 \newcommand{\dsdrtot}{\frac{dS\tot}{dr}}
 \newcommand{\dsdrtotline}{dS\tot/dr}
 
-% reference or mean state
+% mean state
 \newcommand{\rhoover}{\overline{\rho}}
 \newcommand{\tmpover}{\overline{T}}
 \newcommand{\prsover}{\overline{P}}
@@ -118,6 +118,7 @@
 \newcommand{\fradover}{\overline{F}_{\rm rad}}
 \newcommand{\kradover}{\overline{\kappa}_{\rm rad}}
 
+% reference state
 \newcommand{\rhotilde}{\tilde{\rho}}
 \newcommand{\tmptilde}{\tilde{T}}
 \newcommand{\prstilde}{\tilde{P}}
@@ -143,7 +144,18 @@
 \newcommand{\fconvtilde}{\tilde{\bm{F}}_{\rm conv}}
 \newcommand{\kradtilde}{\tilde{\kappa}_{\rm rad}}
 
-% gradad and gradrard
+% reference-state derivatives
+\newcommand{\dlnrhotilde}{\frac{d\ln\rhotilde}{dr}}
+\newcommand{\dlntmptilde}{\frac{d\ln\tmptilde}{dr}}
+\newcommand{\dlnprstilde}{\frac{d\ln\prstilde}{dr}}
+\newcommand{\dsdrtilde}{\frac{\entrtilde}{dr}}
+\newcommand{\dlnrhotildeline}{d\ln\rhotilde/dr}
+\newcommand{\dlntmptildeline}{d\ln\tmptilde/dr}
+\newcommand{\dlnprstildeline}{d\ln\prstilde/dr}
+\newcommand{\dsdrtildeline}{d\entrtilde/dr}
+
+
+% grad ad and grad rad
 \newcommand{\gradrad}{\nabla_{\rm rad}}
 \newcommand{\gradad}{\nabla_{\rm ad}}
 
@@ -159,6 +171,7 @@
 \newcommand{\kradprime}{\kappa^\prime_{\rm rad}}
 \newcommand{\fcondprime}{\bm{F}^\prime_{\rm cond}}
 
+% horizontally symmetric perturbations
 \newcommand{\rhohat}{\hat{\rho}}
 \newcommand{\tmphat}{\hat{T}}
 \newcommand{\prshat}{\hat{P}}
@@ -166,6 +179,7 @@
 \newcommand{\intehat}{\hat{U}}
 \newcommand{\enthhat}{\hat{h}}
 
+% perturbations from mean
 \newcommand{\rhoone}{\rho_1}
 \newcommand{\tmpone}{T_1}
 \newcommand{\prsone}{P_1}
@@ -186,17 +200,6 @@
 \newcommand{\heat}{Q}
 \newcommand{\buoyfreq}{N}
 \newcommand{\nsq}{N^2}
-
-% reference-state derivatives
-\newcommand{\dlnrho}{\frac{d\ln\rhoover}{dr}}
-\newcommand{\dlntmp}{\frac{d\ln\tmpover}{dr}}
-\newcommand{\dlnprs}{\frac{d\ln\prsover}{dr}}
-\newcommand{\dsdr}{\frac{d\overline{S}}{dr}}
-
-\newcommand{\dlnrholine}{d\ln\rhoover/dr}
-\newcommand{\dlntmpline}{d\ln\tmpover/dr}
-\newcommand{\dlnprsline}{d\ln\prsover/dr}
-\newcommand{\dsdrline}{d\overline{S}/dr}
 
 \newcommand{\hrho}{H_\rho}
 \newcommand{\hprs}{H_{\rm{p}}}
