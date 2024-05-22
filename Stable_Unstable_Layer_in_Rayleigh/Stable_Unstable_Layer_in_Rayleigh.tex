@@ -35,6 +35,9 @@
 \newcommand{\rhoa}{\rho_{\rm a}}
 \newcommand{\prsa}{P_{\rm a}}
 
+\newcommand{\lumirrad}{L_{\rm irrad}}
+\newcommand{\lumkh}{L_{\rm KH}}
+
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
@@ -129,24 +132,53 @@ Really, Equation \eqref{eq:dimfirstlaw} is simply an expression of the first law
 	 \Div\fconvtilde &\define \begin{cases} 0 \five &\text{for}\five \nabla_{\rm rad} <\nabla_{\rm ad}\ \text{(stable to convection)}\\
 	[\heattilde - \Div\fradtilde]_{(\rhotilde,\tmptilde)=(\rhotilde_{\rm ad}, \tmptilde_{\rm ad})}&\text{for}\five \nabla_{\rm rad} >\nabla_{\rm ad}\ \text{(unstable to convection)}\
 		\end{cases},\label{eq:dimradequil3}\\
-		\nabla_{\rm rad}&\define \frac{d\ln\tmptilde_{\rm rad}/dr}{d\ln\prstilde/dr} = -\frac{\gamma-1}{\gamma}\frac{\lstar}{4\pi r^2 \gtilde \rhotilde \kradtilde},\label{eq:dimradequil4}\\
+		\nabla_{\rm rad}&\define \frac{d\ln\tmptilde_{\rm rad}/dr}{d\ln\prstilde/dr} \define \frac{\gamma-1}{\gamma}\frac{\lumtilde\ofr}{4\pi r^2 \gtilde \rhotilde \kradtilde},\label{eq:dimradequil4}\\
 		\andd \nabla_{\rm ad}&\define  \left(\frac{d\ln\tmptilde}{d\ln\prstilde}\right)_{\rm ad} = \frac{\gamma-1}{\gamma}.
 \end{align}
 \end{subequations}
-Here, $\heattilde=\heattilde(\rhotilde,\tmptilde)$ is the reference-state internal heating per unit volume (likely due to nuclear burning in the core, or in Jupiter, Helmholtz contraction and solar irradiance), $\lstar$ is the total luminosity (power output) of the object, and $\kradtilde=\kradtilde(\rhotilde,\tmptilde)$ is the reference-state radiative diffusivity (units $\stoke$), which in turn depends on the opacity. The notation $(\rhotilde_{\rm ad}, \tmptilde_{\rm ad})$ means the continuation of $\rhotilde$ and $\tmptilde$ assuming adiabatic stratification. 
+Here, $\heattilde=\heattilde(\rhotilde,\tmptilde)$ is the reference-state internal heating per unit volume (likely due to nuclear burning in the core, or in Jupiter, Helmholtz contraction and solar irradiance), $\lumtilde\ofr\equiv 4\pi\int_0^r \heattilde(x) x^2dx$ is the total luminosity (power output) of the object interior to $r$, and $\kradtilde=\kradtilde(\rhotilde,\tmptilde)$ is the reference-state radiative diffusivity (units $\stoke$), which in turn depends on the opacity. The notation $(\rhotilde_{\rm ad}, \tmptilde_{\rm ad})$ means ``the continuation of $\rhotilde$ and $\tmptilde$ assuming adiabatic stratification."
 
-The reference-state $\heattilde$ and the $\heatra$ used by {\rayleigh} have physically quite different origin. Really, $\heatra$ is shorthand for $\Div\fconvtilde$. We describe explicitly how this works here. 
+The reference-state $\heattilde$ and the $\heatra$ used by {\rayleigh} have physically quite different origins. Really, $\heatra$ is shorthand for $\Div\fconvtilde$. We describe explicitly how this works here. 
 
-In practice, Equations \eqref{eq:dimhydro}--\eqref{eq:dimradequil} would be solved by integrating inward from an appropriate boundary condition at the photosphere. At each point, the relative values of $\nabla_{\rm rad}$ and $\nabla_{\rm ad}$ would be compared to determine which of the two forms of Equation \eqref{eq:dimradequil3} to use. Doing so implicitly adheres to the mixing-length assumption, because it is implied that ``convection is locally determined." Of course, convection is a \textit{global} phenomenon. The fully compressible system could theoretically lead to a horizontally averaged state where locally, $\gradrad<\gradad$, but vigorous global convective modes still exist there. This could make the structure model inaccurate. 
+In practice, Equations \eqref{eq:dimhydro}--\eqref{eq:dimradequil} would be solved by integrating inward from an appropriate boundary condition at the photosphere. At each point, the relative values of $\nabla_{\rm rad}$ and $\nabla_{\rm ad}$ would be compared to determine which of the two forms of Equation \eqref{eq:dimradequil3} to use. Doing so implicitly adheres to the mixing-length assumption, because it is implied that ``convection is locally determined." Wherever $\nabla_{\rm rad} <\nabla_{\rm ad}$ there is no convection at all ($\fconvtilde=0$) and wherever $\nabla_{\rm rad} >\nabla_{\rm ad}$ the convection is so vigorous that the layer is completely adiabatically stratified. No overshoot is allowed! 
 
-This is assuming the radiative conduction of heat dominates over the molecular ($\kappatilde$) conduction of heat. Clearly, subtracting Equation \eqref{eq:dimradequil} from the fully compressible heat equation would yield the combination 
-\begin{subequations}
-	\begin{align}
-		\heatprime - \Div(&\fradprime + \fcondprime),\\
-		\where \fradprime &\define \left(\frac{\rhoprime}{\rhotilde} + \frac{\kradprime}{\kradtilde} + \frac{d\tmpprime/dr}{d\tmptilde/dr}\right)\fradtilde
-	\end{align}
+
+
+Subtracting Equation \eqref{eq:dimradequil} from the fully compressible heat equation (see \citealt{Matilsky2024b}) yields
+\begin{subequations}\label{eq:endim2}
+\begin{align}
+	\rhotilde\tmptilde \left(\matderiv{\entrprime} + \frac{d\entrtilde}{dr} u_r\right) = &\ \heatprime -\Div\fradprime  +\Div\fconvtilde+ D_{ij}e_{ij} + \frac{\etatilde}{\mu}|\curl\vecb|^2,\\
+	\where \fradprime \define & -\rhotilde \cpcap \kradtilde \nabla\tmpprime -\left(\frac{\rhoprime}{\rhotilde} + \frac{\kradprime}{\kradtilde}\right)\rhotilde\cpcap\kradtilde\nabla\tmptilde
+\end{align}
 \end{subequations}
+in place of Equation \eqref{eq:endim}. 
 
+In {\rayleigh} therefore, we have implicitly set $\heatprime\equiv0$ (i.e., we ignore the ``real" internal heating processes; so we also set $\heattilde\equiv0$) and we choose 
+\begin{align}
+	\heatra\define \Div\fconvtilde=-\Div\fradtilde\five\text{(since}\ \heattilde\equiv0\text{)}.
+\end{align}
+However, we don't pick $\fradtilde$ from a structure model, rather we set it proportional to $\prstilde$. In the Sun, this isn't too bad an assumption actually (see \citealt{Featherstone2016a} and the appendix of \citealt{Matilsky2024}).
+
+We further implicitly assume
+\begin{align}
+\fradprime=-\rhotilde \tmptilde \kappatilde \nabla \entrprime.
+\end{align}
+This assumption appears to originate in \citet{Gilman1981}, which assumes a turbulent ``eddy" convective heat flux, due to unresolved motions, of the form $-\rho T\kappa\nabla S$ in the fully compressible heat equation. Making the choice to diffuse entropy, we must therefore regard $\kappatilde$ as an ``eddy" diffusivity. Strictly, we really shouldn't keep having $\fradprime\propto\nabla\entrprime$ in radiative zones, where there are no ``eddies" (although maybe there are two-dimensional eddies and also secondary vertical shear instabilities that can mix things---see \citealt{Cope2020,Garaud2020}). Hopefully the baroclinic consequences of keeping $\fradprime\propto\nabla\entrprime$ in radiative zones, as I have always done and plan to continue to do in the future, isn't so bad!
+
+Why all this rigamarole? It clarifies several things. First, it really only makes sense to add ``code internal heating" (like $\heatra$) for the \textit{convective} portions of the simulation. Just because $\heatra=-\Div\fradtilde$ doesn't mean we should add $\heatra$ in a radiative zone. This includes thermal boundary conditions, which act like sources and sinks of heat in the same way as $\heatra$. So ideally, we would only set nonzero thermal boundary conditions (i.e., $\pderivline{\entrprime}{r}\neq0$) at the boundary of a convection zone. 
+
+Second, the Jupiter irradiance really does \textit{not} imply ``heating from above," as we may have previously thought.  Somewhat paradoxically, a weather layer in radiative equilbrium would have $\heatra=\Div\fradtilde\equiv0$. The situation could (philosophically) be different in the sense that absorption of all wavelengths of solar radiation in the upper layers could \textit{act} like a heating from above (i.e, take the form of a volumetric heating $\heattilde$, that occupied a particular outer layer independent of the temperature gradients there), while re-emission would respond by altering the temperature gradient to enforce $\Div\fradtilde=\heattilde$. But regardless, this balance is subtracted off the heat equation, and is irrelevant to the anelastic approximation. The only relevant part of the energy balance of the reference state is the sign of $d\entrtilde/dr$. 
+
+Finally, when we think of anelastic energy fluxes, these fluxes are only responsible for carrying out $\lumkh$, i.e., the Kelvin-Helmholtz contraction luminosity that is internal to Jupiter. There is no flux necessary to account for $\lumirrad$ (the luminosity associated with energy absorbed through irradiance), because this flux has been subtracted out and should be associated with the reference state. We \textit{do} need to set an outward conductive flux at the top of the weather layer (i.e., $\pderivline{\entrprime}{r}<0$) in order to maintain thermal equilibrium in the convecting state. This is unfortunate given the convective origin of entropy diffusion discussed above. Note that this conductive flux will make the weather layer less stable than it otherwise would be. But as long as the weather layer is sufficiently stiff (i.e., high buoyancy frequency), this should have a minimal effect. 
+
+%Finally (I definitely hadn't appreciated this), if $\Div\fradtilde$ \textit{does} equal zero everywhere in the weather layer, what is the appropriate value of $|\fradtilde|$ at the top of the ? Is it $\fluxkh+\fluxirrad$
+This is all to say, I am now fully converted to the idea of setting stability via $d\entrtilde/dr$, instead of using heating layers in different places. I also view \citet{Heimpel2022}, who implements a stable layer above the convective layer, as effectively using heating layers also, since they set the flux to be ``into the layer" at both boundaries. However, this approach has the added disadvantage that the location between convectively stable and unstable cannot be set a priori. I also don't think it matters much if we get $d\entrtilde/dr$ from an actual structure model or we make it up. In the Sun (where we actually know the stiffness of the radiative layer), we are a little more constrained, but in Jupiter, it seems we can say whatever we want. 
+
+
+
+
+
+% fluid resp then I am including thermal boundary conditions that implement nonzero energy fluxes at the boundary as well. $\heatra$ shou
 % After the structure problem was solved  %Note that $\heattilde$ is a reference-state quantity (and thus assumed to be spherically-symmetric and time-independent) but should be interpreted as $\heattilde=-\Div\frad$, where $\frad$ is the radiative heat flux. Properly, $\heattilde$ should be proportional to the radiative diffusivity $\kappa_{\rm rad}$ (which takes on a specific form in the radiative diffusion approximation, derivable from the opacity) and to the gradient of the total temperature $\tmptilde + T$; and $C$ should be calculated using complicated near-surface physics. 
 
 
