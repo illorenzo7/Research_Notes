@@ -410,7 +410,7 @@ Here we solve the ``flimsy" stellar structure problem laid out in Section \ref{s
 \end{equation}
 
 We then choose 
-\begin{align}
+\begin{align}\label{eq:dsdr}
 	\dsdrtilde\define \begin{cases}
 		\Sigma\psi(r,r_0,\delta)\five\with r_0=\rtcz&\text{for Jupiter},\\
 		\Sigma[1-\psi(r,r_0-\delta,\delta)]\five\with r_0=\rbcz &\text{for the tachocline},
@@ -499,7 +499,32 @@ Normalization requires
 	\frac{1}{c} \define \frac{3(1-\beta)^3}{1-\beta^3}\int_{\rbcz}^{\rtcz}\int_{\rbcz}^r \rhotilde(x)\tmptilde(x) x^2 dx dr. 
 \end{align}
 \subsection{The Relationship between $\Sigma$ and $\sigma$}
+What is the nondimensional parameter $\Sigma$ appearing in Equation \eqref{eq:dsdr}? Recall our choice in Equation \eqref{eq:ndscheme} to scale the dimensional background entropy with $\cpcap$ instead of $\Delta S$. Thus, $\Sigma$ really measures the magnitude of the dimensional background entropy gradient relative to $\cpcap/H$. Thus, we write
+\begin{align}
+	\Sigma \approx \frac{H}{\cpcap} \left(\frac{d\entrtilde}{dr}\right)_{\rm a},
+\end{align}
+with the ``$\approx$" here meaning ``to within a knowable constant of order unity." Similarly, from Equation \eqref{eq:nsq}, we write
+\begin{align}
+	\nsqa \approx \frac{\ga}{\cpcap}\left(\dsdrtilde\right)_{\rm a}
+\end{align} 
+We thus find
+\begin{subequations}
+\begin{align}
+	\sigma^2\approx \pr \frac{\ga}{4H\omnought^2}\Sigma\approx \frac{\pr}{f}\Sigma,\\
+	\where f\define \frac{R_{\rm eq} - R_{\rm pol}}{R_{\rm eq}}
+\end{align}
+\end{subequations}
+is the geometric oblateness of the object ($R_{\rm eq}$ and $R_{\rm pol}$ refer to the equatorial and polar radius of the object, respectively). We can also estimate
+\begin{align}
+	\frac{1}{f} \approx \frac{\cpcap}{\Delta S}\rocsq
+\end{align}
+and thus
+\begin{align}
+	\Sigma \approx \frac{\Delta S}{\cpcap} \frac{1}{\pr}\frac{\sigma^2}{\rocsq} = \frac{\Delta S}{\cpcap} \frac{\bumod}{\ramod} = \frac{\Delta S}{\cpcap} \frac{\bu}{\ra} = \frac{\Delta S}{\cpcap} \frac{\tauff^2}{\taun^2}. 
+\end{align}
+Thus, however we manipulate the expressions, $\Sigma$ cannot be reduced to a function of $\sigma$. That is because the relative entropy fluctuation $\Delta S/\cpcap$ is ordinarily not set a priori. Without a stable layer, only the combination $\rocsq=[\gtilde/(4H\omnought^2)](\Delta S/\cpcap)$ (or equivalent) is relevant, and only this may be set. In dimensional calculations, one can choose $\Delta S$ and $\cpcap$ separately (and thus pick a definite $\Delta S/\cpcap$), but this doesn't matter since still only the resultant $\rocsq$ is of significance. With a stable layer, we implicitly \textit{must} choose a value for $\Delta S/\cpcap$ (which we do by picking $\Sigma$). 
 
+If we believe $\Delta S/\cpcap$ sets the typical entropy fluctuations in the convection zone (and presumably the overshoot layer), then it must be chosen to be consistent with the anelastic approximation. This places an upper bound on $\Sigma$. Physically, this makes sense: if $\Sigma$ is too high, the entropy gradient will be too high (relative to $\cpcap/H$) and overshooting plumes will develop $O(1)$ entropy fluctuations, at odds with the anelastic approximation. 
 
 \clearpage
 \newpage
