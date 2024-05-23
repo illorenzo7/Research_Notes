@@ -314,7 +314,7 @@ We leave the time-scale general for now, but ultimately assume it is a rotationa
 	Assuming rotation is present, we also define some derivative nondimensional parameters that can be formed from the parameters in Equation \eqref{eq:nondparams}: 
 	\begin{subequations}\label{eq:nondparams2}
 	\begin{align}
-		\ramod &\define \frac{\tauomega^2}{\tauff^2}=\frac{\ra\ek^2}{\pr}=\frac{\ga}{4\omnought^2H} \frac{\Delta S}{\cp}\five\text{(modified Rayleigh number)},\\ 
+		\ramod &\define \frac{\tauomega^2}{\tauff^2}=\frac{\ra\ek^2}{\pr}=\frac{\ga}{4\omnought^2H} \frac{\Delta S}{\cpcap}\five\text{(modified Rayleigh number)},\\ 
 		\roc&\define \frac{\tauomega}{\tauff}=\ek\sqrt{\frac{\ra}{\pr}}\five\text{(convective Rossby number)},\\
 		\bumod &\define \frac{\tauomega^2}{\taun^2}=\frac{\taues}{\taukappa}=\frac{\bu\ek^2}{\pr}=\frac{\nsqa}{4\omnought^2} \five\text{(modified buoyancy number)},\\ 
 		\sigma &\define \sqrt{\frac{\taues}{\taunu}}=\sqrt{\bumod\pr} =\frac{N_{\rm a}}{2\omnought}\sqrt{\pr}\five\text{(``$\sigma$ parameter")}
@@ -467,7 +467,8 @@ Various derivatives of the thermal variables can also be computed:
 	\dlnrhotilde &= -\left(\dsdrtilde + \frac{\di}{\gamma-1}\frac{\gtilde}{\tmptilde}\right),\\
 	\andd \hrhotilde &=\frac{1}{\dsdrtilde + \frac{\di}{\gamma-1}\frac{\gtilde}{\tmptilde}},
 \end{align}
-where $\hrho\define-(\dlnrhotildeline)^{-1}$ is the local density scale-height. (We can now start to see why the amplitude $\Sigma$ is unrelated to $\sigma$ and also important). 
+where $\hrho\define-(\dlnrhotildeline)^{-1}$ is the local density scale-height. (We can now start to see why the amplitude $\Sigma$ is unrelated to $\sigma$ and why it is also important; it partially sets the local density scale-height in the RZ). 
+
 To fully specify the reference-state, we need the constants $\di$, $\tmptilde(\rbcz)$, and $\rhotilde(\rbcz)$. We define the number of density scale-heights across the CZ, 
 \begin{align}\label{eq:nrho}
 	N_\rho &\define \ln\left[\frac{\rhotilde(\rbcz)}{\rhotilde(\rtcz)}\right].
@@ -482,7 +483,7 @@ Using Equation \eqref{eq:nrho}, the fact that $\entrtilde\equiv0$ in the CZ, and
 \end{align}
 is the ``polytropic index" of the CZ. Since $\dsdrtildeline\equiv0$ in the CZ, the stratification of the CZ winds up being an adiabatic polytrope; the full system, however, is \textit{not} a polytrope, nor is it equivalent to matching multiple polytropes.
 
-The final constant $\rhotilde(\rbcz)$ ends up not having an analytical expression but can be easily found by integration over the CZ of Equation \eqref{eq:rhotilde}.  
+The final constant $\rhotilde(\rbcz)$ ends up not having an analytical expression but can be found numerically by integration over the CZ of Equation \eqref{eq:rhotilde}.  
 
 The diffusivity profiles $\nutilde$, $\kappatilde$, and $\etatilde$ are arbitrary and do not affect the rest of the structure model. 
 
@@ -497,6 +498,8 @@ Normalization requires
 \begin{align}
 	\frac{1}{c} \define \frac{3(1-\beta)^3}{1-\beta^3}\int_{\rbcz}^{\rtcz}\int_{\rbcz}^r \rhotilde(x)\tmptilde(x) x^2 dx dr. 
 \end{align}
+\subsection{The Relationship between $\Sigma$ and $\sigma$}
+
 
 \clearpage
 \newpage
