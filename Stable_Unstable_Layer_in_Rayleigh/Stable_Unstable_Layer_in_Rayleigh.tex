@@ -48,7 +48,7 @@
 % date, author, title
 \date{\today}
 \author{Loren Matilsky}
-\title{Non-Dimensionalization of an Anelastic Stable--Unstable Layer in {\rayleigh}}
+\title{Implementation of an Anelastic Stable--Unstable Layer in {\rayleigh}}
 
 %\allowdisplaybreaks
 \begin{document}
@@ -402,11 +402,34 @@ c_{10} &\rightarrow \roc/\sqrt{\pr\ra}\\
 c_{11} &\rightarrow \sigma^2/(\pr\rocsq)
 \end{split}
 \end{align*}
-To set our simulation,
- we choose the following five independent nondimensional parameters: $\ra$, $\pr$, $\prm$, $\roc$, and $\sigma$. 
+The functions $f_7$--$f_{13}$ are derivatives of other functions and we don't need to worry about them here. 
+
+Thus, to fully set the \textit{dynamical regime} of our (rotating) simulation, we choose the following five independent nondimensional parameters: $\ra$, $\pr$, $\prm$, $\roc$, and $\sigma$. 
+
+As an example, \citealt{Matilsky2024} Case 4.00 had:
+\begin{subequations}
+	\begin{align}
+		\ra=\sn{5.62}{5},\\
+		\pr=1,\\
+		\prm=4,\\
+		\roc=0.400,\\
+	\andd	\sigma=79.6.
+	\end{align}
+\end{subequations}
+A main goal of Loren and Nic's work this year is to bring $\sigma < 1$. 
+
+For the current \citealt{Wulff2022}-inspired models we have
+\begin{subequations}
+	\begin{align}
+		\ra\in\{10^7,\sn{3.2}{7}\},\\
+		\pr = 1/2,\\
+		\andd \roc \in \{0.2, 0.4\}\\
+	\end{align}
+\end{subequations}
+This region of parameter space is inspired by the CZ-only case that appeared to have jets (see Wulff's Figure 3d. I believe this simulation had the bolded parameters in Wulff's Table 1 and 2, although it is not entirely clear from the manuscript. Anyway, we seem to have similar-looking jets!
 
 \section{The Reference State (for Real, This Time)}\label{sec:ref2}
-Here we solve the ``flimsy" stellar structure problem laid out in Section \ref{sec:ref}. We consider a spherical shell of gas (adjacent CZ and RZ) extending between inner radius $r\inn$ and outer radius $r\out$. For the Sun, $(r\inn,r\out)=(\rbrz,\rtcz)$, while for Jupiter, $(r\inn,r\out)=(\rbcz,\rtrz)$. We model the stability transition using a quartic matching function in the chosen $\dsdrtildeline$. More specifically, the assumed transition in convective stability occurs near an intermediate radius $r_0$, over a width $\delta$. We thus define the function:
+Here we solve the ``flimsy" stellar structure problem laid out in Section \ref{sec:ref}. We consider a spherical shell of gas (adjacent CZ and RZ) extending between inner radius $r\inn$ and outer radius $r\out$. For the Sun, $(r\inn,r\out)=(\rbrz,\rtcz)$, while for Jupiter, $(r\inn,r\out)=(\rbcz,\rtrz)$. We model the stability transition using a quartic matching function at the CZ--RZ interface for the arbitrarily chosen $\dsdrtildeline$. More specifically, the assumed transition in convective stability occurs near an intermediate radius $r_0$, over a width $\delta$. We thus define the function:
 \begin{equation}
   \psi(r;r_0, \delta)\define \begin{cases}
 		0 & r\leq r_0 \\
@@ -419,7 +442,7 @@ Here we solve the ``flimsy" stellar structure problem laid out in Section \ref{s
 We then choose 
 \begin{align}\label{eq:dsdr}
 	\dsdrtilde\define \begin{cases}
-		\Sigma\psi(r,r_0,\delta)\five\with r_0=\rtcz&\text{for Jupiter},\\
+		\Sigma\psi(r,r_0,\delta)\five\five\five\with r_0=\rtcz&\text{for Jupiter},\\
 		\Sigma[1-\psi(r,r_0-\delta,\delta)]\five\with r_0=\rbcz &\text{for the tachocline},
 	\end{cases}
 \end{align}
@@ -431,7 +454,7 @@ We also define the nondimensional entropy itself via
 \begin{align}
 	\entrtilde = \int_{r_0}^r \frac{d\entrtilde}{dx}dx,
 \end{align}
-where (without loss of generality, since only differences in $\entrtilde$ matter in the end) we have chosen the zero-point of $\entrtilde$ to be $r_0$. 
+where (without loss of generality, since only differences in $\entrtilde$ matter in the end) we have chosen the zero-point of $\entrtilde$ to be at $r_0$, or equivalently (since $\dsdrtildeline\equiv0$ in all of the CZ), the zero-point of the entropy is anywhere in the CZ.  
 
 We assume a centrally-concentrated mass so that $\gtilde\propto 1/r^2$. With the requirement that the volume-average of $\gtilde$ over the CZ be unity, we find
 \begin{align}
@@ -474,9 +497,9 @@ Various derivatives of the thermal variables can also be computed:
 	\dlnrhotilde &= -\left(\dsdrtilde + \frac{\di}{\gamma-1}\frac{\gtilde}{\tmptilde}\right),\\
 	\andd \hrhotilde &=\frac{1}{\dsdrtilde + \frac{\di}{\gamma-1}\frac{\gtilde}{\tmptilde}},
 \end{align}
-where $\hrho\define-(\dlnrhotildeline)^{-1}$ is the local density scale-height. (We can now start to see why the amplitude $\Sigma$ is unrelated to $\sigma$ and why it is also important; it partially sets the local density scale-height in the RZ). 
+where $\hrho\define-(\dlnrhotildeline)^{-1}$ is the local density scale-height. (We can now start to see why the amplitude $\Sigma$ is unrelated to $\sigma$ and why it is also important; it partially sets the local scale-heights in the RZ). 
 
-To fully specify the reference-state, we need the constants $\di$, $\tmptilde(\rbcz)$, and $\rhotilde(\rbcz)$. We define the number of density scale-heights across the CZ, 
+To fully specify the reference-state, we need the constants $\di$, $\tmptilde(\rbcz)$, and $\rhotilde(\rbcz)$. We define the number of density scale-heights across the CZ by 
 \begin{align}\label{eq:nrho}
 	N_\rho &\define \ln\left[\frac{\rhotilde(\rbcz)}{\rhotilde(\rtcz)}\right].
 \end{align}
@@ -488,25 +511,29 @@ Using Equation \eqref{eq:nrho}, the fact that $\entrtilde\equiv0$ in the CZ, and
 	\andd \tmptilde(\rbcz)&= \frac{(1-\beta^3)(1-\beta)}{(3\beta/2)(1-\beta^2)(1-e^{-\nrho/n}) - (1-\beta^3)(\beta - e^{-\nrho/n})},\\
 	\where n &\define \frac{1}{1-\gamma}
 \end{align}
-is the ``polytropic index" of the CZ. Since $\dsdrtildeline\equiv0$ in the CZ, the stratification of the CZ winds up being an adiabatic polytrope; the full system, however, is \textit{not} a polytrope, nor is it equivalent to matching multiple polytropes.
+is the ``polytropic index" of the CZ. Since $\dsdrtildeline\equiv0$ in the CZ, the stratification of the CZ winds up being an adiabatic polytrope; the full CZ--RZ system, however, is \textit{not} a polytrope, nor is it equivalent to matching multiple polytropes.
 
-The final constant $\rhotilde(\rbcz)$ ends up not having an analytical expression but can be found numerically by integration over the CZ of Equation \eqref{eq:rhotilde}.  
+Basically, we have chosen to treat $\nrho$ as an independent parameter instead of $\di$. 
 
-The diffusivity profiles $\nutilde$, $\kappatilde$, and $\etatilde$ are arbitrary and do not affect the rest of the structure model. 
+The final constant $\rhotilde(\rbcz)$ ends up not having an analytical expression but can be found numerically by integration over the CZ of Equation \eqref{eq:rhotilde} and the requirement that $\rhotilde$ averages to unity over the CZ.
 
-Given the choice for $\Delta S$ and the definition of $\fnradtilde$, $\heatra$ must be normalized in a particular way for consistency. Following the solar case, where $|\fconvtilde|$ is roughly proportional to $\prstilde$, we choose
+The diffusivity profiles $\nutilde$, $\kappatilde$, and $\etatilde$ are arbitrary and do not affect the rest of the structure model. They must have unity volume average over the CZ, however. 
+
+The heating profile $\heatra$ is also arbitrary but must have a particular normalization. This normalization is set by our choice for $\Delta S$ and the definition of $\fnradtilde$. Following the solar case, where $|\fconvtilde|$ is roughly proportional to $\prstilde$, we choose
 \begin{align}
 	\heatra = \begin{cases}
 		c\rhotilde\tmptilde &\text{inside the CZ}\\
 		0 & \text{outside the CZ}
 	\end{cases}
 \end{align}
-Normalization requires
+Normalization then requires
 \begin{align}
 	\frac{1}{c} \define \frac{3(1-\beta)^3}{1-\beta^3}\int_{\rbcz}^{\rtcz}\int_{\rbcz}^r \rhotilde(x)\tmptilde(x) x^2 dx dr. 
 \end{align}
+This is a discontinuous profile for $\heatra$ in the tachocline case, since $\heatra$ achieves its maximum value at $r=\rbcz$ and then drops zero below. This is tweaked slightly from the cases of \citet{Matilsky2024}, which had a smoothed $\heatra$. My suspicion from running some other models is that {\rayleigh} can handle a discontinuous $\heatra$ and that it should make a big difference to the simulation. 
+
 \subsection{The Relationship between $\Sigma$ and $\sigma$}
-What is the nondimensional parameter $\Sigma$ appearing in Equation \eqref{eq:dsdr}? Recall our choice in Equation \eqref{eq:ndscheme} to scale the dimensional background entropy with $\cpcap$ instead of $\Delta S$. Thus, $\Sigma$ really measures the magnitude of the dimensional background entropy gradient relative to $\cpcap/H$. Thus, we write
+What is the nondimensional parameter $\Sigma$ appearing in Equation \eqref{eq:dsdr}? Recall our choice in Equation \eqref{eq:ndscheme} to scale the dimensional background entropy with $\cpcap$ instead of $\Delta S$. Thus, $\Sigma$ really measures the magnitude of the dimensional background entropy gradient relative to $\cpcap/H$. We therefore write
 \begin{align}
 	\Sigma \approx \frac{H}{\cpcap} \left(\frac{d\entrtilde}{dr}\right)_{\rm a},
 \end{align}
@@ -517,55 +544,52 @@ with the ``$\approx$" here meaning ``to within a knowable constant of order unit
 We thus find
 \begin{subequations}
 \begin{align}
-	\sigma^2\approx \pr \frac{\ga}{4H\omnought^2}\Sigma\approx \frac{\pr}{f}\Sigma,\\
+	\sigma^2\approx \pr \frac{\ga}{4H\omnought^2}\Sigma\approx \frac{\pr}{f}\Sigma\label{eq:estf},\\
 	\where f\define \frac{R_{\rm eq} - R_{\rm pol}}{R_{\rm eq}}
 \end{align}
 \end{subequations}
-is the geometric oblateness of the object ($R_{\rm eq}$ and $R_{\rm pol}$ refer to the equatorial and polar radius of the object, respectively). We can also estimate
+is the geometric oblateness of the object ($R_{\rm eq}$ and $R_{\rm pol}$ refer to the equatorial and polar radius of the object, respectively, and the estimate \eqref{eq:estf} comes from considering the relative magnitudes of centrifugal and gravitational forces). We can also estimate
 \begin{align}
-	\frac{1}{f} \approx \frac{\cpcap}{\Delta S}\rocsq
+	\frac{1}{f} \approx \frac{\ga}{4H\omnought^2}\approx \frac{\cpcap}{\Delta S}\rocsq
 \end{align}
 and thus
 \begin{align}
 	\Sigma \approx \frac{\Delta S}{\cpcap} \frac{1}{\pr}\frac{\sigma^2}{\rocsq} = \frac{\Delta S}{\cpcap} \frac{\bumod}{\ramod} = \frac{\Delta S}{\cpcap} \frac{\bu}{\ra} = \frac{\Delta S}{\cpcap} \frac{\tauff^2}{\taun^2}. 
 \end{align}
-Thus, however we manipulate the expressions, $\Sigma$ cannot be reduced to a function of $\sigma$. That is because the relative entropy fluctuation $\Delta S/\cpcap$ is ordinarily not set a priori. Without a stable layer, only the combination $\rocsq=[\gtilde/(4H\omnought^2)](\Delta S/\cpcap)$ (or equivalent) is relevant, and only this may be set. In dimensional calculations, one can choose $\Delta S$ and $\cpcap$ separately (and thus pick a definite $\Delta S/\cpcap$), but this doesn't matter since still only the resultant $\rocsq$ is of significance. Basically, we have learned that with a stable layer present, we implicitly \textit{must} choose a value for $\Delta S/\cpcap$---realyl, a value for $\cpcap$, which in the CZ-only context is irrelevant---and we do this by picking $\Sigma$.
+Thus, however we manipulate the expressions, $\Sigma$ cannot be reduced to a function of $\sigma$. That is because the relative entropy fluctuation $\Delta S/\cpcap$ is ordinarily not set a priori. Furthermore, without a stable layer present, only the combination $\rocsq=[\gtilde/(4H\omnought^2)](\Delta S/\cpcap)$ (or equivalent) is relevant, and only this may be set. In dimensional calculations, one can choose $\Delta S$ and $\cpcap$ separately (and thus pick a definite $\Delta S/\cpcap$), but this doesn't matter since still only the resultant $\rocsq$ is of significance. Basically, we have learned that with a stable layer present, we implicitly \textit{must} choose a value for $\Delta S/\cpcap$---really, a value for $\cpcap$, which in the CZ-only context is irrelevant---and we do this by picking $\Sigma$.
 
-If we believe $\Delta S/\cpcap$ sets the typical entropy fluctuations in the convection zone (and presumably the overshoot layer), then it must be chosen to be consistent with the anelastic approximation. This \textit{might} place an upper bound on $\Sigma$. Physically, this \textit{might} make sense: if $\Sigma$ is too high, the entropy gradient will be too high (relative to $\cpcap/H$) and overshooting plumes will develop $O(1)$ entropy fluctuations, at odds with the anelastic approximation. 
+If we believe $\Delta S/\cpcap$ sets the typical entropy fluctuations in the CZ (and presumably the overshoot layer), then it must be chosen to be consistent with the anelastic approximation. This \textit{might} place an upper bound on $\Sigma$. Physically, this \textit{might} make sense: if $\Sigma$ is too high, the entropy gradient will be too high (relative to $\cpcap/H$) and overshooting plumes will develop $O(1)$ entropy fluctuations, at odds with the anelastic approximation. 
 
-On the other hand, $\Sigma$ does \textit{not} appear anywhere in the equation-set, and can only affect the dynamics through altering the reference-state profiles $\rhotilde$ and $\tmptilde$ in the RZ. Specifically, a high $\Sigma$, means rapid radial variation and small scale-heights. It is presently unclear how small scale-heights in the RZ will affect the dynamics of overshoot (see \citealt{Matilsky2024b}). Thus, after much hemming and hawing, I would argue there is a priori \textit{no} upper bound to $\Sigma$! 
+On the other hand, $\Sigma$ does \textit{not} appear anywhere in the equation-set, and can only affect the dynamics through altering the reference-state profiles $\rhotilde$ and $\tmptilde$ in the RZ. Specifically, a high $\Sigma$ means rapid radial variation in the reference-state thermal profiles and small scale-heights. It is presently unclear how small scale-heights in the RZ will affect the dynamics of overshoot (see \citealt{Matilsky2024b}). Thus, after much hemming and hawing, I would argue there is a priori \textit{no} upper bound to $\Sigma$! 
 
-In the Sun, we know accurate values of both $\Sigma\sim1$ and $\sigma\sim0.1$ from (dimensional) solar structure models. In Jupiter, where we know very little (even the value of $\sigma$ seems uncertain---we think $\nsqa/4\omnought^2\approx 20$ I think? What is a molecular $\kappa$?), I'm not sure if we could estimate $\Sigma$, which depends on reference-state \textit{gradients}, not just reference-state values. 
+In the Sun, we know accurate values of both $\Sigma\sim1$ and $\sigma\sim0.1$ from (dimensional) solar structure models. In Jupiter, we know very little. Even the value of $\sigma$ seems uncertain---we think $\nsqa/4\omnought^2\approx 20$? What is a molecular $\pr$? I'm not sure if we could estimate $\Sigma$, which depends on reference-state \textit{gradients}, not just reference-state values. 
 
  \section{All the Reference-State Parameters}
  My flimsy structure model for a CZ--RZ is fully specified by six parameters, then: $\alpha$, $\beta$, $\gamma$ (or $n$), $\delta$, $\nrho$, and $\Sigma$. Other technically free ``parameters" are the radial shapes of $\nutilde$, $\kappatilde$, $\etatilde$, and $\heatra$. For Case 4.00 in \citealt{Matilsky2024}, I chose (assuming my tweak to an ``abrupt" $\heatra$ doesn't affect things)
  \begin{subequations}
  \begin{align}
- 	\alpha=1\\
- 	\beta=0.759\\
- 	\gamma =5/3\ (n=3/2)\\
- 	\delta = 0.219\\
- 	\nrho = 3\\
- 	\Sigma = 0.453
+ 	\alpha=1,\\
+ 	\beta=0.759,\\
+ 	\gamma =5/3\ (n=3/2),\\
+ 	\delta = 0.219,\\
+ 	\nrho = 3,\\
+ 	\andd\Sigma = 0.453.
  \end{align}
 \end{subequations}
-$\heatra\propto \rhotilde\tmptilde$, and $\nutilde=\kappatilde=\etatilde\propto\rhotilde^{-1/2}$. This is the simulation I am working on extending the parameter space with (in particular, to $\sigma<1$). 
+I also chose $\heatra\propto \rhotilde\tmptilde$, and $\nutilde=\kappatilde=\etatilde\propto\rhotilde^{-1/2}$. This is the simulation I am working on extending the parameter space of (in particular, to $\sigma<1$). 
 
-For Jupiter, I plan to extend the Wulff simulations (which have, in the CZ-only case,  $\beta=0.8$, $\nrho=1.2$, and$\gamma=3/2$) to:
+For Jupiter, I plan to extend the Wulff simulations to include a top (thin) weather layer. The CZ-only cases currently have 
  \begin{subequations}
 	\begin{align}
-		\alpha=0.25\\
-		\beta=0.8\\
-		\gamma =3/2\ (n=2)\\
-		\delta = 0.05\\
-		\nrho = 1.2\\
-		\Sigma = 1
+		\beta=0.8,\\
+		\gamma =3/2\ (n=2),\\
+		\andd \nrho = 1.2.
 	\end{align}
 \end{subequations}
-$\heatra\propto \rhotilde\tmptilde$, and $\nutilde=\kappatilde=1$ (constant diffusivities).  If there are any major concerns with these choices, please speak now!
+I also have $\heatra\propto \rhotilde\tmptilde$ and $\nutilde=\kappatilde=1$ (constant diffusivities). For the weather layer models, I plan to choose $\alpha=0.25$, $\delta=0.05$, and $\Sigma=1$. If there are any major concerns with these choices, please speak now! 
 
 \section{Initial Boundary Conditions}
-For the hydro Jupiter simulations I will initialize with small thermal perturbations (randomly distributed everywhere) of magnitude $10^{-3}$. For the MHD tachocline simulations, I will also initialize a weak seed field (randomly distributed everywhere) of magnitude $10^{-3}$. Note that this is tweaked slightly from the original case 4.00, which had seed field only in the CZ and of amplitude $10^{-6}$. 
+For the hydro Jupiter simulations I will initialize with small thermal perturbations (randomly distributed everywhere) of magnitude $10^{-3}$. For the MHD tachocline simulations, I will also initialize a weak seed field (randomly distributed everywhere) of magnitude $10^{-3}$. Note that this is tweaked slightly from the original Case 4.00, which had seed field only in the CZ and of amplitude $10^{-6}$. 
 
 At both top and bottom for both Jupiter and Sun: Boundary conditions on $\vecu$ are stress-free and impenetrable, boundary conditions on $\vecb$ consist of potential-field matching. 
 
