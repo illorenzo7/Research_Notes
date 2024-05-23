@@ -475,15 +475,28 @@ To fully specify the reference-state, we need the constants $\di$, $\tmptilde(\r
 
 Using Equation \eqref{eq:nrho}, the fact that $\entrtilde\equiv0$ in the CZ, and the requirement that $\tmptilde$ integrates to unity over the CZ, Equations \eqref{eq:rhotilde} and \eqref{eq:tmptilde} yield
 \begin{align}\label{eq:digory}
-	\di \define \frac{\ga H}{\cpcap\tilde{T}} &=  \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
+	\di \define \frac{\ga H}{\cpcap\tmpa} &=  \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
 	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})}\\
-	\andd \tmptilde(\rbcz)&= \frac{(1-\beta^3)(1-\beta)}{(3\beta/2)(1-\beta^2)(1-e^{-\nrho/n}) - (1-\beta^3)(\beta - e^-{\nrho/n}},\\
+	\andd \tmptilde(\rbcz)&= \frac{(1-\beta^3)(1-\beta)}{(3\beta/2)(1-\beta^2)(1-e^{-\nrho/n}) - (1-\beta^3)(\beta - e^{-\nrho/n})},\\
 	\where n &\define \frac{1}{1-\gamma}
 \end{align}
 is the ``polytropic index" of the CZ. Since $\dsdrtildeline\equiv0$ in the CZ, the stratification of the CZ winds up being an adiabatic polytrope; the full system, however, is \textit{not} a polytrope, nor is it equivalent to matching multiple polytropes.
 
-The final constant $\rhotilde(\rbcz)$ ends up not having an analytical expression but can be easily found by integration over the CZ of Equation \eqref{eq:rhohat}.  
+The final constant $\rhotilde(\rbcz)$ ends up not having an analytical expression but can be easily found by integration over the CZ of Equation \eqref{eq:rhotilde}.  
 
+The diffusivity profiles $\nutilde$, $\kappatilde$, and $\etatilde$ are arbitrary and do not affect the rest of the structure model. 
+
+Given the choice for $\Delta S$ and the definition of $\fnradtilde$, $\heatra$ must be normalized in a particular way for consistency. Following the solar case, where $|\fconvtilde|$ is roughly proportional to $\prstilde$, we choose
+\begin{align}
+	\heatra = \begin{cases}
+		c\rhotilde\tmptilde &\text{inside the CZ}\\
+		0 & \text{outside the CZ}
+	\end{cases}
+\end{align}
+Normalization requires
+\begin{align}
+	\frac{1}{c} \define \frac{3(1-\beta)^3}{1-\beta^3}\int_{\rbcz}^{\rtcz}\int_{\rbcz}^r \rhotilde(x)\tmptilde(x) x^2 dx dr. 
+\end{align}
 
 \clearpage
 \newpage
