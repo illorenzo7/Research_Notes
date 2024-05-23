@@ -399,104 +399,92 @@ To set our simulation,
  we choose the following five independent nondimensional parameters: $\ra$, $\pr$, $\prm$, $\roc$, and $\sigma$. 
 
 \section{The Reference State (for Real, This Time)}\label{sec:ref2}
-Here we solve the ``flimsy" stellar structure problem laid out in Section \ref{sec:ref}. 
-To model a background CZ and WL in Jupiter, we consider a spherical shell composed of an ideal, hydrostatic gas extending between inner radius $r\inn$ and outer radius $r\out$. An assumed transition in convective stability occurs near an intermediate radius $r_0$, over width $\delta$. More specifically, we choose quartic matching of the entropy gradient between the two layers:
-\begin{align}
-	\frac{d\entrtilde}{dr} &=\psi\wl(r; r_0,\delta),
-\end{align}
-where
+Here we solve the ``flimsy" stellar structure problem laid out in Section \ref{sec:ref}. We consider a spherical shell of gas (adjacent CZ and RZ) extending between inner radius $r\inn$ and outer radius $r\out$. For the Sun, $(r\inn,r\out)=(\rbrz,\rtcz)$, while for Jupiter, $(r\inn,r\out)=(\rbcz,\rtrz)$. We model the stability transition using a quartic matching function in the chosen $\dsdrtildeline$. More specifically, the assumed transition in convective stability occurs near an intermediate radius $r_0$, over a width $\delta$. We thus define the function:
 \begin{equation}
-  \psi\wl(r;r_0, \delta)\define \begin{cases}
+  \psi(r;r_0, \delta)\define \begin{cases}
 		0 & r\leq r_0 \\
 		1 - \left[1 - \Big{(}\frac{r-r_0}{\delta}\Big{)}^2\right]^2 & r_0  < r < r_0+ \delta\\
 		1 & r\geq r_0+\delta.
 	\end{cases}
-	\label{eq:dsdr}
+	\label{eq:psi}
 \end{equation}
-We also define
-\begin{equation}
-	\psi\cz(r;r_0, \delta)\define 1 - \psi\wl(r;r_0-\delta,\delta) =  \begin{cases}
-		1 & r\leq r_0 \\
-		1 - \left[1 - \Big{(}\frac{r-r_0}{\delta}\Big{)}^2\right]^2 & r_0 -\delta  < r < r_0\\
-		0 & r\geq r_0.
+
+We then choose 
+\begin{align}
+	\dsdrtilde\define \begin{cases}
+		\Sigma\psi(r,r_0,\delta)\five\with r_0=\rtcz&\text{for Jupiter},\\
+		\Sigma[1-\psi(r,r_0-\delta,\delta)]\five\with r_0=\rbcz &\text{for the tachocline},
 	\end{cases}
-	\label{eq:dsdr}
-\end{equation}
-$\psi\wl$ thus ``senses" only the WL, and $\psi\cz$ ``senses" only the CZ. 
+\end{align}
+where $\Sigma$ is the nondimensional amplitude of $\dsdrtildeline$ in the RZ. Contrary to what one might expect, $\Sigma$ is actually independent of $\sigma$. The uppercase $\Sigma$ affects the radial structure of the reference state, while $\sigma$ affects the dynamics of the fluid. Each of these is a (different) aspect of the ``stiffness" of the RZ. More on this (since Nic will probably need convincing) below. 
 
-With this formulation, the CZ is strictly unstable (really, marginally stable, but becomes unstable from the heating and cooling). This ensures that none of the stable gradient ``leaks" into the CZ, as happens with (e.g.) tanh matching. We assume a centrally-concentrated mass so that $\gtilde\propto 1/r^2$. 
+With this formulation, the CZ is \textit{strictly} unstable (really, marginally stable, but becomes unstable because of the heating). This ensures that none of the stable gradient ``leaks" into the CZ, as happens with (e.g.) tanh matching (see \citealt{Matilsky2024}). 
 
-It can then be shown that five non-dimensional parameters fully characterize the shell geometry, $\rhotilde$, and $\tmptilde$:
-\begin{subequations}
-	\begin{align}
-		\alpha&\define \frac{r\out-r_0}{r_0-r\inn} \five\text{(WL-to-CZ\ aspect ratio)},\\ 
-		\beta &\define \frac{r\inn}{r_0} \five\text{(CZ aspect ratio)},\\
-		\gamma&\define \frac{\cp}{\cv}\five\text{(specific-heat ratio)},\\
-		\delta &\five\text{(stability transition width)},\\	
-		N_\rho &\define \ln\left[\frac{\rhotilde(r_0)}{\rhotilde(r\out)}\right]\five\text{(number of density scale-heights across CZ)},
-	\end{align}
-\end{subequations}
-where $\cv$ is the specific heat at constant volume. 
+We also define the nondimensional entropy itself via
+\begin{align}
+	\entrtilde = \int_{r_0}^r \frac{d\entrtilde}{dx}dx,
+\end{align}
+where (without loss of generality, since only differences in $\entrtilde$ matter in the end) we have chosen the zero-point of $\entrtilde$ to be $r_0$. 
 
-We choose $H$ to be the thickness of the CZ ($r_0-r\inn=1$ and $r\out-r_0=\alpha$). Thus,
-\begin{subequations}
-	\begin{align}
-		r\inn &=\frac{1-\beta}{\beta},\\
-		r_0 &= \frac{1}{1-\beta},\\
-		\andd r\out &=  \frac{1}{1-\beta} + \alpha
-	\end{align}
-\end{subequations}
-If we choose $\alpha=0.25$ and $\beta=0.9$, then $(r\inn,r_0,r\out)=(9, 10, 10.25)$. 
-
-With the requirement that the volume-average of $\gtilde$ over the CZ be unity, we require
+We assume a centrally-concentrated mass so that $\gtilde\propto 1/r^2$. With the requirement that the volume-average of $\gtilde$ over the CZ be unity, we find
 \begin{align}
 	\gtilde &= \left[ \frac{1-\beta^3}{3(1-\beta)^3}    \right]\frac{1}{r^2}.
 \end{align}
 
-It can then be shown from the ideal-gas and hydrostatic conditions (e.g., \citealt{Matilsky2023d}) that
-\begin{align}\label{eq:tmphat}
-	\tmptilde &= e^{\entrtilde}\left[\tmptilde(r_0) - \di\int_{r_0}^r \gtilde(x)  e^{-\entrtilde(x)}dx\right].
+Under the scaling of Equation \eqref{eq:ndscheme}, Equations \eqref{eq:dimhydro}, \eqref{eq:dimidgas}, and \eqref{eq:dimfirstlaw} become (respectively)
+\begin{align}\label{eq:hydro}
+	\frac{d\tilde{P}}{dr}= -\di\left(\frac{\gamma}{\gamma-1}\right)\rhotilde \gtilde,
+\end{align}
+\begin{align}
+	\prstilde &= \rhotilde \tmptilde,\label{eq:idgas}
 \end{align}
 and
-\begin{align}\label{eq:rhohat}
-	\rhotilde &= \rhotilde(r_0) \exp{\left[-\left(\frac{\gamma}{\gamma-1}\right)\entrtilde\right]}\tmptilde^{1/(\gamma-1)},
-\end{align}
-where (nastily)
-\begin{align}\label{eq:digory}
-	\di \define \frac{\ga H}{\cp\tilde{T}} &=  \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
-	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})},\\
-	\tmptilde(r_0)&= \frac{(1-\beta^3)(1-\beta)}{(3\beta/2)(1-\beta^2)(e^{\nrho/n}-1) - (1-\beta^3)(\beta e^{\nrho/n}-1)},\\
-	\andd n &\define \frac{1}{1-\gamma}
-\end{align}
-is the polytropic index of the CZ (note that since $\dsdrtildeline\equiv0$ in the CZ, the stratification of the CZ winds up being an adiabatic polytrope). We have also assumed (without loss of generality) that $\entrtilde(r_0)=0$, so that $\entrtilde\equiv0$ in the CZ). The constant $\rhotilde(r_0)$ ends up not having an analytical expression but can be easily found by integration over the CZ of Equation \eqref{eq:rhohat} (and I should maybe just find $\di$ and $\tmptilde(r_0)$ from integration, too, since I am error-prone).  
-
-To follow \citet{Jones2011} \citet{Heimpel2022} somewhat, we assume $n=2$. Apparently this is a common choice for Jupiter that better approximates its weird equation of state without breaking the ideal gas law. It results in the somewhat strange result $\gamma=3/2$. 
-
-We also simplify our lives and assume constant diffusivities:
-\begin{align}
-	\nutilde=\kappatilde=\etatilde\equiv 1.
-\end{align}
-
-For the heating, we use the typical {\rayleigh} profile $Q\propto \rhotilde \tmptilde$, but ensure that the heating is fully contained in the CZ:
-\begin{align}
-	Q \propto \rhotilde\tmptilde \psi\cz(r; r_0,\delta)
-\end{align} 
-
-For the cooling, we choose a cooling width $\dcool$:
-\begin{align}
-	C \propto \exp\left[\frac{r-r_0}{\dcool}\right] \psi\cz(r; r_0,\delta)
-\end{align}
-
-We thus fully define the following geometry and Jovian-ish reference state:
-\begin{subequations}
+\begin{subequations}\label{eq:firstlaw}
 	\begin{align}
-		\alpha &= 0.25,\\
-		\beta &= 0.9,\\
-		\gamma &= 3/2,\\
-		\delta=\dcool &= 0.1\five \text{(may mess with these)},\\
-		\andd N_\rho &= 3.
+		\frac{d\entrtilde}{dr}&=\frac{1}{\gamma}\frac{d\ln\tmptilde}{dr} - \frac{\gamma - 1}{\gamma}\frac{d\ln\rhotilde}{dr}\label{eq:firstlawtmprho}\\
+		&=\frac{1}{\gamma}\frac{d\ln\prstilde}{dr} - \frac{d\ln\rhotilde}{dr}\label{eq:firstlawprsrho}\\
+		&= \frac{d\ln\tmptilde}{dr} - \frac{\gamma - 1}{\gamma}\frac{d\ln\prstilde}{dr}\label{eq:firstlawtmpprs}
 	\end{align}
 \end{subequations}
+We can then find an ODE for the temperature alone:
+\begin{align}
+	\frac{d\tmptilde}{dr}-\left(\dsdrtilde\right)\tmptilde = - \di \gtilde
+\end{align}
+
+This is integrated to find (e.g., \citealt{Matilsky2024})
+\begin{align}\label{eq:tmptilde}
+	\tmptilde &= e^{\entrtilde}\left[\tmptilde(\rbcz) - \di\int_{\rbcz}^r \gtilde(x)  e^{-\entrtilde(x)}dx\right].
+\end{align}
+and
+\begin{align}\label{eq:rhotilde}
+	\rhotilde &= \rhotilde(\rbcz) \exp{\left[-\left(\frac{\gamma}{\gamma-1}\right)\entrtilde\right]}\tmptilde^{1/(\gamma-1)},
+\end{align}
+leaving the structure problem nearly solved. 
+
+Various derivatives of the thermal variables can also be computed:
+\begin{align}
+	\dlntmptilde &= \dsdrtilde - \di \frac{\gtilde}{\tmptilde},\\
+	\dlnrhotilde &= -\left(\dsdrtilde + \frac{\di}{\gamma-1}\frac{\gtilde}{\tmptilde}\right),\\
+	\andd \hrhotilde &=\frac{1}{\dsdrtilde + \frac{\di}{\gamma-1}\frac{\gtilde}{\tmptilde}},
+\end{align}
+where $\hrho\define-(\dlnrhotildeline)^{-1}$ is the local density scale-height. (We can now start to see why the amplitude $\Sigma$ is unrelated to $\sigma$ and also important). 
+To fully specify the reference-state, we need the constants $\di$, $\tmptilde(\rbcz)$, and $\rhotilde(\rbcz)$. We define the number of density scale-heights across the CZ, 
+\begin{align}\label{eq:nrho}
+	N_\rho &\define \ln\left[\frac{\rhotilde(\rbcz)}{\rhotilde(\rtcz)}\right].
+\end{align}
+
+Using Equation \eqref{eq:nrho}, the fact that $\entrtilde\equiv0$ in the CZ, and the requirement that $\tmptilde$ integrates to unity over the CZ, Equations \eqref{eq:rhotilde} and \eqref{eq:tmptilde} yield
+\begin{align}\label{eq:digory}
+	\di \define \frac{\ga H}{\cpcap\tilde{T}} &=  \frac{3 \beta (1 - \beta)^2 (1 - e^{-\nrho/n})} 
+	{ (3\beta/2) (1 - \beta^2) (1 - e^{-\nrho/n}) - (1-\beta^3)(\beta-e^{-\nrho/n})}\\
+	\andd \tmptilde(\rbcz)&= \frac{(1-\beta^3)(1-\beta)}{(3\beta/2)(1-\beta^2)(1-e^{-\nrho/n}) - (1-\beta^3)(\beta - e^-{\nrho/n}},\\
+	\where n &\define \frac{1}{1-\gamma}
+\end{align}
+is the ``polytropic index" of the CZ. Since $\dsdrtildeline\equiv0$ in the CZ, the stratification of the CZ winds up being an adiabatic polytrope; the full system, however, is \textit{not} a polytrope, nor is it equivalent to matching multiple polytropes.
+
+The final constant $\rhotilde(\rbcz)$ ends up not having an analytical expression but can be easily found by integration over the CZ of Equation \eqref{eq:rhohat}.  
+
+
 \clearpage
 \newpage
 %\bibliography{/Users/loren/Desktop/Paper_Library/000_bibtex/library_propstyle, 
