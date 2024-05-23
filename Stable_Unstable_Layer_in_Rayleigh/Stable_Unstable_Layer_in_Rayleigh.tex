@@ -53,10 +53,10 @@
 %\allowdisplaybreaks
 \begin{document}
 	\maketitle
-	\section{Purpose}
+	\section{Purpose}\label{sec:purpose}
 	This document describes how to implement, using the {\rayleigh} code, a coupled stable--unstable system. More precisely, the system consists of an unstable convection zone (CZ) that lies adjacent to a stable radiative zone (RZ) in a spherical shell. If the CZ is on top of the RZ we describe the system as ``solar-like" or a ``tachocline," etc. If the CZ is underneath the RZ (now considered a ``weather layer") we describe the system as ``Jovian" or "Jupiter," etc. It essentially the same problem (at least to specify) either away, making this document relevant to Nic \& COFFIES (tachocline), and to Geoff, Nic, and Matt (Jupiter). In the following sections, we describe the nondimensionalization, governing equations, and reference state. 
 	
-	\section{General Equations Solved in {\rayleigh}}
+	\section{General Equation Set Solved by {\rayleigh}}\label{sec:eqgen}
 	In general (with rotation and magnetism), {\rayleigh} time-evolves a set of coupled PDEs for the 3D vector velocity $\vecu$, vector magnetic field $\vecb$, pressure perturbation $\prsprime$ (perturbation away from the ``reference-state" pressure $\prstilde$), and entropy perturbation $\entrprime$ (perturbation away from $\entrtilde$). Note that $\entrprime$ can also be interpreted as a temperature perturbation in Boussinesq mode. For more details, see {\rayleigh}'s \href{https://rayleigh-documentation.readthedocs.io/en/latest/doc/source/User_Guide/physics_math_overview.html#the-system-of-equations-solved-in-rayleigh}{Documentation}. 
 	
 	We use spherical coordinates: $r$ (spherical radius), $\theta$ (colatitude), $\phi$ (azimuth angle), as well as cylindrical coordinates: $\lambda=r\sint$ (cylindrical radius, or moment arm) and $z=\cost$ (axial coordinate). In general, $\e_q$ denotes a position-dependent unit vector in the direction of increasing $q$. With this notation, the full PDE-set solved by {\rayleigh} is:
@@ -87,7 +87,7 @@ More complex systems, which {\rayleigh} also supports, require the user to manua
 
 Note that the $c_j$ can also be over-written at run-time by an ASCII text-file (i.e., the \texttt{main\_input} file), allowing easy changes of the nondimensional numbers for a simulation suite that uses a common reference state---all without modifying the  {\texttt{customfile}}.
 	
-	\section{Dimensional Anelastic Equations}
+	\section{Dimensional Anelastic Equations}\label{sec:eqdim}
 	We begin by writing down the full dimensional anelastic fluid equations, as they are usually implemented in {\rayleigh} (more precisely, this corresponds to \texttt{reference\_type = 2}). This form of the anelastic approximation in a spherical shell is derived in, or more accurately, attributed to (since {\rayleigh} ``updates" the reference state slightly differently than the cluge-y \texttt{ASH} implementation), two common sources: \citet{Gilman1981} and \citet{Clune1999}. {\rayleigh}'s dimensional anelastic equation-set is:
 	\begin{align}
 		\Div(\rhotilde\vecu) &= 0\label{eq:contdim},\\
@@ -111,7 +111,7 @@ Note that the $c_j$ can also be over-written at run-time by an ASCII text-file (
 	
 	Other background quantities that appear are the full gravitational acceleration $\gtilde$, the momentum, thermal, and magnetic diffusivities ($\nutilde$, $\kappatilde$, and $\etatilde$ , respectively; these all have c.g.s. units of $\stoke$), {\rayleigh}'s internal heating $\heatra$ (much more on this below), the frame rotation rate $\Omega_0$, the specific heat at constant pressure $\cpcap$, and the vacuum permeability $\mu$ ($=4\pi$ in c.g.s. units). The equations are written in a frame rotating with angular velocity $\Omega_0\ez$ and the centrifugal force is neglected. Note that $\cpcap$ is always assumed to be constant, while in a real stellar (or gas-giant) structure model, it should technically vary in radius as the ``perfectness" of the gas varies. 
 	
-	\section{My reference state: a flimsy approach to stellar structure}\label{sec:ref}
+	\section{My Reference State: a Flimsy Approach to Stellar Structure}\label{sec:ref}
 	In the anelastic equations, the one-dimensional reference state should satisfy equilibrium conditions in the momentum and energy equations. These one-dimensional equations are then subtracted from the fully compressible equations and linearized in the primed thermodynamic quantities to produce the anelastic approximation. Ideally, the reference state would be chosen based on a state-of-the-art structure model, incorporating all known physics as best we can. In the Sun, for example, this structure model is fairly well agreed-upon (e.g., \citealt{ChristensenDalsgaard1996}); but in the Jovian case, much less so (e.g., \citealt{Guillot2005}). In our (or possibly just Loren's) philosophy, the form of the reference state itself matters far less than the fact that we cannot approach realistic astrophysical conditions for stars or gas giants. Therefore, we choose the reference state somewhat arbitrarily. Put another way, we choose the $f_i$ to be slightly wrong and are consoled by the fact that the $c_j$ are \textit{incredibly} wrong. 
 	
 	When the reference state is fixed in time as it is in {\rayleigh}, the anelastic equations have no idea whether the one-dimensional equations subtracted out make any sense. It is up to us to be wise and enforce things like hydrostatic balance and thermal equilibrium. {\rayleigh} will happily chug along under any arbitrary reference state with no (obvious) poor consequences. It also helps to recall exactly what structure model we are ``really" subtracting off, since there can be a lot of confusion, especially when interpreting ``flux through the system." Clarification of this energy flux is the main purpose of this and the following sections. 
@@ -136,9 +136,9 @@ Note that the $c_j$ can also be over-written at run-time by an ASCII text-file (
 
 Here, $\gasconst=\cpcap-\cvcap$ is the gas constant, $\cvcap$ is the specific heat at constant volume (or equivalently, constant density), and $\gamma=\cpcap/\cvcap$ is the ratio of specific heats. All are assumed to be constant (that is the definition of a perfect, not just ideal, gas). 
 
-Really, Equation \eqref{eq:dimfirstlaw} is simply an expression of the first law of thermodynamics. It doesn't further constrain the structure problem, but rather introduces a new unknown, i.e., the entropy $\entrtilde$. The approach I employ is simply to choose $d\entrtilde/dr$ to enforce convective stability or not and also pick $\gtilde\propto1/r^2$. Then the structure problem is easily solved!
+Really, Equation \eqref{eq:dimfirstlaw} is simply an expression of the first law of thermodynamics. It doesn't further constrain the structure problem, but rather introduces a new unknown, i.e., the entropy $\entrtilde$. The approach I employ is simply to choose $d\entrtilde/dr$ to enforce convective stability or not and also pick $\gtilde\propto1/r^2$. Then the structure problem is easily solved (see Section \ref{sec:ref2}). 
 
-\section{The real structure problem}
+\section{The Real Structure Problem}\label{sec:refreal}
 In an ideal world, we would not choose an arbitrary $d\entrtilde/dr$, but instead demand a condition for thermal (in stars, ``radiative") equilibrium. This would generate another equation constraining $\rhotilde$ and $\tmptilde$ in addition to Equations \eqref{eq:dimhydro}--\eqref{eq:dimfirstlaw}, and thus fully define the structure problem. Let's consider radiative equilibrium first, since this applies in many stellar interiors and (maybe) in the weather layer of Jupiter. The radiative diffusion approximation in stars makes the structure problem much easier than for the (relatively cold) gas giants, since we only need consider the opacity of a fully ionized gas (and even then, it's complicated). Under the radiative diffusion approximation (and making a mixing-length assumption), the equation of radiative equilibrium is
 \begin{subequations}\label{eq:dimradequil}
 \begin{align}
@@ -155,7 +155,7 @@ Here, $\heattilde=\heattilde(\rhotilde,\tmptilde)$ is the ``real" reference-stat
 
 In practice, Equations \eqref{eq:dimhydro}--\eqref{eq:dimradequil} would be solved by integrating inward from an appropriate boundary condition at the photosphere. At each point, the relative values of $\nabla_{\rm rad}$ and $\nabla_{\rm ad}$ would be compared to determine which of the two forms of Equation \eqref{eq:dimradequil3} to use. Doing so implicitly adheres to the mixing-length assumption, because it is implied that ``convection is locally determined." Wherever $\nabla_{\rm rad} <\nabla_{\rm ad}$ there is no convection at all ($\fconvtilde=0$) and wherever $\nabla_{\rm rad} >\nabla_{\rm ad}$ the convection is so vigorous that the layer is completely adiabatically stratified. No overshoot is allowed! 
 
-\section{Energy fluxes: what belongs to the reference state?}
+\section{Energy Fluxes: What Belongs to the Reference State?}\label{sec:flux}
 The reference-state $\heattilde$ and the $\heatra$ used by {\rayleigh} have physically quite different origins. Really, $\heatra$ is shorthand for $\Div\fconvtilde$. We describe explicitly how this works here. 
 
 Subtracting Equation \eqref{eq:dimradequil} from the fully compressible heat equation (see \citealt{Matilsky2024b}) yields
@@ -208,7 +208,7 @@ This is all to say, I am now fully converted to the idea of setting stability vi
 	
 	%Note that the original equations in \citet{Gilman1981} and \citet{Clune1999} were derived assuming a nearly-adiabatic background state (i.e., $\dsdrtildeline\approx0$). \citet{Brown2012} and \citet{Vasil2013} have raised concerns about using various anelastic approximations in stable layers due to non-energy-conserving gravity waves. Should we be concerned?
 	
-	\section{Non-Dimensional Scheme}
+	\section{Non-Dimensional Scheme}\label{sec:ndscheme}
 	In this section, $H$ denotes the typical length-scale (chosen to be the CZ thickness) and $\tau$ the typical time-scale (left general for now). 
 	
 	We recall the relation,
@@ -284,7 +284,7 @@ The only difference between Jupiter and the tachocline is which of the CZ or RZ 
 
 We leave the time-scale general for now, but ultimately assume it is a rotational time-scale when running the simulations [i.e., $\tau=(2\Omega_0)^{-1}$]. Leaving $\tau$ general allows easy translation between different nondimensionalizations, if they are needed later. %To describe the reference state, we will consider three cases for a given function's ``typical value": Its value at the inner shell boundary, its value at the outer shell boundary, or its value volume-averaged over the shell. 
 	
-	\section{Non-Dimensional Equations (General $\tau$)}
+	\section{Non-Dimensional Equations (General $\tau$)}\label{sec:eqndgentau}
 	There are several time-scales relevant to the problem. Putting the nondimensional parameters in terms of these more clearly elucidates their meaning. Practically, it also makes translating between different nondimensionalizations easier. The relevant (dimensional) timescales are:
 	\begin{subequations}\label{eq:timescales}
 		\begin{align}
@@ -344,7 +344,7 @@ We leave the time-scale general for now, but ultimately assume it is a rotationa
 
 It is now clear how to reach any desired nondimensionalization. Use Equations \eqref{eq:nondparams} and \eqref{eq:nondparams2} to compute the ratio $\tau/\taunu$ in terms of the nondimensional parameters. The easiest choice (given our derivation) is $\tau=\taunu$.
 
-\section{Nondimensional equations, functions, and constants for $\tau=\tauomega$}
+\section{Nondimensional equations, functions, and constants for $\tau=\tauomega$}\label{sec:eqndrot}
 We now reach the end of the main part of the document, where we write down the nondimensional equations to be used, and how to input these equations into {\rayleigh} by setting the $f_i$ and $c_j$. 
 
 For $\tau=\tauomega$, we have $\tau/\taunu=\ek$. Equations \eqref{eq:contnd}--\eqref{eq:indnd}, after simplification, become
@@ -354,14 +354,14 @@ For $\tau=\tauomega$, we have $\tau/\taunu=\ek$. Equations \eqref{eq:contnd}--\e
 \end{align}
 \begin{subequations}\label{eq:momndrot}
 	\begin{align}
-		\rhotilde\left(\matderiv{\vecu} + \ez\times\vecu\right) = &\ \roc^2 \rhotilde\gtilde S\er         -\rhotilde\nabla\left[ \frac{P}{\rhotilde} \right], \nonumber\\
+		\rhotilde\left(\matderiv{\vecu} + \ez\times\vecu\right) = &\ \rocsq \rhotilde\gtilde S\er         -\rhotilde\nabla\left[ \frac{P}{\rhotilde} \right], \nonumber\\
 		&+(\curl\vecb)\times\vecb + \ek \Div\bm{D},\\
 		\where D_{ij} &\define 2\rhotilde\nutilde \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:enndrot}
-	\rhotilde\tmptilde\left( \matderiv{\entrprime}+ \frac{\sigma^2}{{\rm Ro_c^2}\pr} \frac{\nsqtilde}{\gtilde} u_r\right)  = &\ \frac{\ek}{\pr} [\Div(\rhotilde \tmptilde \kappatilde \nabla \entrtilde) + \heatra] \nonumber \\
+	\rhotilde\tmptilde\left( \matderiv{\entrprime}+ \frac{\sigma^2}{\rocsq\pr} \frac{\nsqtilde}{\gtilde} u_r\right)  = &\ \frac{\ek}{\pr} [\Div(\rhotilde \tmptilde \kappatilde \nabla \entrtilde) + \heatra] \nonumber \\
 	&+ \sqrt{\frac{\pr}{\ra}}\left(\frac{\di}{\roc}\right) \left( D_{ij}e_{ij} + \frac{1}{\prm} \etatilde|\curl\vecb|^2\right),
 \end{align}
 \begin{align}\label{eq:indndrot}
@@ -376,26 +376,30 @@ In terms of {\rayleigh}'s $f$'s and $c$'s, we compare Equations \eqref{eq:contnd
 	f_3 &\rightarrow \nutilde\\
 	f_4 &\rightarrow \tmptilde\\
 	f_5 &\rightarrow \kappatilde\\
-	f_6 &\rightarrow Q - C\\
+	f_6 &\rightarrow \heatra\\
 	f_7 &\rightarrow \etatilde\\
 	\vdots\\
 	f_{14} &\rightarrow \frac{\nsqtilde}{\gtilde}
 \end{split}
 \begin{split}
 c_1 &\rightarrow 1\\
-c_2 &\rightarrow \ramod\\
+c_2 &\rightarrow \rocsq\\
 c_3 &\rightarrow 1\\
-c_4 &\rightarrow 4\\
-c_5 &\rightarrow \ek\\
-c_6 &\rightarrow \ek/\pr\\
-c_7 &\rightarrow \ek/\prm\\
-c_8 &\rightarrow \di/\ramod\\
-c_9 &\rightarrow \di/\ramod\\
-c_{10} &\rightarrow 1\\
-c_{11} &\rightarrow \bumod/\ramod
+c_4 &\rightarrow 1\\
+c_5 &\rightarrow \roc\sqrt{\pr/\ra}\\
+c_6 &\rightarrow \roc/\sqrt{\pr\ra}\\
+c_7 &\rightarrow \roc\sqrt{\pr/(\prm^2\ra)}\\
+c_8 &\rightarrow \di/\roc^2\\
+c_9 &\rightarrow \di/\roc^2\\
+c_{10} &\rightarrow \roc/\sqrt{\pr\ra}\\
+c_{11} &\rightarrow \sigma^2/(\pr\rocsq)
 \end{split}
 \end{align*}
-\section{Hydrostatic, Ideal-Gas, Jovian Stable--Unstable Layer}
+To set our simulation,
+ we choose the following five independent nondimensional parameters: $\ra$, $\pr$, $\prm$, $\roc$, and $\sigma$. 
+
+\section{The Reference State (for Real, This Time)}\label{sec:ref2}
+Here we solve the ``flimsy" stellar structure problem laid out in Section \ref{sec:ref}. 
 To model a background CZ and WL in Jupiter, we consider a spherical shell composed of an ideal, hydrostatic gas extending between inner radius $r\inn$ and outer radius $r\out$. An assumed transition in convective stability occurs near an intermediate radius $r_0$, over width $\delta$. More specifically, we choose quartic matching of the entropy gradient between the two layers:
 \begin{align}
 	\frac{d\entrtilde}{dr} &=\psi\wl(r; r_0,\delta),
