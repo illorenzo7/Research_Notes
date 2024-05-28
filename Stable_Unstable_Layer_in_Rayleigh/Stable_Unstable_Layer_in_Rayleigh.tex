@@ -66,15 +66,15 @@
 \end{align}
 \begin{subequations}\label{eq:momgen}
 	\begin{align}
-		f_1\left(\matderiv{\vecu}+c_1\ez\times\vecu\right) =&\ c_2f_2 S\er - c_3 f_1\nabla\left(\frac{P}{f_1} \right), \nonumber\\
+		f_1\left(\matderiv{\vecu}+c_1\ez\times\vecu\right) =&\ c_2f_2 \entrprime\er - c_3 f_1\nabla\left(\frac{\prsprime}{f_1} \right), \nonumber\\
 		& +c_4(\curl\vecb)\times\vecb+c_5\Div\bm{D},\\
 		\where D_{ij} \define&\ 2f_1 f_3 \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\label{eq:dstressgen}\\
 		\andd e_{ij} \define&\ \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),\label{eq:estressgen}
 	\end{align}
 \end{subequations}
 \begin{align}\label{eq:engen}
-	f_1 f_4 \left(\matderiv{S} + c_{11}f_{14} u_r\right) =&\ c_6\Div(f_1 f_4 f_5 \nabla S) \nonumber \\
-	&+ c_{10}f_6(r) + c_8 c_5 D_{ij}e_{ij} +c_9c_7f_7|\curl\vecb|^2,
+	f_1 f_4 \left(\matderiv{\entrprime} + c_{11}f_{14} u_r\right) =&\ c_6\Div(f_1 f_4 f_5 \nabla \entrprime) \nonumber \\
+	&+ c_{10}f_6 + c_8 c_5 D_{ij}e_{ij} +c_9c_7f_7|\curl\vecb|^2,
 \end{align}
 \begin{align}\label{eq:indgen}
 	\andd \pderiv{\vecb}{t} = \curl\left[\vecu\times\vecb - c_7 f_7\curl\vecb\right],
@@ -333,7 +333,7 @@ We leave the time-scale general for now, but ultimately assume it is a rotationa
 \end{align}
 \begin{subequations}\label{eq:momnd}
 	\begin{align}
-		\rhotilde\left(\matderiv{\vecu}+\frac{\tau}{\tauomega}\ez\times\vecu\right) = &\ \frac{\ra}{\pr}\left(\frac{\tau}{\taunu}\right)^2\rhotilde\gtilde \entrprime\er         -\rhotilde\nabla\left[ \frac{P}{\rhotilde} \right], \nonumber\\
+		\rhotilde\left[\matderiv{\vecu}+\frac{1}{\ek}\tauovertaunu\ez\times\vecu\right] = &\ \frac{\ra}{\pr}\left(\frac{\tau}{\taunu}\right)^2\rhotilde\gtilde \entrprime\er         -\rhotilde\nabla\left[ \frac{P}{\rhotilde} \right], \nonumber\\
 		&\ +(\curl\vecb)\times\vecb +\tauovertaunu\Div\bm{D},\\
 		\where D_{ij} &\define 2\rhotilde\nutilde \left[e_{ij} - \frac{1}{3}(\Div\vecu) \delta_{ij} \right]\\
 		\andd e_{ij} &\define \frac{1}{2}\left(\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} \right),
