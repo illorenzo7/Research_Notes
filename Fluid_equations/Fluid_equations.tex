@@ -1,0 +1,88 @@
+
+\documentclass{jfm}
+
+\usepackage{graphicx}
+%\usepackage{epstopdf,epsfig}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{natbib}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    urlcolor   = blue,
+    citecolor  = black,
+}
+\usepackage{amsmath, amssymb,bm, empheq, mathrsfs, cancel}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\RomanNumeralCaps}[1]
+\linenumbers
+
+% my cool macros
+\input{/Users/loren/Desktop/Research_Notes/macros.tex}
+\defcitealias{Gough1969}{G69}
+\defcitealias{Matilsky2024b}{Paper I}
+\defcitealias{Matilsky2024c}{Paper II}
+\defcitealias{Matilsky2024d}{Paper III}
+
+
+% more cool macros 
+\newcommand{\vecrot}{\bm{\Omega}}
+\newcommand{\vecr}{\bm{r}}
+\newcommand{\vecf}{\bm{F}}
+\newcommand{\veck}{\boldsymbol{k}}
+
+\newcommand{\heatlbr}{Q_{\rm LBR}}
+\newcommand{\heatnlbr}{Q_{\rm NLBR}}
+\newcommand{\forcenlbr}{\bm{f}_{\rm NLBR}}
+\newcommand{\heatnomassflux}{Q_{\rm nomassflux}}
+\newcommand{\heatmassflux}{Q_{\rm massflux}}
+\newcommand{\heatadv}{Q_{\rm adv}}
+\newcommand{\heatcomp}{Q_{\rm comp}}
+\newcommand{\heatbuoy}{Q_{\rm buoy}}
+\newcommand{\heatfluxin}{Q_{\rm flux}}
+
+\newcommand{\uover}{{\overline{\vecu}}}
+\newcommand{\utilde}{{\tilde{\vecu}}}
+\newcommand{\uhat}{{\hat{\vecu}}}
+\newcommand{\uprime}{{\vecu^\prime}}
+\newcommand{\uone}{{\vecu}_1}
+\newcommand{\utot}{{\vecu}_{\rm tot}}
+\newcommand{\utotover}{\overline{{\vecu}_{\rm tot}}}
+\newcommand{\utotprime}{{\vecu}_{\rm tot}^\prime}
+\newcommand{\utothat}{\widehat{{\vecu}_{\rm tot}}}
+\newcommand{\utotone}{({\vecu}_{\rm tot})_1}
+
+
+\begin{document}
+\title{Different forms of the fluid equations}
+
+\section{Fully compressible}
+\begin{align}
+\frac{D\rho}{Dt}&=-\rho\Div\vecu\five \where \frac{D}{Dt}\define \pderiv{}{t} + \ugrad
+\end{align}
+
+\begin{subequations}\label{eq:mom}
+	\begin{align}
+		\rho\frac{D\vecu}{Dt}&=-2\bm{\Omega}_0\times\vecu- \nabla P +\rho\vecg +\Div \mathsfbi{D}+\frac{1}{\mu}(\curl\vecb)\times\vecb,\label{eq:mommain}\\
+		\where \mathsfi{D}_{ij}& = \rho\nu\left[\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right],\label{eq:momvisc}
+	\end{align}
+\end{subequations}
+
+\begin{align}\label{eq:en}
+	\rho T\frac{DS}{Dt}= \Div(\rho\kappa\cpcap\nabla T) + Q + \mathsfi{D}_{ij}\pderiv{u_i}{x_j} + \frac{1}{\mu}|\curl\vecb|^2,
+\end{align}
+
+\begin{align}
+S=S(P,T)
+\end{align}
+
+\begin{align}
+\pderiv{\vecb}{t}=\nabla\times(\vecu\times\vecb) - \nabla\times(\eta\curl\vecb)
+\end{align}
+
+\begin{align}
+\Div\vecb\equiv0
+\end{align}
+
+\end{document}
