@@ -1,5 +1,5 @@
 
-\documentclass{jfm}
+\documentclass{aastex63}
 
 \usepackage{graphicx}
 %\usepackage{epstopdf,epsfig}
@@ -64,13 +64,13 @@
 
 \begin{subequations}\label{eq:mom}
 	\begin{align}
-		\rho\frac{D\vecu}{Dt}&=-2\bm{\Omega}_0\times\vecu- \nabla P +\rho\vecg +\Div \mathsfbi{D}+\frac{1}{\mu}(\curl\vecb)\times\vecb,\label{eq:mommain}\\
-		\where \mathsfi{D}_{ij}& = \rho\nu\left[\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right],\label{eq:momvisc}
+		\rho\frac{D\vecu}{Dt}&=-2\rho\bm{\Omega}_0\times\vecu- \nabla P +\rho\vecg +\Div \bm{D}+\frac{1}{\mu}(\curl\vecb)\times\vecb\label{eq:mommain}\\
+		\where D_{ij}& = \rho\nu\left[\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right]\label{eq:momvisc}
 	\end{align}
 \end{subequations}
 
 \begin{align}\label{eq:en}
-	\rho T\frac{DS}{Dt}= \Div(\rho\kappa\cpcap\nabla T) + Q + \mathsfi{D}_{ij}\pderiv{u_i}{x_j} + \frac{1}{\mu}|\curl\vecb|^2,
+	\rho T\frac{DS}{Dt}= \Div(\rho\kappa\cpcap\nabla T) + Q + D_{ij}\pderiv{u_i}{x_j} + \frac{1}{\mu}|\curl\vecb|^2
 \end{align}
 
 \begin{align}
@@ -84,5 +84,43 @@ S=S(P,T)
 \begin{align}
 \Div\vecb\equiv0
 \end{align}
+
+
+\newpage
+
+\section{Anelastic}
+\begin{align}
+\Div(\rhoover\vecu)&\equiv0\\
+\Div\vecb&\equiv0
+\end{align}
+
+\begin{subequations}\label{eq:mom}
+	\begin{align}
+		\rhoover\frac{D\vecu}{Dt}&=-2\rhoover\Omega_0\ez\times\vecu- \nabla \prsprime +\rhoprime g\er +\Div \bm{D}+\frac{1}{\mu}(\curl\vecb)\times\vecb,\label{eq:mommain}\\
+		\where D_{ij}& = \rhoover\,\nuover\left[\pderiv{u_i}{x_j} + \pderiv{u_j}{x_i} - \frac{2}{3}(\Div\vecu)\delta_{ij}\right],\label{eq:momvisc}
+	\end{align}
+\end{subequations}
+
+\begin{align}\label{eq:en}
+	\rhoover \tmpover\frac{D\entrprime}{Dt}= \Div(\rhoover\tmpover\kappaover\nabla\entrprime) + Q_{\rm rad}+ D_{ij}\pderiv{u_i}{x_j} + \frac{1}{\mu}|\curl\vecb|^2,
+\end{align}
+
+\begin{align}
+\pderiv{\vecb}{t}=\nabla\times(\vecu\times\vecb) - \nabla\times(\etaover\curl\vecb)
+\end{align}
+
+\begin{align}
+\frac{\rhoprime}{\rhoover}=\frac{\prsprime}{\prsover}-\frac{\tmpprime}{\tmpover} = \frac{\prsprime}{\gamma \prsover} - \frac{\entrprime}{\cpcap}
+\end{align}
+
+\begin{align}
+\frac{d\prsover}{dr}=-\rhoover g,\five\where g=\frac{GM_\odot}{r^2}
+\end{align}
+
+\begin{align}
+\frac{1}{\tmpover}\frac{d\tmpover}{dr} - \left(\frac{\gamma-1}{\gamma}\right)\frac{1}{\prsover}\frac{d\prsover}{dr} = \frac{1}{\cpcap}\frac{d\entrover}{dr}=\frac{\nsqover}{g}
+\end{align}
+
+
 
 \end{document}
