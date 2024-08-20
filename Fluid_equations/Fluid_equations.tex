@@ -102,7 +102,7 @@ S=S(P,T)
 \end{subequations}
 
 \begin{align}\label{eq:en}
-	\rhoover \tmpover\frac{D\entrprime}{Dt}= \Div(\rhoover\tmpover\kappaover\nabla\entrprime) + Q_{\rm rad}+ D_{ij}\pderiv{u_i}{x_j} + \frac{1}{\mu}|\curl\vecb|^2,
+	\rhoover \tmpover\left(\frac{D\entrprime}{Dt}+u_r\frac{d\entrover}{dr}\right)= -\Div(\rhoover\tmpover\kappaover\nabla\entrprime) + Q_{\rm rad}+ D_{ij}\pderiv{u_i}{x_j} + \frac{1}{\mu}|\curl\vecb|^2,
 \end{align}
 
 \begin{align}
@@ -121,6 +121,18 @@ S=S(P,T)
 \frac{1}{\tmpover}\frac{d\tmpover}{dr} - \left(\frac{\gamma-1}{\gamma}\right)\frac{1}{\prsover}\frac{d\prsover}{dr} = \frac{1}{\cpcap}\frac{d\entrover}{dr}=\frac{\nsqover}{g}
 \end{align}
 
+%\begin{align}
+% \frac{1}{\cpcap}\frac{d\entrover}{dr}=\frac{\nsqover}{g}
+%\end{align}
 
+\section{Labeled induction equation}
+
+\begin{align}
+\pderiv{\vecb}{t}=\underbrace{\nabla\times(\vecu\times\vecb)}_{\text{stretching}} - \underbrace{\nabla\times(\eta\curl\vecb)}_{\text{diffusion}}
+\end{align}
+
+\begin{align}
+\pderiv{\vecb}{t}=\underbrace{\nabla\times(\vecu_i\times\vecb)}_{\text{stretching}} - \underbrace{\nabla\times(\eta\curl\vecb)}_{\text{diffusion}} -\underbrace{\frac{ck_B}{en_e}\nabla n_e\times \nabla T_e}_{\text{battery}}
+\end{align}
 
 \end{document}
