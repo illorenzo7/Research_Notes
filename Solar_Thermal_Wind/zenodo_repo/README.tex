@@ -1,0 +1,120 @@
+% document type and language
+\documentclass[12pt]{article}
+
+% standard packages
+\usepackage{amsmath, bm, empheq, mathrsfs, natbib, cancel}
+% label equations by section first, then equation in that section
+\numberwithin{equation}{section}
+
+% normal margins
+\usepackage[margin=1in]{geometry}
+
+% plane blue hyperlinks
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor=blue,
+	citecolor=blue
+}
+
+% common macros
+\input{/Users/loren/Desktop/Research_Notes/macros.tex}
+\newcommand{\req}{R_{\rm{eq}}}
+\newcommand{\rpol}{R_{\rm{pol}}}
+\newcommand{\cploc}{c_P}
+\newcommand{\hploc}{H_P}
+\newcommand{\newtext}[1]{{#1}}
+\newcommand{\nnewtext}[1]{\textcolor{red}{#1}}
+\newcommand{\pderivr}{\left(\pderiv{}{\theta}\right)_r}
+\newcommand{\pderivp}{\left(\pderiv{}{\theta}\right)_P}
+% other macros
+\newcommand{\rbound}{r_{\rm{bound}}}
+\newcommand{\ekp}{e^{k[(r/r\bcz)-1]}}
+
+\newcommand{\dialt}{\di_{\rm{alt}}}
+
+% date, author, title
+\date{\today}
+%\author{Loren Matilsky}
+\title{Description of dataset accompanying MNRAS Letter: `The stellar thermal wind as a consequence of oblateness'}
+
+%\allowdisplaybreaks
+\begin{document}
+\maketitle
+This document describes the data contained in the file \texttt{tmp\_anomalies\_and\_more.pkl}. To load the data into a \texttt{Python} dictionary, use the \texttt{pickle} module:
+
+\begin{verbatim}
+>>> import pickle
+>>> f = open('tmp_anomalies_and_more.pkl','rb')
+>>> di = pickle.load(f)
+\end{verbatim}
+
+The dictionary \texttt{di} now contains various arrays, accessible by key. E.g., \texttt{di['t\_dev\_nd\_cent']} corresponds to the $\delta_{\rm{cent}}$ referred to in the paper. These keys are described in the following sections, using the notation given in the paper. For any quantity having units, the units are cgs. This repository was prepared fairly rapidly after the paper's acceptance. Please email me directly if you find any errors, ambiguities, or inconsistencies.
+
+\section{Basic data and grid}
+The spatial grid of the data corresponds to that reported in the GONG inversion (see Howe 2005, 2023). I have excluded all points with $\theta<\pi/12$ or $r/\rsun<0.5$ (i.e., points above $75^\circ$ latitude or excessively deep points). Access the grid through:
+\begin{flalign*}
+\texttt{nt} &: \text{(=41) number of points in $\theta$}    &\\
+\texttt{nr} &: \text{(=38) number of points in $r$} &\\
+\texttt{tt} &:  \theta\  \text{(discrete)}   &\\
+\texttt{tt\_lat} &:  (180/\pi)(\pi/2-\theta)   &\\
+\texttt{rr} &:  r\  \text{(discrete)}   &\\
+\texttt{rsun} &:  R_\odot =\sn{6.96}{10}\ \cm\ \text{(the solar radius as reported in Model S)}&
+\end{flalign*}
+All 2D arrays described in the following section have shape \texttt{(nt,nr)=(41,38)} and 1D arrays have shape \texttt{(nr,)=(38,)}. 
+
+\section{Rotation rate and its derivatives}
+Spatial derivatives in $\theta$ (basically uniform) and $r$ (nonuniform) are calculated using the \texttt{numpy.gradient} function with default arguments (this implies second-order-accurate central differences on the interior points). $\omstar$ was taken from the Howe (2023) dataset (i.e., the RLS inversion technique of Howe 2005, extended to include GONG data through 2009). I have multiplied the original $\omstar$ (which was reported in nHz) by $2\pi(10^{-9})$ to convert to $\rm rad\ s^{-1}$. Here (in contrast to the paper) I use $\pderivline{}{\theta}$ as shorthand for $(\pderivline{}{\theta})_r$. Access these quantities through the 2D arrays:
+\begin{flalign*}
+	\texttt{Om} &: \omstar   &\\
+	\texttt{dOmdt} &: (1/r)\pderivline{\omstar}{\theta} &\\
+	\texttt{dOmdr} &: \pderivline{\omstar}{r} &\\
+	\texttt{dOmdz} &: \pderivline{\omstar}{z} = (\cos\theta)\pderivline{\omstar}{r} -(\sin\theta/r)\pderivline{\omstar}{\theta} &\\
+	\texttt{dOmdl} &: \pderivline{\omstar}{\lambda} = (\sin\theta)\pderivline{\omstar}{r} +(\cos\theta/r)\pderivline{\omstar}{\theta} &\\
+	\texttt{Om2} &: \omstar^2 &\\
+	\texttt{dOm2dz} &:  \pderivline{\omstar^2}{z}=2\omstar\pderivline{\omstar}{z} &\\
+	\texttt{Z} &: \omstar^2/|\pderivline{\omstar^2}{z}| &
+\end{flalign*}
+I also define some 1D arrays, which correspond to spherical averages $\avsph{\cdots}$:
+\begin{flalign*}
+	\texttt{Om2\_vsr} &: \avsph{\omstar^2}&\\
+	\texttt{dOm2\_vsr} &: \avsph{|\pderivline{\omstar^2}{z}|}&\\
+	\texttt{Z\_vsr} &: \avsph{\omstar^2}/\avsph{|\pderivline{\omstar^2}{z}|}&
+\end{flalign*}
+Note that these are only partial spherical averages, since latitudes above $75^\circ$ have been excluded. The volume-average of \texttt{Z\_vsr} over the NSSL gives $\sn{1.13}{11}$ cm, corresponding to the estimate $Z\sim$ 1,000 Mm given in the paper. 
+
+\section{Model S profiles}
+These are 1D profiles corresponding to the Model S data interpolated from its extremely fine grid ($\sim$2,500 radial points) to Howe (2023)'s grid. I use the \texttt{scipy.interpolate.interp1d} function with simple linear interpolation:
+\begin{flalign*}
+	\texttt{grav} &: \overline{g}  &\\
+	\texttt{c\_p} &: \overline{c_P}  &\\
+	\texttt{tmp} &: \overline{T}  &\\
+	\texttt{rho} &: \overline{\rho}  &\\
+	\texttt{prs} &: \overline{P}  &\\
+	\texttt{beta} &: -d\ln\overline{\rho}/d\ln\overline{T}=\overline{\beta_T}\ \overline{T}  &\\
+	\texttt{dtdp} &: d\ln\overline{T}/d\ln\overline{P} &\\
+	\texttt{dsdp} &: (1/c_P)(d\overline{S}/d\ln\overline{P}) &\\
+\end{flalign*}
+\section{Thermal anomalies}
+The thermal anomalies are computed as described in the text. To integrate in $\theta$, I use the \texttt{numpy.trapz} function along the $\theta$ axis (composite trapezoidal rule). For each profile, I have subtracted the spherical mean. For the entropy anomaly $S^\prime$, I use the following equation (similar to equation (10) in the paper):
+\begin{align*}
+ \pderivr \left(\frac{S^\prime}{\overline{\cploc}}\right)&=\frac{1}{\overline{\cploc}}\left(\frac{d\sref}{d\ln\prsref}\right) \pderivr\left(\frac{P^\prime}{\prsref}\right) + \pderivp \left(\frac{S^\prime}{\overline{\cploc}}\right). 
+\end{align*}
+The first term (barotropic anomaly) is negligible in the convection zone and the second term (thermal wind; baroclinic anomaly) becomes negligible in the radiative zone, which rotates roughly like a solid body. The 2D temperature anomalies in the meridional plane have keys:
+\begin{flalign*}
+	\texttt{t\_dev\_nd\_cent} &: \delta_{\rm{cent}}  &\\
+	\texttt{t\_dev\_nd\_quad} &: \delta_{\rm{quad}}  &\\
+	\texttt{t\_dev\_nd\_tw} &: \delta_{\rm{TW}}  &\\
+	\texttt{t\_dev\_cent} &: \delta_{\rm{cent}} \overline{T}\ \text{(dimensional; measured in K)}&\\
+	\texttt{t\_dev\_quad} &: \delta_{\rm{quad}} \overline{T}  &\\
+	\texttt{t\_dev\_tw} &: \delta_{\rm{TW}} \overline{T}  &
+\end{flalign*}
+Six analogous expressions (with \texttt{t\_} $\rightarrow$ \texttt{s\_}) contain the 2D entropy anomalies. 
+
+I also define the 1D nondimensional temperature contrasts $\Delta\delta_{(\cdots)}(r)\definealt \delta_{(\cdots)}(r,\pi/12) - \delta_{(\cdots)}(r,\pi/2)$:
+\begin{flalign*}
+	\texttt{dt\_cent} &: \Delta\delta_{\rm{cent}}  &\\
+	\texttt{dt\_quad} &: \Delta\delta_{\rm{quad}}  &\\
+	\texttt{dt\_tw} &: \Delta\delta_{\rm{tw}} . &
+\end{flalign*}
+\end{document}
